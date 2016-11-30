@@ -8,7 +8,7 @@ public class ShowMeTheMoneyVo {
 	private 	boolean showmethemoneyStatus;	//수령 완료 - true, 수령 예정 - false
 	private Date showmethemoneyDate;	//결제일자;
 	private String showmethemoneyKind;	// 결제 종류
-	private String showmethemoneyContent;	//	결제 이벤트 발생한 숙소 타이틀
+	private String showmethemoneyContent;	//	결제 이벤트 발생한 숙소 이름 + 여행 기간
 	private int showmethemoneyPayMoney;	//수령예정 내역 금액 (수수료 제외 전 금액) 
 	private int showmethemoneyReciveMoney;	// 수령 완료 내역 금액(수수로제외 금액)
 	private String showmethemoneyBank;	// 수령 예정 + 수령 완료 금액 토탈
