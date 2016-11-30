@@ -11,6 +11,7 @@
 	
 	<mvc:annotation-driven/>
 	<mvc:view-controller path="" view-name=""/>
+	
 	<bean name="dataSource" class="org.apache.commons.dbcp2.BasicDataSource"
 		p:driverClassName="oracle.jdbc.driver.OracleDriver"
 		p:url="jdbc:oracle:thin:@127.0.0.1:1521:XE"
@@ -25,9 +26,14 @@
 	<bean name="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate"
 		c:sqlSessionFactory-ref="sqlSessionFactory"/>
 		
+	<bean name ="tilesConfig" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+		<property name="definitions">
+			<list>
+				<value>/WEB-INF/config/tiles/tiles-defs.xml</value>
+			</list>
+		</property>
+	</bean>		
 		
-		
-	
 	<bean name="tilesViewResolver" class="org.springframework.web.servlet.view.tiles3.TilesViewResolver"
 		p:order="1"/>
 		
