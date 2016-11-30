@@ -1,5 +1,5 @@
 package com.perplus.house.vo;
 
-public class dummy {
+public class ScheduleVo {
 
 }
