@@ -1,5 +1,5 @@
 package com.perplus.member.daoimpl;
 
-public class dummy {
+public class RejectDaoImpl {
 
 }

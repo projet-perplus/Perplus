@@ -1,5 +1,5 @@
 package com.perplus.review.dao;
 
-public class dummy {
+public class ReviewCommentDao {
 
 }

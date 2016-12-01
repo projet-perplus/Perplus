@@ -1,5 +1,5 @@
 package com.perplus.house.daoimpl;
 
-public class dummy {
+public class ScheduleDaoImpl {
 
 }

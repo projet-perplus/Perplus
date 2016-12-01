@@ -1,5 +1,5 @@
 package com.perplus.review.daoimpl;
 
-public class dummy {
+public class ReviewPictureDaoImpl {
 
 }

@@ -1,5 +1,5 @@
 package com.perplus.member.dao;
 
-public class dummy {
+public class HouseCommentDao {
 
 }
