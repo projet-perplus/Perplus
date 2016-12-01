@@ -51,10 +51,10 @@
 
 
 
-
-
-
-
+	<mvc:annotation-driven/>
+	
+	<mvc:view-controller path="/main.do" view-name="/test.jsp"/>
+	
 
 	<bean name="dataSource" class="org.apache.commons.dbcp2.BasicDataSource"
 		p:driverClassName="oracle.jdbc.driver.OracleDriver" p:url="jdbc:oracle:thin:@127.0.0.1:1521:XE"

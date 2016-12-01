@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class ShowMeTheMoneyVo {
 
+	private int showmethemoneySerial;	// 결제 번호
 	private String memberEmail;
 	private 	boolean showmethemoneyStatus;	//수령 완료 - true, 수령 예정 - false
 	private Date showmethemoneyDate;	//결제일자;
@@ -15,9 +16,10 @@ public class ShowMeTheMoneyVo {
 	
 	public ShowMeTheMoneyVo(){}
 
-	public ShowMeTheMoneyVo(String memberEmail, boolean showmethemoneyStatus, Date showmethemoneyDate,
-			String showmethemoneyKind, String showmethemoneyContent, int showmethemoneyPayMoney,
-			int showmethemoneyReciveMoney, String showmethemoneyBank) {
+	public ShowMeTheMoneyVo(int showmethemoneySerial, String memberEmail, boolean showmethemoneyStatus,
+			Date showmethemoneyDate, String showmethemoneyKind, String showmethemoneyContent,
+			int showmethemoneyPayMoney, int showmethemoneyReciveMoney, String showmethemoneyBank) {
+		this.showmethemoneySerial = showmethemoneySerial;
 		this.memberEmail = memberEmail;
 		this.showmethemoneyStatus = showmethemoneyStatus;
 		this.showmethemoneyDate = showmethemoneyDate;
@@ -26,6 +28,14 @@ public class ShowMeTheMoneyVo {
 		this.showmethemoneyPayMoney = showmethemoneyPayMoney;
 		this.showmethemoneyReciveMoney = showmethemoneyReciveMoney;
 		this.showmethemoneyBank = showmethemoneyBank;
+	}
+
+	public int getShowmethemoneySerial() {
+		return showmethemoneySerial;
+	}
+
+	public void setShowmethemoneySerial(int showmethemoneySerial) {
+		this.showmethemoneySerial = showmethemoneySerial;
 	}
 
 	public String getMemberEmail() {
@@ -103,6 +113,7 @@ public class ShowMeTheMoneyVo {
 		result = prime * result + ((showmethemoneyKind == null) ? 0 : showmethemoneyKind.hashCode());
 		result = prime * result + showmethemoneyPayMoney;
 		result = prime * result + showmethemoneyReciveMoney;
+		result = prime * result + showmethemoneySerial;
 		result = prime * result + (showmethemoneyStatus ? 1231 : 1237);
 		return result;
 	}
@@ -145,6 +156,8 @@ public class ShowMeTheMoneyVo {
 			return false;
 		if (showmethemoneyReciveMoney != other.showmethemoneyReciveMoney)
 			return false;
+		if (showmethemoneySerial != other.showmethemoneySerial)
+			return false;
 		if (showmethemoneyStatus != other.showmethemoneyStatus)
 			return false;
 		return true;
@@ -152,10 +165,10 @@ public class ShowMeTheMoneyVo {
 
 	@Override
 	public String toString() {
-		return "ShowMeTheMoneyVo [memberEmail=" + memberEmail + ", showmethemoneyStatus=" + showmethemoneyStatus
-				+ ", showmethemoneyDate=" + showmethemoneyDate + ", showmethemoneyKind=" + showmethemoneyKind
-				+ ", showmethemoneyContent=" + showmethemoneyContent + ", showmethemoneyPayMoney="
-				+ showmethemoneyPayMoney + ", showmethemoneyReciveMoney=" + showmethemoneyReciveMoney
-				+ ", showmethemoneyBank=" + showmethemoneyBank + "]";
-	}
+		return "ShowMeTheMoneyVo [showmethemoneySerial=" + showmethemoneySerial + ", memberEmail=" + memberEmail
+				+ ", showmethemoneyStatus=" + showmethemoneyStatus + ", showmethemoneyDate=" + showmethemoneyDate
+				+ ", showmethemoneyKind=" + showmethemoneyKind + ", showmethemoneyContent=" + showmethemoneyContent
+				+ ", showmethemoneyPayMoney=" + showmethemoneyPayMoney + ", showmethemoneyReciveMoney="
+				+ showmethemoneyReciveMoney + ", showmethemoneyBank=" + showmethemoneyBank + "]";
+	}	
 }

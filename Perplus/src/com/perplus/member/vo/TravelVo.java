@@ -5,25 +5,27 @@ import java.sql.Timestamp;
 import java.util.Date;
 
 public class TravelVo implements Serializable{
-	private int travelCode;
+	private int travelSerial;	// 숙박 번호
+	private int travelCode;	//현재 or 과거 여행
 	private int houseSerial;
 	private String memberEmail;
 	private Date travelStart;	//숙박 시작 날짜
 	private Date travelEnd;	//숙박 종료 날짜
-	private int travelNumber;	// 숙박 번호
+	private int travelNumber;	// 숙박 인원
 	private Timestamp travelCheckin; // 첫날 입실 시간
 	private int travelCost;
 	
 	public TravelVo() {}
 
-	public TravelVo(int travelCode, int houseSerial, String memberEmail){
+	public TravelVo(int travelSerial, int travelCode, int houseSerial, String memberEmail){	// 코드, 하우스 시리얼, 멤버 이메일
 		this.travelCode = travelCode;
 		this.houseSerial = houseSerial;
 		this.memberEmail = memberEmail;
 	}
 
-	public TravelVo(int travelCode, int houseSerial, String memberEmail, Date travelStart, Date travelEnd,
-			int travelNumber, Timestamp travelCheckin, int travelCost) {
+	public TravelVo(int travelSerial, int travelCode, int houseSerial, String memberEmail, Date travelStart,
+			Date travelEnd, int travelNumber, Timestamp travelCheckin, int travelCost) {
+		this.travelSerial = travelSerial;
 		this.travelCode = travelCode;
 		this.houseSerial = houseSerial;
 		this.memberEmail = memberEmail;
@@ -32,6 +34,14 @@ public class TravelVo implements Serializable{
 		this.travelNumber = travelNumber;
 		this.travelCheckin = travelCheckin;
 		this.travelCost = travelCost;
+	}
+
+	public int getTravelSerial() {
+		return travelSerial;
+	}
+
+	public void setTravelSerial(int travelSerial) {
+		this.travelSerial = travelSerial;
 	}
 
 	public int getTravelCode() {
@@ -109,6 +119,7 @@ public class TravelVo implements Serializable{
 		result = prime * result + travelCost;
 		result = prime * result + ((travelEnd == null) ? 0 : travelEnd.hashCode());
 		result = prime * result + travelNumber;
+		result = prime * result + travelSerial;
 		result = prime * result + ((travelStart == null) ? 0 : travelStart.hashCode());
 		return result;
 	}
@@ -145,6 +156,8 @@ public class TravelVo implements Serializable{
 			return false;
 		if (travelNumber != other.travelNumber)
 			return false;
+		if (travelSerial != other.travelSerial)
+			return false;
 		if (travelStart == null) {
 			if (other.travelStart != null)
 				return false;
@@ -155,10 +168,9 @@ public class TravelVo implements Serializable{
 
 	@Override
 	public String toString() {
-		return "TravelVo [travelCode=" + travelCode + ", houseSerial=" + houseSerial + ", memberEmail=" + memberEmail
-				+ ", travelStart=" + travelStart + ", travelEnd=" + travelEnd + ", travelNumber=" + travelNumber
-				+ ", travelCheckin=" + travelCheckin + ", travelCost=" + travelCost + "]";
+		return "TravelVo [travelSerial=" + travelSerial + ", travelCode=" + travelCode + ", houseSerial=" + houseSerial
+				+ ", memberEmail=" + memberEmail + ", travelStart=" + travelStart + ", travelEnd=" + travelEnd
+				+ ", travelNumber=" + travelNumber + ", travelCheckin=" + travelCheckin + ", travelCost=" + travelCost
+				+ "]";
 	}
-	
-	
 }

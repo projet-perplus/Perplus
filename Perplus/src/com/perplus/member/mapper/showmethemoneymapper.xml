@@ -1,5 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd" >
-<configuration>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
-</configuration>
+<mapper namespace="showmethemoney">
+
+	<!-- Insert -->
+	<insert id="insertTravel" parameterType="ShowMeTheMoneyVo">
+		insert into SHOWMETHEMONEY values (#{travelSerial}, #{travelCode}, #{houseSerial}, #{memberEmail}, #{travelStart}, #{travelEnd}, #{travelNumber}, #{travelCheckin}, #{travelCost})
+	</insert>
+	<!-- update-->
+	<update id="updateTravel" parameterType="ShowMeTheMoneyVo">
+		update 
+	</update>
+
+
+
+
+
+</mapper>

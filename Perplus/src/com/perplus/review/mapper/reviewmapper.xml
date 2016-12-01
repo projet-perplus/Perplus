@@ -1,5 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd" >
-<configuration>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
-</configuration>
+<mapper namespace="review">
+<!-- 리뷰 INSERT -->
+<insert id="insertReview" parameterType="ReviewVo">
+	insert into review values(#{reviewSerial},#{memberEmail},#{reviewTitle},#{reviewContent},#{reviewRating},#{reviewTime},#{reviewMakerX},#{reviewMakerY},#{reviewMakerConstant})
+</insert>
+
+<!-- 리뷰 Delete -->
+<delete id="deleteReview" parameterType="hashMap">
+	delete from review
+	where member_email=#{memberEmail}
+	and review_serial =#{reviewSerial}
+</delete>
+
+
+</mapper>
