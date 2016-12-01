@@ -6,7 +6,7 @@
 		<package name="com.perplus.review.vo" />
 		<package name="com.perplus.member.vo" />
 	</typeAliases>
-
+<!-- 
 	<mappers>
 		<mapper resource="com/perplus/house/mapper/Codetablemapper.xml" />
 		<mapper resource="com/perplus/house/mapper/housemapper.xml" />
@@ -30,5 +30,5 @@
 		<mapper resource="com/perplus/member/mapper/showmethemoneymapper.xml" />
 		<mapper resource="com/perplus/controller/travelmapper.xml" />
 	</mappers>
-
+ -->
 </configuration>

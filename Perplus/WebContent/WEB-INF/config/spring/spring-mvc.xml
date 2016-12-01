@@ -10,7 +10,9 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd">
 	
 	<mvc:annotation-driven/>
-	<mvc:view-controller path="" view-name=""/>
+	
+	<mvc:view-controller path="/main.do" view-name="main.tiles"/>
+	
 	
 	<bean name="dataSource" class="org.apache.commons.dbcp2.BasicDataSource"
 		p:driverClassName="oracle.jdbc.driver.OracleDriver"
