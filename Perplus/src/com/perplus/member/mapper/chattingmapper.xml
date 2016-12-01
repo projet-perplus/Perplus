@@ -1,6 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
-<mapper namespace="이름지정">
+<mapper namespace="chatting">
+
+	<insert id="createChatting">
+		insert into CHATTING values(chatting_seq.nextval,#{chattingPartner},#{memberEmail})
+	</insert>
+
+	<delete id="deleteChatting" parameterType="_int">
+		delete from CHATTING where chatting_number = #{chattingNumber}
+	</delete>
+
+	<select id="selectMyChatting" parameterType="string" resultType="ChattingVo">
+		select	chatting_number chattingNumber, member_email memberEmail, chatting_partner chattingPartner
+		from	CHATTING
+		where	chatting_partner = #{value}
+		or		member_email = #{value}
+	</select>
+
+	<select id="findByChattingNumber" parameterType="hashmap" resultType="ChattingVo">
+		select *
+		from	CAHTTING
+		where	chatting_partner = #{chattingPartner}
+		and		member_email = #{member_email}
+	</select>
 
 </mapper>

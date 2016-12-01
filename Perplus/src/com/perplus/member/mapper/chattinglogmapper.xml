@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
-<mapper namespace="이름지정">
+<mapper namespace="chattinglog">
+	<select id="selectchattinglog" parameterType="_int" resultType="com.perplus.member.vo.ChattingLogVo">
+		select *
+		from CHATTINGLOG
+		where chatting_number = #{value}
+	</select>
+
+	<insert id="insertchattinglog" parameterType="ChattingVo">
+		insert into
+		CHATTING values(#{chattingNumber},#{memberEmail},#{chattingContent})
+	</insert>
 
 </mapper>
