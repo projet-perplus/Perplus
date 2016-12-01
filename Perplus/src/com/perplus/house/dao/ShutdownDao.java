@@ -1,5 +1,5 @@
 package com.perplus.house.dao;
 
-public class ShutdownDao {
+public interface ShutdownDao {
 
 }
