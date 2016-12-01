@@ -22,7 +22,7 @@
 	<!-- sub template -->
 	<definition name="subtemplate" template="/WEB-INF/view/layout/subtemplate.jsp">
 		<put-attribute name="header" value="/WEB-INF/view/common/header.jsp" />
-		<put-attribute name="subheader" value="/WEB-INF/view/common/subheader.jsp"/>
+		<put-attribute name="subheader" value="/WEB-INF/view/common/subheader.jsp" />
 		<put-attribute name="footer" value="/WEB-INF/view/common/footer.jsp" />
 	</definition>
 
@@ -31,11 +31,7 @@
 			value="/WEB-INF/view/common/submenu/{1}.jsp" />
 		<put-attribute name="rightmenu" value="/WEB-INF/view/common/{2}/{3}.jsp" />
 	</definition>
-
-
-
-
-
+	
 </tiles-definitions>
 
 
