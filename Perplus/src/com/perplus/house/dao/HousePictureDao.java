@@ -1,5 +1,5 @@
 package com.perplus.house.dao;
 
-public class HousePictureDao {
+public interface HousePictureDao {
 
 }

@@ -1,5 +1,7 @@
 package com.perplus.house.vo;
 
-public class CodetableVo {
+import java.io.Serializable;
 
+public class CodetableVo implements Serializable{
+	
 }
