@@ -1,5 +1,5 @@
 package com.perplus.member.service;
 
-public class dummy {
+public class MemberService {
 
 }

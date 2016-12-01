@@ -1,5 +1,5 @@
 package com.perplus.house.service;
 
-public class dummy {
+public class HouseService {
 
 }

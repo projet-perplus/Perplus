@@ -1,5 +1,5 @@
 package com.perplus.controller;
 
-public class dummy {
+public class ReviewController {
 
 }

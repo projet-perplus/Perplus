@@ -1,5 +1,5 @@
 package com.perplus.house.serviceimpl;
 
-public class dummy {
+public class HouseServiceImpl {
 
 }

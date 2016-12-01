@@ -1,5 +1,5 @@
 package com.perplus.review.serviceimpl;
 
-public class dummy {
+public class ReviewServiceImpl {
 
 }
