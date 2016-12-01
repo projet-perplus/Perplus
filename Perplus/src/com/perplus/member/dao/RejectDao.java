@@ -1,7 +1,5 @@
 package com.perplus.member.dao;
 
-import java.util.List;
-
 import org.apache.ibatis.session.SqlSession;
 
 import com.perplus.member.vo.RejectVo;

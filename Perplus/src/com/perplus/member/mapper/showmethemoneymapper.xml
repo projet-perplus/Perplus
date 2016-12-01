@@ -4,16 +4,55 @@
 <mapper namespace="showmethemoney">
 
 	<!-- Insert -->
-	<insert id="insertTravel" parameterType="ShowMeTheMoneyVo">
-		insert into SHOWMETHEMONEY values (#{travelSerial}, #{travelCode}, #{houseSerial}, #{memberEmail}, #{travelStart}, #{travelEnd}, #{travelNumber}, #{travelCheckin}, #{travelCost})
+	<insert id="insertShowmethemoney" parameterType="ShowMeTheMoneyVo">
+		insert into SHOWMETHEMONEY values (#{showmethemoneySerial}, #{memberEmail}, #{showmethemoneyStatus}, #{showmethemoneyDate}, #{showmethemoneyKind}, #{showmethemoneyContent}, #{showmethemoneyPayMoney}, #{showmethemoneyReciveMoney}, #{showmethemoneyBank})
 	</insert>
+	
 	<!-- update-->
-	<update id="updateTravel" parameterType="ShowMeTheMoneyVo">
-		update 
+	<update id="updateShowmethemoney" parameterType="ShowMeTheMoneyVo">
+		update SHOWMETHEMONEY
+		set	SHOWMETHEMONEY_SERIAL = #{showmethemoneySerial}, 
+				MEMBER_EMAIL = #{memberEmail}, 
+				SHOWMETHEMONEY_STATUS = #{showmethemoneyStatus}, 
+				SHOWMETHEMONEY_DATE = #{showmethemoneyDate}, 
+				SHOWMETHEMONEY_KIND = #{showmethemoneyKind}, 
+				SHOWMETHEMONEY_CONTENT = #{showmethemoneyContent}, 
+				SHOWMETHEMONEY_PAY_MONEY = #{showmethemoneyPayMoney}, 
+				TRSHOWMETHEMONEY_RECIVE_MONEY = #{showmethemoneyReciveMoney},
+				SHOWMETHEMONEY_BANK = #{showmethemoneyBank}
+		where SHOWMETHEMONEY_SERIAL = #{showmethemoneySerial}
 	</update>
-
-
-
-
-
+	
+	<!-- delete -->
+	<delete id="deleteShowmethemoney" parameterType="_int">
+		delete from SHOWMETHEMONEY where SHOWMETHEMONEY_SERIAL = #{showmethemoneySerial}
+	</delete>
+	
+	<!-- select -->
+	<select id="selectShowmethemoney"  resultType="ShowMeTheMoneyVo">
+		select	SHOWMETHEMONEY_SERIAL showmethemoneySerial, 
+					MEMBER_EMAIL memberEmail, 
+					SHOWMETHEMONEY_STATUS showmethemoneyStatus, 
+					SHOWMETHEMONEY_DATE showmethemoneyDate, 
+					SHOWMETHEMONEY_KIND showmethemoneyKind, 
+					SHOWMETHEMONEY_CONTENT showmethemoneyContent, 
+					SHOWMETHEMONEY_PAY_MONEY showmethemoneyPayMoney, 
+					TRSHOWMETHEMONEY_RECIVE_MONEY showmethemoneyReciveMoney,
+					SHOWMETHEMONEY_BANK showmethemoneyBank
+		from SHOWMETHEMONEY
+	</select>
+	
+	<select id="selectShowmethemoneyByShowmethemoneySerial"  parameterType="_int" resultType="ShowMeTheMoneyVo">
+		select	SHOWMETHEMONEY_SERIAL showmethemoneySerial, 
+					MEMBER_EMAIL memberEmail, 
+					SHOWMETHEMONEY_STATUS showmethemoneyStatus, 
+					SHOWMETHEMONEY_DATE showmethemoneyDate, 
+					SHOWMETHEMONEY_KIND showmethemoneyKind, 
+					SHOWMETHEMONEY_CONTENT showmethemoneyContent, 
+					SHOWMETHEMONEY_PAY_MONEY showmethemoneyPayMoney, 
+					TRSHOWMETHEMONEY_RECIVE_MONEY showmethemoneyReciveMoney,
+					SHOWMETHEMONEY_BANK showmethemoneyBank
+		from SHOWMETHEMONEY
+		where SHOWMETHEMONEY_SERIAL = #{showmethemoneySerial} 
+	</select>
 </mapper>

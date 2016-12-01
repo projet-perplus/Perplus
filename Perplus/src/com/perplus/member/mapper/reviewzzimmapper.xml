@@ -1,6 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
-<mapper namespace="이름지정">
+<mapper namespace="reviewZzim">
+	<!-- insert -->
+	<insert id="insertReviewZzim" parameterType="ReviewZzimVo">
+		insert into REVIEWZZIM values (#{reviewSerial}, #{memberEmail})
+	</insert>
+	
+	<!-- delete -->
+	<delete id="deleteReviewZzim" parameterType="_int">
+		delete from REVIEWZZIM where REVIEW_SERIAL = #{reviewSerial}
+	</delete>
+	
+	<!-- select -->
+	<select id="selectReviewZzim"  resultType="ReviewZzimVo">
+		select	REVIEW_SERIAL reviewSerial, 
+					MEMBER_EMAIL memberEmail
+		from REVIEWZZIM
+		where MEMBER_EMAIL = #{memberEmail}
+	</select>
+
+
+
 
 </mapper>
