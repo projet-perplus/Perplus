@@ -23,9 +23,9 @@ public interface ReviewZzimDao {
 	int deleteReviewZzim(int reviewSerial);
 	
 	/**
-	 * 전체 ReviewZzimVo 객체 select
+	 * memberEmail로 ReviewZzimVo 객체 select
 	 * @return
 	 */
-	List<ReviewZzimVo> selectReviewZzim(String memberEmail);
+	List<ReviewZzimVo> selectReviewZzimByMemberEmail(String memberEmail);
 	
 }
