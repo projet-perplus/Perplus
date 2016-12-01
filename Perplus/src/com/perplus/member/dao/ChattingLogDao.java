@@ -1,5 +1,12 @@
 package com.perplus.member.dao;
 
-public class ChattingLogDao {
+import java.util.List;
 
+import com.perplus.member.vo.ChattingLogVo;
+
+public interface ChattingLogDao {
+	
+	List<ChattingLogVo> selectChattingLog(int chattingNumber);
+	
+	
 }
