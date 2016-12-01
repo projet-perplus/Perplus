@@ -1,5 +1,7 @@
 package com.perplus.house.daoimpl;
 
-public class ScheduleDaoImpl {
+import com.perplus.house.dao.ScheduleDao;
+
+public class ScheduleDaoImpl implements ScheduleDao{
 
 }
