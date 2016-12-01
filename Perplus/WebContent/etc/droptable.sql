@@ -20,4 +20,3 @@ drop table SHUTDOWN cascade constraint;
 drop table SHOWMETHEMONEY cascade constraint;
 drop table TRAVEL cascade constraint;
 
-

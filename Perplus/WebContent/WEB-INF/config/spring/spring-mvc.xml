@@ -11,7 +11,7 @@
 	
 	<mvc:annotation-driven/>
 	
-	<mvc:view-controller path="/main.do" view-name="/test.jsp"/>
+	<mvc:view-controller path="/main.do" view-name="/kim.jsp"/>
 	
 	
 	<bean name="dataSource" class="org.apache.commons.dbcp2.BasicDataSource"

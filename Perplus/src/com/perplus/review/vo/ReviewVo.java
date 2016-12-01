@@ -13,9 +13,9 @@ public class ReviewVo implements Serializable{
 	private String reviewContent; //명소 리뷰 내용
 	private int reviewRating; //명소 평점 
 	private Date reviewTime; //게시글 작성 시간
-	private double reviewMakerX; //명소 지도상 위치
-	private double reviewMakerY; //명소 지도상 위치
-	private int reviewMakerConstant; //명소 마커 종류
+	private double reviewMarkerX; //명소 지도상 위치
+	private double reviewMarkerY; //명소 지도상 위치
+	private int reviewMarkerConstant; //명소 마커 종류
 	
 	private List<ReviewCommentVo>reviewComment; //명소 리뷰 댓글
 	private List<ReviewPictureVo>reviewPicture; //명소 리뷰 사진
@@ -34,9 +34,9 @@ public class ReviewVo implements Serializable{
 		this.reviewContent = reviewContent;
 		this.reviewRating = reviewRating;
 		this.reviewTime = reviewTime;
-		this.reviewMakerX = reviewMakerX;
-		this.reviewMakerY = reviewMakerY;
-		this.reviewMakerConstant = reviewMakerConstant;
+		this.reviewMarkerX = reviewMakerX;
+		this.reviewMarkerY = reviewMakerY;
+		this.reviewMarkerConstant = reviewMakerConstant;
 	}
 
 	public ReviewVo(int reviewSerial, String memberEmail, String reviewTitle, String reviewContent, int reviewRating,
@@ -49,9 +49,9 @@ public class ReviewVo implements Serializable{
 		this.reviewContent = reviewContent;
 		this.reviewRating = reviewRating;
 		this.reviewTime = reviewTime;
-		this.reviewMakerX = reviewMakerX;
-		this.reviewMakerY = reviewMakerY;
-		this.reviewMakerConstant = reviewMakerConstant;
+		this.reviewMarkerX = reviewMakerX;
+		this.reviewMarkerY = reviewMakerY;
+		this.reviewMarkerConstant = reviewMakerConstant;
 		this.reviewComment = reviewComment;
 		this.reviewPicture = reviewPicture;
 	}
@@ -66,9 +66,9 @@ public class ReviewVo implements Serializable{
 		this.reviewContent = reviewContent;
 		this.reviewRating = reviewRating;
 		this.reviewTime = reviewTime;
-		this.reviewMakerX = reviewMakerX;
-		this.reviewMakerY = reviewMakerY;
-		this.reviewMakerConstant = reviewMakerConstant;
+		this.reviewMarkerX = reviewMakerX;
+		this.reviewMarkerY = reviewMakerY;
+		this.reviewMarkerConstant = reviewMakerConstant;
 		this.reviewComment = reviewComment;
 		this.reviewPicture = reviewPicture;
 		this.member = member;
@@ -124,27 +124,27 @@ public class ReviewVo implements Serializable{
 	}
 
 	public double getReviewMakerX() {
-		return reviewMakerX;
+		return reviewMarkerX;
 	}
 
 	public void setReviewMakerX(double reviewMakerX) {
-		this.reviewMakerX = reviewMakerX;
+		this.reviewMarkerX = reviewMakerX;
 	}
 
 	public double getReviewMakerY() {
-		return reviewMakerY;
+		return reviewMarkerY;
 	}
 
 	public void setReviewMakerY(double reviewMakerY) {
-		this.reviewMakerY = reviewMakerY;
+		this.reviewMarkerY = reviewMakerY;
 	}
 
 	public int getReviewMakerConstant() {
-		return reviewMakerConstant;
+		return reviewMarkerConstant;
 	}
 
 	public void setReviewMakerConstant(int reviewMakerConstant) {
-		this.reviewMakerConstant = reviewMakerConstant;
+		this.reviewMarkerConstant = reviewMakerConstant;
 	}
 
 	public List<ReviewCommentVo> getReviewComment() {
@@ -175,8 +175,8 @@ public class ReviewVo implements Serializable{
 	public String toString() {
 		return "ReviewVo [reviewSerial=" + reviewSerial + ", memberEmail=" + memberEmail + ", reviewTitle="
 				+ reviewTitle + ", reviewContent=" + reviewContent + ", reviewRating=" + reviewRating + ", reviewTime="
-				+ reviewTime + ", reviewMakerX=" + reviewMakerX + ", reviewMakerY=" + reviewMakerY
-				+ ", reviewMakerConstant=" + reviewMakerConstant + ", reviewComment=" + reviewComment
+				+ reviewTime + ", reviewMarkerX=" + reviewMarkerX + ", reviewMarkerY=" + reviewMarkerY
+				+ ", reviewMarkerConstant=" + reviewMarkerConstant + ", reviewComment=" + reviewComment
 				+ ", reviewPicture=" + reviewPicture + "]";
 	}
 
@@ -187,11 +187,11 @@ public class ReviewVo implements Serializable{
 		result = prime * result + ((memberEmail == null) ? 0 : memberEmail.hashCode());
 		result = prime * result + ((reviewComment == null) ? 0 : reviewComment.hashCode());
 		result = prime * result + ((reviewContent == null) ? 0 : reviewContent.hashCode());
-		result = prime * result + reviewMakerConstant;
+		result = prime * result + reviewMarkerConstant;
 		long temp;
-		temp = Double.doubleToLongBits(reviewMakerX);
+		temp = Double.doubleToLongBits(reviewMarkerX);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
-		temp = Double.doubleToLongBits(reviewMakerY);
+		temp = Double.doubleToLongBits(reviewMarkerY);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		result = prime * result + ((reviewPicture == null) ? 0 : reviewPicture.hashCode());
 		result = prime * result + reviewRating;
@@ -225,11 +225,11 @@ public class ReviewVo implements Serializable{
 				return false;
 		} else if (!reviewContent.equals(other.reviewContent))
 			return false;
-		if (reviewMakerConstant != other.reviewMakerConstant)
+		if (reviewMarkerConstant != other.reviewMarkerConstant)
 			return false;
-		if (Double.doubleToLongBits(reviewMakerX) != Double.doubleToLongBits(other.reviewMakerX))
+		if (Double.doubleToLongBits(reviewMarkerX) != Double.doubleToLongBits(other.reviewMarkerX))
 			return false;
-		if (Double.doubleToLongBits(reviewMakerY) != Double.doubleToLongBits(other.reviewMakerY))
+		if (Double.doubleToLongBits(reviewMarkerY) != Double.doubleToLongBits(other.reviewMarkerY))
 			return false;
 		if (reviewPicture == null) {
 			if (other.reviewPicture != null)

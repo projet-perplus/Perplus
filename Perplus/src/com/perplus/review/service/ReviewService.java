@@ -8,7 +8,7 @@ public interface ReviewService {
 	//수정
 	void modifyReview(ReviewVo review);
 	//삭제
-	void removeReview(int reviewSerial, String memberEmail);
+	void removeReview(int reviewSerial);
 	//조회
 	ReviewVo getReview(int reviewSerial);
 }
