@@ -1,14 +1,22 @@
 package com.perplus.review.daoimpl;
 
+import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
 import com.perplus.review.dao.ReviewDao;
 import com.perplus.review.vo.ReviewVo;
 
+@Repository
 public class ReviewDaoImpl implements ReviewDao{
 
+	@Autowired
+	private SqlSessionTemplate session;
+	
 	@Override
 	public int insertReview(ReviewVo review) {
-		// TODO Auto-generated method stub
-		return 0;
+		// 리뷰 등록하는 메소드
+		return session.insert("review.insert", review);
 	}
 
 	@Override
