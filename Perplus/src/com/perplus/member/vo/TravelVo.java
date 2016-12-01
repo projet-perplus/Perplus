@@ -16,7 +16,7 @@ public class TravelVo implements Serializable{
 	
 	public TravelVo() {}
 
-	public TravelVo(int travelCode, int houseSerial, String memberEmail){
+	public TravelVo(int travelCode, int houseSerial, String memberEmail){	// 코드, 하우스 시리얼, 멤버 이메일
 		this.travelCode = travelCode;
 		this.houseSerial = houseSerial;
 		this.memberEmail = memberEmail;
