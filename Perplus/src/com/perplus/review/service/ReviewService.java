@@ -1,5 +1,14 @@
 package com.perplus.review.service;
 
-public interface ReviewService {
+import com.perplus.review.vo.ReviewVo;
 
+public interface ReviewService {
+	//등록
+	void registerReview(ReviewVo review);
+	//수정
+	void modifyReview(ReviewVo review);
+	//삭제
+	void removeReview(int reviewSerial, String memberEmail);
+	//조회
+	ReviewVo getReview(int reviewSerial);
 }
