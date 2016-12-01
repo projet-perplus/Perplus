@@ -26,7 +26,9 @@
   	<section>
   		<tiles:insertAttribute name="nav"/>
   	</section>
-  
+  	
+  		<a href="${initParam.rootPath}/submenu.do" class="menu">메뉴 가봐라</a>
+  		
   	<footer class="container-fluid bg-4 text-center">
   		<tiles:insertAttribute name="footer"/>
   	</footer>

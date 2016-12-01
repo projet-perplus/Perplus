@@ -13,6 +13,14 @@
 	
 	<mvc:view-controller path="/main.do" view-name="main.tiles"/>
 	
+	<mvc:view-controller path="/submenu.do" view-name="submenu.tiles1"/>
+	
+	<mvc:view-controller path="/users/accountmanagement.do" view-name="account_management.tiles1"/>
+	<mvc:view-controller path="/rooms.do" view-name="rooms.tiles1"/>
+	<mvc:view-controller path="/travellist.do" view-name="travel_list.tiles1"/>
+	<mvc:view-controller path="/message.do" view-name="message.tiles1"/>
+	
+	
 	
 	<bean name="dataSource" class="org.apache.commons.dbcp2.BasicDataSource"
 		p:driverClassName="oracle.jdbc.driver.OracleDriver"
