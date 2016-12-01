@@ -1,5 +1,8 @@
 package com.perplus.review.daoimpl;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -16,7 +19,7 @@ public class ReviewDaoImpl implements ReviewDao{
 	@Override
 	public int insertReview(ReviewVo review) {
 		// 리뷰 등록하는 메소드
-		return session.insert("review.insert", review);
+		return session.insert("review.insertReview", review);
 	}
 
 	@Override
@@ -40,7 +43,11 @@ public class ReviewDaoImpl implements ReviewDao{
 	@Override
 	public int removeReview(int reviewSerial, String memberEmail) {
 		// TODO Auto-generated method stub
-		return 0;
+		Map map = new HashMap<>();
+		map.put("reviewSerial", reviewSerial);
+		map.put("memberEmail",memberEmail);
+		
+		return session.delete("review.deleteReview", map);
 	}
 	
 }
