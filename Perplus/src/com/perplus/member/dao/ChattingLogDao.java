@@ -8,5 +8,6 @@ public interface ChattingLogDao {
 	
 	List<ChattingLogVo> selectChattingLog(int chattingNumber);
 	
+	int insertChattingLog(ChattingLogVo chattingLog);
 	
 }
