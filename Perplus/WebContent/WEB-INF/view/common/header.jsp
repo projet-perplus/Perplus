@@ -2,11 +2,11 @@
 
 
 
- <nav class="navbar navbar-default">
+ <nav class="navbar navbar-default" id="navbar1">
       <div class="container-fluid">
         <div class="navbar-header">
-          <a class="navbar-img" href="#">
-            <img src="css/image/PerPlusLoGo.PNG" alt="logo"/>
+          <a class="navbar-img" href="${initParam.rootPath}/main.do">
+            <img src="css/image/logos.PNG" alt="logo"/>
           </a>
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
             <span class="icon-bar"></span>
@@ -16,7 +16,7 @@
 
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
-          <ul class="nav navbar-nav navbar-right">
+          <ul class="nav navbar-nav navbar-right navbar-nav1">
            
             <li><a href="#">여행명소</a></li>
             <li><a href="#">호스팅하기</a></li>

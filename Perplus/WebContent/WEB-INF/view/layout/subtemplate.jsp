@@ -21,32 +21,27 @@
 		  <script src="js/js.js"></script>	<!-- perplus javascript -->
 	</head>
 	<style>
+		a{
+			color:black !important;
+		}
+		ul >li{
+		list-style:none;
+		
+		}
 		.navbar.navbar {
 		 background-color:white !important;
 		 color:black !important;
 	     position:relative !important; 
 	     margin-top:0px;
 	     }
+	    .navbar-default .navbar-nav1>li>a {
+		    color: #000 !important;
+		}
 		#subheader{
-			height:40px;
+			background-color:#484848 !important;
 		}
-	     
-	     .navbar-default .navbar-nav>li>a {
-	     	font-size:14px;
-		    padding: 15px 40px;
-		    color: #000!important;
-		}
-		.navbar-default .navs>li>a {
-		    font-size: 14px;
-		    padding: 15px 20px;
-		    color: #fff !important;
-		}
-		a:focus{
-		  border-bottom:solid 3px #fff  !important;
-		}
-		#myNavbar1{
-			float:left;
-			margin-left:20px;
+		.navbar-default .navs>li>a:focus{
+			border-bottom:solid 3px #ccc !important;
 		}
 	</style>
 	
@@ -55,10 +50,27 @@
 		  		<tiles:insertAttribute name="header"/>
 	  	</header>
 	  
+	  
+	  
+	  
 	  	<section>
 	  		<tiles:insertAttribute name="subheader"/>
 	  	</section>
-	  
+	  	
+	  	
+	  	
+	  	<div class="menu">
+	  		<div class="container-fluid">
+	  			<div class="row">
+	  				<div class="col-md-3">
+	  					<tiles:insertAttribute name="menu"/>
+	  				</div>
+	  				<div class="col-md-9">
+	  					<tiles:insertAttribute name="rightmenu"/>
+	  				</div>
+	  			</div>
+	  		</div>
+	  	</div>
 	  	<footer class="container-fluid bg-4 text-center">
 	  		<tiles:insertAttribute name="footer"/>
 	  	</footer>
