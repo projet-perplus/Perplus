@@ -5,11 +5,11 @@ import java.util.Date;
 public class PaymentVo {
 	
 	private String memberEmail;
-	private String paymentType;	// 결제수단 정보
+	private String paymentType;	// 결제 회사
 	private int cardNumber;
 	private Date cardExpiration;
-	private String cardSecondName;
-	private String cardFirstName;
+	private String cardSecondName;	// 이름
+	private String cardFirstName;	//이름의  성
 	
 	public PaymentVo() {}
 
