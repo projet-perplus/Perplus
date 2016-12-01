@@ -17,8 +17,11 @@ public class ChattingLogDaoImpl implements ChattingLogDao{
 
 	@Override
 	public List<ChattingLogVo> selectChattingLog(int chattingNumber) {
-		return session.selectList("",chattingNumber);
+		return session.selectList("chattinglog.insertchattinglog",chattingNumber);
 	}
-	
+
+	public int insertChattingLog(ChattingLogVo chattingLog) {
+		return session.insert("chattinglog.insertchattinglog", chattingLog);
+	}
 	
 }

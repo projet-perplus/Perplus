@@ -10,11 +10,17 @@ import com.perplus.member.vo.ChattingVo;
 
 public interface ChattingDao {
 	
-	int creatChatting(ChattingVo chatting);
+	
+	
+	int creatChatting(ChattingVo chattingNumber);
+	
+	int deleteChatting(int chattingNumber);
+	
 	
 	List<ChattingVo> selectMyChatting(String memberEmail);
 	
-	int findByChattingNumber(Map<String, Object> map);
+	
+	ChattingVo findByChattingNumber(Map<String, String> map);
 	
 	
 }
