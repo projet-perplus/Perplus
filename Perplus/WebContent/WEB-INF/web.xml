@@ -5,26 +5,26 @@
 	version="3.1">
 	<display-name>Perplus</display-name>
 	<welcome-file-list>
-		<welcome-file>index.html</welcome-file>
-		<welcome-file>index.htm</welcome-file>
-		<welcome-file>index.jsp</welcome-file>
-		<welcome-file>default.html</welcome-file>
-		<welcome-file>default.htm</welcome-file>
-		<welcome-file>default.jsp</welcome-file>
+		<welcome-file>main.do</welcome-file>
 	</welcome-file-list>
 
+	<context-param>
+		<param-name>rootPath</param-name>
+		<param-value>/Perplus</param-value>
+	</context-param>
+
 	<servlet>
-		<servlet-name>spring</servlet-name>
+		<servlet-name>springDispatcherServlet</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
 			<param-value>/WEB-INF/config/spring/spring-mvc.xml</param-value>
 		</init-param>
+		<load-on-startup>1</load-on-startup>
 	</servlet>
 
-
 	<servlet-mapping>
-		<servlet-name>spring</servlet-name>
+		<servlet-name>springDispatcherServlet</servlet-name>
 		<url-pattern>*.do</url-pattern>
 	</servlet-mapping>
 
@@ -36,6 +36,7 @@
 			<param-value>UTF-8</param-value>
 		</init-param>
 	</filter>
+
 	<filter-mapping>
 		<filter-name>encodingFilter</filter-name>
 		<url-pattern>/*</url-pattern>
