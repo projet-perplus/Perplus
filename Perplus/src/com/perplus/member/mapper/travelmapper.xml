@@ -1,6 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
-<mapper namespace="이름지정">
-
+<mapper namespace="travel">
+	<!-- Insert -->
+	<insert id="insertTravel" parameterType="TravelVo">
+		insert into travel values (#{travelSerial}, #{travelCode}, #{houseSerial}, #{memberEmail}, #{travelStart}, #{travelEnd}, #{travelNumber}, #{travelCheckin}, #{travelCost})
+	</insert>
+	
+	<!-- update-->
+	<update id="updateTravel" parameterType="TravelVo">
+		update travel
+		set	TRAVEL_CODE = #{travelCode}, 
+				HOUSE_SERIAL = #{houseSerial}, 
+				MEMBER_EMAIL = #{memberEmail}, 
+				TRAVEL_START = #{travelStart}, 
+				TRAVEL_END = #{travelEnd}, 
+				TRAVEL_NUMBER = #{travelNumber}, 
+				TRAVEL_CHECKIN = #{travelCheckin}, 
+				TRAVEL_COST = #{travelCost}
+		where TRAVEL_SERIAL = #{travelSerial}
+	</update>
+	
+	<!-- delete -->
+	<delete id="deleteTravel" parameterType="_int">
+		delete from travel where TRAVEL_SERIAL = #{travelSerial}
+	</delete>
+	
+	<!-- select -->
+	<select id="selectTravel"  resultType="TravelVo">
+		select	TRAVEL_SERIAL travelSerial
+					TRAVEL_CODE travelCode, 
+					HOUSE_SERIAL houseSerial, 
+					MEMBER_EMAIL memberEmail, 
+					TRAVEL_START travelStart, 
+					TRAVEL_END travelEnd, 
+					TRAVEL_NUMBER travelNumber, 
+					TRAVEL_CHECKIN travelCheckin, 
+					TRAVEL_COST travelCost
+		from travel
+	</select>
+	
+	<select id="selectTravelByTravelCode"  parameterType="_int" resultType="TravelVo">
+		select	TRAVEL_CODE travelCode, 
+					HOUSE_SERIAL houseSerial, 
+					MEMBER_EMAIL memberEmail, 
+					TRAVEL_START travelStart, 
+					TRAVEL_END travelEnd, 
+					TRAVEL_NUMBER travelNumber, 
+					TRAVEL_CHECKIN travelCheckin, 
+					TRAVEL_COST travelCost
+		from travel
+		where TRAVEL_CODE = #{travelCode} 
+	</select>
 </mapper>

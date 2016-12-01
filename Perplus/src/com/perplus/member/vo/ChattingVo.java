@@ -17,6 +17,15 @@ public class ChattingVo {
 		this.list = chattingLog;
 	}
 
+	
+	
+	public ChattingVo(int chattingNumber, String chattingPartner, String memberEmail) {
+		super();
+		this.chattingNumber = chattingNumber;
+		this.chattingPartner = chattingPartner;
+		this.memberEmail = memberEmail;
+	}
+
 	public int getChattingNumber() {
 		return chattingNumber;
 	}

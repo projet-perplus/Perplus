@@ -6,29 +6,29 @@
 		<package name="com.perplus.review.vo" />
 		<package name="com.perplus.member.vo" />
 	</typeAliases>
-<!-- 
+ 
 	<mappers>
-		<mapper resource="com/perplus/house/mapper/Codetablemapper.xml" />
-		<mapper resource="com/perplus/house/mapper/housemapper.xml" />
-		<mapper resource="com/perplus/house/mapper/housefiltermapper.xml" />
-		<mapper resource="com/perplus/house/mapper/housepicturemapper.xml" />
-		<mapper resource="com/perplus/house/mapper/scalemapper.xml" />
-		<mapper resource="com/perplus/house/mapper/schedulemapper.xml" />
-		<mapper resource="com/perplus/house/mapper/shutdownmapper.xml" />
-		<mapper resource="com/perplus/review/mapper/reviewmapper.xml" />
-		<mapper resource="com/perplus/review/mapper/reviewcommentmapper.xml" />
-		<mapper resource="com/perplus/review/mapper/reviewpicturemapper.xml" />
-		<mapper resource="com/perplus/member/mapper/chattingmapper.xml" />
-		<mapper resource="com/perplus/member/mapper/chattinglogmapper.xml" />
-		<mapper resource="com/perplus/member/mapper/housecommentmapper.xml" />
-		<mapper resource="com/perplus/member/mapper/housezzimmapper.xml" />
-		<mapper resource="com/perplus/member/mapper/howgetmoneymapper.xml" />
-		<mapper resource="com/perplus/member/mapper/membermapper.xml" />
-		<mapper resource="com/perplus/member/mapper/paymentmapper.xml" />
-		<mapper resource="com/perplus/member/mapper/rejectmapper.xml" />
-		<mapper resource="com/perplus/member/mapper/reviewzzimmapper.xml" />
-		<mapper resource="com/perplus/member/mapper/showmethemoneymapper.xml" />
-		<mapper resource="com/perplus/controller/travelmapper.xml" />
+<!-- 		<mapper resource="com/perplus/house/mapper/Codetablemapper.xml" /> -->
+<!-- 		<mapper resource="com/perplus/house/mapper/housemapper.xml" /> -->
+<!-- 		<mapper resource="com/perplus/house/mapper/housefiltermapper.xml" /> -->
+<!-- 		<mapper resource="com/perplus/house/mapper/housepicturemapper.xml" /> -->
+<!-- 		<mapper resource="com/perplus/house/mapper/scalemapper.xml" /> -->
+<!-- 		<mapper resource="com/perplus/house/mapper/schedulemapper.xml" /> -->
+<!-- 		<mapper resource="com/perplus/house/mapper/shutdownmapper.xml" /> -->
+<!-- 		<mapper resource="com/perplus/review/mapper/reviewmapper.xml" /> -->
+<!-- 		<mapper resource="com/perplus/review/mapper/reviewcommentmapper.xml" /> -->
+<!-- 		<mapper resource="com/perplus/review/mapper/reviewpicturemapper.xml" /> -->
+<!-- 		<mapper resource="com/perplus/member/mapper/chattingmapper.xml" /> -->
+<!-- 		<mapper resource="com/perplus/member/mapper/chattinglogmapper.xml" /> -->
+<!-- 		<mapper resource="com/perplus/member/mapper/housecommentmapper.xml" /> -->
+<!-- 		<mapper resource="com/perplus/member/mapper/housezzimmapper.xml" /> -->
+<!-- 		<mapper resource="com/perplus/member/mapper/howgetmoneymapper.xml" /> -->
+<!-- 		<mapper resource="com/perplus/member/mapper/membermapper.xml" /> -->
+<!-- 		<mapper resource="com/perplus/member/mapper/paymentmapper.xml" /> -->
+<!-- 		<mapper resource="com/perplus/member/mapper/rejectmapper.xml" /> -->
+<!-- 		<mapper resource="com/perplus/member/mapper/reviewzzimmapper.xml" /> -->
+<!-- 		<mapper resource="com/perplus/member/mapper/showmethemoneymapper.xml" /> -->
+<!-- 		<mapper resource="com/perplus/controller/travelmapper.xml" /> -->
 	</mappers>
- -->
+
 </configuration>

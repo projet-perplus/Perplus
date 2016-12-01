@@ -16,8 +16,43 @@ drop table REVIEWPICTURE cascade constraint;
 drop table REVIEWZZIM cascade constraint;
 drop table SCALE cascade constraint;
 drop table SCHEDULE cascade constraint;
+drop table HOUSECHECKLIST cascade constraint;
 drop table SHUTDOWN cascade constraint;
 drop table SHOWMETHEMONEY cascade constraint;
 drop table TRAVEL cascade constraint;
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+select * from member
+
+insert into MEMBER values('fdsa','a','a',111,'aaa','aaa','aa','aa','aa');
+
+
+
+
+
+insert into HOUSECOMMENT values(1,'asdf','content',4,'2016-12-12');
+
+delete from HOUSECOMMENT where house_serial = 1 and member_email = 'asdf';
+
+insert into chatting
+
+select *
+from housecomment
+
+
+
+insert into CHATTING values(1,'asdf','fdsa');
+insert into CHATTINGLOG values(1,'fdsa','content2');

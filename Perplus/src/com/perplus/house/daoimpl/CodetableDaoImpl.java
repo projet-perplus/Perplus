@@ -1,5 +1,7 @@
 package com.perplus.house.daoimpl;
 
-public class CodetableDaoImpl {
+import com.perplus.house.dao.CodetableDao;
+
+public class CodetableDaoImpl implements CodetableDao {
 
 }
