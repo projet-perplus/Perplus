@@ -1,5 +1,5 @@
 package com.perplus.review.service;
 
-public class ReviewService {
+public interface ReviewService {
 
 }
