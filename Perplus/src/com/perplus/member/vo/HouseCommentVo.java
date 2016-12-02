@@ -6,7 +6,7 @@ import com.perplus.house.vo.HouseVo;
 
 public class HouseCommentVo {
 	private int houseSerial;//하우스번호 번호
-	private String memberEamil;//이메일
+	private String memberEmail;//이메일
 	private String commentContent;//내용
 	private int commentRating;//별점
 	private Date commentTime;//등록일자
@@ -16,7 +16,7 @@ public class HouseCommentVo {
 	public HouseCommentVo(int houseSerial, String memberEamil, String commentContent, int commentRating,
 			Date commentTime) {
 		this.houseSerial = houseSerial;
-		this.memberEamil = memberEamil;
+		this.memberEmail = memberEamil;
 		this.commentContent = commentContent;
 		this.commentRating = commentRating;
 		this.commentTime = commentTime;
@@ -31,11 +31,11 @@ public class HouseCommentVo {
 	public void setHouseSerial(int houseSerial) {
 		this.houseSerial = houseSerial;
 	}
-	public String getMemberEamil() {
-		return memberEamil;
+	public String getMemberEmail() {
+		return memberEmail;
 	}
-	public void setMemberEamil(String memberEamil) {
-		this.memberEamil = memberEamil;
+	public void setMemberEmail(String memberEamil) {
+		this.memberEmail = memberEamil;
 	}
 	public String getCommentContent() {
 		return commentContent;
@@ -57,7 +57,7 @@ public class HouseCommentVo {
 	}
 	@Override
 	public String toString() {
-		return "HouseCommentVo [houseSerial=" + houseSerial + ", memberEamil=" + memberEamil + ", commentContent="
+		return "HouseCommentVo [houseSerial=" + houseSerial + ", memberEamil=" + memberEmail + ", commentContent="
 				+ commentContent + ", commentRating=" + commentRating + ", commentTime=" + commentTime + "]";
 	}
 	@Override
@@ -68,7 +68,7 @@ public class HouseCommentVo {
 		result = prime * result + commentRating;
 		result = prime * result + ((commentTime == null) ? 0 : commentTime.hashCode());
 		result = prime * result + houseSerial;
-		result = prime * result + ((memberEamil == null) ? 0 : memberEamil.hashCode());
+		result = prime * result + ((memberEmail == null) ? 0 : memberEmail.hashCode());
 		return result;
 	}
 	@Override
@@ -94,10 +94,10 @@ public class HouseCommentVo {
 			return false;
 		if (houseSerial != other.houseSerial)
 			return false;
-		if (memberEamil == null) {
-			if (other.memberEamil != null)
+		if (memberEmail == null) {
+			if (other.memberEmail != null)
 				return false;
-		} else if (!memberEamil.equals(other.memberEamil))
+		} else if (!memberEmail.equals(other.memberEmail))
 			return false;
 		return true;
 	}

@@ -36,5 +36,4 @@ public class ChattingDaoImpl implements ChattingDao{
 		return session.selectOne("chatting.findByChattingNumber",map);
 	}
 	
-	
 }
