@@ -1,5 +1,5 @@
 package com.perplus.member.daoimpl;
 
-public class HousezzimDaoImpl {
+public class HouseZzimDaoImpl {
 
 }

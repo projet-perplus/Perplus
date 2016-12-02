@@ -19,10 +19,10 @@
 	</select>
 
 	<select id="findByChattingNumber" parameterType="hashmap" resultType="ChattingVo">
-		select *
-		from	CAHTTING
+		select	chatting_number chattingNumber, member_email memberEmail, chatting_partner chattingPartner
+		from	CHATTING
 		where	chatting_partner = #{chattingPartner}
-		and		member_email = #{member_email}
+		and		member_email = #{memberEmail}
 	</select>
 
 </mapper>

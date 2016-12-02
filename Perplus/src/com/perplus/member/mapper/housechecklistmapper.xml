@@ -2,13 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
 <mapper namespace="houseComment">
-	
-	<select id="selectHouseComment" parameterType="hashmap" resultType="HouseCommentVo">
-		select	house_serial houseSerial, member_email memberEmail, comment_content commentContent, comment_rating commentRating, comment_time commentTime
-		from	HOUSECOMMENT 
-		where	house_serial = #{houseSerial} and member_email = #{memberEmail}
-	</select>
-	
+
 	<!-- houseComment 등록 -->
 	<insert id="insertHouseComment" parameterType="HouseCommentVo">
 		insert into HOUSECOMMENT values(#{houseSerial},#{memberEmail},#{commentContent},#{commentRating},#{commentTime})
