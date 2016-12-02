@@ -8,8 +8,8 @@
 <!-- reviewPicture테이블 select용 -->
 <resultMap type="reviewPictureVo" id="picture-basic-resultmap">
 	<result column="review_serial" property="reviewSerial"/>
-	<result column="review_order" property="pictureOrder"/>
-	<result column="review_name" property="pictureName"/>
+	<result column="picture_order" property="pictureOrder"/>
+	<result column="picture_name" property="pictureName"/>
 </resultMap>
 
 </mapper>

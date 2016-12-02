@@ -8,8 +8,8 @@
 				   c.review_serial,c.member_email,c.comment_content,c.comment_rating,c.comment_time,
 				   p.review_serial,p.picture_order,p.picture_name
 		from review r, reviewcomment c, reviewpicture p
-		where r.review_serial = c.review_serial
-		and c.review_serial=p.review_serial
+		where c.review_serial = r.review_serial (+)
+		and p.review_serial=c.review_serial (+)
 </sql>
 
 <resultMap type="ReviewVo" id="review-basic-resultmap">
@@ -25,8 +25,8 @@
 </resultMap>
 
 <resultMap type="ReviewVo" id="join-resultmap" extends="review-basic-resultmap">
-	<collection property="reviewComment" ofType="ReviewVo" resultMap="reviewComment.comment-basic-resultmap"/>
-	<collection property="reviewPicture" ofType="ReviewVo" resultMap="reviewPicture.picture-basic-resultmap"/>
+	<collection property="reviewComment" ofType="reviewCommentVo" resultMap="reviewComment.comment-basic-resultmap"/>
+	<collection property="reviewPicture" ofType="reviewPictureVo" resultMap="reviewPicture.picture-basic-resultmap"/>
 </resultMap>
 
 <!-- 리뷰 - 코멘트 -picture join select -->
