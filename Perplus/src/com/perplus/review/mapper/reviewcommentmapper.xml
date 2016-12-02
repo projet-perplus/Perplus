@@ -10,7 +10,7 @@
 	<!-- resultMap: reviewComment테이블 select용-->
 	<resultMap type="reviewCommentVo" id="comment-basic-resultmap">
 		<result column="review_serial" property="reviewSerial"/>
-		<result column="member_email" property="memberEmail"/>
+		<result column="member_email" property="memberEmail" />
 		<result column="comment_content" property="commentContent"/>
 		<result column="comment_rating" property="commentRating"/>
 		<result column="comment_time" property="commentTime"/>
