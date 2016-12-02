@@ -35,5 +35,10 @@ public class ChattingDaoImpl implements ChattingDao{
 	public ChattingVo findByChattingNumber(Map<String, String> map) {
 		return session.selectOne("chatting.findByChattingNumber",map);
 	}
+
+	@Override
+	public List<ChattingVo> chattingjoin() {
+		return session.selectList("chatting.wwww");
+	}
 	
 }

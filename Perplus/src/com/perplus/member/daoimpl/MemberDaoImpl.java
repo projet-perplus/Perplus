@@ -1,5 +1,7 @@
 package com.perplus.member.daoimpl;
 
-public class MemberDaoImpl {
+import com.perplus.member.dao.MemberDao;
 
+public class MemberDaoImpl implements MemberDao{
+	
 }
