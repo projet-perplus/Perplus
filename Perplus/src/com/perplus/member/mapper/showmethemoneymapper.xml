@@ -1,6 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
-<mapper namespace="이름지정">
+<mapper namespace="showmethemoney">
 
+	<!-- Insert -->
+	<insert id="insertShowmethemoney" parameterType="ShowMeTheMoneyVo">
+		insert into SHOWMETHEMONEY values (#{showmethemoneySerial}, #{memberEmail}, #{showmethemoneyStatus}, #{showmethemoneyDate}, #{showmethemoneyKind}, #{showmethemoneyContent}, #{showmethemoneyPayMoney}, #{showmethemoneyReciveMoney}, #{showmethemoneyBank})
+	</insert>
+	
+	<!-- update-->
+	<update id="updateShowmethemoney" parameterType="ShowMeTheMoneyVo">
+		update SHOWMETHEMONEY
+		set	SHOWMETHEMONEY_SERIAL = #{showmethemoneySerial}, 
+				MEMBER_EMAIL = #{memberEmail}, 
+				SHOWMETHEMONEY_STATUS = #{showmethemoneyStatus}, 
+				SHOWMETHEMONEY_DATE = #{showmethemoneyDate}, 
+				SHOWMETHEMONEY_KIND = #{showmethemoneyKind}, 
+				SHOWMETHEMONEY_CONTENT = #{showmethemoneyContent}, 
+				SHOWMETHEMONEY_PAY_MONEY = #{showmethemoneyPayMoney}, 
+				TRSHOWMETHEMONEY_RECIVE_MONEY = #{showmethemoneyReciveMoney},
+				SHOWMETHEMONEY_BANK = #{showmethemoneyBank}
+		where SHOWMETHEMONEY_SERIAL = #{showmethemoneySerial}
+	</update>
+	
+	<!-- delete -->
+	<delete id="deleteShowmethemoney" parameterType="_int">
+		delete from SHOWMETHEMONEY where SHOWMETHEMONEY_SERIAL = #{showmethemoneySerial}
+	</delete>
+	
+	<!-- select -->
+	<select id="selectShowmethemoney"  resultType="ShowMeTheMoneyVo">
+		select	SHOWMETHEMONEY_SERIAL showmethemoneySerial, 
+					MEMBER_EMAIL memberEmail, 
+					SHOWMETHEMONEY_STATUS showmethemoneyStatus, 
+					SHOWMETHEMONEY_DATE showmethemoneyDate, 
+					SHOWMETHEMONEY_KIND showmethemoneyKind, 
+					SHOWMETHEMONEY_CONTENT showmethemoneyContent, 
+					SHOWMETHEMONEY_PAY_MONEY showmethemoneyPayMoney, 
+					TRSHOWMETHEMONEY_RECIVE_MONEY showmethemoneyReciveMoney,
+					SHOWMETHEMONEY_BANK showmethemoneyBank
+		from SHOWMETHEMONEY
+	</select>
+	
+	<select id="selectShowmethemoneyByShowmethemoneySerial"  parameterType="_int" resultType="ShowMeTheMoneyVo">
+		select	SHOWMETHEMONEY_SERIAL showmethemoneySerial, 
+					MEMBER_EMAIL memberEmail, 
+					SHOWMETHEMONEY_STATUS showmethemoneyStatus, 
+					SHOWMETHEMONEY_DATE showmethemoneyDate, 
+					SHOWMETHEMONEY_KIND showmethemoneyKind, 
+					SHOWMETHEMONEY_CONTENT showmethemoneyContent, 
+					SHOWMETHEMONEY_PAY_MONEY showmethemoneyPayMoney, 
+					TRSHOWMETHEMONEY_RECIVE_MONEY showmethemoneyReciveMoney,
+					SHOWMETHEMONEY_BANK showmethemoneyBank
+		from SHOWMETHEMONEY
+		where SHOWMETHEMONEY_SERIAL = #{showmethemoneySerial} 
+	</select>
 </mapper>

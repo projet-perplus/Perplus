@@ -1,5 +1,7 @@
 package com.perplus.house.daoimpl;
 
-public class ScaleDaoImpl {
+import com.perplus.house.dao.ScaleDao;
+
+public class ScaleDaoImpl implements ScaleDao{
 
 }
