@@ -19,10 +19,37 @@
 	</select>
 
 	<select id="findByChattingNumber" parameterType="hashmap" resultType="ChattingVo">
-		select *
-		from	CAHTTING
+		select	chatting_number chattingNumber, member_email memberEmail, chatting_partner chattingPartner
+		from	CHATTING
 		where	chatting_partner = #{chattingPartner}
-		and		member_email = #{member_email}
+		and		member_email = #{memberEmail}
+	</select>
+	
+	
+	<sql id="select-chatting-join-sql">
+		select	c.chatting_number,
+				c.chatting_partner,
+				c.member_email,
+				l.member_email,
+				l.member_content
+		from	CHATTING c, CHATTINGLOG l
+	</sql>
+	<resultMap type="ChattingVo" id="chatting-default-resultmap">
+		<id column="chatting_number" property="chattingNumber"/>
+		<result column="member_email" property="memberEmail"/>
+		<result column="chatting_partner" property="chattingPartner"/>
+	</resultMap>
+	
+	<resultMap type="ChattingVo" id="chatting-chattinglog-join-resultmap" extends="chatting-default-resultmap">
+		<collection property="list" ofType="ChattingLogVo">
+			<result column="chatting_number" property="chattingNumber"/>
+			<result column="member_email" property="memberEmail"/>
+			<result column="chatting_content" property="chattingContent"/>
+		</collection>
+	</resultMap>
+	
+	<select id="wwww" resultMap="chatting-chattinglog-join-resultmap">
+		<include refid="select-chatting-join-sql"/>
 	</select>
 
 </mapper>
