@@ -2,8 +2,29 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
 <mapper namespace="이름지정">
-	<insert id="defa"></insert>
-	<select id="default-house-filter-select">
-		select from HOUSEFILTER *
-	</select>
+	
+	<sql id="default-house-filter-select">
+		select 
+		HOUSE_RANGE houseRange , 
+		HOUSE_GUEST houseGuest, 
+		HOUSE_TYPE houseType, 
+		HOUSE_ROOM_NUMBER houseRoomNumber, 
+		HOUSE_LOCATION houseLocation 
+		from HOUSEFILTER 
+	</sql>
+	<!-- 기본적인 초기 filter insert 이며 house의 1:1 관계로 최초 생성되기 때문에 serial을 이곳에서 생성한다. -->
+	<insert id="insertHouseFilter" parameterType="housefiltervo">
+		insert into HOUSEFILTER values(HOUSE_SEQ.nextval,${houseRange},${houseGuestNumber},${houseType},${houseRoomNumber},${houseLocation})
+	</insert>
+	
+	<update id="updateHouseFilter" parameterType="housefiltervo">	
+		update HOUSEFILTER set HOUSE_RANGE=${houseRange}, HOUSE_GUEST_NUMBER=${houseGuestNumber}, HOUSE_TYPE=${houseType}, HOUSE_ROOM_NUMBER=${houseRoomNumber}, HOUSE_LOCATION=${houseLocation}
+		where HOUSE_SERIAL=${houseSerial}
+	</update>
+	
+	<delete id="deleteHouseFilterByHouseSerial" parameterType="_int">
+		delete from HOUSEFILTER where HOUSE_SERIAL=${value}
+	</delete>
+	
+	
 </mapper>

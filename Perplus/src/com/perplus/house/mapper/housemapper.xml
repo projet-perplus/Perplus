@@ -2,5 +2,31 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
 <mapper namespace="이름지정">
-
+	<sql id="default-house-select">
+		select HOUSE_SERIAL,
+		MEMBER_EMAIL,
+		HOUSE_REGISTER_STATUS,
+		HOUSE_TITLE,
+		HOUSE_CONTENT,
+		HOUSE_NECESSARY_CONDITION,
+		HOUSE_CHECKIN_START,
+		HOUSE_CHECKIN_END,
+		HOUSE_RATING,
+		HOUSE_MARKER_X,
+		HOUSE_MARKER_Y,
+		HOUSE_MARKER_CONSTANT
+		from HOUSE
+	</sql>
+	<!-- 최초 집이 생성될때 4개의 값이 넘어오며(첫 Serial과 Status는 자동 생성된다.)6개의 값이 저장이 된다. necessary condition을 제외한 모든것은 N.N이다 -->
+	<insert id="insertHouseDefault" parameterType="housevo">
+		insert into HOUSE values(HOUSE_SEQ.nextval,${memberEmail},0,${houseTitle},${houseContent},${houseNecessaryCondition})	
+	</insert>
+	
+	<update id="updateHouse">
+		update set 
+	</update>
 </mapper>
+
+
+
+
