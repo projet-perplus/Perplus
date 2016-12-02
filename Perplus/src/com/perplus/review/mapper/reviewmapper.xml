@@ -3,7 +3,7 @@
 
 <mapper namespace="review">
 
-<sql id="review-comment-picture-join-select">
+<!-- <sql id="review-comment-picture-join-select">
 		select r.review_serial, r.member_email,r.review_title,r.review_content,r.review_rating,r.review_time,r.review_marker_x,r.review_marker_y,r.review_marker_constant,
 				   c.review_serial,c.member_email,c.comment_content,c.comment_rating,c.comment_time,
 				   p.review_serial,p.picture_order,p.picture_name
@@ -11,7 +11,20 @@
 		where r.review_serial = c.review_serial
 		  and  r.review_serial = p.review_serial
 </sql>
-<resultMap type="reviewVo" id=""></resultMap>
+<resultMap type="reviewVo" id="review-basic-resultmap">
+	<id column="review_serial" property="reviewSerial"/>
+	<result column="member_email" property="memberEmail"/>
+	<result column="review_title" property="reviewTitle"/>
+	<result column="review_content" property="reviewContent"/>
+	<result column="review_rating" property="reviewRating"/>
+	<result column="review_time" property="reviewTime"/>
+	<result column="review_marker_x" property="reviewMarkerX"/>
+	<result column="review_marker_y" property="reviewMarkerY"/>
+	<result column="review_marker_constant" property="reviewMarkerConstant"/>
+</resultMap>
+<resultMap type="review" id="reviewComment-basic-resultmap">
+	<id column=""
+</resultMap> -->
 
 <!-- 리뷰 INSERT -->
 <insert id="insertReview" parameterType="ReviewVo">
@@ -24,10 +37,10 @@
 	where review_serial =#{reviewSerial}
 </delete>
 
-<!-- ****리뷰 Select
+<!-- ****리뷰 Select -->
 <select id="selectReviewBySerial" parameterType="_int">
-	select 
-</select> -->
+
+</select>
 
 <!-- 리뷰 수정 -->
 <update id="updateReview" parameterType="ReviewVo">

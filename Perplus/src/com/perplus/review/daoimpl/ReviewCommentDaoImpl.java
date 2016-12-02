@@ -15,15 +15,14 @@ public class ReviewCommentDaoImpl implements ReviewCommentDao{
 	
 	@Override
 	public int insertReviewComment(ReviewCommentVo reviewComment) {
-		// TODO Auto-generated method stub
-		return 0;
+		return session.insert("reviewComment.insertComment", reviewComment);
 	}
 
-	@Override
+/*	@Override
 	public ReviewCommentVo selectReviewCommentBySerialAndEmail(int reviewSerial, String memberEmail) {
 		// TODO Auto-generated method stub
 		return null;
-	}
+	}*/
 
 	@Override
 	public ReviewCommentVo selectReviewCommentBySerial(int reviewSerial) {

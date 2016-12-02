@@ -26,3 +26,4 @@ where r.review_serial = c.review_serial
 and  r.review_serial = p.review_serial
 and  r.review_serial = 1
 
+insert into reviewcomment values(1,'haha@mail.com','dd',5,'20161202');

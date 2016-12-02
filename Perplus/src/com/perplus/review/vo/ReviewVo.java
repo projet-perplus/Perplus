@@ -26,7 +26,7 @@ public class ReviewVo implements Serializable{
 	ReviewVo(){}
 
 	public ReviewVo(int reviewSerial, String memberEmail, String reviewTitle, String reviewContent, int reviewRating,
-			Date reviewTime, double reviewMakerX, double reviewMakerY, int reviewMakerConstant) {
+			Date reviewTime, double reviewMarkerX, double reviewMarkerY, int reviewMarkerConstant) {
 		super();
 		this.reviewSerial = reviewSerial;
 		this.memberEmail = memberEmail;
@@ -34,13 +34,13 @@ public class ReviewVo implements Serializable{
 		this.reviewContent = reviewContent;
 		this.reviewRating = reviewRating;
 		this.reviewTime = reviewTime;
-		this.reviewMarkerX = reviewMakerX;
-		this.reviewMarkerY = reviewMakerY;
-		this.reviewMarkerConstant = reviewMakerConstant;
+		this.reviewMarkerX = reviewMarkerX;
+		this.reviewMarkerY = reviewMarkerY;
+		this.reviewMarkerConstant = reviewMarkerConstant;
 	}
 
 	public ReviewVo(int reviewSerial, String memberEmail, String reviewTitle, String reviewContent, int reviewRating,
-			Date reviewTime, double reviewMakerX, double reviewMakerY, int reviewMakerConstant,
+			Date reviewTime, double reviewMarkerX, double reviewMarkerY, int reviewMarkerConstant,
 			List<ReviewCommentVo> reviewComment, List<ReviewPictureVo> reviewPicture) {
 		super();
 		this.reviewSerial = reviewSerial;
@@ -49,15 +49,15 @@ public class ReviewVo implements Serializable{
 		this.reviewContent = reviewContent;
 		this.reviewRating = reviewRating;
 		this.reviewTime = reviewTime;
-		this.reviewMarkerX = reviewMakerX;
-		this.reviewMarkerY = reviewMakerY;
-		this.reviewMarkerConstant = reviewMakerConstant;
+		this.reviewMarkerX = reviewMarkerX;
+		this.reviewMarkerY = reviewMarkerY;
+		this.reviewMarkerConstant = reviewMarkerConstant;
 		this.reviewComment = reviewComment;
 		this.reviewPicture = reviewPicture;
 	}
 
 	public ReviewVo(int reviewSerial, String memberEmail, String reviewTitle, String reviewContent, int reviewRating,
-			Date reviewTime, double reviewMakerX, double reviewMakerY, int reviewMakerConstant,
+			Date reviewTime, double reviewMarkerX, double reviewMarkerY, int reviewMarkerConstant,
 			List<ReviewCommentVo> reviewComment, List<ReviewPictureVo> reviewPicture, MemberVo member) {
 		super();
 		this.reviewSerial = reviewSerial;
@@ -66,9 +66,9 @@ public class ReviewVo implements Serializable{
 		this.reviewContent = reviewContent;
 		this.reviewRating = reviewRating;
 		this.reviewTime = reviewTime;
-		this.reviewMarkerX = reviewMakerX;
-		this.reviewMarkerY = reviewMakerY;
-		this.reviewMarkerConstant = reviewMakerConstant;
+		this.reviewMarkerX = reviewMarkerX;
+		this.reviewMarkerY = reviewMarkerY;
+		this.reviewMarkerConstant = reviewMarkerConstant;
 		this.reviewComment = reviewComment;
 		this.reviewPicture = reviewPicture;
 		this.member = member;
@@ -123,28 +123,28 @@ public class ReviewVo implements Serializable{
 		this.reviewTime = reviewTime;
 	}
 
-	public double getReviewMakerX() {
+	public double getReviewMarkerX() {
 		return reviewMarkerX;
 	}
 
-	public void setReviewMakerX(double reviewMakerX) {
-		this.reviewMarkerX = reviewMakerX;
+	public void setReviewMarkerX(double reviewMarkerX) {
+		this.reviewMarkerX = reviewMarkerX;
 	}
 
-	public double getReviewMakerY() {
+	public double getReviewMarkerY() {
 		return reviewMarkerY;
 	}
 
-	public void setReviewMakerY(double reviewMakerY) {
-		this.reviewMarkerY = reviewMakerY;
+	public void setReviewMarkerY(double reviewMarkerY) {
+		this.reviewMarkerY = reviewMarkerY;
 	}
 
-	public int getReviewMakerConstant() {
+	public int getReviewMarkerConstant() {
 		return reviewMarkerConstant;
 	}
 
-	public void setReviewMakerConstant(int reviewMakerConstant) {
-		this.reviewMarkerConstant = reviewMakerConstant;
+	public void setReviewMarkerConstant(int reviewMarkerConstant) {
+		this.reviewMarkerConstant = reviewMarkerConstant;
 	}
 
 	public List<ReviewCommentVo> getReviewComment() {

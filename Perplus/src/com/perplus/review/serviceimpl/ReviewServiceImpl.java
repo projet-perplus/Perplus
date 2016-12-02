@@ -8,6 +8,8 @@ import com.perplus.review.dao.ReviewCommentDao;
 import com.perplus.review.dao.ReviewDao;
 import com.perplus.review.dao.ReviewPictureDao;
 import com.perplus.review.service.ReviewService;
+import com.perplus.review.vo.ReviewCommentVo;
+import com.perplus.review.vo.ReviewPictureVo;
 import com.perplus.review.vo.ReviewVo;
 
 
@@ -18,12 +20,12 @@ public class ReviewServiceImpl implements ReviewService{
 	private ReviewDao reviewDao;
 	
 	@Autowired
-	@Qualifier("commentDaoImpl")	
-	private ReviewCommentDao commentDao;
+	@Qualifier("reviewCommentDaoImpl")	
+	private ReviewCommentDao reviewCommentDao;
 	
 	@Autowired
-	@Qualifier("pictureDaoImpl")
-	private ReviewPictureDao pictureDao;
+	@Qualifier("reviewPictureDaoImpl")
+	private ReviewPictureDao reviewPictureDao;
 	
 	@Override
 	public void registerReview(ReviewVo review ) {
@@ -49,5 +51,41 @@ public class ReviewServiceImpl implements ReviewService{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public ReviewCommentVo getReviewComment(int reviewSerial) {
+		return reviewCommentDao.selectReviewCommentBySerial(reviewSerial);
+	}
+
+	@Override
+	public ReviewCommentVo modifyReviewComment(ReviewCommentVo reviewComment) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ReviewCommentVo removeReviewComment(int reviewSerial) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ReviewPictureVo getReviewPicture(int reviewSerial) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int modifyReviewPicture(ReviewPictureVo reviewPicture) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int removeReviewPicture(int reviewSerial) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	
 	
 }
