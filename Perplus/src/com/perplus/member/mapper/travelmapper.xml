@@ -27,7 +27,7 @@
 	</delete>
 	
 	<!-- select -->
-	<select id="selectTravel"  resultType="TravelVo">
+	<select id="selectTravel" parameterType="string" resultType="TravelVo">
 		select	TRAVEL_SERIAL travelSerial
 					TRAVEL_CODE travelCode, 
 					HOUSE_SERIAL houseSerial, 
@@ -38,6 +38,7 @@
 					TRAVEL_CHECKIN travelCheckin, 
 					TRAVEL_COST travelCost
 		from travel
+		where MEMBER_EMAIL = #{memberEmail}
 	</select>
 	
 	<select id="selectTravelByTravelCode"  parameterType="_int" resultType="TravelVo">

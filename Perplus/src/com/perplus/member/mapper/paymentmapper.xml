@@ -1,6 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
-<mapper namespace="이름지정">
-
+<mapper namespace="payment">
+	
+	<!-- insert -->
+	<insert id="insertPayment">
+		insert into PAYMENT values (#{paymentSerial}, #{memberEmail}, #{paymentType}, #{cardNumber}, #{cardExpiration}, #{cardSecondName}, #{cardFirstName})
+	</insert>
+	
+	<!-- update -->
+	<update id="updatePayment" parameterType="PaymentVo">
+		update PAYMENT 
+		set	MEMBER_EMAIL = #{memberEmail}, 
+				PAYMENT_TYPE = #{paymentType}, 
+				CARD_NUMBER = #{cardNumber}, 
+				CARD_EXPIRATION = #{cardExpiration}, 
+				CARD_SECOND_NAME = #{cardSecondName}, 
+				CARD_FIRST_NAME = #{cardFirstName}
+		where CARD_SERIAL = #{cardSerial}
+	</update>
+	
+	<!-- delete -->
+	<delete id="deletePayment" parameterType="_int">
+		delete from PAYMENT where CARD_SERIAL = #{cardSerial}
+	</delete>
+	
+	<!-- select -->
+	<select id="selectPayment" parameterType="string" resultType="PaymentVo">
+		select MEMBER_EMAIL memberEmail, PAYMENT_TYPE paymentType, CARD_NUMBER cardNumber, CARD_EXPIRATION cardExpiration, CARD_SECOND_NAME cardSecondName, CARD_FIRST_NAME cardFirstName
+		from PAYMENT
+		where MEMBER_EMAIL = #{memberEmail}
+	</select>
+	<select id="selectPaymentByCardSerial" parameterType="_int" resultType="PaymentVo">
+		select MEMBER_EMAIL memberEmail, PAYMENT_TYPE paymentType, CARD_NUMBER cardNumber, CARD_EXPIRATION cardExpiration, CARD_SECOND_NAME cardSecondName, CARD_FIRST_NAME cardFirstName
+		from PAYMENT
+		where CARD_SERIAL = #{cardSerial}
+	</select>
 </mapper>
