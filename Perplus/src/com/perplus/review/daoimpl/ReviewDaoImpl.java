@@ -1,6 +1,7 @@
 package com.perplus.review.daoimpl;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -44,5 +45,12 @@ public class ReviewDaoImpl implements ReviewDao{
 	public int deleteReview(int reviewSerial) {
 		return session.delete("review.deleteReview",reviewSerial);
 	}
+
+	@Override
+	public List<ReviewVo> selectReviewWithCommentAndPicture(int reviewSerial) {
+		// TODO Auto-generated method stub
+		return session.selectList("review.selectReviewWithCommentAndPicture",reviewSerial);
+	}
+	
 	
 }

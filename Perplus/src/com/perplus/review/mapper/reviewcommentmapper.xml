@@ -2,7 +2,62 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
 <mapper namespace="reviewComment">
-	<insert id="insertComment">\
+	<sql id="comment-select">
+				select review_serial, member_email, comment_content, comment_rating, comment_time
+		from reviewcomment
+	</sql>
+	
+	<!-- resultMap: reviewComment테이블 select용-->
+	<resultMap type="reviewCommentVo" id="comment-basic-resultmap">
+		<result column="review_serial" property="reviewSerial"/>
+		<result column="member_email" property="memberEmail" />
+		<result column="comment_content" property="commentContent"/>
+		<result column="comment_rating" property="commentRating"/>
+		<result column="comment_time" property="commentTime"/>
+	</resultMap>
+	
+	<!--resultMap: review테이블과 join select용
+	<resultMap type="ReviewCommentVo" id="review-comment-resultmap">
+		<association property="review" javaType="ReviewVo" resultMap="review.review-basic-resultmap"/>
+	</resultMap>
+	 -->
+	
+	<insert id="insertComment" parameterType="reviewCommentVo">
 		insert into reviewcomment values(#{reviewSerial},#{memberEmail},#{commentContent},#{commentRating},#{commentTime})
 	</insert>
+	
+	<select id="selectCommentList" parameterType="_int" resultType="hashmap">
+		select *
+		from reviewcomment
+		where review_serial = #{reviewSerial}
+	</select>
+	
+	<select id="selectMyComment" parameterType="hashmap" resultType="reviewCommentVo">
+		select review_serial reviewSerial, member_email memberEmail, comment_content commentContent, comment_rating commentRating, comment_time commentTime
+		from reviewcomment
+		where review_serial = #{reviewSerial}
+		and	member_email = #{memberEmail}
+	</select>
+	
+	<update id="updateComment" >
+		update REVIEWCOMMENT
+		set review_serial =#{reviewSerial},
+			  member_email = #{memberEmail},
+			  comment_content=#{commentContent},
+			  comment_rating=#{commentRating},
+			  comment_time=#{commentTime}
+		where review_serial=#{reviewSerial}
+		and member_email=#{memberEmail}
+	</update>
+	<delete id="deleteComment">
+		delete from reviewcomment
+		where review_serial=#{reviewSerial}
+		and	  member_email=#{memberEmail}
+	</delete>
 </mapper>
+
+
+
+
+
+

@@ -1,5 +1,5 @@
 package com.perplus.member.daoimpl;
-
+//1
 import java.util.List;
 import java.util.Map;
 
@@ -34,6 +34,11 @@ public class ChattingDaoImpl implements ChattingDao{
 	@Override//나의 아이디와 상대방의 아이디로 방번호를 찾기
 	public ChattingVo findByChattingNumber(Map<String, String> map) {
 		return session.selectOne("chatting.findByChattingNumber",map);
+	}
+
+	@Override
+	public List<ChattingVo> chattingjoin() {
+		return session.selectList("chatting.wwww");
 	}
 	
 }
