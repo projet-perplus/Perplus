@@ -67,7 +67,7 @@
                       <h4 class="modal-title">회원 가입</h4>
                   </div>
               <div class="modal-body">
-                  <form action="aaa">
+                  <form action="">
                       <div class="form-group">
                           <input type="email" class="form-control" id="email" name="email" placeholder="이메일 주소" required>
                       </div>

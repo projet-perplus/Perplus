@@ -37,33 +37,46 @@
 		view-name="accountmanagement/accountmanagement/payout_preference.tiles1" />
 
 	<mvc:view-controller path="/transaction_history.do"
-		view-name="accountmanagement/accountmanagement/transaction_history.tiles1" />
+		view-name="accountmanagement/accountmanagement/transaction_history/history/completion_history.tiles1" />
 
 	<mvc:view-controller path="/review.do"
 		view-name="accountmanagement/accountmanagement/review.tiles1" />
 
-	<mvc:view-controller path="/withdrawal.do"
-		view-name="accountmanagement/accountmanagement/withdrawal.tiles1" />
+	<mvc:view-controller path="/exit.do"
+		view-name="accountmanagement/accountmanagement/exit.tiles1" />
 
 	<!-- rooms do -->
 	<mvc:view-controller path="/roomlist.do"
 		view-name="rooms/rooms/roomlist.tiles1" />
-		
+
 
 	<mvc:view-controller path="/schedulemanagement.do"
 		view-name="rooms/rooms/schedulemanagement.tiles1" />
 
-	<!--  travel do -->
+	<!-- travel do -->
 	<mvc:view-controller path="/nowtravel.do"
-	view-name="travellist/travellist/nowtravel.tiles1" />
+		view-name="travellist/travellist/nowtravel.tiles1" />
 
 	<mvc:view-controller path="/pasttravel.do"
-	view-name="travellist/travellist/pasttravel.tiles1" />
-	
-	<mvc:view-controller path="/wishlist.do"
-	view-name="travellist/travellist/wishlist.tiles1" />
+		view-name="travellist/travellist/pasttravel.tiles1" />
 
+	<mvc:view-controller path="/wishlist.do"
+		view-name="travellist/travellist/wishlist.tiles1" />
+
+
+	<!-- history -->
+	<mvc:view-controller path="/completionhistory.do"
+		view-name="accountmanagement/accountmanagement/transaction_history/history/completion_history.tiles1" />
 	<mvc:annotation-driven />
+	
+	<mvc:view-controller path="/receipthistory.do"
+		view-name="accountmanagement/accountmanagement/transaction_history/history/receipt_history.tiles1" />
+	<mvc:annotation-driven />
+	
+	<mvc:view-controller path="/totalrevenue.do"
+		view-name="accountmanagement/accountmanagement/transaction_history/history/total_revenue.tiles1" />
+	<mvc:annotation-driven />
+
 	<!-- <mvc:view-controller path="/main.do" view-name="/test.jsp"/> -->
 
 

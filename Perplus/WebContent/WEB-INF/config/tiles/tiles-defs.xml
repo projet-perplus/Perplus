@@ -27,11 +27,17 @@
 	</definition>
 
 	<definition name="*/*/*.tiles1" extends="subtemplate">
-		<put-attribute name="menu"
+		<put-attribute name="submenu"
 			value="/WEB-INF/view/common/submenu/{1}.jsp" />
 		<put-attribute name="rightmenu" value="/WEB-INF/view/common/{2}/{3}.jsp" />
 	</definition>
-	
+
+	<definition name="*/*/*/*/*.tiles1" extends="subtemplate">
+		<put-attribute name="submenu"
+			value="/WEB-INF/view/common/submenu/{1}.jsp" />
+		<put-attribute name="rightmenu" value="/WEB-INF/view/common/{2}/{3}.jsp"/>
+		<put-attribute name="middlemenu" value="/WEB-INF/view/common/{4}/{5}.jsp"/>
+	</definition>
 </tiles-definitions>
 
 
