@@ -32,7 +32,7 @@ public interface PaymentDao {
 	
 	/**
 	 * PaymentVo 객체 select
-	 * @return int cardSerial
+	 * @return cardSerial
 	 */
 	List<PaymentVo> selectPayment(String memberEmail);
 	
