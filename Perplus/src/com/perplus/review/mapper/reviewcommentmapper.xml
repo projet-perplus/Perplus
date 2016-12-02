@@ -3,14 +3,14 @@
 
 <mapper namespace="reviewComment">
 	<sql id="comment-select">
-				select review_serial, member_email, comment_content, comment_rating, comment_time
+				select review_serial, member_email c_mail, comment_content, comment_rating, comment_time
 		from reviewcomment
 	</sql>
 	
 	<!-- resultMap: reviewComment테이블 select용-->
 	<resultMap type="reviewCommentVo" id="comment-basic-resultmap">
 		<result column="review_serial" property="reviewSerial"/>
-		<result column="member_email" property="memberEmail" />
+		<result column="c_mail" property="memberEmail" />
 		<result column="comment_content" property="commentContent"/>
 		<result column="comment_rating" property="commentRating"/>
 		<result column="comment_time" property="commentTime"/>
@@ -39,7 +39,7 @@
 		and	member_email = #{memberEmail}
 	</select>
 	
-	<update id="updateComment" >
+	<update id="updateComment" parameterType="reviewCommentVo">
 		update REVIEWCOMMENT
 		set review_serial =#{reviewSerial},
 			  member_email = #{memberEmail},
@@ -49,7 +49,7 @@
 		where review_serial=#{reviewSerial}
 		and member_email=#{memberEmail}
 	</update>
-	<delete id="deleteComment">
+	<delete id="deleteComment" parameterType="hashmap">
 		delete from reviewcomment
 		where review_serial=#{reviewSerial}
 		and	  member_email=#{memberEmail}
