@@ -10,37 +10,34 @@ public interface TravelDao {
 
 	/**
 	 * 새로운 Travel 객체 insert
-	 * @param session
 	 * @param travel
 	 * @return
 	 */
-	int insertTravel(SqlSession session, TravelVo travel);
+	int insertTravel(TravelVo travel);
 	
 	/**
 	 * Travel 객체 update
-	 * @param session
 	 * @param travelSerial
 	 * @return
 	 */
-	int updateTravel(SqlSession session, TravelVo travel);
+	int updateTravel(TravelVo travel);
 	
 	/**
 	 * Travel 객체 travelSerial로 찾아 delete
-	 * @param session
 	 * @param travelSerial
 	 * @return
 	 */
-	int deleteTravel(SqlSession session, int travelSerial);
+	int deleteTravel(int travelSerial);
 	
 	/**
 	 * Travel 객체 전체 select
 	 * @return
 	 */
-	List<TravelVo> selectTravel(SqlSession session);
+	List<TravelVo> selectTravel();
 	
 	/**
 	 * Travel 객체 중 Travel Code별 select 
 	 * @return
 	 */
-	List<TravelVo> selectTravelByTravelCode(SqlSession session, int travelCode);
+	List<TravelVo> selectTravelByTravelCode(int travelCode);
 }

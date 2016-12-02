@@ -40,7 +40,12 @@
 		#subheader{
 			background-color:#484848 !important;
 		}
+		.navbar-default .navs>li>a{
+			box-sizing:border-box;
+			
+		}
 		.navbar-default .navs>li>a:focus{
+			
 			border-bottom:solid 3px #ccc !important;
 		}
 	</style>

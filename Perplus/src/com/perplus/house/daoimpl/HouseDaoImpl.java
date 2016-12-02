@@ -1,5 +1,7 @@
 package com.perplus.house.daoimpl;
 
-public class HouseDaoImpl {
+import com.perplus.house.dao.HouseDao;
+
+public class HouseDaoImpl implements HouseDao{
 
 }
