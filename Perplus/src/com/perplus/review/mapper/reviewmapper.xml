@@ -3,15 +3,16 @@
 
 <mapper namespace="review">
 
-<!-- <sql id="review-comment-picture-join-select">
+<sql id="review-comment-picture-join-select">
 		select r.review_serial, r.member_email,r.review_title,r.review_content,r.review_rating,r.review_time,r.review_marker_x,r.review_marker_y,r.review_marker_constant,
 				   c.review_serial,c.member_email,c.comment_content,c.comment_rating,c.comment_time,
 				   p.review_serial,p.picture_order,p.picture_name
-		from review r, REVIEWCOMMENT c, REVIEWPICTURE p
+		from review r, reviewcomment c, reviewpicture p
 		where r.review_serial = c.review_serial
-		  and  r.review_serial = p.review_serial
+		and c.review_serial=p.review_serial
 </sql>
-<resultMap type="reviewVo" id="review-basic-resultmap">
+
+<resultMap type="ReviewVo" id="review-basic-resultmap">
 	<id column="review_serial" property="reviewSerial"/>
 	<result column="member_email" property="memberEmail"/>
 	<result column="review_title" property="reviewTitle"/>
@@ -22,9 +23,17 @@
 	<result column="review_marker_y" property="reviewMarkerY"/>
 	<result column="review_marker_constant" property="reviewMarkerConstant"/>
 </resultMap>
-<resultMap type="review" id="reviewComment-basic-resultmap">
-	<id column=""
-</resultMap> -->
+
+<resultMap type="ReviewVo" id="join-resultmap" extends="review-basic-resultmap">
+	<collection property="reviewComment" ofType="ReviewVo" resultMap="reviewComment.comment-basic-resultmap"/>
+	<collection property="reviewPicture" ofType="ReviewVo" resultMap="reviewPicture.picture-basic-resultmap"/>
+</resultMap>
+
+<!-- 리뷰 - 코멘트 -picture join select -->
+<select id="selectReviewWithCommentAndPicture" parameterType="_int" resultMap="join-resultmap">
+	<include refid="review-comment-picture-join-select"/>
+	and r.review_serial = #{reviewSerial}
+</select>
 
 <!-- 리뷰 INSERT -->
 <insert id="insertReview" parameterType="ReviewVo">
@@ -43,7 +52,7 @@
 </select>
 
 <!-- 리뷰 수정 -->
-<update id="updateReview" parameterType="ReviewVo">
+<update id="updateReview" parameterType="ReviewVo" >
 	update review
 	set review_serial = #{reviewSerial},
 		 member_email = #{memberEmail},

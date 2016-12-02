@@ -1,5 +1,7 @@
 package com.perplus.review.service;
 
+import java.util.List;
+
 import com.perplus.review.vo.ReviewCommentVo;
 import com.perplus.review.vo.ReviewPictureVo;
 import com.perplus.review.vo.ReviewVo;
@@ -14,7 +16,7 @@ public interface ReviewService {
 	//리뷰조회
 	ReviewVo getReview(int reviewSerial);
 	//코멘트 조회
-	ReviewCommentVo getReviewComment(int reviewSerial);
+	List<ReviewCommentVo> getReviewCommentList(int reviewSerial);
 	//코멘트 수정
 	ReviewCommentVo modifyReviewComment(ReviewCommentVo reviewComment);
 	//코멘트 삭제

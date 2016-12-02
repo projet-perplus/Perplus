@@ -1,5 +1,7 @@
 package com.perplus.review.dao;
 
+import java.util.List;
+
 import com.perplus.review.vo.ReviewVo;
 
 public interface ReviewDao {
@@ -13,5 +15,5 @@ public interface ReviewDao {
 	int updateReview(ReviewVo review);
 	//리뷰 등록한 회원 email / 리뷰 시리얼을 통해 리뷰 삭제 하는 메소드
 	int deleteReview(int reviewSerial);
-	
+	List<ReviewVo> selectReviewWithCommentAndPicture(int reviewSerial);
 }

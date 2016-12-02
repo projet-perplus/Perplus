@@ -1,8 +1,9 @@
 package com.perplus.review.serviceimpl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Service;
 
 import com.perplus.review.dao.ReviewCommentDao;
 import com.perplus.review.dao.ReviewDao;
@@ -52,13 +53,20 @@ public class ReviewServiceImpl implements ReviewService{
 		return null;
 	}
 
+/*	@Override
+	public List<ReviewCommentVo> getReviewComment(int reviewSerial) {
+		return reviewCommentDao.selectReviewCommentListBySerial(reviewSerial);
+	}*/
+
+	
 	@Override
-	public ReviewCommentVo getReviewComment(int reviewSerial) {
-		return reviewCommentDao.selectReviewCommentBySerial(reviewSerial);
+	public ReviewCommentVo modifyReviewComment(ReviewCommentVo reviewComment) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
-	public ReviewCommentVo modifyReviewComment(ReviewCommentVo reviewComment) {
+	public List<ReviewCommentVo> getReviewCommentList(int reviewSerial) {
 		// TODO Auto-generated method stub
 		return null;
 	}
