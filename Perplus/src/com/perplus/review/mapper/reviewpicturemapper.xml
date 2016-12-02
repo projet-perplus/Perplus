@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
-<mapper namespace="이름지정">
+<mapper namespace="reviewPicture">
+<sql id="picture-select">
+		select review_serial, picture_order,picture_name	from reviewpicture
+</sql>
+<!-- reviewPicture테이블 select용 -->
+<resultMap type="reviewPictureVo" id="picture-basic-resultmap">
+	<result column="review_serial" property="reviewSerial"/>
+	<result column="review_order" property="pictureOrder"/>
+	<result column="review_name" property="pictureName"/>
+</resultMap>
 
 </mapper>
