@@ -22,5 +22,6 @@ public interface ChattingDao {
 	
 	ChattingVo findByChattingNumber(Map<String, String> map);
 	
+	List<ChattingVo> chattingjoin();
 	
 }
