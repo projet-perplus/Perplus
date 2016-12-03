@@ -4,46 +4,51 @@ import java.util.List;
 
 public class MemberVo<T> {
 	private String memberEmail;//회원이메일
-	private String memberGender;//회원성별
+	private String memberPassword;//회원패스워드
 	private String memberName;//회원이름
+	private String memberBirthday;//회원 생일
+	private String memberGender;//회원성별
 	private int memberTel;//회원전화번호
 	private String memberLocation;//회원주소
 	private String memberIntroduction;//회원 자기소개
-	private boolean memberIdentification;//회원 주민등록번호 인증유무
-	private String memberBirthday;//회원 생일
+	private int memberIdentification;//회원 주민등록번호 인증유무
 	private String memberPicture;//회원 프로필사진
 	
 	private List<T> list;//자식 테이블 list로 담아주는 통합 콜렉션
-	
-	public MemberVo(String memberEmail, String memberGender, String memberName, int memberTel, String memberLocation,
-			String memberIntroduction, boolean memberIdentification, String memberBirthday, String memberPicture,
-			List<T> list) {
+
+	public MemberVo() {
+	}
+
+	public MemberVo(String memberEmail, String memberPassword, String memberName, String memberBirthday,
+			String memberGender, int memberTel, String memberLocation, String memberIntroduction,
+			int memberIdentification, String memberPicture, List<T> list) {
 		this.memberEmail = memberEmail;
-		this.memberGender = memberGender;
+		this.memberPassword = memberPassword;
 		this.memberName = memberName;
+		this.memberBirthday = memberBirthday;
+		this.memberGender = memberGender;
 		this.memberTel = memberTel;
 		this.memberLocation = memberLocation;
 		this.memberIntroduction = memberIntroduction;
 		this.memberIdentification = memberIdentification;
-		this.memberBirthday = memberBirthday;
 		this.memberPicture = memberPicture;
 		this.list = list;
 	}
 
-	public MemberVo(String memberEmail, String memberGender, String memberName, int memberTel, String memberLocation,
-			String memberIntroduction, boolean memberIdentification, String memberBirthday, String memberPicture) {
+	public MemberVo(String memberEmail, String memberPassword, String memberName, String memberBirthday,
+			String memberGender, int memberTel, String memberLocation, String memberIntroduction,
+			int memberIdentification, String memberPicture) {
 		this.memberEmail = memberEmail;
-		this.memberGender = memberGender;
+		this.memberPassword = memberPassword;
 		this.memberName = memberName;
+		this.memberBirthday = memberBirthday;
+		this.memberGender = memberGender;
 		this.memberTel = memberTel;
 		this.memberLocation = memberLocation;
 		this.memberIntroduction = memberIntroduction;
 		this.memberIdentification = memberIdentification;
-		this.memberBirthday = memberBirthday;
 		this.memberPicture = memberPicture;
 	}
-
-	public MemberVo(){}
 
 	public String getMemberEmail() {
 		return memberEmail;
@@ -53,12 +58,12 @@ public class MemberVo<T> {
 		this.memberEmail = memberEmail;
 	}
 
-	public String getMemberGender() {
-		return memberGender;
+	public String getMemberPassword() {
+		return memberPassword;
 	}
 
-	public void setMemberGender(String memberGender) {
-		this.memberGender = memberGender;
+	public void setMemberPassword(String memberPassword) {
+		this.memberPassword = memberPassword;
 	}
 
 	public String getMemberName() {
@@ -67,6 +72,22 @@ public class MemberVo<T> {
 
 	public void setMemberName(String memberName) {
 		this.memberName = memberName;
+	}
+
+	public String getMemberBirthday() {
+		return memberBirthday;
+	}
+
+	public void setMemberBirthday(String memberBirthday) {
+		this.memberBirthday = memberBirthday;
+	}
+
+	public String getMemberGender() {
+		return memberGender;
+	}
+
+	public void setMemberGender(String memberGender) {
+		this.memberGender = memberGender;
 	}
 
 	public int getMemberTel() {
@@ -93,20 +114,12 @@ public class MemberVo<T> {
 		this.memberIntroduction = memberIntroduction;
 	}
 
-	public boolean isMemberIdentification() {
+	public int getMemberIdentification() {
 		return memberIdentification;
 	}
 
-	public void setMemberIdentification(boolean memberIdentification) {
+	public void setMemberIdentification(int memberIdentification) {
 		this.memberIdentification = memberIdentification;
-	}
-
-	public String getMemberBirthday() {
-		return memberBirthday;
-	}
-
-	public void setMemberBirthday(String memberBirthday) {
-		this.memberBirthday = memberBirthday;
 	}
 
 	public String getMemberPicture() {
@@ -133,10 +146,11 @@ public class MemberVo<T> {
 		result = prime * result + ((memberBirthday == null) ? 0 : memberBirthday.hashCode());
 		result = prime * result + ((memberEmail == null) ? 0 : memberEmail.hashCode());
 		result = prime * result + ((memberGender == null) ? 0 : memberGender.hashCode());
-		result = prime * result + (memberIdentification ? 1231 : 1237);
+		result = prime * result + memberIdentification;
 		result = prime * result + ((memberIntroduction == null) ? 0 : memberIntroduction.hashCode());
 		result = prime * result + ((memberLocation == null) ? 0 : memberLocation.hashCode());
 		result = prime * result + ((memberName == null) ? 0 : memberName.hashCode());
+		result = prime * result + ((memberPassword == null) ? 0 : memberPassword.hashCode());
 		result = prime * result + ((memberPicture == null) ? 0 : memberPicture.hashCode());
 		result = prime * result + memberTel;
 		return result;
@@ -188,6 +202,11 @@ public class MemberVo<T> {
 				return false;
 		} else if (!memberName.equals(other.memberName))
 			return false;
+		if (memberPassword == null) {
+			if (other.memberPassword != null)
+				return false;
+		} else if (!memberPassword.equals(other.memberPassword))
+			return false;
 		if (memberPicture == null) {
 			if (other.memberPicture != null)
 				return false;
@@ -200,11 +219,14 @@ public class MemberVo<T> {
 
 	@Override
 	public String toString() {
-		return "MemberVo [memberEmail=" + memberEmail + ", memberGender=" + memberGender + ", memberName=" + memberName
-				+ ", memberTel=" + memberTel + ", memberLocation=" + memberLocation + ", memberIntroduction="
-				+ memberIntroduction + ", memberIdentification=" + memberIdentification + ", memberBirthday="
-				+ memberBirthday + ", memberPicture=" + memberPicture + ", list=" + list + "]";
+		return "MemberVo [memberEmail=" + memberEmail + ", memberPassword=" + memberPassword + ", memberName="
+				+ memberName + ", memberBirthday=" + memberBirthday + ", memberGender=" + memberGender + ", memberTel="
+				+ memberTel + ", memberLocation=" + memberLocation + ", memberIntroduction=" + memberIntroduction
+				+ ", memberIdentification=" + memberIdentification + ", memberPicture=" + memberPicture + ", list="
+				+ list + "]";
 	}
+
+	
 	
 	
 }
