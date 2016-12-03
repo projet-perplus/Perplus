@@ -1,14 +1,15 @@
 package com.perplus.member.daoimpl;
 
-import org.apache.ibatis.session.SqlSession;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.perplus.member.dao.RejectDao;
 import com.perplus.member.vo.RejectVo;
 
+@Repository
 public class RejectDaoImpl implements RejectDao{
-
+	
    @Autowired
    private SqlSessionTemplate session;
    private String makeSql(){
@@ -17,19 +18,19 @@ public class RejectDaoImpl implements RejectDao{
    }
 	
 	@Override
-	public int insertReject(SqlSession session, RejectVo reject) {
+	public int insertReject(RejectVo reject) {
 		// TODO Auto-generated method stub
 		return session.insert(makeSql(), reject);
 	}
 
 	@Override
-	public int deleteReject(SqlSession session, int travelSerial) {
+	public int deleteReject(int travelSerial) {
 		// TODO Auto-generated method stub
 		return session.delete(makeSql(), travelSerial);
 	}
 
 	@Override
-	public RejectVo selectReject(SqlSession session, int travelSerial) {
+	public RejectVo selectReject(int travelSerial) {
 		// TODO Auto-generated method stub
 		return session.selectOne(makeSql(), travelSerial);
 	}

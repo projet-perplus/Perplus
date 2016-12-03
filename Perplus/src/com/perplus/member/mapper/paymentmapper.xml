@@ -5,7 +5,7 @@
 	
 	<!-- insert -->
 	<insert id="insertPayment">
-		insert into PAYMENT values (#{paymentSerial}, #{memberEmail}, #{paymentType}, #{cardNumber}, #{cardExpiration}, #{cardSecondName}, #{cardFirstName})
+		insert into PAYMENT values (#{cardSerial}, #{memberEmail}, #{paymentType}, #{cardNumber}, #{cardExpiration}, #{cardSecondName}, #{cardFirstName})
 	</insert>
 	
 	<!-- update -->

@@ -12,7 +12,7 @@ public interface RejectDao {
 	 * @param RejectVo
 	 * @return
 	 */
-	int insertReject(SqlSession session, RejectVo reject);
+	int insertReject(RejectVo reject);
 	
 	/**
 	 * RejectVo 객체 delete - memberPartner(House - hostEmail)에 해당하는 값 조회 후 삭제
@@ -20,11 +20,11 @@ public interface RejectDao {
 	 * @param memberPartner
 	 * @return
 	 */
-	int deleteReject(SqlSession session, int travelSerial);
+	int deleteReject(int travelSerial);
 	
 	/**
 	 * memberPartner(House - hostEmail)에 해당하는 RejectVo 객체 select
 	 * @return
 	 */
-	RejectVo selectReject(SqlSession session, int travelSerial);
+	RejectVo selectReject(int travelSerial);
 }

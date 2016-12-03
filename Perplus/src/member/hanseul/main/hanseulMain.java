@@ -5,10 +5,12 @@ import java.util.List;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.perplus.member.dao.PaymentDao;
 import com.perplus.member.dao.RejectDao;
 import com.perplus.member.dao.ReviewZzimDao;
 import com.perplus.member.dao.ShowMeTheMoneyDao;
 import com.perplus.member.dao.TravelDao;
+import com.perplus.member.vo.PaymentVo;
 import com.perplus.member.vo.RejectVo;
 import com.perplus.member.vo.ReviewZzimVo;
 import com.perplus.member.vo.ShowMeTheMoneyVo;
@@ -23,18 +25,44 @@ public class hanseulMain {
 //		test.travelTest(context);
 //		test.showmethemoneyTest(context);
 //		test.reviewZzimTest(context);
-		
+//		test.rejectTest(context);
+//		test.paymentTest(context);
 		
 				
 	}
 	
+	public void paymentTest(ClassPathXmlApplicationContext context) {
+		PaymentDao dao = (PaymentDao)context.getBean("paymentDaoImpl");
+		/**
+		 * PaymentDao 검증
+		 */
+		PaymentVo payment = null; 
+		//insert
+		payment = new PaymentVo(1, "asd@asd.com", "ew", 1123, new Date(), "q", "qwe");
+		dao.insertPayment(payment);
+		//select
+		System.out.println(dao.selectPaymentByCardSerial(1));
+		//update
+		payment = new PaymentVo(1, "asd@asd.com", "ew", 1123, new Date(), "r", "rrr");
+		dao.updatePayment(payment);
+		System.out.println(dao.selectPaymentByCardSerial(1));
+		//delete
+		dao.deletePayment(1);
+	}
+
 	public void rejectTest(ClassPathXmlApplicationContext context){
 		RejectDao dao = (RejectDao)context.getBean("rejectDaoImpl");
 		/**
 		 * RejectDao 검증
 		 */
 		RejectVo reject = null;
-		
+		//insert
+		reject = new RejectVo("asd@asd.com", "aqwe@awsedqw.com", "adssdfdsf", 3);
+		dao.insertReject(reject);
+		//select
+		System.out.println(dao.selectReject(3));
+		//delete
+		dao.deleteReject(3);
 	}
 	
 	public void reviewZzimTest(ClassPathXmlApplicationContext context){

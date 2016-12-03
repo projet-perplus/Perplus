@@ -4,11 +4,12 @@ import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.perplus.member.dao.PaymentDao;
 import com.perplus.member.vo.PaymentVo;
 
-//1
+@Repository
 public class PaymentDaoImpl implements PaymentDao{
 
    @Autowired
