@@ -1,19 +1,22 @@
 package com.perplus.review.serviceimpl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
 
 import com.perplus.review.dao.ReviewCommentDao;
 import com.perplus.review.dao.ReviewDao;
 import com.perplus.review.dao.ReviewPictureDao;
+import com.perplus.review.daoimpl.ReviewCommentDaoImpl;
 import com.perplus.review.service.ReviewService;
 import com.perplus.review.vo.ReviewCommentVo;
 import com.perplus.review.vo.ReviewPictureVo;
 import com.perplus.review.vo.ReviewVo;
 
-
+@Service
 public class ReviewServiceImpl implements ReviewService{
 
 	@Autowired
@@ -29,16 +32,17 @@ public class ReviewServiceImpl implements ReviewService{
 	private ReviewPictureDao reviewPictureDao;
 	
 	@Override
-	public void registerReview(ReviewVo review ) {
-		// TODO Auto-generated method stub
-		//pictureDao.insertReviewPicture(reviewPicture)
-		reviewDao.insertReview(review);
+	public void registerReview(Map map ) {
+		List<ReviewPictureVo> reviewPicture = (List<ReviewPictureVo>) map.get("list");
+		reviewDao.insertReview((ReviewVo)map.get("review"));
+		for(int i=0; i <reviewPicture.size();i++){
+			reviewPictureDao.insertReviewPicture(reviewPicture.get(i));
+		}
 	}
 
 	@Override
 	public void modifyReview(ReviewVo review) {
 		reviewDao.updateReview(review);
-		
 	}
 
 	@Override
@@ -48,52 +52,48 @@ public class ReviewServiceImpl implements ReviewService{
 	}
 
 	@Override
-	public ReviewVo getReview(int reviewSerial) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<ReviewVo> getReview(int reviewSerial) {
+		return reviewDao.selectReviewWithCommentAndPicture(reviewSerial);
 	}
 
-/*	@Override
-	public List<ReviewCommentVo> getReviewComment(int reviewSerial) {
-		return reviewCommentDao.selectReviewCommentListBySerial(reviewSerial);
-	}*/
-
-	
 	@Override
-	public ReviewCommentVo modifyReviewComment(ReviewCommentVo reviewComment) {
-		// TODO Auto-generated method stub
-		return null;
+	public void modifyReviewComment(ReviewCommentVo reviewComment) {
+		reviewCommentDao.updateReviewComment(reviewComment);
 	}
 
 	@Override
 	public List<ReviewCommentVo> getReviewCommentList(int reviewSerial) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ReviewCommentVo removeReviewComment(int reviewSerial) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ReviewPictureVo getReviewPicture(int reviewSerial) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public int modifyReviewPicture(ReviewPictureVo reviewPicture) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int removeReviewPicture(int reviewSerial) {
-		// TODO Auto-generated method stub
-		return 0;
+		return reviewCommentDao.selectReviewCommentListBySerial(reviewSerial);
 	}
 	
+	@Override
+	public ReviewCommentVo getMyComment(int reviewSerial, String memberEmail) {
+		return reviewCommentDao.selectReviewCommentBySerialAndEmail(reviewSerial, memberEmail);
+	}
+
+	@Override
+	public void removeReviewComment(int reviewSerial, String memberEmail) {
+		reviewCommentDao.deleteReviewComment(reviewSerial, memberEmail);
+	}
+
+	@Override
+	public List<ReviewPictureVo> getReviewPictureList(int reviewSerial) {
+		return reviewPictureDao.selectReviewPicturebySerial(reviewSerial);
+	}
+	
+	@Override
+	public ReviewPictureVo getReviewPicture(int reviewSerial, String pictureName) {
+		return reviewPictureDao.selectReviewPictureOne(reviewSerial, pictureName);
+	}
+
+	@Override
+	public void modifyReviewPicture(ReviewPictureVo reviewPicture) {
+		reviewPictureDao.updateReviewPicture(reviewPicture);
+	}
+
+	@Override
+	public void removeReviewPicture(int reviewSerial,String pictureName) {
+		reviewPictureDao.deleteReviewPicture(reviewSerial, pictureName);
+	}
 	
 }
