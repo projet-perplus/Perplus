@@ -1,3 +1,7 @@
+*{
+	box-sizing:border-box !important;
+	
+}
 a:focus,
 a:hover{
   text-decoration: none!important;
@@ -6,7 +10,9 @@ a:hover{
     
     
 }
-
+.modal-open .modal,.btn:focus{
+    outline:none!important
+}
 /*화면이 768보다 클때*/
 @media (min-width: 768px){
     .modal-dialog {
@@ -47,6 +53,7 @@ body {
 	 border: none;
 }
 	.navbar-default .navbar-nav>li>a {
+		box-sizing:border-box !important;
 		padding: 10px 30px;
 		color: #fff !important;
 	}
@@ -73,7 +80,7 @@ body {
     top: 0;
     left: 0;
     right: 0;
-    height:40px;
+    height:50px;
 }	
 
 
@@ -168,6 +175,7 @@ body {
 
 /*filter  form*/
 .form-group > label{
+	color:#fff;
     margin-top:10px;
     float:left;
     font-weight:100;

@@ -8,12 +8,81 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd">
+
+	<mvc:annotation-driven />
+	<!-- main -->
+	<mvc:view-controller path="/main.do" view-name="main.tiles" />
+	<mvc:view-controller path="/submenu.do" view-name="submenu.tiles1" />
+
+	<!-- sub menu do -->
+	<mvc:view-controller path="/accountmanagement.do"
+		view-name="accountmanagement/accountmanagement/modifyandcertified.tiles1" />
+
+	<mvc:view-controller path="/rooms.do"
+		view-name="rooms/rooms/roomlist.tiles1" />
+
+	<mvc:view-controller path="/travellist.do"
+		view-name="travellist/travellist/nowtravel.tiles1" />
+
+	<mvc:view-controller path="/message.do"
+		view-name="message/message/message.tiles1" />
+
+
+	<!-- accountmanagement do -->
+	<mvc:view-controller path="/modifyandcertified.do"
+		view-name="accountmanagement/accountmanagement/modifyandcertified.tiles1" />
+
+	<mvc:view-controller path="/payment_method.do"
+		view-name="accountmanagement/accountmanagement/payment_method.tiles1" />
+
+	<mvc:view-controller path="/payout_preference.do"
+		view-name="accountmanagement/accountmanagement/payout_preference.tiles1" />
+
+	<mvc:view-controller path="/transaction_history.do"
+		view-name="accountmanagement/accountmanagement/transaction_history.tiles1" />
+
+	<mvc:view-controller path="/review.do"
+		view-name="accountmanagement/accountmanagement/review.tiles1" />
+
+	<mvc:view-controller path="/exit.do"
+		view-name="accountmanagement/accountmanagement/exit.tiles1" />
+
+	<!-- rooms do -->
+	<mvc:view-controller path="/roomlist.do"
+		view-name="rooms/rooms/roomlist.tiles1" />
+
+
+	<mvc:view-controller path="/schedulemanagement.do"
+		view-name="rooms/rooms/schedulemanagement.tiles1" />
+
+	<!-- travel do -->
+	<mvc:view-controller path="/nowtravel.do"
+		view-name="travellist/travellist/nowtravel.tiles1" />
+
+	<mvc:view-controller path="/pasttravel.do"
+		view-name="travellist/travellist/pasttravel.tiles1" />
+
+	<mvc:view-controller path="/wishlist.do"
+		view-name="travellist/travellist/wishlist.tiles1" />
+
+
+	<!-- history -->
+<!-- 	<mvc:view-controller path="/completionhistory.do"
+		view-name="accountmanagement/accountmanagement/transaction_history/history/completion_history.tiles1" />
+	<mvc:annotation-driven />
 	
+	<mvc:view-controller path="/receipthistory.do"
+		view-name="accountmanagement/accountmanagement/transaction_history/history/receipt_history.tiles1" />
+	<mvc:annotation-driven />
+	
+	<mvc:view-controller path="/totalrevenue.do"
+		view-name="accountmanagement/accountmanagement/transaction_history/history/total_revenue.tiles1" />
+	<mvc:annotation-driven />
+ -->
+
 	<mvc:annotation-driven/>
 	
-	<mvc:view-controller path="/main.do" view-name="/kim.jsp"/>
-	
-	
+
 	<bean name="dataSource" class="org.apache.commons.dbcp2.BasicDataSource"
 		p:driverClassName="oracle.jdbc.driver.OracleDriver"
 		p:url="jdbc:oracle:thin:@127.0.0.1:1521:XE"

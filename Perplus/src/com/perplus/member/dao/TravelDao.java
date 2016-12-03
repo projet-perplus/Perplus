@@ -30,14 +30,14 @@ public interface TravelDao {
 	int deleteTravel(int travelSerial);
 	
 	/**
-	 * Travel 객체 전체 select
+	 * memberEmail의 Travel 객체 전체 select
 	 * @return
 	 */
-	List<TravelVo> selectTravel();
+	List<TravelVo> selectTravel(String memberEmail);
 	
 	/**
 	 * Travel 객체 중 Travel Code별 select 
 	 * @return
 	 */
-	List<TravelVo> selectTravelByTravelCode(int travelCode);
+	TravelVo selectTravelByTravelCode(int travelCode);
 }

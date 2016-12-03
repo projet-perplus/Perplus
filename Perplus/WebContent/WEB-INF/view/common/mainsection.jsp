@@ -15,7 +15,7 @@
 				<div class="col-md-4">
 					<div class="form-group">
 					  <label for="location">위치</label><br>
-					  <input type="text" class="form-control" id="location" placeholder="목적지 도시명 주소" >
+					  <input type="text" class="form-control" name="location" id="location" placeholder="목적지 도시명 주소" >
 					</div>
 				</div>
 				<div class="col-md-4">
@@ -23,10 +23,10 @@
 						<!--<div class="input-group date" data-provide="datepicker">-->
 							<div class="col-md-6">
 								<!-- <label for="location">날짜</label><br>-->
-								<input type="text" class="form-control" value="체크인" id="dpd1" style="margin-top:35px" >
+								<input type="text" class="form-control" value="체크인" name="check" id="dpd1" style="margin-top:35px" >
 							</div>
 							<div class="col-md-6">
-								<input type="text" class="form-control" value="체크아웃" id="dpd2" style="margin-top:35px">
+								<input type="text" class="form-control" value="체크아웃" name="check" id="dpd2" style="margin-top:35px">
 							</div>
 						<!--</div>-->
 					</div>
@@ -35,7 +35,7 @@
 					<div class="col-sm-6" >
 						 <div class="form-group">
 						  <label for="secl1">인원</label>
-						  <select class="form-control" id="GuestInput">
+						  <select class="form-control" name="personnel" id="GuestInput">
 							<option >1</option>
 							<option>2</option>
 							<option>3</option>
@@ -44,7 +44,7 @@
 						</div>
 					</div>
 					<div class="col-sm-6 col-lg-6" >
-						 <button type="button" class="btn btn-default btn-lg" id="Search" >숙소 검색</button>
+						 <button type="button" class="btn btn-default btn-lg" name="roomssearch"  id="Search" >숙소 검색</button>
 					</div>
 				</div>
 			</form>
