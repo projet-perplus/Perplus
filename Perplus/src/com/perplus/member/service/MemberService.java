@@ -1,5 +1,9 @@
 package com.perplus.member.service;
 
-public interface MemberService {
+import java.util.List;
 
+import com.perplus.member.vo.TravelVo;
+
+public interface MemberService {
+	
 }

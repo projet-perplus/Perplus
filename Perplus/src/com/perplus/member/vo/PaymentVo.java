@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class PaymentVo {
 	
+	private int cardSerial;
 	private String memberEmail;
 	private String paymentType;	// 결제 회사
 	private int cardNumber;
@@ -13,14 +14,23 @@ public class PaymentVo {
 	
 	public PaymentVo() {}
 
-	public PaymentVo(String memberEmail, String paymentType, int cardNumber, Date cardExpiration, String cardSecondName,
-			String cardFirstName) {
+	public PaymentVo(int cardSerial, String memberEmail, String paymentType, int cardNumber, Date cardExpiration,
+			String cardSecondName, String cardFirstName) {
+		this.cardSerial = cardSerial;
 		this.memberEmail = memberEmail;
 		this.paymentType = paymentType;
 		this.cardNumber = cardNumber;
 		this.cardExpiration = cardExpiration;
 		this.cardSecondName = cardSecondName;
 		this.cardFirstName = cardFirstName;
+	}
+
+	public int getCardSerial() {
+		return cardSerial;
+	}
+
+	public void setCardSerial(int cardSerial) {
+		this.cardSerial = cardSerial;
 	}
 
 	public String getMemberEmail() {
@@ -79,6 +89,7 @@ public class PaymentVo {
 		result = prime * result + ((cardFirstName == null) ? 0 : cardFirstName.hashCode());
 		result = prime * result + cardNumber;
 		result = prime * result + ((cardSecondName == null) ? 0 : cardSecondName.hashCode());
+		result = prime * result + cardSerial;
 		result = prime * result + ((memberEmail == null) ? 0 : memberEmail.hashCode());
 		result = prime * result + ((paymentType == null) ? 0 : paymentType.hashCode());
 		return result;
@@ -110,6 +121,8 @@ public class PaymentVo {
 				return false;
 		} else if (!cardSecondName.equals(other.cardSecondName))
 			return false;
+		if (cardSerial != other.cardSerial)
+			return false;
 		if (memberEmail == null) {
 			if (other.memberEmail != null)
 				return false;
@@ -125,8 +138,8 @@ public class PaymentVo {
 
 	@Override
 	public String toString() {
-		return "PaymentVo [memberEmail=" + memberEmail + ", paymentType=" + paymentType + ", cardNumber=" + cardNumber
-				+ ", cardExpiration=" + cardExpiration + ", cardSecondName=" + cardSecondName + ", cardFirstName="
-				+ cardFirstName + "]";
+		return "PaymentVo [cardSerial=" + cardSerial + ", memberEmail=" + memberEmail + ", paymentType=" + paymentType
+				+ ", cardNumber=" + cardNumber + ", cardExpiration=" + cardExpiration + ", cardSecondName="
+				+ cardSecondName + ", cardFirstName=" + cardFirstName + "]";
 	}
 }

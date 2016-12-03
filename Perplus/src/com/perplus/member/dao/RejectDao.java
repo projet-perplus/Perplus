@@ -15,24 +15,16 @@ public interface RejectDao {
 	int insertReject(SqlSession session, RejectVo reject);
 	
 	/**
-	 * RejectVo 객체 update
-	 * @param session
-	 * @param Reject
-	 * @return
-	 */
-	int updateReject(SqlSession session, RejectVo reject);
-	
-	/**
 	 * RejectVo 객체 delete - memberPartner(House - hostEmail)에 해당하는 값 조회 후 삭제
 	 * @param session
 	 * @param memberPartner
 	 * @return
 	 */
-	int deleteReject(SqlSession session, String memberPartner);
+	int deleteReject(SqlSession session, int travelSerial);
 	
 	/**
 	 * memberPartner(House - hostEmail)에 해당하는 RejectVo 객체 select
 	 * @return
 	 */
-	RejectVo selectReject(SqlSession session, String memberPartner);
+	RejectVo selectReject(SqlSession session, int travelSerial);
 }
