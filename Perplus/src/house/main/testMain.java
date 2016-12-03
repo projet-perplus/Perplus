@@ -1,4 +1,4 @@
-package review.main;
+package house.main;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
