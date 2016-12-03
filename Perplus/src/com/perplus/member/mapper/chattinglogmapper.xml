@@ -9,8 +9,7 @@
 	</select>
 
 	<insert id="insertchattinglog" parameterType="ChattingVo">
-		insert into
-		CHATTING values(#{chattingNumber},#{memberEmail},#{chattingContent})
+		insert into CHATTING values(#{chattingNumber},#{memberEmail},#{chattingContent})
 	</insert>
 
 </mapper>

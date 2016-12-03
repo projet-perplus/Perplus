@@ -29,7 +29,7 @@
 	</delete>
 	
 	<!-- select -->
-	<select id="selectShowmethemoney"  resultType="ShowMeTheMoneyVo">
+	<select id="selectShowmethemoney" parameterType="string" resultType="ShowMeTheMoneyVo">
 		select	SHOWMETHEMONEY_SERIAL showmethemoneySerial, 
 					MEMBER_EMAIL memberEmail, 
 					SHOWMETHEMONEY_STATUS showmethemoneyStatus, 
@@ -40,6 +40,7 @@
 					TRSHOWMETHEMONEY_RECIVE_MONEY showmethemoneyReciveMoney,
 					SHOWMETHEMONEY_BANK showmethemoneyBank
 		from SHOWMETHEMONEY
+		where MEMBER_EMAIL = #{memberEmail}
 	</select>
 	
 	<select id="selectShowmethemoneyByShowmethemoneySerial"  parameterType="_int" resultType="ShowMeTheMoneyVo">

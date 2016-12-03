@@ -15,7 +15,6 @@ public class ReviewPictureDaoImpl implements ReviewPictureDao{
 	
 	@Override
 	public ReviewPictureVo selectReviewPicturebySerial(int reviewSerial) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

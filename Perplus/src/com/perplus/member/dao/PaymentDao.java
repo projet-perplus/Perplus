@@ -1,5 +1,5 @@
 package com.perplus.member.dao;
-
+//1
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -28,11 +28,18 @@ public interface PaymentDao {
 	 * @param memberEmail
 	 * @return
 	 */
-	int deletePayment(String memberEmail);
+	int deletePayment(int cardSerial);
 	
 	/**
 	 * PaymentVo 객체 select
-	 * @return
+	 * @return cardSerial
 	 */
-	PaymentVo selectPayment();
+	List<PaymentVo> selectPayment(String memberEmail);
+	
+	/**
+	 * PaymentVo 객체 cardSerial로 select
+	 * @param cardSerial
+	 * @return 
+	 */
+	PaymentVo selectPaymentByCardSerial(int cardSerial);
 }

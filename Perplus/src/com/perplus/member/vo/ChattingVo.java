@@ -20,7 +20,6 @@ public class ChattingVo {
 	
 	
 	public ChattingVo(int chattingNumber, String chattingPartner, String memberEmail) {
-		super();
 		this.chattingNumber = chattingNumber;
 		this.chattingPartner = chattingPartner;
 		this.memberEmail = memberEmail;

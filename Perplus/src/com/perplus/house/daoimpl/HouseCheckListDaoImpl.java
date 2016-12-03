@@ -1,5 +1,6 @@
-package com.perplus.member.daoimpl;
+package com.perplus.house.daoimpl;
 
 public class HouseCheckListDaoImpl {
+
 
 }

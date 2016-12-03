@@ -21,6 +21,8 @@ drop table SHUTDOWN cascade constraint;
 drop table SHOWMETHEMONEY cascade constraint;
 drop table TRAVEL cascade constraint;
 
+<<<<<<< HEAD
+=======
 
 
 
@@ -56,3 +58,4 @@ from housecomment
 
 insert into CHATTING values(1,'asdf','fdsa');
 insert into CHATTINGLOG values(1,'fdsa','content2');
+>>>>>>> branch 'master' of https://github.com/projet-perplus/Perplus.git

@@ -1,19 +1,20 @@
-package com.perplus.member.vo;
 
-public class HowGetMoneyVo {
+package com.perplus.member.vo;
+//a
+public class HowgetmoneyVo {
 	private String memberEmail;
 	private String howgetmoneyHolder;
 	private String howgetmoneyBank;
 	private int howgetmoneyNumber;
 	
 	
-	public HowGetMoneyVo(String memberEmail, String howGetMoneyHolder, String howGetMoneyBank, int howGetMoneyNumber) {
+	public HowgetmoneyVo(String memberEmail, String howGetMoneyHolder, String howGetMoneyBank, int howGetMoneyNumber) {
 		this.memberEmail = memberEmail;
 		this.howgetmoneyHolder = howGetMoneyHolder;
 		this.howgetmoneyBank = howGetMoneyBank;
 		this.howgetmoneyNumber = howGetMoneyNumber;
 	}
-	public HowGetMoneyVo() {
+	public HowgetmoneyVo() {
 	}
 	public String getMemberEmail() {
 		return memberEmail;
@@ -57,7 +58,7 @@ public class HowGetMoneyVo {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		HowGetMoneyVo other = (HowGetMoneyVo) obj;
+		HowgetmoneyVo other = (HowgetmoneyVo) obj;
 		if (howgetmoneyBank == null) {
 			if (other.howgetmoneyBank != null)
 				return false;

@@ -1,6 +1,7 @@
 package com.perplus.review.daoimpl;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -22,32 +23,34 @@ public class ReviewDaoImpl implements ReviewDao{
 		return session.insert("review.insertReview", review);
 	}
 
-	@Override
+/*	@Override
 	public ReviewVo selectReviewBySerialAndEmail(int reviewSerial, String memberEmail) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+		//serial과 이메일로 리뷰 조회하기
+		return session.selectOne("review.selectReviewBySerialAndEmail");
+	}*/
 
 	@Override
 	public ReviewVo selectReviewBySerial(int reviewSerial) {
 		// TODO Auto-generated method stub
-		return null;
+		return session.selectOne("review.selectReviewBySerial");
 	}
 
 	@Override
 	public int updateReview(ReviewVo review) {
-		// TODO Auto-generated method stub
-		return 0;
+		System.out.println(review);
+		return session.update("review.updateReview", review);
 	}
 
 	@Override
-	public int removeReview(int reviewSerial, String memberEmail) {
-		// TODO Auto-generated method stub
-		Map map = new HashMap<>();
-		map.put("reviewSerial", reviewSerial);
-		map.put("memberEmail",memberEmail);
-		
-		return session.delete("review.deleteReview", map);
+	public int deleteReview(int reviewSerial) {
+		return session.delete("review.deleteReview",reviewSerial);
 	}
+
+	@Override
+	public List<ReviewVo> selectReviewWithCommentAndPicture(int reviewSerial) {
+		// TODO Auto-generated method stub
+		return session.selectList("review.selectReviewWithCommentAndPicture",reviewSerial);
+	}
+	
 	
 }

@@ -1,5 +1,5 @@
 package com.perplus.member.dao;
-
+//1
 import java.util.List;
 
 import com.perplus.member.vo.ShowMeTheMoneyVo;
@@ -28,15 +28,15 @@ public interface ShowMeTheMoneyDao {
 	int deleteShowmethemoney(int showmethemoneySerial);
 	
 	/**
-	 * 모든 ShowMeTheMoney 객체 select
+	 * memberEmail의 모든 ShowMeTheMoney 객체 select
 	 * @return
 	 */
-	List<ShowMeTheMoneyVo> selectShowmethemoney();
+	List<ShowMeTheMoneyVo> selectShowmethemoney(String memberEmail);
 	
 	/**
-	 * 스테이터스 별 ShowMeTheMoney 객체 select
+	 * 여행 시리얼로 ShowMeTheMoney 객체 select
 	 * @return
 	 */
-	List<ShowMeTheMoneyVo> selectShowmethemoneyByShowmethemoneySerial(int showmethemoneySerial);
+	ShowMeTheMoneyVo selectShowmethemoneyByShowmethemoneySerial(int showmethemoneySerial);
 	
 }

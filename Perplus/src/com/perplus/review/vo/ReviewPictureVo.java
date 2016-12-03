@@ -4,27 +4,27 @@ import java.io.Serializable;
 
 
 public class ReviewPictureVo implements Serializable{
-	private int houseSerial; //숙소 시리얼 넘버
+	private int reviewSerial; //리뷰 시리얼 넘버
 	private int pictureOrder;  //사진의 순서. (main사진이 1번~~)
 	private String pictureName; //사진 이름
 	
 	//생성자
 	ReviewPictureVo(){}
 
-	public ReviewPictureVo(int houseSerial, int pictureOrder, String pictureName) {
+	public ReviewPictureVo(int reviewSerial, int pictureOrder, String pictureName) {
 		super();
-		this.houseSerial = houseSerial;
+		this.reviewSerial = reviewSerial;
 		this.pictureOrder = pictureOrder;
 		this.pictureName = pictureName;
 	}
 
 	//setter/getter
-	public int getHouseSerial() {
-		return houseSerial;
+	public int getReviewSerial() {
+		return reviewSerial;
 	}
 
-	public void setHouseSerial(int houseSerial) {
-		this.houseSerial = houseSerial;
+	public void setReviewSerial(int reviewSerial) {
+		this.reviewSerial = reviewSerial;
 	}
 
 	public int getPictureOrder() {
@@ -46,7 +46,7 @@ public class ReviewPictureVo implements Serializable{
 	//toString()
 	@Override
 	public String toString() {
-		return "ReviewPictureVo [houseSerial=" + houseSerial + ", pictureOrder=" + pictureOrder + ", pictureName="
+		return "ReviewPictureVo [reviewSerial=" + reviewSerial + ", pictureOrder=" + pictureOrder + ", pictureName="
 				+ pictureName + "]";
 	}
 
@@ -55,7 +55,7 @@ public class ReviewPictureVo implements Serializable{
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + houseSerial;
+		result = prime * result + reviewSerial;
 		result = prime * result + ((pictureName == null) ? 0 : pictureName.hashCode());
 		result = prime * result + pictureOrder;
 		return result;
@@ -70,7 +70,7 @@ public class ReviewPictureVo implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		ReviewPictureVo other = (ReviewPictureVo) obj;
-		if (houseSerial != other.houseSerial)
+		if (reviewSerial != other.reviewSerial)
 			return false;
 		if (pictureName == null) {
 			if (other.pictureName != null)
