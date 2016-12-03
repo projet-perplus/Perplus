@@ -19,14 +19,28 @@
 	</sql>
 	<!-- 최초 집이 생성될때 4개의 값이 넘어오며(첫 Serial과 Status는 자동 생성된다.)6개의 값이 저장이 된다. necessary condition을 제외한 모든것은 N.N이다 -->
 	<insert id="insertHouseDefault" parameterType="housevo">
-		insert into HOUSE values(HOUSE_SEQ.nextval,${memberEmail},0,${houseTitle},${houseContent},${houseNecessaryCondition})	
+		insert into HOUSE values(HOUSE_SEQ.nextval,${memberEmail},0,${houseTitle},${houseContent},${houseNecessaryCondition},null,null,null,0,0,0,0)	
 	</insert>
-	
+	<!-- 전체적인 집의 수정 (기존의 db를 select해와 필요한 부분만 채워서 재 전송)-->
 	<update id="updateHouse" parameterType ="housevo">
 		update HOUSE set HOUSE_REGISTER_STATUS = ${houseRegisterStatus}, HOUSE_TITLE = ${houseTitle}, HOUSE_CONTENT = ${houseContent},
 		HOUSE_NECESSARY_CONDITION = ${houseNecessaryCondition}, HOUSE_CHECKIN_START =${houseCheckinStart}, HOUSE_CHECKIN_END = ${houseCheckinEnd},
 		HOUSER_RATING = ${houseRating}, HOUSE_MARKER_X = ${houseMarkerX}, HOUSE_MARKER_Y = ${houseMarkerY}, HOUSE_MARKER_CONSTANT = ${houseMarkerConstant}
 	</update>
+	<!-- 기본적으로 지울때는 HouseSerial을 가지고 지우도록 한다. -->
+	<delete id="deleteHouseByHouseSerial" parameterType="_int">
+		delete from HOUSE where HOUSE_SERIAL = ${value}
+	</delete>
+	<!-- 단일 집을 select 할때 HouseSerial을 가지고 조회를 한다. -->
+	<select id="selectHouseByHouseSerial" parameterType="_int" resultType="housevo">
+		<include refid="default-house-select"/>
+		where HOUSE_SERIAL = ${value}
+	</select>
+	<!-- 해당 회원이 등록한 집을 select할때 로그인한 회원의 Email을 가지고 조회를 한다 -->
+	<select id="selectHouseListByMemberEmail" parameterType="String" resultType="housevo">
+		<include refid="default-house-select"/>
+		where MEMBER_EMAIL = ${value}
+	</select>
 </mapper>
 
 

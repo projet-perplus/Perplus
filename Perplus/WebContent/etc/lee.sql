@@ -13,6 +13,9 @@ where HOUSE_SERIAL=1
 
 insert into HOUSE values(1,'화장실',20,'다인실',2,'경기도 용인시 모현면');
 
+insert into HOUSE values(HOUSE_SEQ.nextval,'bbb',0,'따뜻한 집','조흔 집입니다','ㅇㅇㅇ',null,null,0,0,0,0)	
+
+delete from HOUSE where HOUSE_SERIAL = 1
 
      select r.review_serial, r.member_email,r.review_title,r.review_content,r.review_rating,r.review_time,r.review_marker_x,r.review_marker_y,r.review_marker_constant,
                c.review_serial,c.member_email,c.comment_content,c.comment_rating,c.comment_time,
@@ -25,4 +28,18 @@ insert into HOUSE values(1,'화장실',20,'다인실',2,'경기도 용인시 모
       insert into member values('aaa','ma','하하하',3,'경기','erwer',0,'23423',null)
       
       
+		select HOUSE_SERIAL,
+		MEMBER_EMAIL,
+		HOUSE_REGISTER_STATUS,
+		HOUSE_TITLE,
+		HOUSE_CONTENT,
+		HOUSE_NECESSARY_CONDITION,
+		HOUSE_CHECKIN_START,
+		HOUSE_CHECKIN_END,
+		HOUSE_RATING,
+		HOUSE_MARKER_X,
+		HOUSE_MARKER_Y,
+		HOUSE_MARKER_CONSTANT
+		from HOUSE
+		where HOUSE_SERIAL = 1
 
