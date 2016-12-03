@@ -14,6 +14,7 @@ import com.perplus.member.vo.MemberVo;
 
 @Service
 public class MemberServiceImpl {
+
 	
 	@Autowired
 	@Qualifier("chattingDaoImpl")
@@ -59,7 +60,7 @@ public class MemberServiceImpl {
 	public void deleteMember(String memberEmail){
 		memberDao.deleteMember(memberEmail);
 	}
-	
+
 	public MemberVo selectMemberByEmail(String memberEmail){
 		
 		return memberDao.selectMemberByEmail(memberEmail);
