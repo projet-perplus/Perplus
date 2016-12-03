@@ -15,7 +15,7 @@
           </button>
 
         </div>
-        <div class="collapse navbar-collapse" id="myNavbar">
+        <div class="collapse navbar-collapse" id="myNavbar">c
           <ul class="nav navbar-nav navbar-right navbar-nav1">
            
             <li><a href="#">여행명소</a></li>
@@ -67,7 +67,7 @@
                       <h4 class="modal-title">회원 가입</h4>
                   </div>
               <div class="modal-body">
-                  <form action="aaa">
+                  <form action="">
                       <div class="form-group">
                           <input type="email" class="form-control" id="email" name="email" placeholder="이메일 주소" required>
                       </div>

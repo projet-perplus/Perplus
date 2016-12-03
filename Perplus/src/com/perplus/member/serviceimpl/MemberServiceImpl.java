@@ -16,10 +16,10 @@ import com.perplus.member.daoimpl.ReviewZzimDaoImpl;
 import com.perplus.member.daoimpl.ShowMeTheMoneyDaoImpl;
 import com.perplus.member.daoimpl.TravelDaoImpl;
 
-//@Service
+@Service
 public class MemberServiceImpl {
 
-	/*@Autowired
+	@Autowired
 	@Qualifier("chattingDaoImpl")
 	private ChattingDaoImpl chattingDao;
 
@@ -64,7 +64,7 @@ public class MemberServiceImpl {
 	@Autowired
 	@Qualifier("travelDaoImpl")
 	private TravelDaoImpl travelDao;
-	*/
+	
 	
 	
 }

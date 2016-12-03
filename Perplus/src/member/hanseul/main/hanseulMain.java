@@ -5,9 +5,11 @@ import java.util.List;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.perplus.member.dao.RejectDao;
 import com.perplus.member.dao.ReviewZzimDao;
 import com.perplus.member.dao.ShowMeTheMoneyDao;
 import com.perplus.member.dao.TravelDao;
+import com.perplus.member.vo.RejectVo;
 import com.perplus.member.vo.ReviewZzimVo;
 import com.perplus.member.vo.ShowMeTheMoneyVo;
 import com.perplus.member.vo.TravelVo;
@@ -24,6 +26,15 @@ public class hanseulMain {
 		
 		
 				
+	}
+	
+	public void rejectTest(ClassPathXmlApplicationContext context){
+		RejectDao dao = (RejectDao)context.getBean("rejectDaoImpl");
+		/**
+		 * RejectDao 검증
+		 */
+		RejectVo reject = null;
+		
 	}
 	
 	public void reviewZzimTest(ClassPathXmlApplicationContext context){
