@@ -46,11 +46,6 @@
 	where review_serial =#{reviewSerial}
 </delete>
 
-<!-- ****리뷰 Select -->
-<select id="selectReviewBySerial" parameterType="_int">
-
-</select>
-
 <!-- 리뷰 수정 -->
 <update id="updateReview" parameterType="ReviewVo" >
 	update review

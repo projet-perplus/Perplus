@@ -6,6 +6,7 @@
 <sql id="picture-select">
 		select review_serial, picture_order,picture_name	from reviewpicture
 </sql>
+
 <!-- reviewPicture테이블 select용 -->
 <resultMap type="reviewPictureVo" id="picture-basic-resultmap">
 	<result column="review_serial" property="reviewSerial"/>
