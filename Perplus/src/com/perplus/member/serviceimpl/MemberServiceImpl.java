@@ -15,6 +15,7 @@ import com.perplus.member.vo.MemberVo;
 @Service
 public class MemberServiceImpl {
 
+
 	
 	@Autowired
 	@Qualifier("chattingDaoImpl")
@@ -39,8 +40,7 @@ public class MemberServiceImpl {
 	@Autowired
 	@Qualifier("memberDaoImpl")
 	private MemberDaoImpl memberDao;
-	
-	
+
 	public boolean isIdExist(String id){
 		boolean flag = memberDao.selectMemberCountByEmail(id)==1;
 		return flag;

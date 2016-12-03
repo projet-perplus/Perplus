@@ -18,7 +18,7 @@
 				SHOWMETHEMONEY_KIND = #{showmethemoneyKind}, 
 				SHOWMETHEMONEY_CONTENT = #{showmethemoneyContent}, 
 				SHOWMETHEMONEY_PAY_MONEY = #{showmethemoneyPayMoney}, 
-				TRSHOWMETHEMONEY_RECIVE_MONEY = #{showmethemoneyReciveMoney},
+				SHOWMETHEMONEY_RECIVE_MONEY = #{showmethemoneyReciveMoney},
 				SHOWMETHEMONEY_BANK = #{showmethemoneyBank}
 		where SHOWMETHEMONEY_SERIAL = #{showmethemoneySerial}
 	</update>
@@ -37,7 +37,7 @@
 					SHOWMETHEMONEY_KIND showmethemoneyKind, 
 					SHOWMETHEMONEY_CONTENT showmethemoneyContent, 
 					SHOWMETHEMONEY_PAY_MONEY showmethemoneyPayMoney, 
-					TRSHOWMETHEMONEY_RECIVE_MONEY showmethemoneyReciveMoney,
+					SHOWMETHEMONEY_RECIVE_MONEY showmethemoneyReciveMoney,
 					SHOWMETHEMONEY_BANK showmethemoneyBank
 		from SHOWMETHEMONEY
 		where MEMBER_EMAIL = #{memberEmail}
@@ -51,7 +51,7 @@
 					SHOWMETHEMONEY_KIND showmethemoneyKind, 
 					SHOWMETHEMONEY_CONTENT showmethemoneyContent, 
 					SHOWMETHEMONEY_PAY_MONEY showmethemoneyPayMoney, 
-					TRSHOWMETHEMONEY_RECIVE_MONEY showmethemoneyReciveMoney,
+					SHOWMETHEMONEY_RECIVE_MONEY showmethemoneyReciveMoney,
 					SHOWMETHEMONEY_BANK showmethemoneyBank
 		from SHOWMETHEMONEY
 		where SHOWMETHEMONEY_SERIAL = #{showmethemoneySerial} 
