@@ -24,6 +24,19 @@ public class ReviewPictureDaoImpl implements ReviewPictureDao{
 	public List<ReviewPictureVo> selectReviewPicturebySerial(int reviewSerial) {
 		return session.selectList("reviewPicture.selectPictureList",reviewSerial);
 	}
+	/**
+	 * 사진하나만 조회
+	 * @param reviewSerial
+	 * @param pictureName
+	 * @return 
+	 */
+	@Override
+	public ReviewPictureVo selectReviewPictureOne(int reviewSerial, String pictureName) {
+		Map<String,Object> map = new HashMap<>();
+		map.put("reviewSerial", reviewSerial);
+		map.put("pictureName", pictureName);
+		return session.selectOne("reviewPicture.selectPictureOne",map);
+	}
 
 	/**
 	 * 사진 수정하는 메소드

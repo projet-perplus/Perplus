@@ -4,7 +4,7 @@
 <mapper namespace="reviewPicture">
 
 <sql id="picture-select">
-		select review_serial, picture_order,picture_name	from reviewpicture
+		select review_serial reviewSerial, picture_order pictureOrder,picture_name pictureName	from reviewpicture
 </sql>
 
 <!-- reviewPicture테이블 select용 -->
@@ -18,6 +18,15 @@
 <select id="selectPictureList" parameterType="_int" resultType="hashmap">
 	<include refid="picture-select"/>
 	where review_serial = #{reviewSerial}
+</select>
+
+<!-- Select Picture One -->
+<select id="selectPictureOne" parameterType="hashmap" resultType="ReviewPictureVo">
+<!-- 	select review_serial reviewSerial, picture_order pictureOrder, picture_name pictureName
+	from reviewpicture  -->
+	<include refid="picture-select"/>
+	where review_serial = #{reviewSerial}
+	and picture_name=#{pictureName}
 </select>
 
 <!-- Update Picure -->
