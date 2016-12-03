@@ -5,12 +5,12 @@
 				<span>결제 수단</span>
 			</div>
 			<div class="panel-body">
-			<button class="paymentBtn">
-				<a href="#" data-toggle="modal" data-target="#basicModal">
-					<span style="font-size:45px" >+</span><br>
-					<span class="pamentAdd">결제 수단 추가</span>
-				</a>
-			</button>
+			<a href="#" data-toggle="modal" data-target="#basicModal">
+				<button class="paymentBtn">
+						<span style="font-size:45px" >+</span><br>
+						<span class="pamentAdd">결제 수단 추가</span>
+				</button>
+			</a>
 				<img src="" alt="" />
 			</div>	
 			

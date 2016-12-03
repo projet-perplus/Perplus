@@ -1,30 +1,18 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
-<%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
-<div id="dashboard-content">
-	<div class="panel-header">
-		<div class="history">
-			<div class="row">
-				<div class="col-xs-2">
-					<a href="${initParam.rootPath}/completionhistory.do">수령 완료 내역</a>
-				</div>
-				<div class="col-xs-2">
-					<a href="${initParam.rootPath}/receipthistory.do">수령예정 내역</a>
-				</div>
-				<div class="col-xs-2">
-					<a href="${initParam.rootPath}/totalrevenue.do">총 수익</a>
-				</div>
-				<div class="col-xs-6">
-				
-				</div>
-		
-			</div>
-		</div>	
+	<div id="tabs">
+	      <ul>
+	        <li><a href="#jb-tab-1">수령완료 내역</a></li>
+	        <li><a href="#jb-tab-2">수령예정 내역</a></li>
+	        <li><a href="#jb-tab-3">총 수익</a></li>
+	      </ul>
+	      <div id="jb-tab-1">
+	        <p>Tabs 1 - Lorem</p>
+	      </div>
+	      <div id="jb-tab-2">
+	        <p>Tabs 2 - Ipsum</p>
+	      </div>
+	      <div id="jb-tab-3">
+	        <p>Tabs 3 - Dolor</p>
+	      </div>
 	</div>
-	<div class="panel-body">
-		<div class="row"><!--  style="height:250px;" -->
-			<div class="col-xs-12"> <!-- style="padding:30px;" -->
-				<tiles:insertAttribute name="middlemenu"/>
-			</div>
-		</div>
-	</div>	
 </div>	

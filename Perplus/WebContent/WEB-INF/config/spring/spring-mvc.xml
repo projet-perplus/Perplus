@@ -37,7 +37,7 @@
 		view-name="accountmanagement/accountmanagement/payout_preference.tiles1" />
 
 	<mvc:view-controller path="/transaction_history.do"
-		view-name="accountmanagement/accountmanagement/transaction_history/history/completion_history.tiles1" />
+		view-name="accountmanagement/accountmanagement/transaction_history.tiles1" />
 
 	<mvc:view-controller path="/review.do"
 		view-name="accountmanagement/accountmanagement/review.tiles1" />
@@ -65,7 +65,7 @@
 
 
 	<!-- history -->
-	<mvc:view-controller path="/completionhistory.do"
+<!-- 	<mvc:view-controller path="/completionhistory.do"
 		view-name="accountmanagement/accountmanagement/transaction_history/history/completion_history.tiles1" />
 	<mvc:annotation-driven />
 	
@@ -76,7 +76,7 @@
 	<mvc:view-controller path="/totalrevenue.do"
 		view-name="accountmanagement/accountmanagement/transaction_history/history/total_revenue.tiles1" />
 	<mvc:annotation-driven />
-
+ -->
 	<!-- <mvc:view-controller path="/main.do" view-name="/test.jsp"/> -->
 
 
