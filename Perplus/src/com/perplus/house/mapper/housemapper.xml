@@ -22,8 +22,12 @@
 		insert into HOUSE values(HOUSE_SEQ.nextval,${memberEmail},0,${houseTitle},${houseContent},${houseNecessaryCondition})	
 	</insert>
 	
-	<update id="updateHouse">
-		update set 
+	<update id="updateHouse" parameterType ="housevo">
+		update HOUSE set HOUSE_REGISTER_STATUS = ${houseRegisterStatus}, HOUSE_TITLE = ${houseTitle}, HOUSE_CONTENT = ${houseContent},
+		HOUSE_NECESSARY_CONDITION = ${houseNecessaryCondition}, HOUSE_CHECKIN_START =${houseCheckinStart}, HOUSE_CHECKIN_END = ${houseCheckinEnd},
+		HOUSER_RATING = ${houseRating}, HOUSE_MARKER_X = ${houseMarkerX}, HOUSE_MARKER_Y = ${houseMarkerY}, HOUSE_MARKER_CONSTANT = ${houseMarkerConstant}
+		
+		 
 	</update>
 </mapper>
 
