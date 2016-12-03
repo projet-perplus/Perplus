@@ -3,7 +3,7 @@
 
 <mapper namespace="member">
 	<insert id="insertMember" parameterType="MemberVo">
-		insert into member values(#{memberEmail},#{memberGender},#{memberName},#{memberTel},#{memberLocation},#{memberIntroduction},#{memberIdentification},#{memberBirthday},#{memberPicture})
+		insert into member values(#{memberEmail},#{memberPassword},#{memberName},#{memberBirthday},#{memberGender},#{memberTel},#{memberLocation},#{memberIntroduction},#{memberIdentification},#{memberPicture})
 	</insert>
 	
 	<delete id="deleteMember" parameterType="string">
@@ -12,21 +12,29 @@
 	
 	<update id="updateMember" parameterType="MemberVo">
 		update	member
-		set		member_gender = #{memberGender},
+		set		member_password = #{memberPassword},
 				member_name = #{memberName},
+				member_birthday = #{memberBirthday},
+				member_gender = #{memberGender},
 				member_tel = #{memberTel},
 				member_location = #{memberLocation},
 				member_introduction = #{memberIntroduction},
 				member_identification = #{memberIdentification},
-				member_birthday = #{memberBirthday},
-				member_picture = #{memberPicture},
+				member_picture  = #{memberPicture}
 		where	member_email = #{memberEmail}
 	</update>
 	
 	<select id="selectMemberByEmail" parameterType="string" resultType="MemberVo">
-		select	member_email memberEmail,member_gender memberGender,member_name memberName,member_tel memberTel,member_location memberLocation,member_introduction memberIntroduction,member_identification memberIdentification,member_birthday memberBirthday,member_picture memberPicture
+		select	member_email memberEmail, member_password memberPassword, member_gender memberGender,member_name memberName,member_tel memberTel,member_location memberLocation,member_introduction memberIntroduction,member_identification memberIdentification,member_birthday memberBirthday,member_picture memberPicture
 		from	member
 		where	member_email = #{value}
 	</select>
 	
+	<select id="selectMemberCountByEmail" parameterType="string" resultType="_int">
+		select	count(member_email)
+		from	member
+		where	member_email = #{value}
+	</select>
+	
+
 </mapper>

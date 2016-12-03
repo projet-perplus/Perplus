@@ -1,6 +1,4 @@
 package com.perplus.member.daoimpl;
-import java.util.List;
-
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -30,8 +28,15 @@ public class MemberDaoImpl implements MemberDao{
 	}
 
 	@Override
-	public List<MemberVo> selectMemberByEmail(String memberEmail) {
-		return session.selectList("member.selectMemberByEmail", memberEmail);
+	public MemberVo selectMemberByEmail(String memberEmail) {
+		return session.selectOne("member.selectMemberByEmail", memberEmail);
 	}
+
+	@Override
+	public int selectMemberCountByEmail(String id) {
+		return session.selectOne("member.selectMemberCountByEmail", id);
+	}
+	
+	
 	
 }

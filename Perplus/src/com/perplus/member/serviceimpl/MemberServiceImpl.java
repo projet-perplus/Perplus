@@ -10,61 +10,58 @@ import com.perplus.member.daoimpl.HouseCommentDaoImpl;
 import com.perplus.member.daoimpl.HouseZzimDaoImpl;
 import com.perplus.member.daoimpl.HowgetmoneyDaoImpl;
 import com.perplus.member.daoimpl.MemberDaoImpl;
-import com.perplus.member.daoimpl.PaymentDaoImpl;
-import com.perplus.member.daoimpl.RejectDaoImpl;
-import com.perplus.member.daoimpl.ReviewZzimDaoImpl;
-import com.perplus.member.daoimpl.ShowMeTheMoneyDaoImpl;
-import com.perplus.member.daoimpl.TravelDaoImpl;
+import com.perplus.member.vo.MemberVo;
 
 @Service
 public class MemberServiceImpl {
-
+	
 	@Autowired
 	@Qualifier("chattingDaoImpl")
 	private ChattingDaoImpl chattingDao;
-
+	
 	@Autowired
 	@Qualifier("chattingLogDaoImpl")
 	private ChattingLogDaoImpl chattingLogDao;
-	
-	
 	
 	@Autowired
 	@Qualifier("houseCommentDaoImpl")
 	private HouseCommentDaoImpl houseCommentDao;
 	
 	@Autowired
-	@Qualifier("housezzimDaoImpl")
-	private HouseZzimDaoImpl housezzimDao;
+	@Qualifier("houseZzimDaoImpl")
+	private HouseZzimDaoImpl houseZzimDao;
 	
 	@Autowired
-	@Qualifier("howGetMoneyDaoImpl")
-	private HowgetmoneyDaoImpl howGetMoneyDao;
-	
+	@Qualifier("howgetmoneyDaoImpl")
+	private HowgetmoneyDaoImpl howgetmoneyDao;
+
 	@Autowired
 	@Qualifier("memberDaoImpl")
 	private MemberDaoImpl memberDao;
 	
-	@Autowired
-	@Qualifier("paymentDaoImpl")
-	private PaymentDaoImpl paymentDao;
 	
-	@Autowired
-	@Qualifier("rejectDaoImpl")
-	private RejectDaoImpl rejectDao;
+	public boolean isIdExist(String id){
+		boolean flag = memberDao.selectMemberCountByEmail(id)==1;
+		return flag;
+	}
 	
-	@Autowired
-	@Qualifier("reviewZzimDaoImpl")
-	private ReviewZzimDaoImpl reviewZzimDao;
+	public void joinMember(MemberVo member) throws Exception{
+		if(isIdExist(member.getMemberEmail())){
+			throw new Exception(member.getMemberEmail()+"는 이미 등록된 아이디입니다.");
+		}
+		memberDao.insertMember(member);
+	}
 	
-	@Autowired
-	@Qualifier("showMeTheMoneyDaoImpl")
-	private ShowMeTheMoneyDaoImpl showmethemoneyDao;
+	public void updateMember(MemberVo member){
+		memberDao.updateMember(member);
+	}
 	
-	@Autowired
-	@Qualifier("travelDaoImpl")
-	private TravelDaoImpl travelDao;
+	public void deleteMember(String memberEmail){
+		memberDao.deleteMember(memberEmail);
+	}
 	
-	
-	
+	public MemberVo selectMemberByEmail(String memberEmail){
+		
+		return memberDao.selectMemberByEmail(memberEmail);
+	}
 }

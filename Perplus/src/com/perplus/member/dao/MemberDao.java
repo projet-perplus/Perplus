@@ -1,7 +1,5 @@
 package com.perplus.member.dao;
 
-import java.util.List;
-
 import com.perplus.member.vo.MemberVo;
 
 //1
@@ -13,5 +11,7 @@ public interface MemberDao {
 	
 	int updateMember(MemberVo member);
 	
-	List<MemberVo> selectMemberByEmail(String memberEmail);
+	int selectMemberCountByEmail(String id);
+	
+	MemberVo selectMemberByEmail(String memberEmail);
 }
