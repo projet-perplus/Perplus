@@ -12,9 +12,8 @@ public class RejectDaoImpl implements RejectDao{
    @Autowired
    private SqlSessionTemplate session;
    private String makeSql(){
-      String sql = new Throwable().getStackTrace()[1].getMethodName();   //이전메소드(caller) 이름 가져오기
-      sql = sql.toUpperCase() + sql.substring(1);   // 첫글자 대문자 + 나머지 문자
-      return "showmethemoney" + sql;
+	  String sql = new Throwable().getStackTrace()[1].getMethodName();   //이전메소드(caller) 이름 가져오기
+      return "reject." + sql;
    }
 	
 	@Override

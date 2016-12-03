@@ -28,7 +28,7 @@
 	
 	<!-- select -->
 	<select id="selectTravel" parameterType="string" resultType="TravelVo">
-		select	TRAVEL_SERIAL travelSerial
+		select	TRAVEL_SERIAL travelSerial,
 					TRAVEL_CODE travelCode, 
 					HOUSE_SERIAL houseSerial, 
 					MEMBER_EMAIL memberEmail, 
