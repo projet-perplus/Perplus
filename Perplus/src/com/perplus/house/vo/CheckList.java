@@ -2,11 +2,14 @@ package com.perplus.house.vo;
 
 import java.io.Serializable;
 
-public class HouseCheckList implements Serializable{
+public class CheckList implements Serializable{
 	private int houseSerial;
 	private String list;
 	private String value;
-	public HouseCheckList(int houseSerial, String list, String value) {
+	
+	public CheckList() {
+	}
+	public CheckList(int houseSerial, String list, String value) {
 		super();
 		this.houseSerial = houseSerial;
 		this.list = list;
@@ -51,7 +54,7 @@ public class HouseCheckList implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		HouseCheckList other = (HouseCheckList) obj;
+		CheckList other = (CheckList) obj;
 		if (houseSerial != other.houseSerial)
 			return false;
 		if (list == null) {

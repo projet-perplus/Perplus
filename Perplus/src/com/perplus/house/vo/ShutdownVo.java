@@ -6,6 +6,10 @@ import java.util.Date;
 public class ShutdownVo implements Serializable{
 	private int houseSerial;
 	private Date shutdownDate;
+	
+	public ShutdownVo() {
+		// TODO Auto-generated constructor stub
+	}
 	public ShutdownVo(int houseSerial, Date shutdownDate) {
 		super();
 		this.houseSerial = houseSerial;
