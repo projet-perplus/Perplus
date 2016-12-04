@@ -36,7 +36,7 @@ public class ChattingDaoImpl implements ChattingDao{
 		return session.selectOne("chatting.findByChattingNumber",map);
 	}
 
-	@Override
+	@Override//채팅방과 채팅로그 가져오기
 	public ChattingVo chattingJoin(int chattingNumber) {
 		return session.selectOne("chatting.selectJoinChattingLog", chattingNumber);
 	}

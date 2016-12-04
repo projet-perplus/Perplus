@@ -10,18 +10,18 @@ import com.perplus.member.vo.ChattingVo;
 
 public interface ChattingDao {
 	
+	//채팅방 만들기
+	int creatChatting(ChattingVo chatting);
 	
-	
-	int creatChatting(ChattingVo chattingNumber);
-	
+	//채팅방 삭제
 	int deleteChatting(int chattingNumber);
 	
-	
+	//내가 속해있는 채팅방 가져오기
 	List<ChattingVo> selectMyChatting(String memberEmail);
 	
-	
+	//나의 아이디와 상대방의 아이디로 방 찾기
 	ChattingVo findByChattingNumber(Map<String, Object> map);
 	
+	//채팅방과 채팅로그 가져오기
 	ChattingVo chattingJoin(int chattingNumber);
-	
 }

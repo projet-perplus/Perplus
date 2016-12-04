@@ -3,10 +3,18 @@
 
 <mapper namespace="houseComment">
 	
-	<select id="selectHouseComment" parameterType="hashmap" resultType="HouseCommentVo">
+	<!-- memberEmail로 HouseComment 조회(내 후기조회) -->
+	<select id="selectHouseCommentByEmail" parameterType="string" resultType="HouseCommentVo">
 		select	house_serial houseSerial, member_email memberEmail, comment_content commentContent, comment_rating commentRating, comment_time commentTime
 		from	HOUSECOMMENT 
-		where	house_serial = #{houseSerial} and member_email = #{memberEmail}
+		where	member_email = #{value}
+	</select>
+	
+	<!-- houseComment house단위로 select(하우스 상세정보에서 조회하는 select문)  -->
+	<select id="selectHouseCommentBySerial" parameterType="_int" resultType="HouseCommentVo">
+		select	house_serial houseSerial, member_email memberEmail, comment_content commentContent, comment_rating commentRating, comment_time commentTime
+		from	HOUSECOMMENT
+		where	house_serial = #{value}
 	</select>
 	
 	<!-- houseComment 등록 -->

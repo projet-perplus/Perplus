@@ -12,5 +12,5 @@ public interface HowgetmoneyDao {
 	
 	int deleteHowgetmoney(HowgetmoneyVo howgetmoney);
 	
-	List<HowgetmoneyVo> selectHowgetmoney(Map<String, Object> map);
+	List<HowgetmoneyVo> selectHowgetmoney(String memberEmail);
 }
