@@ -33,6 +33,13 @@
 	</definition>
 
 
+	<definition name="*.hostingtiles"
+		template="/WEB-INF/view/layout/houseenrollmenttemplate.jsp">
+		<put-attribute name="hosting" value="/WEB-INF/view/common/houseEnrollment/{1}.jsp" />
+	</definition>
+	
+
+
 </tiles-definitions>
 
 

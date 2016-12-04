@@ -63,6 +63,10 @@
 			color:#767676 !important;
 			font-weight:500 !important;
 		}
+		.submenu_ul>li>a:focus{
+			color: #bbb !important;
+			font-weight:bold !important;
+		}
 		.submenu_ul>li>a:hover{
 			text-decoration: none !important;
    			color: #bbb !important;
@@ -147,9 +151,6 @@
 		<header>
 		  		<tiles:insertAttribute name="header"/>
 	  	</header>
-	  
-	  
-	  
 	  
 	  	<section>
 	  		<tiles:insertAttribute name="subheader"/>
