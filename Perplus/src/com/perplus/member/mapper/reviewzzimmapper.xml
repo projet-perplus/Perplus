@@ -13,7 +13,7 @@
 	</delete>
 	
 	<!-- select -->
-	<select id="selectReviewZzim"  resultType="ReviewZzimVo">
+	<select id="selectReviewZzimByMemberEmail"  resultType="ReviewZzimVo">
 		select	REVIEW_SERIAL reviewSerial, 
 					MEMBER_EMAIL memberEmail
 		from REVIEWZZIM

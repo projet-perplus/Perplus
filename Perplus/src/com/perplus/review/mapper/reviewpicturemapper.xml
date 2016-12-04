@@ -2,9 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
 <mapper namespace="reviewPicture">
+
 <sql id="picture-select">
-		select review_serial, picture_order,picture_name	from reviewpicture
+		select review_serial reviewSerial, picture_order pictureOrder,picture_name pictureName	from reviewpicture
 </sql>
+
 <!-- reviewPicture테이블 select용 -->
 <resultMap type="reviewPictureVo" id="picture-basic-resultmap">
 	<result column="review_serial" property="reviewSerial"/>
@@ -12,4 +14,47 @@
 	<result column="picture_name" property="pictureName"/>
 </resultMap>
 
+<!-- Select Picture List-->
+<select id="selectPictureList" parameterType="_int" resultType="hashmap">
+	<include refid="picture-select"/>
+	where review_serial = #{reviewSerial}
+</select>
+
+<!-- Select Picture One -->
+<select id="selectPictureOne" parameterType="hashmap" resultType="ReviewPictureVo">
+<!-- 	select review_serial reviewSerial, picture_order pictureOrder, picture_name pictureName
+	from reviewpicture  -->
+	<include refid="picture-select"/>
+	where review_serial = #{reviewSerial}
+	and picture_name=#{pictureName}
+</select>
+
+<!-- Update Picure -->
+<update id="updatePicture" parameterType="reviewPictureVo">
+	update reviewpicture
+	set review_serial=#{reviewSerial},
+		 picture_order=#{pictureOrder},
+		 picture_name=#{pictureName}
+	where review_serial =#{reviewSerial}
+	and	  picture_order=#{pictureOrder}
+</update>
+
+<!-- 시리얼 번호, 사진이름으로 Delete-->
+<delete id="deletePicture" parameterType="hashmap">
+	delete from reviewpicture
+	where review_serial=#{reviewSerial}
+	and	  picture_name=#{pictureName}
+</delete>
+
+<!-- 사진 등록 -->
+<insert id="insertPicture" parameterType="reviewPictureVo" >
+	insert into reviewpicture
+	values(#{reviewSerial},#{pictureOrder},#{pictureName})
+</insert>
 </mapper>
+
+
+
+
+
+

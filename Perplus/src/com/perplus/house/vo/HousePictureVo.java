@@ -6,6 +6,10 @@ public class HousePictureVo implements Serializable {
 	private int houseSerial;
 	private int pictureOrder;
 	private String pictureName;
+	
+	public HousePictureVo() {
+		// TODO Auto-generated constructor stub
+	}
 	public HousePictureVo(int houseSerial, int pictureOrder, String pictureName) {
 		super();
 		this.houseSerial = houseSerial;		//해당 집의 고유번호

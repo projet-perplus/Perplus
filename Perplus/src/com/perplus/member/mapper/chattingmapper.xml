@@ -33,7 +33,6 @@
 				l.member_email l_email,
 				l.chatting_content
 		from	CHATTING c, CHATTINGLOG l
-		where	c.chatting_number = l.chatting_number
 	</sql>
 
 	<resultMap type="ChattingVo" id="chatting-default-resultmap">
@@ -50,8 +49,9 @@
 		</collection>
 	</resultMap>
 	
-	<select id="wwww" resultMap="chatting-chattinglog-join-resultmap">
+	<select id="selectJoinChattingLog" parameterType="_int" resultMap="chatting-chattinglog-join-resultmap">
 		<include refid="select-chatting-join-sql"/>
+			where	c.chatting_number = #{value}
 	</select>
 
 </mapper>

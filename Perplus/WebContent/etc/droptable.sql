@@ -14,26 +14,13 @@ drop table REVIEW cascade constraint;
 drop table REVIEWCOMMENT cascade constraint;
 drop table REVIEWPICTURE cascade constraint;
 drop table REVIEWZZIM cascade constraint;
-drop table SCALE cascade constraint;
-drop table SCHEDULE cascade constraint;
-drop table HOUSECHECKLIST cascade constraint;
+drop table CHECKLIST cascade constraint;
 drop table SHUTDOWN cascade constraint;
 drop table SHOWMETHEMONEY cascade constraint;
 drop table TRAVEL cascade constraint;
 
 <<<<<<< HEAD
 =======
-
-
-
-
-
-
-
-
-
-
-
 
 
 
