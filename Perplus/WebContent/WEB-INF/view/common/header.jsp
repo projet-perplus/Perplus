@@ -15,7 +15,7 @@
           </button>
 
         </div>
-        <div class="collapse navbar-collapse" id="myNavbar">c
+        <div class="collapse navbar-collapse" id="myNavbar">
           <ul class="nav navbar-nav navbar-right navbar-nav1">
            
             <li><a href="#">여행명소</a></li>
