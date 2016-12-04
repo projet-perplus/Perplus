@@ -102,7 +102,7 @@ p {
 /*메인 배경*/
 .bg-1 {
 	position: relative;
-	height: 736px;
+	height: 640px;  /*  736px */
 	width: auto;
 	background: url(image/img1.jpg) center center no-repeat !important;
 	background-size: cover !important;
