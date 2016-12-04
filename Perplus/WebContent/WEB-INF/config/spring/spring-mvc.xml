@@ -15,13 +15,10 @@
 	<!-- sub menu do -->
 	<mvc:view-controller path="/accountmanagement.do"
 		view-name="accountmanagement/accountmanagement/modifyandcertified.tiles1" />
-
 	<mvc:view-controller path="/rooms.do"
 		view-name="rooms/rooms/roomlist.tiles1" />
-
 	<mvc:view-controller path="/travellist.do"
 		view-name="travellist/travellist/nowtravel.tiles1" />
-
 	<mvc:view-controller path="/message.do"
 		view-name="message/message/message.tiles1" />
 
@@ -29,46 +26,61 @@
 	<!-- accountmanagement do -->
 	<mvc:view-controller path="/modifyandcertified.do"
 		view-name="accountmanagement/accountmanagement/modifyandcertified.tiles1" />
-
 	<mvc:view-controller path="/payment_method.do"
 		view-name="accountmanagement/accountmanagement/payment_method.tiles1" />
-
 	<mvc:view-controller path="/payout_preference.do"
 		view-name="accountmanagement/accountmanagement/payout_preference.tiles1" />
-
 	<mvc:view-controller path="/transaction_history.do"
 		view-name="accountmanagement/accountmanagement/transaction_history.tiles1" />
-
 	<mvc:view-controller path="/review.do"
 		view-name="accountmanagement/accountmanagement/review.tiles1" />
-
 	<mvc:view-controller path="/exit.do"
 		view-name="accountmanagement/accountmanagement/exit.tiles1" />
 
 	<!-- rooms do -->
 	<mvc:view-controller path="/roomlist.do"
 		view-name="rooms/rooms/roomlist.tiles1" />
-
-
 	<mvc:view-controller path="/schedulemanagement.do"
 		view-name="rooms/rooms/schedulemanagement.tiles1" />
 
 	<!-- travel do -->
 	<mvc:view-controller path="/nowtravel.do"
 		view-name="travellist/travellist/nowtravel.tiles1" />
-
 	<mvc:view-controller path="/pasttravel.do"
 		view-name="travellist/travellist/pasttravel.tiles1" />
-
 	<mvc:view-controller path="/wishlist.do"
 		view-name="travellist/travellist/wishlist.tiles1" />
 
 	<!-- hosting -->
-	
-	<mvc:view-controller path="/hosting.do" view-name="hostingstart.hostingtiles" />
-	<mvc:view-controller path="/basicinfo.do" view-name="basicinfo.hostingtiles"  />
-	<mvc:view-controller path="/typeandlocation.do" view-name="typeandlocation.hostingtiles"/>
+	<mvc:view-controller path="/hosting.do"
+		view-name="hostingstart.hostingtiles" />
 
+	<mvc:view-controller path="/basicinfo.do"
+		view-name="basicinfo.hostingtiles" />
+
+	<mvc:view-controller path="/housetypeandlocation.do"
+		view-name="housetypeandlocation.hostingtiles" />
+
+	<mvc:view-controller path="/houselocation.do"
+		view-name="houselocation.hostingtiles" />
+
+	<mvc:view-controller path="/housefacility.do"
+		view-name="housefacility.hostingtiles" />
+
+	<mvc:view-controller path="/houseimageenrollment.do"
+		view-name="houseimageenrollment.hostingtiles" />
+
+	<mvc:view-controller path="/houseschedulemanagement.do"
+		view-name="houseschedulemanagement.hostingtiles" />
+
+	<mvc:view-controller path="/houseshutdowndate.do"
+		view-name="houseshutdowndate.hostingtiles" />
+
+	<mvc:view-controller path="/houseprice.do"
+		view-name="houseprice.hostingtiles" />
+
+	<mvc:view-controller path="/hostingcomplate.do"
+		view-name="hostingcomplete.hostingtiles" />
 
 
 	<mvc:annotation-driven />
