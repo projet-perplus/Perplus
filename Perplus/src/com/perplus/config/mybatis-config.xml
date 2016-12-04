@@ -8,7 +8,7 @@
 	</typeAliases>
 
 	<mappers>
-		<mapper resource="com/perplus/house/mapper/Codetablemapper.xml" />
+		<mapper resource="com/perplus/house/mapper/codetablemapper.xml" />
 		<!-- <mapper resource="com/perplus/house/mapper/housemapper.xml" /> <mapper 
 			resource="com/perplus/house/mapper/housefiltermapper.xml" /> <mapper resource="com/perplus/house/mapper/housepicturemapper.xml" 
 			/> <mapper resource="com/perplus/house/mapper/scalemapper.xml" /> <mapper 

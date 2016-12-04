@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:p="http://www.springframework.org/schema/p"
-	xmlns:mvc="http://www.springframework.org/schema/mvc"
-	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:c="http://www.springframework.org/schema/c"
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
@@ -65,50 +63,40 @@
 	<mvc:view-controller path="/wishlist.do"
 		view-name="travellist/travellist/wishlist.tiles1" />
 
+	<!-- hosting -->
+	<mvc:view-controller path="/hosting.do" view-name="basicinfo.hostingtiles" />
+	<mvc:view-controller path="/typeandlocation.do" view-name="typeandlocation.hostingtiles"/>
 
-	<!-- history -->
-<!-- 	<mvc:view-controller path="/completionhistory.do"
-		view-name="accountmanagement/accountmanagement/transaction_history/history/completion_history.tiles1" />
-	<mvc:annotation-driven />
-	
-	<mvc:view-controller path="/receipthistory.do"
-		view-name="accountmanagement/accountmanagement/transaction_history/history/receipt_history.tiles1" />
-	<mvc:annotation-driven />
-	
-	<mvc:view-controller path="/totalrevenue.do"
-		view-name="accountmanagement/accountmanagement/transaction_history/history/total_revenue.tiles1" />
-	<mvc:annotation-driven />
- -->
 
-	<mvc:annotation-driven/>
-	
+
+	<mvc:annotation-driven />
+
 
 	<bean name="dataSource" class="org.apache.commons.dbcp2.BasicDataSource"
-		p:driverClassName="oracle.jdbc.driver.OracleDriver"
-		p:url="jdbc:oracle:thin:@127.0.0.1:1521:XE"
-		p:username="perplus"
-		p:password="perplus"
-		p:maxTotal="100"/>
-	
+		p:driverClassName="oracle.jdbc.driver.OracleDriver" p:url="jdbc:oracle:thin:@127.0.0.1:1521:XE"
+		p:username="perplus" p:password="perplus" p:maxTotal="100" />
+
 	<bean name="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean"
-		p:dataSource-ref="dataSource"
-		p:configLocation="classpath:com/perplus/config/mybatis-config.xml"/>
-	
+		p:dataSource-ref="dataSource" p:configLocation="classpath:com/perplus/config/mybatis-config.xml" />
+
 	<bean name="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate"
-		c:sqlSessionFactory-ref="sqlSessionFactory"/>
-		
-	<bean name ="tilesConfig" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+		c:sqlSessionFactory-ref="sqlSessionFactory" />
+
+	<bean name="tilesConfig"
+		class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
 		<property name="definitions">
 			<list>
 				<value>/WEB-INF/config/tiles/tiles-defs.xml</value>
 			</list>
 		</property>
-	</bean>		
-		
-	<bean name="tilesViewResolver" class="org.springframework.web.servlet.view.tiles3.TilesViewResolver"
-		p:order="1"/>
-		
-	<bean name="internalViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver"
-		p:order="2" p:prefix="/WEB-INF/view"/>
-		
+	</bean>
+
+	<bean name="tilesViewResolver"
+		class="org.springframework.web.servlet.view.tiles3.TilesViewResolver"
+		p:order="1" />
+
+	<bean name="internalViewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+		p:order="2" p:prefix="/WEB-INF/view" />
+
 </beans>
