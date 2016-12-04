@@ -1,6 +1,7 @@
 package com.perplus.house.vo;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class HouseFilterVo implements Serializable{
 	private int houseSerial;
@@ -19,6 +20,9 @@ public class HouseFilterVo implements Serializable{
 	private int houseFilterMoneyMin;
 	private int houseFilterMoneyMax;
 	
+	private List<ShutdownVo> shutdownList;
+	private List<CheckListVo> checkList;
+	
 	public HouseFilterVo() {}
 	
 	public HouseFilterVo(int houseSerial, String houseFilterRange, int houseFilterGuestNumber, String houseFilterType,
@@ -31,6 +35,31 @@ public class HouseFilterVo implements Serializable{
 		this.houseFilterRoomNumber = houseFilterRoomNumber;
 		this.houseFilterLocation = houseFilterLocation;
 	}
+	
+	public HouseFilterVo(int houseSerial, String houseFilterRange, int houseFilterGuestNumber, String houseFilterType,
+			int houseFilterRoomNumber, String houseFilterLocation, int houseFilterBedroomNumber,
+			int houseFilterBathroomNumber, int houseFilterBedNumber, int houseFiltercheckinTerm,
+			int houseFilterReservationTerm, int houseFilterBakMin, int houseFilterBakMax, int houseFilterMoneyMin,
+			int houseFilterMoneyMax, List<ShutdownVo> shutdownList, List<CheckListVo> checkList) {
+		this.houseSerial = houseSerial;
+		this.houseFilterRange = houseFilterRange;
+		this.houseFilterGuestNumber = houseFilterGuestNumber;
+		this.houseFilterType = houseFilterType;
+		this.houseFilterRoomNumber = houseFilterRoomNumber;
+		this.houseFilterLocation = houseFilterLocation;
+		this.houseFilterBedroomNumber = houseFilterBedroomNumber;
+		this.houseFilterBathroomNumber = houseFilterBathroomNumber;
+		this.houseFilterBedNumber = houseFilterBedNumber;
+		this.houseFiltercheckinTerm = houseFiltercheckinTerm;
+		this.houseFilterReservationTerm = houseFilterReservationTerm;
+		this.houseFilterBakMin = houseFilterBakMin;
+		this.houseFilterBakMax = houseFilterBakMax;
+		this.houseFilterMoneyMin = houseFilterMoneyMin;
+		this.houseFilterMoneyMax = houseFilterMoneyMax;
+		this.shutdownList = shutdownList;
+		this.checkList = checkList;
+	}
+
 	public int getHouseSerial() {
 		return houseSerial;
 	}
@@ -121,10 +150,28 @@ public class HouseFilterVo implements Serializable{
 	public void setHouseFilterMoneyMax(int houseFilterMoneyMax) {
 		this.houseFilterMoneyMax = houseFilterMoneyMax;
 	}
+	
+	public List<ShutdownVo> getShutdownList() {
+		return shutdownList;
+	}
+
+	public void setShutdownList(List<ShutdownVo> shutdownList) {
+		this.shutdownList = shutdownList;
+	}
+
+	public List<CheckListVo> getCheckList() {
+		return checkList;
+	}
+
+	public void setCheckList(List<CheckListVo> checkList) {
+		this.checkList = checkList;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((checkList == null) ? 0 : checkList.hashCode());
 		result = prime * result + houseFilterBakMax;
 		result = prime * result + houseFilterBakMin;
 		result = prime * result + houseFilterBathroomNumber;
@@ -140,8 +187,10 @@ public class HouseFilterVo implements Serializable{
 		result = prime * result + ((houseFilterType == null) ? 0 : houseFilterType.hashCode());
 		result = prime * result + houseFiltercheckinTerm;
 		result = prime * result + houseSerial;
+		result = prime * result + ((shutdownList == null) ? 0 : shutdownList.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -151,6 +200,11 @@ public class HouseFilterVo implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		HouseFilterVo other = (HouseFilterVo) obj;
+		if (checkList == null) {
+			if (other.checkList != null)
+				return false;
+		} else if (!checkList.equals(other.checkList))
+			return false;
 		if (houseFilterBakMax != other.houseFilterBakMax)
 			return false;
 		if (houseFilterBakMin != other.houseFilterBakMin)
@@ -190,8 +244,14 @@ public class HouseFilterVo implements Serializable{
 			return false;
 		if (houseSerial != other.houseSerial)
 			return false;
+		if (shutdownList == null) {
+			if (other.shutdownList != null)
+				return false;
+		} else if (!shutdownList.equals(other.shutdownList))
+			return false;
 		return true;
 	}
+
 	@Override
 	public String toString() {
 		return "HouseFilterVo [houseSerial=" + houseSerial + ", houseFilterRange=" + houseFilterRange
@@ -202,8 +262,9 @@ public class HouseFilterVo implements Serializable{
 				+ ", houseFiltercheckinTerm=" + houseFiltercheckinTerm + ", houseFilterReservationTerm="
 				+ houseFilterReservationTerm + ", houseFilterBakMin=" + houseFilterBakMin + ", houseFilterBakMax="
 				+ houseFilterBakMax + ", houseFilterMoneyMin=" + houseFilterMoneyMin + ", houseFilterMoneyMax="
-				+ houseFilterMoneyMax + "]";
+				+ houseFilterMoneyMax + ", shutdownList=" + shutdownList + ", checkList=" + checkList + "]";
 	}
+
 	
 	
 	

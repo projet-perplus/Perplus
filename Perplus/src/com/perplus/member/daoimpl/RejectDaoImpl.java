@@ -19,8 +19,23 @@ public class RejectDaoImpl implements RejectDao{
 	  String sql = new Throwable().getStackTrace()[1].getMethodName();   //이전메소드(caller) 이름 가져오기
       return "reject." + sql;
    }
+@Override
+public int insertReject(SqlSession session, RejectVo reject) {
+	// TODO Auto-generated method stub
+	return 0;
+}
+@Override
+public int deleteReject(SqlSession session, int travelSerial) {
+	// TODO Auto-generated method stub
+	return 0;
+}
+@Override
+public RejectVo selectReject(SqlSession session, int travelSerial) {
+	// TODO Auto-generated method stub
+	return null;
+}
 	
-	@Override
+/*	@Override
 	public int insertReject(RejectVo reject) {
 		// TODO Auto-generated method stub
 		return session.insert(makeSql(), reject);
@@ -36,6 +51,6 @@ public class RejectDaoImpl implements RejectDao{
 	public RejectVo selectReject(int travelSerial) {
 		// TODO Auto-generated method stub
 		return session.selectOne(makeSql(), travelSerial);
-	}
+	}*/
 
 }

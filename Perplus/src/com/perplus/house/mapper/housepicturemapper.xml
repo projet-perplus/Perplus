@@ -7,32 +7,32 @@
 	</sql>
 	
 	<insert id="insertHousepicture" parameterType="housepicturevo">
-		insert into HOUSEPICTURE values(HOUSEPICTURE_SEQ.nextval,${houseSerial},${pictureOrder},${pictureName})
+		insert into HOUSEPICTURE values(HOUSEPICTURE_SEQ.nextval,#{houseSerial},#{pictureOrder},#{pictureName})
 	</insert>
 	
 	<update id="updateHousepicture" parameterType="housepicturevo">
 		update HOUSEPICTURE set 
-		HOUSE_SERIAL =${houseSerial}, 
-		PICTURE_ORDER=${pictureOrder}, 
-		PICTURE_NAME =${pictureName}
-		where HOUSE_SERIAL = ${houseSerial}
+		HOUSE_SERIAL =#{houseSerial}, 
+		PICTURE_ORDER=#{pictureOrder}, 
+		PICTURE_NAME =#{pictureName}
+		where HOUSE_SERIAL = #{houseSerial}
 	</update>
 	<!-- 클릭한 사진을 select -->
 	<select id="selectHousepictureByPictureSerial" parameterType="_int" resultType="housepicturevo">
 		<include refid="select-default-housepicture"/>
-		where PICTURE_SERIAL = ${value}		
+		where PICTURE_SERIAL = #{value}		
 	</select>
 	<!-- 해당 숙소의 모든 사진 select -->
 	<select id="selectHousepictureByHouseSerial" parameterType="_int" resultType="housepicturevo">
 		<include refid="select-default-housepicture"/>
-		where HOUSE_SERIAL = ${value}		
+		where HOUSE_SERIAL = #{value}		
 	</select>
 	<!-- 선택한 사진을 delete -->
 	<delete id="deleteHousepictureByPictureSerial" parameterType="_int">
-		delete from HOUSEPICTURE where PICTURE_SERIAL = ${value}
+		delete from HOUSEPICTURE where PICTURE_SERIAL = #{value}
 	</delete>
 	<!-- 해당 숙소의 모든 사진 delete -->
 	<delete id="deleteHousepictureByHouseSerial" parameterType="_int">
-		delete from HOUSEPICTURE where HOUSE_SERIAL = ${value}
+		delete from HOUSEPICTURE where HOUSE_SERIAL = #{value}
 	</delete>
 </mapper>

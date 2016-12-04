@@ -23,52 +23,93 @@
 		from HOUSEFILTER 
 	</sql>
 	
+	<sql id="houseFilter-shutDown-checkList-join">
+		select
+		f.HOUSE_SERIAL f_hSerial,f.HOUSEFILTER_RANGE,f.HOUSEFILTER_GUEST_NUMBER,f.HOUSEFILTER_TYPE,f.HOUSEFILTER_ROOM_NUMBER,f.HOUSEFILTER_LOCATION,f.HOUSEFILTER_BEDROOM_NUMBER,
+		f.HOUSEFILTER_BATHROOM_NUMBER,f.HOUSEFILTER_BED_NUMBER,f.HOUSEFILTER_CHECKIN_TERM,f.HOUSEFILTER_RESERVATION_TERM,f.HOUSEFILTER_BAK_MIN,f.HOUSEFILTER_BAK_MAX,
+		f.HOUSEFILTER_MONEY_MIN,f.HOUSEFILTER_MONEY_MAX,
+		s.SHUTDOWN_SERIAL,s.HOUSE_SERIAL s_hSerial,s.SHUTDOWN_DATE,
+		c.CHECKLIST_SERIAL,c.HOUSE_SERIAL c_hSerial,c.LIST,c.VALUE
+		from HOUSEFILTER f,SHUTDOWN s,CHECKLIST c
+	</sql>
+	
+	<resultMap type="HouseFilterVo" id="houseFilter-basic-resultmap">
+		<result column="f_hSerial" property="houseSerial"/>
+		<result column="HOUSEFILTER_RANGE" property="houseFilterRange"/>
+		<result column="HOUSEFILTER_GUEST_NUMBER" property="houseFilterGuestNumber"/>
+		<result column="HOUSEFILTER_TYPE" property="houseFilterType"/>
+		<result column="HOUSEFILTER_ROOM_NUMBER" property="houseFilterRoomNumber"/>
+		<result column="HOUSEFILTER_LOCATION" property="houseFilterLocation"/>
+		<result column="HOUSEFILTER_BEDROOM_NUMBER" property="houseFilterBedroomNumber"/>
+		<result column="HOUSEFILTER_BATHROOM_NUMBER" property="houseFilterBathroomNumber"/>
+		<result column="HOUSEFILTER_BED_NUMBER" property="houseFilterBedNumber"/>		
+		<result column="HOUSEFILTER_CHECKIN_TERM" property="houseFiltercheckinTerm"/>
+		<result column="HOUSEFILTER_RESERVATION_TERM" property="houseFilterReservationTerm"/>
+		<result column="HOUSEFILTER_BAK_MIN" property="houseFilterBakMin"/>
+		<result column="HOUSEFILTER_BAK_MAX" property="houseFilterBakMax"/>
+		<result column="HOUSEFILTER_MONEY_MIN" property="houseFilterMoneyMin"/>
+		<result column="HOUSEFILTER_MONEY_MAX" property="houseFilterMoneyMax"/>
+	</resultMap>
+	<resultMap type="HouseFilterVo" id="join-resultmap" extends="houseFilter-basic-resultmap">
+		<collection property="shutdownList" ofType="ShutdownVo">
+			<result column="SHUTDOWN_SERIAL" property="shutdownSerial"/>
+			<result column="s_hSerial" property="houseSerial"/>
+			<result column="SHUTDOWN_DATE" property="shutdownDate"/>
+		</collection>
+		<collection property="checkList" ofType="CheckListVo">
+			<result column="CHECKLIST_SERIAL" property="checklistSerial"/>
+			<result column="c_hSerial" property="houseSerial"/>
+			<result column="LIST" property="list"/>
+			<result column="VALUE" property="value"/>
+		</collection>
+	</resultMap>
+	
 	<insert id="insertHouseFilter" parameterType="housefiltervo">
 		insert into HOUSEFILTER values(
-		${houseSerial},
-		${housefilterRange},
-		${housefilterGuestNumber},
-		${housefilterType},
-		${housefilterRoomNumber},
-		${housefilterLocation},
-		${housefilterBedroomNumber},
-		${housefilterBathroomNumber},
-		${housefilterBedNumber},
-		${housefilterCheckinTerm},
-		${housefilterReservationTerm},
-		${housefilterBakMin},
-		${housefilterBakMax},
-		${housefilterMoneyMin},
-		${housefilterMoneyMax}
+		#{houseSerial},
+		#{housefilterRange},
+		#{housefilterGuestNumber},
+		#{housefilterType},
+		#{housefilterRoomNumber},
+		#{housefilterLocation},
+		#{housefilterBedroomNumber},
+		#{housefilterBathroomNumber},
+		#{housefilterBedNumber},
+		#{housefilterCheckinTerm},
+		#{housefilterReservationTerm},
+		#{housefilterBakMin},
+		#{housefilterBakMax},
+		#{housefilterMoneyMin},
+		#{housefilterMoneyMax}
 		)
 	</insert>
 	
 	<update id="updateHouseFilter" parameterType="housefiltervo">	
 		update HOUSEFILTER set
-		HOUSEFILTER_RANGE=${housefilterRange},
-		HOUSEFILTER_GUEST_NUMBER=${housefilterGuestNumber},
-		HOUSEFILTER_TYPE=${housefilterType},
-		HOUSEFILTER_ROOM_NUMBER=${housefilterRoomNumber},
-		HOUSEFILTER_LOCATION=${housefilterLocation},
-		HOUSEFILTER_BEDROOM_NUMBER=${housefilterBedroomNumber},
-		HOUSEFILTER_BATHROOM_NUMBER=${housefilterBathroomNumber},
-		HOUSEFILTER_BED_NUMBER=${housefilterBedNumber},
-		HOUSEFILTER_CHECKIN_TERM=${housefilterCheckinTerm},
-		HOUSEFILTER_RESERVATION_TERM=${housefilterReservationTerm},
-		HOUSEFILTER_BAK_MIN=${housefilterBakMin},
-		HOUSEFILTER_BAK_MAX=${housefilterBakMax},
-		HOUSEFILTER_MONEY_MIN=${housefilterMoneyMin},
-		HOUSEFILTER_MONEY_MAX=${housefilterMoneyMax}
+		HOUSEFILTER_RANGE=#{housefilterRange},
+		HOUSEFILTER_GUEST_NUMBER=#{housefilterGuestNumber},
+		HOUSEFILTER_TYPE=#{housefilterType},
+		HOUSEFILTER_ROOM_NUMBER=#{housefilterRoomNumber},
+		HOUSEFILTER_LOCATION=#{housefilterLocation},
+		HOUSEFILTER_BEDROOM_NUMBER=#{housefilterBedroomNumber},
+		HOUSEFILTER_BATHROOM_NUMBER=#{housefilterBathroomNumber},
+		HOUSEFILTER_BED_NUMBER=#{housefilterBedNumber},
+		HOUSEFILTER_CHECKIN_TERM=#{housefilterCheckinTerm},
+		HOUSEFILTER_RESERVATION_TERM=#{housefilterReservationTerm},
+		HOUSEFILTER_BAK_MIN=#{housefilterBakMin},
+		HOUSEFILTER_BAK_MAX=#{housefilterBakMax},
+		HOUSEFILTER_MONEY_MIN=#{housefilterMoneyMin},
+		HOUSEFILTER_MONEY_MAX=#{housefilterMoneyMax}
 		
-		where HOUSE_SERIAL=${houseSerial}
+		where HOUSE_SERIAL=#{houseSerial}
 	</update>
 	
 	<select id="selectHouseFilterByHouseSerial" parameterType="_int" resultType="housefiltervo">
 		<include refid="default-house-filter-select"/>
-		where HOUSE_SERIAL = ${value}
+		where HOUSE_SERIAL = #{value}
 	</select>
 	
 	<delete id="deleteHouseFilterByHouseSerial" parameterType="_int">
-		delete from HOUSEFILTER where HOUSE_SERIAL=${value}
+		delete from HOUSEFILTER where HOUSE_SERIAL=#{value}
 	</delete>
 </mapper>

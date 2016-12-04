@@ -10,8 +10,8 @@ public class HouseVo implements Serializable{
 	private String houseTitle;
 	private String houseContent;
 	private String houseNecessaryCondition; //String으로 제약조건 추가로 받으며 ,와 같은 구분자로 구분한다.
-	private Timestamp checkinStart;
-	private Timestamp checkinEnd;
+	private Timestamp houseCheckinStart;
+	private Timestamp houseCheckinEnd;
 	private int houseRating;
 	private double houseMarkerX;
 	private double houseMarkerY;
@@ -23,6 +23,24 @@ public class HouseVo implements Serializable{
 		this.houseSerial = houseSerial;
 		this.memberEmail = memberEmail;
 		this.houseRegisterStatus = houseRegisterStatus;
+	}
+	public HouseVo(int houseSerial, String memberEmail, int houseRegisterStatus, String houseTitle, String houseContent,
+			String houseNecessaryCondition, Timestamp houseCheckinStart, Timestamp houseCheckinEnd, int houseRating,
+			double houseMarkerX, double houseMarkerY, double houseMarkerConstant, int housePrice) {
+		super();
+		this.houseSerial = houseSerial;
+		this.memberEmail = memberEmail;
+		this.houseRegisterStatus = houseRegisterStatus;
+		this.houseTitle = houseTitle;
+		this.houseContent = houseContent;
+		this.houseNecessaryCondition = houseNecessaryCondition;
+		this.houseCheckinStart = houseCheckinStart;
+		this.houseCheckinEnd = houseCheckinEnd;
+		this.houseRating = houseRating;
+		this.houseMarkerX = houseMarkerX;
+		this.houseMarkerY = houseMarkerY;
+		this.houseMarkerConstant = houseMarkerConstant;
+		this.housePrice = housePrice;
 	}
 	public int getHouseSerial() {
 		return houseSerial;
@@ -60,17 +78,17 @@ public class HouseVo implements Serializable{
 	public void setHouseNecessaryCondition(String houseNecessaryCondition) {
 		this.houseNecessaryCondition = houseNecessaryCondition;
 	}
-	public Timestamp getCheckinStart() {
-		return checkinStart;
+	public Timestamp getHouseCheckinStart() {
+		return houseCheckinStart;
 	}
-	public void setCheckinStart(Timestamp checkinStart) {
-		this.checkinStart = checkinStart;
+	public void setHouseCheckinStart(Timestamp houseCheckinStart) {
+		this.houseCheckinStart = houseCheckinStart;
 	}
-	public Timestamp getCheckinEnd() {
-		return checkinEnd;
+	public Timestamp getHouseCheckinEnd() {
+		return houseCheckinEnd;
 	}
-	public void setCheckinEnd(Timestamp checkinEnd) {
-		this.checkinEnd = checkinEnd;
+	public void setHouseCheckinEnd(Timestamp houseCheckinEnd) {
+		this.houseCheckinEnd = houseCheckinEnd;
 	}
 	public int getHouseRating() {
 		return houseRating;
@@ -103,11 +121,20 @@ public class HouseVo implements Serializable{
 		this.housePrice = housePrice;
 	}
 	@Override
+	public String toString() {
+		return "HouseVo [houseSerial=" + houseSerial + ", memberEmail=" + memberEmail + ", houseRegisterStatus="
+				+ houseRegisterStatus + ", houseTitle=" + houseTitle + ", houseContent=" + houseContent
+				+ ", houseNecessaryCondition=" + houseNecessaryCondition + ", houseCheckinStart=" + houseCheckinStart
+				+ ", houseCheckinEnd=" + houseCheckinEnd + ", houseRating=" + houseRating + ", houseMarkerX="
+				+ houseMarkerX + ", houseMarkerY=" + houseMarkerY + ", houseMarkerConstant=" + houseMarkerConstant
+				+ ", housePrice=" + housePrice + "]";
+	}
+	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((checkinEnd == null) ? 0 : checkinEnd.hashCode());
-		result = prime * result + ((checkinStart == null) ? 0 : checkinStart.hashCode());
+		result = prime * result + ((houseCheckinEnd == null) ? 0 : houseCheckinEnd.hashCode());
+		result = prime * result + ((houseCheckinStart == null) ? 0 : houseCheckinStart.hashCode());
 		result = prime * result + ((houseContent == null) ? 0 : houseContent.hashCode());
 		long temp;
 		temp = Double.doubleToLongBits(houseMarkerConstant);
@@ -134,15 +161,15 @@ public class HouseVo implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		HouseVo other = (HouseVo) obj;
-		if (checkinEnd == null) {
-			if (other.checkinEnd != null)
+		if (houseCheckinEnd == null) {
+			if (other.houseCheckinEnd != null)
 				return false;
-		} else if (!checkinEnd.equals(other.checkinEnd))
+		} else if (!houseCheckinEnd.equals(other.houseCheckinEnd))
 			return false;
-		if (checkinStart == null) {
-			if (other.checkinStart != null)
+		if (houseCheckinStart == null) {
+			if (other.houseCheckinStart != null)
 				return false;
-		} else if (!checkinStart.equals(other.checkinStart))
+		} else if (!houseCheckinStart.equals(other.houseCheckinStart))
 			return false;
 		if (houseContent == null) {
 			if (other.houseContent != null)
@@ -180,16 +207,5 @@ public class HouseVo implements Serializable{
 			return false;
 		return true;
 	}
-	@Override
-	public String toString() {
-		return "HouseVo [houseSerial=" + houseSerial + ", memberEmail=" + memberEmail + ", houseRegisterStatus="
-				+ houseRegisterStatus + ", houseTitle=" + houseTitle + ", houseContent=" + houseContent
-				+ ", houseNecessaryCondition=" + houseNecessaryCondition + ", checkinStart=" + checkinStart
-				+ ", checkinEnd=" + checkinEnd + ", houseRating=" + houseRating + ", houseMarkerX=" + houseMarkerX
-				+ ", houseMarkerY=" + houseMarkerY + ", houseMarkerConstant=" + houseMarkerConstant + ", housePrice="
-				+ housePrice + "]";
-	}
-	
-	
 	
 }

@@ -58,11 +58,11 @@ public class hanseulMain {
 		RejectVo reject = null;
 		//insert
 		reject = new RejectVo("asd@asd.com", "aqwe@awsedqw.com", "adssdfdsf", 3);
-		dao.insertReject(reject);
+/*		dao.insertReject(reject);
 		//select
 		System.out.println(dao.selectReject(3));
 		//delete
-		dao.deleteReject(3);
+		dao.deleteReject(3);*/
 	}
 	
 	public void reviewZzimTest(ClassPathXmlApplicationContext context){
