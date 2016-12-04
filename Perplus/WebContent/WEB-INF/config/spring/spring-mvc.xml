@@ -64,7 +64,9 @@
 		view-name="travellist/travellist/wishlist.tiles1" />
 
 	<!-- hosting -->
-	<mvc:view-controller path="/hosting.do" view-name="basicinfo.hostingtiles" />
+	
+	<mvc:view-controller path="/hosting.do" view-name="hostingstart.hostingtiles" />
+	<mvc:view-controller path="/basicinfo.do" view-name="basicinfo.hostingtiles"  />
 	<mvc:view-controller path="/typeandlocation.do" view-name="typeandlocation.hostingtiles"/>
 
 
