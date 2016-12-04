@@ -20,8 +20,8 @@ public interface ChattingDao {
 	List<ChattingVo> selectMyChatting(String memberEmail);
 	
 	
-	ChattingVo findByChattingNumber(Map<String, String> map);
+	ChattingVo findByChattingNumber(Map<String, Object> map);
 	
-	List<ChattingVo> chattingjoin();
+	ChattingVo chattingJoin(int chattingNumber);
 	
 }
