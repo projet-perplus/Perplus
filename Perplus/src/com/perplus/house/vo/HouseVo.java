@@ -16,6 +16,7 @@ public class HouseVo implements Serializable{
 	private double houseMarkerX;
 	private double houseMarkerY;
 	private double houseMarkerConstant;		//마커 종류의 식별자
+	private int housePrice;
 	
 	public HouseVo() {}
 	public HouseVo(int houseSerial,String memberEmail,int houseRegisterStatus){
@@ -95,6 +96,12 @@ public class HouseVo implements Serializable{
 	public void setHouseMarkerConstant(double houseMarkerConstant) {
 		this.houseMarkerConstant = houseMarkerConstant;
 	}
+	public int getHousePrice() {
+		return housePrice;
+	}
+	public void setHousePrice(int housePrice) {
+		this.housePrice = housePrice;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -110,6 +117,7 @@ public class HouseVo implements Serializable{
 		temp = Double.doubleToLongBits(houseMarkerY);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		result = prime * result + ((houseNecessaryCondition == null) ? 0 : houseNecessaryCondition.hashCode());
+		result = prime * result + housePrice;
 		result = prime * result + houseRating;
 		result = prime * result + houseRegisterStatus;
 		result = prime * result + houseSerial;
@@ -152,6 +160,8 @@ public class HouseVo implements Serializable{
 				return false;
 		} else if (!houseNecessaryCondition.equals(other.houseNecessaryCondition))
 			return false;
+		if (housePrice != other.housePrice)
+			return false;
 		if (houseRating != other.houseRating)
 			return false;
 		if (houseRegisterStatus != other.houseRegisterStatus)
@@ -176,8 +186,10 @@ public class HouseVo implements Serializable{
 				+ houseRegisterStatus + ", houseTitle=" + houseTitle + ", houseContent=" + houseContent
 				+ ", houseNecessaryCondition=" + houseNecessaryCondition + ", checkinStart=" + checkinStart
 				+ ", checkinEnd=" + checkinEnd + ", houseRating=" + houseRating + ", houseMarkerX=" + houseMarkerX
-				+ ", houseMarkerY=" + houseMarkerY + ", houseMarkerConstant=" + houseMarkerConstant + "]";
+				+ ", houseMarkerY=" + houseMarkerY + ", houseMarkerConstant=" + houseMarkerConstant + ", housePrice="
+				+ housePrice + "]";
 	}
+	
 	
 	
 }

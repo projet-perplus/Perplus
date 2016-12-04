@@ -1,6 +1,6 @@
 package com.perplus.house.dao;
 
-public interface HouseCheckListDao {
+public interface CheckListDao {
 	
 
 }

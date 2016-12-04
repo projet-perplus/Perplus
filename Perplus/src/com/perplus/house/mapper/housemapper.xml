@@ -41,8 +41,20 @@
 		<include refid="default-house-select"/>
 		where MEMBER_EMAIL = ${value}
 	</select>
+	<!-- 필터를 통해 등록한 집을 select -> 각 필터 객체들을 hashmap으로 받아 각 where문을 통해 비교-->
+	<select id="selectHouseByFilter" parameterType="hashmap" resultType="housevo">
+		<include refid="default-house-select"/>
+		where houseFilter = ${houseFilter.}
+	</select>
 </mapper>
-
-
-
+<!-- 
+select memberId,password,memberName,email,mileage 
+from(
+	select ceil(rownum/2) page,memberId,password,memberName,email,mileage 
+	from(
+		select member_id memberId,password,member_name memberName,email,mileage from MEMBER order by member_id desc
+	)
+)
+where page = 1
+ -->
 
