@@ -1,6 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
-<mapper namespace="이름설정">
-
+<mapper namespace="checklist">
+	<insert id="insertChecklist" parameterType="checklistvo">
+		insert into CHECKLIST values(CHECKLIST_SEQ.nextval,${houseSerial},${list},${value})
+	</insert>
+	<!-- 한 숙소의 모든 체크리스트 select -->
+	<select id="selectChecklistByHouseSerial" resultType="checklistvo">
+		select 
+		CHECKLIST_SERIAL checklistSerial,
+		HOUSE_SERIAL houseSerial,
+		LIST list,
+		VALUE value,
+		from CHECKLIST
+	</select>
+	<!-- 하나의 체크리스트 삭제 -->
+	<delete id="deleteChecklistByChecklistSerial" parameterType="_int">
+		delete from CHECKLIST where CHECKLIST_SERIAL = ${value}
+	</delete>
+	<!-- 한 숙소의 모든 체크리스트 삭제 -->
+	<delete id="deleteChecklistByHouseSerial" parameterType="_int">
+		delete from CHECKLIST where HOUSE_SERIAL = ${value}
+	</delete>
 </mapper>

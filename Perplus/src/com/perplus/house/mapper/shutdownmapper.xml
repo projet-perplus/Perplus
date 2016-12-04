@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
-<mapper namespace="이름지정">
-
+<mapper namespace="shutdown">
+	<insert id="insertShutdown" parameterType="shutdownvo">
+		insert into SHUTDOWN values(SHUTDOWN_SEQ.nextval,${houseSerial}, ${shutdownDate))
+	</insert>
+	<!-- 숙소 하나에 설정된 shutdown 날짜가 모두 select (List) -->
+	<select id="selectShutdownByHouseSerial" parameterType="_int" resultType="shutdownvo">
+		select SHUTDOWN_SERIAL shutdownSerial, HOUSE_SERIAL houseSerial SHUTDOWN_DATE from SHUTDOWN where HOUSE_SERIAL = ${value}
+	</select>
+	<!-- 숙소 하나에 설정된 shutdown 날짜 하나를 삭제 (해당 날짜를 클릭시에 사용) -->
+	<delete id="deleteShutdownByShutdownSerial" parameterType="_int">
+		delete from SHUTDOWN where SHUTDOWN_SERIAL = ${value}
+	</delete>
+	<!-- 숙소에 설정된 shutdown 날짜를 모두 삭제  -->
+	<delete id="deleteShutdownByHouseSerial" parameterType="_int">
+		delete from SHUTDOWN where HOUSE_SERIAL = ${value}
+	</delete>	
 </mapper>

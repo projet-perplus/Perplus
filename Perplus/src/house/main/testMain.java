@@ -9,6 +9,7 @@ import com.perplus.review.daoimpl.ReviewPictureDaoImpl;
 public class testMain {
 	public static void main(String[] args) {
 		ClassPathXmlApplicationContext abc = new ClassPathXmlApplicationContext("spring-mvc.xml");
+		
 		ReviewDaoImpl r = (ReviewDaoImpl)abc.getBean("reviewDaoImpl");
 		ReviewCommentDaoImpl c = (ReviewCommentDaoImpl)abc.getBean("reviewCommentDaoImpl");
 		

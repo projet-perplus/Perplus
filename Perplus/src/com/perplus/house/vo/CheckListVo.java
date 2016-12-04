@@ -2,50 +2,72 @@ package com.perplus.house.vo;
 
 import java.io.Serializable;
 
-public class CheckList implements Serializable{
+public class CheckListVo implements Serializable{
+	private int checklistSerial;
 	private int houseSerial;
 	private String list;
 	private String value;
 	
-	public CheckList() {
+	public CheckListVo() {
 	}
-	public CheckList(int houseSerial, String list, String value) {
+
+	public CheckListVo(int checklistSerial, int houseSerial, String list, String value) {
 		super();
+		this.checklistSerial = checklistSerial;
 		this.houseSerial = houseSerial;
 		this.list = list;
 		this.value = value;
 	}
+
+	public int getChecklistSerial() {
+		return checklistSerial;
+	}
+
+	public void setChecklistSerial(int checklistSerial) {
+		this.checklistSerial = checklistSerial;
+	}
+
 	public int getHouseSerial() {
 		return houseSerial;
 	}
+
 	public void setHouseSerial(int houseSerial) {
 		this.houseSerial = houseSerial;
 	}
+
 	public String getList() {
 		return list;
 	}
+
 	public void setList(String list) {
 		this.list = list;
 	}
+
 	public String getValue() {
 		return value;
 	}
+
 	public void setValue(String value) {
 		this.value = value;
 	}
+
 	@Override
 	public String toString() {
-		return "HouseCheckList [houseSerial=" + houseSerial + ", list=" + list + ", value=" + value + "]";
+		return "CheckList [checklistSerial=" + checklistSerial + ", houseSerial=" + houseSerial + ", list=" + list
+				+ ", value=" + value + "]";
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + checklistSerial;
 		result = prime * result + houseSerial;
 		result = prime * result + ((list == null) ? 0 : list.hashCode());
 		result = prime * result + ((value == null) ? 0 : value.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -54,7 +76,9 @@ public class CheckList implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		CheckList other = (CheckList) obj;
+		CheckListVo other = (CheckListVo) obj;
+		if (checklistSerial != other.checklistSerial)
+			return false;
 		if (houseSerial != other.houseSerial)
 			return false;
 		if (list == null) {
@@ -69,6 +93,5 @@ public class CheckList implements Serializable{
 			return false;
 		return true;
 	}
-	
 	
 }

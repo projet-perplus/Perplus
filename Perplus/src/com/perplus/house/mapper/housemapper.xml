@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
-<mapper namespace="이름지정">
+<mapper namespace="house">
 	<sql id="default-house-select">
 		select HOUSE_SERIAL,
 		MEMBER_EMAIL,
@@ -44,7 +44,7 @@
 	<!-- 필터를 통해 등록한 집을 select -> 각 필터 객체들을 hashmap으로 받아 각 where문을 통해 비교-->
 	<select id="selectHouseByFilter" parameterType="hashmap" resultType="housevo">
 		<include refid="default-house-select"/>
-		where houseFilter = ${houseFilter.}
+		where houseFilter = ${houseFilter}
 	</select>
 </mapper>
 <!-- 

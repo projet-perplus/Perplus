@@ -1,5 +1,6 @@
 package com.perplus.member.daoimpl;
 
+import org.apache.ibatis.session.SqlSession;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -9,6 +10,8 @@ import com.perplus.member.vo.RejectVo;
 
 @Repository
 public class RejectDaoImpl implements RejectDao{
+
+
 	
    @Autowired
    private SqlSessionTemplate session;

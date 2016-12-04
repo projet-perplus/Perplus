@@ -1,30 +1,74 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
-<mapper namespace="이름지정">
+<mapper namespace="housefilter">
 	
 	<sql id="default-house-filter-select">
 		select 
-		HOUSE_RANGE houseRange , 
-		HOUSE_GUEST houseGuest, 
-		HOUSE_TYPE houseType, 
-		HOUSE_ROOM_NUMBER houseRoomNumber, 
-		HOUSE_LOCATION houseLocation 
+		HOUSE_SERIAL houseSerial,
+		HOUSEFILTER_RANGE housefilterRange,
+		HOUSEFILTER_GUEST_NUMBER housefilterGuestNumber,
+		HOUSEFILTER_TYPE housefilterType,
+		HOUSEFILTER_ROOM_NUMBER housefilterRoomNumber,
+		HOUSEFILTER_LOCATION housefilterLocation,
+		HOUSEFILTER_BEDROOM_NUMBER housefilterBedroomNumber,
+		HOUSEFILTER_BATHROOM_NUMBER housefilterBathroomNumber,
+		HOUSEFILTER_BED_NUMBER housefilterBedNumber,
+		HOUSEFILTER_CHECKIN_TERM housefilterCheckinTerm,
+		HOUSEFILTER_RESERVATION_TERM housefilterReservationTerm,
+		HOUSEFILTER_BAK_MIN housefilterBakMin,
+		HOUSEFILTER_BAK_MAX housefilterBakMax,
+		HOUSEFILTER_MONEY_MIN housefilterMoneyMin,
+		HOUSEFILTER_MONEY_MAX housefilterMoneyMax
 		from HOUSEFILTER 
 	</sql>
-	<!-- 기본적인 초기 filter insert 이며 house의 1:1 관계로 최초 생성되기 때문에 serial을 이곳에서 생성한다. -->
+	
 	<insert id="insertHouseFilter" parameterType="housefiltervo">
-		insert into HOUSEFILTER values(HOUSE_SEQ.nextval,${houseRange},${houseGuestNumber},${houseType},${houseRoomNumber},${houseLocation})
+		insert into HOUSEFILTER values(
+		${houseSerial},
+		${housefilterRange},
+		${housefilterGuestNumber},
+		${housefilterType},
+		${housefilterRoomNumber},
+		${housefilterLocation},
+		${housefilterBedroomNumber},
+		${housefilterBathroomNumber},
+		${housefilterBedNumber},
+		${housefilterCheckinTerm},
+		${housefilterReservationTerm},
+		${housefilterBakMin},
+		${housefilterBakMax},
+		${housefilterMoneyMin},
+		${housefilterMoneyMax}
+		)
 	</insert>
 	
 	<update id="updateHouseFilter" parameterType="housefiltervo">	
-		update HOUSEFILTER set HOUSE_RANGE=${houseRange}, HOUSE_GUEST_NUMBER=${houseGuestNumber}, HOUSE_TYPE=${houseType}, HOUSE_ROOM_NUMBER=${houseRoomNumber}, HOUSE_LOCATION=${houseLocation}
+		update HOUSEFILTER set
+		HOUSEFILTER_RANGE=${housefilterRange},
+		HOUSEFILTER_GUEST_NUMBER=${housefilterGuestNumber},
+		HOUSEFILTER_TYPE=${housefilterType},
+		HOUSEFILTER_ROOM_NUMBER=${housefilterRoomNumber},
+		HOUSEFILTER_LOCATION=${housefilterLocation},
+		HOUSEFILTER_BEDROOM_NUMBER=${housefilterBedroomNumber},
+		HOUSEFILTER_BATHROOM_NUMBER=${housefilterBathroomNumber},
+		HOUSEFILTER_BED_NUMBER=${housefilterBedNumber},
+		HOUSEFILTER_CHECKIN_TERM=${housefilterCheckinTerm},
+		HOUSEFILTER_RESERVATION_TERM=${housefilterReservationTerm},
+		HOUSEFILTER_BAK_MIN=${housefilterBakMin},
+		HOUSEFILTER_BAK_MAX=${housefilterBakMax},
+		HOUSEFILTER_MONEY_MIN=${housefilterMoneyMin},
+		HOUSEFILTER_MONEY_MAX=${housefilterMoneyMax}
+		
 		where HOUSE_SERIAL=${houseSerial}
 	</update>
+	
+	<select id="selectHouseFilterByHouseSerial" parameterType="_int" resultType="housefiltervo">
+		<include refid="default-house-filter-select"/>
+		where HOUSE_SERIAL = ${value}
+	</select>
 	
 	<delete id="deleteHouseFilterByHouseSerial" parameterType="_int">
 		delete from HOUSEFILTER where HOUSE_SERIAL=${value}
 	</delete>
-	
-	
 </mapper>

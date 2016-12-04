@@ -2,7 +2,6 @@ create sequence house_seq increment by 1;
 
 drop sequence house_seq
 
-
 insert into HOUSEFILTER values(1,'화장실',20,'다인실',2,'경기도 용인시 모현면');
 
 insert into HOUSEFILTER values(HOUSE_SEQ.nextval,'eee',234,'333',234,'3234')
@@ -13,10 +12,10 @@ where HOUSE_SERIAL=1
 
 insert into HOUSE values(1,'화장실',20,'다인실',2,'경기도 용인시 모현면');
 
-insert into HOUSE values(HOUSE_SEQ.nextval,'bbb',0,'따뜻한 집','조흔 집입니다1','ㅇㅇㅇ',null,null,0,0,0,0);
-insert into HOUSE values(HOUSE_SEQ.nextval,'bbb',0,'추운 즵','조흔 집입니다2','ㅇㅇㅇ',null,null,0,0,0,0);
-insert into HOUSE values(HOUSE_SEQ.nextval,'bbb',0,'초가집','조흔 집입니다3','ㅇㅇㅇ',null,null,0,0,0,0);
-insert into HOUSE values(HOUSE_SEQ.nextval,'bbb',0,'이글루','조흔 집입니다4','ㅇㅇㅇ',null,null,0,0,0,0);
+insert into HOUSE values(HOUSE_SEQ.nextval,'bbb',0,'따뜻한 집','조흔 집입니다1','ㅇㅇㅇ',null,null,0,0,0,0,0);
+insert into HOUSE values(HOUSE_SEQ.nextval,'bbb',0,'추운 즵','조흔 집입니다2','ㅇㅇㅇ',null,null,0,0,0,0,0);
+insert into HOUSE values(HOUSE_SEQ.nextval,'bbb',0,'초가집','조흔 집입니다3','ㅇㅇㅇ',null,null,0,0,0,0,0);
+insert into HOUSE values(HOUSE_SEQ.nextval,'bbb',0,'이글루','조흔 집입니다4','ㅇㅇㅇ',null,null,0,0,0,0,0);
 
 delete from HOUSE where HOUSE_SERIAL = 1
 
@@ -63,3 +62,23 @@ delete from HOUSE where HOUSE_SERIAL = 1
 		HOUSE_MARKER_CONSTANT
 		from HOUSE
 		where MEMBER_EMAIL = 'bbb';
+		
+		insert into HOUSEFILTER values(1,'집전체',3,'초가집',3,'경기도',4,3,4,6,6,0,0,0,0	)
+		
+		select 
+		HOUSE_SERIAL houseSerial,
+		HOUSEFILTER_RANGE housefilterRange,
+		HOUSEFILTER_GUEST_NUMBER housefilterGuestNumber,
+		HOUSEFILTER_TYPE housefilterType,
+		HOUSEFILTER_ROOM_NUMBER housefilterRoomNumber,
+		HOUSEFILTER_LOCATION housefilterLocation,
+		HOUSEFILTER_BEDROOM_NUMBER housefilterBedroomNumber,
+		HOUSEFILTER_BATHROOM_NUMBER housefilterBathroomNumber,
+		HOUSEFILTER_BED_NUMBER housefilterBedNumber,
+		HOUSEFILTER_CHECKIN_TERM housefilterCheckinTerm,
+		HOUSEFILTER_RESERVATION_TERM housefilterReservationTerm,
+		HOUSEFILTER_BAK_MIN housefilterBakMin,
+		HOUSEFILTER_BAK_MAX housefilterBakMax,
+		HOUSEFILTER_MONEY_MIN housefilterMoneyMin,
+		HOUSEFILTER_MONEY_MAX housefilterMoneyMax
+		from HOUSEFILTER 
