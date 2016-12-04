@@ -38,6 +38,7 @@
 		<put-attribute name="hosting" value="/WEB-INF/view/common/houseEnrollment/{1}.jsp" />
 	</definition>
 	
+	
 
 
 </tiles-definitions>

@@ -17,7 +17,13 @@
 		  <script src="js/jquery-ui.min.js"></script>
 		  <script src="js/bootstrap-datepicker.js"></script> <!-- bootstrap datepicker javascript -->
 		  <script src="js/js.js"></script>	<!-- perplus javascript -->
-	 </head>	  
+	 </head>
+	 <style>
+		.form-control{
+			font-size:12px !important; 
+		}
+	 </style>
+	  
 	 <body ><!-- class="hostingimg" -->
 	 	<tiles:insertAttribute name="hosting"/>
 	 </body>	
