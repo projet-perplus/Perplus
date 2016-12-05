@@ -13,7 +13,6 @@ public class HousePictureVo implements Serializable {
 	}
 
 	public HousePictureVo(int pictureSerial, int houseSerial, int pictureOrder, String pictureName) {
-		super();
 		this.pictureSerial = pictureSerial;
 		this.houseSerial = houseSerial;
 		this.pictureOrder = pictureOrder;

@@ -4,8 +4,13 @@ import com.perplus.house.vo.HouseFilterVo;
 
 public interface HouseFilterDao {
 
-	public void insertHouseFilter(HouseFilterVo houseFilter);
-	public void updateHouseFilter(HouseFilterVo houseFilter);
-	public HouseFilterVo selectHouseFilterBySerial(int serial);
-	public void deleteHouseFilterBySerial(int serial);
+	void insertHouseFilter(HouseFilterVo houseFilter);
+	
+	void deleteHouseFilterByHouseSerial(int houseSerial);
+	
+	HouseFilterVo selectHouseFilterByHouseSerial(int houseSerial);
+	
+	HouseFilterVo selectHouseFilterByHouseSerialWithJoin(int houseSerial);
+	
+	void updateHouseFilter(HouseFilterVo houseFilter);
 }

@@ -1,5 +1,16 @@
 package com.perplus.house.dao;
 
-public interface HouseDao {
+import com.perplus.house.vo.HouseVo;
 
+public interface HouseDao {
+	
+	void insertHouseFirst(HouseVo houseVo);
+	
+	void updateHouse(HouseVo houseVo);
+	
+	void deleteHouseByHouseSerial(int houseSerial);
+	
+	HouseVo selectHouseByHouseSerial(int houseSerial);
+	
+	
 }

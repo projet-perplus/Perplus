@@ -1,13 +1,22 @@
 package com.perplus.member.vo;
 
 public class HouseZzimVo {
+	private int houseZzimSerial;
 	private int houseSerial;
 	private String memberEmail;
-	public HouseZzimVo(int houseSerial, String memberEmail) {
+	public HouseZzimVo(int houseZzimSerial,int houseSerial, String memberEmail) {
+		this.houseZzimSerial = houseZzimSerial;
 		this.houseSerial = houseSerial;
 		this.memberEmail = memberEmail;
 	}
 	public HouseZzimVo() {
+	}
+	
+	public int getHouseZzimSerial() {
+		return houseZzimSerial;
+	}
+	public void setHouseZzimSerial(int houseZzimSerial) {
+		this.houseZzimSerial = houseZzimSerial;
 	}
 	public int getHouseSerial() {
 		return houseSerial;
@@ -23,13 +32,15 @@ public class HouseZzimVo {
 	}
 	@Override
 	public String toString() {
-		return "HouseZzimVo [houseSerial=" + houseSerial + ", memberEmail=" + memberEmail + "]";
+		return "HouseZzimVo [houseZzimSerial=" + houseZzimSerial + ", houseSerial=" + houseSerial + ", memberEmail="
+				+ memberEmail + "]";
 	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + houseSerial;
+		result = prime * result + houseZzimSerial;
 		result = prime * result + ((memberEmail == null) ? 0 : memberEmail.hashCode());
 		return result;
 	}
@@ -44,6 +55,8 @@ public class HouseZzimVo {
 		HouseZzimVo other = (HouseZzimVo) obj;
 		if (houseSerial != other.houseSerial)
 			return false;
+		if (houseZzimSerial != other.houseZzimSerial)
+			return false;
 		if (memberEmail == null) {
 			if (other.memberEmail != null)
 				return false;
@@ -51,6 +64,6 @@ public class HouseZzimVo {
 			return false;
 		return true;
 	}
-	
+
 	
 }

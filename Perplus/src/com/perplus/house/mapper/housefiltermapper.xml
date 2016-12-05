@@ -50,7 +50,7 @@
 		<result column="HOUSEFILTER_MONEY_MIN" property="houseFilterMoneyMin"/>
 		<result column="HOUSEFILTER_MONEY_MAX" property="houseFilterMoneyMax"/>
 	</resultMap>
-	<resultMap type="HouseFilterVo" id="join-resultmap" extends="houseFilter-basic-resultmap">
+	<resultMap type="HouseFilterVo" id="housefilter-shutdown-checklist-join-resultmap" extends="houseFilter-basic-resultmap">
 		<collection property="shutdownList" ofType="ShutdownVo">
 			<result column="SHUTDOWN_SERIAL" property="shutdownSerial"/>
 			<result column="s_hSerial" property="houseSerial"/>
@@ -63,6 +63,15 @@
 			<result column="VALUE" property="value"/>
 		</collection>
 	</resultMap>
+	
+	<select id="selectHouseFilterByHouseSerialWithJoin" parameterType="_int" resultType="housefiltervo" resultMap="housefilter-shutdown-checklist-join-resultmap">
+		<include refid="houseFilter-shutDown-checkList-join"/>
+		where s.HOUSE_SERIAL = f.HOUSE_SERIAL 
+		and c.HOUSE_SERIAL = f.HOUSE_SERIAL 
+		and f.HOUSE_SERIAL = #{value}
+	</select>
+	
+	
 	
 	<insert id="insertHouseFilter" parameterType="housefiltervo">
 		insert into HOUSEFILTER values(
@@ -108,7 +117,7 @@
 		<include refid="default-house-filter-select"/>
 		where HOUSE_SERIAL = #{value}
 	</select>
-	
+		
 	<delete id="deleteHouseFilterByHouseSerial" parameterType="_int">
 		delete from HOUSEFILTER where HOUSE_SERIAL=#{value}
 	</delete>
