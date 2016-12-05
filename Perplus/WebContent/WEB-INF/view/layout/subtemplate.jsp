@@ -8,7 +8,7 @@
 	    <meta charset="utf-8">
 	    <meta name="viewport" content="width=device-width, initial-scale=1">
 	  
-		<link rel="stylesheet" href="css/style.css"><!-- perplus css -->
+	  	<link rel="stylesheet" href="css/style.css"><!-- perplus css -->
 		<link href="css/bootstrap.min.css" rel="stylesheet"><!-- bootstrap css -->
 		<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 		<link href="css/jquery-ui.min.css" rel="stylesheet">
