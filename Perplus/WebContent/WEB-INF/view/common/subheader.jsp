@@ -9,7 +9,7 @@
           </button>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar1">
-          <ul class="nav navbar-nav navbar-right navs">
+          <ul class="nav navbar-nav navbar-left navs">
             <li class="active">
             	<a href="${initParam.rootPath}/accountmanagement.do">계정관리</a>
             	
