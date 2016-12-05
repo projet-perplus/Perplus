@@ -6,6 +6,8 @@ insert into HOUSEFILTER values(1,'화장실',20,'다인실',2,'경기도 용인�
 
 insert into HOUSEFILTER values(25,'eee',234,'333',234,'3234',0,0,0,0,0,0,0,0,0)
 
+insert into HOUSEZZIM values(1,25,'bbb')
+
 insert into CHECKLIST values(1,25,'아앙1','앙아');
 insert into CHECKLIST values(2,25,'아앙2','앙아');
 insert into CHECKLIST values(3,25,'아앙3','앙아');
