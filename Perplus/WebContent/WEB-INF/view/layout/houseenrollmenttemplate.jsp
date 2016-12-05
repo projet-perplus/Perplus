@@ -21,6 +21,7 @@
 	 <style>
 		.form-control{
 			font-size:12px !important; 
+			
 		}
 		.row-condensed>label{
 		width:250px !important;
