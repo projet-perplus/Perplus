@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
-<mapper namespace="이름지정">
+<mapper namespace="house">
 	<sql id="default-house-select">
 		select HOUSE_SERIAL,
 		MEMBER_EMAIL,
@@ -14,35 +14,103 @@
 		HOUSE_RATING,
 		HOUSE_MARKER_X,
 		HOUSE_MARKER_Y,
-		HOUSE_MARKER_CONSTANT
+		HOUSE_MARKER_CONSTANT,
+		HOUSE_PRICE
 		from HOUSE
 	</sql>
+	<sql id="filter-house-select">
+		select HOUSE_SERIAL,
+		MEMBER_EMAIL,
+		HOUSE_REGISTER_STATUS,
+		HOUSE_TITLE,
+		HOUSE_CONTENT,
+		HOUSE_NECESSARY_CONDITION,
+		HOUSE_CHECKIN_START,
+		HOUSE_CHECKIN_END,
+		HOUSE_RATING,
+		HOUSE_MARKER_X,
+		HOUSE_MARKER_Y,
+		HOUSE_MARKER_CONSTANT,
+		HOUSE_PRICE
+	</sql>
+	<sql id ="house-travel-houseZzim-houseFilter-checkList-shutDown-housePicture-houseComment-join">
+		select 
+		h.HOUSE_SERIAL h_hSerial,h.MEMBER_EMAIL h_email,	h.HOUSE_REGISTER_STATUS,h.HOUSE_TITLE,	h.HOUSE_CONTENT,h.HOUSE_NECESSARY_CONDITION,h.HOUSE_CHECKIN_START,	h.HOUSE_CHECKIN_END,
+		h.HOUSE_RATING,	h.HOUSE_MARKER_X,h.HOUSE_MARKER_Y,	h.HOUSE_MARKER_CONSTANT,h.HOUSE_PRICE,
+		t.TRAVEL_SERIAL, t.TRAVEL_CODE, t.HOUSE_SERIAL t_hSerial, t.MEMBER_EMAIL t_email, t.TRAVEL_START, t.TRAVEL_END, t.TRAVEL_NUMBER, t.TRAVEL_CHECKIN, t.TRAVEL_COST,
+		f.HOUSE_SERIAL f_hSerial,f.HOUSEFILTER_RANGE,f.HOUSEFILTER_GUEST_NUMBER,f.HOUSEFILTER_TYPE,f.HOUSEFILTER_ROOM_NUMBER,f.HOUSEFILTER_LOCATION,f.HOUSEFILTER_BEDROOM_NUMBER,
+		f.HOUSEFILTER_BATHROOM_NUMBER,f.HOUSEFILTER_BED_NUMBER,f.HOUSEFILTER_CHECKIN_TERM,f.HOUSEFILTER_RESERVATION_TERM,f.HOUSEFILTER_BAK_MIN,f.HOUSEFILTER_BAK_MAX,
+		f.HOUSEFILTER_MONEY_MIN,f.HOUSEFILTER_MONEY_MAX,
+		s.SHUTDOWN_SERIAL,s.HOUSE_SERIAL s_hSerial,s.SHUTDOWN_DATE,
+		c.CHECKLIST_SERIAL,c.HOUSE_SERIAL c_hSerial,c.LIST,c.VALUE,
+		hp.PICTURE_SERIAL,hp.HOUSE_SERIAL hp_hSerial,hp.PICTURE_ORDER,hp.PICTURE_NAME,
+		hc.HOUSE_SERIAL hc_hSerial, hc.MEMBER_EMAIL hc_email, hc.COMMENT_CONTENT, hc.COMMENT_RATING, hc.COMMENT_TIME
+		from HOUSE h, TRAVEL t, HOUSEFILTER f, SHUTDOWN s, CHECKLIST c, HOUSEPICTURE hp,HOUSECOMMENT hc 
+	</sql>
+	<resultMap type="housevo" id="house-basic-resultmap">
+		<result column="h_hSerial" property="houseSerial"/>
+		<result column="h_email" property="memberEmail"/>
+		<result column="HOUSE_REGISTER_STATUS" property="houseRegisterStatus"/>
+		<result column="HOUSE_TITLE" property="houseTitle"/>
+		<result column="HOUSE_CONTENT" property="houseContent"/>
+		<result column="HOUSE_NECESSARY_CONDITION" property="houseNecessaryCondition"/>
+		<result column="HOUSE_CHECKIN_START" property="houseCheckinStart"/>
+		<result column="HOUSE_CHECKIN_END" property="houseCheckinEnd"/>
+		<result column="HOUSE_RATING" property="houseRating"/>
+		<result column="HOUSE_MARKER_X" property="houseMarkerX"/>
+		<result column="HOUSE_MARKER_Y" property="houseMarkerY"/>
+		<result column="HOUSE_MARKER_CONSTANT" property="houseMarkerConstant"/>
+		<result column="HOUSE_PRICE" property="housePrice"/>
+	</resultMap>
 	<!-- 최초 집이 생성될때 4개의 값이 넘어오며(첫 Serial과 Status는 자동 생성된다.)6개의 값이 저장이 된다. necessary condition을 제외한 모든것은 N.N이다 -->
 	<insert id="insertHouseDefault" parameterType="housevo">
-		insert into HOUSE values(HOUSE_SEQ.nextval,${memberEmail},0,${houseTitle},${houseContent},${houseNecessaryCondition},null,null,null,0,0,0,0)	
+		insert into HOUSE values(HOUSE_SEQ.nextval,#{memberEmail},0,#{houseTitle},#{houseContent},#{houseNecessaryCondition},null,null,null,0,0,0,0,0)	
 	</insert>
 	<!-- 전체적인 집의 수정 (기존의 db를 select해와 필요한 부분만 채워서 재 전송)-->
 	<update id="updateHouse" parameterType ="housevo">
-		update HOUSE set HOUSE_REGISTER_STATUS = ${houseRegisterStatus}, HOUSE_TITLE = ${houseTitle}, HOUSE_CONTENT = ${houseContent},
-		HOUSE_NECESSARY_CONDITION = ${houseNecessaryCondition}, HOUSE_CHECKIN_START =${houseCheckinStart}, HOUSE_CHECKIN_END = ${houseCheckinEnd},
-		HOUSER_RATING = ${houseRating}, HOUSE_MARKER_X = ${houseMarkerX}, HOUSE_MARKER_Y = ${houseMarkerY}, HOUSE_MARKER_CONSTANT = ${houseMarkerConstant}
+		update HOUSE set 
+		HOUSE_REGISTER_STATUS = #{houseRegisterStatus}, 
+		HOUSE_TITLE = #{houseTitle}, 
+		HOUSE_CONTENT = #{houseContent},
+		HOUSE_NECESSARY_CONDITION = #{houseNecessaryCondition}, 
+		HOUSE_CHECKIN_START =#{houseCheckinStart}, 
+		HOUSE_CHECKIN_END = #{houseCheckinEnd},
+		HOUSER_RATING = #{houseRating}, 
+		HOUSE_MARKER_X = #{houseMarkerX}, 
+		HOUSE_MARKER_Y = #{houseMarkerY}, 
+		HOUSE_MARKER_CONSTANT = #{houseMarkerConstant},
+		HOUSE_PRICE = #{housePrice}
 	</update>
-	<!-- 기본적으로 지울때는 HouseSerial을 가지고 지우도록 한다. -->
+	<!-- 지울때는 HouseSerial을 가지고 지우도록 한다. -->
 	<delete id="deleteHouseByHouseSerial" parameterType="_int">
-		delete from HOUSE where HOUSE_SERIAL = ${value}
+		delete from HOUSE where HOUSE_SERIAL = #{value}
 	</delete>
 	<!-- 단일 집을 select 할때 HouseSerial을 가지고 조회를 한다. -->
 	<select id="selectHouseByHouseSerial" parameterType="_int" resultType="housevo">
 		<include refid="default-house-select"/>
-		where HOUSE_SERIAL = ${value}
+		where HOUSE_SERIAL = #{value}
 	</select>
 	<!-- 해당 회원이 등록한 집을 select할때 로그인한 회원의 Email을 가지고 조회를 한다 -->
 	<select id="selectHouseListByMemberEmail" parameterType="String" resultType="housevo">
 		<include refid="default-house-select"/>
-		where MEMBER_EMAIL = ${value}
+		where MEMBER_EMAIL = #{value}
+	</select>
+	<!-- 필터를 통해 등록한 집을 select -> 각 필터 객체들을 hashmap으로 받아 각 where문을 통해 비교-->
+	<select id="selectHouseByFilter" parameterType="hashmap" resultType="housevo">
+		<include refid="filter-house-select"/>
+		from(
+			select
+		)
 	</select>
 </mapper>
-
-
-
+<!-- 
+select memberId,password,memberName,email,mileage 
+from(
+	select ceil(rownum/2) page,memberId,password,memberName,email,mileage 
+	from(
+		select member_id memberId,password,member_name memberName,email,mileage from MEMBER order by member_id desc
+	)
+)
+where page = 1
+ -->
 

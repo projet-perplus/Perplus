@@ -9,7 +9,7 @@ public interface MemberDao {
 	
 	int deleteMember(String memberEmail);
 	
-	int updateMember(MemberVo member);
+	int updateMember(MemberVo newData);
 	
 	int selectMemberCountByEmail(String id);
 	

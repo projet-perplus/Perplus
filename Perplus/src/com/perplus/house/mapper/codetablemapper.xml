@@ -1,6 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
-<mapper namespace="이름지정">
+<mapper namespace="codetable">
+	<sql id="select-default-codetable">
+		select CODE_KIND codeKind, KEY key, VALUE value
+		from CODETABLE
+	</sql>
+	<insert id="insertCodetable" parameterType="codetablevo">
+		insert into CODETABLE values(#{codeKind},#{key},#{value})
+	</insert>
+	<update id="updateCodetable" parameterType="codetablevo">
+		update CODETABLE set
+		CODE_KIND = #{codeKind},
+		KEY = #{key},
+		VALUE = #{value}
+		where CODE_KIND = #{codeKind}
+		and KEY = #{key}
+	</update>
 	
+	<delete id="deleteCodetable" parameterType="hashmap">
+		delete from CODETABLE 
+		where CODE_KIND = #{codeKind}
+		and KEY=#{key}
+	</delete>
+	<!--  -->
+	<select id="selectCodetableByCodeKind" parameterType="hashmap" resultType="codetablevo">
+		<include refid="select-default-codetable"/>
+		where CODE_KIND	= #{codeKind}
+		and KEY = #{key}
+	</select>
 </mapper>

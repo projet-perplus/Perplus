@@ -7,11 +7,15 @@ import com.perplus.member.vo.HouseCommentVo;
 
 public interface HouseCommentDao {
 	
-	int insertHouseComment(HouseCommentVo houseComment);//숙소 후기 등록
+	int insertHouseComment(HouseCommentVo houseComment);
 	
-	int deleteHouseComment(Map<String, Object> map);//숙소 후기 삭제
+	int deleteHouseComment(Map<String, Object> map);
 	
-	int modifyHouseComment(HouseCommentVo houseComment);//숙소 후기 수정
+	int modifyHouseComment(HouseCommentVo houseComment);
 	
-	List<HouseCommentVo> selectHouseComment(Map<String, Object> map);//시리얼번호, 이메일로 숙소리뷰찾기
+	List<HouseCommentVo> selectHouseCommentByEmail(String memberEmail);
+	
+	List<HouseCommentVo> selectHouseCommentBySerial(int houseSerial);
+	
+	
 }

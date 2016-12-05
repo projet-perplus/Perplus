@@ -31,14 +31,14 @@ public class ChattingDaoImpl implements ChattingDao{
 		return session.selectList("chatting.selectMyChatting", memberEmail);
 	}
 
-	@Override//나의 아이디와 상대방의 아이디로 방번호를 찾기
-	public ChattingVo findByChattingNumber(Map<String, String> map) {
+	@Override//나의 아이디와 상대방의 아이디로 방 찾기
+	public ChattingVo findByChattingNumber(Map<String, Object> map) {
 		return session.selectOne("chatting.findByChattingNumber",map);
 	}
 
-	@Override
-	public List<ChattingVo> chattingjoin() {
-		return session.selectList("chatting.wwww");
+	@Override//채팅방과 채팅로그 가져오기
+	public ChattingVo chattingJoin(int chattingNumber) {
+		return session.selectOne("chatting.selectJoinChattingLog", chattingNumber);
 	}
 	
 }

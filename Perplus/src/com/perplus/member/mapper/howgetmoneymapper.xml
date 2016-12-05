@@ -18,11 +18,10 @@
 	</delete>
 	
 	
-	<select id="selectMyHowgetmoney" parameterType="hashmap" resultType="HowGetMoneyVo">
+	<select id="selectMyHowgetmoney" parameterType="string" resultType="HowGetMoneyVo">
 		select	member_email memberEmail, howgetmoney_holder howgetmoneyHolder, howgetmoney_bank howgetmoneyBank, howgetmoney_number howgetmoneyNumber
 		from	HOWGETMONEY
 		where	member_email = #{memberEmail}
-		and		howgetmoney_number = #{howgetmoneyNumber}
 	</select>
 	
 </mapper>

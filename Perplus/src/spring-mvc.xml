@@ -12,7 +12,8 @@
 	<mvc:annotation-driven/>
 	
 	<mvc:view-controller path="/main.do" view-name="/kim.jsp"/>
-	<context:component-scan base-package="com.perplus.member"/>
+	
+	<context:component-scan base-package="com.perplus"/>
 	
 	<bean name="dataSource" class="org.apache.commons.dbcp2.BasicDataSource"
 		p:driverClassName="oracle.jdbc.driver.OracleDriver"
@@ -28,7 +29,7 @@
 	<bean name="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate"
 		c:sqlSessionFactory-ref="sqlSessionFactory"/>
 		
-<!-- 	<bean name ="tilesConfig" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+	<!-- <bean name ="tilesConfig" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
 		<property name="definitions">
 			<list>
 				<value>/WEB-INF/config/tiles/tiles-defs.xml</value>

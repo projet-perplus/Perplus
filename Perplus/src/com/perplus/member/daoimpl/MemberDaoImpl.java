@@ -23,8 +23,8 @@ public class MemberDaoImpl implements MemberDao{
 	}
 
 	@Override
-	public int updateMember(MemberVo member) {
-		return session.update("member.updateMember", member);
+	public int updateMember(MemberVo newData) {
+		return session.update("member.updateMember", newData);
 	}
 
 	@Override
