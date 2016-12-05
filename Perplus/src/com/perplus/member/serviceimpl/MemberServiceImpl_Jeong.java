@@ -1,5 +1,7 @@
 package com.perplus.member.serviceimpl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -9,42 +11,10 @@ import com.perplus.member.dao.RejectDao;
 import com.perplus.member.dao.ReviewZzimDao;
 import com.perplus.member.dao.ShowMeTheMoneyDao;
 import com.perplus.member.dao.TravelDao;
-import com.perplus.member.daoimpl.ChattingDaoImpl;
-import com.perplus.member.daoimpl.ChattingLogDaoImpl;
-import com.perplus.member.daoimpl.HouseCommentDaoImpl;
-import com.perplus.member.daoimpl.HouseZzimDaoImpl;
-import com.perplus.member.daoimpl.HowgetmoneyDaoImpl;
-import com.perplus.member.daoimpl.MemberDaoImpl;
-import com.perplus.member.vo.MemberVo;
+import com.perplus.member.vo.PaymentVo;
 
 @Service
 public class MemberServiceImpl_Jeong {
-
-
-	
-	@Autowired
-	@Qualifier("chattingDaoImpl")
-	private ChattingDaoImpl chattingDao;
-	
-	@Autowired
-	@Qualifier("chattingLogDaoImpl")
-	private ChattingLogDaoImpl chattingLogDao;
-	
-	@Autowired
-	@Qualifier("houseCommentDaoImpl")
-	private HouseCommentDaoImpl houseCommentDao;
-	
-	@Autowired
-	@Qualifier("houseZzimDaoImpl")
-	private HouseZzimDaoImpl houseZzimDao;
-	
-	@Autowired
-	@Qualifier("howgetmoneyDaoImpl")
-	private HowgetmoneyDaoImpl howgetmoneyDao;
-
-	@Autowired
-	@Qualifier("memberDaoImpl")
-	private MemberDaoImpl memberDao;
 	
 	@Autowired
 	@Qualifier("paymentDaoImpl")
@@ -66,46 +36,41 @@ public class MemberServiceImpl_Jeong {
 	private TravelDao travelDao;
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
-	public boolean isIdExist(String id){
-		boolean flag = memberDao.selectMemberCountByEmail(id)==1;
-		return flag;
+	public boolean isExistPayment(int cardSerial){
+		return paymentDao.selectPaymentByCardSerial(cardSerial) != null; // 객체가 있으면 true 반환
 	}
 	
-	public void joinMember(MemberVo member) throws Exception{
-		if(isIdExist(member.getMemberEmail())){
-			throw new Exception(member.getMemberEmail()+"는 이미 등록된 아이디입니다.");
+	public void registerPayment(PaymentVo payment) throws Exception{
+	
+		// 1. 이메일로 사용자의 등록된 카드 전부 조회
+		String memberEmail = payment.getMemberEmail();
+		List<PaymentVo> paymentList = paymentDao.selectPayment(memberEmail);
+
+		// 2. 조회된 카드 객체 들에서 새로 입력된 카드 번호 비교
+		for(PaymentVo gunbygun : paymentList){
+			if(gunbygun.getCardNumber() == payment.getCardNumber()){
+		// 3. 같은 값이 있으면 Exception 발생
+				throw new Exception("입력하신 카드는 이미 등록된 카드 입니다.");
+			}
 		}
-		memberDao.insertMember(member);
+		// 4. 등록처리
+		paymentDao.insertPayment(payment);
 	}
 	
-	public void updateMember(MemberVo member){
-		memberDao.updateMember(member);
-	}
+	public void modifyPayment(){}
 	
-	public void deleteMember(String memberEmail){
-		memberDao.deleteMember(memberEmail);
-	}
+	
+	
+	
+	
+	
+	
+	
+	
 
-	public MemberVo selectMemberByEmail(String memberEmail){
-		
-		return memberDao.selectMemberByEmail(memberEmail);
-	}
+	
+	
+	
+	
+	
 }
