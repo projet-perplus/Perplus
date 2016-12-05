@@ -11,7 +11,7 @@ public interface MemberDao {
 	
 	int updateMember(MemberVo newData);
 	
-	int selectMemberCountByEmail(String id);
+	int selectMemberCountFindByEmail(String id);
 	
-	MemberVo selectMemberByEmail(String memberEmail);
+	MemberVo selectMemberFindByEmail(String memberEmail);
 }
