@@ -192,11 +192,11 @@ public class MemberServiceImpl implements MemberService{
 	}
 	
 	@Override//회원 등록
-	public void joinMember(MemberVo member) throws Exception{
+	public int joinMember(MemberVo member) throws Exception{
 		if(isIdExist(member.getMemberEmail())){
 			throw new Exception(member.getMemberEmail()+"는 이미 등록된 아이디입니다.");
 		}
-		memberDao.insertMember(member);
+		return memberDao.insertMember(member);
 	}
 	
 	@Override//회원 수정

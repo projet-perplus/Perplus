@@ -61,7 +61,7 @@ public interface MemberService {
 	//member service
 	boolean isIdExist(String memberEmail);
 	
-	void joinMember(MemberVo member) throws Exception;
+	int joinMember(MemberVo member) throws Exception;
 	
 	void updateMember(MemberVo newData);
 	
