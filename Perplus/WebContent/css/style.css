@@ -245,7 +245,7 @@ p {
 	background-color: #E7E7E7;
 }
 
-.househeader {
+.housesection {
 	margin-top: 50px;
 	border-bottom: 2px solid #ccc;
 }
@@ -387,6 +387,18 @@ p {
    	margin-top: 8px;
     margin-left: 10px;
 }
+
+.locationspan>span{
+	width:100%;
+	text-align;center;
+    color: #57c3a6 !important;
+    line-height: 38px !important;
+    font-weight: bold !important;
+    font-size: 27px !important;
+	
+}
+
+
 
 
 /*img slide*/
