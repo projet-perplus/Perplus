@@ -40,13 +40,13 @@ and page=#{page}
 	where review_serial=#{reviewSerial}
 </select>
 
-<!-- Select Picture One -->
+<!-- SELECT PICTURE-->
 <select id="selectPictureOne" parameterType="_int" resultType="ReviewPictureVo">
 	<include refid="picture-select"/>
 	where picture_serial = #{pictureSerial}
 </select>
 
-<!-- Update Picure -->
+<!-- UPDATE PICTURE -->
 <update id="updatePicture" parameterType="reviewPictureVo" >
 	update reviewpicture
 	set
@@ -57,19 +57,19 @@ and page=#{page}
 	where picture_serial=#{pictureSerial}
 </update>
 
-<!-- 해당 사진 Delete-->
+<!--DELETE PICTURE-->
 <delete id="deletePicture" parameterType="_int">
 	delete from reviewpicture
 	where picture_serial=#{pictureSerial}
 </delete>
 
-<!-- 리뷰의 모든 사진 DELETE -->
+<!-- DELETE ALL PICTURE -->
 <delete id="deleteAllReviewPicture">
 	delete from reviewpicture
 	where review_serial=#{reviewSerial}
 </delete>
 
-<!-- 사진 등록 -->
+<!-- INSERT PICTURE -->
 <insert id="insertPicture" parameterType="reviewPictureVo" >
 <!-- 	
 	*****pictureSerial seqence*******

@@ -25,7 +25,7 @@ public class ReviewCommentDaoImpl implements ReviewCommentDao{
 		return session.insert("reviewComment.insertComment", reviewComment);
 	}
 	/**
-	 * 내가 작성한 comment select하는 메소드
+	 * 해당 리뷰 코멘트 하나 조회하는 메소드
 	 */
 	@Override
 	public ReviewCommentVo selectReviewCommentBySerial(int commentSerial) {
@@ -36,7 +36,7 @@ public class ReviewCommentDaoImpl implements ReviewCommentDao{
 	}
 
 	/**
-	 * 해당 리뷰에 있는 모든 comment select하는 메소드
+	 * 해당 리뷰에 있는 모든 리뷰 코멘트 조회하는 메소드
 	 */
 	@Override
 	public List<ReviewCommentVo> selectReviewCommentListBySerial(int reviewSerial, int page) {
@@ -49,7 +49,7 @@ public class ReviewCommentDaoImpl implements ReviewCommentDao{
 	
 	
 	/**
-	 * 해당 리뷰의 총 댓글 수 count하는 메소드
+	 * 해당 리뷰의 총 리뷰 코멘트 수 count하는 메소드
 	 */
 	@Override
 	public int selectReviewCommentCount(int reviewSerial) {
@@ -57,14 +57,14 @@ public class ReviewCommentDaoImpl implements ReviewCommentDao{
 	}
 	
 	/**
-	 * 이메일과 리뷰serial을 통해 comment 수정하는 메소드
+	 * 해당 리뷰 코멘트 수정하는 메소드
 	 */
 	@Override
 	public int updateReviewComment(ReviewCommentVo reviewComment) {
 		return session.update("reviewComment.updateComment",reviewComment);
 	}
 	/**
-	 * reviewSerial과 memberEmail을 통해 review 삭제하는 메소드.
+	 * 해당 리뷰 코멘트 삭제하는 메소드.
 	 */
 	@Override
 	public int deleteReviewComment(int commentSerial) {
@@ -73,6 +73,9 @@ public class ReviewCommentDaoImpl implements ReviewCommentDao{
 		map.put("reviewSerial", reviewSerial);*/
 		return session.delete("reviewComment.deleteComment",commentSerial);
 	}
+	/**
+	 * 리뷰 삭제 시 해당 리뷰 코멘트 모두 삭제하는 메소드
+	 */
 	@Override
 	public int deleteAllReviewComment(int reviewSerial) {
 		return session.delete("reviewComment.deleteAllReviewComment",reviewSerial);

@@ -22,6 +22,7 @@
 		<association property="review" javaType="ReviewVo" resultMap="review.review-basic-resultmap"/>
 	</resultMap>
 	 -->
+	 
 	<!-- INSERT REVIEWCOMMENT -->
 	<insert id="insertComment" parameterType="reviewCommentVo">	
 <!-- 	
@@ -33,7 +34,7 @@
 		insert into reviewcomment values(#{commentSerial},#{reviewSerial},#{memberEmail},#{commentContent},#{commentRating},#{commentTime})
 	</insert>
 
-	<!-- SELECT COMMENT LIST  -->
+	<!-- SELECT COMMENT LIST(PAGING)  -->
 	<select id="selectCommentList" parameterType="map" resultType="ReviewCommentVo">
 			select page, review_serial reviewSerial,member_email memberEmail,comment_content commentContent, comment_rating commentRating,comment_time commentTime
 			from(select ceil(rownum/#{commentPerPage}) page,comment_serial,review_serial, member_email, comment_content, comment_rating, comment_time
@@ -44,13 +45,15 @@
 			where review_serial=#{reviewSerial}
 			and page=#{page}
 	</select>
+	
 	<!-- SELECT COMMENT COUNT -->
 	<select id="selectCommentCount" parameterType="_int" resultType="_int">
 		select count(comment_serial)
 		from reviewcomment
 		where review_serial=#{reviewSerial}
 	</select>
-	<!-- SELECT MY COMMENT -->
+	
+	<!-- SELECT COMMENT ONE-->
 	<select id="selectMyComment" parameterType="_int" resultType="reviewCommentVo">
 		select comment_serial commentSerial,review_serial reviewSerial, member_email memberEmail, comment_content commentContent, comment_rating commentRating, comment_time commentTime
 		from reviewcomment

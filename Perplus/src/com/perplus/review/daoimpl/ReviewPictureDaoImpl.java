@@ -19,7 +19,7 @@ public class ReviewPictureDaoImpl implements ReviewPictureDao{
 	private SqlSessionTemplate session;
 
 	/**
-	 * reviewSerial을 통해서 사진 전체조회
+	 * 리뷰 사진 전체 조회 하는 메소드(paging 처리 0)
 	 */
 	@Override
 	public List<ReviewPictureVo> selectReviewPictureListPaging(int reviewSerial, int page) {
@@ -30,13 +30,16 @@ public class ReviewPictureDaoImpl implements ReviewPictureDao{
 		return session.selectList("reviewPicture.selectPictureListPaging",map);
 	}
 
+	/**
+	 * 리뷰 사진 전체 조회 하는 메소드(paging 처리 X)
+	 */
 	@Override
 	public List<ReviewPictureVo> selectReviewPictureList(int reviewSerial) {
 		return session.selectList("reviewPicture.selectPictureList",reviewSerial);
 	}
 
 	/**
-	 * 사진하나만 조회
+	 * 리뷰 해당 사진 조회하는 메소드
 	 * @param reviewSerial
 	 * @param pictureName
 	 * @return 
@@ -50,7 +53,7 @@ public class ReviewPictureDaoImpl implements ReviewPictureDao{
 	}
 
 	/**
-	 * 해당 리뷰의 모든 사진 count하는 메소드.
+	 * 해당 리뷰의 모든 리뷰 사진 count하는 메소드
 	 */
 	@Override
 	public int selectReviewPictureCount(int reviewSerial) {
@@ -58,7 +61,7 @@ public class ReviewPictureDaoImpl implements ReviewPictureDao{
 	}
 	
 	/**
-	 * 사진 수정하는 메소드
+	 * 해당 리뷰 사진 수정 하는 메소드
 	 */
 	@Override
 	public int updateReviewPicture(ReviewPictureVo reviewPicture) {
@@ -66,7 +69,7 @@ public class ReviewPictureDaoImpl implements ReviewPictureDao{
 	}
 
 	/**
-	 * 사진 삭제하는 메소드
+	 * 해당 리뷰 사진 삭제 하는 메소드
 	 */
 	@Override
 	public int deleteReviewPicture(int pictureSerial) {
@@ -77,14 +80,14 @@ public class ReviewPictureDaoImpl implements ReviewPictureDao{
 	}
 
 	/**
-	 *사진 추가하는 메소드
+	 *해당 리뷰 사진 등록하는 메소드
 	 */
 	@Override
 	public int insertReviewPicture(ReviewPictureVo reviewPicture) {
 		return session.insert("reviewPicture.insertPicture", reviewPicture);
 	}
 	/**
-	 * 리뷰 삭제 시, 해당 사진을 모두 삭제하기 위한 메소드.
+	 * 해당 리뷰의 모든 리뷰 사진 삭제하는 메소드
 	 */
 	@Override
 	public int deleteAllReviewPicture(int reviewSerial) {

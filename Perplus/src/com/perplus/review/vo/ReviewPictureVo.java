@@ -12,7 +12,7 @@ public class ReviewPictureVo implements Serializable{
 	
 	private List pictureList;
 	//생성자
-	ReviewPictureVo(){}
+	public ReviewPictureVo(){}
 
 	
 	public ReviewPictureVo(List pictureList) {

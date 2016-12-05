@@ -13,11 +13,8 @@ public class ReviewCommentVo implements Serializable{
 	
 	private ReviewVo review;
 
-	private ReviewCommentVo(){}
-	
-	
-	
-	
+	public ReviewCommentVo(){}
+
 	public ReviewCommentVo(int commentSerial, int reviewSerial, String memberEmail, String commentContent,
 			int commentRating, Date commentTime) {
 		super();
