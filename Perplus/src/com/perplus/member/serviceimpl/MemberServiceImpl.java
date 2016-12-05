@@ -1,6 +1,5 @@
 package com.perplus.member.serviceimpl;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,12 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import com.perplus.member.daoimpl.ChattingDaoImpl;
-import com.perplus.member.daoimpl.ChattingLogDaoImpl;
-import com.perplus.member.daoimpl.HouseCommentDaoImpl;
-import com.perplus.member.daoimpl.HouseZzimDaoImpl;
-import com.perplus.member.daoimpl.HowgetmoneyDaoImpl;
-import com.perplus.member.daoimpl.MemberDaoImpl;
+import com.perplus.member.dao.ChattingDao;
+import com.perplus.member.dao.ChattingLogDao;
+import com.perplus.member.dao.HouseCommentDao;
+import com.perplus.member.dao.HouseZzimDao;
+import com.perplus.member.dao.HowgetmoneyDao;
+import com.perplus.member.dao.MemberDao;
 import com.perplus.member.service.MemberService;
 import com.perplus.member.vo.ChattingLogVo;
 import com.perplus.member.vo.ChattingVo;
@@ -30,27 +29,27 @@ public class MemberServiceImpl implements MemberService{
 	
 	@Autowired
 	@Qualifier("chattingDaoImpl")
-	private ChattingDaoImpl chattingDao;
+	private ChattingDao chattingDao;
 	
 	@Autowired
 	@Qualifier("chattingLogDaoImpl")
-	private ChattingLogDaoImpl chattingLogDao;
+	private ChattingLogDao chattingLogDao;
 	
 	@Autowired
 	@Qualifier("houseCommentDaoImpl")
-	private HouseCommentDaoImpl houseCommentDao;
+	private HouseCommentDao houseCommentDao;
 	
 	@Autowired
 	@Qualifier("houseZzimDaoImpl")
-	private HouseZzimDaoImpl houseZzimDao;
+	private HouseZzimDao houseZzimDao;
 	
 	@Autowired
 	@Qualifier("howgetmoneyDaoImpl")
-	private HowgetmoneyDaoImpl howgetmoneyDao;
+	private HowgetmoneyDao howgetmoneyDao;
 
 	@Autowired
 	@Qualifier("memberDaoImpl")
-	private MemberDaoImpl memberDao;
+	private MemberDao memberDao;
 
 
 	
@@ -62,7 +61,11 @@ public class MemberServiceImpl implements MemberService{
 	
 	@Override//채팅방 등록.
 	public void createChatting(ChattingVo chatting){
-		chattingDao.creatChatting(chatting);
+		String memberEmail = chatting.getMemberEmail();
+		String chattingPartner = chatting.getChattingPartner();
+		if(findByChatting(memberEmail,chattingPartner)==null){
+			chattingDao.creatChatting(chatting);
+		}
 	}
 	
 	@Override//채팅방 삭제
@@ -78,7 +81,7 @@ public class MemberServiceImpl implements MemberService{
 	@Override//상대와 내가 속한 채팅방이 있는지..
 	public ChattingVo findByChatting(String partnerEmail, String memberEmail){
 		Map<String, Object> map = new HashMap<>();
-		map.put("partnerEmail", partnerEmail);//상대방 email
+		map.put("chattingPartner", partnerEmail);//상대방 email
 		map.put("memberEmail", memberEmail);//나의 email
 		return chattingDao.findByChattingNumber(map);
 	}
@@ -184,16 +187,16 @@ public class MemberServiceImpl implements MemberService{
 	
 	@Override//email 등록 여부
 	public boolean isIdExist(String memberEmail){
-		boolean flag = memberDao.selectMemberCountByEmail(memberEmail)==1;
+		boolean flag = memberDao.selectMemberCountFindByEmail(memberEmail)==1;
 		return flag;
 	}
 	
 	@Override//회원 등록
-	public void joinMember(MemberVo member) throws Exception{
+	public int joinMember(MemberVo member) throws Exception{
 		if(isIdExist(member.getMemberEmail())){
 			throw new Exception(member.getMemberEmail()+"는 이미 등록된 아이디입니다.");
 		}
-		memberDao.insertMember(member);
+		return memberDao.insertMember(member);
 	}
 	
 	@Override//회원 수정
@@ -207,8 +210,8 @@ public class MemberServiceImpl implements MemberService{
 	}
 	
 	@Override//회원조회
-	public MemberVo selectMemberByEmail(String memberEmail){
-		return memberDao.selectMemberByEmail(memberEmail);
+	public MemberVo selectMemberFindByEmail(String memberEmail){
+		return memberDao.selectMemberFindByEmail(memberEmail);
 	}
 	
 	

@@ -23,7 +23,7 @@ public class ChattingDaoImpl implements ChattingDao{
 
 	@Override//채팅방 삭제
 	public int deleteChatting(int chattingNumber) {
-		return session.delete("chatting.selectChatting",chattingNumber);
+		return session.delete("chatting.deleteChatting",chattingNumber);
 	}
 
 	@Override//내가 속해있는 채팅방 가져오기

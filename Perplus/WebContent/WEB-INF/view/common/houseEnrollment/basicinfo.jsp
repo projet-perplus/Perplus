@@ -18,8 +18,8 @@
 		</div>
 	</div>
 </div>
-<a class="navbar-img" href="${initParam.rootPath}/main.do">
-	<img src="css/image/logos.PNG" alt="logo" />
+<a class="navbar-img" href="${initParam.rootPath}/main.do"> <img
+	src="css/image/logos.PNG" alt="logo" />
 </a>
 
 <div class="basicbody">
@@ -28,28 +28,28 @@
 
 
 			<div class="row row-condensed space-4">
-				<label class="text-left col-sm-6 col-lg-4">
-					<span>숙소 이름</span>
+				<label class="text-left col-sm-6 col-lg-4"> <span>숙소
+						이름</span>
 				</label>
 				<div class="col-sm-6 col-lg-8">
 					<div class="col-xs-10 col-md-8">
 						<div class="form-group">
-							<input type="text" class="form-control"
-								   name="housename" placeholder="이름을 입력하세요.." required>
+							<input type="text" class="form-control" name="housename"
+								placeholder="이름을 입력하세요.." required>
 						</div>
 					</div>
 					<div class="col-xs-2 col-md-4"></div>
 				</div>
 			</div>
 			<div class="row row-condensed space-4">
-				<label class="text-left col-sm-6 col-lg-4">
-					<span>숙소 설명</span>
+				<label class="text-left col-sm-6 col-lg-4"> <span>숙소
+						설명</span>
 				</label>
 				<div class="col-sm-6 col-lg-8">
 					<div class="col-xs-10 col-md-8">
 						<div class="form-group">
-							<textarea class="form-control" name="houseexplanation"
-								      rows="5" placeholder="숙소에 대해 간단히 소개해 주세요."></textarea>
+							<textarea class="form-control" name="houseexplanation" rows="5"
+								placeholder="숙소에 대해 간단히 소개해 주세요."></textarea>
 						</div>
 					</div>
 					<div class="col-xs-2 col-md-4"></div>
@@ -65,24 +65,28 @@
 				<div class="col-sm-6 col-lg-8">
 					<div class="col-xs-10 col-md-8">
 						<div class="necessary">
-							<p>	인증된 이메일 전화번호 인증 프로필 사진	<p>	
+							<p>인증된 이메일 전화번호 인증 프로필 사진
+							<p>
 						</div>
 						<div class="necessary">
-							<p>	프로필 사진	<p>	
+							<p>프로필 사진
+							<p>
 						</div>
 						<div class="necessary">
-							<p>결제 정보<p>	
+							<p>결제 정보
+							<p>
 						</div>
-						<div class="necessary" style="border:none;">
-							<div class="col-xs-10 col-lg-10" style="padding-left:0px !important;">
-									<input type="text" class="form-control"
-								   name="necessaryitem" placeholder="추가 항목을 입력하세요.." >
+						<div class="necessary" style="border: none;">
+							<div class="col-xs-10 col-lg-10"
+								style="padding-left: 0px !important;">
+								<input type="text" class="form-control" name="necessaryitem"
+									placeholder="추가 항목을 입력하세요..">
 							</div>
 							<div class="col-xs-2 col-lg-2">
-								 <button class="">+</button>
+								<button class="">+</button>
 							</div>
-							
-								  
+
+
 						</div>
 					</div>
 					<div class="col-xs-2 col-md-4"></div>
@@ -127,20 +131,3 @@
 		</div>
 	</div>
 </div>
-
-
-
-
-
-
-
-
-
-
-<%-- <div class="container-fluid hostingbg1 text-center">
-  	<a href="${initParam.rootPath}/typeandlocation.do">
-	  	<div class="mainLogo">
-			<img src="css/image/hosting.png" alt="logos">
-		</div>
-	</a>
-</div> --%>

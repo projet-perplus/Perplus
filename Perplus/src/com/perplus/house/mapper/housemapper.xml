@@ -33,19 +33,17 @@
 		HOUSE_MARKER_CONSTANT,
 		HOUSE_PRICE
 	</sql>
-	<sql id ="house-travel-houseZzim-houseFilter-checkList-shutDown-housePicture-houseComment-join">
+	<sql id ="house-houseFilter-checkList-shutDown-houseZzim-join">
 		select 
 		h.HOUSE_SERIAL h_hSerial,h.MEMBER_EMAIL h_email,	h.HOUSE_REGISTER_STATUS,h.HOUSE_TITLE,	h.HOUSE_CONTENT,h.HOUSE_NECESSARY_CONDITION,h.HOUSE_CHECKIN_START,	h.HOUSE_CHECKIN_END,
 		h.HOUSE_RATING,	h.HOUSE_MARKER_X,h.HOUSE_MARKER_Y,	h.HOUSE_MARKER_CONSTANT,h.HOUSE_PRICE,
-		t.TRAVEL_SERIAL, t.TRAVEL_CODE, t.HOUSE_SERIAL t_hSerial, t.MEMBER_EMAIL t_email, t.TRAVEL_START, t.TRAVEL_END, t.TRAVEL_NUMBER, t.TRAVEL_CHECKIN, t.TRAVEL_COST,
 		f.HOUSE_SERIAL f_hSerial,f.HOUSEFILTER_RANGE,f.HOUSEFILTER_GUEST_NUMBER,f.HOUSEFILTER_TYPE,f.HOUSEFILTER_ROOM_NUMBER,f.HOUSEFILTER_LOCATION,f.HOUSEFILTER_BEDROOM_NUMBER,
 		f.HOUSEFILTER_BATHROOM_NUMBER,f.HOUSEFILTER_BED_NUMBER,f.HOUSEFILTER_CHECKIN_TERM,f.HOUSEFILTER_RESERVATION_TERM,f.HOUSEFILTER_BAK_MIN,f.HOUSEFILTER_BAK_MAX,
 		f.HOUSEFILTER_MONEY_MIN,f.HOUSEFILTER_MONEY_MAX,
 		s.SHUTDOWN_SERIAL,s.HOUSE_SERIAL s_hSerial,s.SHUTDOWN_DATE,
 		c.CHECKLIST_SERIAL,c.HOUSE_SERIAL c_hSerial,c.LIST,c.VALUE,
-		hp.PICTURE_SERIAL,hp.HOUSE_SERIAL hp_hSerial,hp.PICTURE_ORDER,hp.PICTURE_NAME,
-		hc.HOUSE_SERIAL hc_hSerial, hc.MEMBER_EMAIL hc_email, hc.COMMENT_CONTENT, hc.COMMENT_RATING, hc.COMMENT_TIME
-		from HOUSE h, TRAVEL t, HOUSEFILTER f, SHUTDOWN s, CHECKLIST c, HOUSEPICTURE hp,HOUSECOMMENT hc 
+		z.HOUSEZZIM_SERIAL, z.HOUSE_SERIAL z_hSerial, z.MEMBER_EMAIL z_email
+		from HOUSE h, HOUSEFILTER f, SHUTDOWN s, CHECKLIST c, HOUSEZZIM z
 	</sql>
 	<resultMap type="housevo" id="house-basic-resultmap">
 		<result column="h_hSerial" property="houseSerial"/>
@@ -62,6 +60,23 @@
 		<result column="HOUSE_MARKER_CONSTANT" property="houseMarkerConstant"/>
 		<result column="HOUSE_PRICE" property="housePrice"/>
 	</resultMap>
+	<resultMap type="housevo" id="house-housefilter-shutdown-checklist-housezzim-join-resultmap" extends="house-basic-resultmap">
+		<association property="houseFilter"  javaType="HouseFilterVo" resultMap="housefilter.housefilter-shutdown-checklist-join-resultmap"/>
+		<collection property="houseZzimList" ofType="HouseZzimVo">
+			<result column="HOUSEZZIM_SERIAL" property="houseZzimSerial"/>
+			<result column="z_hSerial" property="houseSerial"/>
+			<result column="z_email" property="memberEmail"/>
+		</collection>
+	</resultMap>
+	
+	<select id="selectHouseByHouseSerialWithJoin" parameterType="_int" resultType="HouseVo" resultMap="house-housefilter-shutdown-checklist-housezzim-join-resultmap">
+		<include refid="house-houseFilter-checkList-shutDown-houseZzim-join"/>
+		where h.HOUSE_SERIAL = #{value}
+		and f.HOUSE_SERIAL = h.HOUSE_SERIAL
+		and s.HOUSE_SERIAL(+) = h.HOUSE_SERIAL
+		and c.HOUSE_SERIAL(+) = h.HOUSE_SERIAL
+		and z.MEMBER_EMAIL(+) = h.MEMBER_EMAIL
+	</select>
 	<!-- 최초 집이 생성될때 4개의 값이 넘어오며(첫 Serial과 Status는 자동 생성된다.)6개의 값이 저장이 된다. necessary condition을 제외한 모든것은 N.N이다 -->
 	<insert id="insertHouseDefault" parameterType="housevo">
 		insert into HOUSE values(HOUSE_SEQ.nextval,#{memberEmail},0,#{houseTitle},#{houseContent},#{houseNecessaryCondition},null,null,null,0,0,0,0,0)	
