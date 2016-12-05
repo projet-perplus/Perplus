@@ -67,5 +67,5 @@ public interface MemberService {
 	
 	void deleteMember(String memberEmail);
 	
-	MemberVo selectMemberByEmail(String memberEmail);
+	MemberVo selectMemberFindByEmail(String memberEmail);
 }

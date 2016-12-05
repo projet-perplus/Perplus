@@ -23,6 +23,8 @@
 		from	CHATTING
 		where	chatting_partner = #{chattingPartner}
 		and		member_email = #{memberEmail}
+		or		chatting_partner = #{memberEmail}
+		and		member_email = #{chattingPartner}
 	</select>
 
 
@@ -32,7 +34,7 @@
 				c.member_email c_email,
 				l.member_email l_email,
 				l.chatting_content
-		from	CHATTING c, CHATTINGLOG l
+		from	CHATTING c, CHATTINGLOG l(+)
 	</sql>
 
 	<resultMap type="ChattingVo" id="chatting-default-resultmap">
@@ -51,7 +53,7 @@
 	
 	<select id="selectJoinChattingLog" parameterType="_int" resultMap="chatting-chattinglog-join-resultmap">
 		<include refid="select-chatting-join-sql"/>
-			where	c.chatting_number = #{value}
+		where	c.chatting_number = #{value}
 	</select>
 
 </mapper>

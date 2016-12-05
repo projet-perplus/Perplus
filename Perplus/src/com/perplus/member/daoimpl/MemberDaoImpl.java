@@ -28,13 +28,13 @@ public class MemberDaoImpl implements MemberDao{
 	}
 
 	@Override
-	public MemberVo selectMemberByEmail(String memberEmail) {
-		return session.selectOne("member.selectMemberByEmail", memberEmail);
+	public MemberVo selectMemberFindByEmail(String memberEmail) {
+		return session.selectOne("member.selectMemberFindByEmail", memberEmail);
 	}
 
 	@Override
-	public int selectMemberCountByEmail(String id) {
-		return session.selectOne("member.selectMemberCountByEmail", id);
+	public int selectMemberCountFindByEmail(String id) {
+		return session.selectOne("member.selectMemberCountFindByEmail", id);
 	}
 	
 	
