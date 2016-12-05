@@ -21,4 +21,5 @@ public class ReviewController {
 	public String registerReview(@ModelAttribute ReviewVo review, @ModelAttribute ReviewPictureVo	 reviewPicture){
 		
 	}*/
+
 }

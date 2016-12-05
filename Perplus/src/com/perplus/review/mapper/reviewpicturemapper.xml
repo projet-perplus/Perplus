@@ -4,52 +4,81 @@
 <mapper namespace="reviewPicture">
 
 <sql id="picture-select">
-		select review_serial reviewSerial, picture_order pictureOrder,picture_name pictureName	from reviewpicture
+		select picture_serial pictureSerial,review_serial reviewSerial, picture_order pictureOrder,picture_name pictureName	from reviewpicture
 </sql>
 
 <!-- reviewPicture테이블 select용 -->
 <resultMap type="reviewPictureVo" id="picture-basic-resultmap">
+	<id column="picture_serial" property="pictureSerial"/>
 	<result column="review_serial" property="reviewSerial"/>
 	<result column="picture_order" property="pictureOrder"/>
 	<result column="picture_name" property="pictureName"/>
 </resultMap>
 
-<!-- Select Picture List-->
-<select id="selectPictureList" parameterType="_int" resultType="hashmap">
+<!-- SLELECT PICTURE LIST PAGING-->
+<select id="selectPictureListPaging" parameterType="hashmap" resultType="ReviewPictureVo">
+	select page, review_serial reviewSerial,picture_order pictureOrder,picture_name pictureName
+from(select ceil(rownum/#{picturePerPage}) page,  review_serial,picture_order,picture_name
+			from(
+					select  review_serial,picture_order,picture_name  from reviewpicture order by review_serial desc
+			)
+)
+where review_serial=${reviewSerial}
+and page=#{page}
+</select>
+
+<!-- SELECT PICTURE LIST -->
+<select id="selectPictureList" parameterType="_int" resultType="ReviewPictureVo">
 	<include refid="picture-select"/>
-	where review_serial = #{reviewSerial}
+	where review_serial=#{reviewSerial}
+</select>
+
+<!-- SELECT PICTURE COUNT -->
+<select id="selectPictureCount" parameterType="_int" resultType="_int">
+	select count(picture_serial)
+	from reviewpicture
+	where review_serial=#{reviewSerial}
 </select>
 
 <!-- Select Picture One -->
-<select id="selectPictureOne" parameterType="hashmap" resultType="ReviewPictureVo">
-<!-- 	select review_serial reviewSerial, picture_order pictureOrder, picture_name pictureName
-	from reviewpicture  -->
+<select id="selectPictureOne" parameterType="_int" resultType="ReviewPictureVo">
 	<include refid="picture-select"/>
-	where review_serial = #{reviewSerial}
-	and picture_name=#{pictureName}
+	where picture_serial = #{pictureSerial}
 </select>
 
 <!-- Update Picure -->
-<update id="updatePicture" parameterType="reviewPictureVo">
+<update id="updatePicture" parameterType="reviewPictureVo" >
 	update reviewpicture
-	set review_serial=#{reviewSerial},
+	set
+		 picture_serial=#{pictureSerial},
+		 review_serial=#{reviewSerial},
 		 picture_order=#{pictureOrder},
 		 picture_name=#{pictureName}
-	where review_serial =#{reviewSerial}
-	and	  picture_order=#{pictureOrder}
+	where picture_serial=#{pictureSerial}
 </update>
 
-<!-- 시리얼 번호, 사진이름으로 Delete-->
-<delete id="deletePicture" parameterType="hashmap">
+<!-- 해당 사진 Delete-->
+<delete id="deletePicture" parameterType="_int">
+	delete from reviewpicture
+	where picture_serial=#{pictureSerial}
+</delete>
+
+<!-- 리뷰의 모든 사진 DELETE -->
+<delete id="deleteAllReviewPicture">
 	delete from reviewpicture
 	where review_serial=#{reviewSerial}
-	and	  picture_name=#{pictureName}
 </delete>
 
 <!-- 사진 등록 -->
 <insert id="insertPicture" parameterType="reviewPictureVo" >
+<!-- 	
+	*****pictureSerial seqence*******
+	<selectKey resultType="_int" keyProperty="pictureSerial" order="BEFORE">
+	select picture_serial_seq.nextval from dual
+</selectKey> 
+-->
 	insert into reviewpicture
-	values(#{reviewSerial},#{pictureOrder},#{pictureName})
+	values(#{pictureComment},#{reviewSerial},#{pictureOrder},#{pictureName})
 </insert>
 </mapper>
 

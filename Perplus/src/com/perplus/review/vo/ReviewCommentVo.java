@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class ReviewCommentVo implements Serializable{
+	private int commentSerial; //코멘트 시리얼 번호
 	private int reviewSerial;	//명소 리뷰 시리얼 
 	private String memberEmail; //리뷰 댓글 게시자 회원 이메일
 	private String commentContent; // 댓글 내용
@@ -14,9 +15,13 @@ public class ReviewCommentVo implements Serializable{
 
 	private ReviewCommentVo(){}
 	
-	public ReviewCommentVo(int reviewSerial, String memberEmail, String commentContent, int commentRating,
-			Date commentTime) {
+	
+	
+	
+	public ReviewCommentVo(int commentSerial, int reviewSerial, String memberEmail, String commentContent,
+			int commentRating, Date commentTime) {
 		super();
+		this.commentSerial = commentSerial;
 		this.reviewSerial = reviewSerial;
 		this.memberEmail = memberEmail;
 		this.commentContent = commentContent;
@@ -24,9 +29,12 @@ public class ReviewCommentVo implements Serializable{
 		this.commentTime = commentTime;
 	}
 
-	public ReviewCommentVo(int reviewSerial, String memberEmail, String commentContent, int commentRating,
-			Date commentTime, ReviewVo review) {
+
+
+	public ReviewCommentVo(int commentSerial, int reviewSerial, String memberEmail, String commentContent,
+			int commentRating, Date commentTime, ReviewVo review) {
 		super();
+		this.commentSerial = commentSerial;
 		this.reviewSerial = reviewSerial;
 		this.memberEmail = memberEmail;
 		this.commentContent = commentContent;
@@ -34,7 +42,6 @@ public class ReviewCommentVo implements Serializable{
 		this.commentTime = commentTime;
 		this.review = review;
 	}
-	
 
 	public int getReviewSerial() {
 		return reviewSerial;
@@ -83,13 +90,33 @@ public class ReviewCommentVo implements Serializable{
 	public void setReview(ReviewVo review) {
 		this.review = review;
 	}
+	
+
+	public int getCommentSerial() {
+		return commentSerial;
+	}
+
+
+
+
+	public void setCommentSerial(int commentSerial) {
+		this.commentSerial = commentSerial;
+	}
+
+
+
+
+
 
 	@Override
 	public String toString() {
-		return "ReviewCommentVo [reviewSerial=" + reviewSerial + ", memberEmail=" + memberEmail + ", commentContent="
-				+ commentContent + ", commentRating=" + commentRating + ", commentTime=" + commentTime + ", review="
-				+ review + "]";
+		return "ReviewCommentVo [commentSerial=" + commentSerial + ", reviewSerial=" + reviewSerial + ", memberEmail="
+				+ memberEmail + ", commentContent=" + commentContent + ", commentRating=" + commentRating
+				+ ", commentTime=" + commentTime + ", review=" + review + "]";
 	}
+
+
+
 
 	@Override
 	public int hashCode() {
@@ -97,12 +124,16 @@ public class ReviewCommentVo implements Serializable{
 		int result = 1;
 		result = prime * result + ((commentContent == null) ? 0 : commentContent.hashCode());
 		result = prime * result + commentRating;
+		result = prime * result + commentSerial;
 		result = prime * result + ((commentTime == null) ? 0 : commentTime.hashCode());
 		result = prime * result + ((memberEmail == null) ? 0 : memberEmail.hashCode());
 		result = prime * result + ((review == null) ? 0 : review.hashCode());
 		result = prime * result + reviewSerial;
 		return result;
 	}
+
+
+
 
 	@Override
 	public boolean equals(Object obj) {
@@ -119,6 +150,8 @@ public class ReviewCommentVo implements Serializable{
 		} else if (!commentContent.equals(other.commentContent))
 			return false;
 		if (commentRating != other.commentRating)
+			return false;
+		if (commentSerial != other.commentSerial)
 			return false;
 		if (commentTime == null) {
 			if (other.commentTime != null)
@@ -139,7 +172,6 @@ public class ReviewCommentVo implements Serializable{
 			return false;
 		return true;
 	}
-	
-	
+
 	
 }

@@ -3,16 +3,16 @@
 
 <mapper namespace="review">
 
-<sql id="review-comment-picture-join-select">
+<!-- <sql id="review-comment-picture-join-select">
 		select r.review_serial, r.member_email r_mail,r.review_title,r.review_content,r.review_rating,r.review_time,r.review_marker_x,r.review_marker_y,r.review_marker_constant,
-				   c.review_serial,c.member_email c_mail,c.comment_content,c.comment_rating,c.comment_time,
-				   p.review_serial,p.picture_order,p.picture_name
+				   c.comment_serial,c.review_serial,c.member_email c_mail,c.comment_content,c.comment_rating,c.comment_time,
+				   p.picture_serial,p.review_serial,p.picture_order,p.picture_name
 		from review r, reviewcomment c, reviewpicture p
 		where c.review_serial = r.review_serial 
 		and p.review_serial=c.review_serial 
-</sql>
+</sql> -->
 
-<resultMap type="ReviewVo" id="review-basic-resultmap">
+<!-- <resultMap type="ReviewVo" id="review-basic-resultmap">
 	<id column="review_serial" property="reviewSerial"/>
 	<result column="r_mail" property="memberEmail"/>
 	<result column="review_title" property="reviewTitle"/>
@@ -23,20 +23,42 @@
 	<result column="review_marker_y" property="reviewMarkerY"/>
 	<result column="review_marker_constant" property="reviewMarkerConstant"/>
 </resultMap>
-
-<resultMap type="ReviewVo" id="join-resultmap" extends="review-basic-resultmap">
+ -->
+<!-- <resultMap type="ReviewVo" id="join-resultmap" extends="review-basic-resultmap">
 	<collection property="reviewComment" ofType="reviewCommentVo" resultMap="reviewComment.comment-basic-resultmap"/>
 	<collection property="reviewPicture" ofType="reviewPictureVo" resultMap="reviewPicture.picture-basic-resultmap"/>
 </resultMap>
-
-<!-- 리뷰 - 코멘트 -picture join select -->
+ -->
+<!-- 리뷰 - 코멘트 -picture join select
 <select id="selectReviewWithCommentAndPicture" parameterType="_int" resultMap="join-resultmap">
 	<include refid="review-comment-picture-join-select"/>
 	and r.review_serial = #{reviewSerial}
+</select> -->
+
+<!-- Serial로 리뷰 select -->
+<select id="selectReviewBySerial" parameterType="_int" resultType="ReviewVo">
+	select review_serial reviewSerial, 
+			 member_email memberEmail,
+			 review_title reviewTitle,
+			 review_content reviewContent,
+			 review_rating reviewRating,
+			 review_time reviewTime,
+			 review_marker_x reviewMarkerX,
+			 review_marker_y reviewMarkerY,
+			 review_marker_constant reviewMarkerConstant
+	from review
+	where review_serial=#{reviewSerial}
 </select>
+
 
 <!-- 리뷰 INSERT -->
 <insert id="insertReview" parameterType="ReviewVo">
+	<!-- 	
+		*****reviewSerial seqence*******
+		<selectKey resultType="_int" keyProperty="reviewSerial" order="BEFORE">
+		select review_serial_seq.nextval from dual
+	</selectKey> 
+	-->
 	insert into review values(#{reviewSerial},#{memberEmail},#{reviewTitle},#{reviewContent},#{reviewRating},#{reviewTime},#{reviewMarkerX},#{reviewMarkerY},#{reviewMarkerConstant})
 </insert>
 

@@ -2,57 +2,84 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
 <mapper namespace="reviewComment">
-	<sql id="comment-select">
-				select review_serial, member_email c_mail, comment_content, comment_rating, comment_time
+<!-- 	<sql id="comment-select">
+		select comment_serial,review_serial, member_email c_mail, comment_content, comment_rating, comment_time
 		from reviewcomment
 	</sql>
 	
-	<!-- resultMap: reviewComment테이블 select용-->
+	resultMap: reviewComment테이블 select용
 	<resultMap type="reviewCommentVo" id="comment-basic-resultmap">
+		<id column="comment_serial" property="commentSerial"/>
 		<result column="review_serial" property="reviewSerial"/>
 		<result column="c_mail" property="memberEmail" />
 		<result column="comment_content" property="commentContent"/>
 		<result column="comment_rating" property="commentRating"/>
 		<result column="comment_time" property="commentTime"/>
 	</resultMap>
-	
+	 -->
 	<!--resultMap: review테이블과 join select용
 	<resultMap type="ReviewCommentVo" id="review-comment-resultmap">
 		<association property="review" javaType="ReviewVo" resultMap="review.review-basic-resultmap"/>
 	</resultMap>
 	 -->
-	
-	<insert id="insertComment" parameterType="reviewCommentVo">
-		insert into reviewcomment values(#{reviewSerial},#{memberEmail},#{commentContent},#{commentRating},#{commentTime})
+	<!-- INSERT REVIEWCOMMENT -->
+	<insert id="insertComment" parameterType="reviewCommentVo">	
+<!-- 	
+		*****commentSerial seqence*******
+		<selectKey resultType="_int" keyProperty="commentSerial" order="BEFORE">
+		select comment_serial_seq.nextval from dual
+	</selectKey> 
+	-->
+		insert into reviewcomment values(#{commentSerial},#{reviewSerial},#{memberEmail},#{commentContent},#{commentRating},#{commentTime})
 	</insert>
-	
-	<select id="selectCommentList" parameterType="_int" resultType="hashmap">
-		select *
+
+	<!-- SELECT COMMENT LIST  -->
+	<select id="selectCommentList" parameterType="map" resultType="ReviewCommentVo">
+			select page, review_serial reviewSerial,member_email memberEmail,comment_content commentContent, comment_rating commentRating,comment_time commentTime
+			from(select ceil(rownum/#{commentPerPage}) page,comment_serial,review_serial, member_email, comment_content, comment_rating, comment_time
+			from(
+					select  comment_serial,review_serial, member_email, comment_content, comment_rating, comment_time  from reviewcomment order by review_serial desc
+				)
+			)
+			where review_serial=#{reviewSerial}
+			and page=#{page}
+	</select>
+	<!-- SELECT COMMENT COUNT -->
+	<select id="selectCommentCount" parameterType="_int" resultType="_int">
+		select count(comment_serial)
 		from reviewcomment
-		where review_serial = #{reviewSerial}
+		where review_serial=#{reviewSerial}
+	</select>
+	<!-- SELECT MY COMMENT -->
+	<select id="selectMyComment" parameterType="_int" resultType="reviewCommentVo">
+		select comment_serial commentSerial,review_serial reviewSerial, member_email memberEmail, comment_content commentContent, comment_rating commentRating, comment_time commentTime
+		from reviewcomment
+		where comment_serial = #{commentSerial}
 	</select>
 	
-	<select id="selectMyComment" parameterType="hashmap" resultType="reviewCommentVo">
-		select review_serial reviewSerial, member_email memberEmail, comment_content commentContent, comment_rating commentRating, comment_time commentTime
-		from reviewcomment
-		where review_serial = #{reviewSerial}
-		and	member_email = #{memberEmail}
-	</select>
-	
+	<!-- UPDATE COMMENT -->
 	<update id="updateComment" parameterType="reviewCommentVo">
 		update REVIEWCOMMENT
-		set review_serial =#{reviewSerial},
+		set 
+			  comment_serial=#{commentSerial},
+			  review_serial =#{reviewSerial},
 			  member_email = #{memberEmail},
 			  comment_content=#{commentContent},
 			  comment_rating=#{commentRating},
 			  comment_time=#{commentTime}
-		where review_serial=#{reviewSerial}
-		and member_email=#{memberEmail}
+		where review_serial=#{commentSerial}
 	</update>
-	<delete id="deleteComment" parameterType="hashmap">
+	
+	<!-- DELETE COMMENT -->
+	<delete id="deleteComment" parameterType="_int">
 		delete from reviewcomment
-		where review_serial=#{reviewSerial}
-		and	  member_email=#{memberEmail}
+		where comment_serial=#{commentSerial}
+	</delete>
+	
+	<!-- DELETE ALL COMMENT -->
+	<delete id="deleteAllReviewComment">
+		delete from reviewcomment
+		where review_serial = #{reviewSerial}
 	</delete>
 </mapper>
 

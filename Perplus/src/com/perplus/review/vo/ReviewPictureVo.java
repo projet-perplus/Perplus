@@ -5,9 +5,11 @@ import java.util.List;
 
 
 public class ReviewPictureVo implements Serializable{
+	private int pictureSerial;//사진 시리얼 번호
 	private int reviewSerial; //리뷰 시리얼 넘버
 	private int pictureOrder;  //사진의 순서. (main사진이 1번~~)
 	private String pictureName; //사진 이름
+	
 	private List pictureList;
 	//생성자
 	ReviewPictureVo(){}
@@ -17,11 +19,22 @@ public class ReviewPictureVo implements Serializable{
 		this.pictureList = pictureList;
 	}
 
-	public ReviewPictureVo(int reviewSerial, int pictureOrder, String pictureName) {
+	public ReviewPictureVo(int pictureSerial, int reviewSerial, int pictureOrder, String pictureName) {
 		super();
+		this.pictureSerial = pictureSerial;
 		this.reviewSerial = reviewSerial;
 		this.pictureOrder = pictureOrder;
 		this.pictureName = pictureName;
+	}
+
+
+	public int getPictureSerial() {
+		return pictureSerial;
+	}
+
+
+	public void setPictureSerial(int pictureSerial) {
+		this.pictureSerial = pictureSerial;
 	}
 
 
@@ -65,10 +78,11 @@ public class ReviewPictureVo implements Serializable{
 	}
 
 
+
 	@Override
 	public String toString() {
-		return "ReviewPictureVo [reviewSerial=" + reviewSerial + ", pictureOrder=" + pictureOrder + ", pictureName="
-				+ pictureName + ", pictureList=" + pictureList + "]";
+		return "ReviewPictureVo [pictureSerial=" + pictureSerial + ", reviewSerial=" + reviewSerial + ", pictureOrder="
+				+ pictureOrder + ", pictureName=" + pictureName + ", pictureList=" + pictureList + "]";
 	}
 
 
@@ -79,6 +93,7 @@ public class ReviewPictureVo implements Serializable{
 		result = prime * result + ((pictureList == null) ? 0 : pictureList.hashCode());
 		result = prime * result + ((pictureName == null) ? 0 : pictureName.hashCode());
 		result = prime * result + pictureOrder;
+		result = prime * result + pictureSerial;
 		result = prime * result + reviewSerial;
 		return result;
 	}
@@ -105,16 +120,11 @@ public class ReviewPictureVo implements Serializable{
 			return false;
 		if (pictureOrder != other.pictureOrder)
 			return false;
+		if (pictureSerial != other.pictureSerial)
+			return false;
 		if (reviewSerial != other.reviewSerial)
 			return false;
 		return true;
 	}
 
-	
-
-
-	
-	
-	
-	
 }
