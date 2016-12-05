@@ -22,9 +22,14 @@
 		.form-control{
 			font-size:12px !important; 
 		}
+		.row-condensed>label{
+		width:250px !important;
+		}
+		
 	 </style>
 	  
-	 <body ><!-- class="hostingimg" -->
+	 <body >
+	 	<!-- class="hostingimg" -->
 	 	<tiles:insertAttribute name="hosting"/>
 	 </body>	
 	  	<script src="js/bootstrap.min.js"></script>

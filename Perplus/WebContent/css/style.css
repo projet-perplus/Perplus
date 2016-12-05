@@ -39,11 +39,10 @@ a:focus, a:hover {
 		margin-top: 0;
 		margin-bottom: 20px;
 	}
-	.gueststep{
-    font-size: 11px;
-    margin-left:0px !important;
+	.gueststep {
+		font-size: 11px;
+		margin-left: 0px !important;
 	}
-	
 }
 
 body {
@@ -102,7 +101,7 @@ p {
 /*메인 배경*/
 .bg-1 {
 	position: relative;
-	height: 640px;  /*  736px */
+	height: 640px; /*  736px */
 	width: auto;
 	background: url(image/img1.jpg) center center no-repeat !important;
 	background-size: cover !important;
@@ -130,25 +129,7 @@ p {
 	overflow: auto;
 	overflow-y: scroll;
 }
-/*.modal-dialog{
-    margin: 0;
-    padding: 0;
-    position: relative;
-    z-index: 1050;
-    margin-right: auto;
-    margin-left: auto;
-    transform: translate(0, 50%) !important;
-}
 
-.modal-content{
-	width:430px;
-	height:350px;
-	font-weight:300;
-	padding:20px;
-	border-radius:4px !important;
-    margin:0 auto;
-    
-}*/
 .modal-dialog {
 	margin: 0;
 	padding: 0;
@@ -266,37 +247,7 @@ p {
 
 .househeader {
 	margin-top: 50px;
-	border-bottom:2px solid #ccc;
-}
-/* househeader */
-	.row-condensed>label{
-		width:250px;
-	}
-	.row-condensed>.text-left>span {
-	color:#57c3a6 !important;
-	line-height:38px !important;
-	font-weight:bold !important;
-	font-size: 27px !important;
-}
-
-.housebody{
-	margin-top: 30px;
-	margin-bottom:30px;
-}
-.gueststep{
-	margin-left:53px;
-}
-
-.gueststepcontent{
-	margin-top:10px;
-    padding: 15px 0px 0px 14px;
-    border: solid 1px #ccc;
-    border-radius: 3px;
-}
-.gueststepcontent>p{
-	color:red;
-	font-weight:bold;
-	font-size:14px;
+	border-bottom: 2px solid #ccc;
 }
 
 /* sub menu ul li a style*/
@@ -348,6 +299,72 @@ p {
 	color: #767676 !important;
 }
 
+/* househeader */
+.row-condensed>.text-left>span {
+	color: #57c3a6 !important;
+	line-height: 38px !important;
+	font-weight: bold !important;
+	font-size: 27px !important;
+}
+
+.row-condensed {
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+
+.gueststepcontents {
+	margin-top: 0px !important;
+	margin-bottom: 0px !important;
+}
+
+.housebody {
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+
+.gueststep {
+	margin-left: 53px;
+}
+
+.gueststepcontent {
+	margin-top: 10px;
+	padding: 15px 0px 0px 14px;
+	border: solid 1px #ccc;
+	border-radius: 3px;
+}
+
+.gueststepcontent>p {
+	color: red;
+	font-weight: bold;
+	font-size: 14px;
+}
+
+/*basic info houseBtn */
+.houseBtn {
+	margin-top: 80px;
+
+}
+.houseBtns{
+	margin-bottom:130px !important;
+}
+.previousBtn>a>button {
+	width: 80px;
+	background-color: #ccc;
+	color: #fff;
+	font-weight: bold;
+}
+
+.nextBtn>a {
+	float: right;
+}
+
+.nextBtn>a>button {
+	width: 80px;
+	background-color: #e74c34;
+	color: #fff;
+	font-weight: bold;
+}
+
 /* payment style */
 .paymentBtn {
 	background: none;
@@ -358,28 +375,18 @@ p {
 	font-size: 10px !important;
 }
 
-
-/* houseBtn */
-.houseBtn{
-	margin-top:30px;
-}
-.previousBtn>a>button{
-    width: 80px;
-	background-color: #ccc;
-    color: #fff;
-    font-weight: bold;
-}
-.nextBtn>a{
-	float:right;
-}
-.nextBtn>a>button{
-    width: 80px;
-	background-color: #e74c34;
-    color: #fff;
-    font-weight: bold;
+.necessary{
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
 }
 
-
+.necessary > P{
+	font-size:12px;
+	color:#555;
+   	margin-top: 8px;
+    margin-left: 10px;
+}
 
 
 /*img slide*/

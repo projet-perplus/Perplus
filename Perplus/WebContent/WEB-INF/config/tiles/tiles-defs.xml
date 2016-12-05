@@ -8,7 +8,8 @@
 	<!-- main template -->
 	<definition name="maintemplate" template="/WEB-INF/view/layout/maintemplate.jsp">
 		<put-attribute name="header" value="/WEB-INF/view/common/header.jsp" />
-
+		<put-attribute name="logindialog" value="/WEB-INF/view/common/dialog/logindialog.jsp"/>
+		<put-attribute name="joindialog" value="/WEB-INF/view/common/dialog/joindialog.jsp"/>
 		<put-attribute name="footer" value="/WEB-INF/view/common/footer.jsp" />
 	</definition>
 
@@ -22,8 +23,12 @@
 	<!-- sub template -->
 	<definition name="subtemplate" template="/WEB-INF/view/layout/subtemplate.jsp">
 		<put-attribute name="header" value="/WEB-INF/view/common/header.jsp" />
+		<put-attribute name="logindialog" value="/WEB-INF/view/common/dialog/logindialog.jsp"/>
+		<put-attribute name="joindialog" value="/WEB-INF/view/common/dialog/joindialog.jsp"/>
 		<put-attribute name="subheader" value="/WEB-INF/view/common/subheader.jsp" />
 		<put-attribute name="footer" value="/WEB-INF/view/common/footer.jsp" />
+		<put-attribute name="paymentmethoddialog" value="/WEB-INF/view/common/dialog/paymentmethoddialog.jsp"/>
+		<put-attribute name="payoutpreference" value="/WEB-INF/view/common/dialog/payoutpreference.jsp"/>
 	</definition>
 
 	<definition name="*/*/*.tiles1" extends="subtemplate">
