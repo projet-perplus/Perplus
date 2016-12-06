@@ -53,12 +53,10 @@
 
 <!-- INSERT REVIEW -->
 <insert id="insertReview" parameterType="ReviewVo">
-	<!-- 	
-		*****reviewSerial seqence*******
-		<selectKey resultType="_int" keyProperty="reviewSerial" order="BEFORE">
+	<selectKey resultType="_int" keyProperty="reviewSerial" order="BEFORE">
 		select review_serial_seq.nextval from dual
 	</selectKey> 
-	-->
+	
 	insert into review values(#{reviewSerial},#{memberEmail},#{reviewTitle},#{reviewContent},#{reviewRating},#{reviewTime},#{reviewMarkerX},#{reviewMarkerY},#{reviewMarkerConstant})
 </insert>
 
@@ -83,6 +81,39 @@
 		where review_serial = #{reviewSerial}
 </update>
 
+<!--	SELECT REVIEW BY EMAIL  -->
+<select id="selectReviewByEmail" parameterType="_int" resultType="ReviewVo">
+	select review_serial reviewSerial, 
+			 member_email memberEmail,
+			 review_title reviewTitle,
+			 review_content reviewContent,
+			 review_rating reviewRating,
+			 review_time reviewTime,
+			 review_marker_x reviewMarkerX,
+			 review_marker_y reviewMarkerY,
+			 review_marker_constant reviewMarkerConstant
+	from review
+	where member_email = #{memberEmail}
+</select>
+
+<!-- SELECT ALL REVIEW LIST -->
+<select id="selectAllReview" resultType="ReviewVo">
+	select review_serial reviewSerial, 
+			 member_email memberEmail,
+			 review_title reviewTitle,
+			 review_content reviewContent,
+			 review_rating reviewRating,
+			 review_time reviewTime,
+			 review_marker_x reviewMarkerX,
+			 review_marker_y reviewMarkerY,
+			 review_marker_constant reviewMarkerConstant
+	from review
+</select>
+
+<select id="selectReviewSerial" resultType="_int">
+	select review_serial_seq.currval
+	from dual
+</select>
 </mapper>
 
 

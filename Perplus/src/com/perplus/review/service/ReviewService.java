@@ -9,13 +9,17 @@ import com.perplus.review.vo.ReviewVo;
 
 public interface ReviewService {
 	//리뷰등록
-	void registerReview(Map map);
+	void registerReview(ReviewVo review);
 	//리뷰수정
 	void modifyReview(ReviewVo review);
 	//리뷰삭제
 	void removeReview(int reviewSerial);
-	//리뷰조회
+	//리뷰상세조회
 	ReviewVo getReview(int reviewSerial);
+	//내가 작성한 리뷰 조회(email로 조회)
+	List<ReviewVo>getMyReview(String memberEmail);
+	//리뷰 전체 조회
+	List<ReviewVo>getReviewList();
 	//코멘트 전체 조회(paging처리)
 	Map<String,Object> getReviewCommentList(int reviewSerial, int page);
 	//코멘트 조회
@@ -24,6 +28,10 @@ public interface ReviewService {
 	void modifyReviewComment(ReviewCommentVo reviewComment);
 	//코멘트 삭제
 	void removeReviewComment(int commentSerial);
+	//코멘트 등록
+	void registerReviewComment(ReviewCommentVo reviewComment);
+	//사진등록
+	void registerReviewPicture(List<ReviewPictureVo> reviewPictures);
 	//사진 전체 조회(paging처리)
 	Map<String,Object> getReviewPictureListPaging(int reviewSerial,int page);
 	//사진 전체 조회(paging처리 X)
