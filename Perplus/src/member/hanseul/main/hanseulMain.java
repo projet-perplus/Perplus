@@ -26,7 +26,7 @@ public class hanseulMain {
 //		test.showmethemoneyTest(context);
 //		test.reviewZzimTest(context);
 //		test.rejectTest(context);
-//		test.paymentTest(context);
+		test.paymentTest(context);
 		
 				
 	}
@@ -58,11 +58,11 @@ public class hanseulMain {
 		RejectVo reject = null;
 		//insert
 		reject = new RejectVo("asd@asd.com", "aqwe@awsedqw.com", "adssdfdsf", 3);
-/*		dao.insertReject(reject);
+		dao.insertReject(reject);
 		//select
 		System.out.println(dao.selectReject(3));
 		//delete
-		dao.deleteReject(3);*/
+		dao.deleteReject(3);
 	}
 	
 	public void reviewZzimTest(ClassPathXmlApplicationContext context){
@@ -72,7 +72,7 @@ public class hanseulMain {
 		 */
 		ReviewZzimVo rz = null;
 		//insert
-		rz = new ReviewZzimVo(333, "asd@asd.com");
+		rz = new ReviewZzimVo(11, 333, "asd@asd.com");
 		dao.insertReviewZzim(rz);
 		
 		//select

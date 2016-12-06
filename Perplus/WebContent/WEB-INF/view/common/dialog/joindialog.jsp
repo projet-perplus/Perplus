@@ -2,10 +2,6 @@
 <script type="text/javascript">
 var emailCheck = true;
 	$(document).ready(function() {
-<%-- 		var joincount = <%=request.getParameter("join")%>
-		if(joincount=1){
-			alert("회원가입에 성공했습니다.");
-		} --%>
 		$("#joinEmail").on("keyup", function() {
 			var email = this.value;
 			$.ajax({
@@ -38,6 +34,7 @@ var emailCheck = true;
 				$("#joinEmail").focus();
 				return false;
 			}
+			alert("회원가입을 축하드립니다.");
 		});
 		
 		
@@ -64,7 +61,7 @@ var emailCheck = true;
 							name="memberName" placeholder="이름" required>
 					</div>
 					<div class="form-group">
-						<input type="password" class="form-control" id="password"
+						<input type="password" class="form-control" id="joinPassword"
 							name="memberPassword" placeholder="password" required>
 					</div>
 					<div class="form-group">

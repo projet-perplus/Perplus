@@ -40,4 +40,10 @@ public interface TravelDao {
 	 * @return
 	 */
 	TravelVo selectTravelByTravelCode(int travelCode);
+	
+	/**
+	 * Travel 객체 중 Travel Code별 select 
+	 * @return
+	 */
+	TravelVo selectTravelByTravelSerial(int travelSerial);
 }

@@ -15,4 +15,9 @@ public interface ReviewDao {
 	int deleteReview(int reviewSerial);
 /*	//리뷰 전체 조회.
 	List<ReviewVo> selectReviewWithCommentAndPicture(int reviewSerial);*/
+	//내가 작성한 리뷰 조회
+	List<ReviewVo> selectReviewByEmail(String memberEmail);
+	//리뷰 전체 조회
+	List<ReviewVo> selectReviewList();
+
 }
