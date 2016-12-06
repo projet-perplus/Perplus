@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWDGjKV2YFKGM5q6gtx-J5GcJTa2wLDQU" type="text/javascript"></script>
 
 <div class="basicheader">
 	<div class="container-fluid">
@@ -26,19 +27,18 @@
 <div class="basicbody">
 	<div class="container">
 		<div class="housesection">
-			<div class="row row-condensed space-4" style="margin-bottom: 80px;">
-				<div class="col-xs-3 col-lg-3" >
+			<div class="row row-condensed space-4" style="margin-bottom: 40px;">
+				<div class="col-xs-1 col-lg-3" >
 				
 				</div>
-				<div class="col-xs-6 col-lg-6" >
+				<div class="col-xs-10 col-lg-6" >
 					<div class="locationspan">
 							<span>숙소 의 위치를 알려주세요</span>	
 						</div>
 					<div id="map-canvas" style="width: 100%; height: 400px"></div>
-						
 					</div>
 				</div>
-				<div class="col-xs-3 col-lg-3" >
+				<div class="col-xs-1 col-lg-3" >
 					
 				</div>
 				
@@ -59,7 +59,4 @@
 			</div>
 		</div>
 	</div>
-</div>
-
-
 </div>
