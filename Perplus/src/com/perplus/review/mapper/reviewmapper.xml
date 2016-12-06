@@ -55,8 +55,7 @@
 <insert id="insertReview" parameterType="ReviewVo">
 	<selectKey resultType="_int" keyProperty="reviewSerial" order="BEFORE">
 		select review_serial_seq.nextval from dual
-	</selectKey> 
-	
+	</selectKey> 	
 	insert into review values(#{reviewSerial},#{memberEmail},#{reviewTitle},#{reviewContent},#{reviewRating},#{reviewTime},#{reviewMarkerX},#{reviewMarkerY},#{reviewMarkerConstant})
 </insert>
 
@@ -110,10 +109,6 @@
 	from review
 </select>
 
-<select id="selectReviewSerial" resultType="_int">
-	select review_serial_seq.currval
-	from dual
-</select>
 </mapper>
 
 
