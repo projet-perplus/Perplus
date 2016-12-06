@@ -23,7 +23,7 @@
 						<!--<div class="input-group date" data-provide="datepicker">-->
 							<div class="col-md-6">
 								<!-- <label for="location">날짜</label><br>-->
-								<input type="text" class="form-control" value="체크인" name="check" id="dpd1" style="margin-top:35px;z" >
+								<input type="text" class="form-control" value="체크인" name="check" id="dpd1" style="margin-top:35px;" >
 							</div>
 							<div class="col-md-6">
 								<input type="text" class="form-control" value="체크아웃" name="check" id="dpd2" style="margin-top:35px">
