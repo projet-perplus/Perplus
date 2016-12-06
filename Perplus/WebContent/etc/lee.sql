@@ -4,7 +4,7 @@ drop sequence house_seq
 
 insert into HOUSEFILTER values(1,'화장실',20,'다인실',2,'경기도 용인시 모현면');
 
-insert into HOUSEFILTER values(25,'eee',234,'333',234,'3234',0,0,0,0,0,0,0,0,0)
+
 
 insert into HOUSEZZIM values(1,25,'bbb')
 
@@ -47,7 +47,9 @@ delete from HOUSE where HOUSE_SERIAL = 1
 	insert into MEMBER values('ccc','hfgwe','중아무개','199ㄹ-02-04','남',01023,'경기',null,0,null);
 	insert into MEMBER values('ddd','xcgwe','이아무개','199ㅍ-02-04','남',01023,'경기',null,0,null);
       
-      
+ 
+	select SYSDATE from dual;
+
 		select HOUSE_SERIAL,
 		MEMBER_EMAIL,
 		HOUSE_REGISTER_STATUS,
@@ -97,3 +99,37 @@ delete from HOUSE where HOUSE_SERIAL = 1
 		HOUSEFILTER_MONEY_MIN housefilterMoneyMin,
 		HOUSEFILTER_MONEY_MAX housefilterMoneyMax
 		from HOUSEFILTER 
+		
+		select * from HOUSE where HOUSE_SERIAL = 25
+		
+		select (DATE'2008-03-23') - (DATE'2007-03-23') from dual;
+		-- filter 시작
+		
+		insert into HOUSEFILTER values(26,'eee',234,'333',234,'3234',0,0,0,0,0,2,3,0,0);
+		insert into HOUSEFILTER values(27,'eee',234,'333',234,'3234',0,0,0,0,0,6,7,0,0);
+		insert into HOUSEFILTER values(28,'eee',234,'333',234,'3234',0,0,0,0,0,8,90,0,0);
+		insert into HOUSEFILTER values(41,'eee',234,'333',234,'3234',0,0,0,0,0,5,8,0,0);
+		insert into HOUSEFILTER values(42,'eee',234,'333',234,'3234',0,0,0,0,0,2,3,0,0);
+		insert into HOUSEFILTER values(43,'eee',234,'333',234,'3234',0,0,0,0,0,9,14,0,0);
+		insert into HOUSEFILTER values(44,'eee',234,'333',234,'3234',0,0,0,0,0,21,23,0,0);
+		insert into HOUSEFILTER values(45,'eee',234,'333',234,'3234',0,0,0,0,0,3,10,0,0);
+		
+		--간단한 필터 사용 예
+		select * from HOUSE where HOUSE_SERIAL IN 
+		(
+		select HOUSE_SERIAL from HOUSEFILTER
+		--1 차적으로 house
+		--<if test ="startDay != null and endDay != null">
+--		<where>
+			 where (10-3) >= HOUSEFILTER_BAK_MIN
+			and (10-3) <= HOUSEFILTER_BAK_MAX
+--		</where>
+		--</if>
+		);
+		
+		-- 이게 된다는걸 알았으면 끝났다!!
+		select * from HOUSE where HOUSE_SERIAL = (select HOUSE_SERIAL from HOUSEFILTER where HOUSEFILTER_BAK_MIN = 21);
+
+		
+		
+		
