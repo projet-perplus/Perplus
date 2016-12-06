@@ -401,6 +401,44 @@ p {
     font-size: 26px !important;
 	
 }
+			
+			
+/* history style*/
+.tabsdiv > .ui-tabs .ui-tabs-nav {
+	padding: 15px;
+	background-color: #ddd;
+}
+
+.tabsdiv > .ui-tabs {
+	position: relative;
+	padding: 0 !important;
+}
+/* tabs */
+.tabsdiv >.ui-widget-header {
+	border: none !important;
+}
+	
+.ui-corner-all, .ui-corner-bottom, .ui-corner-right, .ui-corner-br {
+	border-bottom-right-radius:0px !important;
+}
+.ui-corner-all, .ui-corner-bottom, .ui-corner-left, .ui-corner-bl {
+    border-bottom-left-radius:0px !important;
+}
+.ui-corner-all, .ui-corner-bottom, .ui-corner-right, .ui-corner-br {
+	border-bottom-right-radius:0px !important;
+}	
+.ui-corner-all, .ui-corner-bottom, .ui-corner-left, .ui-corner-bl {
+    border-bottom-left-radius:0px !important;
+}
+.ui-corner-all, .ui-corner-top, .ui-corner-right, .ui-corner-tr {
+    border-top-right-radius:0px !important;
+}
+ .ui-corner-all, .ui-corner-top, .ui-corner-left, .ui-corner-tl {
+    border-top-left-radius:0px !important;
+}
+	
+	
+
 
 
 

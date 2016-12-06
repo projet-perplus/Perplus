@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
+<div class="tabsdiv">
 	<div id="tabs">
       <ul>
         <li><a href="#jb-tab-1">나에 대한 후기</a></li>
@@ -11,3 +12,4 @@
         <p>Tabs 2 - Ipsum</p>
       </div>
 	</div>	
+</div>

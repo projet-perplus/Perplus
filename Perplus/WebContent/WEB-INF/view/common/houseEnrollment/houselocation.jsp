@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWDGjKV2YFKGM5q6gtx-J5GcJTa2wLDQU" type="text/javascript"></script>
 
 <div class="basicheader">
 	<div class="container-fluid">
@@ -58,7 +59,4 @@
 			</div>
 		</div>
 	</div>
-</div>
-
-
 </div>
