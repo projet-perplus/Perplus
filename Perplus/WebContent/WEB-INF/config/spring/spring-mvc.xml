@@ -9,7 +9,6 @@
 
 	<mvc:annotation-driven />
 
-
 	<!-- main -->
 	<mvc:view-controller path="/main.do" view-name="main.tiles" />
 	<mvc:view-controller path="/submenu.do" view-name="submenu.tiles1" />
@@ -84,6 +83,8 @@
 	<mvc:view-controller path="/hostingcomplate.do"
 		view-name="hostingcomplete.hostingtiles" />
 
+	<mvc:view-controller path="/hotplace.do"
+		view-name="travelhotplace.hotplacetiles"/>
 
 	<mvc:annotation-driven />
 

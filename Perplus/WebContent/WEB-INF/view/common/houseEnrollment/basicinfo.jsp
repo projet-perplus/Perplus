@@ -18,8 +18,8 @@
 		</div>
 	</div>
 </div>
-<a class="navbar-img" href="${initParam.rootPath}/main.do"> <img
-	src="css/image/logos.PNG" alt="logo" />
+<a class="navbar-img" href="${initParam.rootPath}/main.do">
+	<img src="css/image/logos.PNG" alt="logo" />
 </a>
 
 
@@ -68,14 +68,17 @@
 					</div>
 					<div class="necessary" style="border: none;">
 						<ul></ul>
-						<button class="btn btn-success" id="addNecessaryButton">필수 요건 추가</button>
+						<button class="btn btn-success" id="addNecessaryButton">
+							필수 요건 추가
+						</button>
 					</div>
 				</div>
 			</div>
-
 			<div class="row row-condensed space-4 gueststepcontents">
 				<div class="col-md-offset-2 col-sm-6 col-md-8">
-					<span class="gueststep"> 게스트는 예약할 때 다음의 절차도 완료해야 합니다. </span>
+					<span class="gueststep">
+						게스트는 예약할 때 다음의 절차도 완료해야 합니다.
+					</span>
 				</div>
 			</div>
 
@@ -86,17 +89,16 @@
 							<p>* 호스트에게 여행 목적을 설명합니다</p>
 						</div>
 				</div>
-				<div class="col-xs-2 col-md-4"></div>
 			</div>
 
 			<div class="row houseBtns">
 				<div class="col-md-offset-2 col-md-4 col-xs-4 previousBtn">
-					<a href="${initParam.rootPath}/hosting.do"><button
-							class="btn btn-default">이전</button></a>
+					<a href="${initParam.rootPath}/hosting.do">
+					<button class="btn btn-default">이전</button></a>
 				</div>
 				<div class="col-md-4 col-xs-8 col-md-4 nextBtn">
-					<a href="${initParam.rootPath}/housetypeandlocation.do"><button
-							class="btn btn-default">다음</button></a>
+					<a href="${initParam.rootPath}/housetypeandlocation.do">
+					<button class="btn btn-default">다음</button></a>
 				</div>
 			</div>
 		</div>

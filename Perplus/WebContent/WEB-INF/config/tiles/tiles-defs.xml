@@ -45,9 +45,16 @@
 		<put-attribute name="linkandscripthead" value="/WEB-INF/view/common/linkandscripthead.jsp"/>
 		<put-attribute name="hosting" value="/WEB-INF/view/common/houseEnrollment/{1}.jsp" />
 	</definition>
-	
-	
 
+	<definition name="*.hotplacetiles"
+		template="/WEB-INF/view/layout/hotplacetemplate.jsp">
+		<put-attribute name="linkandscripthead" value="/WEB-INF/view/common/linkandscripthead.jsp"/>
+		<put-attribute name="header" value="/WEB-INF/view/common/header.jsp" />
+		<put-attribute name="logindialog" value="/WEB-INF/view/common/dialog/logindialog.jsp"/>
+		<put-attribute name="joindialog" value="/WEB-INF/view/common/dialog/joindialog.jsp"/>
+		<put-attribute name="hotplace" value="/WEB-INF/view/common/hotplacetemplate/{1}.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/view/common/footer.jsp" />
+	</definition>
 
 </tiles-definitions>
 

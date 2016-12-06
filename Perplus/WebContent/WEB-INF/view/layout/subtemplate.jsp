@@ -5,19 +5,15 @@
 <html>
 	<head>
 		<tiles:insertAttribute name="linkandscripthead"/>
-		
 		<script>
-		$(function(){
-			$( '#tabs' ).tabs();
-		});
+			$(function(){
+				$( '#tabs' ).tabs();
+			});
 		</script>
 	</head>
 	
 		<style>
-			a {
-				color: black !important;
-			}
-			
+	/* submenu */
 			ul>li {
 				list-style: none;
 			}
@@ -37,12 +33,14 @@
 				background-color: #484848 !important;
 			}
 			
+			
 			.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus,
 				.navbar-default .navbar-nav>.active>a:hover {
 				color: #ccc;
 				background-color: transparent !important;
 				border-bottom: solid 3px #ccc !important;
 			}
+			
 			
 			.navs li a:hover {
 				color: #ccc;
@@ -63,7 +61,7 @@
 
 	</style>
 	<body class="subbody">
-		<header>
+		<header id="mainheader">
 		  		<tiles:insertAttribute name="header"/>
   		  		<tiles:insertAttribute name="logindialog"/>
   				<tiles:insertAttribute name="joindialog"/>
