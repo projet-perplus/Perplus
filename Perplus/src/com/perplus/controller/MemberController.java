@@ -49,7 +49,5 @@ public class MemberController {
 	
 	/*****************로그인*******************/
 	
-/*	@RequestMapping("login.do")
-	public*/
 	
 }
