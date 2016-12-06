@@ -18,22 +18,24 @@
 		</div>
 	</div>
 </div>
-<a class="navbar-img" href="${initParam.rootPath}/main.do"> <img
-	src="css/image/logos.PNG" alt="logo" />
+<a class="navbar-img" href="${initParam.rootPath}/main.do">
+	<img src="css/image/logos.PNG" alt="logo" />
 </a>
+
+
 
 
 <!-- body -->
 <div class="basicbody">
 	<div class="container">
-		<div class="housesection">
-			<div class="row row-condensed space-4" style="margin-bottom: 80px;">
-				<label class="text-left col-sm-6 col-lg-4">
-					<span>숙소 유형</span>
-				</label>
-				<div class="col-sm-6 col-lg-8">
-					<div class="col-xs-10 col-md-8">
-						<div class="col-xs-6 col-md-4">
+		<div class="row row-condensed space-4">
+			<div class="col-md-offset-2 col-md-8 housesection">
+				<div class="row row-condensed space-4" style="margin-bottom: 80px;">
+					<label class="text-left col-sm-6 col-md-3">
+						<span>숙소 유형</span>
+					</label>
+					<div class="col-sm-6 col-md-6">
+						<div class="col-xs-6 col-md-6 leftform">
 							<div class="form-group">
 								<select class="form-control">
 									<option>집전체</option>
@@ -42,10 +44,10 @@
 									<option>4</option>
 								</select>
 							</div>
-						</div>
-						<div class="col-xs-6 col-md-4">
+						</div>					
+						<div class="col-xs-6 col-md-6 rightform">
 							<div class="form-group">
-								<select class="form-control">
+								<select class="form-control ">
 									<option>게스트 1명</option>
 									<option>2</option>
 									<option>3</option>
@@ -54,20 +56,19 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-xs-2 col-md-4"></div>
 				</div>
 			</div>
 		</div>
-		<div class="housesection">
-			<div class="row row-condensed space-4" style="margin-bottom: 80px;">
-				<label class="text-left col-sm-6 col-lg-4">
-					<span>건물 유형</span>
-				</label>
-				<div class="col-sm-6 col-lg-8">
-					<div class="col-xs-10 col-md-8">
-						<div class="col-xs-6 col-md-4">
+		<div class="row row-condensed space-4">
+			<div class="col-md-offset-2 col-md-8 housesection">
+				<div class="row row-condensed space-4" style="margin-bottom: 80px;">
+					<label class="text-left col-sm-6 col-md-3">
+						<span>건물 유형</span>
+					</label>
+					<div class="col-sm-6 col-md-6">
+						<div class="col-xs-6 col-md-6 leftform">
 							<div class="form-group">
-								<select class="form-control">
+								<select class="form-control ">
 									<option>집전체</option>
 									<option>2</option>
 									<option>3</option>
@@ -75,9 +76,9 @@
 								</select>
 							</div>
 						</div>
-						<div class="col-xs-6 col-md-4">
+						<div class="col-xs-6 col-md-6 rightform">
 							<div class="form-group">
-								<select class="form-control">
+								<select class="form-control " >
 									<option>게스트 1명</option>
 									<option>2</option>
 									<option>3</option>
@@ -86,18 +87,16 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-xs-2 col-md-4"></div>
 				</div>
 			</div>
 		</div>
-		
-		<div class="housesection">
-			<div class="row row-condensed space-4" style="margin-bottom: 80px;">
-				<label class="text-left col-sm-6 col-lg-4">
-					<span>숙소 위치</span>
-				</label>
-				<div class="col-sm-6 col-lg-8">
-					<div class="col-xs-10 col-md-8">
+		<div class="row row-condensed space-4">
+			<div class="col-md-offset-2 col-md-8 housesection">
+				<div class="row row-condensed space-4" style="margin-bottom: 80px;">
+					<label class="text-left col-sm-6 col-md-3">
+						<span>숙소 위치</span>
+					</label>
+					<div class="col-sm-6 col-md-6">
 						<div class="form-group">
 							<select class="form-control">
 								<option>집전체</option>
@@ -107,25 +106,20 @@
 							</select>
 						</div>
 					</div>
-					<div class="col-xs-2 col-md-4"></div>
 				</div>
 			</div>
 		</div>
-
 		<div class="row houseBtns">
-			<div class="houseBtn">
-				<div class="col-md-4 col-xs-4 previousBtn">
-					<a href="${initParam.rootPath}/basicinfo.do">
-						<button class="btn btn-default">이전</button>
-					</a>
-				</div>
-				<div class="col-md-4 col-xs-8 col-md-offset-4 nextBtn">
-					<a href="${initParam.rootPath}/houselocation.do">
-						<button class="btn btn-default">다음</button>
-					</a>
-				</div>
+			<div class="col-md-offset-2 col-md-4 col-xs-4 previousBtn">
+				<a href="${initParam.rootPath}/basicinfo.do">
+					<button class="btn btn-default">이전</button>
+				</a>
+			</div>
+			<div class="col-md-4 col-xs-8 col-md-4 nextBtn">
+				<a href="${initParam.rootPath}/houselocation.do">
+					<button class="btn btn-default">다음</button>
+				</a>
 			</div>
 		</div>
 	</div>
 </div>
-

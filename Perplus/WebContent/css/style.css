@@ -1,11 +1,17 @@
 * {
 	box-sizing: border-box !important;
 }
-
+ul>li {
+	list-style: none !important;
+}
 a:focus, a:hover {
 	text-decoration: none !important;
 	color: #000 !important;
 	border: 0 !important;
+}
+a{
+	color:#000 !important;
+	
 }
 
 .modal-open .modal, .btn:focus {
@@ -16,6 +22,9 @@ a:focus, a:hover {
 	.modal-dialog {
 		width: 350px !important;
 		margin: 30px auto;
+	}
+	.reviewEnrollment-dialog{
+		width: 380px !important;
 	}
 }
 /*화면이 768보다 작을때*/
@@ -54,6 +63,16 @@ body {
 
 p {
 	font-size: 16px;
+}
+#mainheader .navbar.navbar {
+	background-color: white !important;
+	color: black !important;
+	position: relative !important;
+	margin-top: 0px;
+}
+	
+#mainheader .navbar-default .navbar-nav1>li>a {
+	color: #000 !important;
 }
 
 .navbar-default {
@@ -246,7 +265,6 @@ p {
 }
 
 .housesection {
-	margin-top: 50px;
 	border-bottom: 2px solid #ccc;
 }
 
@@ -265,14 +283,9 @@ p {
 	font-weight: 500 !important;
 }
 
-.submenu_ul>li>a:focus {
+.submenu_ul>li.active>a, .submenu_ul>li>a:focus, .submenu_ul>li>a:hover {
 	color: #bbb !important;
 	font-weight: bold !important;
-}
-
-.submenu_ul>li>a:hover {
-	text-decoration: none !important;
-	color: #bbb !important;
 }
 
 /* right menu */
@@ -299,12 +312,18 @@ p {
 	color: #767676 !important;
 }
 
-/* househeader */
+/* househeader hosting*/
 .row-condensed>.text-left>span {
 	color: #57c3a6 !important;
 	line-height: 38px !important;
 	font-weight: bold !important;
 	font-size: 27px !important;
+}
+.row-condensed>.text-left>.subspan {
+    color: #56c2c2 !important;
+    line-height: 38px !important;
+    font-weight: bold !important;
+    font-size: 18px !important;
 }
 
 .row-condensed {
@@ -321,11 +340,6 @@ p {
 	margin-top: 30px;
 	margin-bottom: 30px;
 }
-
-.gueststep {
-	margin-left: 53px;
-}
-
 .gueststepcontent {
 	margin-top: 10px;
 	padding: 15px 0px 0px 14px;
@@ -340,11 +354,8 @@ p {
 }
 
 /*basic info houseBtn */
-.houseBtn {
-	margin-top: 80px;
-
-}
 .houseBtns{
+	margin-top: 30px;
 	margin-bottom:130px !important;
 }
 .previousBtn>a>button {
@@ -364,7 +375,13 @@ p {
 	color: #fff;
 	font-weight: bold;
 }
-
+/* housetypeandlocation */
+.leftform {
+	padding-left:0px !important;
+}
+.rightform {
+	padding-right:0px !important;
+}
 /* payment style */
 .paymentBtn {
 	background: none;
@@ -380,24 +397,89 @@ p {
     border-radius: 5px;
     margin-bottom: 10px;
 }
-
+.necessary>button{
+    float:right;
+}
+.necessary>ul{
+    list-style: none;
+    padding-left:0px;
+    
+}
+.necessary>ul>li{
+  margin-bottom: 10px;
+    
+}
 .necessary > P{
 	font-size:12px;
 	color:#555;
    	margin-top: 8px;
     margin-left: 10px;
 }
+/* payoutpreferencedialog */
+.payoutpreferencedialog > .row-condensed{
+	margin-top:0px !important;
+	margin-bottom:0px !important;
+}
 
+
+/* houselocation */
+.locationspan{
+	margin-bottom:25px !important;
+
+}
 .locationspan>span{
-	width:100%;
-	text-align;center;
     color: #57c3a6 !important;
     line-height: 38px !important;
     font-weight: bold !important;
-    font-size: 27px !important;
+    font-size: 26px !important;
 	
 }
+			
+			
+/* history style*/
+.tabsdiv > .ui-tabs .ui-tabs-nav {
+	padding: 15px;
+	background-color: #ddd;
+}
 
+.tabsdiv > .ui-tabs {
+	position: relative;
+	padding: 0 !important;
+}
+/* tabs */
+.tabsdiv >.ui-widget-header {
+	border: none !important;
+}
+	
+.ui-corner-all, .ui-corner-bottom, .ui-corner-right, .ui-corner-br {
+	border-bottom-right-radius:0px !important;
+}
+.ui-corner-all, .ui-corner-bottom, .ui-corner-left, .ui-corner-bl {
+    border-bottom-left-radius:0px !important;
+}
+.ui-corner-all, .ui-corner-bottom, .ui-corner-right, .ui-corner-br {
+	border-bottom-right-radius:0px !important;
+}	
+.ui-corner-all, .ui-corner-bottom, .ui-corner-left, .ui-corner-bl {
+    border-bottom-left-radius:0px !important;
+}
+.ui-corner-all, .ui-corner-top, .ui-corner-right, .ui-corner-tr {
+    border-top-right-radius:0px !important;
+}
+ .ui-corner-all, .ui-corner-top, .ui-corner-left, .ui-corner-tl {
+    border-top-left-radius:0px !important;
+}
+  .datepicker{z-index:2000 !important;}	
+	
+/* travelhotplace */	
+.visitDate>.col-md-5{
+	padding:0px !important;
+	margin-bottom: 15px;
+	
+}
+.visitDate>.col-md-2{
+    margin-top: 5px;
+}
 
 
 

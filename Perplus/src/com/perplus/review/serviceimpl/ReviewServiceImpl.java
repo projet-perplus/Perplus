@@ -1,5 +1,6 @@
 package com.perplus.review.serviceimpl;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -15,6 +16,7 @@ import com.perplus.review.service.ReviewService;
 import com.perplus.review.vo.ReviewCommentVo;
 import com.perplus.review.vo.ReviewPictureVo;
 import com.perplus.review.vo.ReviewVo;
+import com.perplus.util.PagingBean;
 
 @Service
 public class ReviewServiceImpl implements ReviewService{
@@ -32,12 +34,8 @@ public class ReviewServiceImpl implements ReviewService{
 	private ReviewPictureDao reviewPictureDao;
 	
 	@Override
-	public void registerReview(Map map ) {
-		List<ReviewPictureVo> reviewPicture = (List<ReviewPictureVo>) map.get("list");
-		reviewDao.insertReview((ReviewVo)map.get("review"));
-		for(int i=0; i <reviewPicture.size();i++){
-			reviewPictureDao.insertReviewPicture(reviewPicture.get(i));
-		}
+	public void registerReview(ReviewVo review ) {
+		reviewDao.insertReview(review);
 	}
 
 	@Override
@@ -46,14 +44,25 @@ public class ReviewServiceImpl implements ReviewService{
 	}
 
 	@Override
-	public void removeReview(int reviewSerial) {
-		// TODO Auto-generated method stub	
+	public void removeReview(int reviewSerial){
+		reviewCommentDao.deleteAllReviewComment(reviewSerial);
+		reviewPictureDao.deleteAllReviewPicture(reviewSerial);
 		reviewDao.deleteReview(reviewSerial);
 	}
 
 	@Override
-	public List<ReviewVo> getReview(int reviewSerial) {
-		return reviewDao.selectReviewWithCommentAndPicture(reviewSerial);
+	public ReviewVo getReview(int reviewSerial) {
+		return reviewDao.selectReviewBySerial(reviewSerial);
+	}
+
+	@Override
+	public List<ReviewVo> getMyReview(String memberEmail) {
+		return reviewDao.selectReviewByEmail(memberEmail);
+	}
+
+	@Override
+	public List<ReviewVo> getReviewList() {
+		return reviewDao.selectReviewList();
 	}
 
 	@Override
@@ -62,28 +71,63 @@ public class ReviewServiceImpl implements ReviewService{
 	}
 
 	@Override
-	public List<ReviewCommentVo> getReviewCommentList(int reviewSerial) {
-		return reviewCommentDao.selectReviewCommentListBySerial(reviewSerial);
+	public Map<String,Object> getReviewCommentList(int reviewSerial,int page) {
+		Map<String,Object> map = new HashMap<>();
+		List<ReviewCommentVo> list =reviewCommentDao.selectReviewCommentListBySerial(reviewSerial, page);
+		map.put("list",list);
+		map.put("reviewSerial", reviewSerial);
+		int totalComments = reviewCommentDao.selectReviewCommentCount(reviewSerial);
+		PagingBean bean = new PagingBean(totalComments, page);
+		map.put("pageBean", bean);
+		return map;
 	}
 	
 	@Override
-	public ReviewCommentVo getMyComment(int reviewSerial, String memberEmail) {
-		return reviewCommentDao.selectReviewCommentBySerialAndEmail(reviewSerial, memberEmail);
+	public ReviewCommentVo getMyComment(int commentSerial) {
+		return reviewCommentDao.selectReviewCommentBySerial(commentSerial);
 	}
 
 	@Override
-	public void removeReviewComment(int reviewSerial, String memberEmail) {
-		reviewCommentDao.deleteReviewComment(reviewSerial, memberEmail);
+	public void removeReviewComment(int commentSerial) {
+		reviewCommentDao.deleteReviewComment(commentSerial);
+	}
+	
+	
+
+	@Override
+	public void registerReviewComment(ReviewCommentVo reviewComment) {
+		reviewCommentDao.insertReviewComment(reviewComment);
+		
 	}
 
+	@Override
+	public void registerReviewPicture(List<ReviewPictureVo> reviewPictures) {
+		for(int i=0; i <reviewPictures.size();i++){
+			reviewPictureDao.insertReviewPicture(reviewPictures.get(i));
+		}
+	}
+
+	@Override
+	public Map<String,Object> getReviewPictureListPaging(int reviewSerial, int page) {
+		Map<String,Object> map = new HashMap<>();
+		List<ReviewPictureVo> list =reviewPictureDao.selectReviewPictureListPaging(reviewSerial, page);
+		map.put("list",list);
+		map.put("reviewSerial", reviewSerial);
+
+		int totalPictures = reviewPictureDao.selectReviewPictureCount(reviewSerial);
+		PagingBean bean = new PagingBean(totalPictures, page);
+		map.put("pageBean", bean);
+		return map;
+	}
+	
 	@Override
 	public List<ReviewPictureVo> getReviewPictureList(int reviewSerial) {
-		return reviewPictureDao.selectReviewPicturebySerial(reviewSerial);
+		return reviewPictureDao.selectReviewPictureList(reviewSerial);
 	}
-	
+
 	@Override
-	public ReviewPictureVo getReviewPicture(int reviewSerial, String pictureName) {
-		return reviewPictureDao.selectReviewPictureOne(reviewSerial, pictureName);
+	public ReviewPictureVo getReviewPicture(int pictureSerial) {
+		return reviewPictureDao.selectReviewPictureOne(pictureSerial);
 	}
 
 	@Override
@@ -92,8 +136,9 @@ public class ReviewServiceImpl implements ReviewService{
 	}
 
 	@Override
-	public void removeReviewPicture(int reviewSerial,String pictureName) {
-		reviewPictureDao.deleteReviewPicture(reviewSerial, pictureName);
+	public void removeReviewPicture(int reviewSerial) {
+		reviewPictureDao.deleteReviewPicture(reviewSerial);
 	}
+	
 	
 }

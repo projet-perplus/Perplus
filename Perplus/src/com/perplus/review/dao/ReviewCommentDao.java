@@ -5,15 +5,18 @@ import java.util.List;
 import com.perplus.review.vo.ReviewCommentVo;
 
 public interface ReviewCommentDao {
-	//리뷰 댓글 insert하는 메소드
+	//리뷰 코멘트 등록하는 메소드
 	int insertReviewComment(ReviewCommentVo reviewComment);
-	//리뷰 serial / 댓글 등록한 회원 email을 통해서 댓글 조회하는 메소드
-	ReviewCommentVo selectReviewCommentBySerialAndEmail(int reviewSerial, String memberEmail);
-	//리뷰 serial을 통해 댓글전체 조회
-	List<ReviewCommentVo> selectReviewCommentListBySerial(int reviewSerial);
-	//리뷰 serial / 댓글 등록한 회원 email을 통해서 댓글 수정
+	//해당 리뷰 코멘트 하나 조회하는 메소드
+	ReviewCommentVo selectReviewCommentBySerial(int commentSerial);
+	//해당 리뷰에 있는 모든 리뷰 코멘트 조회하는 메소드(paging처리)
+	List<ReviewCommentVo> selectReviewCommentListBySerial(int reviewSerial, int page);
+	//해당 리뷰의 총 리뷰 코멘트 수 count하는 메소드
+	int selectReviewCommentCount(int reviewSerial);
+	//해당 리뷰 코멘트 수정하는 메소드
 	int updateReviewComment(ReviewCommentVo reviewComment);
-	//리뷰 serial / 댓글 등록한 회원 email을 통해서 댓글 삭제
-	int deleteReviewComment(int reviewSerial,String memberEmail);
-	
+	//해당 리뷰 코멘트 삭제하는 메소드.
+	int deleteReviewComment(int commentSerial);
+	//리뷰 삭제 시 해당 리뷰 코멘트 모두 삭제하는 메소드
+	int deleteAllReviewComment(int reviewSerial);
 }
