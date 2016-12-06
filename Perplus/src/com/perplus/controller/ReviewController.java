@@ -61,7 +61,7 @@ public class ReviewController {
 		map.put("list", list);
 		map.put("review", reviewVo);
 		service.registerReview(map);
-		return "등록완료페이지 + reviewSerial번호 & pictureSerial값 + pictureOder........";
+		return "..";
 	}
 	@RequestMapping("")
 	public String selectReview(@RequestParam int reviewSerial,ModelMap map,@RequestParam(defaultValue="1") int page){
