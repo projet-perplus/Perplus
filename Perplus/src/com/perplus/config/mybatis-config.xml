@@ -5,7 +5,6 @@
 		<package name="com.perplus.house.vo" />
 		<package name="com.perplus.review.vo" />
 		<package name="com.perplus.member.vo" />
-		<package name="java.util"/>
 	</typeAliases>
 
 	<mappers>
