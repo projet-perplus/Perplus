@@ -41,6 +41,20 @@
 		where MEMBER_EMAIL = #{memberEmail}
 	</select>
 	
+		<select id="selectTravelBytravelSerial" parameterType="_int" resultType="TravelVo">
+		select	TRAVEL_SERIAL travelSerial,
+					TRAVEL_CODE travelCode, 
+					HOUSE_SERIAL houseSerial, 
+					MEMBER_EMAIL memberEmail, 
+					TRAVEL_START travelStart, 
+					TRAVEL_END travelEnd, 
+					TRAVEL_NUMBER travelNumber, 
+					TRAVEL_CHECKIN travelCheckin, 
+					TRAVEL_COST travelCost
+		from travel
+		where TRAVEL_SERIAL = #{travelSerial}
+	</select>
+	
 	<select id="selectTravelByTravelCode"  parameterType="_int" resultType="TravelVo">
 		select	TRAVEL_CODE travelCode, 
 					HOUSE_SERIAL houseSerial, 

@@ -15,6 +15,8 @@ import com.perplus.member.vo.PaymentVo;
 import com.perplus.member.vo.RejectVo;
 import com.perplus.member.vo.ReviewZzimVo;
 import com.perplus.member.vo.ShowMeTheMoneyVo;
+import com.perplus.member.vo.TravelVo;
+import com.perplus.util.Constants;
 
 @Service
 public class MemberServiceImpl_Jeong {
@@ -164,7 +166,18 @@ public class MemberServiceImpl_Jeong {
 		}
 	}
 	
-	public void registerShowmethemoney(){}
+	/**
+	 * showmethemoney 관련 Service
+	 * @param showmethemoney
+	 */
+	public void registerShowmethemoney(ShowMeTheMoneyVo showmethemoney){
+		try {
+			getShowmethemoneyBySerial(showmethemoney.getShowmethemoneySerial());
+		} catch (Exception e) {
+			showmethemoneyDao.insertShowmethemoney(showmethemoney);
+		}
+		
+	}
 	
 	public ShowMeTheMoneyVo getShowmethemoneyBySerial(int showmethemoneySerial) throws Exception{
 		ShowMeTheMoneyVo showmethemoney = null;
@@ -190,15 +203,78 @@ public class MemberServiceImpl_Jeong {
 	}
 	
 	public void removeShowmethemoney(int showmethemoneySerial) throws Exception{
+		ShowMeTheMoneyVo showmethemoney = null;
 		try {
-			ShowMeTheMoneyVo showmethemoney = getShowmethemoneyBySerial(showmethemoneySerial);
-			showmethemoneyDao.deleteShowmethemoney(showmethemoneySerial);
+			showmethemoney = getShowmethemoneyBySerial(showmethemoneySerial);
+			showmethemoneyDao.deleteShowmethemoney(showmethemoney.getShowmethemoneySerial());
 		} catch (Exception e) {
 			throw new Exception("삭제할 내역이 없습니다.");
 		}
 	}
 	
+	public void registerTravel(TravelVo travel) throws Exception{
+		List<TravelVo> travelList = null;
+		try { // 이메일로 모든 Travel 객체 조회
+			travelList = getAllTravel(travel.getMemberEmail()); // 조회된 객체가 없으면 Exception 발생 후 잡아서 등록
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			travelDao.insertTravel(travel);
+		}
+		
+		for(TravelVo tmp : travelList){
+			//이전 여행을 제외한 모든 객체에서 같은 House Serial 이 존재하는지 조회
+			//한번 예약한 숙소는 여행이 끝나기 전까지 다시 예약 할 수 없음
+			if(tmp.getTravelCode() != Constants.TRAVEL_CODE_PREVIOUS){
+				if(tmp.getHouseSerial() == travel.getHouseSerial()){
+					throw new Exception("이미 예약된 숙소 입니다.");
+				}
+			}
+		}
+		travelDao.insertTravel(travel);	// 같은게 없으면 등록
+	}
 	
+	public TravelVo getTravelByTravelCode(int travelCode) throws Exception{
+		TravelVo travel = null; 
+		travel = travelDao.selectTravelByTravelCode(travelCode);
+		if(travel != null){ // 조회된 값이 있다면 객체 리턴
+			return travel;
+		}else{
+			throw new Exception("조회된 예약 내역이 없습니다.");
+		}
+	}
+	
+	public List<TravelVo> getAllTravel(String memberEmail) throws Exception{
+		List<TravelVo> travelList = null;
+		travelList = travelDao.selectTravel(memberEmail);
+		
+		if(travelList != null){ // 조회된 값이 있다면 객체 리턴
+			return travelList;
+		}else{
+			throw new Exception("조회된 예약 내역이 없습니다.");
+		}
+	}
+	
+	public TravelVo getTravelbyTravelSerial(int travelSerial) throws Exception{ // 시리얼로 조회
+		TravelVo travel = null;
+		travel = travelDao.selectTravelByTravelSerial(travelSerial);
+		if(travel != null){ // 조회된 값이 있다면 객체 리턴
+			return travel;
+		}else{
+			throw new Exception("조회된 예약 내역이 없습니다.");
+		}
+	}
+	
+	public void removeTravel(int travelSerial) throws Exception{
+		TravelVo travel = null;
+		
+		try {
+			travel = getTravelbyTravelSerial(travelSerial); // 시리얼로 여행 조회 후 없으면
+		} catch (Exception e) {
+			throw new Exception("해당 여행이 존재하지 않습니다.");
+		}
+		travelDao.deleteTravel(travel.getTravelSerial());
+		
+	}
 	
 	
 	

@@ -49,4 +49,10 @@ public class TravelDaoImpl implements TravelDao{
 		return session.selectOne(makeSql(), travelCode);
 	}
 
+	@Override
+	public TravelVo selectTravelByTravelSerial(int travelSerial) {
+		// TODO Auto-generated method stub
+		return session.selectOne(makeSql(), travelSerial);
+	}
+
 }
