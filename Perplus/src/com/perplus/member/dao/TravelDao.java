@@ -23,7 +23,7 @@ public interface TravelDao {
 	int updateTravel(TravelVo travel);
 	
 	/**
-	 * Travel 객체 travelSerial로 찾아 delete
+	 * Travel 객체 travelSerial로 찾아 deleteㄴㄴㄴㄴ
 	 * @param travelSerial
 	 * @return
 	 */
