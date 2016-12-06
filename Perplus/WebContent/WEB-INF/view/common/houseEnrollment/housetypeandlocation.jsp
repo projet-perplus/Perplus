@@ -18,9 +18,11 @@
 		</div>
 	</div>
 </div>
-<a class="navbar-img" href="${initParam.rootPath}/main.do"> <img
-	src="css/image/logos.PNG" alt="logo" />
+<a class="navbar-img" href="${initParam.rootPath}/main.do">
+	<img src="css/image/logos.PNG" alt="logo" />
 </a>
+
+
 
 
 <!-- body -->

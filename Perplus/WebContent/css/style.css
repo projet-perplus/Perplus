@@ -265,14 +265,9 @@ p {
 	font-weight: 500 !important;
 }
 
-.submenu_ul>li>a:focus {
+.submenu_ul>li.active>a, .submenu_ul>li>a:focus, .submenu_ul>li>a:hover {
 	color: #bbb !important;
 	font-weight: bold !important;
-}
-
-.submenu_ul>li>a:hover {
-	text-decoration: none !important;
-	color: #bbb !important;
 }
 
 /* right menu */
@@ -321,11 +316,6 @@ p {
 	margin-top: 30px;
 	margin-bottom: 30px;
 }
-
-.gueststep {
-	margin-left: 53px;
-}
-
 .gueststepcontent {
 	margin-top: 10px;
 	padding: 15px 0px 0px 14px;
@@ -380,7 +370,18 @@ p {
     border-radius: 5px;
     margin-bottom: 10px;
 }
-
+.necessary>button{
+    float:right;
+}
+.necessary>ul{
+    list-style: none;
+    padding-left:0px;
+    
+}
+.necessary>ul>li{
+  margin-bottom: 10px;
+    
+}
 .necessary > P{
 	font-size:12px;
 	color:#555;
@@ -388,15 +389,55 @@ p {
     margin-left: 10px;
 }
 
+/* houselocation */
+.locationspan{
+	margin-bottom:25px !important;
+
+}
 .locationspan>span{
-	width:100%;
-	text-align;center;
     color: #57c3a6 !important;
     line-height: 38px !important;
     font-weight: bold !important;
-    font-size: 27px !important;
+    font-size: 26px !important;
 	
 }
+			
+			
+/* history style*/
+.tabsdiv > .ui-tabs .ui-tabs-nav {
+	padding: 15px;
+	background-color: #ddd;
+}
+
+.tabsdiv > .ui-tabs {
+	position: relative;
+	padding: 0 !important;
+}
+/* tabs */
+.tabsdiv >.ui-widget-header {
+	border: none !important;
+}
+	
+.ui-corner-all, .ui-corner-bottom, .ui-corner-right, .ui-corner-br {
+	border-bottom-right-radius:0px !important;
+}
+.ui-corner-all, .ui-corner-bottom, .ui-corner-left, .ui-corner-bl {
+    border-bottom-left-radius:0px !important;
+}
+.ui-corner-all, .ui-corner-bottom, .ui-corner-right, .ui-corner-br {
+	border-bottom-right-radius:0px !important;
+}	
+.ui-corner-all, .ui-corner-bottom, .ui-corner-left, .ui-corner-bl {
+    border-bottom-left-radius:0px !important;
+}
+.ui-corner-all, .ui-corner-top, .ui-corner-right, .ui-corner-tr {
+    border-top-right-radius:0px !important;
+}
+ .ui-corner-all, .ui-corner-top, .ui-corner-left, .ui-corner-tl {
+    border-top-left-radius:0px !important;
+}
+	
+	
 
 
 

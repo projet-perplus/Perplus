@@ -2,11 +2,12 @@
 <!DOCTYPE tiles-definitions PUBLIC 
 		"-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" 
 		"http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
-
-
+<!-- header css script tag-->
+	
 <tiles-definitions>
 	<!-- main template -->
 	<definition name="maintemplate" template="/WEB-INF/view/layout/maintemplate.jsp">
+		<put-attribute name="linkandscripthead" value="/WEB-INF/view/common/linkandscripthead.jsp"/>
 		<put-attribute name="header" value="/WEB-INF/view/common/header.jsp" />
 		<put-attribute name="logindialog" value="/WEB-INF/view/common/dialog/logindialog.jsp"/>
 		<put-attribute name="joindialog" value="/WEB-INF/view/common/dialog/joindialog.jsp"/>
@@ -22,6 +23,7 @@
 
 	<!-- sub template -->
 	<definition name="subtemplate" template="/WEB-INF/view/layout/subtemplate.jsp">
+		<put-attribute name="linkandscripthead" value="/WEB-INF/view/common/linkandscripthead.jsp"/>
 		<put-attribute name="header" value="/WEB-INF/view/common/header.jsp" />
 		<put-attribute name="logindialog" value="/WEB-INF/view/common/dialog/logindialog.jsp"/>
 		<put-attribute name="joindialog" value="/WEB-INF/view/common/dialog/joindialog.jsp"/>
@@ -40,6 +42,7 @@
 
 	<definition name="*.hostingtiles"
 		template="/WEB-INF/view/layout/houseenrollmenttemplate.jsp">
+		<put-attribute name="linkandscripthead" value="/WEB-INF/view/common/linkandscripthead.jsp"/>
 		<put-attribute name="hosting" value="/WEB-INF/view/common/houseEnrollment/{1}.jsp" />
 	</definition>
 	

@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
+<div class="tabsdiv">
 	<div id="tabs">
 	      <ul>
 	        <li><a href="#jb-tab-1">수령완료 내역</a></li>
@@ -15,4 +16,4 @@
 	        <p>Tabs 3 - Dolor</p>
 	      </div>
 	</div>
-</div>	
+</div>
