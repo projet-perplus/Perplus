@@ -1,4 +1,5 @@
 package com.perplus.member.dao;
+import java.util.List;
 //1
 import java.util.Map;
 
@@ -9,5 +10,7 @@ public interface HouseZzimDao {
 	
 	int insertHouseZzim(HouseZzimVo houseZzim);
 	
-	int deleteHouseZzim(Map<String, Object> map);
+	int deleteHouseZzimByEmail(Map<String, Object> map);
+	
+	List<HouseZzimVo> selectHouseZzimByEmail(String memberEmail);
 }

@@ -17,19 +17,19 @@ public class HowgetmoneyDaoImpl implements HowgetmoneyDao{
 	@Autowired
 	private SqlSessionTemplate session;
 
-	@Override
+	@Override//결졔수단 등록
 	public int insertHowgetmoney(HowgetmoneyVo howgetmoney) {
 		return session.insert("howgetmoney.insertHowgetmoney",howgetmoney);
 	}
 
-	@Override
+	@Override//결제수단 삭제
 	public int deleteHowgetmoney(HowgetmoneyVo howgetmoney) {
 		return session.delete("howgetmoney.deleteHowgetmoney",howgetmoney);
 	}
 
-	@Override
-	public List<HowgetmoneyVo> selectHowgetmoney(Map<String, Object> map) {
-		return session.selectList("howgetmoney.selectMyHowgetmoney", map);
+	@Override//결제수단 조회
+	public List<HowgetmoneyVo> selectHowgetmoney(String memberEmail) {
+		return session.selectList("howgetmoney.selectMyHowgetmoney", memberEmail);
 	}
 	
 	

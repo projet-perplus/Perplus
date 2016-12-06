@@ -16,23 +16,29 @@ public class HouseCommentDaoImpl implements HouseCommentDao{
 	@Autowired
 	private SqlSessionTemplate session;
 
-	@Override
+	@Override//하우스 코멘트 등록하기
 	public int insertHouseComment(HouseCommentVo houseComment) {
 		return session.insert("houseComment.insertHouseComment",houseComment);
 	}
 
-	@Override
+	@Override//하우스 코멘트 삭제하기
 	public int deleteHouseComment(Map<String, Object> map) {
 		return session.insert("houseComment.removeHouseComment",map);
 	}
 
-	@Override
+	@Override//하우스 코멘트 수정하기
 	public int modifyHouseComment(HouseCommentVo houseComment) {
 		return session.update("houseComment.updateHouseComment",houseComment);
 	}
 	
-	public List<HouseCommentVo> selectHouseComment(Map<String, Object> map){
-		return session.selectList("houseComment.selectHouseComment", map);
+	@Override//email로 코멘트 찾기(나의 댓글 보기)
+	public List<HouseCommentVo> selectHouseCommentByEmail(String memberEmail){
+		return session.selectList("houseComment.selectHouseCommentByEmail", memberEmail);
+	}
+	
+	@Override//serial로 코멘트 찾기(상세화면 뿌려주기)
+	public List<HouseCommentVo> selectHouseCommentBySerial(int houseSerial){
+		return session.selectList("houseComment.selectHouseCommentBySerial",houseSerial);
 	}
 	
 	

@@ -1,5 +1,6 @@
 
 package com.perplus.member.daoimpl;
+import java.util.List;
 //1
 import java.util.Map;
 
@@ -16,14 +17,19 @@ public class HouseZzimDaoImpl implements HouseZzimDao{
 	@Autowired
 	private SqlSessionTemplate session;
 
-	@Override
+	@Override//찜등록
 	public int insertHouseZzim(HouseZzimVo houseZzim) {
 		return session.insert("houseZzim.insertHouseZzim", houseZzim);
 	}
 
-	@Override
-	public int deleteHouseZzim(Map<String, Object> map) {
-		return session.delete("houseZzim.deleteHouseZzim", map);
+	@Override//찜 삭제
+	public int deleteHouseZzimByEmail(Map<String, Object> map) {
+		return session.delete("houseZzim.deleteHouseZzimByEmail", map);
+	}
+	
+	@Override//내가 찜한 house 찾기
+	public List<HouseZzimVo> selectHouseZzimByEmail(String memberEmail){
+		return session.selectList("houseZzim.selectHouseZzimByEmail",memberEmail);
 	}
 	
 	

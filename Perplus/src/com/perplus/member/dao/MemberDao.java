@@ -9,9 +9,9 @@ public interface MemberDao {
 	
 	int deleteMember(String memberEmail);
 	
-	int updateMember(MemberVo member);
+	int updateMember(MemberVo newData);
 	
-	int selectMemberCountByEmail(String id);
+	int selectMemberCountFindByEmail(String id);
 	
-	MemberVo selectMemberByEmail(String memberEmail);
+	MemberVo selectMemberFindByEmail(String memberEmail);
 }

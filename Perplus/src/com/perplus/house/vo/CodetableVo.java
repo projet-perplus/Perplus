@@ -6,6 +6,10 @@ public class CodetableVo implements Serializable{
 	public int codeKind;
 	public String key;
 	public String value;
+	
+	public CodetableVo() {
+		// TODO Auto-generated constructor stub
+	}
 	public CodetableVo(int codeKind, String key, String value) {
 		super();
 		this.codeKind = codeKind;

@@ -2,14 +2,21 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
 <mapper namespace="houseZzim">
+
 	<insert id="insertHouseZzim" parameterType="HouseZzimVo">
 		insert into HOUSEZZIM values(#{houseSerial},#{memberEmail})
 	</insert>
 	
-	<delete id="deleteHouseZzim" parameterType="hashmap">
-		delete from HOUSEZZIM
+	<delete id="deleteHouseZzimByEmail" parameterType="hashmap">
+		delete	from HOUSEZZIM
 		where	house_serial = #{houseSerial}
 		and		member_email = #{memberEmail}
 	</delete>
+	
+	<select id="selectHouseZzimByEmail" parameterType="string" resultType="HouseZzimVo">
+		select	house_serial houseSerial, member_email memberEmail
+		from	HOUSEZZIM
+		and		member_email = #{memberEmail}
+	</select>
 	
 </mapper>

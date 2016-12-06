@@ -15,11 +15,12 @@ public class ChattingLogDaoImpl implements ChattingLogDao{
 	@Autowired
 	private SqlSessionTemplate session;
 
-	@Override
+	@Override//채팅로그 가져오기
 	public List<ChattingLogVo> selectChattingLog(int chattingNumber) {
 		return session.selectList("chattinglog.insertchattinglog",chattingNumber);
 	}
 
+	//채팅로그 등록하기
 	public int insertChattingLog(ChattingLogVo chattingLog) {
 		return session.insert("chattinglog.insertchattinglog", chattingLog);
 	}
