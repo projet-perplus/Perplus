@@ -23,7 +23,7 @@ public interface TravelDao {
 	int updateTravel(TravelVo travel);
 	
 	/**
-	 * Travel 객체 travelSerial로 찾아 delete
+	 * Travel 객체 travelSerial로 찾아 deleteㄴㄴㄴㄴ
 	 * @param travelSerial
 	 * @return
 	 */
@@ -40,4 +40,10 @@ public interface TravelDao {
 	 * @return
 	 */
 	TravelVo selectTravelByTravelCode(int travelCode);
+	
+	/**
+	 * Travel 객체 중 Travel Code별 select 
+	 * @return
+	 */
+	TravelVo selectTravelByTravelSerial(int travelSerial);
 }

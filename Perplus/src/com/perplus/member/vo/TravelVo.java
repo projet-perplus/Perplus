@@ -14,7 +14,7 @@ public class TravelVo implements Serializable{
 	private int travelNumber;	// 숙박 인원
 	private Timestamp travelCheckin; // 첫날 입실 시간
 	private int travelCost;
-	
+	//ㅇ
 	public TravelVo() {}
 
 	public TravelVo(int travelSerial, int travelCode, int houseSerial, String memberEmail){	// 코드, 하우스 시리얼, 멤버 이메일
