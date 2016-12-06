@@ -25,7 +25,7 @@ public class ReviewDaoImpl implements ReviewDao{
 
 	@Override
 	public ReviewVo selectReviewBySerial(int reviewSerial) {
-		//serial과 이메일로 리뷰 조회하기
+		//serial로 리뷰 조회하기
 		return session.selectOne("review.selectReviewBySerial",reviewSerial);
 	}
 
@@ -39,6 +39,17 @@ public class ReviewDaoImpl implements ReviewDao{
 	public int deleteReview(int reviewSerial) {
 		return session.delete("review.deleteReview",reviewSerial);
 	}
+
+	@Override
+	public List<ReviewVo> selectReviewByEmail(String memberEmail) {
+		return session.selectList("review.selectReviewByEmail",memberEmail);
+	}
+
+	@Override
+	public List<ReviewVo> selectReviewList() {
+		return session.selectList("review.selectAllReview");
+	}
+
 
 /*	@Override
 	public List<ReviewVo> selectReviewWithCommentAndPicture(int reviewSerial) {

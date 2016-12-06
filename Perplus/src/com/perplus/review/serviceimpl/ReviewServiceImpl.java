@@ -34,12 +34,8 @@ public class ReviewServiceImpl implements ReviewService{
 	private ReviewPictureDao reviewPictureDao;
 	
 	@Override
-	public void registerReview(Map map ) {
-		List<ReviewPictureVo> reviewPicture = (List<ReviewPictureVo>) map.get("list");
-		reviewDao.insertReview((ReviewVo)map.get("review"));
-		for(int i=0; i <reviewPicture.size();i++){
-			reviewPictureDao.insertReviewPicture(reviewPicture.get(i));
-		}
+	public void registerReview(ReviewVo review ) {
+		reviewDao.insertReview(review);
 	}
 
 	@Override
@@ -57,6 +53,16 @@ public class ReviewServiceImpl implements ReviewService{
 	@Override
 	public ReviewVo getReview(int reviewSerial) {
 		return reviewDao.selectReviewBySerial(reviewSerial);
+	}
+
+	@Override
+	public List<ReviewVo> getMyReview(String memberEmail) {
+		return reviewDao.selectReviewByEmail(memberEmail);
+	}
+
+	@Override
+	public List<ReviewVo> getReviewList() {
+		return reviewDao.selectReviewList();
 	}
 
 	@Override
@@ -84,6 +90,21 @@ public class ReviewServiceImpl implements ReviewService{
 	@Override
 	public void removeReviewComment(int commentSerial) {
 		reviewCommentDao.deleteReviewComment(commentSerial);
+	}
+	
+	
+
+	@Override
+	public void registerReviewComment(ReviewCommentVo reviewComment) {
+		reviewCommentDao.insertReviewComment(reviewComment);
+		
+	}
+
+	@Override
+	public void registerReviewPicture(List<ReviewPictureVo> reviewPictures) {
+		for(int i=0; i <reviewPictures.size();i++){
+			reviewPictureDao.insertReviewPicture(reviewPictures.get(i));
+		}
 	}
 
 	@Override
