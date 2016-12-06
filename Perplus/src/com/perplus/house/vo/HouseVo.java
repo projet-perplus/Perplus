@@ -1,12 +1,10 @@
 package com.perplus.house.vo;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
-import com.perplus.member.vo.HouseCommentVo;
 import com.perplus.member.vo.HouseZzimVo;
-import com.perplus.member.vo.TravelVo;
 
 public class HouseVo implements Serializable{
 	private int houseSerial;		//house 일련번호 -> houseFilter에서 최초 생성된다.(최초 DB 접근이 houseFilter에서 일어남, 1:1 관계)
@@ -15,8 +13,8 @@ public class HouseVo implements Serializable{
 	private String houseTitle;
 	private String houseContent;
 	private String houseNecessaryCondition; //String으로 제약조건 추가로 받으며 ,와 같은 구분자로 구분한다.
-	private Timestamp houseCheckinStart;
-	private Timestamp houseCheckinEnd;
+	private Date houseCheckinStart;
+	private Date houseCheckinEnd;
 	private int houseRating;
 	private double houseMarkerX;
 	private double houseMarkerY;
@@ -25,8 +23,6 @@ public class HouseVo implements Serializable{
 	
 	private HouseFilterVo houseFilter;
 	private List<HouseZzimVo> houseZzimList;
-	private List<TravelVo> travelList;
-	private List<HouseCommentVo> houseCommentList;
 	
 	public HouseVo() {}
 
@@ -40,11 +36,9 @@ public class HouseVo implements Serializable{
 		this.houseContent = houseContent;
 	}
 	
-	
-	
 
 	public HouseVo(int houseSerial, String memberEmail, int houseRegisterStatus, String houseTitle, String houseContent,
-			String houseNecessaryCondition, Timestamp houseCheckinStart, Timestamp houseCheckinEnd, int houseRating,
+			String houseNecessaryCondition, Date houseCheckinStart, Date houseCheckinEnd, int houseRating,
 			double houseMarkerX, double houseMarkerY, double houseMarkerConstant, int housePrice) {
 		super();
 		this.houseSerial = houseSerial;
@@ -63,7 +57,7 @@ public class HouseVo implements Serializable{
 	}
 
 	public HouseVo(int houseSerial, String memberEmail, int houseRegisterStatus, String houseTitle, String houseContent,
-			String houseNecessaryCondition, Timestamp houseCheckinStart, Timestamp houseCheckinEnd, int houseRating,
+			String houseNecessaryCondition, Date houseCheckinStart, Date houseCheckinEnd, int houseRating,
 			double houseMarkerX, double houseMarkerY, double houseMarkerConstant, int housePrice,
 			HouseFilterVo houseFilter, List<HouseZzimVo> houseZzimList) {
 		super();
@@ -132,19 +126,19 @@ public class HouseVo implements Serializable{
 		this.houseNecessaryCondition = houseNecessaryCondition;
 	}
 
-	public Timestamp getHouseCheckinStart() {
+	public Date getHouseCheckinStart() {
 		return houseCheckinStart;
 	}
 
-	public void setHouseCheckinStart(Timestamp houseCheckinStart) {
+	public void setHouseCheckinStart(Date houseCheckinStart) {
 		this.houseCheckinStart = houseCheckinStart;
 	}
 
-	public Timestamp getHouseCheckinEnd() {
+	public Date getHouseCheckinEnd() {
 		return houseCheckinEnd;
 	}
 
-	public void setHouseCheckinEnd(Timestamp houseCheckinEnd) {
+	public void setHouseCheckinEnd(Date houseCheckinEnd) {
 		this.houseCheckinEnd = houseCheckinEnd;
 	}
 
@@ -204,22 +198,6 @@ public class HouseVo implements Serializable{
 		this.houseZzimList = houseZzimList;
 	}
 
-	public List<TravelVo> getTravelList() {
-		return travelList;
-	}
-
-	public void setTravelList(List<TravelVo> travelList) {
-		this.travelList = travelList;
-	}
-
-	public List<HouseCommentVo> getHouseCommentList() {
-		return houseCommentList;
-	}
-
-	public void setHouseCommentList(List<HouseCommentVo> houseCommentList) {
-		this.houseCommentList = houseCommentList;
-	}
-
 	@Override
 	public String toString() {
 		return "HouseVo [houseSerial=" + houseSerial + ", memberEmail=" + memberEmail + ", houseRegisterStatus="
@@ -228,7 +206,7 @@ public class HouseVo implements Serializable{
 				+ ", houseCheckinEnd=" + houseCheckinEnd + ", houseRating=" + houseRating + ", houseMarkerX="
 				+ houseMarkerX + ", houseMarkerY=" + houseMarkerY + ", houseMarkerConstant=" + houseMarkerConstant
 				+ ", housePrice=" + housePrice + ", houseFilter=" + houseFilter + ", houseZzimList=" + houseZzimList
-				+ ", travelList=" + travelList + ", houseCommentList=" + houseCommentList + "]";
+				+ "]";
 	}
 
 	@Override
@@ -237,7 +215,6 @@ public class HouseVo implements Serializable{
 		int result = 1;
 		result = prime * result + ((houseCheckinEnd == null) ? 0 : houseCheckinEnd.hashCode());
 		result = prime * result + ((houseCheckinStart == null) ? 0 : houseCheckinStart.hashCode());
-		result = prime * result + ((houseCommentList == null) ? 0 : houseCommentList.hashCode());
 		result = prime * result + ((houseContent == null) ? 0 : houseContent.hashCode());
 		result = prime * result + ((houseFilter == null) ? 0 : houseFilter.hashCode());
 		long temp;
@@ -255,7 +232,6 @@ public class HouseVo implements Serializable{
 		result = prime * result + ((houseTitle == null) ? 0 : houseTitle.hashCode());
 		result = prime * result + ((houseZzimList == null) ? 0 : houseZzimList.hashCode());
 		result = prime * result + ((memberEmail == null) ? 0 : memberEmail.hashCode());
-		result = prime * result + ((travelList == null) ? 0 : travelList.hashCode());
 		return result;
 	}
 
@@ -277,11 +253,6 @@ public class HouseVo implements Serializable{
 			if (other.houseCheckinStart != null)
 				return false;
 		} else if (!houseCheckinStart.equals(other.houseCheckinStart))
-			return false;
-		if (houseCommentList == null) {
-			if (other.houseCommentList != null)
-				return false;
-		} else if (!houseCommentList.equals(other.houseCommentList))
 			return false;
 		if (houseContent == null) {
 			if (other.houseContent != null)
@@ -327,12 +298,8 @@ public class HouseVo implements Serializable{
 				return false;
 		} else if (!memberEmail.equals(other.memberEmail))
 			return false;
-		if (travelList == null) {
-			if (other.travelList != null)
-				return false;
-		} else if (!travelList.equals(other.travelList))
-			return false;
 		return true;
 	}
+
 
 }
