@@ -25,7 +25,7 @@ public class ReviewVo implements Serializable{
 	private MemberVo member;
 	
 	//생성자
-	ReviewVo(){}
+	public ReviewVo(){}
 
 	public ReviewVo(int reviewSerial, String memberEmail, String reviewTitle, String reviewContent, int reviewRating,
 			Date reviewTime, double reviewMarkerX, double reviewMarkerY, int reviewMarkerConstant) {
