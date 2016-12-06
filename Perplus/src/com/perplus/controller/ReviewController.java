@@ -31,9 +31,7 @@ public class ReviewController {
 	@Autowired
 	private ReviewService service;
 	
-	/*********************리뷰 글 등록
-	 * @throws IOException 
-	 * @throws IllegalStateException ***********************/
+	/******************리뷰 글 등록*****************/
 	@RequestMapping(value="/registerReview", method=RequestMethod.POST)
 	public String registerReview(@ModelAttribute ReviewVo reviewVo, @ModelAttribute ReviewPictureVo reviewPictureVo, HttpServletRequest request) throws IllegalStateException, IOException{
 		ReviewPictureVo picture = new ReviewPictureVo();
@@ -64,27 +62,39 @@ public class ReviewController {
 			}
 		}
 		service.registerReviewPicture(list);
-		return "..";
+		return "리뷰상세보기페이지~? 리뷰 등록 성공페이지?";
 	}
+	/******************리뷰 글 수정*****************/
+	
+	
+	
+	
+	/*****************리뷰 글 삭제*****************/
+	
+	
+	
+	
+	/******************리뷰 코멘트 등록*****************/
 	@RequestMapping("")
 	public String registerReviewComment(@ModelAttribute ReviewCommentVo reviewComment, @RequestParam int reviewSerial){
 		reviewComment.setReviewSerial(reviewSerial);
 		service.registerReviewComment(reviewComment);
 		return"리뷰 상세보기 페이지";
 	}
+	/*******************리뷰 코멘트 수정****************/
 	@RequestMapping("")
 	public String modifyReviewComment(@ModelAttribute ReviewCommentVo reviewComment, @RequestParam int reviewSerial){
 		reviewComment.setReviewSerial(reviewSerial);
 		service.modifyReviewComment(reviewComment);
 		return"리뷰 상세보기 페이지";
 	}
-	
+	/******************리뷰 코멘트 삭제*****************/
 	@RequestMapping("")
 	public String removeReviewComment(@RequestParam int	commentSerial){
 		service.removeReviewComment(commentSerial);
 		return"리뷰상세보기페이지";
 	}
-	
+	/******************리뷰 상세 보기*****************/
 	@RequestMapping("")
 	public String selectReview(@RequestParam int reviewSerial,ModelMap map,@RequestParam(defaultValue="1") int page){
 		ReviewVo review = service.getReview(reviewSerial);
@@ -93,7 +103,7 @@ public class ReviewController {
 		map.put("review", review);
 		map.put("pictures", reviewPictures);
 		map.put("comments", comments);
-		return "조회페이지";
+		return "리뷰 조회페이지";
 	}
 
 }
