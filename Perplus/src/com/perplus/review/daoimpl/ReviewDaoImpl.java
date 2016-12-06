@@ -23,16 +23,10 @@ public class ReviewDaoImpl implements ReviewDao{
 		return session.insert("review.insertReview", review);
 	}
 
-/*	@Override
-	public ReviewVo selectReviewBySerialAndEmail(int reviewSerial, String memberEmail) {
-		//serial과 이메일로 리뷰 조회하기
-		return session.selectOne("review.selectReviewBySerialAndEmail");
-	}*/
-
 	@Override
 	public ReviewVo selectReviewBySerial(int reviewSerial) {
-		// TODO Auto-generated method stub
-		return session.selectOne("review.selectReviewBySerial");
+		//serial과 이메일로 리뷰 조회하기
+		return session.selectOne("review.selectReviewBySerial",reviewSerial);
 	}
 
 	@Override
@@ -46,11 +40,11 @@ public class ReviewDaoImpl implements ReviewDao{
 		return session.delete("review.deleteReview",reviewSerial);
 	}
 
-	@Override
+/*	@Override
 	public List<ReviewVo> selectReviewWithCommentAndPicture(int reviewSerial) {
 		// TODO Auto-generated method stub
 		return session.selectList("review.selectReviewWithCommentAndPicture",reviewSerial);
 	}
-	
+	*/
 	
 }

@@ -4,7 +4,22 @@ drop sequence house_seq
 
 insert into HOUSEFILTER values(1,'화장실',20,'다인실',2,'경기도 용인시 모현면');
 
-insert into HOUSEFILTER values(HOUSE_SEQ.nextval,'eee',234,'333',234,'3234')
+insert into HOUSEFILTER values(25,'eee',234,'333',234,'3234',0,0,0,0,0,0,0,0,0)
+
+insert into HOUSEZZIM values(1,25,'bbb')
+
+insert into CHECKLIST values(1,25,'아앙1','앙아');
+insert into CHECKLIST values(2,25,'아앙2','앙아');
+insert into CHECKLIST values(3,25,'아앙3','앙아');
+insert into CHECKLIST values(4,25,'아앙4','앙아');
+insert into CHECKLIST values(5,26,'아앙4','앙아');
+insert into CHECKLIST values(6,24,'아앙4','앙아');
+
+insert into SHUTDOWN values(1,25,'2015-10-11');
+insert into SHUTDOWN values(2,25,'2015-10-12');
+insert into SHUTDOWN values(3,26,'2015-10-13');
+insert into SHUTDOWN values(4,26,'2015-10-14');
+insert into SHUTDOWN values(5,23,'2015-10-15');
 
 update HOUSEFILTER 
 set HOUSE_RANGE='집전체', HOUSE_GUEST_NUMBER=4, HOUSE_TYPE='초가집', HOUSE_ROOM_NUMBER=3, HOUSE_LOCATION='경기'
