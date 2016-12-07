@@ -41,10 +41,6 @@ public class MemberServiceImpl_Jeong {
 	private TravelDao travelDao;
 	
 	
-	public boolean isExistPayment(int cardSerial){
-		return paymentDao.selectPaymentByCardSerial(cardSerial) != null; // 객체가 있으면 true 반환
-	}
-	
 	/**
 	 * Payment 관련 Service
 	 * @param payment
@@ -212,6 +208,11 @@ public class MemberServiceImpl_Jeong {
 		}
 	}
 	
+	/**
+	 * Travel  관련 Service
+	 * @param travel
+	 * @throws Exception
+	 */
 	public void registerTravel(TravelVo travel) throws Exception{
 		List<TravelVo> travelList = null;
 		try { // 이메일로 모든 Travel 객체 조회

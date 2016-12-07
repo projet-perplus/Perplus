@@ -9,20 +9,20 @@ public class PaymentVo {
 	private String paymentType;	// 결제 회사
 	private int cardNumber;
 	private Date cardExpiration;
-	private String cardSecondName;	// 이름
-	private String cardFirstName;	//이름의  성
+	private String cardName; // 이름
+	private int cardCvc; //cvc 번호
 	
 	public PaymentVo() {}
 
 	public PaymentVo(int cardSerial, String memberEmail, String paymentType, int cardNumber, Date cardExpiration,
-			String cardSecondName, String cardFirstName) {
+			String cardName, int cardCvc) {
 		this.cardSerial = cardSerial;
 		this.memberEmail = memberEmail;
 		this.paymentType = paymentType;
 		this.cardNumber = cardNumber;
 		this.cardExpiration = cardExpiration;
-		this.cardSecondName = cardSecondName;
-		this.cardFirstName = cardFirstName;
+		this.cardName = cardName;
+		this.cardCvc = cardCvc;
 	}
 
 	public int getCardSerial() {
@@ -65,30 +65,30 @@ public class PaymentVo {
 		this.cardExpiration = cardExpiration;
 	}
 
-	public String getCardSecondName() {
-		return cardSecondName;
+	public String getCardName() {
+		return cardName;
 	}
 
-	public void setCardSecondName(String cardSecondName) {
-		this.cardSecondName = cardSecondName;
+	public void setCardName(String cardName) {
+		this.cardName = cardName;
 	}
 
-	public String getCardFirstName() {
-		return cardFirstName;
+	public int getCardCvc() {
+		return cardCvc;
 	}
 
-	public void setCardFirstName(String cardFirstName) {
-		this.cardFirstName = cardFirstName;
+	public void setCardCvc(int cardCvc) {
+		this.cardCvc = cardCvc;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + cardCvc;
 		result = prime * result + ((cardExpiration == null) ? 0 : cardExpiration.hashCode());
-		result = prime * result + ((cardFirstName == null) ? 0 : cardFirstName.hashCode());
+		result = prime * result + ((cardName == null) ? 0 : cardName.hashCode());
 		result = prime * result + cardNumber;
-		result = prime * result + ((cardSecondName == null) ? 0 : cardSecondName.hashCode());
 		result = prime * result + cardSerial;
 		result = prime * result + ((memberEmail == null) ? 0 : memberEmail.hashCode());
 		result = prime * result + ((paymentType == null) ? 0 : paymentType.hashCode());
@@ -104,22 +104,19 @@ public class PaymentVo {
 		if (getClass() != obj.getClass())
 			return false;
 		PaymentVo other = (PaymentVo) obj;
+		if (cardCvc != other.cardCvc)
+			return false;
 		if (cardExpiration == null) {
 			if (other.cardExpiration != null)
 				return false;
 		} else if (!cardExpiration.equals(other.cardExpiration))
 			return false;
-		if (cardFirstName == null) {
-			if (other.cardFirstName != null)
+		if (cardName == null) {
+			if (other.cardName != null)
 				return false;
-		} else if (!cardFirstName.equals(other.cardFirstName))
+		} else if (!cardName.equals(other.cardName))
 			return false;
 		if (cardNumber != other.cardNumber)
-			return false;
-		if (cardSecondName == null) {
-			if (other.cardSecondName != null)
-				return false;
-		} else if (!cardSecondName.equals(other.cardSecondName))
 			return false;
 		if (cardSerial != other.cardSerial)
 			return false;
@@ -139,7 +136,7 @@ public class PaymentVo {
 	@Override
 	public String toString() {
 		return "PaymentVo [cardSerial=" + cardSerial + ", memberEmail=" + memberEmail + ", paymentType=" + paymentType
-				+ ", cardNumber=" + cardNumber + ", cardExpiration=" + cardExpiration + ", cardSecondName="
-				+ cardSecondName + ", cardFirstName=" + cardFirstName + "]";
+				+ ", cardNumber=" + cardNumber + ", cardExpiration=" + cardExpiration + ", cardName=" + cardName
+				+ ", cardCvc=" + cardCvc + "]";
 	}
 }
