@@ -67,10 +67,11 @@ public class MemberController {
 		return loginCheckResult;
 	}
 	
-	@RequestMapping()
-	public void asdf(@ModelAttribute MemberVo member, HttpSession session){
-		String memberEmail = member.getMemberEmail();
-		service.updateMember(member);
+	/*******************로그아웃****************************/
+	@RequestMapping("logout.do")
+	public String logout(HttpSession session){
+		session.invalidate();
+		return "/main.do";
 	}
 	
 }
