@@ -5,10 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <link rel="stylesheet" href="css/style.css"><!-- perplus css -->
-<link href="css/bootstrap.min.css" rel="stylesheet"><!-- bootstrap css -->
-<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-<link href="css/jquery-ui.min.css" rel="stylesheet">
-<link href="css/datepicker.css" rel="stylesheet"><!-- bootstrap datepicker css -->
+<link rel="stylesheet" href="css/bootstrap.min.css"><!-- bootstrap css -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="css/jquery-ui.min.css">
+<link rel="stylesheet" href="css/datepicker.css" ><!-- bootstrap datepicker css -->
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> <!-- jquery script -->
 <script src="js/jquery-ui.min.js"></script>
