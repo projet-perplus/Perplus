@@ -5,13 +5,8 @@
 	<head>
 		<tiles:insertAttribute name="linkandscripthead"/>
     </head>
-	 <style>
-		.form-control{
-			font-size:12px !important; 
-		}
-	 </style>
-	  
-	 <body >
+
+	 <body>
 	 	<!-- class="hostingimg" -->
 	 	<tiles:insertAttribute name="hosting"/>
 	 </body>

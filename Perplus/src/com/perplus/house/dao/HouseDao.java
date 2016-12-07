@@ -1,5 +1,8 @@
 package com.perplus.house.dao;
 
+import java.util.HashMap;
+import java.util.List;
+
 import com.perplus.house.vo.HouseVo;
 
 public interface HouseDao {
@@ -12,5 +15,9 @@ public interface HouseDao {
 	
 	HouseVo selectHouseByHouseSerial(int houseSerial);
 	
+	HouseVo selectHouseWithJoinOfDetailPage(int houseSerial);
 	
+	List<HouseVo> selectHouseListByMemberEmail(String memberEmail);
+	
+	List<HouseVo> selectHouseListByFilter(HashMap map);
 }

@@ -3,35 +3,36 @@
 
 <mapper namespace="house">
 	<sql id="default-house-select">
-		select HOUSE_SERIAL,
-		MEMBER_EMAIL,
-		HOUSE_REGISTER_STATUS,
-		HOUSE_TITLE,
-		HOUSE_CONTENT,
-		HOUSE_NECESSARY_CONDITION,
-		HOUSE_CHECKIN_START,
-		HOUSE_CHECKIN_END,
-		HOUSE_RATING,
-		HOUSE_MARKER_X,
-		HOUSE_MARKER_Y,
-		HOUSE_MARKER_CONSTANT,
-		HOUSE_PRICE
+		select 
+		HOUSE_SERIAL houseSerial,
+		MEMBER_EMAIL memberEmail,
+		HOUSE_REGISTER_STATUS houseRegisterStatus,
+		HOUSE_TITLE houseTitle,
+		HOUSE_CONTENT houseContent,
+		HOUSE_NECESSARY_CONDITION houseNecessaryCondition,
+		HOUSE_CHECKIN_START houseCheckinStart,
+		HOUSE_CHECKIN_END houseCheckinEnd,
+		HOUSE_RATING houseRating,
+		HOUSE_MARKER_X houseMarkerX,
+		HOUSE_MARKER_Y houseMarkerY,
+		HOUSE_MARKER_CONSTANT houseMarkerConstant,
+		HOUSE_PRICE housePrice
 		from HOUSE
 	</sql>
 	<sql id="filter-house-select">
-		select HOUSE_SERIAL,
-		MEMBER_EMAIL,
-		HOUSE_REGISTER_STATUS,
-		HOUSE_TITLE,
-		HOUSE_CONTENT,
-		HOUSE_NECESSARY_CONDITION,
-		HOUSE_CHECKIN_START,
-		HOUSE_CHECKIN_END,
-		HOUSE_RATING,
-		HOUSE_MARKER_X,
-		HOUSE_MARKER_Y,
-		HOUSE_MARKER_CONSTANT,
-		HOUSE_PRICE
+		select HOUSE_SERIAL houseSerial,
+		MEMBER_EMAIL memberEmail,
+		HOUSE_REGISTER_STATUS houseRegisterStatus,
+		HOUSE_TITLE houseTitle,
+		HOUSE_CONTENT houseContent,
+		HOUSE_NECESSARY_CONDITION houseNecessaryCondition,
+		HOUSE_CHECKIN_START houseCheckinStart,
+		HOUSE_CHECKIN_END houseCheckinEnd,
+		HOUSE_RATING houseRating,
+		HOUSE_MARKER_X houseMarkerX,
+		HOUSE_MARKER_Y houseMarkerY,
+		HOUSE_MARKER_CONSTANT houseMarkerConstant,
+		HOUSE_PRICE housePrice
 	</sql>
 	<sql id ="house-houseFilter-checkList-shutDown-houseZzim-join">
 		select 
@@ -60,6 +61,7 @@
 		<result column="HOUSE_MARKER_CONSTANT" property="houseMarkerConstant"/>
 		<result column="HOUSE_PRICE" property="housePrice"/>
 	</resultMap>
+	<!-- 아마 houseZzimList는 하나만 select 될 것이다(해당 회원이 해당 숙소에 찜을 했는가만 필요하기 때문에) -->
 	<resultMap type="housevo" id="house-housefilter-shutdown-checklist-housezzim-join-resultmap" extends="house-basic-resultmap">
 		<association property="houseFilter"  javaType="HouseFilterVo" resultMap="housefilter.housefilter-shutdown-checklist-join-resultmap"/>
 		<collection property="houseZzimList" ofType="HouseZzimVo">
@@ -111,12 +113,32 @@
 		where MEMBER_EMAIL = #{value}
 	</select>
 	<!-- 필터를 통해 등록한 집을 select -> 각 필터 객체들을 hashmap으로 받아 각 where문을 통해 비교-->
-	<select id="selectHouseByFilter" parameterType="hashmap" resultType="housevo">
-		<include refid="filter-house-select"/>
-		from(
-			select
+	<!-- 
+		HashMap List
+		1. endDay , startDay
+		2. guestNumber
+		3. wholeRoom , privateRoom , sharedRoom
+		4. housePrice
+		5-1. bedRoomNumber , bathRoomNumber, bedNumber
+		5-2. 각 체크리스트 key값 (코드테이블 참조)
+	 -->
+	<select id="selectHouseListByFilter" parameterType="hashmap" resultType="housevo">
+<!-- 		<include refid="filter-house-select"/> -->
+		<!-- 최종 HOUSE 테이블의 값을 select -->
+		select HOUSE_SERIAL houseSerial
+		from HOUSE 
+		where HOUSE_SERIAL IN
+		(
+		<!-- 모든 탈락을 이겨낸 최종적 JOINED HOUSEFILTER() 의 HOUSE_SERIAL을 select -->
+		select HOUSE_SERIAL from HOUSEFILTER
+		<where>
+			and (CAST(#{endDay} as date)-CAST(#{startDay} as date)) <![CDATA[>=]]>  HOUSEFILTER_BAK_MIN
+			and (CAST(#{endDay} as date)-CAST(#{startDay} as date)) <![CDATA[<=]]> HOUSEFILTER_BAK_MAX
+		</where>
 		)
 	</select>
+	
+
 </mapper>
 <!-- 
 select memberId,password,memberName,email,mileage 

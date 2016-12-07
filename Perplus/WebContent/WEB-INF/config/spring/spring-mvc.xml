@@ -84,9 +84,8 @@
 	<mvc:view-controller path="/hostingcomplate.do"
 		view-name="hostingcomplete.hostingtiles" />
 
-
-	<mvc:annotation-driven />
-
+	<mvc:view-controller path="/hotplace.do"
+		view-name="travelhotplace.hotplacetiles"/>
 
 	<bean name="dataSource" class="org.apache.commons.dbcp2.BasicDataSource"
 		p:driverClassName="oracle.jdbc.driver.OracleDriver" p:url="jdbc:oracle:thin:@127.0.0.1:1521:XE"
