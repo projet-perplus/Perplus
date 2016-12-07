@@ -8,18 +8,51 @@ insert into HOUSEFILTER values(1,'화장실',20,'다인실',2,'경기도 용인�
 
 insert into HOUSEZZIM values(1,25,'bbb')
 
-insert into CHECKLIST values(1,25,'아앙1','앙아');
-insert into CHECKLIST values(2,25,'아앙2','앙아');
-insert into CHECKLIST values(3,25,'아앙3','앙아');
-insert into CHECKLIST values(4,25,'아앙4','앙아');
-insert into CHECKLIST values(5,26,'아앙4','앙아');
-insert into CHECKLIST values(6,24,'아앙4','앙아');
+insert into CHECKLIST values(CHECKLIST_SEQ.nextval,25,15,'필수품목');
+insert into CHECKLIST values(CHECKLIST_SEQ.nextval,25,16,'연기 감지기');
+insert into CHECKLIST values(CHECKLIST_SEQ.nextval,27,15,'에어컨');
+insert into CHECKLIST values(CHECKLIST_SEQ.nextval,25,17,'부엌');
+insert into CHECKLIST values(CHECKLIST_SEQ.nextval,28,17,'헬스장');
+insert into CHECKLIST values(CHECKLIST_SEQ.nextval,24,15,'다리미');
+insert into CHECKLIST values(CHECKLIST_SEQ.nextval,27,16,'소화기');
+insert into CHECKLIST values(CHECKLIST_SEQ.nextval,28,17,'엘리베이터');
+insert into CHECKLIST values(CHECKLIST_SEQ.nextval,28,15,'헤어 드라이기');
+insert into CHECKLIST values(CHECKLIST_SEQ.nextval,28,17,'수영장');
+insert into CHECKLIST values(CHECKLIST_SEQ.nextval,27,16,'일산화탄소 감지기');
+insert into CHECKLIST values(CHECKLIST_SEQ.nextval,24,16,'안전카드');
+insert into CHECKLIST values(CHECKLIST_SEQ.nextval,44,16,'안전카드');
+
+
 
 insert into SHUTDOWN values(1,25,'2015-10-11');
 insert into SHUTDOWN values(2,25,'2015-10-12');
 insert into SHUTDOWN values(3,26,'2015-10-13');
 insert into SHUTDOWN values(4,26,'2015-10-14');
-insert into SHUTDOWN values(5,23,'2015-10-15');
+insert into SHUTDOWN values(5,28,'2015-10-15');
+insert into SHUTDOWN values(6,25,'2015-10-11');
+insert into SHUTDOWN values(7,25,'2015-10-12');
+insert into SHUTDOWN values(8,26,'2015-10-13');
+insert into SHUTDOWN values(9,26,'2015-10-20');
+insert into SHUTDOWN values(10,44,'2015-10-15');
+insert into SHUTDOWN values(11,26,'2015-10-20');
+-- 완성이다 ㅠㅠ 이제 남은건 CHECKLIST 뿐...
+select DISTINCT HOuSE_SERIAL from (
+	select DISTINCT HOUSE_SERIAL from SHUTDOWN
+where HOUSE_SERIAL NOT IN (
+	select DISTINCT HOUSE_SERIAL from SHUTDOWN
+	where SHUTDOWN_DATE between '2015-10-12' and '2015-10-14'
+) UNION ALL select DISTINCT HOUSE_SERIAL from CHECKLIST where HOUSE_SERIAL = 26
+or HOUSE_SERIAL = 28 or HOUSE_SERIAL = 44
+) group by HOUSE_SERIAL HAVING count(*)>1
+
+select DISTINCT HOUSE_SERIAL from SHUTDOWN
+where HOUSE_SERIAL NOT IN (
+	select DISTINCT HOUSE_SERIAL from SHUTDOWN
+	where SHUTDOWN_DATE between '2015-10-12' and '2015-10-14'
+)
+
+select DISTINCT HOUSE_SERIAL from SHUTDOWN
+	where SHUTDOWN_DATE NOT between '2015-10-12' and '2015-10-14'
 
 update HOUSEFILTER 
 set HOUSE_RANGE='집전체', HOUSE_GUEST_NUMBER=4, HOUSE_TYPE='초가집', HOUSE_ROOM_NUMBER=3, HOUSE_LOCATION='경기'
@@ -131,5 +164,30 @@ delete from HOUSE where HOUSE_SERIAL = 1
 		select * from HOUSE where HOUSE_SERIAL = (select HOUSE_SERIAL from HOUSEFILTER where HOUSEFILTER_BAK_MIN = 21);
 
 		
+		select DISTINCT h.HOUSE_SERIAL,
+		h.HOUSEFILTER_RANGE,
+		h.HOUSEFILTER_GUEST_NUMBER,
+		h.HOUSEFILTER_TYPE,
+		h.HOUSEFILTER_ROOM_NUMBER,
+		h.HOUSEFILTER_LOCATION,
+		h.HOUSEFILTER_BEDROOM_NUMBER,
+		h.HOUSEFILTER_BATHROOM_NUMBER,
+		h.HOUSEFILTER_BED_NUMBER,
+		h.HOUSEFILTER_CHECKIN_TERM,
+		h.HOUSEFILTER_RESERVATION_TERM,
+		h.HOUSEFILTER_BAK_MIN,
+		h.HOUSEFILTER_BAK_MAX,
+		h.HOUSEFILTER_MONEY_MIN,
+		h.HOUSEFILTER_MONEY_MAX 
+		from HOUSEFILTER h , SHUTDOWN s
+		;
 		
+		select HOUSE_SERIAL from 
 		
+select HOUSE_SERIAL from		
+	(select HOUSE_SERIAL 
+		from CHECKLIST 
+		where VALUE in
+		('필수품목','연기 감지기')
+	)
+group by HOUSE_SERIAL HAVING COUNT(*) = 2(여기에 size)

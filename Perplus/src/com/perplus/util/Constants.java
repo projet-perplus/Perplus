@@ -13,4 +13,11 @@ public interface Constants {
 	static final int TRAVEL_CODE_RESER_APPROVAL = 12; // Host 승인 후 결제 대기
 	static final int TRAVEL_CODE_PAYED = 13; // 결제 완료
 	static final int TRAVEL_CODE_TRAVELING = 14; // 여행중인 상태
+	
+	
+	//Code_Table
+	//CheckList
+	int CODE_KIND_CHECKLIST_COMFORT_FACILITY = 15;
+	int CODE_KIND_CHECKLIST_SAFE_FACILITY = 16;
+	int CODE_KIND_CHECKLIST_COMMON_FACILITY = 17;
 }

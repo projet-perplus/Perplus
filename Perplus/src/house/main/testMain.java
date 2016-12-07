@@ -12,7 +12,7 @@ import com.perplus.house.daoimpl.HouseFilterDaoImpl;
 
 public class testMain {
 	public static void main(String[] args) throws ParseException {
-		ClassPathXmlApplicationContext abc = new ClassPathXmlApplicationContext("spring-mvc.xml");
+		ClassPathXmlApplicationContext abc = new ClassPathXmlApplicationContext("test-mvc.xml");
 		
 		HouseFilterDaoImpl hf = (HouseFilterDaoImpl)abc.getBean("houseFilterDaoImpl");
 		HouseDaoImpl h = (HouseDaoImpl)abc.getBean("houseDaoImpl");
