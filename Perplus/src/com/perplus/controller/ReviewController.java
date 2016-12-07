@@ -29,6 +29,7 @@ import com.perplus.review.vo.ReviewVo;
 @Controller
 @RequestMapping("/review")
 public class ReviewController {
+
 	@Autowired
 	private ReviewService service;
 	/*****************************로그인 체크 필요***********************************/
@@ -118,5 +119,6 @@ public class ReviewController {
 		modelMap.put("comments", map);
 		return "리뷰 조회페이지";
 	}
+
 
 }
