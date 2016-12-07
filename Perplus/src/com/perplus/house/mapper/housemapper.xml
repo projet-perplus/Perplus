@@ -122,23 +122,69 @@
 		5-1. bedRoomNumber , bathRoomNumber, bedNumber
 		5-2. 각 체크리스트 key값 (코드테이블 참조)
 	 -->
-	<select id="selectHouseListByFilter" parameterType="hashmap" resultType="housevo">
+	<select id="selectHouseListByFilter" parameterType="hashmap" resultType="_int">
 <!-- 		<include refid="filter-house-select"/> -->
 		<!-- 최종 HOUSE 테이블의 값을 select -->
 		select HOUSE_SERIAL houseSerial
 		from HOUSE 
 		where HOUSE_SERIAL IN
 		(
-		<!-- 모든 탈락을 이겨낸 최종적 JOINED HOUSEFILTER() 의 HOUSE_SERIAL을 select -->
-		select HOUSE_SERIAL from HOUSEFILTER
+		<!-- 모든 탈락을 이겨낸 최종적 HOUSEFILTER() 의 HOUSE_SERIAL을 select -->
+		select HOUSE_SERIAL
+		<!-- HOUSEFILTER에 join되 있는 CHECKLIST , SHUTDOWN의 탈락 여부를 통해 먼저 HOUSEFILTER 범위를 좁혀낸 다음에 HOUSEFILTER 자신의 -->
+		from (
+			<include refid="housefilter.default-house-filter-select-forDB"/>
+			<!-- 여기서 where 조건으로 오게되는 것은 필터로 거른 CHECKLIST 와 SHUTDOWN 의  공통되는 HOUSESERIAL
+			 중복 제거는 SELECT DISTINCT, 공통분모 찾기는 HAVING COUNT(HOUSE_SERIAL) = 2 로 해결
+			 -->
+			 <!--
+			 	아래의 코드가 endDay 와 StartDay 사이에 SHUTDOWN날이 없는 HOUSE_SERIAL 검출 코드이다
+			 	(if 로 endDay startDay 검출 필요)
+			 	-->
+			 	<!-- 
+			 	select DISTINCT HOUSE_SERIAL from SHUTDOWN
+				where HOUSE_SERIAL NOT IN (
+					select DISTINCT HOUSE_SERIAL from SHUTDOWN
+					where SHUTDOWN_DATE between '2015-10-12' and '2015-10-14'
+				)
+			  -->
+			  <!-- 아래가 필터를 검출한 HOUSE_SERIAL 중 중복 값 만을 출력 한 것이다. 
+			  -->
+			<where>			
+				select DISTINCT HOUSE_SERIAL from
+<!-- 				<choose> -->
+<!-- 				<when test ="#{endDay} = null " -->
+				<if test ="#{endDay} != null and #{startDay} !=null">
+				(
+				  	<!-- SHUTDOWN -->
+				  	select DISTINCT HOUSE_SERIAL 
+				  	from SHUTDOWN
+					where HOUSE_SERIAL NOT IN (
+						select DISTINCT HOUSE_SERIAL 
+						from SHUTDOWN
+						where SHUTDOWN_DATE 
+						between CAST(#{startDay} as date)) and (CAST(#{endDay} as date)
+					) </if><if test="">UNION ALL</if>
+					<!-- CHECKLIST --> 
+					select HOUSE_SERIAL from		
+						(select HOUSE_SERIAL 
+							from CHECKLIST 
+							where VALUE in
+							('필수품목','연기 감지기')
+						)
+					group by HOUSE_SERIAL HAVING COUNT(*) = 2
+				) group by HOUSE_SERIAL HAVING count(*)>1			
+<!-- 			</choose> -->
+			</where>
+
+		)
 		<where>
 			and (CAST(#{endDay} as date)-CAST(#{startDay} as date)) <![CDATA[>=]]>  HOUSEFILTER_BAK_MIN
 			and (CAST(#{endDay} as date)-CAST(#{startDay} as date)) <![CDATA[<=]]> HOUSEFILTER_BAK_MAX
+			
 		</where>
 		)
 	</select>
-	
-
 </mapper>
 <!-- 
 select memberId,password,memberName,email,mileage 
