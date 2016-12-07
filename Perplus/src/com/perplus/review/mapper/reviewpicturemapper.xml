@@ -31,6 +31,7 @@ and page=#{page}
 <select id="selectPictureList" parameterType="_int" resultType="ReviewPictureVo">
 	<include refid="picture-select"/>
 	where review_serial=#{reviewSerial}
+	order by review_serial asc
 </select>
 
 <!-- SELECT PICTURE COUNT -->
@@ -44,6 +45,7 @@ and page=#{page}
 <select id="selectPictureOne" parameterType="_int" resultType="ReviewPictureVo">
 	<include refid="picture-select"/>
 	where picture_serial = #{pictureSerial}
+	order by picture_serial asc
 </select>
 
 <!-- UPDATE PICTURE -->
@@ -71,14 +73,11 @@ and page=#{page}
 
 <!-- INSERT PICTURE -->
 <insert id="insertPicture" parameterType="reviewPictureVo" >
-<!-- 	
-	*****pictureSerial seqence*******
 	<selectKey resultType="_int" keyProperty="pictureSerial" order="BEFORE">
-	select picture_serial_seq.nextval from dual
-</selectKey> 
--->
+		select picture_serial_seq.nextval from dual
+	</selectKey> 
 	insert into reviewpicture
-	values(#{pictureComment},#{reviewSerial},#{pictureOrder},#{pictureName})
+	values(#{pictureSerial},#{reviewSerial},#{pictureOrder},#{pictureName})
 </insert>
 </mapper>
 
