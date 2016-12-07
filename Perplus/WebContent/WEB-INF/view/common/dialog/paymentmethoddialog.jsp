@@ -43,7 +43,7 @@
 						<label class="text-left col-sm-3"> 만료일 </label>
 						<div class="col-sm-9">
 							<div class="col-xs-6" style="padding-left: 0px;">
-								<input type="number" class="form-control" name="mm" placeholder="MM" required>
+								<input type="number" class="form-control" name="mm" placeholder="MM" required >
 							</div>
 							<div class="col-xs-6" style="padding-left: 0px;">
 								<input type="number" class="form-control" name="yy" placeholder="YY" required>
