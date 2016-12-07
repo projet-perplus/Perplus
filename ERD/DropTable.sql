@@ -17,3 +17,5 @@ drop table REVIEWZZIM cascade constraint;
 drop table SHUTDOWN cascade constraint;
 drop table SHOWMETHEMONEY cascade constraint;
 drop table TRAVEL cascade constraint;
+drop table CHECKLIST cascade constraint;
+drop table HOUSECHECKLIST cascade constraint;
