@@ -7,14 +7,15 @@
 		<tiles:insertAttribute name="linkandscripthead"/>
 	</head>
 	<body>
-		<header id="mainheader">
+		<header class="mainheader">
 		  		<tiles:insertAttribute name="header"/>
   		  		<tiles:insertAttribute name="logindialog"/>
   				<tiles:insertAttribute name="joindialog"/>
 	  	</header>
 	  	
 	  	<section>
-	  		<tiles:insertAttribute name="hotplace"/>
+	  		<tiles:insertAttribute name="review"/>
+	  		<tiles:insertAttribute name="reviewenrollment"/>
 	  	</section>
 	  	
   	  	<footer class="container-fluid bg-4 text-center">

@@ -30,7 +30,7 @@
 			<div class="col-md-offset-2 col-md-8 housesection">
 			
 				<div class="row row-condensed space-4" style="margin-bottom: 40px;">
-					<div class="col-md-offset-2 col-xs-6 col-md-8" >
+					<div class="col-md-offset-2 col-md-8" >
 						<div class="locationspan">
 							<span>숙소 의 위치를 알려주세요</span>	
 						</div>

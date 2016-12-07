@@ -29,12 +29,12 @@
 	
 		<div class="row row-condensed space-4">
 			<div class="col-md-offset-2 col-md-8 housesection">
-				<div class="row row-condensed space-4" style="margin-bottom: 80px;">
-					<label class="text-left col-sm-6 col-md-3">
+				<div class="row row-condensed space-4 row-sectionB">
+					<label class="text-left col-md-3">
 						<span>숙박 시설</span>
 					</label>
-					<div class="col-sm-6 col-md-8">
-						<div class="col-xs-4 col-md-4">
+					<div class="col-md-8">
+						<div class="col-md-4">
 							<div class="form-group">
 								<select class="form-control">
 									<option>침실 개수</option>
@@ -44,7 +44,7 @@
 								</select>
 							</div>
 						</div>
-						<div class="col-xs-4 col-md-4">
+						<div class="col-md-4">
 							<div class="form-group">
 								<select class="form-control">
 									<option>숙박가능 인원</option>
@@ -54,7 +54,7 @@
 								</select>
 							</div>
 						</div>
-						<div class="col-xs-4 col-md-4">
+						<div class="col-md-4">
 							<div class="form-group">
 								<select class="form-control">
 									<option>욕실수</option>
@@ -70,11 +70,11 @@
 		</div>
 		<div class="row row-condensed space-4">
 			<div class="col-md-offset-2 col-md-8 housesection">
-				<div class="row row-condensed space-4" style="margin-bottom: 80px;">
-					<label class="text-left col-sm-6 col-md-3">
+				<div class="row row-condensed space-4 row-sectionB">
+					<label class="text-left col-md-3">
 						<span>편의 시설</span>
 					</label>
-					<div class="col-sm-6 col-md-8">
+					<div class="col-md-8">
 							checkbox
 					</div>
 				</div>
@@ -82,11 +82,11 @@
 		</div>
 		<div class="row row-condensed space-4">
 			<div class="col-md-offset-2 col-md-8 housesection">
-				<div class="row row-condensed space-4" style="margin-bottom: 80px;">
-					<label class="text-left col-sm-6 col-md-3">
+				<div class="row row-condensed space-4 row-sectionB">
+					<label class="text-left col-md-3">
 						<span>안전 시설</span>
 					</label>
-					<div class="col-sm-6 col-md-8">
+					<div class=" col-md-8">
 							checkbox
 					</div>
 				</div>
@@ -94,11 +94,11 @@
 		</div>
 		<div class="row row-condensed space-4">
 			<div class="col-md-offset-2 col-md-8 housesection">
-				<div class="row row-condensed space-4" style="margin-bottom: 80px;">
-					<label class="text-left col-sm-6 col-md-3">
+				<div class="row row-condensed space-4 row-sectionB">
+					<label class="text-left col-md-3">
 						<span>공용 시설</span>
 					</label>
-					<div class="col-sm-6 col-md-8">
+					<div class=" col-md-8">
 							checkbox
 					</div>
 				</div>

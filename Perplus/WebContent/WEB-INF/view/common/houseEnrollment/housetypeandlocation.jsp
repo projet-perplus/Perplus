@@ -30,7 +30,7 @@
 	<div class="container">
 		<div class="row row-condensed space-4">
 			<div class="col-md-offset-2 col-md-8 housesection">
-				<div class="row row-condensed space-4" style="margin-bottom: 80px;">
+				<div class="row row-condensed space-4 row-sectionB">
 					<label class="text-left col-sm-6 col-md-3">
 						<span>숙소 유형</span>
 					</label>
@@ -61,7 +61,7 @@
 		</div>
 		<div class="row row-condensed space-4">
 			<div class="col-md-offset-2 col-md-8 housesection">
-				<div class="row row-condensed space-4" style="margin-bottom: 80px;">
+				<div class="row row-condensed space-4 row-sectionB">
 					<label class="text-left col-sm-6 col-md-3">
 						<span>건물 유형</span>
 					</label>
@@ -92,7 +92,7 @@
 		</div>
 		<div class="row row-condensed space-4">
 			<div class="col-md-offset-2 col-md-8 housesection">
-				<div class="row row-condensed space-4" style="margin-bottom: 80px;">
+				<div class="row row-condensed space-4 row-sectionB">
 					<label class="text-left col-sm-6 col-md-3">
 						<span>숙소 위치</span>
 					</label>
