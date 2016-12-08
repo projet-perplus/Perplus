@@ -13,13 +13,10 @@ public class HouseVo implements Serializable{
 	private String houseTitle;
 	private String houseContent;
 	private String houseNecessaryCondition; //String으로 제약조건 추가로 받으며 ,와 같은 구분자로 구분한다.
-	private Date houseCheckinStart;
-	private Date houseCheckinEnd;
 	private int houseRating;
 	private double houseMarkerX;
 	private double houseMarkerY;
 	private double houseMarkerConstant;		//마커 종류의 식별자
-	private int housePrice;
 	
 	private HouseFilterVo houseFilter;
 	private List<HouseZzimVo> houseZzimList;
@@ -35,11 +32,10 @@ public class HouseVo implements Serializable{
 		this.houseTitle = houseTitle;
 		this.houseContent = houseContent;
 	}
-	
 
 	public HouseVo(int houseSerial, String memberEmail, int houseRegisterStatus, String houseTitle, String houseContent,
-			String houseNecessaryCondition, Date houseCheckinStart, Date houseCheckinEnd, int houseRating,
-			double houseMarkerX, double houseMarkerY, double houseMarkerConstant, int housePrice) {
+			String houseNecessaryCondition, int houseRating, double houseMarkerX, double houseMarkerY,
+			double houseMarkerConstant, HouseFilterVo houseFilter, List<HouseZzimVo> houseZzimList) {
 		super();
 		this.houseSerial = houseSerial;
 		this.memberEmail = memberEmail;
@@ -47,33 +43,10 @@ public class HouseVo implements Serializable{
 		this.houseTitle = houseTitle;
 		this.houseContent = houseContent;
 		this.houseNecessaryCondition = houseNecessaryCondition;
-		this.houseCheckinStart = houseCheckinStart;
-		this.houseCheckinEnd = houseCheckinEnd;
 		this.houseRating = houseRating;
 		this.houseMarkerX = houseMarkerX;
 		this.houseMarkerY = houseMarkerY;
 		this.houseMarkerConstant = houseMarkerConstant;
-		this.housePrice = housePrice;
-	}
-
-	public HouseVo(int houseSerial, String memberEmail, int houseRegisterStatus, String houseTitle, String houseContent,
-			String houseNecessaryCondition, Date houseCheckinStart, Date houseCheckinEnd, int houseRating,
-			double houseMarkerX, double houseMarkerY, double houseMarkerConstant, int housePrice,
-			HouseFilterVo houseFilter, List<HouseZzimVo> houseZzimList) {
-		super();
-		this.houseSerial = houseSerial;
-		this.memberEmail = memberEmail;
-		this.houseRegisterStatus = houseRegisterStatus;
-		this.houseTitle = houseTitle;
-		this.houseContent = houseContent;
-		this.houseNecessaryCondition = houseNecessaryCondition;
-		this.houseCheckinStart = houseCheckinStart;
-		this.houseCheckinEnd = houseCheckinEnd;
-		this.houseRating = houseRating;
-		this.houseMarkerX = houseMarkerX;
-		this.houseMarkerY = houseMarkerY;
-		this.houseMarkerConstant = houseMarkerConstant;
-		this.housePrice = housePrice;
 		this.houseFilter = houseFilter;
 		this.houseZzimList = houseZzimList;
 	}
@@ -126,22 +99,6 @@ public class HouseVo implements Serializable{
 		this.houseNecessaryCondition = houseNecessaryCondition;
 	}
 
-	public Date getHouseCheckinStart() {
-		return houseCheckinStart;
-	}
-
-	public void setHouseCheckinStart(Date houseCheckinStart) {
-		this.houseCheckinStart = houseCheckinStart;
-	}
-
-	public Date getHouseCheckinEnd() {
-		return houseCheckinEnd;
-	}
-
-	public void setHouseCheckinEnd(Date houseCheckinEnd) {
-		this.houseCheckinEnd = houseCheckinEnd;
-	}
-
 	public int getHouseRating() {
 		return houseRating;
 	}
@@ -174,14 +131,6 @@ public class HouseVo implements Serializable{
 		this.houseMarkerConstant = houseMarkerConstant;
 	}
 
-	public int getHousePrice() {
-		return housePrice;
-	}
-
-	public void setHousePrice(int housePrice) {
-		this.housePrice = housePrice;
-	}
-
 	public HouseFilterVo getHouseFilter() {
 		return houseFilter;
 	}
@@ -199,22 +148,9 @@ public class HouseVo implements Serializable{
 	}
 
 	@Override
-	public String toString() {
-		return "HouseVo [houseSerial=" + houseSerial + ", memberEmail=" + memberEmail + ", houseRegisterStatus="
-				+ houseRegisterStatus + ", houseTitle=" + houseTitle + ", houseContent=" + houseContent
-				+ ", houseNecessaryCondition=" + houseNecessaryCondition + ", houseCheckinStart=" + houseCheckinStart
-				+ ", houseCheckinEnd=" + houseCheckinEnd + ", houseRating=" + houseRating + ", houseMarkerX="
-				+ houseMarkerX + ", houseMarkerY=" + houseMarkerY + ", houseMarkerConstant=" + houseMarkerConstant
-				+ ", housePrice=" + housePrice + ", houseFilter=" + houseFilter + ", houseZzimList=" + houseZzimList
-				+ "]";
-	}
-
-	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((houseCheckinEnd == null) ? 0 : houseCheckinEnd.hashCode());
-		result = prime * result + ((houseCheckinStart == null) ? 0 : houseCheckinStart.hashCode());
 		result = prime * result + ((houseContent == null) ? 0 : houseContent.hashCode());
 		result = prime * result + ((houseFilter == null) ? 0 : houseFilter.hashCode());
 		long temp;
@@ -225,7 +161,6 @@ public class HouseVo implements Serializable{
 		temp = Double.doubleToLongBits(houseMarkerY);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		result = prime * result + ((houseNecessaryCondition == null) ? 0 : houseNecessaryCondition.hashCode());
-		result = prime * result + housePrice;
 		result = prime * result + houseRating;
 		result = prime * result + houseRegisterStatus;
 		result = prime * result + houseSerial;
@@ -244,16 +179,6 @@ public class HouseVo implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		HouseVo other = (HouseVo) obj;
-		if (houseCheckinEnd == null) {
-			if (other.houseCheckinEnd != null)
-				return false;
-		} else if (!houseCheckinEnd.equals(other.houseCheckinEnd))
-			return false;
-		if (houseCheckinStart == null) {
-			if (other.houseCheckinStart != null)
-				return false;
-		} else if (!houseCheckinStart.equals(other.houseCheckinStart))
-			return false;
 		if (houseContent == null) {
 			if (other.houseContent != null)
 				return false;
@@ -274,8 +199,6 @@ public class HouseVo implements Serializable{
 			if (other.houseNecessaryCondition != null)
 				return false;
 		} else if (!houseNecessaryCondition.equals(other.houseNecessaryCondition))
-			return false;
-		if (housePrice != other.housePrice)
 			return false;
 		if (houseRating != other.houseRating)
 			return false;
@@ -300,6 +223,16 @@ public class HouseVo implements Serializable{
 			return false;
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		return "HouseVo [houseSerial=" + houseSerial + ", memberEmail=" + memberEmail + ", houseRegisterStatus="
+				+ houseRegisterStatus + ", houseTitle=" + houseTitle + ", houseContent=" + houseContent
+				+ ", houseNecessaryCondition=" + houseNecessaryCondition + ", houseRating=" + houseRating
+				+ ", houseMarkerX=" + houseMarkerX + ", houseMarkerY=" + houseMarkerY + ", houseMarkerConstant="
+				+ houseMarkerConstant + ", houseFilter=" + houseFilter + ", houseZzimList=" + houseZzimList + "]";
+	}
+	
 
 
 }

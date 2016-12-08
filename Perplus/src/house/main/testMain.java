@@ -20,8 +20,8 @@ public class testMain {
 		HouseFilterDaoImpl hf = (HouseFilterDaoImpl)abc.getBean("houseFilterDaoImpl");
 		HouseDaoImpl h = (HouseDaoImpl)abc.getBean("houseDaoImpl");
 		
-		String str1="1992-02-04";
-		String str2="1992-02-13";
+		String str1="2015-10-11";
+		String str2="2015-10-13";
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		Date date1= sdf.parse(str1);
 		Date date2= sdf.parse(str2);

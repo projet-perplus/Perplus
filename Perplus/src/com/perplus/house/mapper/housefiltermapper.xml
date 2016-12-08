@@ -13,11 +13,12 @@
 		HOUSEFILTER_BATHROOM_NUMBER,
 		HOUSEFILTER_BED_NUMBER,
 		HOUSEFILTER_CHECKIN_TERM,
+		HOUSEFILTER_CHECKIN_START,
+		HOUSEFILTER_CHECKIN_END,
 		HOUSEFILTER_RESERVATION_TERM,
 		HOUSEFILTER_BAK_MIN,
 		HOUSEFILTER_BAK_MAX,
-		HOUSEFILTER_MONEY_MIN,
-		HOUSEFILTER_MONEY_MAX 
+		HOUSEFILTER_PRICE
 		from HOUSEFILTER
 	</sql>
 	
@@ -32,38 +33,40 @@
 		h.HOUSEFILTER_BATHROOM_NUMBER,
 		h.HOUSEFILTER_BED_NUMBER,
 		h.HOUSEFILTER_CHECKIN_TERM,
+		h.HOUSEFILTER_CHECKIN_START,
+		h.HOUSEFILTER_CHECKIN_END,
 		h.HOUSEFILTER_RESERVATION_TERM,
 		h.HOUSEFILTER_BAK_MIN,
 		h.HOUSEFILTER_BAK_MAX,
-		h.HOUSEFILTER_MONEY_MIN,
-		h.HOUSEFILTER_MONEY_MAX 
+		h.HOUSEFILTER_PRICE
 		from HOUSEFILTER h, SHUTDOWN, CHECKLIST
 	</sql> 
 	<sql id="default-house-filter-select">
 		select 
 		HOUSE_SERIAL houseSerial,
-		HOUSEFILTER_RANGE housefilterRange,
-		HOUSEFILTER_GUEST_NUMBER housefilterGuestNumber,
-		HOUSEFILTER_TYPE housefilterType,
-		HOUSEFILTER_ROOM_NUMBER housefilterRoomNumber,
-		HOUSEFILTER_LOCATION housefilterLocation,
-		HOUSEFILTER_BEDROOM_NUMBER housefilterBedroomNumber,
-		HOUSEFILTER_BATHROOM_NUMBER housefilterBathroomNumber,
-		HOUSEFILTER_BED_NUMBER housefilterBedNumber,
-		HOUSEFILTER_CHECKIN_TERM housefilterCheckinTerm,
-		HOUSEFILTER_RESERVATION_TERM housefilterReservationTerm,
-		HOUSEFILTER_BAK_MIN housefilterBakMin,
-		HOUSEFILTER_BAK_MAX housefilterBakMax,
-		HOUSEFILTER_MONEY_MIN housefilterMoneyMin,
-		HOUSEFILTER_MONEY_MAX housefilterMoneyMax
+		HOUSEFILTER_RANGE houseFilterRange,
+		HOUSEFILTER_GUEST_NUMBER houseFilterGuestNumber,
+		HOUSEFILTER_TYPE houseFilterType,
+		HOUSEFILTER_ROOM_NUMBER houseFilterRoomNumber,
+		HOUSEFILTER_LOCATION houseFilterLocation,
+		HOUSEFILTER_BEDROOM_NUMBER houseFilterBedroomNumber,
+		HOUSEFILTER_BATHROOM_NUMBER houseFilterBathroomNumber,
+		HOUSEFILTER_BED_NUMBER houseFilterBedNumber,
+		HOUSEFILTER_CHECKIN_TERM houseFilterCheckinTerm,
+		HOUSEFILTER_CHECKIN_START houseFilterCheckinStart,
+		HOUSEFILTER_CHECKIN_END houseFilterCheckinEnd,
+		HOUSEFILTER_RESERVATION_TERM houseFilterReservationTerm,
+		HOUSEFILTER_BAK_MIN houseFilterBakMin,
+		HOUSEFILTER_BAK_MAX houseFilterBakMax,
+		HOUSEFILTER_PRICE houseFilterPrice
 		from HOUSEFILTER 
 	</sql>
 	
 	<sql id="houseFilter-shutDown-checkList-join">
 		select
 		f.HOUSE_SERIAL f_hSerial,f.HOUSEFILTER_RANGE,f.HOUSEFILTER_GUEST_NUMBER,f.HOUSEFILTER_TYPE,f.HOUSEFILTER_ROOM_NUMBER,f.HOUSEFILTER_LOCATION,f.HOUSEFILTER_BEDROOM_NUMBER,
-		f.HOUSEFILTER_BATHROOM_NUMBER,f.HOUSEFILTER_BED_NUMBER,f.HOUSEFILTER_CHECKIN_TERM,f.HOUSEFILTER_RESERVATION_TERM,f.HOUSEFILTER_BAK_MIN,f.HOUSEFILTER_BAK_MAX,
-		f.HOUSEFILTER_MONEY_MIN,f.HOUSEFILTER_MONEY_MAX,
+		f.HOUSEFILTER_BATHROOM_NUMBER,f.HOUSEFILTER_BED_NUMBER,f.HOUSEFILTER_CHECKIN_TERM,f.HOUSEFILTER_CHECKIN_START,f.HOUSEFILTER_CHECKIN_END,
+		f.HOUSEFILTER_RESERVATION_TERM,f.HOUSEFILTER_BAK_MIN,f.HOUSEFILTER_BAK_MAX,f.HOUSEFILTER_PRICE,
 		s.SHUTDOWN_SERIAL,s.HOUSE_SERIAL s_hSerial,s.SHUTDOWN_DATE,
 		c.CHECKLIST_SERIAL,c.HOUSE_SERIAL c_hSerial,c.LIST,c.VALUE
 		from HOUSEFILTER f,SHUTDOWN s,CHECKLIST c
@@ -79,12 +82,13 @@
 		<result column="HOUSEFILTER_BEDROOM_NUMBER" property="houseFilterBedroomNumber"/>
 		<result column="HOUSEFILTER_BATHROOM_NUMBER" property="houseFilterBathroomNumber"/>
 		<result column="HOUSEFILTER_BED_NUMBER" property="houseFilterBedNumber"/>		
-		<result column="HOUSEFILTER_CHECKIN_TERM" property="houseFiltercheckinTerm"/>
+		<result column="HOUSEFILTER_CHECKIN_TERM" property="houseFilterCheckinTerm"/>
+		<result column="HOUSEFILTER_CHECKIN_START" property="houseFilterCheckinStart"/>
+		<result column="HOUSEFILTER_CHECKIN_END" property="houseFilterCheckinEnd"/>
 		<result column="HOUSEFILTER_RESERVATION_TERM" property="houseFilterReservationTerm"/>
 		<result column="HOUSEFILTER_BAK_MIN" property="houseFilterBakMin"/>
 		<result column="HOUSEFILTER_BAK_MAX" property="houseFilterBakMax"/>
-		<result column="HOUSEFILTER_MONEY_MIN" property="houseFilterMoneyMin"/>
-		<result column="HOUSEFILTER_MONEY_MAX" property="houseFilterMoneyMax"/>
+		<result column="HOUSEFILTER_PRICE" property="houseFilterPrice"/>
 	</resultMap>
 	<resultMap type="HouseFilterVo" id="housefilter-shutdown-checklist-join-resultmap" extends="houseFilter-basic-resultmap">
 		<collection property="shutdownList" ofType="ShutdownVo">
@@ -112,39 +116,41 @@
 	<insert id="insertHouseFilter" parameterType="housefiltervo">
 		insert into HOUSEFILTER values(
 		#{houseSerial},
-		#{housefilterRange},
-		#{housefilterGuestNumber},
-		#{housefilterType},
-		#{housefilterRoomNumber},
-		#{housefilterLocation},
-		#{housefilterBedroomNumber},
-		#{housefilterBathroomNumber},
-		#{housefilterBedNumber},
-		#{housefilterCheckinTerm},
-		#{housefilterReservationTerm},
-		#{housefilterBakMin},
-		#{housefilterBakMax},
-		#{housefilterMoneyMin},
-		#{housefilterMoneyMax}
+		#{houseFilterRange},
+		#{houseFilterGuestNumber},
+		#{houseFilterType},
+		#{houseFilterRoomNumber},
+		#{houseFilterLocation},
+		#{houseFilterBedroomNumber},
+		#{houseFilterBathroomNumber},
+		#{houseFilterBedNumber},
+		#{houseFilterCheckinTerm},
+		#{houseFilterCheckinStart},
+		#{houseFilterCheckinEnd},
+		#{houseFilterReservationTerm},
+		#{houseFilterBakMin},
+		#{houseFilterBakMax},
+		#{houseFilterPrice}
 		)
 	</insert>
 	
 	<update id="updateHouseFilter" parameterType="housefiltervo">	
 		update HOUSEFILTER set
-		HOUSEFILTER_RANGE=#{housefilterRange},
-		HOUSEFILTER_GUEST_NUMBER=#{housefilterGuestNumber},
-		HOUSEFILTER_TYPE=#{housefilterType},
-		HOUSEFILTER_ROOM_NUMBER=#{housefilterRoomNumber},
-		HOUSEFILTER_LOCATION=#{housefilterLocation},
-		HOUSEFILTER_BEDROOM_NUMBER=#{housefilterBedroomNumber},
-		HOUSEFILTER_BATHROOM_NUMBER=#{housefilterBathroomNumber},
-		HOUSEFILTER_BED_NUMBER=#{housefilterBedNumber},
-		HOUSEFILTER_CHECKIN_TERM=#{housefilterCheckinTerm},
-		HOUSEFILTER_RESERVATION_TERM=#{housefilterReservationTerm},
-		HOUSEFILTER_BAK_MIN=#{housefilterBakMin},
-		HOUSEFILTER_BAK_MAX=#{housefilterBakMax},
-		HOUSEFILTER_MONEY_MIN=#{housefilterMoneyMin},
-		HOUSEFILTER_MONEY_MAX=#{housefilterMoneyMax}
+		HOUSEFILTER_RANGE=#{houseFilterRange},
+		HOUSEFILTER_GUEST_NUMBER=#{houseFilterGuestNumber},
+		HOUSEFILTER_TYPE=#{houseFilterType},
+		HOUSEFILTER_ROOM_NUMBER=#{houseFilterRoomNumber},
+		HOUSEFILTER_LOCATION=#{houseFilterLocation},
+		HOUSEFILTER_BEDROOM_NUMBER=#{houseFilterBedroomNumber},
+		HOUSEFILTER_BATHROOM_NUMBER=#{houseFilterBathroomNumber},
+		HOUSEFILTER_BED_NUMBER=#{houseFilterBedNumber},
+		HOUSEFILTER_CHECKIN_TERM=#{houseFilterCheckinTerm},
+		HOUSEFILTER_CHECKIN_START=#{houseFilterCheckinStart},
+		HOUSEFILTER_CHECKIN_END=#{houseFilterCheckinEnd},
+		HOUSEFILTER_RESERVATION_TERM=#{houseFilterReservationTerm},
+		HOUSEFILTER_BAK_MIN=#{houseFilterBakMin},
+		HOUSEFILTER_BAK_MAX=#{houseFilterBakMax},
+		HOUSEFILTER_PRICE=#{houseFilterPrice}
 		
 		where HOUSE_SERIAL=#{houseSerial}
 	</update>
