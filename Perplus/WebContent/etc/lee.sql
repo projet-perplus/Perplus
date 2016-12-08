@@ -191,3 +191,102 @@ select HOUSE_SERIAL from
 		('필수품목','연기 감지기')
 	)
 group by HOUSE_SERIAL HAVING COUNT(*) = 2(여기에 size)
+
+
+select HOUSE_SERIAL
+from (
+		select 
+		HOUSE_SERIAL,
+		HOUSEFILTER_RANGE,
+		HOUSEFILTER_GUEST_NUMBER,
+		HOUSEFILTER_TYPE,
+		HOUSEFILTER_ROOM_NUMBER,
+		HOUSEFILTER_LOCATION,
+		HOUSEFILTER_BEDROOM_NUMBER,
+		HOUSEFILTER_BATHROOM_NUMBER,
+		HOUSEFILTER_BED_NUMBER,
+		HOUSEFILTER_CHECKIN_TERM,
+		HOUSEFILTER_RESERVATION_TERM,
+		HOUSEFILTER_BAK_MIN,
+		HOUSEFILTER_BAK_MAX,
+		HOUSEFILTER_MONEY_MIN,
+		HOUSEFILTER_MONEY_MAX 
+		from HOUSEFILTER
+		where HOUSE_SERIAL in (
+			select DISTINCT HOUSE_SERIAL from
+			(
+			  	select DISTINCT HOUSE_SERIAL 
+			  	from SHUTDOWN
+				where HOUSE_SERIAL NOT IN (
+					select DISTINCT HOUSE_SERIAL 
+					from SHUTDOWN
+					where SHUTDOWN_DATE 
+					between '1992-02-04' and '1992-02-13'
+				)
+			)
+		)
+	)
+)
+
+
+select HOUSE_SERIAL houseSerial   
+from HOUSE    
+where HOUSE_SERIAL IN   
+(        
+select HOUSE_SERIAL        
+from (         
+select HOUSE_SERIAL,   
+HOUSEFILTER_RANGE,   
+HOUSEFILTER_GUEST_NUMBER,   
+HOUSEFILTER_TYPE,   
+HOUSEFILTER_ROOM_NUMBER,   
+HOUSEFILTER_LOCATION,   
+HOUSEFILTER_BEDROOM_NUMBER,   
+HOUSEFILTER_BATHROOM_NUMBER,   
+HOUSEFILTER_BED_NUMBER,   
+HOUSEFILTER_CHECKIN_TERM,   
+HOUSEFILTER_RESERVATION_TERM,   
+HOUSEFILTER_BAK_MIN,   
+HOUSEFILTER_BAK_MAX,   
+HOUSEFILTER_MONEY_MIN,   
+HOUSEFILTER_MONEY_MAX    
+from HOUSEFILTER                                  
+WHERE HOUSE_SERIAL in (       
+select DISTINCT HOUSE_SERIAL from                                                              
+)     
+)           
+)
+
+
+
+
+select HOUSE_SERIAL houseSerial  
+from HOUSE    
+where HOUSE_SERIAL IN   (        
+					select HOUSE_SERIAL       
+					from (
+							select HOUSE_SERIAL,   HOUSEFILTER_RANGE,   HOUSEFILTER_GUEST_NUMBER,   HOUSEFILTER_TYPE,   HOUSEFILTER_ROOM_NUMBER,   HOUSEFILTER_LOCATION,   HOUSEFILTER_BEDROOM_NUMBER,   HOUSEFILTER_BATHROOM_NUMBER,   HOUSEFILTER_BED_NUMBER,   HOUSEFILTER_CHECKIN_TERM,   HOUSEFILTER_RESERVATION_TERM,   HOUSEFILTER_BAK_MIN,   HOUSEFILTER_BAK_MAX,   HOUSEFILTER_MONEY_MIN,   HOUSEFILTER_MONEY_MAX   
+							from HOUSEFILTER                                  
+							WHERE HOUSE_SERIAL in (       
+												select DISTINCT HOUSE_SERIAL 
+												from        (                   
+															select DISTINCT HOUSE_SERIAL          
+															from SHUTDOWN        
+															where HOUSE_SERIAL NOT IN (        
+																					select DISTINCT HOUSE_SERIAL          
+																					from SHUTDOWN      
+																					where SHUTDOWN_DATE     between (CAST('1992-02-04' as date)) and (CAST('1992-02-13' as date))        
+																					)                                                  
+															)     
+													)           
+							)
+
+
+							
+							
+							select HOUSE_SERIAL houseSerial   from HOUSE    where HOUSE_SERIAL IN   (        select HOUSE_SERIAL        from (         select HOUSE_SERIAL,   HOUSEFILTER_RANGE,   HOUSEFILTER_GUEST_NUMBER,   HOUSEFILTER_TYPE,   HOUSEFILTER_ROOM_NUMBER,   HOUSEFILTER_LOCATION,   HOUSEFILTER_BEDROOM_NUMBER,   HOUSEFILTER_BATHROOM_NUMBER,   HOUSEFILTER_BED_NUMBER,   HOUSEFILTER_CHECKIN_TERM,   HOUSEFILTER_RESERVATION_TERM,   HOUSEFILTER_BAK_MIN,   HOUSEFILTER_BAK_MAX,   HOUSEFILTER_MONEY_MIN,   HOUSEFILTER_MONEY_MAX    from HOUSEFILTER                                  WHERE HOUSE_SERIAL in (       select DISTINCT HOUSE_SERIAL from               (                    select DISTINCT HOUSE_SERIAL           from SHUTDOWN        where HOUSE_SERIAL NOT IN (         select DISTINCT HOUSE_SERIAL          from SHUTDOWN         where SHUTDOWN_DATE          between (CAST(? as date)) and (CAST(? as date))        )                              UNION AL                                       select HOUSE_SERIAL from(          select HOUSE_SERIAL           from CHECKLIST           where VALUE in          (           ?          ,           ?          ,           ?          ,           ?          ,           ?          )         )         group by HOUSE_SERIAL HAVING COUNT(*) = ?        )                                            group by HOUSE_SERIAL HAVING COUNT(*)>1                    )     )           )
+
+
+
+
+
