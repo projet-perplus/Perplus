@@ -1,9 +1,10 @@
+
 $(function(){
 	/*체크인 체크아웃*/			
 	var nowTemp = new Date();
 	var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
 	var checkin = $('#dpd1').datepicker({
-		format: 'yyyy.mm.dd',
+		format: 'yyyy-mm-dd',
 		language: "kr",
 
 		onRender: function(date) {
@@ -21,7 +22,7 @@ $(function(){
 	
 
 	var checkout = $('#dpd2').datepicker({
-	  format: 'yyyy.mm.dd',
+	  format: 'yyyy-mm-dd',
 		 language: "kr",
 	  onRender: function(date) {
 		return date.valueOf() <= checkin.date.valueOf() ? 'disabled' : '';
@@ -30,6 +31,25 @@ $(function(){
 	  checkout.hide();
 	}).data('datepicker');
 		
+	
+
+
+	
+	 $("#datepicker1, #datepicker2").datepicker({
+		 format: 'yyyy-mm-dd'
+		 
+	 });
+	    
+		
+	
+          $('#datetimepicker12').datepicker({
+        	  format: 'yyyy-mm-dd',
+        
+              inline: true
+          });
+
+	
+	
 	
 	/*서브메뉴 active*/
 	var main = $(".submenu_ul").data("main")

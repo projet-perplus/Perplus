@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <!-- reviewEnrollment-->
+
 <div class="modal fade" id="reviewEnrollment" role="dialog"
 	aria-labelledby="basicModal" aria-hidden="true">
 	<div class="modal-dialog reviewEnrollment-dialog">
@@ -37,13 +38,13 @@
 								<div class="form-group">
 									<div class="visitDate">
 										<div class="col-md-5">
-											<input type="text" class="form-control"  name="check" id="dpd1" >
+											<input type="text" class="form-control"  name="check" id="datepicker1">
 										</div>
 										<div class="col-md-2">
 										~
 										</div>
 										<div class="col-md-5">
-											<input type="text" class="form-control"  name="check" id="dpd2">
+											<input type="text" class="form-control"  name="check" id="datepicker2">
 										</div>
 									</div>
 								</div>

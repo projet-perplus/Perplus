@@ -49,14 +49,7 @@
 					<div class="clearfix visible-md-block"></div>
 					<div class="col-md-offset-1 col-md-10">
 						<div class=" col-md-8">
-							<div class="form-group">
-								<select class="form-control">
-									<option>1일</option>
-									<option>2</option>
-									<option>3</option>
-									<option>4</option>
-								</select>
-							</div>
+							
 						</div>
 					</div>
 				</div>
