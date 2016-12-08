@@ -41,6 +41,13 @@ $(function(){
 			$(this).addClass("active").siblings(".active").removeClass("active")
 		}
 	});
+	$(".navbar-nav1>li").each(function(){
+		if(window.location.href.indexOf($(this).data("sub")) != -1){
+			$(this).addClass("active").siblings(".active").removeClass("active")
+		}
+	});
+	
+	
 	
 	 $('#myCarousel').carousel({
          interval: 5000
@@ -48,6 +55,9 @@ $(function(){
 	
 	 $('#carousel-text').html($('#slide-content-0').html());
 	
+	 
+	 
+	 
 	 /*//Handles the carousel thumbnails*/
 	 	 $('[id^=carousel-selector-]').click( function(){
 	     var id = this.id.substr(this.id.lastIndexOf("-") + 1);
