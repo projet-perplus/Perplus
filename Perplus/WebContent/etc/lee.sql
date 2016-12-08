@@ -8,19 +8,21 @@ insert into HOUSEFILTER values(1,'화장실',20,'다인실',2,'경기도 용인�
 
 insert into HOUSEZZIM values(1,25,'bbb')
 
+insert into CHECKLIST values(CHECKLIST_SEQ.nextval,24,16,'안전카드');
+insert into CHECKLIST values(CHECKLIST_SEQ.nextval,24,15,'다리미');
 insert into CHECKLIST values(CHECKLIST_SEQ.nextval,25,15,'필수품목');
 insert into CHECKLIST values(CHECKLIST_SEQ.nextval,25,16,'연기 감지기');
-insert into CHECKLIST values(CHECKLIST_SEQ.nextval,27,15,'에어컨');
 insert into CHECKLIST values(CHECKLIST_SEQ.nextval,25,17,'부엌');
-insert into CHECKLIST values(CHECKLIST_SEQ.nextval,28,17,'헬스장');
-insert into CHECKLIST values(CHECKLIST_SEQ.nextval,24,15,'다리미');
+insert into CHECKLIST values(CHECKLIST_SEQ.nextval,27,15,'에어컨');
 insert into CHECKLIST values(CHECKLIST_SEQ.nextval,27,16,'소화기');
+insert into CHECKLIST values(CHECKLIST_SEQ.nextval,27,16,'일산화탄소 감지기');
+insert into CHECKLIST values(CHECKLIST_SEQ.nextval,28,17,'헬스장');
 insert into CHECKLIST values(CHECKLIST_SEQ.nextval,28,17,'엘리베이터');
 insert into CHECKLIST values(CHECKLIST_SEQ.nextval,28,15,'헤어 드라이기');
 insert into CHECKLIST values(CHECKLIST_SEQ.nextval,28,17,'수영장');
-insert into CHECKLIST values(CHECKLIST_SEQ.nextval,27,16,'일산화탄소 감지기');
-insert into CHECKLIST values(CHECKLIST_SEQ.nextval,24,16,'안전카드');
 insert into CHECKLIST values(CHECKLIST_SEQ.nextval,44,16,'안전카드');
+
+
 
 
 
@@ -60,10 +62,14 @@ where HOUSE_SERIAL=1
 
 insert into HOUSE values(1,'화장실',20,'다인실',2,'경기도 용인시 모현면');
 
-insert into HOUSE values(HOUSE_SEQ.nextval,'bbb',0,'따뜻한 집','조흔 집입니다1','ㅇㅇㅇ',null,null,0,0,0,0,0);
-insert into HOUSE values(HOUSE_SEQ.nextval,'bbb',0,'추운 즵','조흔 집입니다2','ㅇㅇㅇ',null,null,0,0,0,0,0);
-insert into HOUSE values(HOUSE_SEQ.nextval,'bbb',0,'초가집','조흔 집입니다3','ㅇㅇㅇ',null,null,0,0,0,0,0);
-insert into HOUSE values(HOUSE_SEQ.nextval,'bbb',0,'이글루','조흔 집입니다4','ㅇㅇㅇ',null,null,0,0,0,0,0);
+insert into HOUSE values(HOUSE_SEQ.nextval,'bbb',0,'따뜻한 집','조흔 집입니다1',null,0,0,0,0);
+insert into HOUSE values(HOUSE_SEQ.nextval,'bbb',0,'추운 즵','조흔 집입니다2',null,0,0,0,0);
+insert into HOUSE values(HOUSE_SEQ.nextval,'bbb',0,'초가집','조흔 집입니다3',null,0,0,0,0);
+insert into HOUSE values(HOUSE_SEQ.nextval,'bbb',0,'이글루','조흔 집입니다4',null,0,0,0,0);
+insert into HOUSE values(HOUSE_SEQ.nextval,'aaa',0,'아늑한집','조흔 집입니다5',null,0,0,0,0);
+insert into HOUSE values(HOUSE_SEQ.nextval,'aaa',0,'정글집','조흔 집입니다6',null,0,0,0,0);
+insert into HOUSE values(HOUSE_SEQ.nextval,'aaa',0,'개미집','조흔 집입니7',null,0,0,0,0);
+insert into HOUSE values(HOUSE_SEQ.nextval,'aaa',0,'사람집','조흔 집입니다8',null,0,0,0,0);
 
 delete from HOUSE where HOUSE_SERIAL = 1
 
@@ -138,14 +144,14 @@ delete from HOUSE where HOUSE_SERIAL = 1
 		select (DATE'2008-03-23') - (DATE'2007-03-23') from dual;
 		-- filter 시작
 		
-		insert into HOUSEFILTER values(26,'eee',234,'333',234,'3234',0,0,0,0,0,2,3,0,0);
-		insert into HOUSEFILTER values(27,'eee',234,'333',234,'3234',0,0,0,0,0,6,7,0,0);
-		insert into HOUSEFILTER values(28,'eee',234,'333',234,'3234',0,0,0,0,0,8,90,0,0);
-		insert into HOUSEFILTER values(41,'eee',234,'333',234,'3234',0,0,0,0,0,5,8,0,0);
-		insert into HOUSEFILTER values(42,'eee',234,'333',234,'3234',0,0,0,0,0,2,3,0,0);
-		insert into HOUSEFILTER values(43,'eee',234,'333',234,'3234',0,0,0,0,0,9,14,0,0);
-		insert into HOUSEFILTER values(44,'eee',234,'333',234,'3234',0,0,0,0,0,21,23,0,0);
-		insert into HOUSEFILTER values(45,'eee',234,'333',234,'3234',0,0,0,0,0,3,10,0,0);
+		insert into HOUSEFILTER values(1,'eee',234,'333',234,'3234',0,0,0,0,0,2,3,0,0);
+		insert into HOUSEFILTER values(2,'eee',234,'333',234,'3234',0,0,0,0,0,6,7,0,0);
+		insert into HOUSEFILTER values(3,'eee',234,'333',234,'3234',0,0,0,0,0,8,90,0,0);
+		insert into HOUSEFILTER values(4,'eee',234,'333',234,'3234',0,0,0,0,0,5,8,0,0);
+		insert into HOUSEFILTER values(5,'eee',234,'333',234,'3234',0,0,0,0,0,2,3,0,0);
+		insert into HOUSEFILTER values(6,'eee',234,'333',234,'3234',0,0,0,0,0,9,14,0,0);
+		insert into HOUSEFILTER values(7,'eee',234,'333',234,'3234',0,0,0,0,0,21,23,0,0);
+		insert into HOUSEFILTER values(8,'eee',234,'333',234,'3234',0,0,0,0,0,3,10,0,0);
 		
 		--간단한 필터 사용 예
 		select * from HOUSE where HOUSE_SERIAL IN 
@@ -191,3 +197,102 @@ select HOUSE_SERIAL from
 		('필수품목','연기 감지기')
 	)
 group by HOUSE_SERIAL HAVING COUNT(*) = 2(여기에 size)
+
+
+select HOUSE_SERIAL
+from (
+		select 
+		HOUSE_SERIAL,
+		HOUSEFILTER_RANGE,
+		HOUSEFILTER_GUEST_NUMBER,
+		HOUSEFILTER_TYPE,
+		HOUSEFILTER_ROOM_NUMBER,
+		HOUSEFILTER_LOCATION,
+		HOUSEFILTER_BEDROOM_NUMBER,
+		HOUSEFILTER_BATHROOM_NUMBER,
+		HOUSEFILTER_BED_NUMBER,
+		HOUSEFILTER_CHECKIN_TERM,
+		HOUSEFILTER_RESERVATION_TERM,
+		HOUSEFILTER_BAK_MIN,
+		HOUSEFILTER_BAK_MAX,
+		HOUSEFILTER_MONEY_MIN,
+		HOUSEFILTER_MONEY_MAX 
+		from HOUSEFILTER
+		where HOUSE_SERIAL in (
+			select DISTINCT HOUSE_SERIAL from
+			(
+			  	select DISTINCT HOUSE_SERIAL 
+			  	from SHUTDOWN
+				where HOUSE_SERIAL NOT IN (
+					select DISTINCT HOUSE_SERIAL 
+					from SHUTDOWN
+					where SHUTDOWN_DATE 
+					between '1992-02-04' and '1992-02-13'
+				)
+			)
+		)
+	)
+)
+
+
+select HOUSE_SERIAL houseSerial   
+from HOUSE    
+where HOUSE_SERIAL IN   
+(        
+select HOUSE_SERIAL        
+from (         
+select HOUSE_SERIAL,   
+HOUSEFILTER_RANGE,   
+HOUSEFILTER_GUEST_NUMBER,   
+HOUSEFILTER_TYPE,   
+HOUSEFILTER_ROOM_NUMBER,   
+HOUSEFILTER_LOCATION,   
+HOUSEFILTER_BEDROOM_NUMBER,   
+HOUSEFILTER_BATHROOM_NUMBER,   
+HOUSEFILTER_BED_NUMBER,   
+HOUSEFILTER_CHECKIN_TERM,   
+HOUSEFILTER_RESERVATION_TERM,   
+HOUSEFILTER_BAK_MIN,   
+HOUSEFILTER_BAK_MAX,   
+HOUSEFILTER_MONEY_MIN,   
+HOUSEFILTER_MONEY_MAX    
+from HOUSEFILTER                                  
+WHERE HOUSE_SERIAL in (       
+select DISTINCT HOUSE_SERIAL from                                                              
+)     
+)           
+)
+
+
+
+
+select HOUSE_SERIAL houseSerial  
+from HOUSE    
+where HOUSE_SERIAL IN   (        
+					select HOUSE_SERIAL       
+					from (
+							select HOUSE_SERIAL,   HOUSEFILTER_RANGE,   HOUSEFILTER_GUEST_NUMBER,   HOUSEFILTER_TYPE,   HOUSEFILTER_ROOM_NUMBER,   HOUSEFILTER_LOCATION,   HOUSEFILTER_BEDROOM_NUMBER,   HOUSEFILTER_BATHROOM_NUMBER,   HOUSEFILTER_BED_NUMBER,   HOUSEFILTER_CHECKIN_TERM,   HOUSEFILTER_RESERVATION_TERM,   HOUSEFILTER_BAK_MIN,   HOUSEFILTER_BAK_MAX,   HOUSEFILTER_MONEY_MIN,   HOUSEFILTER_MONEY_MAX   
+							from HOUSEFILTER                                  
+							WHERE HOUSE_SERIAL in (       
+												select DISTINCT HOUSE_SERIAL 
+												from        (                   
+															select DISTINCT HOUSE_SERIAL          
+															from SHUTDOWN        
+															where HOUSE_SERIAL NOT IN (        
+																					select DISTINCT HOUSE_SERIAL          
+																					from SHUTDOWN      
+																					where SHUTDOWN_DATE     between (CAST('1992-02-04' as date)) and (CAST('1992-02-13' as date))        
+																					)                                                  
+															)     
+													)           
+							)
+
+
+							
+							
+							select HOUSE_SERIAL houseSerial   from HOUSE    where HOUSE_SERIAL IN   (        select HOUSE_SERIAL        from (         select HOUSE_SERIAL,   HOUSEFILTER_RANGE,   HOUSEFILTER_GUEST_NUMBER,   HOUSEFILTER_TYPE,   HOUSEFILTER_ROOM_NUMBER,   HOUSEFILTER_LOCATION,   HOUSEFILTER_BEDROOM_NUMBER,   HOUSEFILTER_BATHROOM_NUMBER,   HOUSEFILTER_BED_NUMBER,   HOUSEFILTER_CHECKIN_TERM,   HOUSEFILTER_RESERVATION_TERM,   HOUSEFILTER_BAK_MIN,   HOUSEFILTER_BAK_MAX,   HOUSEFILTER_MONEY_MIN,   HOUSEFILTER_MONEY_MAX    from HOUSEFILTER                                  WHERE HOUSE_SERIAL in (       select DISTINCT HOUSE_SERIAL from               (                    select DISTINCT HOUSE_SERIAL           from SHUTDOWN        where HOUSE_SERIAL NOT IN (         select DISTINCT HOUSE_SERIAL          from SHUTDOWN         where SHUTDOWN_DATE          between (CAST(? as date)) and (CAST(? as date))        )                              UNION AL                                       select HOUSE_SERIAL from(          select HOUSE_SERIAL           from CHECKLIST           where VALUE in          (           ?          ,           ?          ,           ?          ,           ?          ,           ?          )         )         group by HOUSE_SERIAL HAVING COUNT(*) = ?        )                                            group by HOUSE_SERIAL HAVING COUNT(*)>1                    )     )           )
+
+
+
+
+
