@@ -54,7 +54,7 @@
 						<label class="text-left col-sm-3"> cvc </label>
 						<div class="col-sm-9">
 							<div class="col-xs-6" style="padding-left: 0px;">
-								<input type="number" class="form-control" name="cardnumber" required="required">
+								<input type="number" class="form-control" name="cvc" required="required">
 							</div>
 							<div class="col-xs-6" style="padding-left: 0px;"></div>
 						</div>
@@ -63,14 +63,14 @@
 						<label class="text-left col-sm-3"> 우편번호 </label>
 						<div class="col-sm-9">
 							<div class="col-xs-6" style="padding-left: 0px;">
-								<input type="number" class="form-control" name="cardnumber" required="required">
+								<input type="number" class="form-control" name="post" required="required">
 							</div>
 							<div class="col-xs-6" style="padding-left: 0px;"></div>
 						</div>
 					</div>
 				</div>
 				<div class="modal-footer">
-					<input type="submit" name="login" class="btn btn-default" id="loginBtn" value="로그인">
+					<input type="submit" class="btn btn-default" id="payment" value="추가">
 				</div>
 			</div>
 		</form>
