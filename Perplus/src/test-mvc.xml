@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd">
+	
+	<context:component-scan base-package="com.perplus.review"/>
+	<mvc:annotation-driven/>	
+	<mvc:view-controller path="/main.do" view-name="/kim.jsp"/> <!-- 나래 -->
+
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/**/login/**/*"/>
+			<!-- Interceptor bean -->
+			<bean class="com.perplus.interceptor.LoginCheckInterceptor"/>
+		</mvc:interceptor>
+	</mvc:interceptors>
+	
+	
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+			  p:prefix="/WEB-INF/view"/>
+	<bean name="dataSource" class="org.apache.commons.dbcp2.BasicDataSource"
+		p:driverClassName="oracle.jdbc.driver.OracleDriver"
+		p:url="jdbc:oracle:thin:@127.0.0.1:1521:XE"
+		p:username="perplus"
+		p:password="perplus"
+		p:maxTotal="100"/>
+	
+	<bean name="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean"
+		p:dataSource-ref="dataSource"
+		p:configLocation="classpath:com/perplus/config/mybatis-config.xml"/>
+	
+	<bean name="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate"
+		c:sqlSessionFactory-ref="sqlSessionFactory"/>
+		
+<!-- 	<bean name ="tilesConfig" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+		<property name="definitions">
+			<list>
+				<value>/WEB-INF/config/tiles/tiles-defs.xml</value>
+			</list>
+		</property>
+	</bean>		
+		 -->
+	<bean name="tilesViewResolver" class="org.springframework.web.servlet.view.tiles3.TilesViewResolver"
+		p:order="1"/>
+		
+	<bean name="internalViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+		p:order="2" p:prefix="/WEB-INF/view"/>
+		
+</beans>
