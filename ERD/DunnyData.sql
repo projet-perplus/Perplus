@@ -16,3 +16,6 @@ insert into HOUSE values(5,'bbb',0,'따뜻한 집2','조흔따뜻한 집입니다1','ㅇㅇㅇ',
 insert into HOUSE values(6,'bbb',0,'추운 즵2','조흔집이지만 추운입니다2','ㅇㅇㅇ',null,null,0,0,0,0,0);
 insert into HOUSE values(7,'aaa',0,'초가집2','바람에 흐날리는 조흔 집입니다3','ㅇㅇㅇ',null,null,0,0,0,0,0);
 insert into HOUSE values(8,'bbb',0,'이글루2','조흔 집일까4','ㅇㅇㅇ',null,null,0,0,0,0,0);
+
+create sequence CARD_SERIAL_seq
+start with 10000
