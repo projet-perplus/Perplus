@@ -82,8 +82,10 @@ public class ReviewController {
 	
 	/******************리뷰 글 수정*****************/
 	@RequestMapping(value="/modifyReview", method=RequestMethod.POST)
-	public String modifyReview(@ModelAttribute ReviewVo review, @ModelAttribute ReviewPictureVo picture, HttpServletRequest request){
+	public String modifyReview(@ModelAttribute ReviewVo review, @RequestParam int ReviewSerial,@ModelAttribute ReviewPictureVo picture, HttpServletRequest request){
+		
 		List files = picture.getPictureList();
+		
 		return"수정완료폼";
 	}
 	

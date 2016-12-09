@@ -6,9 +6,11 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,7 +18,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.perplus.member.service.MemberService;
+import com.perplus.member.vo.ChattingLogVo;
+import com.perplus.member.vo.ChattingVo;
 import com.perplus.member.vo.MemberVo;
+import com.perplus.validator.LoginForm;
 
 @Controller
 @RequestMapping("/member/")
@@ -48,6 +53,29 @@ public class MemberController {
 	}
 	
 	/*****************로그인*******************/
+	
+	
+	public String login(@Valid LoginForm form, BindingResult result, HttpSession session, ModelMap map){
+		if(result.hasErrors()){
+			return "/main.do";
+		}
+		MemberVo member = service.selectMemberFindByEmail(form.getMemberEmail());
+		String url = null;
+		if(member!=null){
+			if(form.getMemberPassword().equals(member.getMemberPassword())){
+				session.setAttribute("login_info", member);
+				url = "redirect:/main.do";
+			}else{
+				map.addAttribute("error_message","Password를 확인하세요.");
+				url = "/member/logincheck.do";
+			}
+		}else{
+			map.addAttribute("error_message","id를 확인하세요.");
+		}
+		return url;
+	}
+	
+	
 	@RequestMapping("logincheck.do")
 	@ResponseBody
 	public Map<String, Object> loginCheck(@RequestParam String memberEmail, @RequestParam String memberPassword,HttpSession session){
@@ -64,13 +92,8 @@ public class MemberController {
 		}else{
 			loginCheckResult.put("login_error_email","Email을 확인하세요.");
 		}
+
 		return loginCheckResult;
-	}
-	
-	@RequestMapping()
-	public void asdf(@ModelAttribute MemberVo member, HttpSession session){
-		String memberEmail = member.getMemberEmail();
-		service.updateMember(member);
 	}
 	
 }
