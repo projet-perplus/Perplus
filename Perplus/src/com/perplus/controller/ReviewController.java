@@ -80,9 +80,7 @@ public class ReviewController {
 		return "수정폼";
 	}
 	
-	/******************리뷰 글 수정
-	 * @throws IOException 
-	 * @throws IllegalStateException *****************/
+	/******************리뷰 글 수정*****************/
 	@RequestMapping(value="/modifyReview", method=RequestMethod.POST)
 	public String modifyReview(@ModelAttribute ReviewVo review, @RequestParam int reviewSerial,@ModelAttribute ReviewPictureVo picture, HttpServletRequest request) throws IllegalStateException, IOException{
 		ReviewVo oldReview = service.getReview(reviewSerial);
@@ -180,11 +178,10 @@ public class ReviewController {
 		Map map= service.getReviewCommentList(reviewSerial, page);
 		review.setReviewPicture(service.getReviewPictureList(reviewSerial));
 		review.setReviewComment((List<ReviewCommentVo>)map.get("list"));
-		
+		System.out.println(review);
 		modelMap.put("review", review);
 		modelMap.put("pageBean", map.get("pageBean"));
-		
-		return "리뷰 조회페이지";
+		return "reviewdetailpage.hotplacetiles";
 	}
 	
 
