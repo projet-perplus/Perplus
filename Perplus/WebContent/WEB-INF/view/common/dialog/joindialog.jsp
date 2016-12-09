@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <script type="text/javascript">
-var emailCheck = true;
+	var emailCheck = true;
 	$(document).ready(function() {
 		$("#joinEmail").on("keyup", function() {
 			var email = this.value;
@@ -28,16 +28,15 @@ var emailCheck = true;
 				}
 			})
 		});
-		$("#member_join_form").on("submit", function(){
-			if(emailCheck){
+		$("#member_join_form").on("submit", function() {
+			if (emailCheck) {
 				alert("중복된 아이디입니다.");
 				$("#joinEmail").focus();
 				return false;
 			}
 			alert("회원가입을 축하드립니다.");
 		});
-		
-		
+
 	});
 </script>
 <!-- 회원가입 폼 -->
@@ -69,36 +68,38 @@ var emailCheck = true;
 							<div class="col-xs-5 col-md-5 col-lg-5">
 								<select class="form-control" id="joinSelect" name="mm">
 									<option>월</option>
-									<option>1</option>
-									<option>2</option>
-									<option>3</option>
-									<option>4</option>
-									<option>5</option>
-									<option>6</option>
-									<option>7</option>
-									<option>8</option>
-									<option>9</option>
-									<option>10</option>
-									<option>11</option>
-									<option>12</option>
+									<%
+										for (int i = 1; i <= 12; i++) {
+									%>
+									<option value="<%=i%>"><%=i%></option>
+									<%
+										}
+									%>
 								</select>
 							</div>
 							<div class="col-xs-3 col-md-3 col-lg-3" id="joinSelectStyle"
 								style="padding-left: 0px !important;">
 								<select class="form-control" id="joinSelect" name="dd">
 									<option>일</option>
-									<option>1</option>
-									<option>2</option>
-									<option>3</option>
-									<option>3</option>
+									<%
+										for (int i = 1; i <= 31; i++) {
+									%>
+									<option value="<%=i%>"><%=i%></option>
+									<%
+										}
+									%>
 								</select>
 							</div>
 							<div class="col-xs-4 col-md-4 col-lg-4">
 								<select class="form-control" id="joinSelect" name="yy">
 									<option>년</option>
-									<option>2</option>
-									<option>3</option>
-									<option>4</option>
+									<%
+										for (int i = 2016; i >= 1950; i--) {
+									%>
+									<option value="<%=i%>"><%=i%></option>
+									<%
+										}
+									%>
 								</select>
 							</div>
 						</div>
