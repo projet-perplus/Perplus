@@ -75,7 +75,7 @@ public class ReviewServiceImpl implements ReviewService{
 		Map<String,Object> map = new HashMap<>();
 		List<ReviewCommentVo> list =reviewCommentDao.selectReviewCommentListBySerial(reviewSerial, page);
 		map.put("list",list);
-		map.put("reviewSerial", reviewSerial);
+		//map.put("reviewSerial", reviewSerial);
 		int totalComments = reviewCommentDao.selectReviewCommentCount(reviewSerial);
 		PagingBean bean = new PagingBean(totalComments, page);
 		map.put("pageBean", bean);

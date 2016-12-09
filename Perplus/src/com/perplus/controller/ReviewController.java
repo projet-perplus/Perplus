@@ -35,11 +35,11 @@ public class ReviewController {
 	
 	/******************리뷰 글 등록*****************/
 	@RequestMapping(value="/login/registerReview", method=RequestMethod.POST)
-	public String registerReview(@ModelAttribute ReviewVo reviewVo, @ModelAttribute ReviewPictureVo reviewPictureVo, HttpServletRequest request, HttpSession session)
+	public String registerReview(@ModelAttribute ReviewVo reviewVo, @ModelAttribute ReviewPictureVo picture, HttpServletRequest request, HttpSession session)
 												throws IllegalStateException, IOException{
-		ReviewPictureVo picture = new ReviewPictureVo();
-		BeanUtils.copyProperties(reviewPictureVo, picture);
-		ArrayList list = new ArrayList();
+		//ReviewPictureVo picture = new ReviewPictureVo();
+		//BeanUtils.copyProperties(reviewPictureVo, picture);
+		List<ReviewPictureVo> list = new ArrayList();
 		List files = picture.getPictureList();
 		MemberVo member = (MemberVo)session.getAttribute("login_info");
 		reviewVo.setMemberEmail(member.getMemberEmail());
@@ -67,20 +67,37 @@ public class ReviewController {
 		service.registerReviewPicture(list);
 		return "리뷰상세보기페이지~? 리뷰 등록 성공페이지?";
 	}
+	/******************리뷰 정보 가져오는 controller********************/
+	@RequestMapping("/login/reviewInfo")
+	public String reviewInfo(@RequestParam int reviewSerial,ModelMap map,HttpSession session){
+		MemberVo member = (MemberVo)session.getAttribute("login_info");
+		ReviewVo review = service.getReview(reviewSerial);
+		review.setReviewPicture( service.getReviewPictureList(reviewSerial));
+		if(!review.getMemberEmail().equals(member.getMemberEmail())){
+			return "권한없습니다~";
+		}	
+		map.addAttribute("review", review);
+		return "수정폼";
+	}
+	
 	/******************리뷰 글 수정*****************/
-	//이메일 체크~ session의 email과 리뷰의 email 같지 x으면 수정 x &&로그인 체크
-	
-	
+	@RequestMapping(value="/modifyReview", method=RequestMethod.POST)
+	public String modifyReview(@ModelAttribute ReviewVo review, @ModelAttribute ReviewPictureVo picture, HttpServletRequest request){
+		List files = picture.getPictureList();
+		return"수정완료폼";
+	}
 	
 	/*****************리뷰 글 삭제*****************/
 	//이메일 체크~ session의 email과 리뷰의 email 같지 x으면 삭제x &&로그인 체크
 	@RequestMapping("/login/removeReview")
-	public String removeReview(@RequestParam int reviewSerial){
-		service.removeReview(reviewSerial);
-		
+	public String removeReview(@RequestParam int reviewSerial, @RequestParam String memberEmail, HttpSession session){
+		MemberVo member = (MemberVo)session.getAttribute("login_info");
+		if(!memberEmail.equals(member.getMemberEmail())){
+			return"에러페이지";
+		}
+		service.removeReview(reviewSerial);	
 		return"지도페이지";
 	}
-	
 	
 	/******************리뷰 코멘트 등록*****************/
 	@RequestMapping("/login/registerReviewComment")
@@ -89,34 +106,47 @@ public class ReviewController {
 		service.registerReviewComment(reviewComment);
 		return"리뷰 상세보기 페이지";
 	}
+	
 	/*******************리뷰 코멘트 수정****************/
 	@RequestMapping("/login/modifyReviewComment")
-	public String modifyReviewComment(@ModelAttribute ReviewCommentVo reviewComment, @RequestParam int reviewSerial){
+	public String modifyReviewComment(@ModelAttribute ReviewCommentVo reviewComment, @RequestParam int reviewSerial, HttpSession session){
 		//이메일 체크~ session의 email과 코멘트의 email 같지 x으면 수정x
+		MemberVo member = (MemberVo)session.getAttribute("login_info");
+		if(!reviewComment.getMemberEmail().equals(member.getMemberEmail())){
+			return"에러페이지";
+		}
 		reviewComment.setReviewSerial(reviewSerial);
 		service.modifyReviewComment(reviewComment);
 		return"리뷰 상세보기 페이지";
 	}
+	
 	/******************리뷰 코멘트 삭제*****************/
 	@RequestMapping("/login/removeReviewComment")
-	public String removeReviewComment(@RequestParam int	commentSerial){
+	public String removeReviewComment(@RequestParam int	commentSerial,@RequestParam String memberEmail, HttpSession session){
 		//이메일 체크~ session의 email과 코멘트의 email 같지 x으면 삭제x
+		MemberVo member = (MemberVo)session.getAttribute("login_info");
+		if(!memberEmail.equals(member.getMemberEmail())){
+			return"에러페이지";
+		}
 		service.removeReviewComment(commentSerial);
 		return"리뷰상세보기페이지";
 	}
 	
-	/*****************************로그인 체크 필요 없음***********************************/
+	/**************로그인 체크 필요 없음******************/
 	
 	/******************리뷰 상세 보기*****************/
 	@RequestMapping("/showReview")
 	public String selectReview(@RequestParam int reviewSerial,ModelMap modelMap,@RequestParam(defaultValue="1") int page){
 		ReviewVo review = service.getReview(reviewSerial);
-		List<ReviewPictureVo> reviewPictures= service.getReviewPictureList(reviewSerial);
 		Map map= service.getReviewCommentList(reviewSerial, page);
+		review.setReviewPicture(service.getReviewPictureList(reviewSerial));
+		review.setReviewComment((List<ReviewCommentVo>)map.get("list"));
+		
 		modelMap.put("review", review);
-		modelMap.put("pictures", reviewPictures);
-		modelMap.put("comments", map);
+		modelMap.put("pageBean", map.get("pageBean"));
+		
 		return "리뷰 조회페이지";
 	}
+	
 
 }
