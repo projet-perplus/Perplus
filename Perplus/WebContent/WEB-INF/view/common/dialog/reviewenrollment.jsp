@@ -27,13 +27,13 @@
 							<label class="text-left col-sm-3"> 장소명 </label>
 							<div class="col-sm-9">
 								<div class="form-group">
-									<input type="text" class="form-control" name="bankname"
-										placeholder="은행이름을 입력하세요..." required="required">
+									<input type="text" class="form-control" name="locationname"
+										placeholder="장소명을 입력하세요..." required="required">
 								</div>
 							</div>
 						</div>
 						<div class="row row-condensed space-4">
-							<label class="text-left col-sm-3" > 방문일자 </label>
+							<label class="text-left col-sm-3" >방문일자 </label>
 							<div class="col-sm-9">
 								<div class="form-group">
 									<div class="visitDate">
@@ -44,11 +44,13 @@
 						</div>
 						<div class="row row-condensed space-4">
 							<label class="text-left col-sm-3">사진 등록</label>
-							<div class="col-sm-9">
-								<div class="form-group">
-									<input type="text" class="form-control" name="reviewname"
-										placeholder="이름을 입력하세요..." required="required">
+							<div class="col-md-9">
+									<ul></ul>
+									<button type="button" class="btn btn-success" id="addImg">
+										이미지 추가
+									</button>
 								</div>
+								
 							</div>
 						</div>
 						<div class="row row-condensed space-4">

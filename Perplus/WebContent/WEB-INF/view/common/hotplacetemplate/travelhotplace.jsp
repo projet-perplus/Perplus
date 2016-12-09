@@ -44,7 +44,7 @@
 		<div class="panel-body">
 			<div class="row">
 				<div class="col-md-12">
-					<div id="map-canvas" style="width: 100%; height: 500px"></div>
+					<div id="map-canvas" style="width: 100%; height: 600px"></div>
 				</div>
 			</div>
 		</div>
