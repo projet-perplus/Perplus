@@ -20,28 +20,32 @@
 				          이름(예: 홍길동) 
 				        </label>
 					<div class="col-sm-9">
-						<div class="form-group">
-						  <input type="text" class="form-control" id="user_name" name="user" size="10" type="text" value="상욱">
+						<div class="col-md-12">
+							<div class="form-group">
+							  <input type="text" class="form-control" id="user_name" name="user" size="10" type="text" value="상욱">
+							</div>
 						</div>
 					</div>
 				</div>
 			
 					<div class="row row-condensed space-4">
-					 	<label class="text-right col-sm-3" for="user_name">
+					 	<label class="text-right col-md-3" for="user_name">
 					        	  성별
 					        </label>
 						<div class="col-sm-9">
-							<div class="form-group">
+							<div class="col-md-12">
+								<div class="form-group">
 									<select class="form-control" name="genter">
 									    <option>010</option>
 									    <option>2</option>
 									    <option>3</option>
 									 </select>
-							</div>
+								</div>
+							</div>	
 						</div>
 					</div>
 					<div class="row row-condensed space-4">
-					 	<label class="text-right col-sm-3" >
+					 	<label class="text-right col-md-3" >
 					         	생년월일
 					        </label>
 						<div class="col-sm-9">
@@ -79,12 +83,14 @@
 			<div class="row">
 				<div class="col-sm-12">
 						<div class="row row-condensed space-4">
-						 	<label class="text-right col-sm-3">
+						 	<label class="text-right col-md-3">
 						          이메일 주소
 						    </label>
 						<div class="col-sm-9">
-							<div class="form-group">
-							  <input type="email" class="form-control" id="email"name="email" placeholder="abc123@naver.com" required="required">
+							<div class="col-md-12">
+								<div class="form-group">
+								  <input type="email" class="form-control" id="email"name="email" placeholder="abc123@naver.com" required="required">
+								</div>
 							</div>
 						</div>
 					</div>
@@ -94,7 +100,9 @@
 						    </label>
 						<div class="col-sm-9">
 							<div class="form-group">
-							  <input type="password" class="form-control" id="password" name="password" required="required">
+								<div class="col-md-12">
+								  <input type="password" class="form-control" id="password" name="password" required="required">
+								</div>
 							</div>
 						</div>
 					</div>
@@ -103,28 +111,30 @@
 					         	전화번호
 					        </label>
 						<div class="col-sm-9">
-							<div class="col-sm-4" style="padding-left:0px;">
-								<div class="form-group">
-									<select class="form-control" name="phone">
-									    <option>010</option>
-									    <option>2</option>
-									    <option>3</option>
-									 </select>
-								 </div>
-							</div>
-						
-							<div class="col-sm-4" style="padding-left:0px;">
-								<div class="form-group">
-									<input type="number" class="form-control" name="phone" required="required" size="4">
-
-								 </div>
-							</div>
+							<div class="col-md-12">
+								<div class="col-sm-4" style="padding-left:0px;">
+									<div class="form-group">
+										<select class="form-control" name="phone">
+										    <option>010</option>
+										    <option>2</option>
+										    <option>3</option>
+										 </select>
+									 </div>
+								</div>
 							
-							<div class="col-sm-4" style="padding-left:0px;">
-								<div class="form-group">
-									<input type="number" class="form-control" name="phone" required="required" placeholder="뒷번호" size="4">
-								 </div>
-							</div>
+								<div class="col-sm-4" style="padding-left:0px;">
+									<div class="form-group">
+										<input type="number" class="form-control" name="phone" required="required" size="4">
+	
+									 </div>
+								</div>
+								
+								<div class="col-sm-4" style="padding-left:0px;">
+									<div class="form-group">
+										<input type="number" class="form-control" name="phone" required="required" placeholder="뒷번호" size="4">
+									 </div>
+								</div>
+							 </div>
 						</div>
 					</div>
 					<div class="row row-condensed space-4">
@@ -132,6 +142,7 @@
 						         	거주지역
 						    </label>
 						<div class="col-sm-9">
+						<div class="col-md-12">
 							<div class="col-sm-4"  style="padding-left:0px;">
 								<div class="form-group">
 									<select class="form-control" name="area">
@@ -148,23 +159,26 @@
 						         	자기소개
 						    </label>
 						<div class="col-sm-9">
-							<div class="form-group">
-							  <textarea class="form-control" rows="5" id="comment" name="content"></textarea>
-							</div>	
+							<div class="col-md-12">
+								<div class="form-group">
+								  <textarea class="form-control" rows="5" id="comment" name="content"></textarea>
+								</div>	
+							</div>
 						</div>
 					</div>
 					<div class="row row-condensed space-4">
 						 <div class="col-sm-9">
 						 </div>	
 						<div class="col-sm-3" >
-							<input class="btn btn-primary" type="submit" value="저장" style="float:right;">
+							<div class="col-md-12">
+								<input class="btn btn-primary" type="submit" value="저장" style="float:right;">
+							</div>
 						</div>
 					</div>
-					
+					</div>
 				</div>
 			</div>
 		</div>
-		
 	</form>	
 </div>	
 <div id="dashboard-content">

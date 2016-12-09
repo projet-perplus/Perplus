@@ -7,7 +7,7 @@
 		<tiles:insertAttribute name="linkandscripthead"/>
 	</head>
   <body>
-  	<header>
+  	<header class="perplusheader">
   		<tiles:insertAttribute name="header"/>
   		<tiles:insertAttribute name="logindialog"/>
   		<tiles:insertAttribute name="joindialog"/>

@@ -85,7 +85,7 @@ public class MemberController {
 		session.invalidate();
 		return "redirect:/main.do";
 	}
-	
+
 	/*******************멤버 정보 수정
 	 * @throws IOException 
 	 * @throws IllegalStateException *************************/

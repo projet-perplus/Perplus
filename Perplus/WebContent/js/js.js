@@ -1,9 +1,10 @@
+
 $(function(){
-				
+	/*체크인 체크아웃*/			
 	var nowTemp = new Date();
 	var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
 	var checkin = $('#dpd1').datepicker({
-		format: 'yyyy.mm.dd',
+		format: 'yyyy-mm-dd',
 		language: "kr",
 
 		onRender: function(date) {
@@ -19,11 +20,9 @@ $(function(){
 	  $('#dpd2')[0].focus();
 	}).data('datepicker');
 	
-	
-	
-	
+
 	var checkout = $('#dpd2').datepicker({
-	  format: 'yyyy.mm.dd',
+	  format: 'yyyy-mm-dd',
 		 language: "kr",
 	  onRender: function(date) {
 		return date.valueOf() <= checkin.date.valueOf() ? 'disabled' : '';
@@ -33,7 +32,26 @@ $(function(){
 	}).data('datepicker');
 		
 	
+
+
 	
+	 $("#datepicker1, #datepicker2").datepicker({
+		 format: 'yyyy-mm-dd'
+		 
+	 });
+	    
+		
+	
+          $('#datetimepicker12').datepicker({
+        	  format: 'yyyy-mm-dd',
+        
+              inline: true
+          });
+
+	
+	
+	
+	/*서브메뉴 active*/
 	var main = $(".submenu_ul").data("main")
 	
 	$("#myNavbar1>ul>li[data-page=" + main + "]").addClass("active")
@@ -43,6 +61,36 @@ $(function(){
 			$(this).addClass("active").siblings(".active").removeClass("active")
 		}
 	});
+	$(".navbar-nav1>li").each(function(){
+		if(window.location.href.indexOf($(this).data("sub")) != -1){
+			$(this).addClass("active").siblings(".active").removeClass("active")
+		}
+	});
+	
+	
+	
+	 $('#myCarousel').carousel({
+         interval: 5000
+	 });
+	
+	 $('#carousel-text').html($('#slide-content-0').html());
+	
+	 
+	 
+	 
+	 /*//Handles the carousel thumbnails*/
+	 	 $('[id^=carousel-selector-]').click( function(){
+	     var id = this.id.substr(this.id.lastIndexOf("-") + 1);
+	     var id = parseInt(id);
+	     $('#myCarousel').carousel(id);
+	 });
+	
+	
+		 /*// When the carousel slides, auto update the text*/
+		 $('#myCarousel').on('slid.bs.carousel', function (e) {
+		 var id = $('.item.active').data('slide-number');
+	     $('#carousel-text').html($('#slide-content-'+id).html());
+	 });
 
 });
 	
