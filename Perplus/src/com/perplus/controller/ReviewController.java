@@ -53,7 +53,7 @@ public class ReviewController {
 				MultipartFile file = (MultipartFile)f;
 				if(!file.isEmpty()){
 					String fileName = UUID.randomUUID().toString().replace("-", "");//UUID를 이용해 파일명 생성(- 제거)
-					File dest = new File(saveDir,"fileName");
+					File dest = new File(saveDir,fileName);
 					file.transferTo(dest);
 					picture.setPictureName(fileName);
 					picture.setPictureOrder(count);
@@ -80,11 +80,48 @@ public class ReviewController {
 		return "수정폼";
 	}
 	
-	/******************리뷰 글 수정*****************/
+	/******************리뷰 글 수정
+	 * @throws IOException 
+	 * @throws IllegalStateException *****************/
 	@RequestMapping(value="/modifyReview", method=RequestMethod.POST)
-	public String modifyReview(@ModelAttribute ReviewVo review, @RequestParam int ReviewSerial,@ModelAttribute ReviewPictureVo picture, HttpServletRequest request){
+	public String modifyReview(@ModelAttribute ReviewVo review, @RequestParam int reviewSerial,@ModelAttribute ReviewPictureVo picture, HttpServletRequest request) throws IllegalStateException, IOException{
+		ReviewVo oldReview = service.getReview(reviewSerial);
+		review.setMemberEmail(oldReview.getMemberEmail());
+		review.setReviewSerial(oldReview.getReviewSerial());
+		review.setReviewMarkerConstant(oldReview.getReviewMarkerConstant());
+		review.setReviewMarkerX(oldReview.getReviewMarkerX());
+		review.setReviewMarkerY(oldReview.getReviewMarkerY());
+		service.modifyReview(review);
 		
+		List<ReviewPictureVo> oldPicture = service.getReviewPictureList(reviewSerial);
 		List files = picture.getPictureList();
+	
+		List<ReviewPictureVo> newPictures = new ArrayList<>();
+		String newFileName=  null;
+		
+		if(files != null && !files.isEmpty()){
+			service.removeReviewPicture(reviewSerial);
+			int count =1;
+			for(Object f : files){
+				MultipartFile file = (MultipartFile)f;
+				if(!file.isEmpty()){
+					newFileName = UUID.randomUUID().toString().replace("-", "");
+					File newPicture= new File(request.getServletContext().getRealPath("/uploadReviewPicture"),newFileName);
+					file.transferTo(newPicture);
+					picture.setPictureName(newFileName);
+					picture.setPictureOrder(count);
+					picture.setPictureSerial(1);
+					picture.setReviewSerial(reviewSerial);
+					newPictures.add(picture);
+					count++;
+					service.registerReviewPicture(newPictures);
+				}
+			}
+			for(int i =0 ; i< oldPicture.size();i++){
+				File oldPic =  new File(request.getServletContext().getRealPath("/uploadReviewPicture"),oldPicture.get(i).getPictureName());
+				oldPic.delete();
+			}
+		}
 		
 		return"수정완료폼";
 	}
