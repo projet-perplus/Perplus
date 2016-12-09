@@ -5,14 +5,13 @@
 	</div>
 	<div class="panel-body">
 		<div class="row">
-			<div class="col-xs-3"></div>
-			<div class="col-xs-6" style="text-align: center;">
-				<span>대금을 지급받으려면 대금 수령 방법을 설정해야 합니다 .</span>
+			<div class="col-xs-offset-2 col-xs-8" style="text-align: center;">
+				<span>대금을 지급받으려면 대금 수령 방법을 설정해야 합니다 .</span><br>
 				<button>
 					<span data-toggle="modal" data-target="#payoutpreference">대금 수령 계좌 추가</span>
 				</button>
 			</div>
-			<div class="col-xs-3"></div>
+			<div class="clearfix"></div>
 		</div>
 	</div>
 </div>

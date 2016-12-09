@@ -3,18 +3,26 @@
 <div class="basicheader">
 	<div class="container-fluid">
 		<div class="row">
-			<div class="col-md-10 col-xs-8"></div>
-			<div class="col-md-1 col-xs-3">
-				<div class="form-group">
-					<select class="form-control" style="margin-top: 7px;">
-						<option>1</option>
-						<option>2</option>
-						<option>3</option>
-						<option>4</option>
-					</select>
+			<div class="col-md-3 col-xs-3"></div>
+			
+			<div class="col-md-offset-6 col-md-3 col-xs-offset-6">
+				<div class="col-md-7 page_moveBtn ">
+					<div class="col-md-8 ">
+						<div class="form-group">
+							<select class="form-control">
+								<option>1</option>
+								<option>2</option>
+								<option>3</option>
+								<option>4</option>
+							</select>
+						</div>
+					</div>
+					<div class="col-md-4 page_moveBtn hidden-xs">
+						(2/12)
+					</div>
 				</div>
+			 <div class="clearfix"></div>
 			</div>
-			<div class="col-md-1 col-xs-1"></div>
 		</div>
 	</div>
 </div>
@@ -30,7 +38,7 @@
 	<div class="container">
 		<div class="row row-condensed space-4">
 			<div class="col-md-offset-2 col-md-8 housesection">
-				<div class="row row-condensed space-4" style="margin-bottom: 80px;">
+				<div class="row row-condensed space-4 row-sectionB">
 					<label class="text-left col-sm-6 col-md-3">
 						<span>숙소 유형</span>
 					</label>
@@ -61,7 +69,7 @@
 		</div>
 		<div class="row row-condensed space-4">
 			<div class="col-md-offset-2 col-md-8 housesection">
-				<div class="row row-condensed space-4" style="margin-bottom: 80px;">
+				<div class="row row-condensed space-4 row-sectionB">
 					<label class="text-left col-sm-6 col-md-3">
 						<span>건물 유형</span>
 					</label>
@@ -92,7 +100,7 @@
 		</div>
 		<div class="row row-condensed space-4">
 			<div class="col-md-offset-2 col-md-8 housesection">
-				<div class="row row-condensed space-4" style="margin-bottom: 80px;">
+				<div class="row row-condensed space-4 row-sectionB">
 					<label class="text-left col-sm-6 col-md-3">
 						<span>숙소 위치</span>
 					</label>

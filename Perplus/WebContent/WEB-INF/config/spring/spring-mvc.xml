@@ -83,8 +83,14 @@
 	<mvc:view-controller path="/hostingcomplate.do"
 		view-name="hostingcomplete.hostingtiles" />
 
+
+<!-- review 리뷰 관련   명소-->
 	<mvc:view-controller path="/hotplace.do"
 		view-name="travelhotplace.hotplacetiles"/>
+
+	
+	<mvc:view-controller path="/reviewdetailpage.do" 
+		view-name="reviewdetailpage.hotplacetiles"/>
 
 
 	<bean name="dataSource" class="org.apache.commons.dbcp2.BasicDataSource"

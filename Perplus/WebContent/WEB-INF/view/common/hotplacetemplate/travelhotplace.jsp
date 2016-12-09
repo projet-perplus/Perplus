@@ -1,104 +1,57 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
-<ul>
-	<li>
-	<a href="#" data-toggle="modal" data-target="#reviewEnrollment">
-	<button type="button" class="btn btn-primary">리뷰 작성</button></a>
-	</li>
-</ul>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWDGjKV2YFKGM5q6gtx-J5GcJTa2wLDQU" type="text/javascript"></script>
+<script src="js/map.js"></script>
 
-
-
-<!-- payoutpreference  dialog -->
-<div class="modal fade" id="reviewEnrollment" role="dialog"
-	aria-labelledby="basicModal" aria-hidden="true">
-	<div class="modal-dialog reviewEnrollment-dialog">
-		<!-- Modal content-->
-		<form action="">
-			<div class="modal-content"  style="padding: 0px;">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal">&times;</button>
-					<h4 class="modal-title">리뷰등록</h4>
-				</div>
-				
-				<div class="modal-body">
-					<div class="payoutpreferencedialog">
-						<div class="row row-condensed space-4">
-							<label class="text-left col-sm-3"> 리뷰제목 </label>
-							<div class="col-sm-9">
-								<div class="form-group">
-									<input type="text" class="form-control" name="reviewname"
-										placeholder="이름을 입력하세요..." required="required">
-								</div>
-							</div>
-						</div>
-						<div class="row row-condensed space-4">
-							<label class="text-left col-sm-3"> 장소명 </label>
-							<div class="col-sm-9">
-								<div class="form-group">
-									<input type="text" class="form-control" name="bankname"
-										placeholder="은행이름을 입력하세요..." required="required">
-								</div>
-							</div>
-						</div>
-						<div class="row row-condensed space-4">
-							<label class="text-left col-sm-3" > 방문일자 </label>
-							<div class="col-sm-9">
-								<div class="form-group">
-									<div class="visitDate">
-										<div class="col-md-5">
-											<input type="text" class="form-control"  name="check" id="dpd1" >
-										</div>
-										<div class="col-md-2">
-										~
-										</div>
-										<div class="col-md-5">
-											<input type="text" class="form-control"  name="check" id="dpd2">
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="row row-condensed space-4">
-							<label class="text-left col-sm-3"> 리뷰 제목 </label>
-							<div class="col-sm-9">
-								<div class="form-group">
-									<input type="text" class="form-control" name="reviewname"
-										placeholder="이름을 입력하세요..." required="required">
-								</div>
-							</div>
-						</div>
-						<div class="row row-condensed space-4">
-							<label class="text-left col-sm-3"> 리뷰제목 </label>
-							<div class="col-sm-9">
-								<div class="form-group">
-									<input type="text" class="form-control" name="reviewname"
-										placeholder="이름을 입력하세요..." required="required">
-								</div>
-							</div>
-						</div>
-						<div class="row row-condensed space-4">
-							<label class="text-left col-sm-3"> 리뷰 내용</label>
-							<div class="col-sm-9">
-								<div class="form-group">
-  								    <textarea class="form-control" rows="5" id="comment"></textarea>
-								</div>
-							</div>
-						</div>
-						<div class="modal-footer">
-							<div class="row">
-								<div class="col-md-6 leftform">
-									<button type="button" class="btn btn-default" data-dismiss="modal" style="float:left !important;">취소</button>
-								</div>
-								<div class="col-md-6 rightform">
-									<input type="submit" name="enrollment" class="btn btn-default" value="등록">
-								</div>
-							</div>
-						
-							
-						</div>
+<div class="container">
+	<div id="dashboard-content" class="hotplace">
+		<div class="panel-header">
+		
+			<div class="col-md-4 col-xs-4 headeCrH panel-PN" style="height:50px;">
+				<div class="col-md-6 panel-MT panel-PN">
+					<div class="form-group">
+						<input type="text" class="form-control" name="locationname"
+							placeholder="지역명 도시명,주소">
 					</div>
 				</div>
-			</div>	
-		</form>
+				<div class="clearfix"></div>
+			</div>
+			
+			<div class="col-md-4 col-xs-3"> 
+				<button type="button" class="btn btn-primary btn-md panel-MT">필터</button>
+			</div>
+			
+			<div class="col-md-4 col-xs-5">
+				<div class="col-md-6 col-xs-4">
+					<div class="dropdown panel-MT">
+		  				<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+		  						마커보기
+		  					<span class="caret"></span>
+		  				</button>
+					    <ul class="dropdown-menu">
+							<li>
+								<a href="#" data-toggle="modal" data-target="#reviewEnrollment">
+									<button type="button" class="btn btn-primary">리뷰 작성</button>
+								</a>
+							</li>
+							<li>
+								<a href="${initParam.rootPath}/reviewdetailpage.do">
+									<button type="button" class="btn btn-primary">리뷰 상세페이지</button>
+								</a>
+							</li>
+			 		    </ul>
+					</div>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+			
+		</div>
+		<div class="panel-body">
+			<div class="row">
+				<div class="col-md-12">
+					<div id="map-canvas" style="width: 100%; height: 500px"></div>
+				</div>
+			</div>
+		</div>
 	</div>
-</div>
+</div>	
+
