@@ -2,6 +2,8 @@ package com.perplus.member.vo;
 
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class MemberVo<T> {
 	private String memberEmail;//회원이메일
 	private String memberPassword;//회원패스워드
@@ -14,14 +16,22 @@ public class MemberVo<T> {
 	private int memberIdentification;//회원 주민등록번호 인증유무
 	private String memberPicture;//회원 프로필사진
 	
+	private MultipartFile memberPictureFile;//파일 받는 변수
+	
 	private List<T> list;//자식 테이블 list로 담아주는 통합 콜렉션
+	
+	public MemberVo() {}
 
-	public MemberVo() {
+	public MemberVo(String memberEmail, String memberPassword, String memberName, String memberBirthday) {
+		this.memberEmail = memberEmail;
+		this.memberPassword = memberPassword;
+		this.memberName = memberName;
+		this.memberBirthday = memberBirthday;
 	}
 
 	public MemberVo(String memberEmail, String memberPassword, String memberName, String memberBirthday,
 			String memberGender, int memberTel, String memberLocation, String memberIntroduction,
-			int memberIdentification, String memberPicture, List<T> list) {
+			int memberIdentification, String memberPicture, MultipartFile memberPictureFile) {
 		this.memberEmail = memberEmail;
 		this.memberPassword = memberPassword;
 		this.memberName = memberName;
@@ -32,22 +42,24 @@ public class MemberVo<T> {
 		this.memberIntroduction = memberIntroduction;
 		this.memberIdentification = memberIdentification;
 		this.memberPicture = memberPicture;
+		this.memberPictureFile = memberPictureFile;
+	}
+
+	public MemberVo(String memberEmail, String memberPassword, String memberName, String memberBirthday,
+			String memberGender, int memberTel, String memberLocation, String memberIntroduction,
+			int memberIdentification, String memberPicture, MultipartFile memberPictureFile, List<T> list) {
+		this.memberEmail = memberEmail;
+		this.memberPassword = memberPassword;
+		this.memberName = memberName;
+		this.memberBirthday = memberBirthday;
+		this.memberGender = memberGender;
+		this.memberTel = memberTel;
+		this.memberLocation = memberLocation;
+		this.memberIntroduction = memberIntroduction;
+		this.memberIdentification = memberIdentification;
+		this.memberPicture = memberPicture;
+		this.memberPictureFile = memberPictureFile;
 		this.list = list;
-	}
-
-	public MemberVo(String memberEmail, String memberPassword, String memberName, String memberBirthday,
-			String memberGender, int memberTel, String memberLocation, String memberIntroduction,
-			int memberIdentification, String memberPicture) {
-		this.memberEmail = memberEmail;
-		this.memberPassword = memberPassword;
-		this.memberName = memberName;
-		this.memberBirthday = memberBirthday;
-		this.memberGender = memberGender;
-		this.memberTel = memberTel;
-		this.memberLocation = memberLocation;
-		this.memberIntroduction = memberIntroduction;
-		this.memberIdentification = memberIdentification;
-		this.memberPicture = memberPicture;
 	}
 
 	public String getMemberEmail() {
@@ -130,12 +142,29 @@ public class MemberVo<T> {
 		this.memberPicture = memberPicture;
 	}
 
+	public MultipartFile getMemberPictureFile() {
+		return memberPictureFile;
+	}
+
+	public void setMemberPictureFile(MultipartFile memberPictureFile) {
+		this.memberPictureFile = memberPictureFile;
+	}
+
 	public List<T> getList() {
 		return list;
 	}
 
 	public void setList(List<T> list) {
 		this.list = list;
+	}
+
+	@Override
+	public String toString() {
+		return "MemberVo [memberEmail=" + memberEmail + ", memberPassword=" + memberPassword + ", memberName="
+				+ memberName + ", memberBirthday=" + memberBirthday + ", memberGender=" + memberGender + ", memberTel="
+				+ memberTel + ", memberLocation=" + memberLocation + ", memberIntroduction=" + memberIntroduction
+				+ ", memberIdentification=" + memberIdentification + ", memberPicture=" + memberPicture
+				+ ", memberPictureFile=" + memberPictureFile + ", list=" + list + "]";
 	}
 
 	@Override
@@ -152,6 +181,7 @@ public class MemberVo<T> {
 		result = prime * result + ((memberName == null) ? 0 : memberName.hashCode());
 		result = prime * result + ((memberPassword == null) ? 0 : memberPassword.hashCode());
 		result = prime * result + ((memberPicture == null) ? 0 : memberPicture.hashCode());
+		result = prime * result + ((memberPictureFile == null) ? 0 : memberPictureFile.hashCode());
 		result = prime * result + memberTel;
 		return result;
 	}
@@ -212,21 +242,16 @@ public class MemberVo<T> {
 				return false;
 		} else if (!memberPicture.equals(other.memberPicture))
 			return false;
+		if (memberPictureFile == null) {
+			if (other.memberPictureFile != null)
+				return false;
+		} else if (!memberPictureFile.equals(other.memberPictureFile))
+			return false;
 		if (memberTel != other.memberTel)
 			return false;
 		return true;
 	}
 
-	@Override
-	public String toString() {
-		return "MemberVo [memberEmail=" + memberEmail + ", memberPassword=" + memberPassword + ", memberName="
-				+ memberName + ", memberBirthday=" + memberBirthday + ", memberGender=" + memberGender + ", memberTel="
-				+ memberTel + ", memberLocation=" + memberLocation + ", memberIntroduction=" + memberIntroduction
-				+ ", memberIdentification=" + memberIdentification + ", memberPicture=" + memberPicture + ", list="
-				+ list + "]";
-	}
-
-	
 	
 	
 }
