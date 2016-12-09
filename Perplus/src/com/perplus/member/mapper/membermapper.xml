@@ -12,7 +12,7 @@
 	
 	<update id="updateMember" parameterType="MemberVo">
 		update	member
-		set		member_password = #{memberPassword},
+		<set>	member_password = #{memberPassword},
 				member_name = #{memberName},
 				member_birthday = #{memberBirthday},
 				member_gender = #{memberGender},
@@ -20,7 +20,10 @@
 				member_location = #{memberLocation},
 				member_introduction = #{memberIntroduction},
 				member_identification = #{memberIdentification},
-				member_picture  = #{memberPicture}
+				<if test="memberPicture!=null">
+					member_picture  = #{memberPicture},
+				</if>
+		</set>
 		where	member_email = #{memberEmail}
 	</update>
 	

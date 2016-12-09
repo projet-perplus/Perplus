@@ -14,7 +14,7 @@ a{
 a:focus, a:hover {
 	text-decoration: none !important;
 	color: #000 !important;
-	border: 0 !important;
+	border: color:rgba(0,0,0,0) !important;
 }
 
 body {
@@ -89,6 +89,10 @@ p {
 	}
 	.ui-tabs .ui-tabs-nav li {
   		  margin: 5px .2em 0 0 !important;
+	}
+	.carousel-inner > .item > img,
+	.carousel-inner > .item > a > img {
+	  height: 200px !important;
 	}
 }
 
@@ -375,11 +379,11 @@ p {
 	font-weight: bold !important;
 	font-size: 27px !important;
 }
-.row-condensed>.text-left>span {
+.row-condensed>.text-left>span, .row-condensed>.col-md-6>.text-left>span, .row-condensed>.col-md-12>.text-left>span{
 	color: #57c3a6 !important;
 	line-height: 38px !important;
 	font-weight: bold !important;
-	font-size: 27px ;
+	font-size: 25px ;
 }
 .row-condensed>.text-left>.subspan {
     color: #56c2c2 !important;
@@ -576,20 +580,35 @@ p {
 	height:50px !important;
 }
 
-/* img slide
- */
+#slider-thumbs{
+   position:relative;
+}
 
-/* #slider-thumbs{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,380%);
- }
-  */
+#slider-thumbs>ul{
+   position:relative;
+   left:50%;
+   float:left;
+   transform:translate(-50%);
+   padding:0;
+}
+
+#slider-thumbs>ul::after{
+   content:"";
+   display:block;
+   clear:both;
+}
+
+#slider-thumbs>ul>li{
+   float:left;
+}
+#slider-thumbs > .col-xs-2{
+	padding:0px;
+	
+}  
 .carousel-inner > .item > img,
 .carousel-inner > .item > a > img {
   width: 100%;
-  height: 400px !important;
+  height: 400px;
   margin: 0 auto;
   padding: 0;
 }
