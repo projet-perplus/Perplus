@@ -20,22 +20,23 @@ public class testMain {
 		HouseFilterDaoImpl hf = (HouseFilterDaoImpl)abc.getBean("houseFilterDaoImpl");
 		HouseDaoImpl h = (HouseDaoImpl)abc.getBean("houseDaoImpl");
 		
-		String str1="2015-10-11";
-		String str2="2015-10-13";
+		String str1="2015-10-10";
+		String str2="2015-10-12";
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		Date date1= sdf.parse(str1);
 		Date date2= sdf.parse(str2);
 		System.out.println(date1);
 		System.out.println(date2);
-		List list = Arrays.asList("부엌","연기 감지기");
+		List list = Arrays.asList("에어컨");
 		
+		System.out.println(list);
 		
 		HashMap<String,Object> map = new HashMap<String, Object>();
 		
-		map.put("startDay", date1);
-		map.put("endDay",date2);
-		map.put("list", list);
-		map.put("listSize", list.size());
+//		map.put("startDay", date1);
+//		map.put("endDay",date2);
+//		map.put("list", list);
+//		map.put("listSize", list.size());
 		System.out.println(map);
 		System.out.println(h.selectHouseListByFilter(map));
 //		System.out.println(h.insertHouseFilter(new HouseFilterVo));

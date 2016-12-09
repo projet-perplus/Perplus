@@ -36,7 +36,7 @@
 						 <div class="form-group">
 						  <label for="secl1">인원</label>
 						  <select class="form-control" name="personnel" id="GuestInput">
-							<option >1</option>
+							<option>1</option>
 							<option>2</option>
 							<option>3</option>
 							<option>4</option>
