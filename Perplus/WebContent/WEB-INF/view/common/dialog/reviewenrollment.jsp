@@ -37,21 +37,13 @@
 							<div class="col-sm-9">
 								<div class="form-group">
 									<div class="visitDate">
-										<div class="col-md-5">
-											<input type="text" class="form-control"  name="check" id="datepicker1">
-										</div>
-										<div class="col-md-2">
-										~
-										</div>
-										<div class="col-md-5">
-											<input type="text" class="form-control"  name="check" id="datepicker2">
-										</div>
+										<input type="text" class="form-control"  name="check" id="datepicker1">
 									</div>
 								</div>
 							</div>
 						</div>
 						<div class="row row-condensed space-4">
-							<label class="text-left col-sm-3"> 리뷰 제목 </label>
+							<label class="text-left col-sm-3">사진 등록</label>
 							<div class="col-sm-9">
 								<div class="form-group">
 									<input type="text" class="form-control" name="reviewname"
@@ -60,12 +52,17 @@
 							</div>
 						</div>
 						<div class="row row-condensed space-4">
-							<label class="text-left col-sm-3"> 리뷰제목 </label>
+							<label class="text-left col-sm-3"> 평점 </label>
 							<div class="col-sm-9">
-								<div class="form-group">
-									<input type="text" class="form-control" name="reviewname"
-										placeholder="이름을 입력하세요..." required="required">
-								</div>
+						 		<div class="stars stars-example-bootstrap" style="height: 40px;">
+						           <select id="example-bootstrap" name="rating" autocomplete="off">
+						             <option value="1">1</option>
+						             <option value="2">2</option>
+						             <option value="3">3</option>
+						             <option value="4">4</option>
+						             <option value="5">5</option>
+						           </select>
+					        	 </div>		
 							</div>
 						</div>
 						<div class="row row-condensed space-4">

@@ -1,4 +1,25 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
+<script>
+$(function(){
+	$("#datepicker").datepicker({
+        showOtherMonths: true, 
+        selectOtherMonths: true,   
+         yearSuffix:'년',   
+          monthNames:['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],   
+        dayNamesMin:['일','월','화','수','목','금','토'],   
+        dateFormat:'yy-mm-dd',
+        showMonthAfterYear:true,
+          onSelect: function(dateText , inst){
+             $("#datepicker").text(dateText),
+            location.replace("/SALIM_project/household/login/incomeSelect.do?incomeDate="+dateText);
+          }         
+     });
+});
+
+
+</script>
+
+
 <!-- header -->
 <div class="basicheader">
 	<div class="container-fluid">
@@ -49,7 +70,7 @@
 					<div class="clearfix visible-md-block"></div>
 					<div class="col-md-offset-1 col-md-10">
 						<div class=" col-md-8">
-							
+							<p>Date: <input type="text" id="datepicker"></p>'
 						</div>
 					</div>
 				</div>

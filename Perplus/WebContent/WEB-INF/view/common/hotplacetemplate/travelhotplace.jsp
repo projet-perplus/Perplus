@@ -21,29 +21,25 @@
 			</div>
 			
 			<div class="col-md-4 col-xs-5">
-				<div class="col-md-6 col-xs-4">
-					<div class="dropdown panel-MT">
-		  				<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
-		  						마커보기
-		  					<span class="caret"></span>
-		  				</button>
-					    <ul class="dropdown-menu">
-							<li>
-								<a href="#" data-toggle="modal" data-target="#reviewEnrollment">
-									<button type="button" class="btn btn-primary">리뷰 작성</button>
-								</a>
-							</li>
-							<li>
-								<a href="${initParam.rootPath}/reviewdetailpage.do">
-									<button type="button" class="btn btn-primary">리뷰 상세페이지</button>
-								</a>
-							</li>
-			 		    </ul>
-					</div>
+				<div class="dropdown panel-MT pull-right">
+	  				<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+	  						마커보기
+	  					<span class="caret"></span>
+	  				</button>
+				    <ul class="dropdown-menu ">
+						<li>
+							<a href="#" data-toggle="modal" data-target="#reviewEnrollment">
+								<button type="button" class="btn btn-primary">리뷰 작성</button>
+							</a>
+						</li>
+						<li>
+							<a href="${initParam.rootPath}/reviewdetailpage.do">
+								<button type="button" class="btn btn-primary">리뷰 상세페이지</button>
+							</a>
+						</li>
+		 		    </ul>
 				</div>
-				<div class="clearfix"></div>
 			</div>
-			
 		</div>
 		<div class="panel-body">
 			<div class="row">
