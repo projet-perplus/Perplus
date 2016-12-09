@@ -139,13 +139,14 @@
 				  <!-- 아래가 필터를 검출한 HOUSE_SERIAL 중 중복 값 만을 출력 한 것이다. 
 				  -->
 				<where>	
-					<if test="!(endDay == null and startDay == null and list == null)">
+					<if test="!(endDay == null and startDay == null and list == null and listSize == null)">
 						HOUSE_SERIAL in (
-						select DISTINCT HOUSE_SERIAL from 
-						<if test ="endDay != null and startDay != null">
-						(
+						select DISTINCT HOUSE_SERIAL 
+						from (
+						
+							<if test ="endDay != null and startDay != null">
 						  	<!-- SHUTDOWN >> 해당 기간안에 있는 날을 미리 select 한 다음 그 HOUSE_SERIAL들을 배제한 나머지를 select-->
-						  	select DISTINCT HOUSE_SERIAL 
+					  		select DISTINCT HOUSE_SERIAL 
 						  	from SHUTDOWN
 							where HOUSE_SERIAL NOT IN (
 								select DISTINCT HOUSE_SERIAL 
@@ -153,19 +154,17 @@
 								where SHUTDOWN_DATE 
 								between (CAST(#{startDay} as date)) and (CAST(#{endDay} as date))
 							)
-						
-						</if>
-						<if test="endDay !=null and startDay !=null and list !=null">
+					  	
+							</if>
+							<if test="endDay !=null and startDay !=null and list !=null and listSize != 0">
 								UNION ALL
-						</if>
-						<if test="endDay == null and startDay == null and list !=null">
-							(
-						</if>
-						<if test ="list!=null">
+							</if>
+							<if test ="list!=null and listSize != 0">
 							<!-- CHECKLIST >> 사용자가 체크한 리스트를 만족하는 HOUSE의 SERIAL를 집계한 다음 최종적으로 
 								집계된 SERIAL의 개수와 사용자 선택 리스트의 개수가 같은 것을 조건 만족하는 HOUSE로 인정
 							--> 
-								select HOUSE_SERIAL from(
+								select HOUSE_SERIAL 
+								from(
 									select HOUSE_SERIAL 
 									from CHECKLIST 
 									where VALUE in
@@ -174,26 +173,34 @@
 									</foreach>
 								)
 								group by HOUSE_SERIAL HAVING COUNT(*) = #{listSize}
-							) 							
-						</if>
-						<if test="endDay != null and startDay != null and list == null">
 							)
-						</if>
-						<!-- 만약 두 조건의 HOUSESERIAL이 중복된다면 모든 추가 필터의 조건을 만족하는 HOUSE로 가정한다. -->
-						<if test="endDay !=null and startDay !=null and list !=null">
+							</if>
+							
+							<!-- 만약 두 조건의 HOUSESERIAL이 중복된다면 모든 추가 필터의 조건을 만족하는 HOUSE로 가정한다. -->
+							<if test="endDay !=null and startDay !=null and list !=null and listSize!= 0">
 							group by HOUSE_SERIAL HAVING COUNT(*)>1
-						</if>	
+							</if>
+							<if test="endDay == null and startDay == null and list == null and listSize == null">
+								HOUSEFILTER
+							)
+							</if>
+						)	
 					</if>
-					)
+
+					<if test="endDay != null and startDay != null and list == null and listSize == null">
+						)
+					</if>
 				</where>
 			)
 			<!-- 최 외각의 From 절 (추가필터) 끝 -->
 			<where>
 				<!-- 여기부터가 HOUSEFILTER와 HOUSE가 가진 값을 통해 필터링이 일어나는 곳 -->
-				<if test ="endDay != null and startDay != null">
+				<if test ="endDay != null and startDay != null and currentTime != null">
 <!-- 					and (CAST(#{endDay} as date)-CAST(#{startDay} as date)) <![CDATA[>=]]>  HOUSEFILTER_BAK_MIN -->
 <!-- 					and (CAST(#{endDay} as date)-CAST(#{startDay} as date)) <![CDATA[<=]]>  HOUSEFILTER_BAK_MAX -->
 					and (CAST(#{endDay} as date)-CAST(#{startDay} as date)) between HOUSEFILER_BAK_MIN and HOUSEFILTER_BAK_MAX
+				  	and (#{currentTime} + HOUSEFILTER_RESERVATION_TERM *30 >= #{endDay})
+				  	and (#{currentTime} + HOUSEFILTER_CHECKIN_TERM >= #{startDay})		
 				</if>
 				<if test ="guestNumber != null">
 					and HOUSEFILTER_GUEST_NUMBER >= #{guestNumber}

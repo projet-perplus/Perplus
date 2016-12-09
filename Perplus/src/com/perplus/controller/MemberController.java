@@ -24,6 +24,7 @@ import com.fasterxml.jackson.databind.util.BeanUtil;
 import com.perplus.member.service.MemberService;
 import com.perplus.member.vo.MemberVo;
 
+
 @Controller
 @RequestMapping("/member")
 public class MemberController {
@@ -65,12 +66,10 @@ public class MemberController {
 	public Map<String, Object> loginCheck(@RequestParam String memberEmail, @RequestParam String memberPassword,HttpSession session){
 		Map<String, Object> loginCheckResult = new HashMap<>();
 		MemberVo member = service.selectMemberFindByEmail(memberEmail);
-		System.out.println(memberPassword);
 		if(member!=null){
 			if(member.getMemberPassword().equals(memberPassword)){
 				session.setAttribute("login_info", member);
 			}else{
-				System.out.println("password");
 				loginCheckResult.put("login_error_password","Password를 확인하세요.");
 			}
 		}else{
@@ -92,10 +91,12 @@ public class MemberController {
 	@RequestMapping(value="/modify.do", method=RequestMethod.POST)
 	public String modify(@ModelAttribute MemberVo newData, BindingResult result, HttpServletRequest request, HttpSession session) throws IllegalStateException, IOException{
 		MemberVo loginInfo =  (MemberVo)session.getAttribute("login_info");
+		
+		String memberBirthday = request.getParameter("birthdayYY")+request.getParameter("birthdayMM")+request.getParameter("birthdayDD");
+		newData.setMemberBirthday(memberBirthday);
+		
 		MultipartFile file = newData.getMemberPictureFile();
-		System.out.println(file);
 		newData.setMemberEmail(loginInfo.getMemberEmail());
-		newData.setMemberBirthday("1111");
 		String fileName = null;
 		if(file!=null && !file.isEmpty()){
 			//파일 uploadPhoto로 옮기기
@@ -107,12 +108,10 @@ public class MemberController {
 				File oldPic = new File(request.getServletContext().getRealPath("/memberPicture"), loginInfo.getMemberPicture());
 				oldPic.delete();
 			}
-			
 			newData.setMemberPicture(fileName);//DAO로 넘길 VO의 사진이름 값 변경
+		}else{
+			newData.setMemberPicture(loginInfo.getMemberPicture());
 		}
-		System.out.println(fileName);
-		System.out.println("newData");
-		System.out.println(newData);
 		service.updateMember(newData);
 		
 		
@@ -127,9 +126,9 @@ public class MemberController {
 		if(fileName != null){//업로드된 사진이 있어 newFileName의 값이 설정 되 있으면
 			loginInfo.setMemberPicture(fileName);//세션에 사진 이름 값 변경
 		}
-		
 		return "redirect:/modifyandcertified.do";
 	}
 }
+
 
 
