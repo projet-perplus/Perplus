@@ -79,7 +79,7 @@ public class MemberController {
 	 * @throws IOException 
 	 * @throws IllegalStateException *************************/
 	@RequestMapping(value="/modify.do", method=RequestMethod.POST)
-	public String modify(@ModelAttribute MemberVo newData, BindingResult result, HttpServletRequest request, HttpSession session) throws IllegalStateException, IOException{
+	public String modifymember(@ModelAttribute MemberVo newData, BindingResult result, HttpServletRequest request, HttpSession session) throws IllegalStateException, IOException{
 		MemberVo loginInfo =  (MemberVo)session.getAttribute("login_info");
 		
 		MultipartFile file = newData.getMemberPictureFile();
@@ -114,6 +114,13 @@ public class MemberController {
 			loginInfo.setMemberPicture(fileName);//세션에 사진 이름 값 변경
 		}
 		return "redirect:/modifyandcertified.do";
+	}
+	
+	
+	@RequestMapping("delete.do")
+	public String memberDelete(@RequestParam String memberEmail){
+		service.deleteMember(memberEmail);
+		return null;
 	}
 }
 

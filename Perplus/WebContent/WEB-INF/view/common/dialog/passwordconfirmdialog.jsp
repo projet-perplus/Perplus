@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
+
 <!-- 비밀 번호 확인-->
 <div class="modal fade" id="passwordconfirm" role="dialog"
 	aria-labelledby="basicModal" aria-hidden="true">
