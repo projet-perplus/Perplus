@@ -38,7 +38,7 @@
 								<div class="form-group">
 									<div class="visitDate">
 										<input type="text" class="form-control" name="reviewTime"
-											id="datepicker1">
+											id="datepicker2">
 									</div>
 								</div>
 							</div>
@@ -59,11 +59,11 @@
 							<div class="stars stars-example-bootstrap" style="height: 40px;">
 								<select id="example-bootstrap" name="reviewRating"
 									autocomplete="off">
-									<option value="1">1</option>
-									<option value="2">2</option>
-									<option value="3">3</option>
-									<option value="4">4</option>
-									<option value="5">5</option>
+									<option value=1>1</option>
+									<option value=2>2</option>
+									<option value=3>3</option>
+									<option value=4>4</option>
+									<option value=5>5</option>
 								</select>
 							</div>
 						</div>

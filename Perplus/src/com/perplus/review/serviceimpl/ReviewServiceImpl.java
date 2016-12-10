@@ -101,10 +101,8 @@ public class ReviewServiceImpl implements ReviewService{
 	}
 
 	@Override
-	public void registerReviewPicture(List<ReviewPictureVo> reviewPictures) {
-		for(int i=0; i <reviewPictures.size();i++){
-			reviewPictureDao.insertReviewPicture(reviewPictures.get(i));
-		}
+	public void registerReviewPicture(ReviewPictureVo reviewPicture) {
+			reviewPictureDao.insertReviewPicture(reviewPicture);
 	}
 
 	@Override
