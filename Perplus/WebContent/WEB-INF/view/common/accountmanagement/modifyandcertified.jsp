@@ -3,19 +3,19 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <script type="text/javascript">
-$(document).ready(function(){
-	$("#memberModifyForm").on("submit",function(){
-		if($("#memberGenderSelect").val()=="성별"){
-			alert("성별을 선택해 주세요.");
-			return false;
-		}
+	$(document).ready(function() {
+		$("#memberModifyForm").on("submit", function() {
+			if ($("#memberGenderSelect").val() == "성별") {
+				alert("성별을 선택해 주세요.");
+				return false;
+			}
+		});
 	});
-});
 </script>
 
 <div id="dashboard-content">
-	<form action="/Perplus/member/modify.do" method="post" id="memberModifyForm"
-		enctype="multipart/form-data">
+	<form action="/Perplus/member/modify.do" method="post"
+		id="memberModifyForm" enctype="multipart/form-data">
 		<div class="panel-header">
 			<span>필수 사항</span>
 		</div>
@@ -54,7 +54,8 @@ $(document).ready(function(){
 						<div class="col-sm-9">
 							<div class="col-md-12">
 								<div class="form-group">
-									<select class="form-control" id="memberGenderSelect" name="memberGender">
+									<select class="form-control" id="memberGenderSelect"
+										name="memberGender">
 										<option>성별</option>
 										<c:choose>
 											<c:when test="${sessionScope.login_info.memberGender == '남'}">
@@ -80,9 +81,11 @@ $(document).ready(function(){
 						<label class="text-right col-md-3"> 생년월일 </label>
 						<div class="col-sm-9">
 							<div class="form-group">
-								<input type="text" class="form-control" name="memberBirthday"
-									id="datepicker1"
-									value="${sessionScope.login_info.memberBirthday}">
+								<div class="col-md-12">
+									<input type="text" class="form-control" name="memberBirthday"
+										id="datepicker1"
+										value="${sessionScope.login_info.memberBirthday}">
+								</div>
 							</div>
 						</div>
 					</div>
@@ -113,39 +116,13 @@ $(document).ready(function(){
 							</div>
 						</div>
 					</div>
-					
-<%-- 					<%
-					MemberVo member = (MemberVo)session.getAttribute("login_info");
-					String memberTel = member.getMemberTel();
-					String Tel1 = memberTel.substring(0,3);
-					String Tel2 = memberTel.substring(3,7);
-					String Tel3 = memberTel.substring(7,11);
-					%> --%>
 					<div class="row row-condensed space-4">
 						<label class="text-right col-sm-3"> 전화번호 </label>
 						<div class="col-sm-9">
-							<div class="col-md-12">
-								<div class="col-sm-4" style="padding-left: 0px;">
-									<div class="form-group">
-										<select class="form-control" name="phone">
-											<option>010</option>
-											<option>016</option>
-											<option>017</option>
-											<option>019</option>
-										</select>
-									</div>
-								</div>
-								<div class="col-sm-4" style="padding-left: 0px;">
-									<div class="form-group">
-										<input type="number" class="form-control" name="phone"
-											required="required" size="4">
-									</div>
-								</div>
-								<div class="col-sm-4" style="padding-left: 0px;">
-									<div class="form-group">
-										<input type="number" class="form-control" name="phone"
-											required="required" placeholder="뒷번호" size="4">
-									</div>
+							<div class="form-group">
+								<div class="col-md-12">
+									<input type="number" class="form-control" name="phone"
+										required="required" placeholder="전화번호">
 								</div>
 							</div>
 						</div>
@@ -157,9 +134,19 @@ $(document).ready(function(){
 								<div class="col-sm-4" style="padding-left: 0px;">
 									<div class="form-group">
 										<select class="form-control" name="memberLocation">
-											<option>경기</option>
-											<option>2</option>
-											<option>3</option>
+											<option>선택</option>
+											<option>서울</option>
+											<option>광주</option>
+											<option>대구</option>
+											<option>대전</option>
+											<option>부산</option>
+											<option>울산</option>
+											<option>인천</option>
+											<option>제주도</option>
+											<option>울릉도</option>
+											<option>독도</option>
+											<option>기타</option>
+											<option>해외</option>
 										</select>
 									</div>
 								</div>
