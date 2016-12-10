@@ -3,6 +3,7 @@ package com.perplus.controller;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.commons.beanutils.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +24,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.databind.util.BeanUtil;
 import com.perplus.member.service.MemberService;
+import com.perplus.member.vo.HowgetmoneyVo;
 import com.perplus.member.vo.MemberVo;
 
 
@@ -117,11 +120,23 @@ public class MemberController {
 	}
 	
 	
-	@RequestMapping("delete.do")
-	public String memberDelete(@RequestParam String memberEmail){
+	@RequestMapping("/delete.do")
+	public String memberDelete(@RequestParam String memberEmail,HttpSession session){
 		service.deleteMember(memberEmail);
-		return null;
+		session.invalidate();
+		return "redirect:/main.do";
 	}
+	
+	@RequestMapping("/howgetmoneyfind.do")
+	public String howgetmoneyFind(ModelMap map, HttpSession session){
+		MemberVo member = (MemberVo)session.getAttribute("login_info");
+		String memberEmail = member.getMemberEmail();
+		System.out.println("왔음ㅋ");
+		List<HowgetmoneyVo> howgetmoneyList = service.selectHowgetmoney(memberEmail);
+		map.addAttribute("howgetmoneyList",howgetmoneyList);
+		return "accountmanagement/accountmanagement/payout_preference.tiles1";
+	}
+	
 }
 
 

@@ -55,7 +55,7 @@ public interface MemberService {
 	
 	void deleteHowgetmoney(HowgetmoneyVo howgetmoney);
 	
-	void selectHowgetmoney(String memberEmail);
+	List<HowgetmoneyVo> selectHowgetmoney(String memberEmail);
 	
 	
 	//member service

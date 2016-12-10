@@ -204,8 +204,8 @@ public class MemberServiceImpl implements MemberService{
 	}
 	
 	@Override//결제수단 조회
-	public void selectHowgetmoney(String memberEmail){
-		howgetmoneyDao.selectHowgetmoney(memberEmail);
+	public List<HowgetmoneyVo> selectHowgetmoney(String memberEmail){
+		return howgetmoneyDao.selectHowgetmoney(memberEmail);
 	}
 	
 	
