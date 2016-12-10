@@ -51,12 +51,8 @@
 					<div class="col-md-offset-1 col-md-10">
 						<div class=" col-md-8">
 							<div class="form-group">
-								<select class="form-control">
-									<option>KRW/박</option>
-									<option>2</option>
-									<option>3</option>
-									<option>4</option>
-								</select>
+								<input type="text" class="form-control" name="basicprice"
+										placeholder="KRW/박" required>
 							</div>
 						</div>
 					</div>
