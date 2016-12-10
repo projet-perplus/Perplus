@@ -5,7 +5,7 @@
 	
 	<!-- insert -->
 	<insert id="insertPayment">
-		insert into PAYMENT values (#{cardSerial}, #{memberEmail}, #{paymentType}, #{cardNumber}, #{cardExpiration}, #{cardSecondName}, #{cardFirstName})
+		insert into PAYMENT values (#{cardSerial}, #{memberEmail}, #{paymentType}, #{cardNumber}, #{cardExpiration}, #{cardName}, #{cardCvc})
 	</insert>
 	
 	<!-- update -->
@@ -15,8 +15,8 @@
 				PAYMENT_TYPE = #{paymentType}, 
 				CARD_NUMBER = #{cardNumber}, 
 				CARD_EXPIRATION = #{cardExpiration}, 
-				CARD_SECOND_NAME = #{cardSecondName}, 
-				CARD_FIRST_NAME = #{cardFirstName}
+				CARD_NAME = #{cardName},
+				CARD_CVC = #{cardCvc}
 		where CARD_SERIAL = #{cardSerial}
 	</update>
 	
@@ -27,13 +27,16 @@
 	
 	<!-- select -->
 	<select id="selectPayment" parameterType="string" resultType="PaymentVo">
-		select MEMBER_EMAIL memberEmail, PAYMENT_TYPE paymentType, CARD_NUMBER cardNumber, CARD_EXPIRATION cardExpiration, CARD_SECOND_NAME cardSecondName, CARD_FIRST_NAME cardFirstName
+		select MEMBER_EMAIL memberEmail, PAYMENT_TYPE paymentType, CARD_NUMBER cardNumber, CARD_EXPIRATION cardExpiration, CARD_NAME cardName, CARD_CVC cardCvc
 		from PAYMENT
 		where MEMBER_EMAIL = #{memberEmail}
 	</select>
 	<select id="selectPaymentByCardSerial" parameterType="_int" resultType="PaymentVo">
-		select MEMBER_EMAIL memberEmail, PAYMENT_TYPE paymentType, CARD_NUMBER cardNumber, CARD_EXPIRATION cardExpiration, CARD_SECOND_NAME cardSecondName, CARD_FIRST_NAME cardFirstName
+		select MEMBER_EMAIL memberEmail, PAYMENT_TYPE paymentType, CARD_NUMBER cardNumber, CARD_EXPIRATION cardExpiration, CARD_NAME cardName, CARD_CVC cardCvc
 		from PAYMENT
 		where CARD_SERIAL = #{cardSerial}
+	</select>
+	<select id="selectCardSerialSeq" resultType="_int">
+		select CARD_SERIAL_seq.nextval from dual
 	</select>
 </mapper>

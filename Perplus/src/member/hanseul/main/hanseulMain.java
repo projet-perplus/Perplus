@@ -38,12 +38,12 @@ public class hanseulMain {
 		 */
 		PaymentVo payment = null; 
 		//insert
-		payment = new PaymentVo(1, "asd@asd.com", "ew", 1123, new Date(), "q", "qwe");
+		payment = new PaymentVo(1, "asd@asd.com", "ew", 1123, new Date(), "qqwe", "121");
 		dao.insertPayment(payment);
 		//select
 		System.out.println(dao.selectPaymentByCardSerial(1));
 		//update
-		payment = new PaymentVo(1, "asd@asd.com", "ew", 1123, new Date(), "r", "rrr");
+		payment = new PaymentVo(1, "asd@asd.com", "ew", 1123, new Date(), "rrrr", "121");
 		dao.updatePayment(payment);
 		System.out.println(dao.selectPaymentByCardSerial(1));
 		//delete
