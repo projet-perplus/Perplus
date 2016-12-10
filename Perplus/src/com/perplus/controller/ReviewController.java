@@ -34,38 +34,48 @@ public class ReviewController {
 	/*****************************로그인 체크 필요***********************************/
 	
 	/******************리뷰 글 등록*****************/
-	@RequestMapping(value="/login/registerReview", method=RequestMethod.POST)
-	public String registerReview(@ModelAttribute ReviewVo reviewVo, @ModelAttribute ReviewPictureVo picture, HttpServletRequest request, HttpSession session)
+	@RequestMapping(value="/registerReview.do", method=RequestMethod.POST)
+	public String registerReview(@ModelAttribute ReviewVo reviewVo, @ModelAttribute ReviewPictureVo picture,ModelMap map, HttpServletRequest request, HttpSession session)
 												throws IllegalStateException, IOException{
 		//ReviewPictureVo picture = new ReviewPictureVo();
-		//BeanUtils.copyProperties(reviewPictureVo, picture);
-		List<ReviewPictureVo> list = new ArrayList();
-		List files = picture.getPictureList();
+		//BeanUtils.copyProperties(reviewPictureVo, picture);		
+		System.out.println(reviewVo);
+		List<String> list = new ArrayList<>();
+		List<MultipartFile> files = picture.getPictureList();
 		MemberVo member = (MemberVo)session.getAttribute("login_info");
+		int count = 1;
+		System.out.println(member);
 		reviewVo.setMemberEmail(member.getMemberEmail());
+		reviewVo.setReviewMarkerConstant(2);
+		reviewVo.setReviewMarkerX(23.5);
+		reviewVo.setReviewMarkerY(63.2);
+		System.out.println(reviewVo);
 		service.registerReview(reviewVo);
+		map.addAttribute("review",reviewVo);
 		
-		if(files != null && !files.isEmpty()){
+		if(files != null){
 			String saveDir = request.getServletContext().getRealPath("/uploadReviewPicture");
-			int count =1;
-			
 			for(Object f : files){
 				MultipartFile file = (MultipartFile)f;
 				if(!file.isEmpty()){
+					
 					String fileName = UUID.randomUUID().toString().replace("-", "");//UUID를 이용해 파일명 생성(- 제거)
 					File dest = new File(saveDir,fileName);
 					file.transferTo(dest);
 					picture.setPictureName(fileName);
 					picture.setPictureOrder(count);
-					count++;
 					picture.setPictureSerial(1);
 					picture.setReviewSerial(reviewVo.getReviewSerial());
-					list.add(picture);
+					list.add(fileName);
+					count++;
+					System.out.println(picture);
+					service.registerReviewPicture(picture);
 				}
 			}
 		}
-		service.registerReviewPicture(list);
-		return "리뷰상세보기페이지~? 리뷰 등록 성공페이지?";
+		System.out.println(list);
+		map.addAttribute("picture",list);
+		return "reviewdetailpage.hotplacetiles";
 	}
 	/******************리뷰 정보 가져오는 controller********************/
 	@RequestMapping("/login/reviewInfo")
@@ -110,9 +120,8 @@ public class ReviewController {
 					picture.setPictureOrder(count);
 					picture.setPictureSerial(1);
 					picture.setReviewSerial(reviewSerial);
-					newPictures.add(picture);
 					count++;
-					service.registerReviewPicture(newPictures);
+					service.registerReviewPicture(picture);
 				}
 			}
 			for(int i =0 ; i< oldPicture.size();i++){
