@@ -24,6 +24,7 @@ import com.fasterxml.jackson.databind.util.BeanUtil;
 import com.perplus.member.service.MemberService;
 import com.perplus.member.vo.MemberVo;
 
+
 @Controller
 @RequestMapping("/member")
 public class MemberController {
@@ -115,5 +116,6 @@ public class MemberController {
 		return "redirect:/modifyandcertified.do";
 	}
 }
+
 
 

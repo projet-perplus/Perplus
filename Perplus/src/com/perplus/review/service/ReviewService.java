@@ -39,7 +39,7 @@ public interface ReviewService {
 	//해당 사진 하나만 조회하기.
 	ReviewPictureVo getReviewPicture(int pictureSerial);
 	//사진 수정
-	void modifyReviewPicture(ReviewPictureVo reviewPicture);
+	void modifyReviewPicture(List<ReviewPictureVo> reviewPictures);
 	//사진 삭제
 	void removeReviewPicture(int reviewSerial);
 }

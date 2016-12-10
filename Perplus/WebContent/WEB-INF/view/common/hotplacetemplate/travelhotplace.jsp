@@ -33,7 +33,7 @@
 							</a>
 						</li>
 						<li>
-							<a href="${initParam.rootPath}/reviewdetailpage.do">
+							<a href="${initParam.rootPath}/review/showReview.do?reviewSerial=2">
 								<button type="button" class="btn btn-primary">리뷰 상세페이지</button>
 							</a>
 						</li>
@@ -44,7 +44,7 @@
 		<div class="panel-body">
 			<div class="row">
 				<div class="col-md-12">
-					<div id="map-canvas" style="width: 100%; height: 500px"></div>
+					<div id="map-canvas" style="width: 100%; height: 600px"></div>
 				</div>
 			</div>
 		</div>

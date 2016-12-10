@@ -591,13 +591,6 @@ p {
    transform:translate(-50%);
    padding:0;
 }
-
-#slider-thumbs>ul::after{
-   content:"";
-   display:block;
-   clear:both;
-}
-
 #slider-thumbs>ul>li{
    float:left;
 }
