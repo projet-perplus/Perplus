@@ -34,17 +34,7 @@ public class MemberController {
 	/*****************회원가입***************/
 	@RequestMapping("/join.do")
 	public String joinMember(@ModelAttribute MemberVo member, BindingResult result, HttpServletRequest request)throws Exception{
-		String yy = request.getParameter("yy");
-		String mm = request.getParameter("mm");
-		if(mm.length()<2){
-			mm = "0"+mm;
-		}
-		String dd = request.getParameter("dd");
-		if(dd.length()<2){
-			dd = "0"+dd;
-		}
-		String memberBirthday = yy+mm+dd;
-		member.setMemberBirthday(memberBirthday);
+		System.out.println(member);
 		service.joinMember(member);
 		return "redirect:/main.do";
 	}
@@ -90,9 +80,6 @@ public class MemberController {
 	@RequestMapping(value="/modify.do", method=RequestMethod.POST)
 	public String modify(@ModelAttribute MemberVo newData, BindingResult result, HttpServletRequest request, HttpSession session) throws IllegalStateException, IOException{
 		MemberVo loginInfo =  (MemberVo)session.getAttribute("login_info");
-		
-		String memberBirthday = request.getParameter("birthdayYY")+request.getParameter("birthdayMM")+request.getParameter("birthdayDD");
-		newData.setMemberBirthday(memberBirthday);
 		
 		MultipartFile file = newData.getMemberPictureFile();
 		newData.setMemberEmail(loginInfo.getMemberEmail());
