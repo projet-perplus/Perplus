@@ -36,4 +36,7 @@
 		from PAYMENT
 		where CARD_SERIAL = #{cardSerial}
 	</select>
+	<select id="selectCardSerialSeq" resultType="_int">
+		select CARD_SERIAL_seq.nextval from dual
+	</select>
 </mapper>

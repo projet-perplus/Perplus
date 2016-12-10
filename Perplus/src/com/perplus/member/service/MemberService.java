@@ -85,6 +85,8 @@ public interface MemberService {
 	
 	public List<PaymentVo> getPayment(String memberEmail) throws Exception;
 	
+	public int getCardSerialSeq();
+	
 	/**
 	 * Reject 관련 Service
 	 * @param reject

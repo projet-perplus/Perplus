@@ -87,6 +87,10 @@ public class MemberServiceImpl_Jeong {
 //		return paymentList;
 //	}
 //	
+//	public int getCardSerialSeq() {
+//		return paymentDao.selectCardSerialSeq();
+//	}
+//	
 //	/**
 //	 * Reject 관련 Service
 //	 * @param reject

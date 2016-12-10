@@ -7,15 +7,15 @@ public class PaymentVo {
 	private int cardSerial;
 	private String memberEmail;
 	private String paymentType;	// 결제 회사
-	private int cardNumber;
+	private long cardNumber;
 	private Date cardExpiration;
 	private String cardName; // 이름
-	private int cardCvc; //cvc 번호
+	private String cardCvc; //cvc 번호
 	
 	public PaymentVo() {}
 
-	public PaymentVo(int cardSerial, String memberEmail, String paymentType, int cardNumber, Date cardExpiration,
-			String cardName, int cardCvc) {
+	public PaymentVo(int cardSerial, String memberEmail, String paymentType, long cardNumber, Date cardExpiration,
+			String cardName, String cardCvc) {
 		this.cardSerial = cardSerial;
 		this.memberEmail = memberEmail;
 		this.paymentType = paymentType;
@@ -49,11 +49,11 @@ public class PaymentVo {
 		this.paymentType = paymentType;
 	}
 
-	public int getCardNumber() {
+	public long getCardNumber() {
 		return cardNumber;
 	}
 
-	public void setCardNumber(int cardNumber) {
+	public void setCardNumber(long cardNumber) {
 		this.cardNumber = cardNumber;
 	}
 
@@ -73,11 +73,11 @@ public class PaymentVo {
 		this.cardName = cardName;
 	}
 
-	public int getCardCvc() {
+	public String getCardCvc() {
 		return cardCvc;
 	}
 
-	public void setCardCvc(int cardCvc) {
+	public void setCardCvc(String cardCvc) {
 		this.cardCvc = cardCvc;
 	}
 
@@ -85,10 +85,10 @@ public class PaymentVo {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + cardCvc;
+		result = prime * result + ((cardCvc == null) ? 0 : cardCvc.hashCode());
 		result = prime * result + ((cardExpiration == null) ? 0 : cardExpiration.hashCode());
 		result = prime * result + ((cardName == null) ? 0 : cardName.hashCode());
-		result = prime * result + cardNumber;
+		result = prime * result + (int) (cardNumber ^ (cardNumber >>> 32));
 		result = prime * result + cardSerial;
 		result = prime * result + ((memberEmail == null) ? 0 : memberEmail.hashCode());
 		result = prime * result + ((paymentType == null) ? 0 : paymentType.hashCode());
@@ -104,7 +104,10 @@ public class PaymentVo {
 		if (getClass() != obj.getClass())
 			return false;
 		PaymentVo other = (PaymentVo) obj;
-		if (cardCvc != other.cardCvc)
+		if (cardCvc == null) {
+			if (other.cardCvc != null)
+				return false;
+		} else if (!cardCvc.equals(other.cardCvc))
 			return false;
 		if (cardExpiration == null) {
 			if (other.cardExpiration != null)
