@@ -4,7 +4,7 @@
 	<div class="container-fluid">
 		<div class="navbar-header">
 			<a class="navbar-img" href="${initParam.rootPath}/main.do"> <img
-				src="css/image/logos.PNG" alt="logo" />
+				src="/Perplus/css/image/logos.PNG" alt="logo" />
 			</a>
 			<button type="button" class="navbar-toggle" data-toggle="collapse"
 				data-target="#myNavbar">

@@ -47,7 +47,7 @@
 	  		<tiles:insertAttribute name="footer"/>
 	  	</footer>
  	 </body>
-	  	<script src="js/bootstrap.min.js"></script>
+	  	<script src="/Perplus/js/bootstrap.min.js"></script>
 </html>
 
 

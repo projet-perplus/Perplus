@@ -36,8 +36,8 @@
 		</div>
 	 </div>
    <!--/Slider--><!--hidden-xs-->
-   <div class="row" id="slider-thumbs" style="margin-top:10px">
-      <!--Bottom switcher of slider -->
+    <div class="row" id="slider-thumbs" style="margin-top: 10px;">
+        <!--Bottom switcher of slider -->
       <ul>
          <li>
             <a class="thumbnail" id="carousel-selector-0"><img src="http://placehold.it/170x100&text=one"></a>
