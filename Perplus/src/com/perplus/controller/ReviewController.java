@@ -34,15 +34,21 @@ public class ReviewController {
 	/*****************************로그인 체크 필요***********************************/
 	
 	/******************리뷰 글 등록*****************/
-	@RequestMapping(value="/login/registerReview", method=RequestMethod.POST)
+	@RequestMapping(value="/registerReview.do", method=RequestMethod.POST)
 	public String registerReview(@ModelAttribute ReviewVo reviewVo, @ModelAttribute ReviewPictureVo picture, HttpServletRequest request, HttpSession session)
 												throws IllegalStateException, IOException{
 		//ReviewPictureVo picture = new ReviewPictureVo();
 		//BeanUtils.copyProperties(reviewPictureVo, picture);
+		
 		List<ReviewPictureVo> list = new ArrayList();
 		List files = picture.getPictureList();
 		MemberVo member = (MemberVo)session.getAttribute("login_info");
+		System.out.println(member);
 		reviewVo.setMemberEmail(member.getMemberEmail());
+		reviewVo.setReviewMarkerConstant(2);
+		reviewVo.setReviewMarkerX(23.5);
+		reviewVo.setReviewMarkerY(63.2);
+		System.out.println(reviewVo);
 		service.registerReview(reviewVo);
 		
 		if(files != null && !files.isEmpty()){
@@ -64,8 +70,9 @@ public class ReviewController {
 				}
 			}
 		}
+		System.out.println(picture);
 		service.registerReviewPicture(list);
-		return "리뷰상세보기페이지~? 리뷰 등록 성공페이지?";
+		return "reviewdetailpage.hotplacetiles";
 	}
 	/******************리뷰 정보 가져오는 controller********************/
 	@RequestMapping("/login/reviewInfo")

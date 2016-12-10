@@ -45,7 +45,8 @@
 			 review_time reviewTime,
 			 review_marker_x reviewMarkerX,
 			 review_marker_y reviewMarkerY,
-			 review_marker_constant reviewMarkerConstant
+			 review_marker_constant reviewMarkerConstant,
+			 review_place reviewPlace
 	from review
 	where review_serial=#{reviewSerial}
 </select>
@@ -56,7 +57,7 @@
 	<selectKey resultType="_int" keyProperty="reviewSerial" order="BEFORE">
 		select review_serial_seq.nextval from dual
 	</selectKey> 	
-	insert into review values(#{reviewSerial},#{memberEmail},#{reviewTitle},#{reviewContent},#{reviewRating},#{reviewTime},#{reviewMarkerX},#{reviewMarkerY},#{reviewMarkerConstant})
+	insert into review values(#{reviewSerial},#{memberEmail},#{reviewTitle},#{reviewContent},#{reviewRating},#{reviewTime},#{reviewMarkerX},#{reviewMarkerY},#{reviewMarkerConstant},#{reviewPlace})
 </insert>
 
 <!-- DELETE REVIEW -->
@@ -76,7 +77,8 @@
 		 review_time = #{reviewTime},
 		 review_marker_x = #{reviewMarkerX},
 		 review_marker_y = #{reviewMarkerY},
-		 review_marker_constant = #{reviewMarkerConstant}
+		 review_marker_constant = #{reviewMarkerConstant},
+		 review_place=#{reviewPlace}
 		where review_serial = #{reviewSerial}
 </update>
 
@@ -90,7 +92,8 @@
 			 review_time reviewTime,
 			 review_marker_x reviewMarkerX,
 			 review_marker_y reviewMarkerY,
-			 review_marker_constant reviewMarkerConstant
+			 review_marker_constant reviewMarkerConstant,
+			 review_place reviewPlace
 	from review
 	where member_email = #{memberEmail}
 </select>
@@ -105,7 +108,8 @@
 			 review_time reviewTime,
 			 review_marker_x reviewMarkerX,
 			 review_marker_y reviewMarkerY,
-			 review_marker_constant reviewMarkerConstant
+			 review_marker_constant reviewMarkerConstant,
+			 review_place reviewPlace
 	from review
 </select>
 
