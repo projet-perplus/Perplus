@@ -36,7 +36,7 @@
 						 <div class="form-group">
 						  <label for="secl1">인원</label>
 						  <select class="form-control" name="personnel" id="GuestInput">
-							<option >1</option>
+							<option>1</option>
 							<option>2</option>
 							<option>3</option>
 							<option>4</option>
@@ -44,7 +44,7 @@
 						</div>
 					</div>
 					<div class="col-sm-6 col-lg-6" >
-						 <button type="button" class="btn btn-default btn-lg" name="roomssearch"  id="Search" >숙소 검색</button>
+						 <a href="${initParam.rootPath}/housesearch.do"><button type="button" class="btn btn-default btn-lg" name="roomssearch"  id="Search" >숙소 검색</button></a>
 					</div>
 				</div>
 			</form>

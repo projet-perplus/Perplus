@@ -64,7 +64,8 @@
 					</div>
 				</div>
 				<div class="modal-footer">
-					<a href="#">비밀번호 찾기</a> <input type="submit" name="login"
+					<a href="#">비밀번호 찾기</a>
+						<input type="submit" name="login"
 						class="btn btn-default" id="loginBtn" value="로그인">
 				</div>
 			</form>

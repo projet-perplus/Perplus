@@ -289,10 +289,13 @@ public class MemberServiceImpl implements MemberService{
 		return paymentList;
 	}
 	
+<<<<<<< HEAD
 	public int getCardSerialSeq() {
 		return paymentDao.selectCardSerialSeq();
 	}
 	
+=======
+>>>>>>> branch 'master' of https://github.com/projet-perplus/Perplus.git
 	/**
 	 * Reject 관련 Service
 	 * @param reject
@@ -482,7 +485,10 @@ public class MemberServiceImpl implements MemberService{
 		travelDao.deleteTravel(travel.getTravelSerial());
 		
 	}
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> branch 'master' of https://github.com/projet-perplus/Perplus.git
 	
 }

@@ -1,21 +1,30 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWDGjKV2YFKGM5q6gtx-J5GcJTa2wLDQU" type="text/javascript"></script>
 <script src="js/map.js"></script>
+
 <div class="basicheader">
 	<div class="container-fluid">
 		<div class="row">
-			<div class="col-md-10 col-xs-8"></div>
-			<div class="col-md-1 col-xs-3">
-				<div class="form-group">
-					<select class="form-control" style="margin-top: 7px;">
-						<option>1</option>
-						<option>2</option>
-						<option>3</option>
-						<option>4</option>
-					</select>
+			<div class="col-md-3 col-xs-3"></div>
+			
+			<div class="col-md-offset-6 col-md-3 col-xs-offset-6">
+				<div class="col-md-7 page_moveBtn ">
+					<div class="col-md-8 ">
+						<div class="form-group">
+							<select class="form-control">
+								<option>1</option>
+								<option>2</option>
+								<option>3</option>
+								<option>4</option>
+							</select>
+						</div>
+					</div>
+					<div class="col-md-4 page_moveBtn hidden-xs">
+						(3/12)
+					</div>
 				</div>
+			 <div class="clearfix"></div>
 			</div>
-			<div class="col-md-1 col-xs-1"></div>
 		</div>
 	</div>
 </div>
@@ -30,7 +39,7 @@
 			<div class="col-md-offset-2 col-md-8 housesection">
 			
 				<div class="row row-condensed space-4" style="margin-bottom: 40px;">
-					<div class="col-md-offset-2 col-xs-6 col-md-8" >
+					<div class="col-md-offset-2 col-md-8" >
 						<div class="locationspan">
 							<span>숙소 의 위치를 알려주세요</span>	
 						</div>

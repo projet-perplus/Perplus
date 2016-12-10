@@ -3,6 +3,8 @@ package com.perplus.review.vo;
 import java.io.Serializable;
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 
 public class ReviewPictureVo implements Serializable{
 	private int pictureSerial;//사진 시리얼 번호
@@ -10,14 +12,18 @@ public class ReviewPictureVo implements Serializable{
 	private int pictureOrder;  //사진의 순서. (main사진이 1번~~)
 	private String pictureName; //사진 이름
 	
-	private List pictureList;
+	private List<MultipartFile> pictureList;
 	//생성자
 	public ReviewPictureVo(){}
 
 	
-	public ReviewPictureVo(List pictureList) {
+
+	public ReviewPictureVo(List<MultipartFile> pictureList) {
+		super();
 		this.pictureList = pictureList;
 	}
+
+
 
 	public ReviewPictureVo(int pictureSerial, int reviewSerial, int pictureOrder, String pictureName) {
 		super();
@@ -68,12 +74,12 @@ public class ReviewPictureVo implements Serializable{
 	}
 
 
-	public List getPictureList() {
+	public List<MultipartFile>getPictureList() {
 		return pictureList;
 	}
 
 
-	public void setPictureList(List pictureList) {
+	public void setPictureList(List<MultipartFile> pictureList) {
 		this.pictureList = pictureList;
 	}
 

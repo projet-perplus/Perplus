@@ -31,7 +31,7 @@ public interface ReviewService {
 	//코멘트 등록
 	void registerReviewComment(ReviewCommentVo reviewComment);
 	//사진등록
-	void registerReviewPicture(List<ReviewPictureVo> reviewPictures);
+	void registerReviewPicture(ReviewPictureVo reviewPicture);
 	//사진 전체 조회(paging처리)
 	Map<String,Object> getReviewPictureListPaging(int reviewSerial,int page);
 	//사진 전체 조회(paging처리 X)
@@ -39,7 +39,7 @@ public interface ReviewService {
 	//해당 사진 하나만 조회하기.
 	ReviewPictureVo getReviewPicture(int pictureSerial);
 	//사진 수정
-	void modifyReviewPicture(ReviewPictureVo reviewPicture);
+	void modifyReviewPicture(List<ReviewPictureVo> reviewPictures);
 	//사진 삭제
 	void removeReviewPicture(int reviewSerial);
 }

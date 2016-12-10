@@ -4,7 +4,9 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<link rel="stylesheet" href="/Perplus/css/subtemplate.css"><!-- perplus sub css -->
 		<tiles:insertAttribute name="linkandscripthead"/>
+
 		<script>
 			$(function(){
 				$( '#tabs' ).tabs();
@@ -12,56 +14,8 @@
 		</script>
 	</head>
 	
-		<style>
-	/* submenu */
-			ul>li {
-				list-style: none;
-			}
-			
-			.navbar.navbar {
-				background-color: white !important;
-				color: black !important;
-				position: relative !important;
-				margin-top: 0px;
-			}
-			
-			.navbar-default .navbar-nav1>li>a {
-				color: #000 !important;
-			}
-			
-			#subheader {
-				background-color: #484848 !important;
-			}
-			
-			
-			.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus,
-				.navbar-default .navbar-nav>.active>a:hover {
-				color: #ccc;
-				background-color: transparent !important;
-				border-bottom: solid 3px #ccc !important;
-			}
-			
-			
-			.navs li a:hover {
-				color: #ccc;
-				border-bottom: solid 3px #ccc !important;
-			}
-			
-			label {
-				font-weight: 400 !important;
-				display: block !important;
-				padding-top: 9px !important;
-				padding-bottom: 8px !important;
-			}
-			
-			.img {
-				height: 150px;
-				background-color: #ccc;
-			}
-
-	</style>
 	<body class="subbody">
-		<header id="mainheader">
+		<header class="mainheader">
 		  		<tiles:insertAttribute name="header"/>
   		  		<tiles:insertAttribute name="logindialog"/>
   				<tiles:insertAttribute name="joindialog"/>
@@ -78,9 +32,13 @@
 	  					<tiles:insertAttribute name="submenu"/>
 	  					<tiles:insertAttribute name="paymentmethoddialog"/>
   						<tiles:insertAttribute name="payoutpreference"/>
+  						<tiles:insertAttribute name="passwordconfirmdialog"/>
+  					
 	  				</div>
 	  				<div class="col-md-9">
 	  					<tiles:insertAttribute name="rightmenu"/>
+  						<tiles:insertAttribute name="chattingdialog"/>
+  						<tiles:insertAttribute name="chattinglogdialog"/>
 	  				</div>
 	  			</div>
 	  		</div>
@@ -89,7 +47,7 @@
 	  		<tiles:insertAttribute name="footer"/>
 	  	</footer>
  	 </body>
-	  	<script src="js/bootstrap.min.js"></script>
+	  	<script src="/Perplus/js/bootstrap.min.js"></script>
 </html>
 
 

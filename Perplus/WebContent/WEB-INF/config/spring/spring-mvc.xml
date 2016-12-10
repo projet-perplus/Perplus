@@ -6,10 +6,8 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd">
-
+	<context:component-scan base-package="com.perplus" />
 	<mvc:annotation-driven />
-	<context:component-scan base-package="com.perplus"/>
-
 	<!-- main -->
 	<mvc:view-controller path="/main.do" view-name="main.tiles" />
 	<mvc:view-controller path="/submenu.do" view-name="submenu.tiles1" />
@@ -84,8 +82,15 @@
 	<mvc:view-controller path="/hostingcomplate.do"
 		view-name="hostingcomplete.hostingtiles" />
 
+
+	<!-- review 리뷰 관련 명소 -->
 	<mvc:view-controller path="/hotplace.do"
-		view-name="travelhotplace.hotplacetiles"/>
+		view-name="travelhotplace.hotplacetiles" />
+
+
+	<mvc:view-controller path="/reviewdetailpage.do"
+		view-name="reviewdetailpage.hotplacetiles" />
+
 
 	<bean name="dataSource" class="org.apache.commons.dbcp2.BasicDataSource"
 		p:driverClassName="oracle.jdbc.driver.OracleDriver" p:url="jdbc:oracle:thin:@127.0.0.1:1521:XE"
@@ -113,5 +118,7 @@
 	<bean name="internalViewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver"
 		p:order="2" p:prefix="/WEB-INF/view" />
+	<bean name="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
 
 </beans>

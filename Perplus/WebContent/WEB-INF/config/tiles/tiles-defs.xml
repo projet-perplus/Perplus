@@ -5,7 +5,7 @@
 <!-- header css script tag-->
 	
 <tiles-definitions>
-	<!-- main template -->
+	<!-- main template 메인 페이지  -->
 	<definition name="maintemplate" template="/WEB-INF/view/layout/maintemplate.jsp">
 		<put-attribute name="linkandscripthead" value="/WEB-INF/view/common/linkandscripthead.jsp"/>
 		<put-attribute name="header" value="/WEB-INF/view/common/header.jsp" />
@@ -21,7 +21,7 @@
 
 
 
-	<!-- sub template -->
+	<!-- sub template 로그인후 메뉴창  회원정보 수정 결제정보등-->
 	<definition name="subtemplate" template="/WEB-INF/view/layout/subtemplate.jsp">
 		<put-attribute name="linkandscripthead" value="/WEB-INF/view/common/linkandscripthead.jsp"/>
 		<put-attribute name="header" value="/WEB-INF/view/common/header.jsp" />
@@ -31,6 +31,9 @@
 		<put-attribute name="footer" value="/WEB-INF/view/common/footer.jsp" />
 		<put-attribute name="paymentmethoddialog" value="/WEB-INF/view/common/dialog/paymentmethoddialog.jsp"/>
 		<put-attribute name="payoutpreference" value="/WEB-INF/view/common/dialog/payoutpreferencedialog.jsp"/>
+		<put-attribute name="passwordconfirmdialog" value="/WEB-INF/view/common/dialog/passwordconfirmdialog.jsp"/>
+		<put-attribute name="chattingdialog" value="/WEB-INF/view/common/dialog/chattingdialog.jsp"/>
+		<put-attribute name="chattinglogdialog" value="/WEB-INF/view/common/dialog/chattinglogdialog.jsp"/>
 	</definition>
 
 	<definition name="*/*/*.tiles1" extends="subtemplate">
@@ -40,22 +43,47 @@
 	</definition>
 
 
+	<!-- 숙소 등록 호스팅하기 눌렀을때 나오는 창 template -->
 	<definition name="*.hostingtiles"
 		template="/WEB-INF/view/layout/houseenrollmenttemplate.jsp">
 		<put-attribute name="linkandscripthead" value="/WEB-INF/view/common/linkandscripthead.jsp"/>
 		<put-attribute name="hosting" value="/WEB-INF/view/common/houseEnrollment/{1}.jsp" />
 	</definition>
 
-	<definition name="*.hotplacetiles"
+
+
+	<!-- 명소 템플릿  여행명소 눌렀을때 나오는 창 -->
+	<definition name="hotplacetemplate"
 		template="/WEB-INF/view/layout/hotplacetemplate.jsp">
 		<put-attribute name="linkandscripthead" value="/WEB-INF/view/common/linkandscripthead.jsp"/>
 		<put-attribute name="header" value="/WEB-INF/view/common/header.jsp" />
 		<put-attribute name="logindialog" value="/WEB-INF/view/common/dialog/logindialog.jsp"/>
 		<put-attribute name="joindialog" value="/WEB-INF/view/common/dialog/joindialog.jsp"/>
-		<put-attribute name="hotplace" value="/WEB-INF/view/common/hotplacetemplate/{1}.jsp" />
+		<put-attribute name="reviewenrollment" value="/WEB-INF/view/common/dialog/reviewenrollment.jsp"/>
 		<put-attribute name="footer" value="/WEB-INF/view/common/footer.jsp" />
 	</definition>
+	
+	<definition name="*.hotplacetiles" extends="hotplacetemplate">
+		<put-attribute name="review" value="/WEB-INF/view/common/hotplacetemplate/{1}.jsp" />
+	</definition>
 
+	
+
+	<!-- 숙소 검색 템플릿 -->
+	<definition name="housetemplate"
+		template="/WEB-INF/view/layout/housetemplate.jsp">
+		<put-attribute name="linkandscripthead" value="/WEB-INF/view/common/linkandscripthead.jsp"/>
+		<put-attribute name="header" value="/WEB-INF/view/common/header.jsp" />
+		<put-attribute name="logindialog" value="/WEB-INF/view/common/dialog/logindialog.jsp"/>
+		<put-attribute name="joindialog" value="/WEB-INF/view/common/dialog/joindialog.jsp"/>
+		<put-attribute name="footer" value="/WEB-INF/view/common/footer.jsp" />
+	</definition>
+	
+	<definition name="*.housetiles" extends="housetemplate">
+		<put-attribute name="body" value="/WEB-INF/view/common/house/{1}.jsp" />
+	</definition>
+	
+	
 </tiles-definitions>
 
 

@@ -1,6 +1,7 @@
 package com.perplus.house.vo;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 public class HouseFilterVo implements Serializable{
@@ -13,12 +14,13 @@ public class HouseFilterVo implements Serializable{
 	private int houseFilterBedroomNumber;
 	private int houseFilterBathroomNumber;
 	private int houseFilterBedNumber;
-	private int houseFiltercheckinTerm;
+	private int houseFilterCheckinTerm;
+	private Date houseFilterCheckinStart;
+	private Date houseFilterCheckinEnd;
 	private int houseFilterReservationTerm;
 	private int houseFilterBakMin;
 	private int houseFilterBakMax;
-	private int houseFilterMoneyMin;
-	private int houseFilterMoneyMax;
+	private int houseFilterPrice;
 	
 	private List<ShutdownVo> shutdownList;
 	private List<CheckListVo> checkList;
@@ -35,12 +37,14 @@ public class HouseFilterVo implements Serializable{
 		this.houseFilterRoomNumber = houseFilterRoomNumber;
 		this.houseFilterLocation = houseFilterLocation;
 	}
-	
+
 	public HouseFilterVo(int houseSerial, String houseFilterRange, int houseFilterGuestNumber, String houseFilterType,
 			int houseFilterRoomNumber, String houseFilterLocation, int houseFilterBedroomNumber,
-			int houseFilterBathroomNumber, int houseFilterBedNumber, int houseFiltercheckinTerm,
-			int houseFilterReservationTerm, int houseFilterBakMin, int houseFilterBakMax, int houseFilterMoneyMin,
-			int houseFilterMoneyMax, List<ShutdownVo> shutdownList, List<CheckListVo> checkList) {
+			int houseFilterBathroomNumber, int houseFilterBedNumber, int houseFilterCheckinTerm,
+			Date houseFilterCheckinStart, Date houseFilterCheckinEnd, int houseFilterReservationTerm,
+			int houseFilterBakMin, int houseFilterBakMax, int houseFilterPrice, List<ShutdownVo> shutdownList,
+			List<CheckListVo> checkList) {
+		super();
 		this.houseSerial = houseSerial;
 		this.houseFilterRange = houseFilterRange;
 		this.houseFilterGuestNumber = houseFilterGuestNumber;
@@ -50,12 +54,13 @@ public class HouseFilterVo implements Serializable{
 		this.houseFilterBedroomNumber = houseFilterBedroomNumber;
 		this.houseFilterBathroomNumber = houseFilterBathroomNumber;
 		this.houseFilterBedNumber = houseFilterBedNumber;
-		this.houseFiltercheckinTerm = houseFiltercheckinTerm;
+		this.houseFilterCheckinTerm = houseFilterCheckinTerm;
+		this.houseFilterCheckinStart = houseFilterCheckinStart;
+		this.houseFilterCheckinEnd = houseFilterCheckinEnd;
 		this.houseFilterReservationTerm = houseFilterReservationTerm;
 		this.houseFilterBakMin = houseFilterBakMin;
 		this.houseFilterBakMax = houseFilterBakMax;
-		this.houseFilterMoneyMin = houseFilterMoneyMin;
-		this.houseFilterMoneyMax = houseFilterMoneyMax;
+		this.houseFilterPrice = houseFilterPrice;
 		this.shutdownList = shutdownList;
 		this.checkList = checkList;
 	}
@@ -63,94 +68,131 @@ public class HouseFilterVo implements Serializable{
 	public int getHouseSerial() {
 		return houseSerial;
 	}
+
 	public void setHouseSerial(int houseSerial) {
 		this.houseSerial = houseSerial;
 	}
+
 	public String getHouseFilterRange() {
 		return houseFilterRange;
 	}
+
 	public void setHouseFilterRange(String houseFilterRange) {
 		this.houseFilterRange = houseFilterRange;
 	}
+
 	public int getHouseFilterGuestNumber() {
 		return houseFilterGuestNumber;
 	}
+
 	public void setHouseFilterGuestNumber(int houseFilterGuestNumber) {
 		this.houseFilterGuestNumber = houseFilterGuestNumber;
 	}
+
 	public String getHouseFilterType() {
 		return houseFilterType;
 	}
+
 	public void setHouseFilterType(String houseFilterType) {
 		this.houseFilterType = houseFilterType;
 	}
+
 	public int getHouseFilterRoomNumber() {
 		return houseFilterRoomNumber;
 	}
+
 	public void setHouseFilterRoomNumber(int houseFilterRoomNumber) {
 		this.houseFilterRoomNumber = houseFilterRoomNumber;
 	}
+
 	public String getHouseFilterLocation() {
 		return houseFilterLocation;
 	}
+
 	public void setHouseFilterLocation(String houseFilterLocation) {
 		this.houseFilterLocation = houseFilterLocation;
 	}
+
 	public int getHouseFilterBedroomNumber() {
 		return houseFilterBedroomNumber;
 	}
+
 	public void setHouseFilterBedroomNumber(int houseFilterBedroomNumber) {
 		this.houseFilterBedroomNumber = houseFilterBedroomNumber;
 	}
+
 	public int getHouseFilterBathroomNumber() {
 		return houseFilterBathroomNumber;
 	}
+
 	public void setHouseFilterBathroomNumber(int houseFilterBathroomNumber) {
 		this.houseFilterBathroomNumber = houseFilterBathroomNumber;
 	}
+
 	public int getHouseFilterBedNumber() {
 		return houseFilterBedNumber;
 	}
+
 	public void setHouseFilterBedNumber(int houseFilterBedNumber) {
 		this.houseFilterBedNumber = houseFilterBedNumber;
 	}
-	public int getHouseFiltercheckinTerm() {
-		return houseFiltercheckinTerm;
+
+	public int getHouseFilterCheckinTerm() {
+		return houseFilterCheckinTerm;
 	}
-	public void setHouseFiltercheckinTerm(int houseFiltercheckinTerm) {
-		this.houseFiltercheckinTerm = houseFiltercheckinTerm;
+
+	public void setHouseFilterCheckinTerm(int houseFilterCheckinTerm) {
+		this.houseFilterCheckinTerm = houseFilterCheckinTerm;
 	}
+
+	public Date getHouseFilterCheckinStart() {
+		return houseFilterCheckinStart;
+	}
+
+	public void setHouseFilterCheckinStart(Date houseFilterCheckinStart) {
+		this.houseFilterCheckinStart = houseFilterCheckinStart;
+	}
+
+	public Date getHouseFilterCheckinEnd() {
+		return houseFilterCheckinEnd;
+	}
+
+	public void setHouseFilterCheckinEnd(Date houseFilterCheckinEnd) {
+		this.houseFilterCheckinEnd = houseFilterCheckinEnd;
+	}
+
 	public int getHouseFilterReservationTerm() {
 		return houseFilterReservationTerm;
 	}
+
 	public void setHouseFilterReservationTerm(int houseFilterReservationTerm) {
 		this.houseFilterReservationTerm = houseFilterReservationTerm;
 	}
+
 	public int getHouseFilterBakMin() {
 		return houseFilterBakMin;
 	}
+
 	public void setHouseFilterBakMin(int houseFilterBakMin) {
 		this.houseFilterBakMin = houseFilterBakMin;
 	}
+
 	public int getHouseFilterBakMax() {
 		return houseFilterBakMax;
 	}
+
 	public void setHouseFilterBakMax(int houseFilterBakMax) {
 		this.houseFilterBakMax = houseFilterBakMax;
 	}
-	public int getHouseFilterMoneyMin() {
-		return houseFilterMoneyMin;
+
+	public int getHouseFilterPrice() {
+		return houseFilterPrice;
 	}
-	public void setHouseFilterMoneyMin(int houseFilterMoneyMin) {
-		this.houseFilterMoneyMin = houseFilterMoneyMin;
+
+	public void setHouseFilterPrice(int houseFilterPrice) {
+		this.houseFilterPrice = houseFilterPrice;
 	}
-	public int getHouseFilterMoneyMax() {
-		return houseFilterMoneyMax;
-	}
-	public void setHouseFilterMoneyMax(int houseFilterMoneyMax) {
-		this.houseFilterMoneyMax = houseFilterMoneyMax;
-	}
-	
+
 	public List<ShutdownVo> getShutdownList() {
 		return shutdownList;
 	}
@@ -177,15 +219,16 @@ public class HouseFilterVo implements Serializable{
 		result = prime * result + houseFilterBathroomNumber;
 		result = prime * result + houseFilterBedNumber;
 		result = prime * result + houseFilterBedroomNumber;
+		result = prime * result + ((houseFilterCheckinEnd == null) ? 0 : houseFilterCheckinEnd.hashCode());
+		result = prime * result + ((houseFilterCheckinStart == null) ? 0 : houseFilterCheckinStart.hashCode());
+		result = prime * result + houseFilterCheckinTerm;
 		result = prime * result + houseFilterGuestNumber;
 		result = prime * result + ((houseFilterLocation == null) ? 0 : houseFilterLocation.hashCode());
-		result = prime * result + houseFilterMoneyMax;
-		result = prime * result + houseFilterMoneyMin;
+		result = prime * result + houseFilterPrice;
 		result = prime * result + ((houseFilterRange == null) ? 0 : houseFilterRange.hashCode());
 		result = prime * result + houseFilterReservationTerm;
 		result = prime * result + houseFilterRoomNumber;
 		result = prime * result + ((houseFilterType == null) ? 0 : houseFilterType.hashCode());
-		result = prime * result + houseFiltercheckinTerm;
 		result = prime * result + houseSerial;
 		result = prime * result + ((shutdownList == null) ? 0 : shutdownList.hashCode());
 		return result;
@@ -215,6 +258,18 @@ public class HouseFilterVo implements Serializable{
 			return false;
 		if (houseFilterBedroomNumber != other.houseFilterBedroomNumber)
 			return false;
+		if (houseFilterCheckinEnd == null) {
+			if (other.houseFilterCheckinEnd != null)
+				return false;
+		} else if (!houseFilterCheckinEnd.equals(other.houseFilterCheckinEnd))
+			return false;
+		if (houseFilterCheckinStart == null) {
+			if (other.houseFilterCheckinStart != null)
+				return false;
+		} else if (!houseFilterCheckinStart.equals(other.houseFilterCheckinStart))
+			return false;
+		if (houseFilterCheckinTerm != other.houseFilterCheckinTerm)
+			return false;
 		if (houseFilterGuestNumber != other.houseFilterGuestNumber)
 			return false;
 		if (houseFilterLocation == null) {
@@ -222,9 +277,7 @@ public class HouseFilterVo implements Serializable{
 				return false;
 		} else if (!houseFilterLocation.equals(other.houseFilterLocation))
 			return false;
-		if (houseFilterMoneyMax != other.houseFilterMoneyMax)
-			return false;
-		if (houseFilterMoneyMin != other.houseFilterMoneyMin)
+		if (houseFilterPrice != other.houseFilterPrice)
 			return false;
 		if (houseFilterRange == null) {
 			if (other.houseFilterRange != null)
@@ -239,8 +292,6 @@ public class HouseFilterVo implements Serializable{
 			if (other.houseFilterType != null)
 				return false;
 		} else if (!houseFilterType.equals(other.houseFilterType))
-			return false;
-		if (houseFiltercheckinTerm != other.houseFiltercheckinTerm)
 			return false;
 		if (houseSerial != other.houseSerial)
 			return false;
@@ -259,13 +310,13 @@ public class HouseFilterVo implements Serializable{
 				+ ", houseFilterRoomNumber=" + houseFilterRoomNumber + ", houseFilterLocation=" + houseFilterLocation
 				+ ", houseFilterBedroomNumber=" + houseFilterBedroomNumber + ", houseFilterBathroomNumber="
 				+ houseFilterBathroomNumber + ", houseFilterBedNumber=" + houseFilterBedNumber
-				+ ", houseFiltercheckinTerm=" + houseFiltercheckinTerm + ", houseFilterReservationTerm="
-				+ houseFilterReservationTerm + ", houseFilterBakMin=" + houseFilterBakMin + ", houseFilterBakMax="
-				+ houseFilterBakMax + ", houseFilterMoneyMin=" + houseFilterMoneyMin + ", houseFilterMoneyMax="
-				+ houseFilterMoneyMax + ", shutdownList=" + shutdownList + ", checkList=" + checkList + "]";
+				+ ", houseFilterCheckinTerm=" + houseFilterCheckinTerm + ", houseFilterCheckinStart="
+				+ houseFilterCheckinStart + ", houseFilterCheckinEnd=" + houseFilterCheckinEnd
+				+ ", houseFilterReservationTerm=" + houseFilterReservationTerm + ", houseFilterBakMin="
+				+ houseFilterBakMin + ", houseFilterBakMax=" + houseFilterBakMax + ", houseFilterPrice="
+				+ houseFilterPrice + ", shutdownList=" + shutdownList + ", checkList=" + checkList + "]";
 	}
 
-	
 	
 	
 }

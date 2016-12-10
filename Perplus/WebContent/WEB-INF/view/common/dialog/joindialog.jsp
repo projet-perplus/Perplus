@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <script type="text/javascript">
-var emailCheck = true;
+	var emailCheck = true;
 	$(document).ready(function() {
 		$("#joinEmail").on("keyup", function() {
 			var email = this.value;
@@ -28,16 +28,14 @@ var emailCheck = true;
 				}
 			})
 		});
-		$("#member_join_form").on("submit", function(){
-			if(emailCheck){
+		$("#member_join_form").on("submit", function() {
+			if (emailCheck) {
 				alert("중복된 아이디입니다.");
 				$("#joinEmail").focus();
 				return false;
 			}
 			alert("회원가입을 축하드립니다.");
 		});
-		
-		
 	});
 </script>
 <!-- 회원가입 폼 -->
@@ -65,43 +63,7 @@ var emailCheck = true;
 							name="memberPassword" placeholder="password" required>
 					</div>
 					<div class="form-group">
-						<div class="row">
-							<div class="col-xs-5 col-md-5 col-lg-5">
-								<select class="form-control" id="joinSelect" name="mm">
-									<option>월</option>
-									<option>1</option>
-									<option>2</option>
-									<option>3</option>
-									<option>4</option>
-									<option>5</option>
-									<option>6</option>
-									<option>7</option>
-									<option>8</option>
-									<option>9</option>
-									<option>10</option>
-									<option>11</option>
-									<option>12</option>
-								</select>
-							</div>
-							<div class="col-xs-3 col-md-3 col-lg-3" id="joinSelectStyle"
-								style="padding-left: 0px !important;">
-								<select class="form-control" id="joinSelect" name="dd">
-									<option>일</option>
-									<option>1</option>
-									<option>2</option>
-									<option>3</option>
-									<option>3</option>
-								</select>
-							</div>
-							<div class="col-xs-4 col-md-4 col-lg-4">
-								<select class="form-control" id="joinSelect" name="yy">
-									<option>년</option>
-									<option>2</option>
-									<option>3</option>
-									<option>4</option>
-								</select>
-							</div>
-						</div>
+						<input type="text" class="form-control"  name="memberBirthday" id="datepicker1" placeholder="생년월일">
 					</div>
 					<div class="modal-footer">
 						<input type="submit" name="login" class="btn btn-default btn-lg"

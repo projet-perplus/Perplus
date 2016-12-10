@@ -1,17 +1,34 @@
 * {
+	margin:0 auto;
+	padding:0 auto;
 	box-sizing: border-box !important;
 }
+
 ul>li {
 	list-style: none !important;
+}
+a{
+	text-decoration:none;
+	color:#000 !important;
 }
 a:focus, a:hover {
 	text-decoration: none !important;
 	color: #000 !important;
-	border: 0 !important;
+	border: color:rgba(0,0,0,0) !important;
 }
-a{
-	color:#000 !important;
-	
+
+body {
+	background-color:
+	font: 20px Montserrat, sans-serif;
+	font-weight: bold !important;
+	line-height: 1.8;
+	color: #fff;
+}
+p {
+	font-size: 16px;
+}
+.noneM{
+	margin:0px !important;
 }
 
 .modal-open .modal, .btn:focus {
@@ -52,28 +69,52 @@ a{
 		font-size: 11px;
 		margin-left: 0px !important;
 	}
+	.row-sectionB {
+		margin-top: 15px !important;
+   	 	margin-bottom: 65px !important;
+	}
+	.row-condensed>.text-left>span{
+  		 font-size: 20px !important;
+	}
+	.locationspan>span{
+   		 font-size: 20px !important;
+	}
+	.row-condensed>.text-left>.subspan {
+    	font-size: 16px !important;
+	}
+	.ui-tabs .ui-tabs-nav .ui-tabs-anchor {
+    	width: 200px;
+    	padding:5px 0px 5px 10px !important
+
+	}
+	.ui-tabs .ui-tabs-nav li {
+  		  margin: 5px .2em 0 0 !important;
+	}
+	.carousel-inner > .item > img,
+	.carousel-inner > .item > a > img {
+	  height: 200px !important;
+	}
 }
 
-body {
-	font: 20px Montserrat, sans-serif;
-	font-weight: bold !important;
-	line-height: 1.8;
-	color: #fff;
+/* 메인 헤더 */
+.mainheader{
+    border-bottom: 1px solid #ccc;
+}
+.headerM{
+	margin-top:50px;
 }
 
-p {
-	font-size: 16px;
-}
-#mainheader .navbar.navbar {
+.mainheader .navbar.navbar {
 	background-color: white !important;
 	color: black !important;
 	position: relative !important;
 	margin-top: 0px;
 }
 	
-#mainheader .navbar-default .navbar-nav1>li>a {
+/* .mainheader .navbar-default .navbar-nav1>li>a {
 	color: #000 !important;
 }
+ */
 
 .navbar-default {
 	background-color: rgba(255, 255, 255, 0) !important;
@@ -81,10 +122,21 @@ p {
 	border: none;
 }
 
+
 .navbar-default .navbar-nav>li>a {
 	box-sizing: border-box !important;
 	padding: 10px 30px;
 	color: #fff !important;
+}
+.mainheader .navbar-default .navbar-nav1>li>a {
+	box-sizing: border-box !important;
+	padding: 10px 30px;
+	color: #000 !important;
+}
+.mainheader .navbar-default .navbar-nav>.active>a,
+.navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover{
+	color: lightgray !important;
+    background-color: #fff  !important;
 }
 
 .navbar-default .navbar-nav>li>a:focus, .navbar-default .navbar-nav>li>a:hover
@@ -109,7 +161,6 @@ p {
 	z-index: 1;
 	top: 0;
 	left: 0;
-	right: 0;
 	height: 50px;
 }
 
@@ -120,7 +171,7 @@ p {
 /*메인 배경*/
 .bg-1 {
 	position: relative;
-	height: 640px; /*  736px */
+	height: 640px;
 	width: auto;
 	background: url(image/img1.jpg) center center no-repeat !important;
 	background-size: cover !important;
@@ -223,10 +274,10 @@ p {
 	background-color: rgba(255, 255, 255, 0);
 }
 
-.navbar-collapse>li {border-bottom
+/* .navbar-collapse>li {border-bottom
 	
 }
-
+ */
 /*joinbtn*/
 .btn-group-lg>.btn, .btn-lg {
 	font-size: 14px !important;
@@ -236,10 +287,15 @@ p {
 .bg-4 {
 	background-color: #2f2f2f; /* Black Gray */
 	color: #fff;
-	padding: 25px;
+	
 }
-
+.bg-4>p{
+	padding:15px;
+	font-size:12px;
+	font-weight: normal;
+}
 .footerLogo>img {
+/* 	margin-top:15px; */
 	width: 100px;
 	float: left;
 }
@@ -284,7 +340,7 @@ p {
 }
 
 .submenu_ul>li.active>a, .submenu_ul>li>a:focus, .submenu_ul>li>a:hover {
-	color: #bbb !important;
+	color: #000 !important;
 	font-weight: bold !important;
 }
 
@@ -313,23 +369,38 @@ p {
 }
 
 /* househeader hosting*/
-.row-condensed>.text-left>span {
+.page_moveBtn{
+	margin-top:7px;
+}
+
+.rowF>.text-left>span {
 	color: #57c3a6 !important;
 	line-height: 38px !important;
 	font-weight: bold !important;
 	font-size: 27px !important;
 }
+.row-condensed>.text-left>span, .row-condensed>.col-md-6>.text-left>span, .row-condensed>.col-md-12>.text-left>span{
+	color: #57c3a6 !important;
+	line-height: 38px !important;
+	font-weight: bold !important;
+	font-size: 25px ;
+}
 .row-condensed>.text-left>.subspan {
     color: #56c2c2 !important;
     line-height: 38px !important;
     font-weight: bold !important;
-    font-size: 18px !important;
+    font-size: 18px ;
 }
 
 .row-condensed {
 	margin-top: 30px;
 	margin-bottom: 30px;
 }
+
+.row-sectionB{
+	margin-bottom: 80px;
+}
+
 
 .gueststepcontents {
 	margin-top: 0px !important;
@@ -431,26 +502,28 @@ p {
     color: #57c3a6 !important;
     line-height: 38px !important;
     font-weight: bold !important;
-    font-size: 26px !important;
+    font-size: 26px ;
 	
 }
 			
 			
-/* history style*/
+/* history   tabs style  대금수령 내역 후기 탭 스타일*/
+.tabsdiv{
+	margin-bottom: 10px;
+}
+.tabsdiv > .ui-tabs {
+	position: relative;
+	padding: 0 !important;
+}
 .tabsdiv > .ui-tabs .ui-tabs-nav {
 	padding: 15px;
 	background-color: #ddd;
 }
 
-.tabsdiv > .ui-tabs {
-	position: relative;
-	padding: 0 !important;
-}
-/* tabs */
 .tabsdiv >.ui-widget-header {
 	border: none !important;
 }
-	
+
 .ui-corner-all, .ui-corner-bottom, .ui-corner-right, .ui-corner-br {
 	border-bottom-right-radius:0px !important;
 }
@@ -471,24 +544,57 @@ p {
 }
   .datepicker{z-index:2000 !important;}	
 	
-/* travelhotplace */	
-.visitDate>.col-md-5{
-	padding:0px !important;
-	margin-bottom: 15px;
+/* travelhotplace  지역 명소 페이지 스타일*/	
+
+.hotplace > .panel-body {
+    padding:0 !important;
+}
+/* 하우스 요금 메세지 스타일 */
+.price_message{
+	margin-bottom:80px;
+}
+.price_message > span{
+ 	color: red;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.panel-MT{
+	margin-top:7px;
+}
+.panel-PN{
+	padding:0 !important;
+}
+.panel-PN > .form-group{
+	margin-left:10px;
+}
+
+.headerH{
+	height:50px !important;
+}
+
+#slider-thumbs{
+   position:relative;
+}
+
+#slider-thumbs>ul{
+   position:relative;
+   left:50%;
+   float:left;
+   transform:translate(-50%);
+   padding:0;
+}
+#slider-thumbs>ul>li{
+   float:left;
+}
+#slider-thumbs > .col-xs-2{
+	padding:0px;
 	
-}
-.visitDate>.col-md-2{
-    margin-top: 5px;
-}
-
-
-
-/*img slide*/
-/*
+}  
 .carousel-inner > .item > img,
 .carousel-inner > .item > a > img {
   width: 100%;
-  height: 550px;
+  height: 400px;
   margin: 0 auto;
   padding: 0;
 }
@@ -496,16 +602,14 @@ p {
     padding: 10px 30px;
 }
 
-
 .container-fluid {
   margin: 0 auto;
   padding: 0;
 }
-.carousel-control.right {
+a.left.carousel-control{
   background-image: linear-gradient(to right, rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0) 100%);
 }
-.carousel-control.left {
+a.right.carousel-control{
   background-image: linear-gradient(to left, rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0) 100%);
 }
 
-*/

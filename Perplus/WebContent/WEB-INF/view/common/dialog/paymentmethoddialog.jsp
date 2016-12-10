@@ -107,7 +107,7 @@ $(document).ready(function() {
 					<div id="paymentType"></div>
 				</div>
 				<div class="modal-footer">
-					<input type="submit" name="login" class="btn btn-default" id="loginBtn" value="저장">
+					<input type="submit" class="btn btn-default" id="payment" value="추가">
 				</div>
 			</div>
 		</form>

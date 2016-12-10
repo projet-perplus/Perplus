@@ -7,7 +7,7 @@
 		<tiles:insertAttribute name="linkandscripthead"/>
 	</head>
   <body>
-  	<header>
+  	<header class="perplusheader">
   		<tiles:insertAttribute name="header"/>
   		<tiles:insertAttribute name="logindialog"/>
   		<tiles:insertAttribute name="joindialog"/>
@@ -22,5 +22,5 @@
   		<tiles:insertAttribute name="footer"/>
   	</footer>
   </body>
-  	<script src="js/bootstrap.min.js"></script>
+  	<script src="/Perplus/js/bootstrap.min.js"></script>
 </html>
