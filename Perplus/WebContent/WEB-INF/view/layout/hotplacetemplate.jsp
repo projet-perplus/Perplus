@@ -5,7 +5,7 @@
 <html>
 	<head>
 		<tiles:insertAttribute name="linkandscripthead"/>
-		<script type="text/javascript" src="js/review.js"></script>
+		<script type="text/javascript" src="/Perplus/js/review.js"></script>
 	</head>
 	<body>
 		<header class="mainheader">

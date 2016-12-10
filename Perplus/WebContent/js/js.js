@@ -37,24 +37,9 @@ $(function(){
 		}).on('changeDate', function(ev) {
 		  checkout.hide();
 		}).data('datepicker');
-			
+
 		
-	
 		
-		var datepicker = $("#datepicker1, #datepicker2").datepicker({
-			 showOtherMonths: true, 
-	         selectOtherMonths: true,   
-	         yearSuffix:'년',   
-		     monthNames:['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],   
-		     dayNamesMin:['일','월','화','수','목','금','토'], 
-			 format: 'yyyy-mm-dd'
-			 
-		 }).on('changeDate', function(ev) {
-			 datepicker.hide();
-			}).data('datepicker');
-	    
-		
-	
 		/*서브메뉴 active*/
 		var main = $(".submenu_ul").data("main")
 		

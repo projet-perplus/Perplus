@@ -4,8 +4,9 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<link rel="stylesheet" href="css/subtemplate.css"><!-- perplus sub css -->
+		<link rel="stylesheet" href="/Perplus/css/subtemplate.css"><!-- perplus sub css -->
 		<tiles:insertAttribute name="linkandscripthead"/>
+
 		<script>
 			$(function(){
 				$( '#tabs' ).tabs();

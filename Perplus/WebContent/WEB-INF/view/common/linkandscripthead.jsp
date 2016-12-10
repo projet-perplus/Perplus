@@ -13,3 +13,4 @@
 <script src="/Perplus/js/jquery-ui.min.js"></script>
 <script src="/Perplus/js/bootstrap-datepicker.js"></script> <!-- bootstrap datepicker javascript -->
 <script src="/Perplus/js/js.js"></script>	<!-- perplus javascript -->
+<script src="/Perplus/js/datepicker.js"></script>
