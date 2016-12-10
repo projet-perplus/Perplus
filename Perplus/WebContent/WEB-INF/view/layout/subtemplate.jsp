@@ -4,8 +4,9 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<link rel="stylesheet" href="css/subtemplate.css"><!-- perplus sub css -->
+		<link rel="stylesheet" href="/Perplus/css/subtemplate.css"><!-- perplus sub css -->
 		<tiles:insertAttribute name="linkandscripthead"/>
+
 		<script>
 			$(function(){
 				$( '#tabs' ).tabs();
@@ -46,7 +47,7 @@
 	  		<tiles:insertAttribute name="footer"/>
 	  	</footer>
  	 </body>
-	  	<script src="js/bootstrap.min.js"></script>
+	  	<script src="/Perplus/js/bootstrap.min.js"></script>
 </html>
 
 

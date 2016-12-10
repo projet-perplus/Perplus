@@ -545,14 +545,7 @@ p {
   .datepicker{z-index:2000 !important;}	
 	
 /* travelhotplace  지역 명소 페이지 스타일*/	
-.visitDate>.col-md-5{
-	padding:0px !important;
-	margin-bottom: 15px;
-	
-}
-.visitDate>.col-md-2{
-    margin-top: 5px;
-}
+
 .hotplace > .panel-body {
     padding:0 !important;
 }

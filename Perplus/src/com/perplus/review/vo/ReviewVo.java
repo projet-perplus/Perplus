@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.perplus.member.vo.MemberVo;
@@ -14,6 +15,7 @@ public class ReviewVo implements Serializable{
 	private String reviewTitle; //명소 리뷰 제목
 	private String reviewContent; //명소 리뷰 내용
 	private int reviewRating; //명소 평점 
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date reviewTime; //게시글 작성 시간
 	private double reviewMarkerX; //명소 지도상 위치
 	private double reviewMarkerY; //명소 지도상 위치

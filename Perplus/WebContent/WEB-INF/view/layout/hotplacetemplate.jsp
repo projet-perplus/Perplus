@@ -5,7 +5,7 @@
 <html>
 	<head>
 		<tiles:insertAttribute name="linkandscripthead"/>
-		<script type="text/javascript" src="js/review.js"></script>
+		<script type="text/javascript" src="/Perplus/js/review.js"></script>
 	</head>
 	<body>
 		<header class="mainheader">
@@ -23,7 +23,7 @@
 	  		<tiles:insertAttribute name="footer"/>
 	  	</footer>
 	</body>
- 	<script src="js/bootstrap.min.js"></script>
+ 	<script src="/Perplus/js/bootstrap.min.js"></script>
 </html>
 
 	

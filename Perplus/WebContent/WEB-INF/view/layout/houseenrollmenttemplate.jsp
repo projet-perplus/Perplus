@@ -10,5 +10,5 @@
 	 	<!-- class="hostingimg" -->
 	 	<tiles:insertAttribute name="hosting"/>
 	 </body>
-  	<script src="js/bootstrap.min.js"></script>
+  	<script src="/Perplus/js/bootstrap.min.js"></script>
 </html>

@@ -44,7 +44,7 @@
 						</div>
 					</div>
 					<div class="col-sm-6 col-lg-6" >
-						 <button type="button" class="btn btn-default btn-lg" name="roomssearch"  id="Search" >숙소 검색</button>
+						 <a href="${initParam.rootPath}/housesearch.do"><button type="button" class="btn btn-default btn-lg" name="roomssearch"  id="Search" >숙소 검색</button></a>
 					</div>
 				</div>
 			</form>

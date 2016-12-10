@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 
 <style>
 
@@ -35,8 +36,8 @@
 		</div>
 	 </div>
    <!--/Slider--><!--hidden-xs-->
-   <div class="row" id="slider-thumbs" style="margin-top:10px">
-      <!--Bottom switcher of slider -->
+    <div class="row" id="slider-thumbs" style="margin-top: 10px;">
+        <!--Bottom switcher of slider -->
       <ul>
          <li>
             <a class="thumbnail" id="carousel-selector-0"><img src="http://placehold.it/170x100&text=one"></a>
@@ -79,7 +80,7 @@
 				<span>장소명</span>
 			</label>
 			<div class="col-md-6">
-				 장소명~~~
+				 ${requestScope.review.reviewPlace }
 			</div>	
 		 </div>
 		 <div class="row row-condensed space-4">
@@ -87,7 +88,8 @@
 				<span>방문일자</span>
 			</label>
 			<div class="col-md-6">
-				 ${requestScope.review.reviewTime }
+				<%-- <fmt:formatDate value="${requestScope.review.reviewTime}" pattern="yyyy-MM-dd"/> --%>
+				${requestScope.review.reviewTime}
 			</div>	
 		 </div>
 	     <div class="row row-condensed space-4">
