@@ -18,7 +18,7 @@
 						</div>
 					</div>
 					<div class="col-md-4 page_moveBtn hidden-xs">
-						(1/12)
+						start
 					</div>
 				</div>
 			 <div class="clearfix"></div>
