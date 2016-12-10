@@ -45,14 +45,12 @@ and page=#{page}
 <select id="selectPictureOne" parameterType="_int" resultType="ReviewPictureVo">
 	<include refid="picture-select"/>
 	where picture_serial = #{pictureSerial}
-	order by picture_serial asc
 </select>
 
 <!-- UPDATE PICTURE -->
 <update id="updatePicture" parameterType="reviewPictureVo" >
 	update reviewpicture
 	set
-		 picture_serial=#{pictureSerial},
 		 review_serial=#{reviewSerial},
 		 picture_order=#{pictureOrder},
 		 picture_name=#{pictureName}

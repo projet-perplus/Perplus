@@ -10,7 +10,7 @@ public class MemberVo<T> {
 	private String memberName;//회원이름
 	private String memberBirthday;//회원 생일
 	private String memberGender;//회원성별
-	private int memberTel;//회원전화번호
+	private String memberTel;//회원전화번호
 	private String memberLocation;//회원주소
 	private String memberIntroduction;//회원 자기소개
 	private int memberIdentification;//회원 주민등록번호 인증유무
@@ -30,7 +30,7 @@ public class MemberVo<T> {
 	}
 
 	public MemberVo(String memberEmail, String memberPassword, String memberName, String memberBirthday,
-			String memberGender, int memberTel, String memberLocation, String memberIntroduction,
+			String memberGender, String memberTel, String memberLocation, String memberIntroduction,
 			int memberIdentification, String memberPicture, MultipartFile memberPictureFile) {
 		this.memberEmail = memberEmail;
 		this.memberPassword = memberPassword;
@@ -46,7 +46,7 @@ public class MemberVo<T> {
 	}
 
 	public MemberVo(String memberEmail, String memberPassword, String memberName, String memberBirthday,
-			String memberGender, int memberTel, String memberLocation, String memberIntroduction,
+			String memberGender, String memberTel, String memberLocation, String memberIntroduction,
 			int memberIdentification, String memberPicture, MultipartFile memberPictureFile, List<T> list) {
 		this.memberEmail = memberEmail;
 		this.memberPassword = memberPassword;
@@ -102,11 +102,11 @@ public class MemberVo<T> {
 		this.memberGender = memberGender;
 	}
 
-	public int getMemberTel() {
+	public String getMemberTel() {
 		return memberTel;
 	}
 
-	public void setMemberTel(int memberTel) {
+	public void setMemberTel(String memberTel) {
 		this.memberTel = memberTel;
 	}
 
@@ -182,7 +182,7 @@ public class MemberVo<T> {
 		result = prime * result + ((memberPassword == null) ? 0 : memberPassword.hashCode());
 		result = prime * result + ((memberPicture == null) ? 0 : memberPicture.hashCode());
 		result = prime * result + ((memberPictureFile == null) ? 0 : memberPictureFile.hashCode());
-		result = prime * result + memberTel;
+		result = prime * result + ((memberTel == null) ? 0 : memberTel.hashCode());
 		return result;
 	}
 
@@ -247,11 +247,15 @@ public class MemberVo<T> {
 				return false;
 		} else if (!memberPictureFile.equals(other.memberPictureFile))
 			return false;
-		if (memberTel != other.memberTel)
+		if (memberTel == null) {
+			if (other.memberTel != null)
+				return false;
+		} else if (!memberTel.equals(other.memberTel))
 			return false;
 		return true;
 	}
 
+	
 	
 	
 }

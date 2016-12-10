@@ -63,7 +63,7 @@
 							name="memberPassword" placeholder="password" required>
 					</div>
 					<div class="form-group">
-						<input type="text" class="form-control"  name="check" id="datepicker1" placeholder="생년월일">
+						<input type="text" class="form-control"  name="memberBirthday" id="datepicker1" placeholder="생년월일">
 					</div>
 					<div class="modal-footer">
 						<input type="submit" name="login" class="btn btn-default btn-lg"

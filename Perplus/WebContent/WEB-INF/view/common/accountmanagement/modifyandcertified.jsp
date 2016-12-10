@@ -1,8 +1,20 @@
 <%@page import="com.perplus.member.vo.MemberVo"%>
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#memberModifyForm").on("submit",function(){
+		if($("#memberGenderSelect").val()=="성별"){
+			alert("성별을 선택해 주세요.");
+			return false;
+		}
+	});
+});
+</script>
+
 <div id="dashboard-content">
-	<form action="/Perplus/member/modify.do" method="post"
+	<form action="/Perplus/member/modify.do" method="post" id="memberModifyForm"
 		enctype="multipart/form-data">
 		<div class="panel-header">
 			<span>필수 사항</span>
@@ -42,8 +54,8 @@
 						<div class="col-sm-9">
 							<div class="col-md-12">
 								<div class="form-group">
-									<select class="form-control" name="memberGender">
-										<option>010</option>
+									<select class="form-control" id="memberGenderSelect" name="memberGender">
+										<option>성별</option>
 										<c:choose>
 											<c:when test="${sessionScope.login_info.memberGender == '남'}">
 												<option selected>남</option>
@@ -54,42 +66,23 @@
 												<option>남</option>
 												<option selected>녀</option>
 											</c:when>
+											<c:otherwise>
+												<option>남</option>
+												<option>녀</option>
+											</c:otherwise>
 										</c:choose>
 									</select>
 								</div>
 							</div>
 						</div>
 					</div>
-					<%
-						MemberVo member = (MemberVo) session.getAttribute("login_info");
-						String birthday = member.getMemberBirthday();
-						String yy = birthday.substring(0, 4);
-						String mm = birthday.substring(4, 6);
-						String dd = birthday.substring(6, 8);
-					%>
 					<div class="row row-condensed space-4">
 						<label class="text-right col-md-3"> 생년월일 </label>
 						<div class="col-sm-9">
-							<div class="col-sm-4" style="padding-left: 0px;">
-								<div class="form-group">
-									<select class="form-control" name="birthdayMM">
-										<option><%=mm%></option>
-									</select>
-								</div>
-							</div>
-							<div class="col-sm-4" style="padding-left: 0px;">
-								<div class="form-group">
-									<select class="form-control" name="birthdayDD">
-										<option><%=dd%></option>
-									</select>
-								</div>
-							</div>
-							<div class="col-sm-4" style="padding-left: 0px;">
-								<div class="form-group">
-									<select class="form-control" name="birthdayYY">
-										<option><%=yy%></option>
-									</select>
-								</div>
+							<div class="form-group">
+								<input type="text" class="form-control" name="memberBirthday"
+									id="datepicker1"
+									value="${sessionScope.login_info.memberBirthday}">
 							</div>
 						</div>
 					</div>
@@ -120,6 +113,14 @@
 							</div>
 						</div>
 					</div>
+					
+<%-- 					<%
+					MemberVo member = (MemberVo)session.getAttribute("login_info");
+					String memberTel = member.getMemberTel();
+					String Tel1 = memberTel.substring(0,3);
+					String Tel2 = memberTel.substring(3,7);
+					String Tel3 = memberTel.substring(7,11);
+					%> --%>
 					<div class="row row-condensed space-4">
 						<label class="text-right col-sm-3"> 전화번호 </label>
 						<div class="col-sm-9">
@@ -128,20 +129,18 @@
 									<div class="form-group">
 										<select class="form-control" name="phone">
 											<option>010</option>
-											<option>2</option>
-											<option>3</option>
+											<option>016</option>
+											<option>017</option>
+											<option>019</option>
 										</select>
 									</div>
 								</div>
-
 								<div class="col-sm-4" style="padding-left: 0px;">
 									<div class="form-group">
 										<input type="number" class="form-control" name="phone"
 											required="required" size="4">
-
 									</div>
 								</div>
-
 								<div class="col-sm-4" style="padding-left: 0px;">
 									<div class="form-group">
 										<input type="number" class="form-control" name="phone"

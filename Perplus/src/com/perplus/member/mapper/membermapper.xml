@@ -14,12 +14,14 @@
 		update	member
 		<set>	member_password = #{memberPassword},
 				member_name = #{memberName},
-				member_birthday = #{memberBirthday},
-				member_gender = #{memberGender},
-				member_tel = #{memberTel},
-				member_location = #{memberLocation},
-				member_introduction = #{memberIntroduction},
-				member_identification = #{memberIdentification},
+					member_birthday = #{memberBirthday},
+					member_gender = #{memberGender},
+				<if test="memberTel!=null">
+					member_tel = #{memberTel},
+				</if>
+					member_location = #{memberLocation},
+					member_introduction = #{memberIntroduction},
+					member_identification = #{memberIdentification},
 				<if test="memberPicture!=null">
 					member_picture  = #{memberPicture},
 				</if>

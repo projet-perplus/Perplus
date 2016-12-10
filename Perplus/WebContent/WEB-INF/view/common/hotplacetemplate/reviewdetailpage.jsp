@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <style>
 
@@ -62,7 +63,7 @@
 				<span>작성자</span>
 			</label>
 			<div class="col-md-6">
-				 request
+				${requestScope.review.memberEmail }
 			</div>	
 		 </div>
 		<div class="row row-condensed space-4">
@@ -70,7 +71,7 @@
 				<span>리뷰 제목</span>
 			</label>
 			<div class="col-md-6">
-				 request
+				 ${requestScope.review.reviewTitle }
 			</div>	
 		 </div>
 		 <div class="row row-condensed space-4">
@@ -78,7 +79,7 @@
 				<span>장소명</span>
 			</label>
 			<div class="col-md-6">
-				 request
+				 장소명~~~
 			</div>	
 		 </div>
 		 <div class="row row-condensed space-4">
@@ -86,7 +87,7 @@
 				<span>방문일자</span>
 			</label>
 			<div class="col-md-6">
-				 request
+				 ${requestScope.review.reviewTime }
 			</div>	
 		 </div>
 	     <div class="row row-condensed space-4">
@@ -94,7 +95,7 @@
 				<span>평점</span>
 			</label>
 			<div class="col-md-6">
-				 request
+				 ${requestScope.review.reviewRating }
 			</div>	
 		 </div>
 	     <div class="row row-condensed space-4">
@@ -102,13 +103,13 @@
 				<span>내용</span>
 			</label>
 			<div class="col-md-6">
-				 request
+				 ${requestScope.review.reviewContent }
 			</div>	
 		</div>
 	</div>
 	
-	<div class="row row-condensed space-4">
-      <div class="col-md-3">
+   <div class="row row-condensed space-4">
+      <div class="col-md-1">
          <div class="stars stars-example-bootstrap">
            <select id="example-bootstrap" name="rating" autocomplete="off">
              <option value="1">1</option>
@@ -119,6 +120,9 @@
            </select>
          </div>
       </div>
+      <div class="col-md-2">
+      작성자
+      </div>
       <div class="col-md-7">
          <input type="text" class="form-control" name="review"
                placeholder="후기를 입력하세요">
@@ -127,4 +131,23 @@
          <button class="btn btn-default">작성</button>
       </div>                     
    </div>
+   
+   <c:forEach items="${requestScope.review.reviewComment }" var="comment">
+   <div class="row row-condensed space-4">
+      <div class="col-md-1">
+         <div class="stars stars-example-bootstrap">
+          	${comment.commentRating }
+         </div>
+      </div>
+      <div class="col-md-2">
+      	${comment.memberEmail }
+      </div>
+      <div class="col-md-7">
+          ${comment.commentContent }
+      </div>
+<!--       <div class="col-md-2">
+         <button class="btn btn-default">작성</button>
+      </div>    -->                  
+   </div>
+   </c:forEach>
 </div>

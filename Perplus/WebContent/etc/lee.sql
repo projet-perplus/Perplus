@@ -461,4 +461,38 @@ where HOUSE_SERIAL IN
 			)    
 		)       
 	)
+	
+	
+select HOUSE_SERIAL houseSerial   
+from HOUSE    
+where HOUSE_SERIAL IN   
+(        
+	select HOUSE_SERIAL  
+	from 
+	(         
+		select HOUSE_SERIAL,   HOUSEFILTER_RANGE,   HOUSEFILTER_GUEST_NUMBER,   HOUSEFILTER_TYPE,   HOUSEFILTER_ROOM_NUMBER,   HOUSEFILTER_LOCATION,   HOUSEFILTER_BEDROOM_NUMBER,   HOUSEFILTER_BATHROOM_NUMBER,   HOUSEFILTER_BED_NUMBER,   HOUSEFILTER_CHECKIN_TERM,   HOUSEFILTER_CHECKIN_START,   HOUSEFILTER_CHECKIN_END,   HOUSEFILTER_RESERVATION_TERM,   HOUSEFILTER_BAK_MIN,   HOUSEFILTER_BAK_MAX,   HOUSEFILTER_PRICE   
+		from HOUSEFILTER                                 
+		WHERE HOUSE_SERIAL in 
+		(       
+			select DISTINCT HOUSE_SERIAL        
+			from 
+			(                                   
+				select DISTINCT HOUSE_SERIAL           
+				from SHUTDOWN       
+				where HOUSE_SERIAL NOT IN 
+				(         
+					select DISTINCT HOUSE_SERIAL         
+					from SHUTDOWN        
+					where SHUTDOWN_DATE          
+					between (CAST(? as date)) and (CAST(? as date))        
+				)                                                                        
+			)                     
+		)     
+	)         
+	WHERE  (CAST(? as date)-CAST(? as date)) 
+	between HOUSEFILER_BAK_MIN and HOUSEFILTER_BAK_MAX        
+	and (? + HOUSEFILTER_RESERVATION_TERM *30 >= ?)        
+	and (? + HOUSEFILTER_CHECKIN_TERM >= ?)    
+)
+
 
