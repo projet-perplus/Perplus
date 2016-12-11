@@ -130,8 +130,7 @@
 
 
 	<div class="row row-condensed space-4">
-		<div id="map-canvas"
-			style="width: 100%; height: 300px; padding: 15px;"></div>
+		<div id="map-canvas" style="width: 100%; height: 300px; padding: 15px;"></div>
 	</div>
 
 </div>
