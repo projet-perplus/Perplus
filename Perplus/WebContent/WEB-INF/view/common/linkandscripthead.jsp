@@ -11,7 +11,6 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> <!-- jquery script -->
 <script src="/Perplus/js/jquery-ui.min.js"></script>
-<script src="/Perplus/js/bootstrap-datepicker.kr.js"></script>
 <script src="/Perplus/js/bootstrap-datepicker.js"></script> <!-- bootstrap datepicker javascript -->
 <script src="/Perplus/js/js.js"></script>	<!-- perplus javascript -->
 <script src="/Perplus/js/datepicker.js"></script>
