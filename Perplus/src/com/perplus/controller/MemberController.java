@@ -38,7 +38,6 @@ public class MemberController {
 	/*****************회원가입***************/
 	@RequestMapping("/join.do")
 	public String joinMember(@ModelAttribute MemberVo member, BindingResult result, HttpServletRequest request)throws Exception{
-		System.out.println(member);
 		service.joinMember(member);
 		return "redirect:/main.do";
 	}
@@ -47,7 +46,6 @@ public class MemberController {
 	@RequestMapping("/emailCheck.do")
 	@ResponseBody
 	public Map<String, Boolean> emailDuplicateCheck(@RequestParam String email){
-		System.out.println(email);
 		HashMap<String, Boolean> result = new HashMap<>();
 		result.put("result", service.selectMemberFindByEmail(email)!=null);//true가 중복
 		return result;
@@ -119,7 +117,7 @@ public class MemberController {
 		return "redirect:/modifyandcertified.do";
 	}
 	
-	
+	/*****************회원탈퇴********************/
 	@RequestMapping("/delete.do")
 	public String memberDelete(@RequestParam String memberEmail,HttpSession session){
 		service.deleteMember(memberEmail);
@@ -127,14 +125,28 @@ public class MemberController {
 		return "redirect:/main.do";
 	}
 	
+	
+	/****************howgetmoney조회********************/
 	@RequestMapping("/howgetmoneyfind.do")
 	public String howgetmoneyFind(ModelMap map, HttpSession session){
 		MemberVo member = (MemberVo)session.getAttribute("login_info");
 		String memberEmail = member.getMemberEmail();
-		System.out.println("왔음ㅋ");
 		List<HowgetmoneyVo> howgetmoneyList = service.selectHowgetmoney(memberEmail);
 		map.addAttribute("howgetmoneyList",howgetmoneyList);
 		return "accountmanagement/accountmanagement/payout_preference.tiles1";
+	}
+	
+	/*********************howgetmoney삭제**********************************/
+	@RequestMapping("/howgetmoneyRemove.do")
+	public String howgetmoneyRemove(@RequestParam int accountSerial, HttpServletRequest request){
+		service.deleteHowgetmoney(accountSerial);
+		return "redirect:/member/howgetmoneyfind.do";
+	}
+	
+	@RequestMapping("/howgetmoneyRegister.do")
+	public String howgetmoneyRegister(@ModelAttribute HowgetmoneyVo howgetmoney){
+		service.insertHowgetmoney(howgetmoney);
+		return "redirect:/member/howgetmoneyfind.do";
 	}
 	
 }

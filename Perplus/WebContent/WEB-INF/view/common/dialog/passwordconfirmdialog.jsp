@@ -10,6 +10,13 @@ $(document).ready(function(){
 		}
 		
 	});
+	
+	function passwordErrorCheck(){
+		if(${!empty requestScope.error_password}){
+			
+		}
+		$("#error_password")
+	}
 });
 </script>
 <!-- 비밀 번호 확인-->

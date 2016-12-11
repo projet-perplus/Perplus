@@ -199,8 +199,8 @@ public class MemberServiceImpl implements MemberService{
 	}
 	
 	@Override//결제수단 삭제
-	public void deleteHowgetmoney(HowgetmoneyVo howgetmoney){
-		howgetmoneyDao.deleteHowgetmoney(howgetmoney);
+	public void deleteHowgetmoney(int accountSerial){
+		howgetmoneyDao.deleteHowgetmoney(accountSerial);
 	}
 	
 	@Override//결제수단 조회

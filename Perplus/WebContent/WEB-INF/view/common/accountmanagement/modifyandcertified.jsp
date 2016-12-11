@@ -10,7 +10,20 @@
 				return false;
 			}
 		});
+		
+		$("#passwordChangeForm").on("submit", function(){
+			var beforePassword1 = "${sessionScope.login_info.memberPassword}";
+			var beforePassword2 = $("#beforePassword").val();
+			if(beforePassword1!=beforePassword2){
+				
+			}
+			afterPassword
+			afterPasswordCheck
+		});
+	
 	});
+	
+	
 </script>
 
 <div id="dashboard-content">
@@ -173,6 +186,57 @@
 							</div>
 						</div>
 					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>
+<div id="dashboard-content">
+
+	<div class="panel-header">
+		<span>비밀번호 변경</span>
+	</div>
+	<div class="row row-condensed space-4">
+		<label class="text-right col-sm-3">기존 비밀번호 </label>
+		<div class="col-sm-9">
+			<div class="form-group">
+				<div class="col-md-12">
+					<input type="password" class="form-control" id="beforePassword"
+						name="beforePassword" required="required">
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row row-condensed space-4">
+		<label class="text-right col-sm-3">변경할 비밀번호 </label>
+		<div class="col-sm-9">
+			<div class="form-group">
+				<div class="col-md-12">
+					<input type="password" class="form-control" id="afterPassword"
+						name="afterPassword" required="required">
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<form action="" id="passwordChangeForm">
+		<div class="row row-condensed space-4">
+			<label class="text-right col-sm-3">변경할 비밀번호 확인 </label>
+			<div class="col-sm-9">
+				<div class="form-group">
+					<div class="col-md-12">
+						<input type="password" class="form-control"
+							id="afterPasswordCheck" name="memberEmail" required="required">
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row row-condensed space-4">
+			<div class="col-sm-9"></div>
+			<div class="col-sm-3">
+				<div class="col-md-12">
+					<input class="btn btn-primary" type="submit" value="저장"
+						style="float: right;">
 				</div>
 			</div>
 		</div>

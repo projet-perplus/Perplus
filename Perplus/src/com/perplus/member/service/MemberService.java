@@ -53,7 +53,7 @@ public interface MemberService {
 	//howgetmoney service
 	void insertHowgetmoney(HowgetmoneyVo howgetmoney);
 	
-	void deleteHowgetmoney(HowgetmoneyVo howgetmoney);
+	void deleteHowgetmoney(int accountSerial);
 	
 	List<HowgetmoneyVo> selectHowgetmoney(String memberEmail);
 	

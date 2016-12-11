@@ -7,27 +7,39 @@
 	<div class="panel-body">
 		<div class="row">
 			<div class="col-xs-offset-2 col-xs-8" style="text-align: center;">
-				<div class="row">
-					<div class="col-md-3">a</div>
-					<div class="col-md-3">a</div>
-					<div class="col-md-3">a</div>
-				</div>
+				<c:choose>
+					<c:when test="${!empty requestScope.howgetmoneyList}">
+						<div class="row">
+							<div class="col-md-3">예금주</div>
+							<div class="col-md-3">은행명</div>
+							<div class="col-md-3">계좌번호</div>
+						</div>
 
-				<div class="row">
-					<div class="col-md-3">b</div>
-					<div class="col-md-3">b</div>
-					<div class="col-md-3">b</div>
-					<div class="col-md-1">
-						<a href=""><button>X</button></a>
-					</div>
-				</div>
-
-
-				<span>대금을 지급받으려면 대금 수령 방법을 설정해야 합니다 .</span><br>
-				<button>
-					<span data-toggle="modal" data-target="#payoutpreference">대금
-						수령 계좌 추가</span>
-				</button>
+						<c:forEach items="${requestScope.howgetmoneyList}" var="list">
+							<div class="row">
+								<div class="col-md-3">${list.howgetmoneyHolder}</div>
+								<div class="col-md-3">${list.howgetmoneyBank}</div>
+								<div class="col-md-3">${list.howgetmoneyNumber}</div>
+								<div class="col-md-3">
+									<a
+										href="${initParam.rootPath}/member/howgetmoneyRemove.do?accountSerial=${list.accountSerial}"><button>삭제</button></a>
+								</div>
+							</div>
+						</c:forEach>
+						<button>
+							<span data-toggle="modal" data-target="#payoutpreference">대금
+								수령 계좌 추가</span>
+						</button>
+					</c:when>
+					<c:otherwise>
+						<span>대금을 지급받으려면 대금 수령 방법을 설정해야 합니다 .</span>
+						<br>
+						<button>
+							<span data-toggle="modal" data-target="#payoutpreference">대금
+								수령 계좌 추가</span>
+						</button>
+					</c:otherwise>
+				</c:choose>
 			</div>
 			<div class="clearfix"></div>
 		</div>
