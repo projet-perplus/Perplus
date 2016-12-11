@@ -1,13 +1,19 @@
 
 
-$(function(){
+$(function() {
 	var datepicker = $('#datepicker1,#datepicker2,#datepicker3').datepicker({
-		 format: 'yyyy-mm-dd'
+		format : 'yyyy-mm-dd'
+	}).on('focus', function(ev) {
+
+		$('#datepicker1,#datepicker2,#datepicker3').val("");
+
 	}).on('changeDate', function(ev) {
-			 $("#datepicker1,#datepicker2,#datepicker3").datepicker("hide"); 
-		}).data('datepicker');
+		
+		$("#datepicker1,#datepicker2,#datepicker3").datepicker("hide");
+		
+	}).data('datepicker');
 	
-		datepicker.dates['kr'] = {
+		datepicker.dates = {
 			days: ["일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일", "일요일"],
 			daysShort: ["일", "월", "화", "수", "목", "금", "토", "일"],
 			daysMin: ["일", "월", "화", "수", "목", "금", "토", "일"],

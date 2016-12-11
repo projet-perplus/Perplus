@@ -251,6 +251,9 @@ p {
 	color: #fff;
 	border: 0px;
 }
+#Search:hover {
+    background-color: #b3daff;
+}
 
 .bg-2 {
 	position: relative;
@@ -436,9 +439,15 @@ p {
 }
 
 /*basic info houseBtn */
+.houseBtnMB{
+	margin-top: 30px;
+	margin-bottom: 30px;
+	
+}
+
 .houseBtns{
 	margin-top: 30px;
-	margin-bottom:130px !important;
+	
 }
 .previousBtn>a>button {
 	width: 80px;

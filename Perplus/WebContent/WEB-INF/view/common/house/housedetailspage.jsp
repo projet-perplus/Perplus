@@ -4,7 +4,7 @@
 <script
 	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWDGjKV2YFKGM5q6gtx-J5GcJTa2wLDQU"
 	type="text/javascript"></script>
-<script src="js/map.js"></script>
+<script src="/Perplus/js/map.js"></script>
 
 
 
@@ -126,8 +126,6 @@
 		</div>
 
 	</div>
-
-
 
 	<div class="row row-condensed space-4">
 		<div id="map-canvas"
