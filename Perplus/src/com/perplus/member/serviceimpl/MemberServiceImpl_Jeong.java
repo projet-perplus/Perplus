@@ -17,9 +17,9 @@ import com.perplus.member.vo.ReviewZzimVo;
 import com.perplus.member.vo.ShowMeTheMoneyVo;
 import com.perplus.member.vo.TravelVo;
 import com.perplus.util.Constants;
-//
-//@Service
-//public class MemberServiceImpl_Jeong {
+
+@Service
+public class MemberServiceImpl_Jeong {
 //	
 //	@Autowired
 //	@Qualifier("paymentDaoImpl")
@@ -40,10 +40,6 @@ import com.perplus.util.Constants;
 //	@Qualifier("travelDaoImpl")
 //	private TravelDao travelDao;
 //	
-//	
-//	public boolean isExistPayment(int cardSerial){
-//		return paymentDao.selectPaymentByCardSerial(cardSerial) != null; // 객체가 있으면 true 반환
-//	}
 //	
 //	/**
 //	 * Payment 관련 Service
@@ -89,6 +85,10 @@ import com.perplus.util.Constants;
 //			throw new Exception("등록된 카드가 없습니다.");
 //		}
 //		return paymentList;
+//	}
+//	
+//	public int getCardSerialSeq() {
+//		return paymentDao.selectCardSerialSeq();
 //	}
 //	
 //	/**
@@ -212,6 +212,11 @@ import com.perplus.util.Constants;
 //		}
 //	}
 //	
+//	/**
+//	 * Travel  관련 Service
+//	 * @param travel
+//	 * @throws Exception
+//	 */
 //	public void registerTravel(TravelVo travel) throws Exception{
 //		List<TravelVo> travelList = null;
 //		try { // 이메일로 모든 Travel 객체 조회
@@ -275,13 +280,5 @@ import com.perplus.util.Constants;
 //		travelDao.deleteTravel(travel.getTravelSerial());
 //		
 //	}
-//	
-//	
-//	
-//
-//	
-//	
-//	
-//	
-//	
-//}
+	
+}

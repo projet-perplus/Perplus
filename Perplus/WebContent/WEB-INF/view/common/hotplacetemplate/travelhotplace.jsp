@@ -33,7 +33,7 @@
 							</a>
 						</li>
 						<li>
-							<a href="${initParam.rootPath}/review/showReview.do?reviewSerial=1">
+							<a href="${initParam.rootPath}/review/showReview.do?reviewSerial=43">
 								<button type="button" class="btn btn-primary">리뷰 상세페이지</button>
 							</a>
 						</li>
