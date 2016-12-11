@@ -5,7 +5,7 @@
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-8" style="padding-left: 0px">
-			<div id="map-canvas" style="width: 100%; height: 600px"></div>
+			<div id="map-canvas" style="width: 100%; height: 700px"></div>
 		</div>
 		<div class="col-md-4">
 			<div class="row">
@@ -55,8 +55,7 @@
 				
 			</div>
 			<div class="row row-condensed space-4">
-				
-				
+				<a href="${initParam.rootPath}/housedetailspage.do"><button>gg</button></a>
 			</div>
 		</div>
 	</div>
