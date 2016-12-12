@@ -20,7 +20,7 @@
 						<li data-sub="hosting.do"><a href="${initParam.rootPath}/hosting.do">호스팅하기</a></li>
 						<li><a href="#" data-toggle="modal" data-target="#join"
 							data-style="join">회원가입</a></li>
-						<li><a href="#" data-toggle="modal" data-target="#reviewmodify">로그인</a></li>
+						<li><a href="#" data-toggle="modal" data-target="#myModal">로그인</a></li>
 					</ul>
 				</div>
 			</c:when>
