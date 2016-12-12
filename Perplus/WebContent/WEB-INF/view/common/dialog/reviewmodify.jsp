@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <!-- reviewEnrollment-->
 
-<div class="modal fade" id="reviewEnrollment" role="dialog"
+<div class="modal fade" id="reviewmodify" role="dialog"
 	aria-labelledby="basicModal" aria-hidden="true">
 	<div class="modal-dialog reviewEnrollment-dialog">
 		<!-- Modal content-->

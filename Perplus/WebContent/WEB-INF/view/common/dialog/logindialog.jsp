@@ -59,7 +59,7 @@
 					</div>
 					<div class="form-group">
 						<input type="password" class="form-control" id="loginPassword"
-							name="memberPassword" placeholder="password" required><br>
+							name="memberPassword" placeholder="password" required autocomplete="off"><br>
 						<span id="login_error_password"></span>
 					</div>
 				</div>

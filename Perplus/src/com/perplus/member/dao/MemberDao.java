@@ -1,8 +1,9 @@
 package com.perplus.member.dao;
 
+import java.util.Map;
+
 import com.perplus.member.vo.MemberVo;
 
-//1
 public interface MemberDao {
 	
 	int insertMember(MemberVo member);
@@ -10,6 +11,8 @@ public interface MemberDao {
 	int deleteMember(String memberEmail);
 	
 	int updateMember(MemberVo newData);
+	
+	int updateMemberPassword(Map<String, Object> map);
 	
 	int selectMemberCountFindByEmail(String id);
 	

@@ -48,9 +48,9 @@ public class ReviewController {
 		int count = 1;
 		System.out.println(member);
 		reviewVo.setMemberEmail(member.getMemberEmail());
-		reviewVo.setReviewMarkerConstant(2);
-		reviewVo.setReviewMarkerX(23.5);
-		reviewVo.setReviewMarkerY(63.2);
+		reviewVo.setReviewMarkerConstant(2);//******
+		reviewVo.setReviewMarkerX(23.5);	//*********
+		reviewVo.setReviewMarkerY(63.2); //************
 		System.out.println(reviewVo);
 		service.registerReview(reviewVo);
 		map.addAttribute("review",reviewVo);
@@ -149,17 +149,17 @@ public class ReviewController {
 	/******************리뷰 코멘트 등록*****************/
 	@RequestMapping("/registerReviewComment.do")
 	public String registerReviewComment(@ModelAttribute ReviewCommentVo reviewComment,ModelMap map, HttpServletRequest request,HttpSession session){
-
+		
 		Date d =new Date();
 		MemberVo member = (MemberVo)session.getAttribute("login_info");
-		int reviewSerial = 43;
-		reviewComment.setReviewSerial(reviewSerial);
+		//int reviewSerial = 43;  //******requestParameter로 읽어들여야함!!
 		reviewComment.setMemberEmail(member.getMemberEmail());
 		reviewComment.setCommentTime(d);
+		//reviewComment.setReviewSerial(reviewSerial);
+		System.out.println(reviewComment);
 		service.registerReviewComment(reviewComment);
-		
-		map.put("reviewSerial", reviewSerial);
-		return"forward:/review/showReview.do";
+		//map.put("reviewSerial", reviewSerial);
+		return"redirect:/review/showReview.do?&reviewSerial="+reviewComment.getReviewSerial();
 	}
 	
 	/*******************리뷰 코멘트 수정****************/
@@ -176,15 +176,15 @@ public class ReviewController {
 	}
 	
 	/******************리뷰 코멘트 삭제*****************/
-	@RequestMapping("/login/removeReviewComment")
-	public String removeReviewComment(@RequestParam int	commentSerial,@RequestParam String memberEmail, HttpSession session){
+	@RequestMapping("/removeReviewComment")
+	public String removeReviewComment(@RequestParam int	commentSerial,@RequestParam int reviewSerial/*,@RequestParam String memberEmail*/, HttpSession session){
 		//이메일 체크~ session의 email과 코멘트의 email 같지 x으면 삭제x
 		MemberVo member = (MemberVo)session.getAttribute("login_info");
-		if(!memberEmail.equals(member.getMemberEmail())){
+/*		if(!memberEmail.equals(member.getMemberEmail())){
 			return"에러페이지";
-		}
+		}*/
 		service.removeReviewComment(commentSerial);
-		return"리뷰상세보기페이지";
+		return"redirect:/review/showReview.do?&reviewSerial="+reviewSerial;
 	}
 	
 	/**************로그인 체크 필요 없음******************/

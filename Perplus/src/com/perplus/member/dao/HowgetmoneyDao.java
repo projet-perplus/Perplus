@@ -10,7 +10,7 @@ public interface HowgetmoneyDao {
 	
 	int insertHowgetmoney(HowgetmoneyVo howgetmoney);
 	
-	int deleteHowgetmoney(HowgetmoneyVo howgetmoney);
+	int deleteHowgetmoney(int accountSerial);
 	
 	List<HowgetmoneyVo> selectHowgetmoney(String memberEmail);
 }

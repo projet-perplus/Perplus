@@ -9,16 +9,20 @@
 				<div class="col-md-7 page_moveBtn ">
 					<div class="col-md-8 ">
 						<div class="form-group">
-							<select class="form-control">
-								<option>1</option>
-								<option>2</option>
-								<option>3</option>
-								<option>4</option>
+							<select class="form-control house_step">
+								<option value="${initParam.rootPath}/basicinfo.do">1 단계</option>
+								<option value="${initParam.rootPath}/housetypeandlocation.do">2 단계</option>
+								<option value="${initParam.rootPath}/houselocation.do">3 단계</option>
+								<option value="${initParam.rootPath}/housefacility.do">4 단계</option>
+								<option value="${initParam.rootPath}/houseimageenrollment.do">5 단계</option>
+								<option value="${initParam.rootPath}/houseschedulemanagement.do">6 단계</option>
+								<option value="${initParam.rootPath}/houseshutdowndate.do">7 단계</option>
+								<option value="${initParam.rootPath}/houseprice.do">8 단계</option>
 							</select>
 						</div>
 					</div>
 					<div class="col-md-4 page_moveBtn hidden-xs">
-						(8/12)
+						(8/8)
 					</div>
 				</div>
 			 <div class="clearfix"></div>

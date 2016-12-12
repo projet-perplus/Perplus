@@ -26,7 +26,7 @@ $(document).ready(function() {
 				if(match[i]) {
 					var tmp=types[i-1];
                     if(tmp=="bc"){
-                    	$("#bc").css("border", "solid blue");
+                      	$("#bc").css("border", "solid blue");
                     	paymentType="bc";
                    	}else if(tmp=="visa"){
                    		$("#visa").css("border", "solid blue");
@@ -56,16 +56,23 @@ $(document).ready(function() {
 				<div class="modal-body">
 					<div class="row">
 						<div class="radio" style="padding: 0px !important;">
-							<div class="col-xs-3">
-								<label id="visa"><img src="https://jobs.visa.com/sites/visa/images/visa_logo_blu.png" height="18"></label>
+							<div class="col-xs-4" >
+								<div id="visa">	
+									<img src="/Perplus/css/image/visa.png" style="margin-left:8px;">
+								</div>
 							</div>
-							<div class="col-xs-3">
-								<label id="mastercard"><img src="http://www.mastercard.com/kr/consumer/find-a-card/images/creditcard_logo_master.gif" width="60" height="25"></label>
+							
+							<div class="col-xs-4">
+								<div id="mastercard">
+									<img src="/Perplus/css/image/master.png" style="margin-left:8px;">
+								</div>
 							</div>
-							<div class="col-xs-3">
-								<label  id="bc"><img src="https://www.bccard.com/images/individual/common/gnb/btn_logo.png" height="18"></label>
+							
+							<div class="col-xs-4">
+								<div id="bc">
+									<img src="/Perplus/css/image/bc.png" style="margin-left:8px;">
+								</div>
 							</div>
-							<div class="col-xs-3"></div>
 						</div>
 					</div>
 					<div class="row row-condensed space-4">

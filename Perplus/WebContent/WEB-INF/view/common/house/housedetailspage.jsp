@@ -8,8 +8,6 @@
 
 
 
-<style>
-</style>
 <div class="container reviewslide">
 	<div class="row">
 		<div class="slidebar">
