@@ -2,6 +2,7 @@ package com.perplus.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,6 +23,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.perplus.member.service.MemberService;
+import com.perplus.member.vo.ChattingLogVo;
+import com.perplus.member.vo.ChattingVo;
+import com.perplus.member.vo.HouseCommentVo;
+import com.perplus.member.vo.HouseZzimVo;
 import com.perplus.member.vo.HowgetmoneyVo;
 import com.perplus.member.vo.MemberVo;
 
@@ -158,7 +163,62 @@ public class MemberController {
 	
 	
 	
+	/**********************houseZzim 등록**********************************/
+	
+	public String houseZzimInsert(@RequestParam String memberEmail, @RequestParam int houseSerial){
+		HouseZzimVo houseZzim = new HouseZzimVo(0, houseSerial, memberEmail);
+		service.insertHouseZzim(houseZzim);
+		return "숙소상세페이지로";
+	}
+	
+	/***********************housezzim 삭제***************************************/
+	
+	public String houseZzimRemove(@RequestParam int houseZzimSerial){
+		service.deleteHouseZzimByEmail(houseZzimSerial);
+		return null;
+	}
+	
+	/***********************houseComment 등록*****************************************/
+	
+	public String houseCommentInsert(@ModelAttribute HouseCommentVo houseComment){
+		service.insertHouseComment(houseComment);
+		return "숙소상세페이지로";
+	}
+	
+	/***********************houseComment 삭제*****************************************/
+	
+	public String houseCommentDelete(@RequestParam int commentSerial){
+		service.deleteHouseComment(commentSerial);
+		return "숙소상세페이지로";
+	}
+	
+	/***********************houseComment 수정*****************************************/
+	
+	public String houseCommentModify(@ModelAttribute HouseCommentVo houseComment){
+		service.modifyHouseComment(houseComment);
+		return "숙소상세페이지로";
+	}
+	
+	/***********************하우스 상세보기에서 호스트에게 메세지 보내기 눌러서 chatting방 생성*****************************************/
+	@RequestMapping("/chatting.do")
+	public String chattingRoomCreate(@RequestParam String chattingPartner, @RequestParam String memberEmail){
+		ChattingVo chatting = service.findByChatting(chattingPartner, memberEmail);
+		if(chatting==null){
+			service.createChatting(new ChattingVo(0, chattingPartner, memberEmail));
+		}
+		return "redirect:/message.do";
+	}
+	
+	/***********************채팅로그 생성 ajax처리*************************/
+	@RequestMapping("/chattingLog.do")
+	@ResponseBody
+	public Map<String, Object> chattingLogInsert(@ModelAttribute ChattingLogVo chattingLog){
+		chattingLog.setChattingTime(new Date());
+		service.insertChattingLog(chattingLog);
+		List<ChattingLogVo> list = service.selectChattingLog(chattingLog.getChattingNumber());
+		Map<String, Object> map = new HashMap<>();
+		map.put("list", list);
+		return map;
+	}
+	
 }
-
-
-
