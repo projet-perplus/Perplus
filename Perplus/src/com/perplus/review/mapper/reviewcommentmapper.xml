@@ -36,7 +36,7 @@
 			select page, comment_serial commentSerial,review_serial reviewSerial,member_email memberEmail,comment_content commentContent, comment_rating commentRating,comment_time commentTime
 			from(select ceil(rownum/#{commentPerPage}) page,comment_serial,review_serial, member_email, comment_content, comment_rating, comment_time
 			from(
-					select  comment_serial,review_serial, member_email, comment_content, comment_rating, comment_time  from reviewcomment order by review_serial desc
+					select  comment_serial,review_serial, member_email, comment_content, comment_rating, comment_time  from reviewcomment order by comment_serial desc
 				)
 			)
 			where review_serial=#{reviewSerial}
