@@ -199,13 +199,13 @@ public class MemberServiceImpl implements MemberService{
 	}
 	
 	@Override//결제수단 삭제
-	public void deleteHowgetmoney(HowgetmoneyVo howgetmoney){
-		howgetmoneyDao.deleteHowgetmoney(howgetmoney);
+	public void deleteHowgetmoney(int accountSerial){
+		howgetmoneyDao.deleteHowgetmoney(accountSerial);
 	}
 	
 	@Override//결제수단 조회
-	public void selectHowgetmoney(String memberEmail){
-		howgetmoneyDao.selectHowgetmoney(memberEmail);
+	public List<HowgetmoneyVo> selectHowgetmoney(String memberEmail){
+		return howgetmoneyDao.selectHowgetmoney(memberEmail);
 	}
 	
 	
@@ -230,6 +230,14 @@ public class MemberServiceImpl implements MemberService{
 	@Override//회원 수정
 	public void updateMember(MemberVo newData){
 		memberDao.updateMember(newData);
+	}
+	
+	@Override//회원 비밀번호 수정
+	public void updateMemberPassword(String memberEmail, String memberPassword){
+		Map<String, Object> map = new HashMap<>();
+		map.put("memberEmail", memberEmail);
+		map.put("memberPassword", memberPassword);
+		memberDao.updateMemberPassword(map);
 	}
 	
 	@Override//회원 삭제

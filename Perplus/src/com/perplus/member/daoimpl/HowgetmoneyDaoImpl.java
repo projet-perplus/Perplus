@@ -23,8 +23,8 @@ public class HowgetmoneyDaoImpl implements HowgetmoneyDao{
 	}
 
 	@Override//결제수단 삭제
-	public int deleteHowgetmoney(HowgetmoneyVo howgetmoney) {
-		return session.delete("howgetmoney.deleteHowgetmoney",howgetmoney);
+	public int deleteHowgetmoney(int accountSerial) {
+		return session.delete("howgetmoney.deleteHowgetmoney",accountSerial);
 	}
 
 	@Override//결제수단 조회

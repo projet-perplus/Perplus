@@ -12,8 +12,8 @@
 	
 	<update id="updateMember" parameterType="MemberVo">
 		update	member
-		<set>	member_password = #{memberPassword},
-				member_name = #{memberName},
+		<set>
+					member_name = #{memberName},
 					member_birthday = #{memberBirthday},
 					member_gender = #{memberGender},
 				<if test="memberTel!=null">
@@ -26,6 +26,12 @@
 					member_picture  = #{memberPicture},
 				</if>
 		</set>
+		where	member_email = #{memberEmail}
+	</update>
+	
+	<update id="updateMemberPassword" parameterType="hashmap">
+		update	member
+		set		member_password = #{memberPassword}
 		where	member_email = #{memberEmail}
 	</update>
 	
