@@ -22,8 +22,8 @@ public class HouseCommentDaoImpl implements HouseCommentDao{
 	}
 
 	@Override//하우스 코멘트 삭제하기
-	public int deleteHouseComment(Map<String, Object> map) {
-		return session.insert("houseComment.removeHouseComment",map);
+	public int deleteHouseComment(int commentSerial) {
+		return session.insert("houseComment.removeHouseComment",commentSerial);
 	}
 
 	@Override//하우스 코멘트 수정하기

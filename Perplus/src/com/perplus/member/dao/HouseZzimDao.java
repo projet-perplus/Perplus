@@ -10,7 +10,7 @@ public interface HouseZzimDao {
 	
 	int insertHouseZzim(HouseZzimVo houseZzim);
 	
-	int deleteHouseZzimByEmail(Map<String, Object> map);
+	int deleteHouseZzimByEmail(int houseZzimSerial);
 	
 	List<HouseZzimVo> selectHouseZzimByEmail(String memberEmail);
 }
