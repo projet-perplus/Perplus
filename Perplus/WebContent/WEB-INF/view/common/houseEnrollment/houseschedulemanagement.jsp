@@ -149,7 +149,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="row houseBtns">
+		<div class="row houseBtnMB">
 			<div class="col-md-offset-2 col-md-4 col-xs-4 previousBtn">
 				<a href="${initParam.rootPath}/houseimageenrollment.do">
 					<button class="btn btn-default">이전</button>

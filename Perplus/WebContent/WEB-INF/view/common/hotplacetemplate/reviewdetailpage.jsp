@@ -94,11 +94,11 @@
 	</div>
 
 	<form action="${initParam.rootPath}/review/registerReviewComment.do">
-	
+		<input type="hidden" name="reviewSerial" value="${requestScope.review.reviewSerial}">
 		<div class="row row-condensed space-4">
 			<div class="col-md-1">
 				<div class="stars stars-example-bootstrap">
-					<select id="example-bootstrap" name="commentRating" autocomplete="off">
+					<select id="commentRating" name="commentRating" autocomplete="off">
 						<option value=1>1</option>
 						<option value=2>2</option>
 						<option value=3>3</option>
@@ -109,16 +109,15 @@
 			</div>
 			<div class="col-md-2">작성자</div>
 			<div class="col-md-7">
-				<input type="text" class="form-control" name="commentContent"
+				<input type="text" class="form-control" name="commentContent" id="commentContent"
 					placeholder="댓글을 입력하세요">
 			</div>
 			<div class="col-md-2">
 				<!-- <button type="submit" class="btn btn-default">작성</button> -->
-				<input type="submit" value="작성" class="btn btn-default">
+				<input type="submit" value="작성" class="btn btn-default" id="commentBnt">
 			</div>
 		</div>
 	</form>
-	
 	
 	<c:forEach items="${requestScope.review.reviewComment }" var="comment">
 		<div class="row row-condensed space-4">
@@ -131,5 +130,58 @@
 			<div class="col-md-7">${comment.commentContent }</div>
 		</div>
 	</c:forEach>
+		<!-- 첫 페이지로 이동 -->
+	<a href="${initParam.rootPath}/review/showReview.do?reviewSerial=${requestScope.review.reviewSerial }&page=1">첫페이지로 이동&nbsp;</a>
+	<!--
+		이전 페이지 그룹 처리.
+		만약에 이전페이지 그룹이 있으면 링크처리하고 없으면 화살표만 나오도록 처리.
+	 -->
+	 <c:choose>
+	 	<c:when test="${requestScope.pageBean.previousPageGroup }">
+	 		<a href="${initParam.rootPath}/review/showReview.do?reviewSerial=${requestScope.review.reviewSerial }&page=${requestScope.pageBean.beginPage -1 }"> <%-- 현재 페이지 그룹의 시작 페이지-1을 요청.(이전 페이지 그룹의 마지막 페이지 요청)  --%>
+	 			◀&nbsp;&nbsp;
+	 		</a>
+	 	</c:when>
+	 	<c:otherwise>
+	 		◀&nbsp;&nbsp;
+	 	</c:otherwise>
+	 </c:choose>
 	
+	<!-- 
+		현재 page가 속한 page 그룹내의 페이지들 링크.
+		현재 pageGroup의 시작page ~ 끝 page
+	 -->
+	<!-- 만약에 p가 현재페이지면 링크처리를 하지 않고 p가 현재페이지가 아니라면 링크처리. -->
+	
+	<c:forEach begin="${requestScope.pageBean.beginPage }" end="${requestScope.pageBean.endPage }" step="1" var="page">
+			<c:choose>
+				<c:when test="${page == requestScope.pageBean.page }">
+					[${page }]&nbsp;&nbsp;
+				</c:when>
+				<c:otherwise>
+					<a href="${initParam.rootPath}/review/showReview.do?reviewSerial=${requestScope.review.reviewSerial }&page=${page }">
+						${page }&nbsp;&nbsp;
+					</a>
+				</c:otherwise>
+			</c:choose>
+	</c:forEach>
+	
+	<!-- 
+		다음페이지 그룹으로 이동
+		만약에 다음페이지 그룹이 있으면 링크 처리 없으면 화살표만 나오도록 처리
+	 -->
+	<c:choose>
+		<c:when test="${requestScope.pageBean.nextPageGroup }">
+			<%--현재 페이지 그룹의 마지막 page+1(다음 페이지 그룹의 시작페이지로 이동) --%>
+			<a href="${initParam.rootPath}/review/showReview.do?reviewSerial=${requestScope.review.reviewSerial }&page=${requestScope.pageBean.beginPage +1 }">
+				▶
+			</a>
+		</c:when>		
+		<c:otherwise>
+			▶
+		</c:otherwise>
+	</c:choose>
+	
+	<!-- 마지막 페이지 -->
+	<a href="${initParam.rootPath}/review/showReview.do?reviewSerial=${requestScope.review.reviewSerial }&page=${requestScope.pageBean.totalPage }">마지막 페이지</a>
 </div> <!-- container close-->

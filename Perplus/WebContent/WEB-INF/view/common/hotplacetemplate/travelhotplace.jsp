@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWDGjKV2YFKGM5q6gtx-J5GcJTa2wLDQU" type="text/javascript"></script>
 <script src="js/map.js"></script>
-
+<!-- 크롬 캐싱 문제 때문에 임의의 쿼리 스트링 추가 (완성본에서는 제거필요) -->
 <div class="container">
 	<div id="dashboard-content" class="hotplace">
 		<div class="panel-header">
@@ -33,7 +33,7 @@
 							</a>
 						</li>
 						<li>
-							<a href="${initParam.rootPath}/review/showReview.do?reviewSerial=43">
+							<a href="${initParam.rootPath}/review/showReview.do?reviewSerial=43">   <!-- reviewSerial은 requestScope의 리뷰시리얼값~~ -->
 								<button type="button" class="btn btn-primary">리뷰 상세페이지</button>
 							</a>
 						</li>

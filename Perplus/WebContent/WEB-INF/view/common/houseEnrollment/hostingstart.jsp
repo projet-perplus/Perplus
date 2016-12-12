@@ -34,7 +34,7 @@
 <!-- body -->
 <div class="basicbody">
 	<div class="container">
-		<div class="row row-condensed space-4">
+		<div class="row row-condensed space-4" style="height:550px;">
 			<label class="text-left col-md-7 col-md-offset-2 col-xs-10">
 				<span >호스트가 될준비가 되셨나요?</span>
 			</label>

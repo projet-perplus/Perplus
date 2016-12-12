@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -47,9 +48,9 @@ public class ReviewController {
 		int count = 1;
 		System.out.println(member);
 		reviewVo.setMemberEmail(member.getMemberEmail());
-		reviewVo.setReviewMarkerConstant(2);
-		reviewVo.setReviewMarkerX(23.5);
-		reviewVo.setReviewMarkerY(63.2);
+		reviewVo.setReviewMarkerConstant(2);//******
+		reviewVo.setReviewMarkerX(23.5);	//*********
+		reviewVo.setReviewMarkerY(63.2); //************
 		System.out.println(reviewVo);
 		service.registerReview(reviewVo);
 		map.addAttribute("review",reviewVo);
@@ -148,17 +149,17 @@ public class ReviewController {
 	/******************리뷰 코멘트 등록*****************/
 	@RequestMapping("/registerReviewComment.do")
 	public String registerReviewComment(@ModelAttribute ReviewCommentVo reviewComment,ModelMap map, HttpServletRequest request,HttpSession session){
-
+		
 		Date d =new Date();
 		MemberVo member = (MemberVo)session.getAttribute("login_info");
-		int reviewSerial = 43;
-		reviewComment.setReviewSerial(reviewSerial);
+		//int reviewSerial = 43;  //******requestParameter로 읽어들여야함!!
 		reviewComment.setMemberEmail(member.getMemberEmail());
 		reviewComment.setCommentTime(d);
+		//reviewComment.setReviewSerial(reviewSerial);
+		System.out.println(reviewComment);
 		service.registerReviewComment(reviewComment);
-		
-		map.put("reviewSerial", reviewSerial);
-		return"forward:/review/showReview.do";
+		//map.put("reviewSerial", reviewSerial);
+		return"redirect:/review/showReview.do?&reviewSerial="+reviewComment.getReviewSerial();
 	}
 	
 	/*******************리뷰 코멘트 수정****************/
@@ -203,5 +204,8 @@ public class ReviewController {
 		return "reviewdetailpage.hotplacetiles";
 	}
 	
-
+	
+	public String selectMarkerBySection(HashMap map){
+		return "reviewdetailpage.hotplacetiles";
+	}
 }

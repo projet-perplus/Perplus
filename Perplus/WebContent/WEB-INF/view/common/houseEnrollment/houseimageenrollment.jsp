@@ -4,7 +4,7 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-3 col-xs-3"></div>
-			
+
 			<div class="col-md-offset-6 col-md-3 col-xs-offset-6">
 				<div class="col-md-7 page_moveBtn ">
 					<div class="col-md-8 ">
@@ -17,11 +17,9 @@
 							</select>
 						</div>
 					</div>
-					<div class="col-md-4 page_moveBtn hidden-xs">
-						(5/12)
-					</div>
+					<div class="col-md-4 page_moveBtn hidden-xs">(5/12)</div>
 				</div>
-			 <div class="clearfix"></div>
+				<div class="clearfix"></div>
 			</div>
 		</div>
 	</div>
@@ -36,8 +34,20 @@
 	<div class="container">
 		<div class="row row-condensed space-4">
 			<label class="text-left col-md-7 col-md-offset-2">
-				<span >이미지 등록</span>
+			<span>이미지 등록</span>
 			</label>
+			<div class="clearfix visible-md-block"></div>
+		</div>
+		<div class="row row-condensed space-4">
+			<div class="col-md-7 col-md-offset-4">
+				<span id="fileInputForm"
+					style="position: relative; float: left; width: 406px; height: 156px; overflow: hidden; cursor: pointer; background-image: url('/Perplus/css/image/addimage.PNG'); background-repeat: no-repeat;">
+					<input type="file" id="filename" name="filename" value=""
+					style='margin-left: -10px; width: 400px; height: 150px; filter: alpha(opacity = 0); opacity: 0; -moz-opacity: 0; cursor: pointer;'
+					onChange="fileUpload()">
+				</span>
+			</div>
+			<label class="text-left col-md-7 col-md-offset-2"> </label>
 			<div class="clearfix visible-md-block"></div>
 		</div>
 
@@ -55,5 +65,5 @@
 		</div>
 	</div>
 </div>
-			
+
 
