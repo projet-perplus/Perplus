@@ -24,8 +24,9 @@
 	
 
 	<!-- houseComment 삭제 -->
-	<delete id="deleteHouseComment" parameterType="hashmap">
-		delete from HOUSECOMMENT where house_serial = #{houseSerial} and member_email = #{memberEmail}
+	<delete id="deleteHouseComment" parameterType="_int">
+		delete from HOUSECOMMENT 
+		where	comment_serial = #{value}
 	</delete>
 	
 	

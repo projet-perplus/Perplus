@@ -9,7 +9,7 @@ public interface HouseCommentDao {
 	
 	int insertHouseComment(HouseCommentVo houseComment);
 	
-	int deleteHouseComment(Map<String, Object> map);
+	int deleteHouseComment(int commentSerial);
 	
 	int modifyHouseComment(HouseCommentVo houseComment);
 	

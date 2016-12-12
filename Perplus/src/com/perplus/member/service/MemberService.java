@@ -39,7 +39,7 @@ public interface MemberService {
 	//housecomment service
 	void insertHouseComment(HouseCommentVo houseComment);
 	
-	void deleteHouseComment(String houseSerial, String memberEmail);
+	void deleteHouseComment(int commentSerial);
 	
 	void modifyHouseComment(HouseCommentVo houseComment);
 	
@@ -51,7 +51,7 @@ public interface MemberService {
 	//housezzim service
 	void insertHouseZzim(HouseZzimVo houseZzim);
 	
-	void deleteHouseZzimByEmail(int houseSerial, String memberEmail);
+	void deleteHouseZzimByEmail(int houseZzimSerial);
 	
 	List<HouseZzimVo> selectHouseZzimByEmail(String memberEmail);
 	

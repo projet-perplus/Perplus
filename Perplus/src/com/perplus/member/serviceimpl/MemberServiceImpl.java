@@ -143,11 +143,8 @@ public class MemberServiceImpl implements MemberService{
 	}
 	
 	@Override//houseComment 삭제
-	public void deleteHouseComment(String houseSerial, String memberEmail){
-		Map<String, Object> map = new HashMap<>();
-		map.put("houseSerial", houseSerial);
-		map.put("memberEmail", memberEmail);
-		houseCommentDao.deleteHouseComment(map);
+	public void deleteHouseComment(int commentSerial){
+		houseCommentDao.deleteHouseComment(commentSerial);
 	}
 	
 	@Override//houseComment 수정
@@ -176,11 +173,8 @@ public class MemberServiceImpl implements MemberService{
 	}
 	
 	@Override//찜삭제
-	public void deleteHouseZzimByEmail(int houseSerial, String memberEmail){
-		Map<String, Object> map = new HashMap<>();
-		map.put("houseSerial", houseSerial);
-		map.put("memberEmail", memberEmail);
-		houseZzimDao.deleteHouseZzimByEmail(map);
+	public void deleteHouseZzimByEmail(int houseZzimSerial){
+		houseZzimDao.deleteHouseZzimByEmail(houseZzimSerial);
 	}
 	
 	@Override//내 찜 찾기
