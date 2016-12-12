@@ -17,6 +17,7 @@
 	  	<section>
 	  		<tiles:insertAttribute name="review"/>
 	  		<tiles:insertAttribute name="reviewenrollment"/>
+	  		<tiles:insertAttribute name="reviewmodify"/>
 	  	</section>
 	  	
   	  	<footer class="container-fluid bg-4 text-center">
