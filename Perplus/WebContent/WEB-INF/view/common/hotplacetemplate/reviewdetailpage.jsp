@@ -4,8 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt"%>
 
-<style>
-</style>
+
 <div class="container reviewslide">
 	<div class="row">
 		<div class="slidebar">
