@@ -28,11 +28,6 @@ $(function() {
 		google.maps.event.addListener(map, 'click', function(mouseEvent) {
 			// alert(mouseEvent.latLng);
 			placeMarker(mouseEvent.latLng);
-//			 alert(map.getBounds().getSouthWest().lat());
-//			 alert(map.getBounds().getSouthWest().lng());
-//			 alert(map.getBounds().getNorthEast().lat());
-//			 alert(map.getBounds().getNorthEast().lng());
-
 		});
 
 		// var marker = new google.maps.Marker({
@@ -61,7 +56,6 @@ $(function() {
 	function placeMarkerList(southWestLat,southWestLng,northEastLat,northEastLng){
 //		alert(""+southWestLat+","+southWestLng+","+northEastLat+","+northEastLng);
 //		alert(southWestLat.toString());
-		var email ="aaa";
 		$.ajax({
 			url : "/Perplus/map/markerall.do",
 			type:"post",
@@ -73,19 +67,22 @@ $(function() {
 				"northEastLng" :  northEastLng.toString()
 			},
 			dataType : "JSON",
-			success:function(obj){
+			success:function(list){
 //				alert('this worked');
-				for(var i =0; i< obj.length ;i++){
-					var markerLatlng = new google.maps.LatLng(obj[i].reviewMarkerX, obj[i].reviewMarkerY);
-					placeMarker(markerLatlng);
-				}
+//				for(var i =0; i< obj.length ;i++){
+//					var markerLatlng = new google.maps.LatLng(obj[i].reviewMarkerX, obj[i].reviewMarkerY);
+//					placeMarker(markerLatlng);
+//				}
+				$.each(list,function(){
+					alert(this.reviewMarkerX);
+					placeMarker(new google.maps.LatLng(37.39,127.108));
+				});
 			},
 			error:function(request,error,status){
 				alert(error+ "   "+status+"status");
 			}
 		});
 	}
-	varMarker
 	function placeMarker(location) {
 		var marker = new google.maps.Marker({
 			position : location,
