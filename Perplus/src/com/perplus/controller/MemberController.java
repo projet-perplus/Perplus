@@ -9,7 +9,6 @@ import java.util.UUID;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.apache.commons.beanutils.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -20,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.fasterxml.jackson.databind.util.BeanUtil;
 import com.perplus.member.service.MemberService;
 import com.perplus.member.vo.MemberVo;
 
@@ -116,6 +114,5 @@ public class MemberController {
 		return "redirect:/modifyandcertified.do";
 	}
 }
-
 
 
