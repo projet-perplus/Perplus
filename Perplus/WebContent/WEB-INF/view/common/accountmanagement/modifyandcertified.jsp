@@ -10,20 +10,25 @@
 				return false;
 			}
 		});
-		
-		$("#passwordChangeForm").on("submit", function(){
+
+		$("#passwordChangeForm").on("submit", function() {
 			var beforePassword1 = "${sessionScope.login_info.memberPassword}";
 			var beforePassword2 = $("#beforePassword").val();
-			if(beforePassword1!=beforePassword2){
-				
+			/* 기존비밀번호 비교 */
+			if (beforePassword1 != beforePassword2) {
+				alert("비밀번호가 틀립니다.");
+				$("#beforePassword").focus();
+				return false;
 			}
-			afterPassword
-			afterPasswordCheck
+
+			if ($("#afterPassword").val() != $("#afterPasswordCheck").val()) {
+				alert("변경할 비밀번호가 다릅니다.");
+				return false;
+			}
+
 		});
-	
+
 	});
-	
-	
 </script>
 
 <div id="dashboard-content">
@@ -48,6 +53,7 @@
 					</c:choose>
 					<input type="file" name="memberPictureFile" value="사진등록" />
 				</div>
+				
 				<div class="col-sm-9">
 					<div class="row row-condensed space-4">
 						<label class="text-right col-sm-3"> 이름(예: 홍길동) </label>
@@ -134,8 +140,8 @@
 						<div class="col-sm-9">
 							<div class="form-group">
 								<div class="col-md-12">
-									<input type="number" class="form-control" name="phone"
-										required="required" placeholder="전화번호">
+									<input type="number" class="form-control" name="memberTel"
+										required="required" placeholder="전화번호" value="${sessionScope.login_info.memberTel}">
 								</div>
 							</div>
 						</div>
@@ -191,8 +197,8 @@
 		</div>
 	</form>
 </div>
-<div id="dashboard-content">
 
+<div id="dashboard-content">
 	<div class="panel-header">
 		<span>비밀번호 변경</span>
 	</div>
@@ -219,14 +225,16 @@
 		</div>
 	</div>
 
-	<form action="" id="passwordChangeForm">
+	<form action="${initParam.rootPath}/member/passwordChange.do" id="passwordChangeForm">
+		<input type="hidden" name="memberEmail"
+			value="${sessionScope.login_info.memberEmail}">
 		<div class="row row-condensed space-4">
 			<label class="text-right col-sm-3">변경할 비밀번호 확인 </label>
 			<div class="col-sm-9">
 				<div class="form-group">
 					<div class="col-md-12">
 						<input type="password" class="form-control"
-							id="afterPasswordCheck" name="memberEmail" required="required">
+							id="afterPasswordCheck" name="memberPassword" required="required">
 					</div>
 				</div>
 			</div>
@@ -242,6 +250,7 @@
 		</div>
 	</form>
 </div>
+
 <div id="dashboard-content">
 	<form action="">
 		<div class="panel-header">

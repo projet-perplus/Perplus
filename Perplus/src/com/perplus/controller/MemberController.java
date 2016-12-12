@@ -115,6 +115,15 @@ public class MemberController {
 		return "redirect:/modifyandcertified.do";
 	}
 	
+	/******************비밀번호 수정************************/
+	@RequestMapping("/passwordChange.do")
+	public String memberPasswordChange(@RequestParam String memberEmail, @RequestParam String memberPassword, HttpSession session){
+		service.updateMemberPassword(memberEmail, memberPassword);
+		MemberVo member = (MemberVo)session.getAttribute("login_info");
+		member.setMemberPassword(memberPassword);
+		return "redirect:/modifyandcertified.do";
+	}
+	
 	/*****************회원탈퇴********************/
 	@RequestMapping("/delete.do")
 	public String memberDelete(@RequestParam String memberEmail,HttpSession session){
@@ -122,7 +131,6 @@ public class MemberController {
 		session.invalidate();
 		return "redirect:/main.do";
 	}
-	
 	
 	/****************howgetmoney조회********************/
 	@RequestMapping("/howgetmoneyfind.do")
@@ -141,11 +149,14 @@ public class MemberController {
 		return "redirect:/member/howgetmoneyfind.do";
 	}
 	
+	/********************howgetmoney등록*************************/
 	@RequestMapping("/howgetmoneyRegister.do")
 	public String howgetmoneyRegister(@ModelAttribute HowgetmoneyVo howgetmoney){
 		service.insertHowgetmoney(howgetmoney);
 		return "redirect:/member/howgetmoneyfind.do";
 	}
+	
+	
 	
 }
 

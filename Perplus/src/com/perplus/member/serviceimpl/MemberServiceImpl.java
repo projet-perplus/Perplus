@@ -232,6 +232,14 @@ public class MemberServiceImpl implements MemberService{
 		memberDao.updateMember(newData);
 	}
 	
+	@Override//회원 비밀번호 수정
+	public void updateMemberPassword(String memberEmail, String memberPassword){
+		Map<String, Object> map = new HashMap<>();
+		map.put("memberEmail", memberEmail);
+		map.put("memberPassword", memberPassword);
+		memberDao.updateMemberPassword(map);
+	}
+	
 	@Override//회원 삭제
 	public void deleteMember(String memberEmail){
 		memberDao.deleteMember(memberEmail);

@@ -1,6 +1,7 @@
 package com.perplus.member.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.perplus.member.vo.ChattingLogVo;
 import com.perplus.member.vo.ChattingVo;
@@ -69,6 +70,8 @@ public interface MemberService {
 	int joinMember(MemberVo member) throws Exception;
 	
 	void updateMember(MemberVo newData);
+	
+	void updateMemberPassword(String memberEmail, String memberPassword);
 	
 	void deleteMember(String memberEmail);
 	
