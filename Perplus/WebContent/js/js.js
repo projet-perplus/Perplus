@@ -56,12 +56,12 @@ $(function() {
 				}
 			});
 
-	
 	$(".house_step").change(function(ev) {
-        location.href = jQuery(this).val();
-    })
+		location.href = $(this).val();
+	})
 
-    
+
+	
 	$('#myCarousel').carousel({
 		interval : 5000
 	});
