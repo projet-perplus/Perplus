@@ -42,4 +42,10 @@ public interface PaymentDao {
 	 * @return 
 	 */
 	PaymentVo selectPaymentByCardSerial(int cardSerial);
+	
+	/**
+	 * CardSerial 시퀀스 조회
+	 * 초기 값 10000
+	 */
+	int selectCardSerialSeq();
 }

@@ -1,5 +1,6 @@
 package com.perplus.review.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -42,4 +43,7 @@ public interface ReviewService {
 	void modifyReviewPicture(List<ReviewPictureVo> reviewPictures);
 	//사진 삭제
 	void removeReviewPicture(int reviewSerial);
+	
+	//map 관련
+	public List<ReviewVo> selectMarkerBySection(HashMap<String,Double> map) throws Exception;
 }

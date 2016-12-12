@@ -1,8 +1,11 @@
+
 package com.perplus.controller;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -10,7 +13,6 @@ import java.util.UUID;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -40,7 +42,7 @@ public class ReviewController {
 		//ReviewPictureVo picture = new ReviewPictureVo();
 		//BeanUtils.copyProperties(reviewPictureVo, picture);		
 		System.out.println(reviewVo);
-		List<String> list = new ArrayList<>();
+	/*	List<ReviewPictureVo> list = new ArrayList<>();*/
 		List<MultipartFile> files = picture.getPictureList();
 		MemberVo member = (MemberVo)session.getAttribute("login_info");
 		int count = 1;
@@ -66,14 +68,13 @@ public class ReviewController {
 					picture.setPictureOrder(count);
 					picture.setPictureSerial(1);
 					picture.setReviewSerial(reviewVo.getReviewSerial());
-					list.add(fileName);
 					count++;
-					System.out.println(picture);
 					service.registerReviewPicture(picture);
 				}
+				System.out.println();
 			}
 		}
-		System.out.println(list);
+		List<ReviewPictureVo> list= service.getReviewPictureList(reviewVo.getReviewSerial());
 		map.addAttribute("picture",list);
 		return "reviewdetailpage.hotplacetiles";
 	}
@@ -146,11 +147,19 @@ public class ReviewController {
 	}
 	
 	/******************리뷰 코멘트 등록*****************/
-	@RequestMapping("/login/registerReviewComment")
-	public String registerReviewComment(@ModelAttribute ReviewCommentVo reviewComment, @RequestParam int reviewSerial){
+	@RequestMapping("/registerReviewComment.do")
+	public String registerReviewComment(@ModelAttribute ReviewCommentVo reviewComment,ModelMap map, HttpServletRequest request,HttpSession session){
+
+		Date d =new Date();
+		MemberVo member = (MemberVo)session.getAttribute("login_info");
+		int reviewSerial = 43;
 		reviewComment.setReviewSerial(reviewSerial);
+		reviewComment.setMemberEmail(member.getMemberEmail());
+		reviewComment.setCommentTime(d);
 		service.registerReviewComment(reviewComment);
-		return"리뷰 상세보기 페이지";
+		
+		map.put("reviewSerial", reviewSerial);
+		return"forward:/review/showReview.do";
 	}
 	
 	/*******************리뷰 코멘트 수정****************/
@@ -185,13 +194,18 @@ public class ReviewController {
 	public String selectReview(@RequestParam int reviewSerial,ModelMap modelMap,@RequestParam(defaultValue="1") int page){
 		ReviewVo review = service.getReview(reviewSerial);
 		Map map= service.getReviewCommentList(reviewSerial, page);
-		review.setReviewPicture(service.getReviewPictureList(reviewSerial));
+		List<ReviewPictureVo> list = service.getReviewPictureList(reviewSerial);
+		//review.setReviewPicture(service.getReviewPictureList(reviewSerial));
 		review.setReviewComment((List<ReviewCommentVo>)map.get("list"));
 		System.out.println(review);
 		modelMap.put("review", review);
+		modelMap.put("picture", list);
 		modelMap.put("pageBean", map.get("pageBean"));
 		return "reviewdetailpage.hotplacetiles";
 	}
 	
-
+	
+	public String selectMarkerBySection(HashMap map){
+		return "reviewdetailpage.hotplacetiles";
+	}
 }

@@ -15,8 +15,8 @@ public class TravelDaoImpl implements TravelDao{
 	private SqlSessionTemplate session;
 	private String makeSql(){
 		String sql = new Throwable().getStackTrace()[1].getMethodName();
-		sql = sql.toUpperCase() + sql.substring(1);
-		return "travel" + sql;
+//		sql =sql.substring(0, 1).toUpperCase() + sql.substring(1);
+		return "travel." + sql;
 	}
 	
 	@Override
