@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -203,5 +204,8 @@ public class ReviewController {
 		return "reviewdetailpage.hotplacetiles";
 	}
 	
-
+	
+	public String selectMarkerBySection(HashMap map){
+		return "reviewdetailpage.hotplacetiles";
+	}
 }

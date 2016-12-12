@@ -137,12 +137,6 @@ public interface MemberService {
 	public void removeTravel(int travelSerial) throws Exception;
 	
 	
-	
-	
-	
-	
-	
-	
-	
+
 	
 }
