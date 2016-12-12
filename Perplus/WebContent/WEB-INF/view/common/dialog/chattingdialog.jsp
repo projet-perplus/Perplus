@@ -1,5 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <!-- 채팅.. 상엽이형 ..-->
+<script type="text/javascript">
+$('#messageDiv').scrollTop(document.body.scrollHeight);
+</script>
+
+
 <div class="modal fade" id="chattingdialog" role="dialog"
 	aria-labelledby="basicModal" aria-hidden="true">
 	<div class="modal-dialog">
@@ -13,13 +18,69 @@
 				
 				<div class="modal-body">
 					
+					<div id="messageDiv" class="messageBody" style=" width: 100%; max-height: 250px; overflow:scroll; ">
+						메세지 <p>a</p>
+						<p>a</p>
+						<p>a</p>
+						<p>a</p>
+						<p>a</p>
+						<p>a</p>
+						<p>a</p>
+						<p>a</p>
+						
+						<p>a</p>
+						<p>a</p>
+						v
+						
+						<p>a</p>
+						<p>a</p><p>a</p>
+						<p>a</p>
+						
+						<p>a</p>
+						<p>a</p>
+						<p>a</p>
+						
+						<p>a</p>
+						<p>a</p>
+						
+						<p>a</p>
+						<p>a</p>
+						
+						<p>a</p>
+						
+						<p>a</p>
+						<p>a</p>
+						
+						<p>a</p>
+						v
+						<p>a</p>
+						<p>a</p>
+						<p>a</p>
+						<p>a</p>
+						<p>a</p>
+						
+						<p>a</p>
+						
+						<p>a</p>
+						<p>a</p>
+						<p>a</p>
+						
+						<p>a</p>
+					</div>
 				</div>
 				<div class="modal-footer">
+				
+					<div class="row-maginTB">
+						<div class="form-group">
+							  <textarea class="form-control" rows="1" id="comment"></textarea>
+						</div>
+					</div>
+					
 					<div class="row">
-						<div class="col-md-6 leftform">
+						<div class="col-md-offset-1 col-md-5 leftform">
 							<button type="button" class="btn btn-default" data-dismiss="modal" style="float:left !important;">취소</button>
 						</div>
-						<div class="col-md-6 rightform">
+						<div class="col-md-5 rightform">
 							<input type="submit" name="enrollment" class="btn btn-default" value="보내기">
 						</div>
 					</div>	

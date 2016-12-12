@@ -4,8 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt"%>
 
-<style>
-</style>
+
 <div class="container reviewslide">
 	<div class="row">
 		<div class="slidebar">
@@ -127,9 +126,13 @@
 				</div>
 			</div>
 			<div class="col-md-2">${comment.memberEmail }</div>
-			<div class="col-md-7">${comment.commentContent }</div>
+			<div class="col-md-5">${comment.commentContent }</div>
+			<div class="col-md-2">시간</div>
+			<div class="col-md-1">수정</div>
+			<div class="col-md-1">삭제</div>
 		</div>
 	</c:forEach>
+	
 		<!-- 첫 페이지로 이동 -->
 	<a href="${initParam.rootPath}/review/showReview.do?reviewSerial=${requestScope.review.reviewSerial }&page=1">첫페이지로 이동&nbsp;</a>
 	<!--
