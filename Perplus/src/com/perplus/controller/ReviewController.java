@@ -176,15 +176,15 @@ public class ReviewController {
 	}
 	
 	/******************리뷰 코멘트 삭제*****************/
-	@RequestMapping("/login/removeReviewComment")
-	public String removeReviewComment(@RequestParam int	commentSerial,@RequestParam String memberEmail, HttpSession session){
+	@RequestMapping("/removeReviewComment")
+	public String removeReviewComment(@RequestParam int	commentSerial,@RequestParam int reviewSerial/*,@RequestParam String memberEmail*/, HttpSession session){
 		//이메일 체크~ session의 email과 코멘트의 email 같지 x으면 삭제x
 		MemberVo member = (MemberVo)session.getAttribute("login_info");
-		if(!memberEmail.equals(member.getMemberEmail())){
+/*		if(!memberEmail.equals(member.getMemberEmail())){
 			return"에러페이지";
-		}
+		}*/
 		service.removeReviewComment(commentSerial);
-		return"리뷰상세보기페이지";
+		return"redirect:/review/showReview.do?&reviewSerial="+reviewSerial;
 	}
 	
 	/**************로그인 체크 필요 없음******************/

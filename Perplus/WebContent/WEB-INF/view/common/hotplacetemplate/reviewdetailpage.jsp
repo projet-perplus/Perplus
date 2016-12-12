@@ -3,7 +3,66 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt"%>
-
+<script type="text/javascript">
+	$(document).ready(function(){
+		$(".commentModifyBnt").on("click",function(){
+			var comment = $(this).parent().prevAll(".commentContent").text();
+			var star = $(this).parent().prevAll(".starlayer").children("div:first").text();
+			
+			var rankingSelect= "<select name='commentRating' >";
+			if (star==1){
+				rankingSelect = rankingSelect+"<option value=1 selected=true>1</option>"+
+																"<option value=2>2</option>"+
+																"<option value=3>3</option>"+
+																"<option value=4>4</option>"+
+																"<option value=5>5</option>"+ "</select>";
+			}else if(star==2){
+				rankingSelect = rankingSelect+"<option value=1>1</option>"+
+																"<option value=2 selected=true>2</option>"+
+																"<option value=3>3</option>"+
+																"<option value=4>4</option>"+
+																"<option value=5>5</option>"+ "</select>";
+			}else if(star==3){
+				rankingSelect = rankingSelect+"<option value=1>1</option>"+
+																	"<option value=2>2</option>"+
+																	"<option value=3 selected=true>3</option>"+
+																	"<option value=4>4</option>"+
+																	"<option value=5>5</option>"+ "</select>";
+			}else if(star==4){
+				rankingSelect = rankingSelect+"<option value=1>1</option>"+
+																"<option value=2>2</option>"+
+																"<option value=3>3</option>"+
+																"<option value=4 selected=true>4</option>"+
+																"<option value=5>5</option>"+ "</select>";
+			}else if(star==5){
+				rankingSelect = rankingSelect+"<option value=1>1</option>"+
+																"<option value=2>2</option>"+
+																"<option value=3>3</option>"+
+																"<option value=4>4</option>"+
+																"<option value=5 selected=true>5</option>"+ "</select>";
+			}
+			
+// 			rankingSelect= "<select name='commentRating' >"+
+// 						"<option value=1>1</option>"+
+// 						"<option value=2>2</option>"+
+// 						"<option value=3>3</option>"+
+// 						"<option value=4>4</option>"+
+// 						"<option value=5>5</option>"+
+// 					"</select>";
+			var content="<input type='text' class='form-control' name='commentContent' id='commentContent' value="+comment+">";
+		
+			var btn="<input type='button' value='수정완료' class='btn btn-default modifyComplate' >";
+		
+			$(this).parent().parent().find("div.stars").html(rankingSelect);
+			$(this).parent().parent().find("div.commentContent").html(content);
+			
+			$(this).parent().html(btn);
+		});
+		$(".modifyComplate").on("click",function(){
+			alert("바꼈다")
+		});
+	});
+</script>
 
 <div class="container reviewslide">
 	<div class="row">
@@ -118,18 +177,27 @@
 		</div>
 	</form>
 	
-	<c:forEach items="${requestScope.review.reviewComment }" var="comment">
-		<div class="row row-condensed space-4">
-			<div class="col-md-1">
-				<div class="stars stars-example-bootstrap">
-					${comment.commentRating }
-				</div>
+	<c:forEach items="${requestScope.review.reviewComment }" var="comment" varStatus="index">
+		<div class="row row-condensed space-4" id="commentArea">
+			<input type="hidden" value="${comment.commentSerial }" id="commentSerial"/>
+			<div class="col-md-1 starlayer">
+				<div class="stars stars-example-bootstrap">${comment.commentRating }</div>
+<!-- 				$(this).parent().parent().find("div.stars").html("<input type='text' value='aaa'>"); -->
+<!-- $(this).parent().parent().find("div.stars").html(rankingSelect); -->
 			</div>
 			<div class="col-md-2">${comment.memberEmail }</div>
-			<div class="col-md-5">${comment.commentContent }</div>
-			<div class="col-md-2">시간</div>
-			<div class="col-md-1">수정</div>
-			<div class="col-md-1">삭제</div>
+			<div class="col-md-5 commentContent">${comment.commentContent }</div>
+			<div class="col-md-2">${comment.commentTime }</div>
+			<c:if test="${comment.memberEmail == sessionScope.login_info.memberEmail}">
+				<div class="col-md-1">
+					<input type="button" value="수정" class="btn btn-default commentModifyBnt" id="${index.index }">
+				</div>
+				<div class="col-md-1">
+					<a href="${initParam.rootPath}/review/removeReviewComment.do?reviewSerial=${requestScope.review.reviewSerial}&commentSerial=${comment.commentSerial}">
+						<input type="submit" value="삭제" class="btn btn-default" id="commentBnt">
+					</a>
+				</div>
+			</c:if>
 		</div>
 	</c:forEach>
 	
