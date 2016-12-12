@@ -159,7 +159,7 @@ public class ReviewController {
 		System.out.println(reviewComment);
 		service.registerReviewComment(reviewComment);
 		//map.put("reviewSerial", reviewSerial);
-		return"forward:/review/showReview.do?&reviewSerial="+reviewComment.getReviewSerial();
+		return"redirect:/review/showReview.do?&reviewSerial="+reviewComment.getReviewSerial();
 	}
 	
 	/*******************리뷰 코멘트 수정****************/
