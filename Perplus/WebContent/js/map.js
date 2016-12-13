@@ -87,7 +87,7 @@ $(function() {
 			success:function(obj){
 				$.each(obj,function(){
 					var markerLatlng = new google.maps.LatLng(this.REVIEWMARKERX, this.REVIEWMARKERY);
-					placeMarker(markerLatlng);
+					placeMarker(markerLatlng,this.REVIEWMARKERCONSTANT);
 				});
 			},
 			error:function(request,error,status){
@@ -95,12 +95,15 @@ $(function() {
 			}
 		});
 	}
-	var markers;
-	function placeMarker(location) {		
+	var tourIcon = new google.maps.MarkerImage("/Perplus/img/markerIcon/tours.png");
+	var defaultIcon = new google.maps.MarkerImage("/Perplus/img/markerIcon/default.png");
+	var restaurantIcon = new google.maps.MarkerImage("/Perplus/img/markerIcon/restaurantIcon.png");
+	function placeMarker(location,constant) {
 		var marker = new google.maps.Marker({
 			position : location,
 			map : map,
 			draggable : true,
+			icon : tourIcon
 		});
 		markerArray.push(marker);
 	}
