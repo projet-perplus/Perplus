@@ -35,8 +35,18 @@
 				l.chatting_number,
 				l.member_email l_email,
 				l.chatting_content,
-				l.chatting_time
-		from	CHATTING c, CHATTINGLOG l
+				l.chatting_time,
+				m.member_email m_email,
+				m.member_password,
+				m.member_name,
+				m.member_birthday,
+				m.member_gender,
+				m.member_tel,
+				m.member_location,
+				m.member_introduction,
+				m.member_identification,
+				m.member_picture
+		from	CHATTING c, CHATTINGLOG l, MEMBER m
 	</sql>
 
 	<resultMap type="ChattingVo" id="chatting-default-resultmap">
@@ -51,14 +61,29 @@
 			<result column="l_email" property="memberEmail"/>
 			<result column="chatting_content" property="chattingContent"/>
 			<result column="chatting_time" property="chattingTime"/>
+			<association property="memberList" javaType="MemberVo">
+				<result column="e_email" property="memberEmail"/>
+				<result column="member_password" property="memberPassword"/>
+				<result column="member_name" property="memberName"/>
+				<result column="member_birthday" property="memberBirthday"/>
+				<result column="member_gender" property="memberGender"/>
+				<result column="member_tell" property="memberTel"/>
+				<result column="member_location" property="memberLocation"/>
+				<result column="member_introduction" property="memberIntroduction"/>
+				<result column="member_identification" property="memberIdentification"/>
+				<result column="member_picture" property="memberPicture"/>
+			</association>
 		</collection>
 	</resultMap>
 	
 	<select id="selectJoinChattingLog" parameterType="string" resultMap="chatting-chattinglog-join-resultmap">
 		<include refid="select-chatting-join-sql"/>
 		where	c.chatting_number = l.chatting_number (+)
+		and		l.member_email = m.member_email
 		and		(c.member_email = #{memberEmail}
 		or		c.chatting_partner = #{memberEmail})
+		
+		order by l.chatting_time
 	</select>
 
 </mapper>

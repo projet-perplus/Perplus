@@ -225,12 +225,13 @@ public class MemberController {
 		String memberEmail = member.getMemberEmail();		
 		List<ChattingVo> chatting = service.selectJoinChattingAndChattingLog(memberEmail);
 		System.out.println(chatting);
+		
 		map.addAttribute("chatting", chatting);
 		return "message/message/message.tiles1";
 	}
 	
 	/***********************채팅로그 생성 ajax처리*************************/
-	@RequestMapping("/chattingLog.do")
+	@RequestMapping("/chattinglog.do")
 	@ResponseBody
 	public Map<String, Object> chattingLogInsert(@ModelAttribute ChattingLogVo chattingLog){
 		chattingLog.setChattingTime(new Date());
