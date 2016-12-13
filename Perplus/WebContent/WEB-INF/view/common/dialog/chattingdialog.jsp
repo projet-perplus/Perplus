@@ -1,8 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!-- 채팅.. 상엽이형 ..-->
 <script type="text/javascript">
-
-
 
 function messageScrollToBottom(){
 	$('#messageDiv').scrollTop($(".messageWrapper").height());
@@ -22,7 +21,6 @@ $(function(){
 	}
 	
 })
-
 </script>
 
 
@@ -90,6 +88,18 @@ $(function(){
 							
 							<p>a</p>
 						</div>
+
+						<c:forEach items="${requestScope.list}" var="list">
+							<c:choose>
+								<c:when test="">
+									
+								</c:when>
+								<c:otherwise>
+								
+								</c:otherwise>
+							</c:choose>
+						</c:forEach>
+
 					</div>
 				</div>
 				<div class="modal-footer">

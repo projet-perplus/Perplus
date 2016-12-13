@@ -115,8 +115,8 @@ public class MemberServiceImpl implements MemberService{
 	}
 	
 	@Override//선택한 채팅방과 채팅로그 가져오기
-	public ChattingVo selectJoinChattingAndChattingLog(int chattingNumber){
-		return chattingDao.chattingJoin(chattingNumber);
+	public List<ChattingVo> selectJoinChattingAndChattingLog(String memberEmail){
+		return chattingDao.chattingJoin(memberEmail);
 	}
 	
 	/*

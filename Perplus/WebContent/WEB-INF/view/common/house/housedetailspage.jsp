@@ -121,9 +121,18 @@
 		<div class="col-md-4">
 			<!-- right date -->
 			달력
+<<<<<<< HEAD
 			<a href="${initParam.rootPath}/message.do#popup"><button>bbb</button></a>
+=======
+			<p>
+			<p>
+			<form action="${initParam.rootPath}/member/chatting.do">
+				<input type="hidden" name="memberEmail" value="${sessionScope.login_info.memberEmail}"/>
+				<input type="submit"/>
+			</form>
+>>>>>>> branch 'master' of https://github.com/projet-perplus/Perplus.git
 		</div>
-
+	
 	</div>
 
 	<div class="row row-condensed space-4">

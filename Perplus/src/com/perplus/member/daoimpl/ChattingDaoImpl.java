@@ -37,8 +37,8 @@ public class ChattingDaoImpl implements ChattingDao{
 	}
 
 	@Override//채팅방과 채팅로그 가져오기
-	public ChattingVo chattingJoin(int chattingNumber) {
-		return session.selectOne("chatting.selectJoinChattingLog", chattingNumber);
+	public List<ChattingVo> chattingJoin(String memberEmail) {
+		return session.selectList("chatting.selectJoinChattingLog", memberEmail);
 	}
 	
 }
