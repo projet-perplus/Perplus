@@ -10,46 +10,99 @@
 		<div class="carousel slide" id="myCarousel">
 			<div class="carousel-inner">
 				<div class="active item">
-					<div class="mainCon">
+					<div class="maincon con1 col-md-offset-4 col-md-4"
+						style="background-color: #ccc;">
 						<div class="row con1">
-							<div class="col-md-offset-4 col-md-4">
-							 	아마 사진?
+							<span class="col-md-12" style="text-align: center;">아마 사진</span>
+						</div>
+					</div>
+					<div class="clearfix"></div>
+
+					<div class="subcon1 col-md-offset-4 col-md-4"
+						style="border: 1px solid #ccc;">
+
+						<div class="row con2">
+							<span class="col-md-12" style="text-align: center;">숙소 이름
+								request</span>
+						</div>
+
+						<div class="row con3">
+							<div class="con-md-12">
+								<span class="col-md-12"
+									style="text-align: center; border-top: 2px solid #ccc;">여행기간</span>
 							</div>
 						</div>
-						<div class="subcon2">
-							<div class="row con2">
-								<div class="col-md-offset-4 col-md-4">
-								  	숙소 이름 request
-								</div>
-							</div>
-							<div class="row con3">
-								<div class="col-md-offset-4 col-md-4">
-								  	숙소 위치 일껄
-								</div>
-							</div>
-							<div class="row con4">
-								<div class="col-md-offset-4 col-md-4">
-								  	찜날짜
-								</div>
-							</div>
+
+						<div class="row con4">
+							<span class="col-md-12"
+								style="text-align: center; border-top: 2px solid #ccc;">기간날짜 20160000</span>
 						</div>
+
 					</div>
 				</div>
 
 				<div class="item">
-					<img src="http://placehold.it/770x300&text=two">
+					<div class="maincon con1 col-md-offset-4 col-md-4"
+						style="background-color: #ccc;">
+						<div class="row con1">
+							<span class="col-md-12" style="text-align: center;">아마 사진</span>
+						</div>
+					</div>
+					<div class="clearfix"></div>
+
+					<div class="subcon1 col-md-offset-4 col-md-4"
+						style="border: 1px solid #ccc;">
+
+						<div class="row con2">
+							<span class="col-md-12" style="text-align: center;">숙소 이름
+								request</span>
+						</div>
+
+						<div class="row con3">
+							<div class="con-md-12">
+								<span class="col-md-12"
+									style="text-align: center; border-top: 2px solid #ccc;">여행기간</span>
+							</div>
+						</div>
+
+						<div class="row con4">
+							<span class="col-md-12"
+								style="text-align: center; border-top: 2px solid #ccc;">기간날짜 20160000~20160000</span>
+						</div>
+
+					</div>
 				</div>
 
 				<div class="item">
-					<img src="http://placehold.it/770x300&text=three">
-				</div>
+					<div class="maincon con1 col-md-offset-4 col-md-4"
+						style="background-color: #ccc;">
+						<div class="row con1">
+							<span class="col-md-12" style="text-align: center;">아마 사진</span>
+						</div>
+					</div>
+					<div class="clearfix"></div>
 
-				<div class="item">
-					<img src="http://placehold.it/770x300&text=four">
-				</div>
+					<div class="subcon1 col-md-offset-4 col-md-4"
+						style="border: 1px solid #ccc;">
 
-				<div class="item">
-					<img src="http://placehold.it/770x300&text=five">
+						<div class="row con2">
+							<span class="col-md-12" style="text-align: center;">숙소 이름
+								request</span>
+						</div>
+
+						<div class="row con3">
+							<div class="con-md-12">
+								<span class="col-md-12"
+									style="text-align: center; border-top: 2px solid #ccc;">여행기간</span>
+							</div>
+						</div>
+
+						<div class="row con4">
+							<span class="col-md-12"
+								style="text-align: center; border-top: 2px solid #ccc;">기간날짜 20160000~20160000</span>
+						</div>
+
+					</div>
 				</div>
 			</div>
 			<!--  left right button -->
@@ -61,6 +114,7 @@
 				class="glyphicon glyphicon-chevron-right"></span>
 			</a>
 		</div>
-	</div><!--/Slider-->
+	</div>
+	<!--/Slider-->
 </div>
 
