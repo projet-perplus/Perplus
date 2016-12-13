@@ -1,5 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<script type="text/javascript">
+
+</script>
+
 <nav class="navbar navbar-default" id="navbar1">
 	<div class="container-fluid">
 		<div class="navbar-header">
@@ -30,7 +34,7 @@
 						<li><a href="${initParam.rootPath}/hotplace.do">여행명소</a></li>
 						<li><a href="${initParam.rootPath}/hosting.do">호스팅하기</a></li>
 						<li><a href="${initParam.rootPath}/nowtravel.do">여행</a></li>
-						<li><a href="${initParam.rootPath}/message.do">메시지</a></li>
+						<li><a href="${initParam.rootPath}/member/chattingfind.do">메시지</a></li>
 						<li><a href="${initParam.rootPath}/accountmanagement.do">마이페이지</a></li>
 						<li><a href="${initParam.rootPath}/member/logout.do">로그아웃</a></li>
 					</ul>

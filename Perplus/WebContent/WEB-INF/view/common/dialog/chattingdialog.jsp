@@ -1,7 +1,11 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!-- 채팅.. 상엽이형 ..-->
 <script type="text/javascript">
-$('#messageDiv').scrollTop(document.body.scrollHeight);
+/* $('#messageDiv').scrollTop(document.body.scrollHeight); */
+$(document).ready(function(){
+	
+});
 </script>
 
 
@@ -19,53 +23,16 @@ $('#messageDiv').scrollTop(document.body.scrollHeight);
 				<div class="modal-body">
 					
 					<div id="messageDiv" class="messageBody" style=" width: 100%; max-height: 250px; overflow:scroll; ">
-						메세지 <p>a</p>
-						<p>a</p>
-						<p>a</p>
-						<p>a</p>
-						<p>a</p>
-						<p>a</p>
-						<p>a</p>
-						<p>a</p>
-						
-						<p>a</p>
-						<p>a</p>
-						v
-						
-						<p>a</p>
-						<p>a</p><p>a</p>
-						<p>a</p>
-						
-						<p>a</p>
-						<p>a</p>
-						<p>a</p>
-						
-						<p>a</p>
-						<p>a</p>
-						
-						<p>a</p>
-						<p>a</p>
-						
-						<p>a</p>
-						
-						<p>a</p>
-						<p>a</p>
-						
-						<p>a</p>
-						v
-						<p>a</p>
-						<p>a</p>
-						<p>a</p>
-						<p>a</p>
-						<p>a</p>
-						
-						<p>a</p>
-						
-						<p>a</p>
-						<p>a</p>
-						<p>a</p>
-						
-						<p>a</p>
+						<c:forEach items="${requestScope.list}" var="list">
+							<c:choose>
+								<c:when test="">
+									
+								</c:when>
+								<c:otherwise>
+								
+								</c:otherwise>
+							</c:choose>
+						</c:forEach>
 					</div>
 				</div>
 				<div class="modal-footer">

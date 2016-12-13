@@ -121,8 +121,14 @@
 		<div class="col-md-4">
 			<!-- right date -->
 			달력
+			<p>
+			<p>
+			<form action="${initParam.rootPath}/member/chatting.do">
+				<input type="hidden" name="memberEmail" value="${sessionScope.login_info.memberEmail}"/>
+				<input type="submit"/>
+			</form>
 		</div>
-
+	
 	</div>
 
 	<div class="row row-condensed space-4">
