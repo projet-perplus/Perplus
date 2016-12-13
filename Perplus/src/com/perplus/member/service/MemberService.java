@@ -1,6 +1,7 @@
 package com.perplus.member.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.perplus.member.vo.ChattingLogVo;
 import com.perplus.member.vo.ChattingVo;
@@ -26,7 +27,7 @@ public interface MemberService {
 	
 	ChattingVo findByChatting(String partnerEmail, String memberEmail);
 	
-	ChattingVo selectJoinChattingAndChattingLog(int chattingNumber);
+	List<ChattingVo> selectJoinChattingAndChattingLog(String memberEmail);
 	
 	
 	//chattinglog service
@@ -38,7 +39,7 @@ public interface MemberService {
 	//housecomment service
 	void insertHouseComment(HouseCommentVo houseComment);
 	
-	void deleteHouseComment(String houseSerial, String memberEmail);
+	void deleteHouseComment(int commentSerial);
 	
 	void modifyHouseComment(HouseCommentVo houseComment);
 	
@@ -50,7 +51,7 @@ public interface MemberService {
 	//housezzim service
 	void insertHouseZzim(HouseZzimVo houseZzim);
 	
-	void deleteHouseZzimByEmail(int houseSerial, String memberEmail);
+	void deleteHouseZzimByEmail(int houseZzimSerial);
 	
 	List<HouseZzimVo> selectHouseZzimByEmail(String memberEmail);
 	
@@ -58,9 +59,9 @@ public interface MemberService {
 	//howgetmoney service
 	void insertHowgetmoney(HowgetmoneyVo howgetmoney);
 	
-	void deleteHowgetmoney(HowgetmoneyVo howgetmoney);
+	void deleteHowgetmoney(int accountSerial);
 	
-	void selectHowgetmoney(String memberEmail);
+	List<HowgetmoneyVo> selectHowgetmoney(String memberEmail);
 	
 	
 	//member service
@@ -69,6 +70,8 @@ public interface MemberService {
 	int joinMember(MemberVo member) throws Exception;
 	
 	void updateMember(MemberVo newData);
+	
+	void updateMemberPassword(String memberEmail, String memberPassword);
 	
 	void deleteMember(String memberEmail);
 	
@@ -139,12 +142,6 @@ public interface MemberService {
 	public void removeTravel(int travelSerial) throws Exception;
 	
 	
-	
-	
-	
-	
-	
-	
-	
+
 	
 }

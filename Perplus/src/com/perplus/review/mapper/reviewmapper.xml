@@ -113,6 +113,32 @@
 	from review
 </select>
 
+<!-- map을 위한 쿼리 -->
+<!-- 
+map 구성
+southWestLat
+southWestLng
+northEastLat
+northEashLng
+범위 지정
+ -->
+<select id="selectMarkerBySection" parameterType="hashMap" resultType="hashmap">
+	select 
+		review_serial reviewSerial, 
+		member_email memberEmail,
+		review_title reviewTitle,
+		review_content reviewContent,
+		review_rating reviewRating,
+		review_time reviewTime,
+		review_marker_x reviewMarkerX,
+		review_marker_y reviewMarkerY,
+		review_marker_constant reviewMarkerConstant,
+		review_place reviewPlace
+	from REVIEW 
+	where (review_marker_x between #{southWestLat} and #{northEastLat})
+	and	  (review_marker_y between #{southWestLng} and #{northEastLng})
+</select>
+
 </mapper>
 
 

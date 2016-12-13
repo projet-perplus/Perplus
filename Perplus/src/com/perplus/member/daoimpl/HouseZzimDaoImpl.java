@@ -23,8 +23,8 @@ public class HouseZzimDaoImpl implements HouseZzimDao{
 	}
 
 	@Override//찜 삭제
-	public int deleteHouseZzimByEmail(Map<String, Object> map) {
-		return session.delete("houseZzim.deleteHouseZzimByEmail", map);
+	public int deleteHouseZzimByEmail(int houseZzimSerial) {
+		return session.delete("houseZzim.deleteHouseZzimByEmail", houseZzimSerial);
 	}
 	
 	@Override//내가 찜한 house 찾기

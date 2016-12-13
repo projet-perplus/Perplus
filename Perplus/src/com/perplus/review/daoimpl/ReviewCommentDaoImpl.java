@@ -42,7 +42,7 @@ public class ReviewCommentDaoImpl implements ReviewCommentDao{
 	public List<ReviewCommentVo> selectReviewCommentListBySerial(int reviewSerial, int page) {
 		Map<String,Object> map = new HashMap<>();
 		map.put("reviewSerial", reviewSerial);
-		map.put("commentPerPage", Constants.ITEMS_PER_PAGE);
+		map.put("commentPerPage", Constants.REVIEWCOMMENT_PER_PAGE);
 		map.put("page", page);
 		return session.selectList("reviewComment.selectCommentList", map);
 	}

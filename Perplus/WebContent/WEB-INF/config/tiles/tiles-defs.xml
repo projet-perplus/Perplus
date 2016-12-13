@@ -60,6 +60,7 @@
 		<put-attribute name="logindialog" value="/WEB-INF/view/common/dialog/logindialog.jsp"/>
 		<put-attribute name="joindialog" value="/WEB-INF/view/common/dialog/joindialog.jsp"/>
 		<put-attribute name="reviewenrollment" value="/WEB-INF/view/common/dialog/reviewenrollment.jsp"/>
+		<put-attribute name="reviewmodify" value="/WEB-INF/view/common/dialog/reviewmodify.jsp"/>
 		<put-attribute name="footer" value="/WEB-INF/view/common/footer.jsp" />
 	</definition>
 	
@@ -69,7 +70,7 @@
 
 	
 
-	<!-- 숙소 검색 템플릿 -->
+	<!-- 숙소 검색 템플릿  -->
 	<definition name="housetemplate"
 		template="/WEB-INF/view/layout/housetemplate.jsp">
 		<put-attribute name="linkandscripthead" value="/WEB-INF/view/common/linkandscripthead.jsp"/>
@@ -82,6 +83,7 @@
 	<definition name="*.housetiles" extends="housetemplate">
 		<put-attribute name="body" value="/WEB-INF/view/common/house/{1}.jsp" />
 	</definition>
+	
 	
 	
 </tiles-definitions>

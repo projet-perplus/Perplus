@@ -1,24 +1,4 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
-<script>
-$(function(){
-	$("#datepicker").datepicker({
-        showOtherMonths: true, 
-        selectOtherMonths: true,   
-         yearSuffix:'년',   
-          monthNames:['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],   
-        dayNamesMin:['일','월','화','수','목','금','토'],   
-        dateFormat:'yy-mm-dd',
-        showMonthAfterYear:true,
-          onSelect: function(dateText , inst){
-             $("#datepicker").text(dateText),
-            location.replace("/SALIM_project/household/login/incomeSelect.do?incomeDate="+dateText);
-          }         
-     });
-});
-
-
-</script>
-
 
 <!-- header -->
 <div class="basicheader">
@@ -29,16 +9,20 @@ $(function(){
 				<div class="col-md-7 page_moveBtn ">
 					<div class="col-md-8 ">
 						<div class="form-group">
-							<select class="form-control">
-								<option>1</option>
-								<option>2</option>
-								<option>3</option>
-								<option>4</option>
+							<select class="form-control house_step">
+								<option value="${initParam.rootPath}/basicinfo.do">1 단계</option>
+								<option value="${initParam.rootPath}/housetypeandlocation.do">2 단계</option>
+								<option value="${initParam.rootPath}/houselocation.do">3 단계</option>
+								<option value="${initParam.rootPath}/housefacility.do">4 단계</option>
+								<option value="${initParam.rootPath}/houseimageenrollment.do">5 단계</option>
+								<option value="${initParam.rootPath}/houseschedulemanagement.do">6 단계</option>
+								<option value="${initParam.rootPath}/houseshutdowndate.do">7 단계</option>
+								<option value="${initParam.rootPath}/houseprice.do">8 단계</option>
 							</select>
 						</div>
 					</div>
 					<div class="col-md-4 page_moveBtn hidden-xs">
-						(7/12)
+						(7/8)
 					</div>
 				</div>
 			 <div class="clearfix"></div>
@@ -70,7 +54,7 @@ $(function(){
 					<div class="clearfix visible-md-block"></div>
 					<div class="col-md-offset-1 col-md-10">
 						<div class=" col-md-8">
-							<p>Date: <input type="text" id="datepicker"></p>'
+							Date: <input type="text" id="datepicker1">
 						</div>
 					</div>
 				</div>

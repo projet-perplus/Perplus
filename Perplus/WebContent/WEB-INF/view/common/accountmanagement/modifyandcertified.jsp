@@ -1,4 +1,4 @@
-<%@page import="com.perplus.member.vo.MemberVo"%>
+<%@ page import="com.perplus.member.vo.MemberVo"%>
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
@@ -10,6 +10,24 @@
 				return false;
 			}
 		});
+
+		$("#passwordChangeForm").on("submit", function() {
+			var beforePassword1 = "${sessionScope.login_info.memberPassword}";
+			var beforePassword2 = $("#beforePassword").val();
+			/* 기존비밀번호 비교 */
+			if (beforePassword1 != beforePassword2) {
+				alert("비밀번호가 틀립니다.");
+				$("#beforePassword").focus();
+				return false;
+			}
+
+			if ($("#afterPassword").val() != $("#afterPasswordCheck").val()) {
+				alert("변경할 비밀번호가 다릅니다.");
+				return false;
+			}
+
+		});
+
 	});
 </script>
 
@@ -35,6 +53,7 @@
 					</c:choose>
 					<input type="file" name="memberPictureFile" value="사진등록" />
 				</div>
+				
 				<div class="col-sm-9">
 					<div class="row row-condensed space-4">
 						<label class="text-right col-sm-3"> 이름(예: 홍길동) </label>
@@ -121,8 +140,8 @@
 						<div class="col-sm-9">
 							<div class="form-group">
 								<div class="col-md-12">
-									<input type="number" class="form-control" name="phone"
-										required="required" placeholder="전화번호">
+									<input type="number" class="form-control" name="memberTel"
+										required="required" placeholder="전화번호" value="${sessionScope.login_info.memberTel}">
 								</div>
 							</div>
 						</div>
@@ -178,6 +197,60 @@
 		</div>
 	</form>
 </div>
+
+<div id="dashboard-content">
+	<div class="panel-header">
+		<span>비밀번호 변경</span>
+	</div>
+	<div class="row row-condensed space-4">
+		<label class="text-right col-sm-3">기존 비밀번호 </label>
+		<div class="col-sm-9">
+			<div class="form-group">
+				<div class="col-md-12">
+					<input type="password" class="form-control" id="beforePassword"
+						name="beforePassword" required="required">
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row row-condensed space-4">
+		<label class="text-right col-sm-3">변경할 비밀번호 </label>
+		<div class="col-sm-9">
+			<div class="form-group">
+				<div class="col-md-12">
+					<input type="password" class="form-control" id="afterPassword"
+						name="afterPassword" required="required">
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<form action="${initParam.rootPath}/member/passwordChange.do" id="passwordChangeForm">
+		<input type="hidden" name="memberEmail"
+			value="${sessionScope.login_info.memberEmail}">
+		<div class="row row-condensed space-4">
+			<label class="text-right col-sm-3">변경할 비밀번호 확인 </label>
+			<div class="col-sm-9">
+				<div class="form-group">
+					<div class="col-md-12">
+						<input type="password" class="form-control"
+							id="afterPasswordCheck" name="memberPassword" required="required">
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row row-condensed space-4">
+			<div class="col-sm-9"></div>
+			<div class="col-sm-3">
+				<div class="col-md-12">
+					<input class="btn btn-primary" type="submit" value="저장"
+						style="float: right;">
+				</div>
+			</div>
+		</div>
+	</form>
+</div>
+
 <div id="dashboard-content">
 	<form action="">
 		<div class="panel-header">

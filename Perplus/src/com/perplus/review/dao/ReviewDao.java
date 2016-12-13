@@ -1,5 +1,6 @@
 package com.perplus.review.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.perplus.review.vo.ReviewVo;
@@ -19,5 +20,8 @@ public interface ReviewDao {
 	List<ReviewVo> selectReviewByEmail(String memberEmail);
 	//리뷰 전체 조회
 	List<ReviewVo> selectReviewList();
+	
+	//map을 위한 조회
+	List<ReviewVo> selectMarkerBySection(HashMap<String,Double> map);
 
 }

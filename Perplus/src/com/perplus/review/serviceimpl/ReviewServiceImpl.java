@@ -137,7 +137,12 @@ public class ReviewServiceImpl implements ReviewService{
 
 	@Override
 	public void removeReviewPicture(int reviewSerial) {
-		reviewPictureDao.deleteReviewPicture(reviewSerial);
+		reviewPictureDao.deleteAllReviewPicture(reviewSerial);
+	}
+
+	@Override
+	public List<ReviewVo> selectMarkerBySection(HashMap<String,Double> map) throws Exception {
+		return reviewDao.selectMarkerBySection(map);
 	}
 	
 	

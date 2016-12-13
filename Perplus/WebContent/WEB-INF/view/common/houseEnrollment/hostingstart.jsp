@@ -9,11 +9,15 @@
 				<div class="col-md-7 page_moveBtn ">
 					<div class="col-md-8 ">
 						<div class="form-group">
-							<select class="form-control">
-								<option>1</option>
-								<option>2</option>
-								<option>3</option>
-								<option>4</option>
+							<select class="form-control house_step">
+								<option value="${initParam.rootPath}/basicinfo.do">1 단계</option>
+								<option value="${initParam.rootPath}/housetypeandlocation.do">2 단계</option>
+								<option value="${initParam.rootPath}/houselocation.do">3 단계</option>
+								<option value="${initParam.rootPath}/housefacility.do">4 단계</option>
+								<option value="${initParam.rootPath}/houseimageenrollment.do">5 단계</option>
+								<option value="${initParam.rootPath}/houseschedulemanagement.do">6 단계</option>
+								<option value="${initParam.rootPath}/houseshutdowndate.do">7 단계</option>
+								<option value="${initParam.rootPath}/houseprice.do">8 단계</option>
 							</select>
 						</div>
 					</div>
@@ -34,7 +38,7 @@
 <!-- body -->
 <div class="basicbody">
 	<div class="container">
-		<div class="row row-condensed space-4">
+		<div class="row row-condensed space-4" style="height:550px;">
 			<label class="text-left col-md-7 col-md-offset-2 col-xs-10">
 				<span >호스트가 될준비가 되셨나요?</span>
 			</label>

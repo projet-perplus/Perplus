@@ -2,19 +2,26 @@
 package com.perplus.member.vo;
 //a
 public class HowgetmoneyVo {
+	private int accountSerial;
 	private String memberEmail;
 	private String howgetmoneyHolder;
 	private String howgetmoneyBank;
 	private int howgetmoneyNumber;
-	
-	
-	public HowgetmoneyVo(String memberEmail, String howGetMoneyHolder, String howGetMoneyBank, int howGetMoneyNumber) {
+	public HowgetmoneyVo(int accountSerial, String memberEmail, String howgetmoneyHolder, String howgetmoneyBank,
+			int howgetmoneyNumber) {
+		this.accountSerial = accountSerial;
 		this.memberEmail = memberEmail;
-		this.howgetmoneyHolder = howGetMoneyHolder;
-		this.howgetmoneyBank = howGetMoneyBank;
-		this.howgetmoneyNumber = howGetMoneyNumber;
+		this.howgetmoneyHolder = howgetmoneyHolder;
+		this.howgetmoneyBank = howgetmoneyBank;
+		this.howgetmoneyNumber = howgetmoneyNumber;
 	}
 	public HowgetmoneyVo() {
+	}
+	public int getAccountSerial() {
+		return accountSerial;
+	}
+	public void setAccountSerial(int accountSerial) {
+		this.accountSerial = accountSerial;
 	}
 	public String getMemberEmail() {
 		return memberEmail;
@@ -22,28 +29,35 @@ public class HowgetmoneyVo {
 	public void setMemberEmail(String memberEmail) {
 		this.memberEmail = memberEmail;
 	}
-	public String getHowGetMoneyHolder() {
+	public String getHowgetmoneyHolder() {
 		return howgetmoneyHolder;
 	}
-	public void setHowGetMoneyHolder(String howGetMoneyHolder) {
-		this.howgetmoneyHolder = howGetMoneyHolder;
+	public void setHowgetmoneyHolder(String howgetmoneyHolder) {
+		this.howgetmoneyHolder = howgetmoneyHolder;
 	}
-	public String getHowGetMoneyBank() {
+	public String getHowgetmoneyBank() {
 		return howgetmoneyBank;
 	}
-	public void setHowGetMoneyBank(String howGetMoneyBank) {
-		this.howgetmoneyBank = howGetMoneyBank;
+	public void setHowgetmoneyBank(String howgetmoneyBank) {
+		this.howgetmoneyBank = howgetmoneyBank;
 	}
-	public int getHowGetMoneyNumber() {
+	public int getHowgetmoneyNumber() {
 		return howgetmoneyNumber;
 	}
-	public void setHowGetMoneyNumber(int howGetMoneyNumber) {
-		this.howgetmoneyNumber = howGetMoneyNumber;
+	public void setHowgetmoneyNumber(int howgetmoneyNumber) {
+		this.howgetmoneyNumber = howgetmoneyNumber;
+	}
+	@Override
+	public String toString() {
+		return "HowgetmoneyVo [accountSerial=" + accountSerial + ", memberEmail=" + memberEmail + ", howgetmoneyHolder="
+				+ howgetmoneyHolder + ", howgetmoneyBank=" + howgetmoneyBank + ", howgetmoneyNumber="
+				+ howgetmoneyNumber + "]";
 	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + accountSerial;
 		result = prime * result + ((howgetmoneyBank == null) ? 0 : howgetmoneyBank.hashCode());
 		result = prime * result + ((howgetmoneyHolder == null) ? 0 : howgetmoneyHolder.hashCode());
 		result = prime * result + howgetmoneyNumber;
@@ -59,6 +73,8 @@ public class HowgetmoneyVo {
 		if (getClass() != obj.getClass())
 			return false;
 		HowgetmoneyVo other = (HowgetmoneyVo) obj;
+		if (accountSerial != other.accountSerial)
+			return false;
 		if (howgetmoneyBank == null) {
 			if (other.howgetmoneyBank != null)
 				return false;
@@ -77,11 +93,6 @@ public class HowgetmoneyVo {
 		} else if (!memberEmail.equals(other.memberEmail))
 			return false;
 		return true;
-	}
-	@Override
-	public String toString() {
-		return "HowGetMoneyVo [memberEmail=" + memberEmail + ", howGetMoneyHolder=" + howgetmoneyHolder
-				+ ", howGetMoneyBank=" + howgetmoneyBank + ", howGetMoneyNumber=" + howgetmoneyNumber + "]";
 	}
 	
 	

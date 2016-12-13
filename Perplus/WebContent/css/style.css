@@ -251,6 +251,9 @@ p {
 	color: #fff;
 	border: 0px;
 }
+#Search:hover {
+    background-color: #b3daff;
+}
 
 .bg-2 {
 	position: relative;
@@ -373,11 +376,18 @@ p {
 	margin-top:7px;
 }
 
+/* 중복 빼야할것들 */
 .rowF>.text-left>span {
 	color: #57c3a6 !important;
 	line-height: 38px !important;
 	font-weight: bold !important;
 	font-size: 27px !important;
+}
+.rowFT{
+    color: #57c3a6 !important;
+    line-height: 38px !important;
+    font-weight: bold !important;
+    font-size: 25px;
 }
 .row-condensed>.text-left>span, .row-condensed>.col-md-6>.text-left>span, .row-condensed>.col-md-12>.text-left>span{
 	color: #57c3a6 !important;
@@ -390,6 +400,10 @@ p {
     line-height: 38px !important;
     font-weight: bold !important;
     font-size: 18px ;
+}
+.row-maginTB{
+	margin-top:15px;
+	margin-bottom:15px;
 }
 
 .row-condensed {
@@ -425,9 +439,15 @@ p {
 }
 
 /*basic info houseBtn */
+.houseBtnMB{
+	margin-top: 30px;
+	margin-bottom: 30px;
+	
+}
+
 .houseBtns{
 	margin-top: 30px;
-	margin-bottom:130px !important;
+	
 }
 .previousBtn>a>button {
 	width: 80px;

@@ -115,8 +115,8 @@ public class MemberServiceImpl implements MemberService{
 	}
 	
 	@Override//선택한 채팅방과 채팅로그 가져오기
-	public ChattingVo selectJoinChattingAndChattingLog(int chattingNumber){
-		return chattingDao.chattingJoin(chattingNumber);
+	public List<ChattingVo> selectJoinChattingAndChattingLog(String memberEmail){
+		return chattingDao.chattingJoin(memberEmail);
 	}
 	
 	/*
@@ -143,11 +143,8 @@ public class MemberServiceImpl implements MemberService{
 	}
 	
 	@Override//houseComment 삭제
-	public void deleteHouseComment(String houseSerial, String memberEmail){
-		Map<String, Object> map = new HashMap<>();
-		map.put("houseSerial", houseSerial);
-		map.put("memberEmail", memberEmail);
-		houseCommentDao.deleteHouseComment(map);
+	public void deleteHouseComment(int commentSerial){
+		houseCommentDao.deleteHouseComment(commentSerial);
 	}
 	
 	@Override//houseComment 수정
@@ -176,11 +173,8 @@ public class MemberServiceImpl implements MemberService{
 	}
 	
 	@Override//찜삭제
-	public void deleteHouseZzimByEmail(int houseSerial, String memberEmail){
-		Map<String, Object> map = new HashMap<>();
-		map.put("houseSerial", houseSerial);
-		map.put("memberEmail", memberEmail);
-		houseZzimDao.deleteHouseZzimByEmail(map);
+	public void deleteHouseZzimByEmail(int houseZzimSerial){
+		houseZzimDao.deleteHouseZzimByEmail(houseZzimSerial);
 	}
 	
 	@Override//내 찜 찾기
@@ -199,13 +193,13 @@ public class MemberServiceImpl implements MemberService{
 	}
 	
 	@Override//결제수단 삭제
-	public void deleteHowgetmoney(HowgetmoneyVo howgetmoney){
-		howgetmoneyDao.deleteHowgetmoney(howgetmoney);
+	public void deleteHowgetmoney(int accountSerial){
+		howgetmoneyDao.deleteHowgetmoney(accountSerial);
 	}
 	
 	@Override//결제수단 조회
-	public void selectHowgetmoney(String memberEmail){
-		howgetmoneyDao.selectHowgetmoney(memberEmail);
+	public List<HowgetmoneyVo> selectHowgetmoney(String memberEmail){
+		return howgetmoneyDao.selectHowgetmoney(memberEmail);
 	}
 	
 	
@@ -230,6 +224,14 @@ public class MemberServiceImpl implements MemberService{
 	@Override//회원 수정
 	public void updateMember(MemberVo newData){
 		memberDao.updateMember(newData);
+	}
+	
+	@Override//회원 비밀번호 수정
+	public void updateMemberPassword(String memberEmail, String memberPassword){
+		Map<String, Object> map = new HashMap<>();
+		map.put("memberEmail", memberEmail);
+		map.put("memberPassword", memberPassword);
+		memberDao.updateMemberPassword(map);
 	}
 	
 	@Override//회원 삭제

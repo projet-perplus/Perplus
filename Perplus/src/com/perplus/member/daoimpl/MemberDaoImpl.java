@@ -1,4 +1,6 @@
 package com.perplus.member.daoimpl;
+import java.util.Map;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -27,6 +29,11 @@ public class MemberDaoImpl implements MemberDao{
 		return session.update("member.updateMember", newData);
 	}
 
+	@Override
+	public int updateMemberPassword(Map<String, Object> map){
+		return session.update("member.updateMemberPassword", map);
+	}
+	
 	@Override
 	public MemberVo selectMemberFindByEmail(String memberEmail) {
 		return session.selectOne("member.selectMemberFindByEmail", memberEmail);
