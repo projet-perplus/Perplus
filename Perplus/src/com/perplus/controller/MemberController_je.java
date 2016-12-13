@@ -6,12 +6,15 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.perplus.member.dao.PaymentDao;
+import com.perplus.member.daoimpl.PaymentDaoImpl;
 import com.perplus.member.service.MemberService;
 import com.perplus.member.vo.MemberVo;
 import com.perplus.member.vo.PaymentVo;
@@ -52,21 +55,47 @@ public class MemberController_je {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return "accountmanagement/accountmanagement/modifyandcertified.tiles1";
+		return "redirect:/member/payment_method.do";
 	}
-	@RequestMapping("pa11yment_method.do")
+	@RequestMapping("payment_method.do")
 	public ModelAndView paymentMethod(HttpSession session){
-		String memberEmail = ((MemberVo)session.getAttribute("login_info")).getMemberEmail(); // 이메일
+		String memberEmail = null;
+		try {
+			memberEmail = ((MemberVo)session.getAttribute("login_info")).getMemberEmail(); // 이메일
+		} catch (Exception e) {
+			return new ModelAndView("redirect:/member/payment_method.do");	// 비로그인 상태면 메인으로 이동
+		}
+		
 		List<PaymentVo> paymentList = null;
+		JSONArray arr = null;
 		//payment 객체 조회
 		try {
 			paymentList = service.getPayment(memberEmail);
+			arr = new JSONArray(paymentList); 	// list를 Json 형태로 변환
 		} catch (Exception e) {}
 		
-		return new ModelAndView("accountmanagement/accountmanagement/payment_method.tiles1", "paymentList", paymentList);
+		return new ModelAndView("accountmanagement/accountmanagement/payment_method.tiles1", "paymentList", arr);
 	}
 	
-	
+	@RequestMapping("deletePayment.do")
+	public ModelAndView deletePayment(@ModelAttribute int cardSerial, HttpSession session){
+		String memberEmail = null;
+		String servMemberEmail = null;
+		try {
+			memberEmail = ((MemberVo)session.getAttribute("login_info")).getMemberEmail(); // 이메일
+			servMemberEmail = service.getPaymentByCardSerial(cardSerial).getMemberEmail(); 
+		} catch (Exception e) {
+			return new ModelAndView("redirect:/member/payment_method.do");	// 비로그인 상태면 메인으로 이동
+		}
+		if (memberEmail == servMemberEmail){	// 삭제 요청한 시리얼의 payment 객체 이메일과 로그인한 이메일이 같을 경우
+			try {
+				service.removePayment(cardSerial);	// 삭제 요청 수행
+			} catch (Exception e) {
+				return new ModelAndView("redirect:/member/payment_method.do");	// 카드 시리얼에 해당하는 payment가 엾을 경우 Exception 발생
+			}
+		}
+		return new ModelAndView("accountmanagement/accountmanagement/payment_method.tiles1");
+	}
 	
 	
 	
