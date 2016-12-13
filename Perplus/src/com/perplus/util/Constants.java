@@ -7,6 +7,10 @@ public interface Constants {
 	int ITEMS_PER_PAGE = 15;//한 페이지당 보여줄 item의 수.
 	int PAGES_PER_PAGEGROUP = 10; //한 페이지 그룹당 묶을 페이지수.
 	
+	//review_Category
+	int REVIEWCOMMENT_PER_PAGE = 5;//한 페이지당 보여줄 item의 수.
+	int REVIEW_COMMENT_PAGEGROUP = 10; //한 페이지 그룹당 묶을 페이지수.
+	
 	//Travel_Code
 	static final int TRAVEL_CODE_PREVIOUS = 0; //과거 여행 상태
 	static final int TRAVEL_CODE_RESER_STANDBY = 11; // 에약 후  승인 대기 중

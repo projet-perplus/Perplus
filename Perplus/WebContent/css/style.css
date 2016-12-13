@@ -530,10 +530,24 @@ p {
 .paymentBtn {
 	background: none;
 	border: 1px solid #ccc;
+/* 	float:left; */
+	margin:10px;
+	border-radius: 4px;
+	display:inline-block;
+	width:140px;
+	height:95px;
+	vertical-align:middle;
+	box-sizing:border-box;
+	padding-top:17px;
 }
 
-.paymentBtn>a>.pamentAdd {
-	font-size: 10px !important;
+.paymentBtn>.paymentBtnImage{
+	display:block;
+	height:45px;
+}
+
+.paymentBtn>.pamentBtnName {
+	
 }
 
 .necessary {
