@@ -83,6 +83,8 @@ public interface MemberService {
 	
 	public void removePayment(int cardSerial) throws Exception;
 	
+	public PaymentVo getPaymentByCardSerial(int CardSerial) throws Exception;
+	
 	public List<PaymentVo> getPayment(String memberEmail) throws Exception;
 	
 	public int getCardSerialSeq();

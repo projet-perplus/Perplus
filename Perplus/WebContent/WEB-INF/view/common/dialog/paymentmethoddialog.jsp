@@ -14,11 +14,13 @@ $(document).ready(function() {
 		//Visa : 4로 시작하는 12자리나 16자리
 		//MasterCard : 51~55로 시작하는 16자리
 
-        var match = /^(?:(94[0-9]{14})|(4[0-9]{12}(?:[0-9]{3})?)|(5[1-5][0-9]{14}))$/.exec(cardnumber);
+        var match = /^(?:(94[0-9]{14})|(4[0-9]{11}(?:[0-9]{4})?)|(5[1-5][0-9]{14}))$/.exec(cardnumber);
 
         if(match) {
         	//정규식 캡처 그룹과 같은 순서로 카드 종류 나열
         	var types = ['bc', 'visa', 'mastercard'];
+        	
+        	console.log(match);
 
 			//일치되는 캡처 그룹 검색
 			//일치부 배열의 0번째 요소 (전체 일치부중 첫 일치부)를 건너뜀
@@ -37,7 +39,6 @@ $(document).ready(function() {
                    	}
                    break;
 				}
-				
 			}
         }
         $("#paymentType").html("<input type='hidden' name='paymentType' value='"+paymentType+"'>");
