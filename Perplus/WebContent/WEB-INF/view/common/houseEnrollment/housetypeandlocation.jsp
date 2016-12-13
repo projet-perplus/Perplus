@@ -118,7 +118,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="row houseBtns">
+		<div class="row houseBtns" style="margin-bottom:30px;">
 			<div class="col-md-offset-2 col-md-4 col-xs-4 previousBtn">
 				<a href="${initParam.rootPath}/basicinfo.do">
 					<button class="btn btn-default">이전</button>

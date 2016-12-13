@@ -21,7 +21,7 @@
 							</select>
 						</div>
 					</div>
-					<div class="col-md-4 page_moveBtn hidden-xs">
+					<div class="col-md-4 page_moveBtn hidden-xs hidden-md">
 						(1/8)
 					</div>
 				</div>

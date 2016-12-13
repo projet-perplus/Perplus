@@ -39,7 +39,7 @@
 <!-- body -->
 <div class="basicbody">
 	<div class="container">
-		<div class="row row-condensed space-4">
+		<div class="row">
 			<div class="col-md-offset-2 col-md-8 housesection">
 			
 				<div class="row row-condensed space-4" style="margin-bottom: 40px;">

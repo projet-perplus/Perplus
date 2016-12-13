@@ -68,7 +68,7 @@
 				   
 			</div>
 		</div>
-		<div class="row houseBtns">
+		<div class="row houseBtns" style="margin-top: 235px;">
 			<div class="col-md-offset-2 col-md-4 col-xs-4 previousBtn">
 				<a href="${initParam.rootPath}/houseshutdowndate.do">
 				<button class="btn btn-default">이전</button>
