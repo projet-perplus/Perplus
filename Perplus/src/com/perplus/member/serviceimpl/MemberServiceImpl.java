@@ -282,6 +282,15 @@ public class MemberServiceImpl implements MemberService{
 		}
 	}
 	
+	public PaymentVo getPaymentByCardSerial(int CardSerial) throws Exception{
+		PaymentVo payment = null;
+		payment = paymentDao.selectPaymentByCardSerial(CardSerial);
+		if(payment == null){
+			throw new Exception("등록된 카드가 없습니다.");
+		}
+		return payment;
+	}
+	
 	public List<PaymentVo> getPayment(String memberEmail) throws Exception{
 		List<PaymentVo> paymentList = null;
 		paymentList = paymentDao.selectPayment(memberEmail);

@@ -137,7 +137,7 @@ public class ReviewServiceImpl implements ReviewService{
 
 	@Override
 	public void removeReviewPicture(int reviewSerial) {
-		reviewPictureDao.deleteReviewPicture(reviewSerial);
+		reviewPictureDao.deleteAllReviewPicture(reviewSerial);
 	}
 
 	@Override
