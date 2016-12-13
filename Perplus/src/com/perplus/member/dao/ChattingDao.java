@@ -23,5 +23,5 @@ public interface ChattingDao {
 	ChattingVo findByChattingNumber(Map<String, Object> map);
 	
 	//채팅방과 채팅로그 가져오기
-	ChattingVo chattingJoin(int chattingNumber);
+	List<ChattingVo> chattingJoin(String memberEmail);
 }
