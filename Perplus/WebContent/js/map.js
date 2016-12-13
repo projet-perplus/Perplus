@@ -1,5 +1,6 @@
 $(function() {
 	var map;
+	var markerCluster;
 	function initialize() {
 		var mapCanvas = document.getElementById('map-canvas');
 		var myLatlng = new google.maps.LatLng(37.402116, 127.107020); // 위경도
@@ -21,9 +22,12 @@ $(function() {
 			size : new google.maps.Size(200, 100)
 		});
 		google.maps.event.addListener(map, 'idle',function(){
-			 placeMarkerList(
+			resetAllMarker();
+			placeMarkerList(
 						map.getBounds().getSouthWest().lat(),map.getBounds().getSouthWest().lng(),map.getBounds().getNorthEast().lat(),
 						map.getBounds().getNorthEast().lng());
+			//맵 클러스터링
+			markerCluster = new MarkerClusterer(map,markerArray,{imagePath:'img/m'});
 		});
 		google.maps.event.addListener(map, 'click', function(mouseEvent) {
 			// alert(mouseEvent.latLng);
@@ -48,14 +52,26 @@ $(function() {
 
 		// marker.setMap(map);
 	}
-	//범위를 벗어난 마커들을 제거
-	function removeMarkerOutRange(southWestLat,southWestLng,northEastLat,northEastLng){
-		
+	//맵 상의 마커를 보관할 array
+	var markerArray = [];
+	
+	function setMapOnAll(map){
+		for(var i =0 ;i<markerArray.length;i++){
+			markerArray[i].setMap(map);
+		}
 	}
+	//모든 마커들을 리셋
+	function resetAllMarker(){
+		setMapOnAll(null);
+		markerArray =[];
+		if(markerCluster!=null){
+			markerCluster.clearMarkers();
+		}
+	}
+	
+	
 	//범위 안에 있는 마커들을 생성
 	function placeMarkerList(southWestLat,southWestLng,northEastLat,northEastLng){
-//		alert(""+southWestLat+","+southWestLng+","+northEastLat+","+northEastLng);
-//		alert(southWestLat.toString());
 		$.ajax({
 			url : "/Perplus/map/markerall.do",
 			type:"post",
@@ -67,15 +83,10 @@ $(function() {
 				"northEastLng" :  northEastLng.toString()
 			},
 			dataType : "JSON",
-			success:function(list){
-//				alert('this worked');
-//				for(var i =0; i< obj.length ;i++){
-//					var markerLatlng = new google.maps.LatLng(obj[i].reviewMarkerX, obj[i].reviewMarkerY);
-//					placeMarker(markerLatlng);
-//				}
-				$.each(list,function(){
-					alert(this.reviewMarkerX);
-					placeMarker(new google.maps.LatLng(37.39,127.108));
+			success:function(obj){
+				$.each(obj,function(){
+					var markerLatlng = new google.maps.LatLng(this.REVIEWMARKERX, this.REVIEWMARKERY);
+					placeMarker(markerLatlng);
 				});
 			},
 			error:function(request,error,status){
@@ -83,14 +94,19 @@ $(function() {
 			}
 		});
 	}
+	var markers;
 	function placeMarker(location) {
 		var marker = new google.maps.Marker({
 			position : location,
 			map : map,
 			draggable : true
 		});
+		
+		markerArray.push(marker);
 	}
+	
 	google.maps.event.addDomListener(window, 'load', initialize);
+	
 //////////////////////////////////////////////////
 //	
 //	function initialize() {

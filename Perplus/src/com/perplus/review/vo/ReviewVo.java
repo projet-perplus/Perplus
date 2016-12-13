@@ -5,11 +5,10 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.perplus.member.vo.MemberVo;
 
-public class ReviewVo implements Serializable{
+public class ReviewVo implements Serializable {
 	private int reviewSerial;	//명소리뷰 시리얼 넘버
 	private String memberEmail; //작성자 회원 이메일
 	private String reviewTitle; //명소 리뷰 제목
