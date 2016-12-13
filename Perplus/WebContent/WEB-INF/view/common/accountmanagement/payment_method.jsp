@@ -4,6 +4,7 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 <script type="text/javascript">
+var selectedCardSerial;
 
 $( function() {	// 다이얼 로그 노출
 	$( "#dialog-confirm" ).dialog({
@@ -18,7 +19,7 @@ $( function() {	// 다이얼 로그 노출
 		},
 		buttons: {
 			"삭제": function() {
-				var url = "/Perplus/member/emailCheck.do?cardSerial=" + $(this).children().prevAll("input.cardSerial").val();
+				var url = "/Perplus/member/deletePayment.do?cardSerial=" + $(this).children().prevAll("input.cardSerial").val();
 				
 				$( this ).dialog( "close" );
 			},
@@ -95,13 +96,15 @@ $(document).ready(function(paymentList){
 		code = code + "<a href='#' class='paymentBtn paymentDeleteBtn'>"+
 											"<span class='paymentBtnImage'>"+cardImage+"</span>" + 
 											"<span class='pamentBtnName'>"+cardNumberFormatted+"</span>"+
-											"<input calss='cardSerial' type='hidden' value='"+cardSerial+"' >"+
+											"<input class='cardSerial' type='hidden' value='222' >"+
 									"</a>";
 								
 	});//each
 	$("#addCard").before(code);	
 	
 	$(".paymentDeleteBtn").on("click", function(){
+		selectedCardSerial = $(this).parent().children().find(".cardSerial").text();
+		console.log(selectedCardSerial);
 		$("#dialog-confirm").dialog( "open" );
 
 		
