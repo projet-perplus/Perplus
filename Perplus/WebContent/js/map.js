@@ -27,10 +27,11 @@ $(function() {
 						map.getBounds().getSouthWest().lat(),map.getBounds().getSouthWest().lng(),map.getBounds().getNorthEast().lat(),
 						map.getBounds().getNorthEast().lng());
 			//맵 클러스터링
-			markerCluster = new MarkerClusterer(map,markerArray,{imagePath:'img/m'});
+			markerCluster = new MarkerClusterer(map,markerArray,{imagePath:'img/clustering/m'});
 		});
 		google.maps.event.addListener(map, 'click', function(mouseEvent) {
 			// alert(mouseEvent.latLng);
+			
 			placeMarker(mouseEvent.latLng);
 		});
 
@@ -95,13 +96,12 @@ $(function() {
 		});
 	}
 	var markers;
-	function placeMarker(location) {
+	function placeMarker(location) {		
 		var marker = new google.maps.Marker({
 			position : location,
 			map : map,
-			draggable : true
+			draggable : true,
 		});
-		
 		markerArray.push(marker);
 	}
 	
