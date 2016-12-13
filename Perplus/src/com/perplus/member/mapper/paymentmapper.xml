@@ -27,12 +27,13 @@
 	
 	<!-- select -->
 	<select id="selectPayment" parameterType="string" resultType="PaymentVo">
-		select MEMBER_EMAIL memberEmail, PAYMENT_TYPE paymentType, CARD_NUMBER cardNumber, CARD_EXPIRATION cardExpiration, CARD_NAME cardName, CARD_CVC cardCvc
+		select CARD_SERIAL cardSerial, MEMBER_EMAIL memberEmail, PAYMENT_TYPE paymentType, CARD_NUMBER cardNumber, CARD_EXPIRATION cardExpiration, CARD_NAME cardName, CARD_CVC cardCvc
 		from PAYMENT
 		where MEMBER_EMAIL = #{memberEmail}
+		order by CARD_SERIAL DESC
 	</select>
 	<select id="selectPaymentByCardSerial" parameterType="_int" resultType="PaymentVo">
-		select MEMBER_EMAIL memberEmail, PAYMENT_TYPE paymentType, CARD_NUMBER cardNumber, CARD_EXPIRATION cardExpiration, CARD_NAME cardName, CARD_CVC cardCvc
+		select CARD_SERIAL cardSerial, MEMBER_EMAIL memberEmail, PAYMENT_TYPE paymentType, CARD_NUMBER cardNumber, CARD_EXPIRATION cardExpiration, CARD_NAME cardName, CARD_CVC cardCvc
 		from PAYMENT
 		where CARD_SERIAL = #{cardSerial}
 	</select>
