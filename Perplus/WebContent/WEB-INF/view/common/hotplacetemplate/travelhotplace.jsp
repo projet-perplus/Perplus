@@ -28,11 +28,13 @@
 	  				</button>
 				    <ul class="dropdown-menu ">
 						<li>
+							<!-- REVIEW 작성 다이얼로그 띄워주는 버튼 -->
 							<a href="#" data-toggle="modal" data-target="#reviewEnrollment">
 								<button type="button" class="btn btn-primary">리뷰 작성</button>
 							</a>
 						</li>
 						<li>
+							<!-- REVIEW 상세 페이지로 이동 버튼  -->
 							<a href="${initParam.rootPath}/review/showReview.do?reviewSerial=26">   <!-- reviewSerial은 requestScope의 리뷰시리얼값~~ -->
 								<button type="button" class="btn btn-primary">리뷰 상세페이지</button>
 							</a>
