@@ -2,7 +2,7 @@
 <%@page import="java.util.List"%>
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <script type="text/javascript">
 	$(document)
@@ -72,7 +72,7 @@
 											// 					"</select>";
 											var content = "<input type='text' class='form-control' name='commentContent' id='commentContent' value="+comment+">";
 
-											var btn = "<input type='button' value='수정완료' class='btn btn-default modifyComplate' ></a>";
+											var btn = "<input type='submit' value='수정완료' class='btn btn-default modifyComplate' ></a>";
 
 											$(this).parent().parent().find(
 													"div.stars").html(
@@ -84,11 +84,7 @@
 											$(this).parent().html(btn);
 										});
 						$($(".m")).on("click", $(".modifyComplate"), function() {
-								
-									$.ajax({
-										
-									})
-								
+								alert
 						});
 					});
 </script>
@@ -164,9 +160,7 @@
 			<label class="text-left col-md-2"> <span>방문일자</span>
 			</label>
 			<div class="col-md-6">
-			<%-- <fmt:parseDate value="${requestScope.review.reviewTime}" var="dateFmt" pattern="yyyy-MM-dd"/>
- 				<fmt:formatDate value="${dateFmt}"  pattern="yyyy-MM-dd"/> --%>
-				${requestScope.review.reviewTime }
+				<fmt:formatDate value="${requestScope.review.reviewTime }" pattern="yyyy-MM-dd"/>
 			</div>
 		</div>
 		<div class="row row-condensed space-4">
@@ -187,7 +181,7 @@
 						data-toggle="modal" data-target="#reviewmodify">
 						<button class="btn btn-default">수정</button>
 					</a> <a href="${initParam.rootPath}/review/removeReview.do?reviewSerial=${requestScope.review.reviewSerial}">
-						<button class="btn btn-default">삭제</button>
+						<button type="submit" class="btn btn-default">삭제</button>
 					</a>
 				</div>			
 			</div>
@@ -223,11 +217,14 @@
 		</div>
 	</form>
 </c:if>
+
 	<c:forEach items="${requestScope.review.reviewComment }" var="comment"
 		varStatus="index">
 		<div class="row row-condensed space-4" id="commentArea">
-		<form action="${initParam.rootPath}/review/modifyReviewComment.do">
+		<form action="${initParam.rootPath }/review/modifyReviewComment.do">
 		<input type="hidden" name="reviewSerial" value="${comment.reviewSerial}"/>
+		<input type="hidden" name="memberEmail" value="${comment.memberEmail }"/>
+		<input type="hidden" name="commentSerial" value="${comment.commentSerial }"/>
 			<div class="col-md-1 starlayer">
 				<div class="stars stars-example-bootstrap">${comment.commentRating }</div>
 				<!-- 				$(this).parent().parent().find("div.stars").html("<input type='text' value='aaa'>"); -->
@@ -235,22 +232,25 @@
 			</div>
 			<div class="col-md-2">${comment.memberEmail }</div>
 			<div class="col-md-5 commentContent">${comment.commentContent }</div>
-			<div class="col-md-2">${comment.commentTime }</div>
+			<div class="col-md-2"><fmt:formatDate value="${comment.commentTime }" pattern="yyyy-MM-dd HH:mm:ss"/> </div>
 			<c:if
 				test="${comment.memberEmail == sessionScope.login_info.memberEmail}">
 				<div class="col-md-1 m">
 						<input type="button" value="수정"
 							class="btn btn-default commentModifyBnt" id="${index.index }">
 				</div>
+			</c:if>
+		</form>
+			<c:if
+				test="${comment.memberEmail == sessionScope.login_info.memberEmail}">
 				<div class="col-md-1">
 					<a
 						href="${initParam.rootPath}/review/removeReviewComment.do?reviewSerial=${requestScope.review.reviewSerial}&commentSerial=${comment.commentSerial}">
-						<input type="submit" value="삭제" class="btn btn-default"
+						<input type="button" value="삭제" class="btn btn-default"
 						id="commentBnt">
 					</a>
 				</div>
 			</c:if>
-			</form>
 		</div>
 	</c:forEach>
 

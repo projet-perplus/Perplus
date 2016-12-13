@@ -67,7 +67,7 @@
 			  comment_content=#{commentContent},
 			  comment_rating=#{commentRating},
 			  comment_time=#{commentTime}
-		where review_serial=#{commentSerial}
+		where comment_serial=#{commentSerial}
 	</update>
 	
 	<!-- DELETE COMMENT -->
