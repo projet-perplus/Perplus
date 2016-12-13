@@ -121,6 +121,7 @@
 		<div class="col-md-4">
 			<!-- right date -->
 			달력
+			<a href="${initParam.rootPath}/message.do#popup"><button>bbb</button></a>
 		</div>
 
 	</div>
