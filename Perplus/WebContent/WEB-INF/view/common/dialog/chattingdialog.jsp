@@ -1,7 +1,26 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!-- 채팅.. 상엽이형 ..-->
 <script type="text/javascript">
-$('#messageDiv').scrollTop(document.body.scrollHeight);
+
+function messageScrollToBottom(){
+	$('#messageDiv').scrollTop($(".messageWrapper").height());
+}
+
+$(function(){
+	$('#chattingdialog').on('shown.bs.modal', messageScrollToBottom)
+	
+	$('#chattingdialog').on('hidden.bs.modal', function(){
+		if(location.href.indexOf("#popup") != -1){
+			location.href = location.href.replace("#popup", "")
+		}
+	})
+	
+	if(location.href.indexOf("#popup") != -1){
+		$('#chattingdialog').modal('show')
+	}
+	
+})
 </script>
 
 
@@ -19,53 +38,68 @@ $('#messageDiv').scrollTop(document.body.scrollHeight);
 				<div class="modal-body">
 					
 					<div id="messageDiv" class="messageBody" style=" width: 100%; max-height: 250px; overflow:scroll; ">
-						메세지 <p>a</p>
-						<p>a</p>
-						<p>a</p>
-						<p>a</p>
-						<p>a</p>
-						<p>a</p>
-						<p>a</p>
-						<p>a</p>
-						
-						<p>a</p>
-						<p>a</p>
-						v
-						
-						<p>a</p>
-						<p>a</p><p>a</p>
-						<p>a</p>
-						
-						<p>a</p>
-						<p>a</p>
-						<p>a</p>
-						
-						<p>a</p>
-						<p>a</p>
-						
-						<p>a</p>
-						<p>a</p>
-						
-						<p>a</p>
-						
-						<p>a</p>
-						<p>a</p>
-						
-						<p>a</p>
-						v
-						<p>a</p>
-						<p>a</p>
-						<p>a</p>
-						<p>a</p>
-						<p>a</p>
-						
-						<p>a</p>
-						
-						<p>a</p>
-						<p>a</p>
-						<p>a</p>
-						
-						<p>a</p>
+						<div class="messageWrapper">
+							
+							<p>a</p>
+							<p>a</p>
+							<p>a</p>
+							<p>a</p>
+							<p>a</p>
+							<p>a</p>
+							<p>a</p>
+							<p>a</p>
+							
+							<p>a</p>
+							<p>a</p>
+							v
+							
+							<p>a</p>
+							<p>a</p><p>a</p>
+							<p>a</p>
+							
+							<p>a</p>
+							<p>a</p>
+							<p>a</p>
+							
+							<p>a</p>
+							<p>a</p>
+							
+							<p>a</p>
+							<p>a</p>
+							
+							<p>a</p>
+							
+							<p>a</p>
+							<p>a</p>
+							
+							<p>a</p>
+							
+							<p>a</p>
+							<p>a</p>
+							<p>a</p>
+							<p>a</p>
+							<p>a</p>
+							
+							<p>a</p>
+							
+							<p>a</p>
+							<p>a</p>
+							<p>a</p>
+							
+							<p>a</p>
+						</div>
+
+						<c:forEach items="${requestScope.list}" var="list">
+							<c:choose>
+								<c:when test="">
+									
+								</c:when>
+								<c:otherwise>
+								
+								</c:otherwise>
+							</c:choose>
+						</c:forEach>
+
 					</div>
 				</div>
 				<div class="modal-footer">

@@ -27,7 +27,7 @@ public interface MemberService {
 	
 	ChattingVo findByChatting(String partnerEmail, String memberEmail);
 	
-	ChattingVo selectJoinChattingAndChattingLog(int chattingNumber);
+	List<ChattingVo> selectJoinChattingAndChattingLog(String memberEmail);
 	
 	
 	//chattinglog service
@@ -85,6 +85,8 @@ public interface MemberService {
 	public void registerPayment(PaymentVo payment) throws Exception;
 	
 	public void removePayment(int cardSerial) throws Exception;
+	
+	public PaymentVo getPaymentByCardSerial(int CardSerial) throws Exception;
 	
 	public List<PaymentVo> getPayment(String memberEmail) throws Exception;
 	

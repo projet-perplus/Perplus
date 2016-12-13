@@ -178,79 +178,63 @@ $(function() {
 //	var lng = 0;
 //	
 //	var map;
-//	var markersArray = []; // 마커들이 담길 배열
-//	
-//	var geocoder;
-//	
 //	function initialize() {
-//	
-//		var haightAshbury = new google.maps.LatLng(lat, lng);
-//		var mapOptions = {
-//			zoom : 14,
-//			center : haightAshbury,
-//			mapTypeId : 'roadmap'
+//		var mapCanvas = document.getElementById('map-canvas');
+//		var myLatlng = new google.maps.LatLng(37.402116, 127.107020); // 위경도
+//		// 설정
+//		var mapOptions = { // 구글 맵 옵션
+//			center : myLatlng,
+//			zoom : 16,
+//			mapTypeId : google.maps.MapTypeId.ROADMAP
 //		};
-//		geocoder = new google.maps.Geocoder();
-//		map = new google.maps.Map(document.getElementById("map-canvas"),
-//				mapOptions);
-//	
-//		if (markersArray.length === 0) {
-//			addMarker(haightAshbury);
-//		}
-//	
-//		google.maps.event.addListener(map,'click',function(e) {
-//			geocoder.geocode({'latLng' : e.latLng},	function(results, status) {
-//				if (status == google.maps.GeocoderStatus.OK) {
-//					if (results[0]) {
-//						if (marker) {
-//							marker.setPosition(e.latLng);
-//						} else {
-//							marker = new google.maps.Marker({
-//								position : e.latLng,
-//								map : map
-//							});
-//						}
-//					} else {
-//						document.getElementById('geocoding').innerHTML = 'No results found';
-//					}
-//				} else {
-//					document.getElementById('geocoding').innerHTML = 'Geocoder failed due to: '	+ status;
-//				}
-//			});
+//
+//		// 구글 맵 생성
+//		map = new google.maps.Map(mapCanvas, mapOptions);
+//
+//		var contentString = '<div style="width:100px;height:50px;">SSM</div>'; // 말풍선
+//		// 내용
+//
+//		var infowindow = new google.maps.InfoWindow({
+//			content : contentString,
+//			size : new google.maps.Size(200, 100)
 //		});
 //
+//		google.maps.event.addListener(map, 'click', function(mouseEvent) {
+//			// alert(mouseEvent.latLng);
+//			placeMarker(mouseEvent.latLng);
+//			// alert(map.getBounds().getSouthWest().lat());
+//			// alert(map.getBounds().getSouthWest().lng());
+//			// alert(map.getBounds().getNorthEast().lat());
+//			// alert(map.getBounds().getNorthEast().lng());
+//
+//		});
+//
+//		// var marker = new google.maps.Marker({
+//		// position: myLatlng,
+//		// map: map,
+//		// draggable:true, // 마커 드래그 가능
+//		// title: 'Hello World!' // 마커 : 도움말 풍선(마우스 오버 시)
+//		// });
+//		// google.maps.event.addListener(marker, 'click', function() {
+//		// infowindow.open(map, marker);
+//		//
+//		// if (marker.getAnimation() != null) {
+//		// marker.setAnimation(null);
+//		// } else {
+//		// marker.setAnimation(google.maps.Animation.BOUNCE);
+//		// }
+//		// });
+//
+//		// marker.setMap(map);
 //	}
-//	google.maps.event.addDomListener(window, 'load', initialize);
-//	function addMarker(location) {
-//	
-//		$.ajax({
-//			type : "POST or GET[변경]",
-//			url : "ajax호출할 url[변경]",
-//			data : "ajax data[변경]",
-//			success : function(data) {
-//	
-//				var markers = [];
-//				if (data) {
-//	
-//					// 만약 ajax처리를 하지 않고 배열로 테스트 할경우 아래 처리 반복문으로 처리하세요
-//					$.each(data, function(i, val) {
-//						var latLng = new google.maps.LatLng(0, 0);
-//						var marker = new google.maps.Marker({
-//							position : latLng,
-//							title : 마커타이틀[변경],
-//							map : map
-//						});
-//	
-//						markers.push(marker);
-//					});
-//				}
-//				markersArray = markers;
-//	
-//			},
-//			error : function(xmlRequest) {
-//				alert(xmlRequest.status + " " + xmlRequest.statusText + " "
-//						+ xmlRequest.responseText);
-//			}
+//
+//	function placeMarker(location) {
+//		var marker = new google.maps.Marker({
+//			position : location,
+//			map : map,
+//			draggable : true
 //		});
 //	}
-});
+//	google.maps.event.addDomListener(window, 'load', initialize);
+//////////////////////////////////////////////////
+	});

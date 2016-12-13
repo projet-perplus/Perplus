@@ -115,8 +115,8 @@ public class MemberServiceImpl implements MemberService{
 	}
 	
 	@Override//선택한 채팅방과 채팅로그 가져오기
-	public ChattingVo selectJoinChattingAndChattingLog(int chattingNumber){
-		return chattingDao.chattingJoin(chattingNumber);
+	public List<ChattingVo> selectJoinChattingAndChattingLog(String memberEmail){
+		return chattingDao.chattingJoin(memberEmail);
 	}
 	
 	/*
@@ -280,6 +280,15 @@ public class MemberServiceImpl implements MemberService{
 		}else{ //null 이면 -> 검색 되지 않았으면
 			throw new Exception("해당 카드가 존재하지 않습니다.");
 		}
+	}
+	
+	public PaymentVo getPaymentByCardSerial(int CardSerial) throws Exception{
+		PaymentVo payment = null;
+		payment = paymentDao.selectPaymentByCardSerial(CardSerial);
+		if(payment == null){
+			throw new Exception("등록된 카드가 없습니다.");
+		}
+		return payment;
 	}
 	
 	public List<PaymentVo> getPayment(String memberEmail) throws Exception{

@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -199,14 +200,33 @@ public class MemberController {
 		return "숙소상세페이지로";
 	}
 	
-	/***********************하우스 상세보기에서 호스트에게 메세지 보내기 눌러서 chatting방 생성*****************************************/
+	/**********************숙소상세페이지에서 최초로 받은 메세지만 받고 넘긴다.*******************/
 	@RequestMapping("/chatting.do")
-	public String chattingRoomCreate(@RequestParam String chattingPartner, @RequestParam String memberEmail){
+	public String chattingRoomCreate(/*@RequestParam String chattingPartner,*/ @RequestParam String memberEmail){
+		int chattingNumber = 0;
+		String chattingPartner = "ask13021123@naver.com";
+		System.out.println(memberEmail);
 		ChattingVo chatting = service.findByChatting(chattingPartner, memberEmail);
-		if(chatting==null){
+		if(chatting==null){//채팅방이 없으면 만들고. 번호 주고
 			service.createChatting(new ChattingVo(0, chattingPartner, memberEmail));
+			chattingNumber = service.findByChatting(chattingPartner, memberEmail).getChattingNumber();
+		}else{//채팅방이 있으면 번호만 주고.
+			chattingNumber = service.findByChatting(chattingPartner, memberEmail).getChattingNumber();
 		}
-		return "redirect:/message.do";
+		
+		
+		return "redirect:/member/chattingfind.do?chattingNumber="+chattingNumber;
+	}
+	
+	/******************채팅 조회*****************/
+	@RequestMapping("/chattingfind.do")
+	public String chattingFind(HttpSession session, ModelMap map){
+		MemberVo member = (MemberVo)session.getAttribute("login_info");
+		String memberEmail = member.getMemberEmail();		
+		List<ChattingVo> chatting = service.selectJoinChattingAndChattingLog(memberEmail);
+		System.out.println(chatting);
+		map.addAttribute("chatting", chatting);
+		return "message/message/message.tiles1";
 	}
 	
 	/***********************채팅로그 생성 ajax처리*************************/
@@ -220,5 +240,7 @@ public class MemberController {
 		map.put("list", list);
 		return map;
 	}
+	
+	/*****************************/
 	
 }

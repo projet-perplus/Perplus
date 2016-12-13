@@ -79,16 +79,16 @@ public class ReviewController {
 		return "reviewdetailpage.hotplacetiles";
 	}
 	/******************리뷰 정보 가져오는 controller********************/
-	@RequestMapping("/login/reviewInfo")
+	@RequestMapping("/reviewInfo")
 	public String reviewInfo(@RequestParam int reviewSerial,ModelMap map,HttpSession session){
 		MemberVo member = (MemberVo)session.getAttribute("login_info");
 		ReviewVo review = service.getReview(reviewSerial);
 		review.setReviewPicture( service.getReviewPictureList(reviewSerial));
-		if(!review.getMemberEmail().equals(member.getMemberEmail())){
+/*		if(!review.getMemberEmail().equals(member.getMemberEmail())){
 			return "권한없습니다~";
-		}	
+		}	*/
 		map.addAttribute("review", review);
-		return "수정폼";
+		return "/WEB-INF/view/dialog/reviewmodify.jsp";
 	}
 	
 	/******************리뷰 글 수정*****************/
@@ -103,13 +103,13 @@ public class ReviewController {
 		service.modifyReview(review);
 		
 		List<ReviewPictureVo> oldPicture = service.getReviewPictureList(reviewSerial);
-		List files = picture.getPictureList();
+		List<MultipartFile> files = picture.getPictureList();
 	
-		List<ReviewPictureVo> newPictures = new ArrayList<>();
 		String newFileName=  null;
-		
+		System.out.println("---------------------");
+		System.out.println(reviewSerial);
+		service.removeReviewPicture(reviewSerial);
 		if(files != null && !files.isEmpty()){
-			service.removeReviewPicture(reviewSerial);
 			int count =1;
 			for(Object f : files){
 				MultipartFile file = (MultipartFile)f;
@@ -131,19 +131,19 @@ public class ReviewController {
 			}
 		}
 		
-		return"수정완료폼";
+		return"redirect:/review/showReview.do?&reviewSerial="+reviewSerial;
 	}
 	
 	/*****************리뷰 글 삭제*****************/
 	//이메일 체크~ session의 email과 리뷰의 email 같지 x으면 삭제x &&로그인 체크
-	@RequestMapping("/login/removeReview")
-	public String removeReview(@RequestParam int reviewSerial, @RequestParam String memberEmail, HttpSession session){
-		MemberVo member = (MemberVo)session.getAttribute("login_info");
-		if(!memberEmail.equals(member.getMemberEmail())){
+	@RequestMapping("/removeReview")
+	public String removeReview(@RequestParam int reviewSerial/*, @RequestParam String memberEmail*/, HttpSession session){
+		//MemberVo member = (MemberVo)session.getAttribute("login_info");
+/*		if(!memberEmail.equals(member.getMemberEmail())){
 			return"에러페이지";
-		}
+		}*/
 		service.removeReview(reviewSerial);	
-		return"지도페이지";
+		return"redirect:/hotplace.do";
 	}
 	
 	/******************리뷰 코멘트 등록*****************/
@@ -163,7 +163,7 @@ public class ReviewController {
 	}
 	
 	/*******************리뷰 코멘트 수정****************/
-	@RequestMapping("/login/modifyReviewComment")
+	@RequestMapping("/modifyReviewComment.do")
 	public String modifyReviewComment(@ModelAttribute ReviewCommentVo reviewComment, @RequestParam int reviewSerial, HttpSession session){
 		//이메일 체크~ session의 email과 코멘트의 email 같지 x으면 수정x
 		MemberVo member = (MemberVo)session.getAttribute("login_info");
