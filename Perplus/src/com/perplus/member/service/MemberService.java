@@ -27,7 +27,7 @@ public interface MemberService {
 	
 	ChattingVo findByChatting(String partnerEmail, String memberEmail);
 	
-	ChattingVo selectJoinChattingAndChattingLog(int chattingNumber);
+	List<ChattingVo> selectJoinChattingAndChattingLog(String memberEmail);
 	
 	
 	//chattinglog service

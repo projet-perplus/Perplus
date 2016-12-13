@@ -32,9 +32,11 @@
 		select	c.chatting_number,
 				c.chatting_partner,
 				c.member_email c_email,
+				l.chatting_number,
 				l.member_email l_email,
-				l.chatting_content
-		from	CHATTING c, CHATTINGLOG l(+)
+				l.chatting_content,
+				l.chatting_time
+		from	CHATTING c, CHATTINGLOG l
 	</sql>
 
 	<resultMap type="ChattingVo" id="chatting-default-resultmap">
@@ -48,12 +50,15 @@
 			<result column="chatting_number" property="chattingNumber"/>
 			<result column="l_email" property="memberEmail"/>
 			<result column="chatting_content" property="chattingContent"/>
+			<result column="chatting_time" property="chattingTime"/>
 		</collection>
 	</resultMap>
 	
-	<select id="selectJoinChattingLog" parameterType="_int" resultMap="chatting-chattinglog-join-resultmap">
+	<select id="selectJoinChattingLog" parameterType="string" resultMap="chatting-chattinglog-join-resultmap">
 		<include refid="select-chatting-join-sql"/>
-		where	c.chatting_number = #{value}
+		where	c.chatting_number = l.chatting_number (+)
+		and		(c.member_email = #{memberEmail}
+		or		c.chatting_partner = #{memberEmail})
 	</select>
 
 </mapper>

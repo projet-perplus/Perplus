@@ -15,28 +15,27 @@
 				<div class="col-md-4">
 					<div class="col-md-12">
 						<div class="form-group">
-							<label for="location">위치</label><br> <input type="text"
-								class="form-control" name="location" id="location"
-								placeholder="목적지 도시명 주소">
+							<label for="location">위치</label><br> 
+							<input type="text" class="form-control" name="location" id="location" placeholder="목적지 도시명 주소">
 						</div>
 					</div>
 				</div>
 				<div class="col-md-4">
-					<div class="form-group">
-						<div class="col-md-6">
-							<!-- <label for="location">날짜</label><br>-->
-							<input type="text" class="form-control" value="체크인" name="check"
-								id="dpd1" style="margin-top: 35px;">
+					<div class="col-md-6">
+						<div class="form-group">
+							<label for="location">체크인</label><br>
+							<input type="text" class="form-control" name="check" id="dpd1" placeholder="yy-mm-dd">
 						</div>
-						<div class="col-md-6">
-							<input type="text" class="form-control" value="체크아웃" name="check"
-								id="dpd2" style="margin-top: 35px">
+					</div>
+					<div class="col-md-6">
+						<div class="form-group">
+							<label for="location">체크아웃</label><br>
+							<input type="text" class="form-control" name="check" id="dpd2" placeholder="yy-mm-dd">
 						</div>
-						<!--</div>-->
 					</div>
 				</div>
 				<div class="col-md-4">
-					<div class="col-sm-6">
+					<div class="col-sm-6 col-md-6">
 						<div class="form-group">
 							<label for="secl1">인원</label> <select class="form-control"
 								name="personnel" id="GuestInput">
@@ -47,37 +46,13 @@
 							</select>
 						</div>
 					</div>
-					<div class="col-sm-6 col-lg-6">
+					<div class="col-sm-6 col-md-6">
 						<a href="${initParam.rootPath}/housesearch.do"><button
 								type="button" class="btn btn-default btn-lg" name="roomssearch"
 								id="Search">숙소 검색</button></a>
 					</div>
 				</div>
 			</form>
-		</div>
-	</div>
-</div>
-
-<!-- Third Container (Grid) -->
-<div class="container-fluid bg-3 text-center">
-	<h3 class="margin">Where To Find Me?</h3>
-	<br>
-	<div class="row">
-		<div class="col-sm-4">
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
-				do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-
-		</div>
-		<div class="col-sm-4">
-
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
-				do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-
-		</div>
-		<div class="col-sm-4">
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
-				do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-
 		</div>
 	</div>
 </div>

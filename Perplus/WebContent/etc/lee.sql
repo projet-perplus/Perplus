@@ -495,4 +495,39 @@ where HOUSE_SERIAL IN
 	and (? + HOUSEFILTER_CHECKIN_TERM >= ?)    
 )
 
+------------------------map 실험
+37.397002083376634
+127.09481058456424
 
+37.40722956764499
+127.11922941543583
+insert into REVIEW values(REVIEW_SEQ.nextval,'aaa','좋은 곳입니다1','밥이 맛있음1',9,'2015-02-02',37.400,127.100,1,'밥집1');
+insert into REVIEW values(REVIEW_SEQ.nextval,'aaa','좋은 곳입니다2','밥이 맛있음2',9,'2015-02-02',37.404,127.110,1,'밥집2');
+insert into REVIEW values(REVIEW_SEQ.nextval,'aaa','좋은 곳입니다3','밥이 맛있음3',9,'2015-02-02',37.500,127.099,1,'밥집3');
+insert into REVIEW values(REVIEW_SEQ.nextval,'aaa','좋은 곳입니다4','밥이 맛있음4',9,'2015-02-02',37.398,127.142,1,'밥집4');
+insert into REVIEW values(REVIEW_SEQ.nextval,'aaa','좋은 곳입니다5','밥이 맛있음5',9,'2015-02-02',37.402,127.112,1,'밥집5');
+insert into REVIEW values(REVIEW_SEQ.nextval,'aaa','좋은 곳입니다6','밥이 맛있음6',9,'2015-02-02',37.400,127.140,1,'밥집6');
+insert into REVIEW values(REVIEW_SEQ.nextval,'aaa','좋은 곳입니다7','밥이 맛있음7',9,'2015-02-02',37.399,127.095,1,'밥집7');
+insert into REVIEW values(REVIEW_SEQ.nextval,'aaa','좋은 곳입니다8','밥이 맛있음8',9,'2015-02-02',37.400,127.102,1,'밥집8');
+insert into REVIEW values(REVIEW_SEQ.nextval,'aaa','좋은 곳입니다9','밥이 맛있음9',9,'2015-02-02',37.405,127.113,1,'밥집9');
+insert into REVIEW values(REVIEW_SEQ.nextval,'aaa','좋은 곳입니다10','밥이 맛있음10',9,'2015-02-02',37.404,127.095,1,'밥집10');
+insert into REVIEW values(REVIEW_SEQ.nextval,'aaa','좋은 곳입니다11','밥이 맛있음11',9,'2015-02-02',37.407,127.097,1,'밥집11');
+
+														between 37.39 and 37.407)
+															and	  (review_marker_y between 127.09 and 127.119)
+
+
+	select 
+		review_serial reviewSerial, 
+		member_email memberEmail,
+		review_title reviewTitle,
+		review_content reviewContent,
+		review_rating reviewRating,
+		review_time reviewTime,
+		review_marker_x reviewMarkerX,
+		review_marker_y reviewMarkerY,
+		review_marker_constant reviewMarkerConstant,
+		review_place reviewPlace
+	from REVIEW 
+	where (review_marker_x between 37.39 and 37.407)
+	and	  (review_marker_y between 127.09 and 127.119)

@@ -17,7 +17,6 @@
 				},
 				success : function(obj) {
 					emailCheck = obj.result;
-
 					if (emailCheck) {
 						$("#emailDupMessage").text("중복된 아이디 입니다.");
 					} else {
