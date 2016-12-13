@@ -3,6 +3,7 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt"%>
+
 <script type="text/javascript">
 	$(document)
 			.ready(
@@ -71,7 +72,7 @@
 											// 					"</select>";
 											var content = "<input type='text' class='form-control' name='commentContent' id='commentContent' value="+comment+">";
 
-											var btn = "<input type='button' value='수정완료' class='btn btn-default modifyComplate' >";
+											var btn = "<input type='button' value='수정완료' class='btn btn-default modifyComplate' ></a>";
 
 											$(this).parent().parent().find(
 													"div.stars").html(
@@ -82,8 +83,12 @@
 
 											$(this).parent().html(btn);
 										});
-						$(".modifyComplate").on("click", function() {
-							alert("바꼈다")
+						$($(".m")).on("click", $(".modifyComplate"), function() {
+								
+									$.ajax({
+										
+									})
+								
 						});
 					});
 </script>
@@ -159,8 +164,9 @@
 			<label class="text-left col-md-2"> <span>방문일자</span>
 			</label>
 			<div class="col-md-6">
-				<%-- <fmt:formatDate value="${requestScope.review.reviewTime}" pattern="yyyy-MM-dd"/> --%>
-				${requestScope.review.reviewTime}
+			<%-- <fmt:parseDate value="${requestScope.review.reviewTime}" var="dateFmt" pattern="yyyy-MM-dd"/>
+ 				<fmt:formatDate value="${dateFmt}"  pattern="yyyy-MM-dd"/> --%>
+				${requestScope.review.reviewTime }
 			</div>
 		</div>
 		<div class="row row-condensed space-4">
@@ -173,27 +179,29 @@
 			</label>
 			<div class="col-md-6">${requestScope.review.reviewContent }</div>
 		</div>
-		<div class="row row-condensed space-4">
-			<div class="col-md-offset-9">
-				<a href="#" data-toggle="modal" data-target="#reviewmodify">
-					<button class="btn btn-default">수정</button>
-				</a> <a href="${initParam.rootPath}/.do">
-					<button class="btn btn-default">삭제</button>
-				</a>
-
-
-
+		
+		<c:if test="${requestScope.review.memberEmail == sessionScope.login_info.memberEmail}">
+			<div class="row row-condensed space-4">
+				<div class="col-md-offset-9">
+					<a href="${initParam.rootPath}/review/reviewInfo.do?reviewSerial=43"
+						data-toggle="modal" data-target="#reviewmodify">
+						<button class="btn btn-default">수정</button>
+					</a> <a href="${initParam.rootPath}/review/removeReview.do?reviewSerial=${requestScope.review.reviewSerial}">
+						<button class="btn btn-default">삭제</button>
+					</a>
+				</div>			
 			</div>
-		</div>
+		</c:if>
+		
 	</div>
-
+	<c:if test="${sessionScope.login_info!=null }">
 	<form action="${initParam.rootPath}/review/registerReviewComment.do">
 		<input type="hidden" name="reviewSerial"
 			value="${requestScope.review.reviewSerial}">
 		<div class="row row-condensed space-4">
 			<div class="col-md-1">
 				<div class="stars stars-example-bootstrap">
-					<select id="commentRating" name="commentRating" autocomplete="off">
+					<select id="commentRating" name="commentRating">
 						<option value=1>1</option>
 						<option value=2>2</option>
 						<option value=3>3</option>
@@ -214,12 +222,12 @@
 			</div>
 		</div>
 	</form>
-
+</c:if>
 	<c:forEach items="${requestScope.review.reviewComment }" var="comment"
 		varStatus="index">
 		<div class="row row-condensed space-4" id="commentArea">
-			<input type="hidden" value="${comment.commentSerial }"
-				id="commentSerial" />
+		<form action="${initParam.rootPath}/review/modifyReviewComment.do">
+		<input type="hidden" name="reviewSerial" value="${comment.reviewSerial}"/>
 			<div class="col-md-1 starlayer">
 				<div class="stars stars-example-bootstrap">${comment.commentRating }</div>
 				<!-- 				$(this).parent().parent().find("div.stars").html("<input type='text' value='aaa'>"); -->
@@ -230,9 +238,9 @@
 			<div class="col-md-2">${comment.commentTime }</div>
 			<c:if
 				test="${comment.memberEmail == sessionScope.login_info.memberEmail}">
-				<div class="col-md-1">
-					<input type="button" value="수정"
-						class="btn btn-default commentModifyBnt" id="${index.index }">
+				<div class="col-md-1 m">
+						<input type="button" value="수정"
+							class="btn btn-default commentModifyBnt" id="${index.index }">
 				</div>
 				<div class="col-md-1">
 					<a
@@ -242,6 +250,7 @@
 					</a>
 				</div>
 			</c:if>
+			</form>
 		</div>
 	</c:forEach>
 
@@ -285,7 +294,6 @@
 			</c:otherwise>
 		</c:choose>
 	</c:forEach>
-
 	<!-- 
 		다음페이지 그룹으로 이동
 		만약에 다음페이지 그룹이 있으면 링크 처리 없으면 화살표만 나오도록 처리

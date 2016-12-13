@@ -64,7 +64,7 @@ and page=#{page}
 </delete>
 
 <!-- DELETE ALL PICTURE -->
-<delete id="deleteAllReviewPicture">
+<delete id="deleteAllReviewPicture" parameterType="_int">
 	delete from reviewpicture
 	where review_serial=#{reviewSerial}
 </delete>

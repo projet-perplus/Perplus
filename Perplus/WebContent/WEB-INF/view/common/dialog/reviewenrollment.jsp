@@ -47,7 +47,7 @@
 							<label class="text-left col-sm-3">사진 등록</label>
 							<div class="col-md-9">
 								<ul></ul>
-								<button type="button" class="btn btn-success" id="addImg">
+								<button type="button" class="btn btn-success addImg" id="addImg">
 									이미지 추가</button>
 							</div>
 
