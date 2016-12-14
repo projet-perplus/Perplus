@@ -716,3 +716,11 @@ a.right.carousel-control {
 	background-image: linear-gradient(to left, rgba(0, 0, 0, 0) 0,
 		rgba(0, 0, 0, 0) 100%);
 }
+/* 리뷰 review */
+.myReviewHeader > .col-md-4{
+ 	height: 50px;
+}
+/
+.myReviewBody > .col-md-4 > span{
+	
+}
