@@ -38,7 +38,7 @@
 								<div class="form-group">
 									<div class="visitDate">
 										<input type="text" class="form-control" name="reviewTime"
-											id="datepicker2">
+											id="datepicker2" required="required">
 									</div>
 								</div>
 							</div>
@@ -47,7 +47,7 @@
 							<label class="text-left col-sm-3">사진 등록</label>
 							<div class="col-md-9">
 								<ul></ul>
-								<button type="button" class="btn btn-success addImg" id="addImg">
+								<button type="button" class="btn btn-success addImg" id="addImg" >
 									이미지 추가</button>
 							</div>
 
@@ -58,7 +58,7 @@
 						<div class="col-sm-9">
 							<div class="stars stars-example-bootstrap" style="height: 40px;">
 								<select id="example-bootstrap" name="reviewRating"
-									autocomplete="off">
+									autocomplete="off" required="required">
 									<option value=1>1</option>
 									<option value=2>2</option>
 									<option value=3>3</option>
@@ -73,7 +73,7 @@
 						<div class="col-sm-9">
 							<div class="form-group">
 								<textarea class="form-control" rows="5" id="comment"
-									name="reviewContent"></textarea>
+									name="reviewContent" required="required"></textarea>
 							</div>
 						</div>
 					</div>

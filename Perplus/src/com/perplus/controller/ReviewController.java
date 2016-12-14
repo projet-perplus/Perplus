@@ -84,14 +84,13 @@ public class ReviewController {
 	/******************내가 작성한 리뷰 조회 controller*******************/
 	@RequestMapping("/myReview.do")
 	@ResponseBody
-	public Map<String,Object> myReview(HttpSession session){
+	public List<ReviewVo> myReview(HttpSession session){
 		MemberVo member = (MemberVo)session.getAttribute("login_info");
 		HashMap<String,Object> map = new HashMap<>();
 		System.out.println(member);
 		List<ReviewVo> list = service.getMyReview(member.getMemberEmail());
 		System.out.println(list);
-		map.put("myReview", list);
-		return map;
+		return list;
 	}
 	/******************리뷰 정보 가져오는 controller********************/
 	@RequestMapping("/reviewInfo.do")
