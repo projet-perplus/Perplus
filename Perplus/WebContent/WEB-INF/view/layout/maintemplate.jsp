@@ -4,15 +4,13 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
 <!DOCTYPE html>
 
-<html>
+<html class="mainBg">
 	<head>
 		<tiles:insertAttribute name="linkandscripthead"/>
 	</head>
 	<style type="text/css">
-		html,body {
-		background: url(/Perplus/css/image/mainBg.jpg) center center no-repeat !important;
-		background-size: cover !important;
-		}
+		
+		
 	</style>
   <body class="mainBg">
   	<header class="perplusheader">
@@ -30,5 +28,6 @@
   		<tiles:insertAttribute name="footer"/>
   	</footer>
   </body>
+  
   	<script src="/Perplus/js/bootstrap.min.js"></script>
 </html>

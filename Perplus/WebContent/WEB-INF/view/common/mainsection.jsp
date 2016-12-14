@@ -3,7 +3,7 @@
 <!-- First Container 메인 배경 -->
 <div class="container-fluid bg-1 text-center">
 	<div class="mainLogo">
-		<img src="/Perplus/css/image/mainLogo.PNG" alt="logo">
+		<img src="/Perplus/css/image/mainLogo2.png" alt="logo">
 	</div>
 </div>
 
