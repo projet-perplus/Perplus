@@ -9,7 +9,7 @@
 		<span>과거 여행</span>
 	</div>
 	<div class="panel-body">
-		<div class="row nowtravel">
+		<div class="row pasttravel">
 			<div class="col-md-12">
 				<div class="slidebar">
 					<div class="carousel slide" id="myCarousel">
@@ -88,6 +88,8 @@
 									</div>
 								</div>
 							</div>
+							
+							
 						</div>
 						<!--  left right button -->
 						<a class="left carousel-control" href="#myCarousel" role="button"
