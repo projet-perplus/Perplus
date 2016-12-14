@@ -91,12 +91,12 @@
 		delete from HOUSE where HOUSE_SERIAL = #{value}
 	</delete>
 	<!-- 단일 집을 select 할때 HouseSerial을 가지고 조회를 한다. -->
-	<select id="selectHouseByHouseSerial" parameterType="_int" resultType="housevo">
+	<select id="selectHouseByHouseSerial" parameterType="_int" resultType="HouseVo">
 		<include refid="default-house-select"/>
 		where HOUSE_SERIAL = #{value}
 	</select>
 	<!-- 해당 회원이 등록한 집을 select할때 로그인한 회원의 Email을 가지고 조회를 한다 -->
-	<select id="selectHouseListByMemberEmail" parameterType="String" resultType="housevo">
+	<select id="selectHouseListByMemberEmail" parameterType="String" resultType="HouseVo">
 		<include refid="default-house-select"/>
 		where MEMBER_EMAIL = #{value}
 	</select>
