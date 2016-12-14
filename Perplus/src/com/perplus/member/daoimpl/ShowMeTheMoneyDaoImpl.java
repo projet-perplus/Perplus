@@ -44,6 +44,13 @@ public class ShowMeTheMoneyDaoImpl implements ShowMeTheMoneyDao{
 		// TODO Auto-generated method stub
 		return session.selectOne(makeSql(), showmethemoneySerial);
 	}
+
+	@Override
+	public int selectShowmethemoneySerialSeq() {
+		// TODO Auto-generated method stub
+		System.out.println("실행"+makeSql());
+		return session.selectOne(makeSql());
+	}
 	
 	
 }

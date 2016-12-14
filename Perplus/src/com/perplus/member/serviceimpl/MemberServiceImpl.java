@@ -426,6 +426,10 @@ public class MemberServiceImpl implements MemberService{
 		}
 	}
 	
+	public int getShowmethemoneySerialSeq() {
+		return showmethemoneyDao.selectShowmethemoneySerialSeq();
+	}
+	
 	/**
 	 * Travel  관련 Service
 	 * @param travel
