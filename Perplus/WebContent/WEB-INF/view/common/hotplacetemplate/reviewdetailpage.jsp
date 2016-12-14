@@ -2,12 +2,23 @@
 <%@page import="java.util.List"%>
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
+<%
+pageContext.setAttribute("CR", "\r");
+pageContext.setAttribute("LF", "\n");
+pageContext.setAttribute("CRLF", "\r\n");
+pageContext.setAttribute("SP", "&nbsp;");
+pageContext.setAttribute("BR", "<br>");
+pageContext.setAttribute("AP", "&amp;");
+pageContext.setAttribute("GT", "&gt;");
+pageContext.setAttribute("LT", "&lt;");
+
+%> 
 
 <script type="text/javascript">
-	$(document)
-			.ready(
-					function() {
+	$(document).ready( function() {
 						$(".commentModifyBnt")
 								.on(
 										"click",
@@ -15,6 +26,7 @@
 											var comment = $(this).parent()
 													.prevAll(".commentContent")
 													.text();
+	
 											var star = $(this).parent()
 													.prevAll(".starlayer")
 													.children("div:first")
@@ -72,7 +84,7 @@
 											// 					"</select>";
 											var content = "<input type='text' class='form-control' name='commentContent' id='commentContent' value="+comment+">";
 
-											var btn = "<input type='button' value='수정완료' class='btn btn-default modifyComplate' ></a>";
+											var btn = "<input type='submit' value='수정완료' class='btn btn-default modifyComplate' ></a>";
 
 											$(this).parent().parent().find(
 													"div.stars").html(
@@ -83,16 +95,10 @@
 
 											$(this).parent().html(btn);
 										});
-						$($(".m")).on("click", $(".modifyComplate"), function() {
-								
-									$.ajax({
-										
-									})
-								
-						});
 					});
 </script>
 
+<!-- 사진 출력 부분 -->
 <div class="container reviewslide">
 	<div class="row">
 		<div class="slidebar">
@@ -144,6 +150,7 @@
 		</ul>
 	</div>
 
+	<!-- REVIEW 내용 출력 부분 -->
 	<div class="housesection">
 		<div class="row row-condensed space-4">
 			<label class="text-left col-md-2"> <span>작성자</span>
@@ -164,9 +171,7 @@
 			<label class="text-left col-md-2"> <span>방문일자</span>
 			</label>
 			<div class="col-md-6">
-			<%-- <fmt:parseDate value="${requestScope.review.reviewTime}" var="dateFmt" pattern="yyyy-MM-dd"/>
- 				<fmt:formatDate value="${dateFmt}"  pattern="yyyy-MM-dd"/> --%>
-				${requestScope.review.reviewTime }
+				<fmt:formatDate value="${requestScope.review.reviewTime }" pattern="yyyy-MM-dd"/>
 			</div>
 		</div>
 		<div class="row row-condensed space-4">
@@ -180,28 +185,32 @@
 			<div class="col-md-6">${requestScope.review.reviewContent }</div>
 		</div>
 		
+		<!-- REVIEW 수정/삭제 버튼 -->
 		<c:if test="${requestScope.review.memberEmail == sessionScope.login_info.memberEmail}">
 			<div class="row row-condensed space-4">
 				<div class="col-md-offset-9">
-					<a href="${initParam.rootPath}/review/reviewInfo.do?reviewSerial=43"
+					<a href="#"
 						data-toggle="modal" data-target="#reviewmodify">
 						<button class="btn btn-default">수정</button>
 					</a> <a href="${initParam.rootPath}/review/removeReview.do?reviewSerial=${requestScope.review.reviewSerial}">
-						<button class="btn btn-default">삭제</button>
+						<button type="submit" class="btn btn-default">삭제</button>
 					</a>
 				</div>			
 			</div>
 		</c:if>
-		
+	
+	<!-- 댓글 입력 폼 -->
 	</div>
 	<c:if test="${sessionScope.login_info!=null }">
 	<form action="${initParam.rootPath}/review/registerReviewComment.do">
 		<input type="hidden" name="reviewSerial"
 			value="${requestScope.review.reviewSerial}">
+		<input type="hidden" name="memberEmail" value="${sessionScope.login_info.memberEmail }">
 		<div class="row row-condensed space-4">
 			<div class="col-md-1">
 				<div class="stars stars-example-bootstrap">
 					<select id="commentRating" name="commentRating">
+						<option value="">평점</option>
 						<option value=1>1</option>
 						<option value=2>2</option>
 						<option value=3>3</option>
@@ -223,11 +232,16 @@
 		</div>
 	</form>
 </c:if>
+
+    <!--달려진 댓글 출력 --> 
 	<c:forEach items="${requestScope.review.reviewComment }" var="comment"
 		varStatus="index">
-		<div class="row row-condensed space-4" id="commentArea">
-		<form action="${initParam.rootPath}/review/modifyReviewComment.do">
-		<input type="hidden" name="reviewSerial" value="${comment.reviewSerial}"/>
+		
+		<div class="row row-condensed space-4" id="commentArea">		
+			<form action="${initParam.rootPath }/review/modifyReviewComment.do">
+			<input type="hidden" name="reviewSerial" value="${comment.reviewSerial}"/>
+			<input type="hidden" name="memberEmail" value="${comment.memberEmail }"/>
+			<input type="hidden" name="commentSerial" value="${comment.commentSerial }"/>
 			<div class="col-md-1 starlayer">
 				<div class="stars stars-example-bootstrap">${comment.commentRating }</div>
 				<!-- 				$(this).parent().parent().find("div.stars").html("<input type='text' value='aaa'>"); -->
@@ -235,25 +249,31 @@
 			</div>
 			<div class="col-md-2">${comment.memberEmail }</div>
 			<div class="col-md-5 commentContent">${comment.commentContent }</div>
-			<div class="col-md-2">${comment.commentTime }</div>
+			<div class="col-md-2"><fmt:formatDate value="${comment.commentTime }" pattern="yyyy-MM-dd HH:mm:ss"/> </div>
+			
+			<!-- 댓글 수정 삭제 버튼 -->
 			<c:if
 				test="${comment.memberEmail == sessionScope.login_info.memberEmail}">
-				<div class="col-md-1 m">
+				<div class="col-md-1">
 						<input type="button" value="수정"
 							class="btn btn-default commentModifyBnt" id="${index.index }">
 				</div>
+			</c:if>
+		</form>
+			<c:if
+				test="${comment.memberEmail == sessionScope.login_info.memberEmail}">
 				<div class="col-md-1">
 					<a
 						href="${initParam.rootPath}/review/removeReviewComment.do?reviewSerial=${requestScope.review.reviewSerial}&commentSerial=${comment.commentSerial}">
-						<input type="submit" value="삭제" class="btn btn-default"
+						<input type="button" value="삭제" class="btn btn-default"
 						id="commentBnt">
 					</a>
 				</div>
 			</c:if>
-			</form>
 		</div>
 	</c:forEach>
 
+	<!--댓글 페이징 처리 부분  -->
 	<!-- 첫 페이지로 이동 -->
 	<a
 		href="${initParam.rootPath}/review/showReview.do?reviewSerial=${requestScope.review.reviewSerial }&page=1">첫페이지로
