@@ -5,6 +5,7 @@ $(function() {
 			.getDate(), 0, 0, 0, 0);
 
 	var checkin = $('#dpd1').datepicker({
+		orientation: 'top',
 		showOtherMonths : true,
 		selectOtherMonths : true,
 		format : 'yyyy-mm-dd',
@@ -24,6 +25,7 @@ $(function() {
 	}).data('datepicker');
 
 	var checkout = $('#dpd2').datepicker({
+		orientation: 'top',
 		showOtherMonths : true,
 		selectOtherMonths : true,
 		format : 'yyyy-mm-dd',
@@ -39,8 +41,9 @@ $(function() {
 	/* 서브메뉴 active */
 	var main = $(".submenu_ul").data("main")
 
-	$("#myNavbar1>ul>li[data-page=" + main + "]").addClass("active")
 
+	$("#myNavbar1>ul>li[data-page=" + main + "]").addClass("active")
+	
 	$(".submenu_ul>li").each(
 			function() {
 				if (window.location.href.indexOf($(this).data("sub")) != -1) {

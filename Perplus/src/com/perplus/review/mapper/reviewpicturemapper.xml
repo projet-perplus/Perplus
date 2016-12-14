@@ -31,7 +31,7 @@ and page=#{page}
 <select id="selectPictureList" parameterType="_int" resultType="ReviewPictureVo">
 	<include refid="picture-select"/>
 	where review_serial=#{reviewSerial}
-	order by review_serial asc
+	order by picture_serial asc
 </select>
 
 <!-- SELECT PICTURE COUNT -->

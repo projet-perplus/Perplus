@@ -3,7 +3,6 @@ package com.perplus.controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -20,6 +19,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.perplus.member.vo.MemberVo;
@@ -27,6 +27,7 @@ import com.perplus.review.service.ReviewService;
 import com.perplus.review.vo.ReviewCommentVo;
 import com.perplus.review.vo.ReviewPictureVo;
 import com.perplus.review.vo.ReviewVo;
+import com.perplus.util.TextUtil;
 
 @Controller
 @RequestMapping("/review")
@@ -51,6 +52,8 @@ public class ReviewController {
 		reviewVo.setReviewMarkerConstant(2);//******
 		reviewVo.setReviewMarkerX(23.5);	//*********
 		reviewVo.setReviewMarkerY(63.2); //************
+		//공백.엔터처리
+		reviewVo.setReviewContent(TextUtil.textToHtml(reviewVo.getReviewContent()));
 		System.out.println(reviewVo);
 		service.registerReview(reviewVo);
 		map.addAttribute("review",reviewVo);
@@ -71,24 +74,36 @@ public class ReviewController {
 					count++;
 					service.registerReviewPicture(picture);
 				}
-				System.out.println();
 			}
 		}
 		List<ReviewPictureVo> list= service.getReviewPictureList(reviewVo.getReviewSerial());
 		map.addAttribute("picture",list);
 		return "reviewdetailpage.hotplacetiles";
 	}
+	
+	/******************내가 작성한 리뷰 조회 controller*******************/
+	@RequestMapping("/myReview.do")
+	@ResponseBody
+	public List<ReviewVo> myReview(HttpSession session){
+		MemberVo member = (MemberVo)session.getAttribute("login_info");
+		HashMap<String,Object> map = new HashMap<>();
+		System.out.println(member);
+		List<ReviewVo> list = service.getMyReview(member.getMemberEmail());
+		System.out.println(list);
+		return list;
+	}
 	/******************리뷰 정보 가져오는 controller********************/
-	@RequestMapping("/reviewInfo")
+	@RequestMapping("/reviewInfo.do")
 	public String reviewInfo(@RequestParam int reviewSerial,ModelMap map,HttpSession session){
 		MemberVo member = (MemberVo)session.getAttribute("login_info");
 		ReviewVo review = service.getReview(reviewSerial);
-		review.setReviewPicture( service.getReviewPictureList(reviewSerial));
-/*		if(!review.getMemberEmail().equals(member.getMemberEmail())){
-			return "권한없습니다~";
-		}	*/
+		//review.setReviewPicture( service.getReviewPictureList(reviewSerial));
+		System.out.println(review);
+		//html코드를 text로 변환
+		String textChange=TextUtil.htmlToText(review.getReviewContent());
+		review.setReviewContent(textChange);
 		map.addAttribute("review", review);
-		return "/WEB-INF/view/dialog/reviewmodify.jsp";
+		return "null";
 	}
 	
 	/******************리뷰 글 수정*****************/
@@ -100,6 +115,8 @@ public class ReviewController {
 		review.setReviewMarkerConstant(oldReview.getReviewMarkerConstant());
 		review.setReviewMarkerX(oldReview.getReviewMarkerX());
 		review.setReviewMarkerY(oldReview.getReviewMarkerY());
+		//공백.엔터처리
+		review.setReviewContent(TextUtil.textToHtml(review.getReviewContent()));
 		service.modifyReview(review);
 		
 		List<ReviewPictureVo> oldPicture = service.getReviewPictureList(reviewSerial);
@@ -108,8 +125,8 @@ public class ReviewController {
 		String newFileName=  null;
 		System.out.println("---------------------");
 		System.out.println(reviewSerial);
-		service.removeReviewPicture(reviewSerial);
 		if(files != null && !files.isEmpty()){
+			service.removeReviewPicture(reviewSerial);
 			int count =1;
 			for(Object f : files){
 				MultipartFile file = (MultipartFile)f;
@@ -137,52 +154,36 @@ public class ReviewController {
 	/*****************리뷰 글 삭제*****************/
 	//이메일 체크~ session의 email과 리뷰의 email 같지 x으면 삭제x &&로그인 체크
 	@RequestMapping("/removeReview")
-	public String removeReview(@RequestParam int reviewSerial/*, @RequestParam String memberEmail*/, HttpSession session){
-		//MemberVo member = (MemberVo)session.getAttribute("login_info");
-/*		if(!memberEmail.equals(member.getMemberEmail())){
-			return"에러페이지";
-		}*/
+	public String removeReview(@RequestParam int reviewSerial, HttpSession session){		
 		service.removeReview(reviewSerial);	
 		return"redirect:/hotplace.do";
 	}
 	
 	/******************리뷰 코멘트 등록*****************/
 	@RequestMapping("/registerReviewComment.do")
-	public String registerReviewComment(@ModelAttribute ReviewCommentVo reviewComment,ModelMap map, HttpServletRequest request,HttpSession session){
-		
-		Date d =new Date();
-		MemberVo member = (MemberVo)session.getAttribute("login_info");
-		//int reviewSerial = 43;  //******requestParameter로 읽어들여야함!!
-		reviewComment.setMemberEmail(member.getMemberEmail());
-		reviewComment.setCommentTime(d);
-		//reviewComment.setReviewSerial(reviewSerial);
+	public String registerReviewComment(@ModelAttribute ReviewCommentVo reviewComment,ModelMap map){
+		reviewComment.setCommentTime(new Date());
+		reviewComment.setCommentContent(TextUtil.textToHtml(reviewComment.getCommentContent()));
 		System.out.println(reviewComment);
 		service.registerReviewComment(reviewComment);
-		//map.put("reviewSerial", reviewSerial);
+		
 		return"redirect:/review/showReview.do?&reviewSerial="+reviewComment.getReviewSerial();
 	}
 	
 	/*******************리뷰 코멘트 수정****************/
 	@RequestMapping("/modifyReviewComment.do")
-	public String modifyReviewComment(@ModelAttribute ReviewCommentVo reviewComment, @RequestParam int reviewSerial, HttpSession session){
+	public String modifyReviewComment(@ModelAttribute ReviewCommentVo reviewComment){
 		//이메일 체크~ session의 email과 코멘트의 email 같지 x으면 수정x
-		MemberVo member = (MemberVo)session.getAttribute("login_info");
-		if(!reviewComment.getMemberEmail().equals(member.getMemberEmail())){
-			return"에러페이지";
-		}
-		reviewComment.setReviewSerial(reviewSerial);
+		reviewComment.setCommentTime(new Date());
+		reviewComment.setCommentContent(TextUtil.textToHtml(reviewComment.getCommentContent()));
+		System.out.println(reviewComment);
 		service.modifyReviewComment(reviewComment);
-		return"리뷰 상세보기 페이지";
+		return"redirect:/review/showReview.do?&reviewSerial="+reviewComment.getReviewSerial();
 	}
 	
 	/******************리뷰 코멘트 삭제*****************/
 	@RequestMapping("/removeReviewComment")
-	public String removeReviewComment(@RequestParam int	commentSerial,@RequestParam int reviewSerial/*,@RequestParam String memberEmail*/, HttpSession session){
-		//이메일 체크~ session의 email과 코멘트의 email 같지 x으면 삭제x
-		MemberVo member = (MemberVo)session.getAttribute("login_info");
-/*		if(!memberEmail.equals(member.getMemberEmail())){
-			return"에러페이지";
-		}*/
+	public String removeReviewComment(@RequestParam int	commentSerial,@RequestParam int reviewSerial){		
 		service.removeReviewComment(commentSerial);
 		return"redirect:/review/showReview.do?&reviewSerial="+reviewSerial;
 	}
@@ -193,17 +194,17 @@ public class ReviewController {
 	@RequestMapping("/showReview")
 	public String selectReview(@RequestParam int reviewSerial,ModelMap modelMap,@RequestParam(defaultValue="1") int page){
 		ReviewVo review = service.getReview(reviewSerial);
-		Map map= service.getReviewCommentList(reviewSerial, page);
+		Map<String,Object> map= service.getReviewCommentList(reviewSerial, page);
 		List<ReviewPictureVo> list = service.getReviewPictureList(reviewSerial);
-		//review.setReviewPicture(service.getReviewPictureList(reviewSerial));
+		
 		review.setReviewComment((List<ReviewCommentVo>)map.get("list"));
 		System.out.println(review);
 		modelMap.put("review", review);
 		modelMap.put("picture", list);
 		modelMap.put("pageBean", map.get("pageBean"));
+		
 		return "reviewdetailpage.hotplacetiles";
 	}
-	
 	
 	public String selectMarkerBySection(HashMap map){
 		return "reviewdetailpage.hotplacetiles";

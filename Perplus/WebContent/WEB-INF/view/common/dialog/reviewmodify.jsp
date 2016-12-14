@@ -1,8 +1,27 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!-- reviewEnrollment-->
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<!--reviewContent의 HTML 코드를 JAVA로 바꿔주기 위한 코드 -->
+<%
+pageContext.setAttribute("CR", "\r");
+pageContext.setAttribute("LF", "\n");
+pageContext.setAttribute("CRLF", "\r\n");
+pageContext.setAttribute("SP", "&nbsp;");
+pageContext.setAttribute("BR", "<br>");
+pageContext.setAttribute("AP", "&amp;");
+pageContext.setAttribute("GT", "&gt;");
+pageContext.setAttribute("LT", "&lt;");
 
+%> 
+
+<c:set var="cmt" value="${fn:replace(requestScope.review.reviewContent, BR,LF)}" />
+<c:set var="cmt" value="${fn:replace(cmt,SP,' ')}" />
+<c:set var="cmt" value="${fn:replace(cmt,AP,'&')}" />
+<c:set var="cmt" value="${fn:replace(cmt,GT,'>')}" />
+<c:set var="cmt" value="${fn:replace(cmt,LT,'<')}" />
+
+<!-- reviewModify-->
 <div class="modal fade" id="reviewmodify" role="dialog"
 	aria-labelledby="basicModal" aria-hidden="true">
 	<div class="modal-dialog reviewEnrollment-dialog">
@@ -122,7 +141,7 @@
 						<div class="col-sm-9">
 							<div class="form-group">
 								<textarea class="form-control" rows="5" id="comment"
-									name="reviewContent" >${requestScope.review.reviewContent }</textarea>
+									name="reviewContent" >${ cmt}</textarea>
 							</div>
 						</div>
 					</div>
