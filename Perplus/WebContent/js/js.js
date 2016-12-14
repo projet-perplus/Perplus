@@ -41,8 +41,9 @@ $(function() {
 	/* 서브메뉴 active */
 	var main = $(".submenu_ul").data("main")
 
-	$("#myNavbar1>ul>li[data-page=" + main + "]").addClass("active")
 
+	$("#myNavbar1>ul>li[data-page=" + main + "]").addClass("active")
+	
 	$(".submenu_ul>li").each(
 			function() {
 				if (window.location.href.indexOf($(this).data("sub")) != -1) {

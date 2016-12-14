@@ -88,6 +88,8 @@
 									</div>
 								</div>
 							</div>
+							
+							
 						</div>
 						<!--  left right button -->
 						<a class="left carousel-control" href="#myCarousel" role="button"
