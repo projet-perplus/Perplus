@@ -10,7 +10,7 @@
 				return false;
 			}
 			var mempassword = "${sessionScope.login_info.memberPassword}";
-			if($("#modifyPassword").val() != mempassword){
+			if ($("#modifyPassword").val() != mempassword) {
 				alert("비밀번호를 확인해 주세요.");
 				$("#modifyPassword").focus();
 				return false;
@@ -53,7 +53,8 @@
 						</c:when>
 						<c:otherwise>
 							<img
-								src="/Perplus/memberPicture/${sessionScope.login_info.memberPicture}">
+								src="/Perplus/memberPicture/${sessionScope.login_info.memberPicture}"
+								width="200" height="200">
 						</c:otherwise>
 					</c:choose>
 					<input type="file" name="memberPictureFile" value="사진등록" />
@@ -184,8 +185,9 @@
 								<div class="col-sm-4" style="padding-left: 0px;">
 									<div class="form-group">
 										<div class="col-md-12">
-											<input type="password" class="form-control" id="modifyPassword"
-												name="memberPassword" required="required">
+											<input type="password" class="form-control"
+												id="modifyPassword" name="memberPassword"
+												required="required">
 										</div>
 									</div>
 								</div>
@@ -268,4 +270,32 @@
 		</div>
 	</form>
 </div>
-7878 
+
+<div id="dashboard-content">
+	<div class="panel-header">
+		<span>본인 인증</span>
+	</div>
+	<c:choose>
+		<c:when test="${sessionScope.login_info.memberIdentification == null}">
+			<form action="${initParam.rootPath}/member/identification.do"
+				method="post" enctype="multipart/form-data">
+				<div class="panel-body">
+					<input name="memberPictureFile" type="file" value="신분증 등록" />
+
+				</div>
+				<div class="row row-condensed space-4">
+					<div class="col-sm-9"></div>
+					<div class="col-sm-3">
+						<div class="col-md-12">
+							<input class="btn btn-primary" type="submit" value="저장"
+								style="float: right;">
+						</div>
+					</div>
+				</div>
+			</form>
+		</c:when>
+		<c:otherwise>
+			<div class="panel-body" style="text-align:center"><span style="font-size: 20px; color: blue;">인증되었습니다.</span></div>
+		</c:otherwise>
+	</c:choose>
+</div>
