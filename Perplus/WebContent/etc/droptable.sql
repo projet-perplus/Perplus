@@ -21,7 +21,7 @@ drop table TRAVEL cascade constraint;
 
 <<<<<<< HEAD
 =======
-
+delete from REVIEW;
 
 
 select * from member

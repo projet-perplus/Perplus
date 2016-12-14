@@ -10,7 +10,19 @@ public class ChattingLogVo {
 	private Date chattingTime;//채팅일시
 	private ChattingVo chatting;//chatting방을 찾기위한 vo
 	
+	private MemberVo memberList;//chattinglog에 속해있는 member들.
+	
 	public ChattingLogVo() {}
+
+	public ChattingLogVo(int chattingNumber, String memberEmail, String chattingContent, Date chattingTime,
+			ChattingVo chatting, MemberVo memberList) {
+		this.chattingNumber = chattingNumber;
+		this.memberEmail = memberEmail;
+		this.chattingContent = chattingContent;
+		this.chattingTime = chattingTime;
+		this.chatting = chatting;
+		this.memberList = memberList;
+	}
 
 	public ChattingLogVo(int chattingNumber, String memberEmail, String chattingContent, Date chattingTime,
 			ChattingVo chatting) {
@@ -21,11 +33,12 @@ public class ChattingLogVo {
 		this.chatting = chatting;
 	}
 
-	public ChattingLogVo(int chattingNumber, String memberEmail, String chattingContent, Date chattingTime) {
+	
+	
+	public ChattingLogVo(int chattingNumber, String memberEmail, String chattingContent) {
 		this.chattingNumber = chattingNumber;
 		this.memberEmail = memberEmail;
 		this.chattingContent = chattingContent;
-		this.chattingTime = chattingTime;
 	}
 
 	public int getChattingNumber() {
@@ -68,10 +81,19 @@ public class ChattingLogVo {
 		this.chatting = chatting;
 	}
 
+	public MemberVo getMemberList() {
+		return memberList;
+	}
+
+	public void setMemberList(MemberVo memberList) {
+		this.memberList = memberList;
+	}
+
 	@Override
 	public String toString() {
 		return "ChattingLogVo [chattingNumber=" + chattingNumber + ", memberEmail=" + memberEmail + ", chattingContent="
-				+ chattingContent + ", chattingTime=" + chattingTime + ", chatting=" + chatting + "]";
+				+ chattingContent + ", chattingTime=" + chattingTime + ", chatting=" + chatting + ", memberList="
+				+ memberList + "]";
 	}
 
 	@Override
@@ -83,6 +105,7 @@ public class ChattingLogVo {
 		result = prime * result + chattingNumber;
 		result = prime * result + ((chattingTime == null) ? 0 : chattingTime.hashCode());
 		result = prime * result + ((memberEmail == null) ? 0 : memberEmail.hashCode());
+		result = prime * result + ((memberList == null) ? 0 : memberList.hashCode());
 		return result;
 	}
 
@@ -117,9 +140,13 @@ public class ChattingLogVo {
 				return false;
 		} else if (!memberEmail.equals(other.memberEmail))
 			return false;
+		if (memberList == null) {
+			if (other.memberList != null)
+				return false;
+		} else if (!memberList.equals(other.memberList))
+			return false;
 		return true;
 	}
-	
 	
 	
 }

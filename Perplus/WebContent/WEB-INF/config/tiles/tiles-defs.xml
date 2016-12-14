@@ -32,8 +32,6 @@
 		<put-attribute name="paymentmethoddialog" value="/WEB-INF/view/common/dialog/paymentmethoddialog.jsp"/>
 		<put-attribute name="payoutpreference" value="/WEB-INF/view/common/dialog/payoutpreferencedialog.jsp"/>
 		<put-attribute name="passwordconfirmdialog" value="/WEB-INF/view/common/dialog/passwordconfirmdialog.jsp"/>
-		<put-attribute name="chattingdialog" value="/WEB-INF/view/common/dialog/chattingdialog.jsp"/>
-		<put-attribute name="chattinglogdialog" value="/WEB-INF/view/common/dialog/chattinglogdialog.jsp"/>
 	</definition>
 
 	<definition name="*/*/*.tiles1" extends="subtemplate">

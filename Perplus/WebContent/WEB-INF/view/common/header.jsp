@@ -5,10 +5,10 @@
 </script>
 
 <nav class="navbar navbar-default" id="navbar1">
-	<div class="container-fluid">
+	<div class="container-fluid navbarheader">
 		<div class="navbar-header">
-			<a class="navbar-img" href="${initParam.rootPath}/main.do"> <img
-				src="/Perplus/css/image/logos.PNG" alt="logo" />
+			<a class="navbar-img" href="${initParam.rootPath}/main.do">
+			<img src="/Perplus/css/image/logos.PNG" alt="logo" />
 			</a>
 			<button type="button" class="navbar-toggle" data-toggle="collapse"
 				data-target="#myNavbar">
@@ -34,8 +34,8 @@
 						<li><a href="${initParam.rootPath}/hotplace.do">여행명소</a></li>
 						<li><a href="${initParam.rootPath}/hosting.do">호스팅하기</a></li>
 						<li><a href="${initParam.rootPath}/nowtravel.do">여행</a></li>
-						<li><a href="${initParam.rootPath}/member/chattingfind.do">메시지</a></li>
 						<li><a href="${initParam.rootPath}/accountmanagement.do">마이페이지</a></li>
+						<li><a href="${initParam.rootPath}/member/chattingfind.do">메시지</a></li>
 						<li><a href="${initParam.rootPath}/member/logout.do">로그아웃</a></li>
 					</ul>
 				</div>
