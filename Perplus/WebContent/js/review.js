@@ -7,8 +7,9 @@ $(function(){
 				)
 		)
 		count++;
+		if(count==5){
+			$(".addImg").hide();
+		}
 	})
-	if(count==5){
-		$(".addImg").hide();
-	}
+
 })

@@ -13,7 +13,7 @@ public class MemberVo<T> {
 	private String memberTel;//회원전화번호
 	private String memberLocation;//회원주소
 	private String memberIntroduction;//회원 자기소개
-	private int memberIdentification;//회원 주민등록번호 인증유무
+	private String memberIdentification;//회원 주민등록번호 인증유무
 	private String memberPicture;//회원 프로필사진
 	
 	private MultipartFile memberPictureFile;//파일 받는 변수
@@ -22,32 +22,9 @@ public class MemberVo<T> {
 	
 	public MemberVo() {}
 
-	public MemberVo(String memberEmail, String memberPassword, String memberName, String memberBirthday) {
-		this.memberEmail = memberEmail;
-		this.memberPassword = memberPassword;
-		this.memberName = memberName;
-		this.memberBirthday = memberBirthday;
-	}
-
 	public MemberVo(String memberEmail, String memberPassword, String memberName, String memberBirthday,
 			String memberGender, String memberTel, String memberLocation, String memberIntroduction,
-			int memberIdentification, String memberPicture, MultipartFile memberPictureFile) {
-		this.memberEmail = memberEmail;
-		this.memberPassword = memberPassword;
-		this.memberName = memberName;
-		this.memberBirthday = memberBirthday;
-		this.memberGender = memberGender;
-		this.memberTel = memberTel;
-		this.memberLocation = memberLocation;
-		this.memberIntroduction = memberIntroduction;
-		this.memberIdentification = memberIdentification;
-		this.memberPicture = memberPicture;
-		this.memberPictureFile = memberPictureFile;
-	}
-
-	public MemberVo(String memberEmail, String memberPassword, String memberName, String memberBirthday,
-			String memberGender, String memberTel, String memberLocation, String memberIntroduction,
-			int memberIdentification, String memberPicture, MultipartFile memberPictureFile, List<T> list) {
+			String memberIdentification, String memberPicture, MultipartFile memberPictureFile, List<T> list) {
 		this.memberEmail = memberEmail;
 		this.memberPassword = memberPassword;
 		this.memberName = memberName;
@@ -60,6 +37,22 @@ public class MemberVo<T> {
 		this.memberPicture = memberPicture;
 		this.memberPictureFile = memberPictureFile;
 		this.list = list;
+	}
+
+	public MemberVo(String memberEmail, String memberPassword, String memberName, String memberBirthday,
+			String memberGender, String memberTel, String memberLocation, String memberIntroduction,
+			String memberIdentification, String memberPicture, MultipartFile memberPictureFile) {
+		this.memberEmail = memberEmail;
+		this.memberPassword = memberPassword;
+		this.memberName = memberName;
+		this.memberBirthday = memberBirthday;
+		this.memberGender = memberGender;
+		this.memberTel = memberTel;
+		this.memberLocation = memberLocation;
+		this.memberIntroduction = memberIntroduction;
+		this.memberIdentification = memberIdentification;
+		this.memberPicture = memberPicture;
+		this.memberPictureFile = memberPictureFile;
 	}
 
 	public String getMemberEmail() {
@@ -126,11 +119,11 @@ public class MemberVo<T> {
 		this.memberIntroduction = memberIntroduction;
 	}
 
-	public int getMemberIdentification() {
+	public String getMemberIdentification() {
 		return memberIdentification;
 	}
 
-	public void setMemberIdentification(int memberIdentification) {
+	public void setMemberIdentification(String memberIdentification) {
 		this.memberIdentification = memberIdentification;
 	}
 
@@ -175,7 +168,7 @@ public class MemberVo<T> {
 		result = prime * result + ((memberBirthday == null) ? 0 : memberBirthday.hashCode());
 		result = prime * result + ((memberEmail == null) ? 0 : memberEmail.hashCode());
 		result = prime * result + ((memberGender == null) ? 0 : memberGender.hashCode());
-		result = prime * result + memberIdentification;
+		result = prime * result + ((memberIdentification == null) ? 0 : memberIdentification.hashCode());
 		result = prime * result + ((memberIntroduction == null) ? 0 : memberIntroduction.hashCode());
 		result = prime * result + ((memberLocation == null) ? 0 : memberLocation.hashCode());
 		result = prime * result + ((memberName == null) ? 0 : memberName.hashCode());
@@ -215,7 +208,10 @@ public class MemberVo<T> {
 				return false;
 		} else if (!memberGender.equals(other.memberGender))
 			return false;
-		if (memberIdentification != other.memberIdentification)
+		if (memberIdentification == null) {
+			if (other.memberIdentification != null)
+				return false;
+		} else if (!memberIdentification.equals(other.memberIdentification))
 			return false;
 		if (memberIntroduction == null) {
 			if (other.memberIntroduction != null)
@@ -254,8 +250,6 @@ public class MemberVo<T> {
 			return false;
 		return true;
 	}
-
-	
 	
 	
 }

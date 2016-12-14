@@ -27,10 +27,11 @@ $(function() {
 						map.getBounds().getSouthWest().lat(),map.getBounds().getSouthWest().lng(),map.getBounds().getNorthEast().lat(),
 						map.getBounds().getNorthEast().lng());
 			//맵 클러스터링
-			markerCluster = new MarkerClusterer(map,markerArray,{imagePath:'img/m'});
+			markerCluster = new MarkerClusterer(map,markerArray,{imagePath:'img/clustering/m'});
 		});
 		google.maps.event.addListener(map, 'click', function(mouseEvent) {
 			// alert(mouseEvent.latLng);
+			
 			placeMarker(mouseEvent.latLng);
 		});
 
@@ -86,7 +87,7 @@ $(function() {
 			success:function(obj){
 				$.each(obj,function(){
 					var markerLatlng = new google.maps.LatLng(this.REVIEWMARKERX, this.REVIEWMARKERY);
-					placeMarker(markerLatlng);
+					placeMarker(markerLatlng,this.REVIEWMARKERCONSTANT);
 				});
 			},
 			error:function(request,error,status){
@@ -94,14 +95,16 @@ $(function() {
 			}
 		});
 	}
-	var markers;
-	function placeMarker(location) {
+	var tourIcon = new google.maps.MarkerImage("/Perplus/img/markerIcon/tours.png");
+	var defaultIcon = new google.maps.MarkerImage("/Perplus/img/markerIcon/default.png");
+	var restaurantIcon = new google.maps.MarkerImage("/Perplus/img/markerIcon/restaurantIcon.png");
+	function placeMarker(location,constant) {
 		var marker = new google.maps.Marker({
 			position : location,
 			map : map,
-			draggable : true
+			draggable : true,
+			icon : tourIcon
 		});
-		
 		markerArray.push(marker);
 	}
 	

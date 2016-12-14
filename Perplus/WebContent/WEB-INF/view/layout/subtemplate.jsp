@@ -37,8 +37,6 @@
 	  				</div>
 	  				<div class="col-md-9">
 	  					<tiles:insertAttribute name="rightmenu"/>
-  						<tiles:insertAttribute name="chattingdialog"/>
-  						<tiles:insertAttribute name="chattinglogdialog"/>
 	  				</div>
 	  			</div>
 	  		</div>

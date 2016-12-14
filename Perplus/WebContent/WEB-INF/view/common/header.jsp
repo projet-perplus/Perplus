@@ -34,8 +34,8 @@
 						<li><a href="${initParam.rootPath}/hotplace.do">여행명소</a></li>
 						<li><a href="${initParam.rootPath}/hosting.do">호스팅하기</a></li>
 						<li><a href="${initParam.rootPath}/nowtravel.do">여행</a></li>
-						<li><a href="${initParam.rootPath}/member/chattingfind.do">메시지</a></li>
 						<li><a href="${initParam.rootPath}/accountmanagement.do">마이페이지</a></li>
+						<li><a href="${initParam.rootPath}/member/chattingfind.do">메시지</a></li>
 						<li><a href="${initParam.rootPath}/member/logout.do">로그아웃</a></li>
 					</ul>
 				</div>

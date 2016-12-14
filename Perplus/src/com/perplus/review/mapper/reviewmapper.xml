@@ -83,7 +83,7 @@
 </update>
 
 <!--	SELECT REVIEW BY EMAIL  -->
-<select id="selectReviewByEmail" parameterType="_int" resultType="ReviewVo">
+<select id="selectReviewByEmail" parameterType="string" resultType="ReviewVo">
 	select review_serial reviewSerial, 
 			 member_email memberEmail,
 			 review_title reviewTitle,
