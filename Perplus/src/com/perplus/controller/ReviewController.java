@@ -3,7 +3,6 @@ package com.perplus.controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -20,6 +19,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.perplus.member.vo.MemberVo;
@@ -79,6 +79,19 @@ public class ReviewController {
 		List<ReviewPictureVo> list= service.getReviewPictureList(reviewVo.getReviewSerial());
 		map.addAttribute("picture",list);
 		return "reviewdetailpage.hotplacetiles";
+	}
+	
+	/******************내가 작성한 리뷰 조회 controller*******************/
+	@RequestMapping("/myReview.do")
+	@ResponseBody
+	public Map<String,Object> myReview(HttpSession session){
+		MemberVo member = (MemberVo)session.getAttribute("login_info");
+		HashMap<String,Object> map = new HashMap<>();
+		System.out.println(member);
+		List<ReviewVo> list = service.getMyReview(member.getMemberEmail());
+		System.out.println(list);
+		map.put("myReview", list);
+		return map;
 	}
 	/******************리뷰 정보 가져오는 controller********************/
 	@RequestMapping("/reviewInfo.do")
