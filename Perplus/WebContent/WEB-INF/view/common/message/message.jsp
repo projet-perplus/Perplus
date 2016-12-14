@@ -3,13 +3,15 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <script type="text/javascript">
 	function messageScrollToBottom() {
-		$('div.messageBody').scrollTop($(".messageWrapper").height());
+		var height = $(this).find(".messageWrapper").height();
+		$('.messageBody').scrollTop(height);
 	}
 
 	$(function() {
 		var chattingNumber = '${requestScope.returnChattingNumber}';
 
-		$('#a' + chattingNumber).on('shown.bs.modal', messageScrollToBottom)
+		/* 메시지창 접근 시 스크롤 내려주는 이벤트 */
+		$(".chattingDialog").on('shown.bs.modal', messageScrollToBottom)
 
 		$('#a' + chattingNumber).on('hidden.bs.modal', function() {
 			if (chattingNumber) {
@@ -19,9 +21,18 @@
 
 		if (chattingNumber) {
 			$('#a' + chattingNumber).modal('show');
+
 		}
 
 	})
+
+	/* refresh 30초 주기 */
+	$(function() {
+		timer = setInterval(function() {
+			var url = location.href;
+			$(location).attr('href', url);
+		}, 30000);
+	});
 </script>
 <c:choose>
 	<c:when test="${!empty requestScope.chatting}">
@@ -38,8 +49,9 @@
 					</c:otherwise>
 					</c:choose>
 				</button></a>
-			<div class="modal fade" id="a${chatting.chattingNumber}"
-				role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+			<div class="modal fade chattingDialog"
+				id="a${chatting.chattingNumber}" role="dialog"
+				aria-labelledby="basicModal" aria-hidden="true">
 				<div class="modal-dialog">
 					<!-- Modal content-->
 					<form action="${initParam.rootPath}/member/chattinglog.do">
@@ -54,7 +66,7 @@
 							</div>
 							<div class="modal-body">
 								<div id="messageDiv" class="messageBody"
-									style="width: 100%; max-height: 250px; overflow: scroll;">
+									style="width: 100%; max-height: 250px; overflow: auto;">
 									<div class="messageWrapper">
 										<c:forEach items="${chatting.chattingLog}" var="log">
 											<c:choose>
@@ -86,20 +98,15 @@
 							</div>
 							<div class="modal-footer">
 								<div class="row-maginTB">
-									<div class="form-group">
-										<textarea class="form-control" rows="1"
-											id="chattingContentArea" name="chattingContent"></textarea>
+									<div class="col-md-9">
+										<div class="form-group">
+											<textarea class="form-control" rows="1"
+												id="chattingContentArea" name="chattingContent"></textarea>
+										</div>
 									</div>
-								</div>
-
-								<div class="row">
-									<div class="col-md-offset-1 col-md-5 leftform">
-										<button type="button" class="btn btn-default"
-											data-dismiss="modal" style="float: left !important;">취소</button>
-									</div>
-									<div class="col-md-5 rightform">
+									<div class="col-md-2">
 										<input type="submit" id="chattingLogSendBtn"
-											class="btn btn-default" value="보내기">
+											class="btn btn-default" value="전송">
 									</div>
 								</div>
 							</div>

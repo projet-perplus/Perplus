@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -31,6 +32,7 @@ import com.perplus.member.vo.HouseCommentVo;
 import com.perplus.member.vo.HouseZzimVo;
 import com.perplus.member.vo.HowgetmoneyVo;
 import com.perplus.member.vo.MemberVo;
+import com.perplus.util.TextUtil;
 
 
 @Controller
@@ -81,9 +83,7 @@ public class MemberController {
 		return "redirect:/main.do";
 	}
 
-	/*******************멤버 정보 수정
-	 * @throws IOException 
-	 * @throws IllegalStateException *************************/
+	/*******************멤버 정보 수정*************************/
 	@RequestMapping(value="/modify.do", method=RequestMethod.POST)
 	public String modifymember(@ModelAttribute MemberVo newData, BindingResult result, HttpServletRequest request, HttpSession session) throws IllegalStateException, IOException{
 		MemberVo loginInfo =  (MemberVo)session.getAttribute("login_info");
@@ -137,6 +137,29 @@ public class MemberController {
 		service.deleteMember(memberEmail);
 		session.invalidate();
 		return "redirect:/main.do";
+	}
+	
+	/******************본인 인증*********************/
+	@RequestMapping("/identification.do")
+	public String memberIdentification(@RequestParam MultipartFile memberPictureFile, HttpSession session, HttpServletRequest request) throws IllegalStateException, IOException{
+		MemberVo loginInfo = (MemberVo)session.getAttribute("login_info");
+		
+		MultipartFile file = memberPictureFile;
+		System.out.println(file);
+		String fileName = "";
+		if(file!=null && !file.isEmpty()){
+			fileName = UUID.randomUUID().toString().replaceAll("-","");
+			File picture = new File(request.getServletContext().getRealPath("/memberIdentification"), fileName);
+			file.transferTo(picture);
+			//기존 사진이 있는 경우 삭제
+			if(loginInfo.getMemberPicture()!=null){
+				File oldPic = new File(request.getServletContext().getRealPath("/memberPicture"), loginInfo.getMemberPicture());
+				oldPic.delete();
+			}
+			loginInfo.setMemberIdentification(fileName);
+		}
+		service.updateMember(loginInfo);
+		return "redirect:/modifyandcertified.do";
 	}
 	
 	/****************howgetmoney조회********************/
@@ -206,7 +229,6 @@ public class MemberController {
 	public String chattingRoomCreate(/*@RequestParam String chattingPartner,*/ @RequestParam String memberEmail){
 		int chattingNumber = 0;
 		String chattingPartner = "ask13021123@naver.com";
-		System.out.println(memberEmail);
 		ChattingVo chatting = service.findByChatting(chattingPartner, memberEmail);
 		if(chatting==null){//채팅방이 없으면 만들고. 번호 주고
 			service.createChatting(new ChattingVo(0, chattingPartner, memberEmail));
@@ -226,7 +248,13 @@ public class MemberController {
 		MemberVo member = (MemberVo)session.getAttribute("login_info");
 		String memberEmail = member.getMemberEmail();
 		List<ChattingVo> chatting = service.selectJoinChattingAndChattingLog(memberEmail);
-		System.out.println(chatting);
+		for(int i = 0; i<chatting.size();i++){
+			for(int j= 0; j<chatting.get(i).getChattingLog().size();j++){
+				TextUtil tu = new TextUtil();
+				String a = tu.htmlToText(chatting.get(i).getChattingLog().get(j).getChattingContent());
+				chatting.get(i).getChattingLog().get(j).setChattingContent(a);
+			}
+		}
 		
 		map.addAttribute("chatting", chatting);
 		if(request.getParameter("returnChattingNumber")!=null){
@@ -239,6 +267,11 @@ public class MemberController {
 	/***********************채팅로그 생성 처리*************************/
 	@RequestMapping("/chattinglog.do")
 	public String chattingLogInsert(@ModelAttribute ChattingLogVo chattingLog,ModelMap map){
+		if(chattingLog.getChattingContent()==null||chattingLog.getChattingContent().trim().length()<1){
+			return "redirect:/member/chattingfind.do?returnChattingNumber="+chattingLog.getChattingNumber();
+		}
+		TextUtil tu = new TextUtil();
+		chattingLog.setChattingContent(tu.textToHtml(chattingLog.getChattingContent()));
 		chattingLog.setChattingTime(new Date());
 		service.insertChattingLog(chattingLog);
 		return "redirect:/member/chattingfind.do?returnChattingNumber="+chattingLog.getChattingNumber();

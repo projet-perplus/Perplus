@@ -3,7 +3,7 @@
 
 <mapper namespace="member">
 	<insert id="insertMember" parameterType="MemberVo">
-		insert into member values(#{memberEmail},#{memberPassword},#{memberName},#{memberBirthday},null,0,null,null,0,null)
+		insert into member values(#{memberEmail},#{memberPassword},#{memberName},#{memberBirthday},null,0,null,null,null,null)
 	</insert>
 	
 	<delete id="deleteMember" parameterType="string">
@@ -21,7 +21,9 @@
 				</if>
 					member_location = #{memberLocation},
 					member_introduction = #{memberIntroduction},
+				<if test="memberIdentification!=null">
 					member_identification = #{memberIdentification},
+				</if>
 				<if test="memberPicture!=null">
 					member_picture  = #{memberPicture},
 				</if>
