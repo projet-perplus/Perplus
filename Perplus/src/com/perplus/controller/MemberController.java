@@ -143,7 +143,7 @@ public class MemberController {
 	}
 	
 	/******************본인 인증*********************/
-	@RequestMapping("/identification.do")
+	@RequestMapping(value="/identification.do", method=RequestMethod.POST)
 	public String memberIdentification(@RequestParam MultipartFile memberPictureFile, HttpSession session, HttpServletRequest request) throws IllegalStateException, IOException{
 		MemberVo loginInfo = (MemberVo)session.getAttribute("login_info");
 		
@@ -154,9 +154,8 @@ public class MemberController {
 			fileName = UUID.randomUUID().toString().replaceAll("-","");
 			File picture = new File(request.getServletContext().getRealPath("/memberIdentification"), fileName);
 			file.transferTo(picture);
-			//기존 사진이 있는 경우 삭제
 			if(loginInfo.getMemberPicture()!=null){
-				File oldPic = new File(request.getServletContext().getRealPath("/memberPicture"), loginInfo.getMemberPicture());
+				File oldPic = new File(request.getServletContext().getRealPath("/memberIdentification"), loginInfo.getMemberPicture());
 				oldPic.delete();
 			}
 			loginInfo.setMemberIdentification(fileName);
