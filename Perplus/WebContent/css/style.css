@@ -26,6 +26,12 @@ html, body {
 	color: #fff;
 }
 
+.mainBg {
+	background: url(/Perplus/css/image/mainBg.jpg) center center no-repeat
+		!important;
+	background-size: cover !important;
+}
+
 p {
 	font-size: 16px;
 }
@@ -192,14 +198,14 @@ p {
 .bg-1 {
 	/* min-height: 667px; */
 	position: relative;
-	height: 400px;
+	height: 325px;
 	width: auto;
 	/* 	background: url(image/img1.jpg) center center no-repeat !important;
 	background-size: cover !important; */
 }
 
 .filterForm {
-	min-height: 151px;
+	min-height: 292px;
 }
 /*메인로고*/
 .mainLogo>img {
@@ -530,20 +536,20 @@ p {
 .paymentBtn {
 	background: none;
 	border: 1px solid #ccc;
-/* 	float:left; */
-	margin:10px;
+	/* 	float:left; */
+	margin: 10px;
 	border-radius: 4px;
-	display:inline-block;
-	width:140px;
-	height:95px;
-	vertical-align:middle;
-	box-sizing:border-box;
-	padding-top:17px;
+	display: inline-block;
+	width: 140px;
+	height: 95px;
+	vertical-align: middle;
+	box-sizing: border-box;
+	padding-top: 17px;
 }
 
-.paymentBtn>.paymentBtnImage{
-	display:block;
-	height:45px;
+.paymentBtn>.paymentBtnImage {
+	display: block;
+	height: 45px;
 }
 
 .paymentBtn>.pamentBtnName {
@@ -717,10 +723,24 @@ a.right.carousel-control {
 		rgba(0, 0, 0, 0) 100%);
 }
 /* 리뷰 review */
-.myReviewHeader > .col-md-4{
- 	height: 50px;
+.myReviewHeader>.col-md-4 {
+	height: 50px;
 }
+
 /
-.myReviewBody > .col-md-4 > span{
+.myReviewBody>.col-md-4>span {
 	
+}
+
+/*숙소 목록 */
+
+/* 예약 관리 schedulemanagement.do */
+.schedule {
+	magin-top: 15px;
+	padding: 10px !important;
+}
+.schedulePrice{
+    color: #000;
+    font-weight: 600;
+	text-align: center;
 }

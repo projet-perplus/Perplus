@@ -5,6 +5,7 @@ $(function() {
 			.getDate(), 0, 0, 0, 0);
 
 	var checkin = $('#dpd1').datepicker({
+		orientation: 'top',
 		showOtherMonths : true,
 		selectOtherMonths : true,
 		format : 'yyyy-mm-dd',
@@ -24,6 +25,7 @@ $(function() {
 	}).data('datepicker');
 
 	var checkout = $('#dpd2').datepicker({
+		orientation: 'top',
 		showOtherMonths : true,
 		selectOtherMonths : true,
 		format : 'yyyy-mm-dd',
