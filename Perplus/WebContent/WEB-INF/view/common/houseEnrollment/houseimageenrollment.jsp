@@ -5,10 +5,9 @@
 		<div class="row">
 			<div class="col-md-3 col-xs-3"></div>
 
-			<div class="col-md-offset-6 col-md-3 col-xs-offset-6">
-				<div class="col-md-7 page_moveBtn ">
-					<div class="col-md-8 ">
-						<div class="form-group">
+			<div class="col-md-offset-5 col-md-3 col-xs-offset-5">
+					<div class="col-md-8 col-xs-8 page_moveBtn">
+						<div class="form-group ">
 							<select class="form-control house_step">
 								<option value="${initParam.rootPath}/basicinfo.do">1 단계</option>
 								<option value="${initParam.rootPath}/housetypeandlocation.do">2 단계</option>
@@ -21,10 +20,11 @@
 							</select>
 						</div>
 					</div>
-					<div class="col-md-4 page_moveBtn hidden-xs">(5/8)</div>
+					<div class="col-md-4 page_moveBtn hidden-xs hidden-sm " style="margin-top:15px;">
+						<span>(5/8)</span>
+					</div>
 				</div>
-				<div class="clearfix"></div>
-			</div>
+
 		</div>
 	</div>
 </div>
@@ -55,7 +55,7 @@
 			<div class="clearfix visible-md-block"></div>
 		</div>
 
-		<div class="row houseBtns">
+		<div class="row houseBtns" style="margin-top: 292px;">
 			<div class="col-md-offset-2 col-md-4 col-xs-4 previousBtn">
 				<a href="${initParam.rootPath}/housefacility.do">
 					<button class="btn btn-default">이전</button>

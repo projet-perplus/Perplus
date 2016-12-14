@@ -6,6 +6,30 @@
 <script type="text/javascript">
 var selectedCardSerial;
 
+$(document).ready(function(){
+	var paymentList = ${ requestScope.paymentList};
+	var code = "";
+	
+	$.each(paymentList, function(i){
+		var cardNumberFormatted = formatCardNumber(paymentList[i].cardNumber);
+		var cardImage = getCardImageTag(paymentList[i].paymentType);
+		var cardSerial = paymentList[i].cardSerial;
+		
+		code = code + "<a href='#' class='paymentBtn paymentDeleteBtn'>"+
+                                 "<span class='paymentBtnImage'>"+cardImage+"</span>" + 
+                                 "<span class='pamentBtnName'>"+cardNumberFormatted+"</span>"+
+                                 "<input class='cardSerial' type='hidden' value='"+cardSerial+"' >"+
+	                           "</a>";
+	    });//each
+	$("#addCard").before(code);	// 카드 리스트 노출
+	
+    $(".paymentDeleteBtn").on("click", function(){	// 노출 된 카드 선택 시 해당 카드 삭제
+    	selectedCardSerial = $(this).find(".cardSerial").val();
+    	$("#dialog-confirm").dialog( "open" );
+    });//paymentDeleteBtn
+});	//(document).ready
+
+
 $( function() {	// 다이얼 로그 노출
 	$( "#dialog-confirm" ).dialog({
 		resizable: false,
@@ -19,8 +43,9 @@ $( function() {	// 다이얼 로그 노출
 		},
 		buttons: {
 			"삭제": function() {
-				var url = "/Perplus/member/deletePayment.do?cardSerial=" + $(this).children().prevAll("input.cardSerial").val();
-				
+				var url = "/Perplus/member/deletePayment.do?cardSerial=" + selectedCardSerial;
+				location.replace(url);
+// alert(selectedCardSerial);
 				$( this ).dialog( "close" );
 			},
 		"취소": function() {
@@ -29,11 +54,6 @@ $( function() {	// 다이얼 로그 노출
 	}
   });
 });
-
-
-
-
-
 
 
 //memberEmail에 해당하는 DB payment 조회 후 출력 없으면 추가 버튼만 출력
@@ -84,35 +104,6 @@ function deleteCard(cardSerial){
 	
 }
 
-$(document).ready(function(paymentList){
-	var paymentList = ${requestScope.paymentList};
-	var code = "";
-	
-	$.each(paymentList, function(i){
-		var cardNumberFormatted = formatCardNumber(paymentList[i].cardNumber);
-		var cardImage = getCardImageTag(paymentList[i].paymentType);
-		var cardSerial = paymentList[i].cardSerial;
- 
-		code = code + "<a href='#' class='paymentBtn paymentDeleteBtn'>"+
-											"<span class='paymentBtnImage'>"+cardImage+"</span>" + 
-											"<span class='pamentBtnName'>"+cardNumberFormatted+"</span>"+
-											"<input class='cardSerial' type='hidden' value='222' >"+
-									"</a>";
-								
-	});//each
-	$("#addCard").before(code);	
-	
-	$(".paymentDeleteBtn").on("click", function(){
-		selectedCardSerial = $(this).parent().children().find(".cardSerial").text();
-		console.log(selectedCardSerial);
-		$("#dialog-confirm").dialog( "open" );
-
-		
-	});
-	
-	
-	
-});	//(document).ready
 </script>
 
 <div id="dashboard-content">

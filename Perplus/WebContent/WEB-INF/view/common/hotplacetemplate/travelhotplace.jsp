@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWDGjKV2YFKGM5q6gtx-J5GcJTa2wLDQU" type="text/javascript"></script>
 <script src="js/map.js"></script>
+<script src="js/markerclusterer.js"></script>
 <!-- 크롬 캐싱 문제 때문에 임의의 쿼리 스트링 추가 (완성본에서는 제거필요) -->
 <div class="container">
 	<div id="dashboard-content" class="hotplace">
@@ -44,7 +45,7 @@
 		<div class="panel-body">
 			<div class="row">
 				<div class="col-md-12">
-					<div id="map-canvas" style="width: 100%; height: 600px"></div>
+					<div id="map-canvas" style="width: 100%; height:489px"></div>
 				</div>
 			</div>
 		</div>

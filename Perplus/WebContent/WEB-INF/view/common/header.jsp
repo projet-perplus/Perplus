@@ -5,10 +5,10 @@
 </script>
 
 <nav class="navbar navbar-default" id="navbar1">
-	<div class="container-fluid">
+	<div class="container-fluid navbarheader">
 		<div class="navbar-header">
-			<a class="navbar-img" href="${initParam.rootPath}/main.do"> <img
-				src="/Perplus/css/image/logos.PNG" alt="logo" />
+			<a class="navbar-img" href="${initParam.rootPath}/main.do">
+			<img src="/Perplus/css/image/logos.PNG" alt="logo" />
 			</a>
 			<button type="button" class="navbar-toggle" data-toggle="collapse"
 				data-target="#myNavbar">
