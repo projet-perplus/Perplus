@@ -17,6 +17,7 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -220,26 +221,27 @@ public class MemberController {
 	
 	/******************채팅 조회*****************/
 	@RequestMapping("/chattingfind.do")
-	public String chattingFind(HttpSession session, ModelMap map){
+	public String chattingFind(HttpSession session, ModelMap map,HttpServletRequest request){
+		String returnChattingNumber = null;
 		MemberVo member = (MemberVo)session.getAttribute("login_info");
-		String memberEmail = member.getMemberEmail();		
+		String memberEmail = member.getMemberEmail();
 		List<ChattingVo> chatting = service.selectJoinChattingAndChattingLog(memberEmail);
 		System.out.println(chatting);
 		
 		map.addAttribute("chatting", chatting);
+		if(request.getParameter("returnChattingNumber")!=null){
+			returnChattingNumber = request.getParameter("returnChattingNumber");
+			request.setAttribute("returnChattingNumber", returnChattingNumber);
+		}
 		return "message/message/message.tiles1";
 	}
 	
-	/***********************채팅로그 생성 ajax처리*************************/
+	/***********************채팅로그 생성 처리*************************/
 	@RequestMapping("/chattinglog.do")
-	@ResponseBody
-	public Map<String, Object> chattingLogInsert(@ModelAttribute ChattingLogVo chattingLog){
+	public String chattingLogInsert(@ModelAttribute ChattingLogVo chattingLog,ModelMap map){
 		chattingLog.setChattingTime(new Date());
 		service.insertChattingLog(chattingLog);
-		List<ChattingLogVo> list = service.selectChattingLog(chattingLog.getChattingNumber());
-		Map<String, Object> map = new HashMap<>();
-		map.put("list", list);
-		return map;
+		return "redirect:/member/chattingfind.do?returnChattingNumber="+chattingLog.getChattingNumber();
 	}
 	
 	/*****************************/

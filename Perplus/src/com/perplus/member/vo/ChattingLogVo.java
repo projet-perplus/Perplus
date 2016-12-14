@@ -33,6 +33,14 @@ public class ChattingLogVo {
 		this.chatting = chatting;
 	}
 
+	
+	
+	public ChattingLogVo(int chattingNumber, String memberEmail, String chattingContent) {
+		this.chattingNumber = chattingNumber;
+		this.memberEmail = memberEmail;
+		this.chattingContent = chattingContent;
+	}
+
 	public int getChattingNumber() {
 		return chattingNumber;
 	}

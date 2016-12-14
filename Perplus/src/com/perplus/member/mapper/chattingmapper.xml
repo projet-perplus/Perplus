@@ -62,12 +62,12 @@
 			<result column="chatting_content" property="chattingContent"/>
 			<result column="chatting_time" property="chattingTime"/>
 			<association property="memberList" javaType="MemberVo">
-				<result column="e_email" property="memberEmail"/>
+				<result column="m_email" property="memberEmail"/>
 				<result column="member_password" property="memberPassword"/>
 				<result column="member_name" property="memberName"/>
 				<result column="member_birthday" property="memberBirthday"/>
 				<result column="member_gender" property="memberGender"/>
-				<result column="member_tell" property="memberTel"/>
+				<result column="member_tel" property="memberTel"/>
 				<result column="member_location" property="memberLocation"/>
 				<result column="member_introduction" property="memberIntroduction"/>
 				<result column="member_identification" property="memberIdentification"/>
