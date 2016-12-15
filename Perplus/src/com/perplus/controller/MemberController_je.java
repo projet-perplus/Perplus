@@ -18,19 +18,21 @@ public class MemberController_je {
 	@Autowired
 	private MemberService service;
 	
-//	@RequestMapping("transaction_history.do")
-//	public ModelAndView completedReceive(HttpSession session, HttpServletRequest request){
-//		String memberEmail = null;
-//		try {
-//			memberEmail = ((MemberVo)session.getAttribute("login_info")).getMemberEmail(); // 이메일
-//		} catch (Exception e) {
-//			return new ModelAndView("redirect:/");	// 비로그인 상태면 메인으로 이동
-//		}
-//		
-//		
-//		return null;
-//	}
-//	
+	@RequestMapping("transaction_history.do")
+	public ModelAndView completedReceive(HttpSession session, HttpServletRequest request){
+		String memberEmail = null;
+		int receiveStatus;
+		try {
+			memberEmail = ((MemberVo)session.getAttribute("login_info")).getMemberEmail(); // 이메일
+			
+		} catch (Exception e) {
+			return new ModelAndView("redirect:/");	// 비로그인 상태면 메인으로 이동
+		}
+		
+		
+		return null;
+	}
+	
 	
 	
 	
