@@ -114,7 +114,7 @@ function deleteCard(cardSerial){
 	<div id="dialog-confirm" title="삭제">
   		<p><span class="ui-icon ui-icon-alert" style="float:left; margin:3px 12px 20px 0;"></span>카드를 삭제 하시겠습니까?</p>
 	</div>
-	<div class="panel-body" style="text-align:center;">
+	<div class="panel-body" style="text-align:center; min-height: 350px;">
 		<a href="#" class="paymentBtn" data-toggle="modal" data-target="#basicModal" id="addCard">
 				<span class="paymentBtnImage"><img src="/Perplus/css/image/plusIcon.png" /></span>
 				<span class="pamentBtnName">신규 카드 추가</span>
