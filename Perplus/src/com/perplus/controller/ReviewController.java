@@ -11,10 +11,13 @@ import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -28,6 +31,7 @@ import com.perplus.review.vo.ReviewCommentVo;
 import com.perplus.review.vo.ReviewPictureVo;
 import com.perplus.review.vo.ReviewVo;
 import com.perplus.util.TextUtil;
+import com.perplus.validator.ReviewForm;
 
 @Controller
 @RequestMapping("/review")
@@ -38,10 +42,17 @@ public class ReviewController {
 	
 	/******************리뷰 글 등록*****************/
 	@RequestMapping(value="/registerReview.do", method=RequestMethod.POST)
-	public String registerReview(@ModelAttribute ReviewVo reviewVo, @ModelAttribute ReviewPictureVo picture,ModelMap map, HttpServletRequest request, HttpSession session)
+	public String registerReview(@Valid @ModelAttribute /* ReviewVo*/ReviewForm form, BindingResult result, @ModelAttribute ReviewPictureVo picture,ModelMap map, HttpServletRequest request, HttpSession session)
 												throws IllegalStateException, IOException{
 		//ReviewPictureVo picture = new ReviewPictureVo();
-		//BeanUtils.copyProperties(reviewPictureVo, picture);		
+		//BeanUtils.copyProperties(reviewPictureVo, picture);
+		boolean error=false;
+		if(result.hasErrors()){
+			request.setAttribute("error", error);
+			return "travelhotplace.hotplacetiles";
+		}
+		ReviewVo reviewVo = new ReviewVo();
+		BeanUtils.copyProperties(form, reviewVo);
 		System.out.println(reviewVo);
 	/*	List<ReviewPictureVo> list = new ArrayList<>();*/
 		List<MultipartFile> files = picture.getPictureList();
@@ -81,7 +92,7 @@ public class ReviewController {
 		return "reviewdetailpage.hotplacetiles";
 	}
 	
-	/******************내가 작성한 리뷰 조회 controller*******************/
+	/******************내가 작성한 리뷰 조회 controller(ajax)*******************/
 	@RequestMapping("/myReview.do")
 	@ResponseBody
 	public List<ReviewVo> myReview(HttpSession session){
@@ -93,7 +104,7 @@ public class ReviewController {
 		return list;
 	}
 	/******************리뷰 정보 가져오는 controller********************/
-	@RequestMapping("/reviewInfo.do")
+/*	@RequestMapping("/reviewInfo.do")
 	public String reviewInfo(@RequestParam int reviewSerial,ModelMap map,HttpSession session){
 		MemberVo member = (MemberVo)session.getAttribute("login_info");
 		ReviewVo review = service.getReview(reviewSerial);
@@ -104,7 +115,7 @@ public class ReviewController {
 		review.setReviewContent(textChange);
 		map.addAttribute("review", review);
 		return "null";
-	}
+	}*/
 	
 	/******************리뷰 글 수정*****************/
 	@RequestMapping(value="/modifyReview", method=RequestMethod.POST)

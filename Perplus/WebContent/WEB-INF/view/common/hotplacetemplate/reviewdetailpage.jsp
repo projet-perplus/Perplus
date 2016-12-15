@@ -104,6 +104,14 @@ pageContext.setAttribute("LT", "&lt;");
 		<div class="slidebar">
 			<div class="carousel slide" id="myCarousel">
 				<div class="carousel-inner">
+				<c:choose>
+					<c:when test="${empty requestScope.picture }">
+						<div class="active item">
+						<img src="${initParam.rootPath }/uploadReviewPicture/no-images.png"
+										style="width: 770px !important; height: 300px !important;">
+						</div>
+					</c:when>
+					<c:otherwise>
 					<c:forEach items="${requestScope.picture }" var="picture">
 						<c:choose>
 							<c:when test="${picture.pictureOrder==1}">
@@ -120,6 +128,8 @@ pageContext.setAttribute("LT", "&lt;");
 							</c:otherwise>
 						</c:choose>
 					</c:forEach>
+					</c:otherwise>
+				</c:choose>
 				</div>
 
 				<!--  left right button -->
@@ -140,13 +150,24 @@ pageContext.setAttribute("LT", "&lt;");
 	<div class="row" id="slider-thumbs" style="margin-top: 10px;">
 		<!--Bottom switcher of slider -->
 		<ul>
-			<c:forEach items="${requestScope.picture }" var="picture">
-				<li><a class="thumbnail"
-					id="carousel-selector-${picture.pictureOrder-1 }"> <img
-						src="/Perplus/uploadReviewPicture/${picture.pictureName }"
-						style="width: 170px !important; height: 100px !important;" />
-				</a></li>
-			</c:forEach>
+			<c:choose>
+				<c:when test="${empty requestScope.picture }">
+					<li><a class="thumbnail"
+						id="carousel-selector-0"> 
+						<img src="${initParam.rootPath }/uploadReviewPicture/no-images.png"
+										style="width: 170px !important; height: 100px !important;">
+						</a></li>
+				</c:when>
+				<c:otherwise>
+					<c:forEach items="${requestScope.picture }" var="picture">
+						<li><a class="thumbnail"
+							id="carousel-selector-${picture.pictureOrder-1 }"> <img
+								src="/Perplus/uploadReviewPicture/${picture.pictureName }"
+								style="width: 170px !important; height: 100px !important;" />
+						</a></li>
+					</c:forEach>
+				</c:otherwise>
+			</c:choose>
 		</ul>
 	</div>
 

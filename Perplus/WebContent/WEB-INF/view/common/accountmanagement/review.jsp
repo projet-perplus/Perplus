@@ -25,9 +25,9 @@
 			}).on("mouseout",".review",function(){
 				$(this).css("color","black");
 			}).on("click",".review",function(){
-			var serial = $(this).find("#reviewSerial").val();
-			var url="/Perplus/review/showReview.do?reviewSerial="+serial;
-			$(location).attr("href",url);
+				var serial = $(this).find("#reviewSerial").val();
+				var url="/Perplus/review/showReview.do?reviewSerial="+serial;
+				$(location).attr("href",url);
 		});
 	});
 });
