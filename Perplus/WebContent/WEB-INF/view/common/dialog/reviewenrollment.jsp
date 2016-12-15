@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<!-- reviewEnrollment-->
+
 <link rel="stylesheet"
 	href="https://jqueryvalidation.org/files/demo/site-demos.css">
 <style>
@@ -10,7 +10,7 @@ input{
 </style>	
 	
 	
-	
+	<!-- reviewEnrollment-->
 <div class="modal fade" id="reviewEnrollment" role="dialog"
 	aria-labelledby="basicModal" aria-hidden="true">
 	<div class="modal-dialog reviewEnrollment-dialog">

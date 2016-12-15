@@ -26,6 +26,7 @@ public class ReviewForm {
 	private int reviewMarkerConstant;
 	@NotEmpty
 	private String reviewPlace;
+	
 	public String getReviewTitle() {
 		return reviewTitle;
 	}

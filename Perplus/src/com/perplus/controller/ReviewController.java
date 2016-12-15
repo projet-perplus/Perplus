@@ -44,10 +44,10 @@ public class ReviewController {
 	@RequestMapping(value="/registerReview.do", method=RequestMethod.POST)
 	public String registerReview(@Valid @ModelAttribute /* ReviewVo*/ReviewForm form, BindingResult result, @ModelAttribute ReviewPictureVo picture,ModelMap map, HttpServletRequest request, HttpSession session)
 												throws IllegalStateException, IOException{
-		//ReviewPictureVo picture = new ReviewPictureVo();
-		//BeanUtils.copyProperties(reviewPictureVo, picture);
+
 		boolean error=false;
 		if(result.hasErrors()){
+			error=true;
 			request.setAttribute("error", error);
 			return "travelhotplace.hotplacetiles";
 		}
