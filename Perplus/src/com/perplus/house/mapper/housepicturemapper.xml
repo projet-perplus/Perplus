@@ -6,11 +6,11 @@
 		select PICTURE_SERIAL pictureSerial, HOUSE_SERIAL houseSerial, PICTURE_ORDER pictureOrder, PICTURE_NAME pictureName from HOUSEPICTURE
 	</sql>
 	
-	<insert id="insertHousepicture" parameterType="housepicturevo">
+	<insert id="insertHousepicture" parameterType="HousePictureVo">
 		insert into HOUSEPICTURE values(HOUSEPICTURE_SEQ.nextval,#{houseSerial},#{pictureOrder},#{pictureName})
 	</insert>
 	
-	<update id="updateHousepicture" parameterType="housepicturevo">
+	<update id="updateHousepicture" parameterType="HousePictureVo">
 		update HOUSEPICTURE set 
 		HOUSE_SERIAL =#{houseSerial}, 
 		PICTURE_ORDER=#{pictureOrder}, 
@@ -18,7 +18,7 @@
 		where HOUSE_SERIAL = #{houseSerial}
 	</update>
 	<!-- 클릭한 사진을 select -->
-	<select id="selectHousepictureByPictureSerial" parameterType="_int" resultType="housepicturevo">
+	<select id="selectHousepictureByPictureSerial" parameterType="_int" resultType="HousePictureVo">
 		<include refid="select-default-housepicture"/>
 		where PICTURE_SERIAL = #{value}		
 	</select>

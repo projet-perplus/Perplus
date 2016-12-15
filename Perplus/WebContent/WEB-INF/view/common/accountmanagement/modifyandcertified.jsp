@@ -2,6 +2,15 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+<style>
+.bg-4 {
+	position: relative;
+	bottom: 0;
+	left: 0;
+	right: 0;
+}
+</style>
+
 <script type="text/javascript">
 	$(document).ready(function() {
 		$("#memberModifyForm").on("submit", function() {
@@ -295,7 +304,9 @@
 			</form>
 		</c:when>
 		<c:otherwise>
-			<div class="panel-body" style="text-align:center"><span style="font-size: 20px; color: blue;">인증되었습니다.</span></div>
+			<div class="panel-body" style="text-align: center">
+				<span style="font-size: 20px; color: blue;">인증되었습니다.</span>
+			</div>
 		</c:otherwise>
 	</c:choose>
 </div>

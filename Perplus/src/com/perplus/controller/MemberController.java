@@ -286,6 +286,13 @@ public class MemberController {
 	 */
 	@RequestMapping("registerPayment.do")
 	public String registerPayment(@ModelAttribute PaymentVo payment, HttpSession session, HttpServletRequest request){
+		String memberEmail = null;
+		try {
+			memberEmail = ((MemberVo)session.getAttribute("login_info")).getMemberEmail(); // 이메일
+		} catch (Exception e) {
+			return "redirect:/";	// 비로그인 상태면 메인으로 이동
+		}
+		
 		String yy = "20" + request.getParameter("yy"); //유효기간 년도
 		String mm = request.getParameter("mm");	// 유효기간 월
 		/*
@@ -296,9 +303,8 @@ public class MemberController {
 		Date cardExpiration = new Date(); //유효기간
 		cardExpiration.setYear(Integer.parseInt(yy)-1900);
 		cardExpiration.setMonth(Integer.parseInt(mm)-1); //0월(1월) 부터 시작
-		System.out.println(cardExpiration);
 		
-		String memberEmail = ((MemberVo)session.getAttribute("login_info")).getMemberEmail(); // 이메일
+		
 		
 		//객체 세팅
 		payment.setCardSerial(service.getCardSerialSeq());
@@ -312,6 +318,7 @@ public class MemberController {
 		}
 		return "redirect:/member/payment_method.do";
 	}
+	
 	@RequestMapping("payment_method.do")
 	public ModelAndView paymentMethod(HttpSession session){
 		String memberEmail = null;
@@ -337,18 +344,14 @@ public class MemberController {
 		String memberEmail = null;
 		String servMemberEmail = null;
 		int cardSerial = 0;
-		try {
-			cardSerial = Integer.parseInt(request.getParameter("cardSerial"));			
-		} catch (Exception e) {
-			return new ModelAndView("redirect:/");	// 시리얼이 넘어오지 않으면 메인으로 이동
-		}
 		
-		//http://127.0.0.1:8088/Perplus/member/deletePayment.do?cardSerial=10063
 		try {
 			memberEmail = ((MemberVo)session.getAttribute("login_info")).getMemberEmail(); // 이메일
+			
+			cardSerial = Integer.parseInt(request.getParameter("cardSerial"));
 			servMemberEmail = service.getPaymentByCardSerial(cardSerial).getMemberEmail();
 		} catch (Exception e) {
-			return new ModelAndView("redirect:/");	// 비로그인 상태면 메인으로 이동
+			return new ModelAndView("redirect:/");	// 비로그 or 카드 시리얼 못 불러 오면 메인으로 이동
 		}
 		if (memberEmail.equals(servMemberEmail)){	// 삭제 요청한 시리얼의 payment 객체 이메일과 로그인한 이메일이 같을 경우
 			try {
