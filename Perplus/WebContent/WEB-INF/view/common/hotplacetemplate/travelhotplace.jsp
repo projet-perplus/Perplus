@@ -11,10 +11,17 @@ $(document).ready(function(){
 			locationSearch();
 		}
 	})
+	
+	 $('.dropdown input, .dropdown label').click(function(e) {
+		    e.stopPropagation();
+	  });
+
 })
 </script>
 
+<script>
 
+</script>
 <div class="container">
 	<div id="dashboard-content" class="hotplace">
 		<div class="panel-header">
