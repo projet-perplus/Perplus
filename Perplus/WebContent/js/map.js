@@ -18,8 +18,57 @@ var stage = document.getElementById('stage');
 
 //맵 상의 마커를 보관할 array
 var markerArray = [];
-	
+//마커 필터의 상태를 저장
+var filterArray = [];
 var geocoder = new google.maps.Geocoder();
+
+$(function() {
+	//맵의 기본적 start
+	function initialize() {
+		
+		var geoLocation = location;
+//		alert(stage.value);
+		var mapCanvas = document.getElementById('map-canvas');
+		var myLatlng = new google.maps.LatLng(37.402116, 127.107020); // 위경도
+		// 설정
+		var mapOptions = { // 구글 맵 옵션
+			center : myLatlng,
+			zoom : 14,
+			mapTypeId : google.maps.MapTypeId.ROADMAP
+		};
+
+		// 구글 맵 생성
+		map = new google.maps.Map(mapCanvas, mapOptions);
+
+		//각종 listener 들
+		
+		//공용 이벤트
+		google.maps.event.addListener(map, 'idle',function(){
+			resetMapMarker(map);
+		});
+		
+
+		// 리뷰용 이벤트
+		google.maps.event.addListener(map, 'click', function(mouseEvent) {
+			// alert(mouseEvent.latLng);
+			// 추가적으로 로그인 여부 확인 필요
+			if(identifyLoginInfo()!= null){
+				if(startMarker == null){
+					startMarker=placeMarker(mouseEvent.latLng);
+					startMarker.setAnimation(google.maps.Animation.BOUNCE);
+				}else if(startMarker != null){
+					startMarker.setPosition(mouseEvent.latLng);
+				}
+				startMarker.setDraggable(true);
+			}
+			resetMapMarker(map);
+		});
+		
+		//하우스용 이벤트
+		
+	}
+	google.maps.event.addDomListener(window, 'load', initialize);
+});	
 
 function locationSearch(){
 	var geoLocation = document.getElementById("location");
@@ -68,9 +117,9 @@ function resetAllMarker(){
 		markerCluster.clearMarkers();
 	}
 }
-//체크된 마커만  출력(필터)
-function printCheckedFilter(){
-	
+//마커 필터 배열 수정
+function modifyMarkerFilter(array){
+	filterArray = array;
 }
 
 //로그인 여부를 받는다
@@ -145,6 +194,11 @@ function placeMarker(location,constant,money) {
 		marker.setLabel(str);
 	}
 	markerArray.push(marker);
+	if(filterArray==null){
+		marker.setVisible(false);
+	}else{
+		
+	}
 	return marker;
 }
 
@@ -163,54 +217,7 @@ function resetMapMarker(map){
 	//맵 클러스터링
 	markerCluster = new MarkerClusterer(map,markerArray,{imagePath:'img/clustering/m'});
 }
-$(function() {
-	//맵의 기본적 start
-	function initialize() {
-		
-		var geoLocation = location;
-//		alert(stage.value);
-		var mapCanvas = document.getElementById('map-canvas');
-		var myLatlng = new google.maps.LatLng(37.402116, 127.107020); // 위경도
-		// 설정
-		var mapOptions = { // 구글 맵 옵션
-			center : myLatlng,
-			zoom : 14,
-			mapTypeId : google.maps.MapTypeId.ROADMAP
-		};
 
-		// 구글 맵 생성
-		map = new google.maps.Map(mapCanvas, mapOptions);
-
-		//각종 listener 들
-		
-		//공용 이벤트
-		google.maps.event.addListener(map, 'idle',function(){
-			resetMapMarker(map);
-		});
-		
-
-		// 리뷰용 이벤트
-		google.maps.event.addListener(map, 'click', function(mouseEvent) {
-			// alert(mouseEvent.latLng);
-			// 추가적으로 로그인 여부 확인 필요
-			if(identifyLoginInfo()!= null){
-				if(startMarker == null){
-					startMarker=placeMarker(mouseEvent.latLng);
-					startMarker.setAnimation(google.maps.Animation.BOUNCE);
-				}else if(startMarker != null){
-					startMarker.setPosition(mouseEvent.latLng);
-				}
-				resetMapMarker(map);
-				startMarker.setDraggable(true);
-			}
-			
-		});
-		
-		//하우스용 이벤트
-		
-	}
-	google.maps.event.addDomListener(window, 'load', initialize);
-	
 //////////////////////////////////////////////////
 //	
 //	function initialize() {
@@ -341,4 +348,4 @@ $(function() {
 //	}
 //	google.maps.event.addDomListener(window, 'load', initialize);
 //////////////////////////////////////////////////
-	});
+
