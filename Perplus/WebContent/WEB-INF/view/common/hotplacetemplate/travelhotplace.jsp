@@ -45,6 +45,7 @@
 		<div class="panel-body">
 			<div class="row">
 				<div class="col-md-12">
+					<input type="hidden" id="stage" value="travel">
 					<div id="map-canvas" style="width: 100%; height:489px"></div>
 				</div>
 			</div>

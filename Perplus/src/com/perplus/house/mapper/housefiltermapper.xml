@@ -104,7 +104,7 @@
 		</collection>
 	</resultMap>
 	
-	<select id="selectHouseFilterByHouseSerialWithJoin" parameterType="_int" resultType="housefiltervo" resultMap="housefilter-shutdown-checklist-join-resultmap">
+	<select id="selectHouseFilterByHouseSerialWithJoin" parameterType="_int" resultType="HouseFilterVo" resultMap="housefilter-shutdown-checklist-join-resultmap">
 		<include refid="houseFilter-shutDown-checkList-join"/>
 		where s.HOUSE_SERIAL = f.HOUSE_SERIAL 
 		and c.HOUSE_SERIAL = f.HOUSE_SERIAL 
@@ -113,7 +113,7 @@
 	
 	
 	
-	<insert id="insertHouseFilter" parameterType="housefiltervo">
+	<insert id="insertHouseFilter" parameterType="HouseFilterVo">
 		insert into HOUSEFILTER values(
 		#{houseSerial},
 		#{houseFilterRange},
@@ -134,7 +134,7 @@
 		)
 	</insert>
 	
-	<update id="updateHouseFilter" parameterType="housefiltervo">	
+	<update id="updateHouseFilter" parameterType="HouseFilterVo">	
 		update HOUSEFILTER set
 		HOUSEFILTER_RANGE=#{houseFilterRange},
 		HOUSEFILTER_GUEST_NUMBER=#{houseFilterGuestNumber},
@@ -155,7 +155,7 @@
 		where HOUSE_SERIAL=#{houseSerial}
 	</update>
 	
-	<select id="selectHouseFilterByHouseSerial" parameterType="_int" resultType="housefiltervo">
+	<select id="selectHouseFilterByHouseSerial" parameterType="_int" resultType="HouseFilterVo">
 		<include refid="default-house-filter-select"/>
 		where HOUSE_SERIAL = #{value}
 	</select>
