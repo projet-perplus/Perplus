@@ -39,21 +39,22 @@ $(document).ready(function(){
   						마커필터
   					<span class="caret"></span>
   				</button>
-			    <ul class="dropdown-menu ">
-					<li>
-						<label class="checkbox-inline" style="padding-top: 10px; padding-left: 50%"><input type="checkbox" name="maker_filter" value="food">음식</label>
+			    <ul class="dropdown-menu " style="min-width:90px !important;">
+					<li style="padding-left: 23%; margin-top:10px">
+						<label class="checkbox-inline"><input type="checkbox" name="maker_filter" value="food">음식</label>
 <!-- 						<a href="#" data-toggle="modal" data-target="#reviewEnrollment"> -->
 <!-- 							<button type="button" class="btn btn-primary">리뷰 작성</button> -->
 <!-- 						</a> -->
 					</li>
-					<li>
-						<label class="checkbox-inline" style="padding-top: 10px; padding-left: 50%"><input type="checkbox" name="maker_filter" value="hot">명소</label>
+					<li style="padding-left: 23%;margin-bottom:10px;">
+						<label class="checkbox-inline"><input type="checkbox" name="maker_filter" value="hot">명소</label>
 <%-- 						<a href="${initParam.rootPath}/review/showReview.do?reviewSerial=26">   <!-- reviewSerial은 requestScope의 리뷰시리얼값~~ --> --%>
 <!-- 							<button type="button" class="btn btn-primary">리뷰 상세페이지</button> -->
 <!-- 						</a> -->
 					</li>
 	 		    </ul>
 			</div>
+			
 			
 		</div>
 		<div id ="map-div" class="panel-body">
