@@ -10,9 +10,9 @@ var markerCluster;
 //로그인 사용자의 default 마커
 var startMarker;
 //각 마커의 상수
-const MARKER_CONSTANT_TOUR = 18;
-const MARKER_CONSTANT_RESTAURANT = 19;
-const MARKER_CONSTANT_HOUSE = 20;
+const MARKER_CONSTANT_TOUR = 211;
+const MARKER_CONSTANT_RESTAURANT = 212;
+const MARKER_CONSTANT_HOUSE = 213;
 //맵이 로딩되는 페이지를 알려주는 state
 var stage = document.getElementById('stage');
 
@@ -67,6 +67,10 @@ function resetAllMarker(){
 	if(markerCluster!=null){
 		markerCluster.clearMarkers();
 	}
+}
+//체크된 마커만  출력(필터)
+function printCheckedFilter(){
+	
 }
 
 //로그인 여부를 받는다
