@@ -1,10 +1,11 @@
 package com.perplus.member.vo;
 
+import java.io.Serializable;
 import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
 
-public class MemberVo<T> {
+public class MemberVo<T> implements Serializable{
 	private String memberEmail;//회원이메일
 	private String memberPassword;//회원패스워드
 	private String memberName;//회원이름

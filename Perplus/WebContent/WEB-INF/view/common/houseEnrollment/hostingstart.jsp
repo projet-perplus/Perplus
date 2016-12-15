@@ -39,16 +39,20 @@
 			<label class="text-left col-md-7 col-md-offset-2 col-xs-10">
 				<span >호스트가 될준비가 되셨나요?</span>
 			</label>
-			<div class="clearfix visible-md-block"></div>
 		</div>
+		<!-- <div class="row row-condensed space-4" >
+			<div class="col-md-offset-3 col-sm-offset-3 col-xs-offset-3" style="MIN-HEIGHT: 486px;">
+				<img src="/Perplus/css/image/host.PNG" alt="AC" style="margin-top: 20%;"/>
+			</div>
+		</div>	 -->
 
-		<div class="row houseBtns" style="margin-top:480px !important;">
+		<div class="row houseBtns" style=>
 			<div class="col-md-offset-2 col-md-4 col-xs-4 previousBtn">
 				<a href="${initParam.rootPath}/main.do">
 					<button class="btn btn-default">아니요</button>
 				</a>
 			</div>
-			<div class="col-md-4 col-xs-8 col-md-4 nextBtn">
+			<div class=" col-md-4 col-xs-8 nextBtn">
 				<a href="${initParam.rootPath}/basicinfo.do">
 					<button class="btn btn-default">예</button>
 				</a>

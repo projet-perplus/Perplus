@@ -1,4 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
+<style>
+.bg-4{
+	position:relative;
+}
+</style>
 
 <div id="dashboard-content">
 	<div class="panel-header">

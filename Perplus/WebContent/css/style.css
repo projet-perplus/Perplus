@@ -20,17 +20,14 @@ a:focus, a:hover {
 }
 
 html, body {
+	height:100%;
 	font: 20px Montserrat, sans-serif;
 	font-weight: bold !important;
 	line-height: 1.8;
 	color: #fff;
 }
 
-.mainBg {
-	background: url(/Perplus/css/image/mainBg.jpg) center center no-repeat
-		!important;
-	background-size: cover !important;
-}
+
 
 p {
 	font-size: 16px;
@@ -63,9 +60,25 @@ p {
 	.borderR {
 		border-right: 0 !important;
 	}
+
+	.bg-4{
+		position:relative !important;
+
+	}
+	.navbar-default .navbar-nav>li>a {
+        padding: 10px 15px !important;
+	}
+
 }
 /*화면이 768보다 작을때*/
+
+
+
 @media screen and (max-width: 768px) {
+	.mainLogo>img {
+   		 padding: 25px !important;
+
+	}
 	.borderR {
 		border-right: 0 !important;
 	}
@@ -198,14 +211,14 @@ p {
 .bg-1 {
 	/* min-height: 667px; */
 	position: relative;
-	height: 325px;
+	height: 344px;
 	width: auto;
 	/* 	background: url(image/img1.jpg) center center no-repeat !important;
 	background-size: cover !important; */
 }
 
 .filterForm {
-	    min-height: 292px;
+	    min-height: 235px;
 
 }
 /*메인로고*/
@@ -333,6 +346,10 @@ p {
 	width: 100%;
 	background-color: #2f2f2f; /* Black Gray */
 	color: #fff;
+	position:absolute;
+	bottom:0;
+	left:0;
+	right:0;
 }
 
 .bg-4>p {
