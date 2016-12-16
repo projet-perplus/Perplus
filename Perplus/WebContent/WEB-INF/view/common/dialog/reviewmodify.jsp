@@ -5,11 +5,6 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <link rel="stylesheet"
 	href="https://jqueryvalidation.org/files/demo/site-demos.css">
-<style>
-input{
- 	border:none !important; 
-}
-</style>	
 
 <!--reviewContent의 HTML 코드를 JAVA로 바꿔주기 위한 코드 -->
 <%
