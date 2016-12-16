@@ -6,8 +6,8 @@
 	type="text/javascript"></script>
 <script src="/Perplus/js/map.js"></script>
 
-<script type="text/javascript" src="/Perplus/js/date-range-picker.js"></script>
-<link rel="stylesheet" href="/Perplus/css/date-range-picker.css">
+<!-- <script type="text/javascript" src="/Perplus/js/date-range-picker.js"></script>
+<link rel="stylesheet" href="/Perplus/css/date-range-picker.css"> -->
 <style>
 .bg-4 {
 	position: relative;
@@ -69,7 +69,7 @@
 	</div>
 
 	<div class="row row-condensed space-4">
-		<div class="col-md-8">
+		<div class="col-md-9">
 			<div class="col-md-9">
 				<div class="row row-maginTB">
 					<label class="text-left col-md-4 "> <span class="rowFT">게시물
@@ -119,40 +119,58 @@
 				</div>
 			</div>
 
-			<div class="col-md-3">찜</div>
+			<div class="col-md-3" style=" margin-bottom: 30px;">찜</div>
 
 		</div>
 		<!-- /col-md-8 -->
 
 
-		<div class="col-md-4">
+		<div class="col-md-3">
 			<!-- right date -->
+			<div class="row ">
+				<div class="col-md-12">
 
-			<div class="col-md-12">
-				<div class="row ">
-					달력
-
+					달력 <input type="text" class="form-control" id="datepicker4">
 				</div>
 			</div>
 
+			<div class="row row-maginTB">
+				<div class="col-md-12">
+					<a href=""><button class="btn btn-danger" style="width: 100%">예약하기</button></a>
+				</div>
 
-			<a href="${initParam.rootPath}/message.do#popup"><button
-					class="btn btn-primary">호스트와 연락</button></a>
+			</div>
 
+			<div class="row row-maginTB">
+				<div class="col-md-12">
+					<a href="${initParam.rootPath}/message.do#popup">
+						<button class="btn btn-primary" style="width: 100%">호스트와
+							연락</button>
+					</a>
+				</div>
+			</div>
 
-			<form action="${initParam.rootPath}/member/chatting.do">
-				<input type="hidden" name="memberEmail"
-					value="${sessionScope.login_info.memberEmail}" /> <input
-					type="submit" />
-			</form>
+			<div class="row row-maginTB">
+				<div class="col-md-6">
+					<a href="#">
+						<button class="btn btn-success"
+							style="width: 100%; margin-bottom: 15px;">수정하기</button>
+					</a>
+				</div>
 
+				<div class="col-md-6">
+					<a href="#">
+						<button class="btn btn-danger" style="width: 100%">삭제</button>
+					</a>
+				</div>
+			</div>
 		</div>
-
 	</div>
 
 	<div class="row row-condensed space-4">
-		<div id="map-canvas"
-			style="width: 100%; height: 300px; padding: 15px;"></div>
+		<div class="col-md-12" style="padding:0px;">
+			<div id="map-canvas"
+				style="width: 100%; height: 300px; padding: 15px;"></div>
+		</div>
 	</div>
-
 </div>
