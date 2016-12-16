@@ -1,12 +1,22 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
-<!-- reviewEnrollment-->
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
+<link rel="stylesheet"
+	href="https://jqueryvalidation.org/files/demo/site-demos.css">
+<style>
+input{
+ 	border:none !important; 
+}
+</style>	
+	
+	
+	<!-- reviewEnrollment-->
 <div class="modal fade" id="reviewEnrollment" role="dialog"
 	aria-labelledby="basicModal" aria-hidden="true">
 	<div class="modal-dialog reviewEnrollment-dialog">
 		<!-- Modal content-->
 		<form action="${initParam.rootPath}/review/registerReview.do"
-			method="post" enctype="multipart/form-data">
+			method="post" enctype="multipart/form-data" id="myform">
 			<div class="modal-content" style="padding: 0px;">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -19,7 +29,9 @@
 							<div class="col-sm-9">
 								<div class="form-group">
 									<input type="text" class="form-control" name="reviewTitle"
-										placeholder="제목을 입력하세요..." required="required">
+										placeholder="제목을 입력하세요..." required> <span
+										class="errorMessage"><form:errors
+											path="reviewForm.reviewTitle" /></span>
 								</div>
 							</div>
 						</div>
@@ -28,7 +40,9 @@
 							<div class="col-sm-9">
 								<div class="form-group">
 									<input type="text" class="form-control" name="reviewPlace"
-										placeholder="장소명을 입력하세요..." required="required">
+										placeholder="장소명을 입력하세요..." required> <span
+										class="errorMessage"><form:errors
+											path="reviewForm.reviewPlace" /></span>
 								</div>
 							</div>
 						</div>
@@ -37,17 +51,18 @@
 							<div class="col-sm-9">
 								<div class="form-group">
 									<div class="visitDate">
-										<input type="text" class="form-control" name="reviewTime"
-											id="datepicker2" required="required">
+										<input type="text" class="form-control" name="reviewTime" required
+											id="datepicker2"> <span class="errorMessage"><form:errors
+												path="reviewForm.reviewTime" /></span>
 									</div>
 								</div>
 							</div>
 						</div>
 						<div class="row row-condensed space-4">
-							<label class="text-left col-sm-3">사진 등록</label>
-							<div class="col-md-9">
+							<label class="text-left col-sm-3 col-md-3 col-xs-3">사진 등록</label>
+							<div class="col-md-9 col-xs-9 col-sm-9">
 								<ul></ul>
-								<button type="button" class="btn btn-success addImg" id="addImg" >
+								<button type="button" class="btn btn-success addImg" id="addImg">
 									이미지 추가</button>
 							</div>
 
@@ -58,13 +73,15 @@
 						<div class="col-sm-9">
 							<div class="stars stars-example-bootstrap" style="height: 40px;">
 								<select id="example-bootstrap" name="reviewRating"
-									autocomplete="off" required="required">
+									autocomplete="off" required>
+									<option value="" selected>평점</option>
 									<option value=1>1</option>
 									<option value=2>2</option>
 									<option value=3>3</option>
 									<option value=4>4</option>
 									<option value=5>5</option>
-								</select>
+								</select> <span class="errorMessage"><form:errors
+										path="reviewForm.reviewRating" /></span>
 							</div>
 						</div>
 					</div>
@@ -73,7 +90,9 @@
 						<div class="col-sm-9">
 							<div class="form-group">
 								<textarea class="form-control" rows="5" id="comment"
-									name="reviewContent" required="required"></textarea>
+									name="reviewContent" required></textarea>
+								<span class="errorMessage"><form:errors
+										path="reviewForm.reviewContent" /></span>
 							</div>
 						</div>
 					</div>
@@ -94,3 +113,20 @@
 		</form>
 	</div>
 </div>
+<script
+	src="https://cdn.jsdelivr.net/jquery.validation/1.15.0/jquery.validate.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/jquery.validation/1.15.0/additional-methods.min.js"></script>
+<script>
+	// just for the demos, avoids form submit
+	jQuery.validator.setDefaults({
+		debug : true,
+		success : "valid"
+	});
+	var form = $("#myform");
+	form.validate({
+		submitHandler : function(form) {
+			form.submit();
+		}
+	});
+</script>

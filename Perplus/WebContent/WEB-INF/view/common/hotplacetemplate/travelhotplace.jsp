@@ -4,6 +4,19 @@
 	type="text/javascript"></script>
 <script src="js/map.js"></script>
 <script src="js/markerclusterer.js"></script>
+<script type="text/javascript">
+$(function() {
+	var error='${requestScope.error}'
+	$('#reviewEnrollment').on('hidden.bs.modal', function() {
+			if(error){
+				location.href = location.href.replace(error,"");
+			}
+	})
+	if(error){
+		$('#reviewEnrollment').modal('show');
+	}
+})
+</script>
 <!-- 크롬 캐싱 문제 때문에 임의의 쿼리 스트링 추가 (완성본에서는 제거필요) -->
 <script type="text/javascript">
 	$(document).ready(function() {

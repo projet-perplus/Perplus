@@ -118,6 +118,10 @@
 			</list>
 		</property>
 	</bean>
+	
+		<!-- Validator에서 사용할 properties 파일 등록 -->
+	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource"
+		      p:basename="com.mycom.message.error"/>
 
 	<bean name="tilesViewResolver"
 		class="org.springframework.web.servlet.view.tiles3.TilesViewResolver"
