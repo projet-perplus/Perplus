@@ -21,7 +21,6 @@
 				<div class="collapse navbar-collapse" id="myNavbar">
 					<ul class="nav navbar-nav navbar-right navbar-nav1">
 						<li data-sub="hotplace.do"><a href="${initParam.rootPath}/hotplace.do">여행명소</a></li>
-						<li data-sub="hosting.do"><a href="${initParam.rootPath}/hosting.do">호스팅하기</a></li>
 						<li><a href="#" data-toggle="modal" data-target="#join"
 							data-style="join">회원가입</a></li>
 						<li><a href="#" data-toggle="modal" data-target="#myModal">로그인</a></li>
