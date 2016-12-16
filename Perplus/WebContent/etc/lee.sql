@@ -503,17 +503,17 @@ where HOUSE_SERIAL IN
 
 37.40722956764499
 127.11922941543583
-insert into REVIEW values(REVIEW_SEQ.nextval,'aaa','좋은 곳입니다1','밥이 맛있음1',9,'2015-02-02',37.400,127.100,18,'밥집1');
-insert into REVIEW values(REVIEW_SEQ.nextval,'aaa','좋은 곳입니다2','밥이 맛있음2',9,'2015-02-02',37.404,127.110,19,'밥집2');
-insert into REVIEW values(REVIEW_SEQ.nextval,'aaa','좋은 곳입니다3','밥이 맛있음3',9,'2015-02-02',37.500,127.099,20,'밥집3');
-insert into REVIEW values(REVIEW_SEQ.nextval,'aaa','좋은 곳입니다4','밥이 맛있음4',9,'2015-02-02',37.398,127.142,20,'밥집4');
-insert into REVIEW values(REVIEW_SEQ.nextval,'aaa','좋은 곳입니다5','밥이 맛있음5',9,'2015-02-02',37.402,127.112,19,'밥집5');
-insert into REVIEW values(REVIEW_SEQ.nextval,'aaa','좋은 곳입니다6','밥이 맛있음6',9,'2015-02-02',37.400,127.140,18,'밥집6');
-insert into REVIEW values(REVIEW_SEQ.nextval,'aaa','좋은 곳입니다7','밥이 맛있음7',9,'2015-02-02',37.399,127.095,20,'밥집7');
-insert into REVIEW values(REVIEW_SEQ.nextval,'aaa','좋은 곳입니다8','밥이 맛있음8',9,'2015-02-02',37.400,127.102,20,'밥집8');
-insert into REVIEW values(REVIEW_SEQ.nextval,'aaa','좋은 곳입니다9','밥이 맛있음9',9,'2015-02-02',37.405,127.113,19,'밥집9');
-insert into REVIEW values(REVIEW_SEQ.nextval,'aaa','좋은 곳입니다10','밥이 맛있음10',9,'2015-02-02',37.404,127.095,18,'밥집10');
-insert into REVIEW values(REVIEW_SEQ.nextval,'aaa','좋은 곳입니다11','밥이 맛있음11',9,'2015-02-02',37.407,127.097,18,'밥집11');
+insert into REVIEW values(REVIEW_SEQ.nextval,'aaa','좋은 곳입니다1','밥이 맛있음1',9,'2015-02-02',37.400,127.100,211,'밥집1');
+insert into REVIEW values(REVIEW_SEQ.nextval,'aaa','좋은 곳입니다2','밥이 맛있음2',9,'2015-02-02',37.404,127.110,212,'밥집2');
+insert into REVIEW values(REVIEW_SEQ.nextval,'aaa','좋은 곳입니다3','밥이 맛있음3',9,'2015-02-02',37.500,127.099,213,'밥집3');
+insert into REVIEW values(REVIEW_SEQ.nextval,'aaa','좋은 곳입니다4','밥이 맛있음4',9,'2015-02-02',37.398,127.142,213,'밥집4');
+insert into REVIEW values(REVIEW_SEQ.nextval,'aaa','좋은 곳입니다5','밥이 맛있음5',9,'2015-02-02',37.402,127.112,212,'밥집5');
+insert into REVIEW values(REVIEW_SEQ.nextval,'aaa','좋은 곳입니다6','밥이 맛있음6',9,'2015-02-02',37.400,127.140,211,'밥집6');
+insert into REVIEW values(REVIEW_SEQ.nextval,'aaa','좋은 곳입니다7','밥이 맛있음7',9,'2015-02-02',37.399,127.095,213,'밥집7');
+insert into REVIEW values(REVIEW_SEQ.nextval,'aaa','좋은 곳입니다8','밥이 맛있음8',9,'2015-02-02',37.400,127.102,213,'밥집8');
+insert into REVIEW values(REVIEW_SEQ.nextval,'aaa','좋은 곳입니다9','밥이 맛있음9',9,'2015-02-02',37.405,127.113,212,'밥집9');
+insert into REVIEW values(REVIEW_SEQ.nextval,'aaa','좋은 곳입니다10','밥이 맛있음10',9,'2015-02-02',37.404,127.095,211,'밥집10');
+insert into REVIEW values(REVIEW_SEQ.nextval,'aaa','좋은 곳입니다11','밥이 맛있음11',9,'2015-02-02',37.407,127.097,211,'밥집11');
 
 delete from REVIEW;
 

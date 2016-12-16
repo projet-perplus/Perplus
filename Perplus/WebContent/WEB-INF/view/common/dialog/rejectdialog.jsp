@@ -3,9 +3,10 @@
 
 <div class="modal fade" id="rejectdialog" role="dialog"
 	aria-labelledby="basicModal" aria-hidden="true">
-	<div class="modal-dialog">
+
 		<!-- Modal content-->
 		<form action="">
+		<div class="modal-dialog">
 			<div class="modal-content"  style="padding: 0px;">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal">&times;</button>

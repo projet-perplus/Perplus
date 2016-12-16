@@ -76,6 +76,8 @@
 		<put-attribute name="logindialog" value="/WEB-INF/view/common/dialog/logindialog.jsp"/>
 		<put-attribute name="joindialog" value="/WEB-INF/view/common/dialog/joindialog.jsp"/>
 		<put-attribute name="footer" value="/WEB-INF/view/common/footer.jsp" />
+		<put-attribute name="addfilter" value="/WEB-INF/view/common/dialog/addfilter.jsp"/>
+		<put-attribute name="reservationdialog" value="/WEB-INF/view/common/dialog/reservationdialog.jsp" />
 	</definition>
 	
 	<definition name="*.housetiles" extends="housetemplate">

@@ -152,6 +152,10 @@ public class MemberServiceImpl implements MemberService{
 		houseCommentDao.modifyHouseComment(houseComment);
 	}
 	
+	public List<HouseCommentVo> select(String memberEmail){
+		return houseCommentDao.selectHouseCommentJoinHouse(memberEmail);
+	}
+	
 	@Override//serial로 조회하기(하우스 정보에서 뿌려주기)
 	public List<HouseCommentVo> selectHouseCommentBySerial(int houseSerial){
 		return houseCommentDao.selectHouseCommentBySerial(houseSerial);
@@ -182,6 +186,9 @@ public class MemberServiceImpl implements MemberService{
 		return houseZzimDao.selectHouseZzimByEmail(memberEmail);
 	}
 	
+	public List<HouseZzimVo> houseZzimJoinHouseJoinHousePicture(String memberEmail){
+		return houseZzimDao.houseZzimJoinHouseJoinHousePicture(memberEmail);
+	}
 	
 	/*
 	 * howgetmoney Service
@@ -244,6 +251,10 @@ public class MemberServiceImpl implements MemberService{
 		return memberDao.selectMemberFindByEmail(memberEmail);
 	}
 	
+	@Override
+	public void deleteMemberPicture(String memberPicture){
+		memberDao.deleteMemberPicture(memberPicture);
+	}
 	
 	/**
 	 * Payment 관련 Service

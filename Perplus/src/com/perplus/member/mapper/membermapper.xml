@@ -10,6 +10,12 @@
 		delete from member where member_email = #{value}
 	</delete>
 	
+	<update id="deletePictureMember" parameterType="string">
+		update	member
+		set		member_picture = null
+		where	member_picture = #{value}
+	</update>
+	
 	<update id="updateMember" parameterType="MemberVo">
 		update	member
 		<set>

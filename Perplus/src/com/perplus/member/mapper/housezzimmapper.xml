@@ -4,7 +4,7 @@
 <mapper namespace="houseZzim">
 
 	<insert id="insertHouseZzim" parameterType="HouseZzimVo">
-		insert into HOUSEZZIM values(#{houseSerial},#{memberEmail})
+		insert into HOUSEZZIM values(houseComment_seq, #{houseSerial}, #{memberEmail}, #{commentContent}, #{commentRating}, #{commentTime})
 	</insert>
 	
 	<delete id="deleteHouseZzimByEmail" parameterType="_int">
@@ -13,9 +13,101 @@
 	</delete>
 	
 	<select id="selectHouseZzimByEmail" parameterType="string" resultType="HouseZzimVo">
-		select	house_serial houseSerial, member_email memberEmail
+		select	housezzim_serial houseZzimSerial, house_serial houseSerial, member_email memberEmail
 		from	HOUSEZZIM
-		and		member_email = #{memberEmail}
+		where	member_email = #{value}
 	</select>
+	
+	
+	<sql id="select-houseZzim-join-sql">
+		select	z.housezzim_serial,
+				z.house_serial z_houseSerial,
+				z.member_email z_memberEmail,
+				h.house_serial h_houseSerial,
+				h.member_email h_memberEmail,
+				h.house_register_status,
+				h.house_title,
+				h.house_content,
+				h.house_necessary_condition,
+				h.house_rating,
+				h.house_marker_x,
+				h.house_marker_y,
+				h.house_marker_constant,
+				p.picture_serial,
+				p.house_serial p_houseSerial,
+				p.picture_order,
+				p.picture_name,
+				f.house_serial f_house_serial,
+				f.housefilter_range,
+				f.housefilter_guest_number,
+				f.housefilter_type,
+				f.housefilter_room_number,
+				f.housefilter_location,
+				f.housefilter_bedroom_number,
+				f.housefilter_bathroom_number,
+				f.housefilter_bed_number,
+				f.housefilter_checkin_term,
+				f.housefilter_checkin_start,
+				f.housefilter_checkin_end,
+				f.housefilter_reservation_term,
+				f.housefilter_bak_min,
+				f.housefilter_bak_max,
+				f.housefilter_price
+		from	HOUSEZZIM z, HOUSE h, HOUSEPICTURE p, HOUSEFILTER f
+	</sql>
+	
+	<resultMap type="HouseZzimVo" id="houseZzim-default-resultmap">
+		<id column="housezzim_serial" property="housezzimSerial"/>
+		<result column="z_houseSerial" property="houseSerial"/>
+		<result column="z_memberEmail" property="memberEmail"/>
+	</resultMap>
+
+	<resultMap type="HouseZzimVo" id="houseZzim-house-join-resultmap" extends="houseZzim-default-resultmap">
+		<association property="house" javaType="HouseVo">
+			<result column="h_houseSerial" property="houseSerial"/>
+			<result column="h_memberEmail" property="memberEmail"/>
+			<result column="house_register_status" property="houseRegisterStatus"/>
+			<result column="house_title" property="houseTitle"/>
+			<result column="house_content" property="houseContent"/>
+			<result column="house_necessary_condition" property="houseNecessaryCondition"/>
+			<result column="house_rating" property="houseRating"/>
+			<result column="house_marker_x" property="houseMarkerX"/>
+			<result column="house_marker_y" property="houseMarkerY"/>
+			<result column="house_marker_constant" property="houseMarkerConstant"/>
+			<association property="houseFilter" javaType="HouseFilterVo">
+				<result column="f_house_serial" property="houseSerial"/>
+				<result column="housefilter_range" property="houseFilterRange"/>
+				<result column="housefilter_guest_number" property="houseFilterGuestNumber"/>
+				<result column="housefilter_type" property="houseFilterType"/>
+				<result column="housefilter_room_number" property="houseFilterRoomNumber"/>
+				<result column="housefilter_location" property="houseFilterLocation"/>
+				<result column="housefilter_bedroom_number" property="houseFilterBedroomNumber"/>
+				<result column="housefilter_bathroom_number" property="houseFilterBathroomNumber"/>
+				<result column="housefilter_bed_number" property="houseFilterBedNumber"/>
+				<result column="housefilter_checkin_term" property="houseFilterCheckinTerm"/>
+				<result column="housefilter_checkin_start" property="houseFilterCheckinStart"/>
+				<result column="housefilter_checkin_end" property="houseFilterCheckinEnd"/>
+				<result column="housefilter_reservation_term" property="houseFilterReservationTerm"/>
+				<result column="housefilter_bak_min" property="houseFilterBakMin"/>
+				<result column="housefilter_bak_max" property="houseFilterBakMax"/>
+				<result column="housefilter_price" property="houseFilterPrice"/>
+			</association>
+			<collection property="housePicture" ofType="HousePictureVo">
+				<result column="picture_serial" property="pictureSerial"/>
+				<result column="p_houseSerial" property="houseSerial"/>
+				<result column="picture_order" property="pictureOrder"/>
+				<result column="picture_name" property="pictureName"/>
+			</collection>
+		</association>
+	</resultMap>
+	
+	<select id="houseZzimJoinHouse" parameterType="string" resultMap="houseZzim-house-join-resultmap">
+		<include refid="select-houseZzim-join-sql"/>
+		where	z.member_email = #{value}
+		and		z.house_serial = h.house_serial
+		and		p.house_serial = h.house_serial
+		and		f.house_serial = h.house_serial
+	</select>
+	
 	
 </mapper>
