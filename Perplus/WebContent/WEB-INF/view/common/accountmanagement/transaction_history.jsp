@@ -6,7 +6,7 @@
 	        <li><a href="#jb-tab-2">수령예정 내역</a></li>
 	        <li><a href="#jb-tab-3">총 수익</a></li>
 	      </ul>
-	      <div id="jb-tab-1">
+	      <div id="jb-tab-1" style=" min-height: 350px;">
 	        <p>Tabs 1 - Lorem</p>
 	      </div>
 	      <div id="jb-tab-2">

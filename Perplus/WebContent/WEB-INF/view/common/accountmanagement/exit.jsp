@@ -3,7 +3,7 @@
 	<div class="panel-header">
 		<span>회원 탈퇴</span>
 	</div>
-	<div class="panel-body">
+	<div class="panel-body" style="min-height: 350px;">
 		<div class="row">
 			<div class="col-xs-3">
 			</div>

@@ -6,7 +6,13 @@
 	type="text/javascript"></script>
 <script src="/Perplus/js/map.js"></script>
 
-
+<script type="text/javascript" src="/Perplus/js/date-range-picker.js"></script>
+<link rel="stylesheet" href="/Perplus/css/date-range-picker.css">
+<style>
+.bg-4 {
+	position: relative;
+}
+</style>
 
 <div class="container reviewslide">
 	<div class="row">
@@ -66,7 +72,8 @@
 		<div class="col-md-8">
 			<div class="col-md-9">
 				<div class="row row-maginTB">
-					<label class="text-left col-md-4 "> <span class="rowFT">게시물 제목</span>
+					<label class="text-left col-md-4 "> <span class="rowFT">게시물
+							제목</span>
 					</label>
 					<div class="col-md-7">request</div>
 				</div>
@@ -75,22 +82,22 @@
 					<div class="col-md-4">별점</div>
 					<div class="col-md-3">후기 개수</div>
 				</div>
-				
+
 				<div class="row row-maginTB space-4">
 					<div class="col-md-8 rowFT">상세 설명</div>
 					<div class="clearfix"></div>
 				</div>
-				
+
 				<div class="row">
 					<div class="col-md-offset-1 col-md-8">내용</div>
 					<div class="clearfix"></div>
 				</div>
-				
+
 				<div class="row row-condensed space-4">
 					<div class="col-md-8 rowFT">옵션</div>
 					<div class="clearfix"></div>
 				</div>
-				
+
 				<div class="row row-condensed space-4">
 					<div class="col-md-8 col-md-offset-1">옵션 리스트</div>
 					<div class="clearfix"></div>
@@ -120,23 +127,32 @@
 
 		<div class="col-md-4">
 			<!-- right date -->
-			달력
 
-			<a href="${initParam.rootPath}/message.do#popup"><button>bbb</button></a>
+			<div class="col-md-12">
+				<div class="row ">
+					달력
 
-			<p>
-			<p>
+				</div>
+			</div>
+
+
+			<a href="${initParam.rootPath}/message.do#popup"><button
+					class="btn btn-primary">호스트와 연락</button></a>
+
+
 			<form action="${initParam.rootPath}/member/chatting.do">
-				<input type="hidden" name="memberEmail" value="${sessionScope.login_info.memberEmail}"/>
-				<input type="submit"/>
+				<input type="hidden" name="memberEmail"
+					value="${sessionScope.login_info.memberEmail}" /> <input
+					type="submit" />
 			</form>
 
 		</div>
-	
+
 	</div>
 
 	<div class="row row-condensed space-4">
-		<div id="map-canvas" style="width: 100%; height: 300px; padding: 15px;"></div>
+		<div id="map-canvas"
+			style="width: 100%; height: 300px; padding: 15px;"></div>
 	</div>
 
 </div>

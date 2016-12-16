@@ -4,7 +4,7 @@
 <mapper namespace="houseZzim">
 
 	<insert id="insertHouseZzim" parameterType="HouseZzimVo">
-		insert into HOUSEZZIM values(#{houseSerial},#{memberEmail})
+		insert into HOUSEZZIM values(#{houseZzimSerial}, #{houseSerial},#{memberEmail})
 	</insert>
 	
 	<delete id="deleteHouseZzimByEmail" parameterType="_int">
@@ -13,9 +13,9 @@
 	</delete>
 	
 	<select id="selectHouseZzimByEmail" parameterType="string" resultType="HouseZzimVo">
-		select	house_serial houseSerial, member_email memberEmail
+		select	housezzim_serial houseZzimSerial, house_serial houseSerial, member_email memberEmail
 		from	HOUSEZZIM
-		and		member_email = #{memberEmail}
+		where	member_email = #{value}
 	</select>
 	
 </mapper>

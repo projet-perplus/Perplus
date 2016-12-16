@@ -34,7 +34,7 @@
 </script>
 
 <div class="tabsdiv">
-	<div id="tabs">
+	<div id="tabs" style=" min-height: 350px;">
 		<ul>
 			<li><a href="#jb-tab-1">나에 대한 후기</a></li>
 			<li><a href="#jb-tab-2">내가 작성한 후기 </a></li>

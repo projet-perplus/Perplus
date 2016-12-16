@@ -1,28 +1,33 @@
+//아이콘들
+var tourIcon = new google.maps.MarkerImage("/Perplus/img/markerIcon/tours.png");
+var defaultIcon = new google.maps.MarkerImage("/Perplus/img/markerIcon/default.png");
+var restaurantIcon = new google.maps.MarkerImage("/Perplus/img/markerIcon/restaurants.png");
+var houseIcon = new google.maps.MarkerImage("/Perplus/img/markerIcon/house.png");
+//맵
+var map;
+//맵 클러스터
+var markerCluster;
+//로그인 사용자의 default 마커
+var startMarker;
+//각 마커의 상수
+const MARKER_CONSTANT_TOUR = 211;
+const MARKER_CONSTANT_RESTAURANT = 212;
+const MARKER_CONSTANT_HOUSE = 213;
+//맵이 로딩되는 페이지를 알려주는 state
+var stage = document.getElementById('stage');
+
+//맵 상의 마커를 보관할 array
+var markerArray = [];
+//마커 필터의 상태를 저장
+var filterArray = [];
+var geocoder = new google.maps.Geocoder();
+
 $(function() {
-	//아이콘들
-	var tourIcon = new google.maps.MarkerImage("/Perplus/img/markerIcon/tours.png");
-	var defaultIcon = new google.maps.MarkerImage("/Perplus/img/markerIcon/default.png");
-	var restaurantIcon = new google.maps.MarkerImage("/Perplus/img/markerIcon/restaurants.png");
-	var houseIcon = new google.maps.MarkerImage("/Perplus/img/markerIcon/house.png");
-	//맵
-	var map;
-	//맵 클러스터
-	var markerCluster;
-	//로그인 사용자의 default 마커
-	var startMarker;
-	//각 마커의 상수
-	const MARKER_CONSTANT_TOUR = 18;
-	const MARKER_CONSTANT_RESTAURANT = 19;
-	const MARKER_CONSTANT_HOUSE = 20;
-	//맵이 로딩되는 페이지를 알려주는 state
-	var stage = document.getElementById('stage');
-	
-	//맵 상의 마커를 보관할 array
-	var markerArray = [];
-	
 	//맵의 기본적 start
 	function initialize() {
-		alert(stage.value);
+		
+		var geoLocation = location;
+//		alert(stage.value);
 		var mapCanvas = document.getElementById('map-canvas');
 		var myLatlng = new google.maps.LatLng(37.402116, 127.107020); // 위경도
 		// 설정
@@ -39,133 +44,180 @@ $(function() {
 		
 		//공용 이벤트
 		google.maps.event.addListener(map, 'idle',function(){
-			resetAllMarker();
-			placeMarkerList(
-						map.getBounds().getSouthWest().lat(),map.getBounds().getSouthWest().lng(),map.getBounds().getNorthEast().lat(),
-						map.getBounds().getNorthEast().lng());
-			//맵 클러스터링
-			markerCluster = new MarkerClusterer(map,markerArray,{imagePath:'img/clustering/m'});
+			resetMapMarker(map);
 		});
 		
-		//리뷰용 이벤트
+
+		// 리뷰용 이벤트
 		google.maps.event.addListener(map, 'click', function(mouseEvent) {
 			// alert(mouseEvent.latLng);
-			//추가적으로 로그인 여부 확인 필요
-			if(startMarker == null){
-				startMarker=placeMarker(mouseEvent.latLng);
-				startMarker.setAnimation(google.maps.Animation.BOUNCE);
-			}else if(startMarker != null){
-				startMarker.setPosition(mouseEvent.latLng);
+			// 추가적으로 로그인 여부 확인 필요
+			if(identifyLoginInfo()!= null){
+				if(startMarker == null){
+					startMarker=placeMarker(mouseEvent.latLng);
+					startMarker.setAnimation(google.maps.Animation.BOUNCE);
+				}else if(startMarker != null){
+					startMarker.setPosition(mouseEvent.latLng);
+				}
+				startMarker.setDraggable(true);
 			}
-			
-			identifyLoginInfo();
+			resetMapMarker(map);
 		});
 		
 		//하우스용 이벤트
 		
 	}
-
-	
-	function setMapOnAll(map){
-		for(var i =0 ;i<markerArray.length;i++){
-			markerArray[i].setMap(map);
-		}
-	}
-	//모든 마커들을 리셋
-	function resetAllMarker(){
-		setMapOnAll(null);
-		markerArray =[];
-		if(markerCluster!=null){
-			markerCluster.clearMarkers();
-		}
-	}
-	
-	//로그인 여부를 받는다
-	function identifyLoginInfo(){
-		$.ajax({
-			url : "/Perplus/map/logininfo.do",
-			type:"post",
-			async : false,
-			dataType : "JSON",
-			success:function(obj){
-				alert(obj);
-			},
-			error:function(request,error,status){
-				alert(error+ "   "+status+"status");
-			}
-		});
-	}
-	
-	//범위 안에 있는 마커들을 생성
-	function placeMarkerList(southWestLat,southWestLng,northEastLat,northEastLng){
-		$.ajax({
-			url : "/Perplus/map/markerall.do",
-			type:"post",
-			async : false,
-			data : {				
-				"southWestLat" :  southWestLat.toString(),
-				"southWestLng" :  southWestLng.toString(),
-				"northEastLat" :  northEastLat.toString(),
-				"northEastLng" :  northEastLng.toString()
-			},
-			dataType : "JSON",
-			success:function(obj){
-				$.each(obj,function(){
-					var markerLatlng = new google.maps.LatLng(this.REVIEWMARKERX, this.REVIEWMARKERY);
-					placeMarker(markerLatlng,this.REVIEWMARKERCONSTANT);
-				});
-				if(startMarker!=null){
-					startMarker.setAnimation(google.maps.Animation.BOUNCE);
-					markerArray.push(startMarker);
-				}
-			},
-			error:function(request,error,status){
-				alert(error+ "   "+status+"status");
-			}
-		});
-	}
-	//마커를 위치시키는 함수 이며 2가지 경우로 나뉜다
-	//1.DB에서 마커들을 긁어와 출력
-	//2.로그인된 사용자가 맵을 클릭 했을때 default 마커 설치(로그인이 안되 있는 것은 click 이벤트일때 거른다.)
-	function placeMarker(location,constant,money) {
-		var mIcon;
-		switch(constant){
-		case MARKER_CONSTANT_TOUR :
-			mIcon = tourIcon;
-			break;
-		case MARKER_CONSTANT_RESTAURANT :
-			mIcon = restaurantIcon;
-			break;
-		case MARKER_CONSTANT_HOUSE :
-			mIcon = houseIcon;
-			break;
-		default :
-			mIcon = defaultIcon;
-			break;
-		}
-		var marker = new google.maps.Marker({
-			position : location,
-			map : map,
-			draggable : true,
-			icon : mIcon
-		});
-		if(mIcon == houseIcon){
-			var str = comma(30000);
-			marker.setLabel(str);
-		}
-		markerArray.push(marker);
-		return marker;
-	}
-	
-	//원화 정규식 (공용)
-	function comma(money) {
-	    str = String(money);
-	    str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,')
-	    return str.concat(' ₩');
-	}
-	
 	google.maps.event.addDomListener(window, 'load', initialize);
+});	
+
+function locationSearch(){
+	var geoLocation = document.getElementById("location");
+	if(geoLocation==null){
+		return;
+	}
+	alert(geoLocation.value);
 	
+	geocoder.geocode({
+		'address' : geoLocation.value
+	}, function(results, status) {
+		if (status == google.maps.GeocoderStatus.OK) {
+			//도,시,구,동,군,읍,면
+			alert(geoLocation.value.trim().charAt(geoLocation.value.trim().length-1));
+			switch(geoLocation.value.trim().charAt(geoLocation.value.trim().length-1)){
+			case "도" :
+				map.setZoom(9);
+				break;
+			case "시" :
+				map.setZoom(11);
+				break;
+			case "구" :
+				map.setZoom(13);
+				break;
+			default :
+				map.setZoom(16);
+				break;
+			}
+			map.setCenter(results[0].geometry.location);
+		} else {
+			alert("제대로 된 지명을 입력해 주세요.");
+		}
+	});
+}
+
+function setMapOnAll(map){
+	for(var i =0 ;i<markerArray.length;i++){
+		markerArray[i].setMap(map);
+	}
+}
+//모든 마커들을 리셋
+function resetAllMarker(){
+	setMapOnAll(null);
+	markerArray =[];
+	if(markerCluster!=null){
+		markerCluster.clearMarkers();
+	}
+}
+//마커 필터 배열 수정
+function modifyMarkerFilter(array){
+	filterArray = array;
+}
+
+//로그인 여부를 받는다
+function identifyLoginInfo(){
+	var member;
+	$.ajax({
+		url : "/Perplus/map/logininfo.do",
+		type:"post",
+		async : false,
+		dataType : "JSON",
+		success:function(obj){
+			member=obj;
+		}
+	});
+	return member;
+}
+
+//범위 안에 있는 마커들을 생성
+function placeMarkerList(southWestLat,southWestLng,northEastLat,northEastLng){
+	$.ajax({
+		url : "/Perplus/map/markerall.do",
+		type:"post",
+		async : false,
+		data : {				
+			"southWestLat" :  southWestLat.toString(),
+			"southWestLng" :  southWestLng.toString(),
+			"northEastLat" :  northEastLat.toString(),
+			"northEastLng" :  northEastLng.toString()
+		},
+		dataType : "JSON",
+		success:function(obj){
+			$.each(obj,function(){
+				var markerLatlng = new google.maps.LatLng(this.REVIEWMARKERX, this.REVIEWMARKERY);
+				placeMarker(markerLatlng,this.REVIEWMARKERCONSTANT);
+			});
+			if(startMarker!=null){
+				startMarker.setAnimation(google.maps.Animation.BOUNCE);
+				markerArray.push(startMarker);
+			}
+		},
+		error:function(request,error,status){
+			alert(error+ "   "+status+"status");
+		}
+	});
+}
+//마커를 위치시키는 함수 이며 2가지 경우로 나뉜다
+//1.DB에서 마커들을 긁어와 출력
+//2.로그인된 사용자가 맵을 클릭 했을때 default 마커 설치(로그인이 안되 있는 것은 click 이벤트일때 거른다.)
+function placeMarker(location,constant,money) {
+	var mIcon;
+	switch(constant){
+	case MARKER_CONSTANT_TOUR :
+		mIcon = tourIcon;
+		break;
+	case MARKER_CONSTANT_RESTAURANT :
+		mIcon = restaurantIcon;
+		break;
+	case MARKER_CONSTANT_HOUSE :
+		mIcon = houseIcon;
+		break;
+	default :
+		mIcon = defaultIcon;
+		break;
+	}
+	var marker = new google.maps.Marker({
+		position : location,
+		map : map,
+		icon : mIcon
+	});
+	if(mIcon == houseIcon){
+		var str = comma(30000);
+		marker.setLabel(str);
+	}
+	markerArray.push(marker);
+	if(filterArray==null){
+		marker.setVisible(false);
+	}else{
+		
+	}
+	return marker;
+}
+
+//원화 정규식 (공용)
+function comma(money) {
+    str = String(money);
+    str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,')
+    return str.concat(' ₩');
+}
+
+function resetMapMarker(map){
+	resetAllMarker();
+	placeMarkerList(
+				map.getBounds().getSouthWest().lat(),map.getBounds().getSouthWest().lng(),map.getBounds().getNorthEast().lat(),
+				map.getBounds().getNorthEast().lng());
+	//맵 클러스터링
+	markerCluster = new MarkerClusterer(map,markerArray,{imagePath:'img/clustering/m'});
+}
+
 //////////////////////////////////////////////////
 //	
 //	function initialize() {
@@ -296,4 +348,4 @@ $(function() {
 //	}
 //	google.maps.event.addDomListener(window, 'load', initialize);
 //////////////////////////////////////////////////
-	});
+
