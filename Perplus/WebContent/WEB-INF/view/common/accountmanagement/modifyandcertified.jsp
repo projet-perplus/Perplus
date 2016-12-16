@@ -252,7 +252,7 @@
 	</div>
 
 	<form action="${initParam.rootPath}/member/passwordChange.do"
-		onsubmit="return false" id="passwordChangeForm">
+		id="passwordChangeForm">
 		<input type="hidden" name="memberEmail"
 			value="${sessionScope.login_info.memberEmail}">
 		<div class="row row-condensed space-4">

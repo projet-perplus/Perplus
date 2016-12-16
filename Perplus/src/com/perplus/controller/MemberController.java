@@ -20,6 +20,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -278,6 +279,18 @@ public class MemberController {
 		service.insertChattingLog(chattingLog);
 		return "redirect:/member/chattingfind.do?returnChattingNumber="+chattingLog.getChattingNumber();
 	}
+	
+	/*********************내가 찜한 숙소 조회**********************/
+	@RequestMapping("/housezzimfind.do")
+	public String houseZzimFindEmail(ModelMap map, HttpSession session){
+		MemberVo member = (MemberVo)session.getAttribute("login_info");
+		String memberEmail = member.getMemberEmail();
+		List<HouseZzimVo> houseZzim = service.selectHouseZzimByEmail(memberEmail);
+		map.addAttribute("houseZzim", houseZzim);
+		System.out.println(houseZzim);
+		return "forward:/wishlist.do";
+	}
+	
 	
 	/*****************************/
 	
