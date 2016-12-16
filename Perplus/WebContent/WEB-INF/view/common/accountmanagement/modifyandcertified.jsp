@@ -102,12 +102,12 @@
 										<c:choose>
 											<c:when test="${sessionScope.login_info.memberGender == '남'}">
 												<option selected>남</option>
-												<option>녀</option>
+												<option>여</option>
 											</c:when>
 											<c:when
 												test="${sessionScope.login_info.memberGender == '녀' }">
 												<option>남</option>
-												<option selected>녀</option>
+												<option selected>여</option>
 											</c:when>
 											<c:otherwise>
 												<option>남</option>

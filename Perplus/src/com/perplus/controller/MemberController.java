@@ -294,7 +294,8 @@ public class MemberController {
 	public String houseZzimFindEmail(ModelMap map, HttpSession session){
 		MemberVo member = (MemberVo)session.getAttribute("login_info");
 		String memberEmail = member.getMemberEmail();
-		List<HouseZzimVo> houseZzim = service.selectHouseZzimByEmail(memberEmail);
+		List<HouseZzimVo> houseZzim = service.houseZzimJoinHouseJoinHousePicture(memberEmail);
+		System.out.println(houseZzim);
 		map.addAttribute("houseZzim", houseZzim);
 		return "forward:/wishlist.do";
 	}

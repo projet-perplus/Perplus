@@ -186,6 +186,9 @@ public class MemberServiceImpl implements MemberService{
 		return houseZzimDao.selectHouseZzimByEmail(memberEmail);
 	}
 	
+	public List<HouseZzimVo> houseZzimJoinHouseJoinHousePicture(String memberEmail){
+		return houseZzimDao.houseZzimJoinHouseJoinHousePicture(memberEmail);
+	}
 	
 	/*
 	 * howgetmoney Service

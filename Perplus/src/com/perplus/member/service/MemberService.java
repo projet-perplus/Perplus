@@ -56,6 +56,7 @@ public interface MemberService {
 	
 	List<HouseZzimVo> selectHouseZzimByEmail(String memberEmail);
 	
+	List<HouseZzimVo> houseZzimJoinHouseJoinHousePicture(String memberEmail);
 	
 	//howgetmoney service
 	void insertHowgetmoney(HowgetmoneyVo howgetmoney);
