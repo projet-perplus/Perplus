@@ -27,8 +27,8 @@
 	<!-- accountmanagement do -->
 	<mvc:view-controller path="/modifyandcertified.do"
 		view-name="accountmanagement/accountmanagement/modifyandcertified.tiles1" />
-	<mvc:view-controller path="/payment_method.do"
-		view-name="accountmanagement/accountmanagement/payment_method.tiles1" />
+<!-- 	<mvc:view-controller path="/payment_method.do" -->
+<!-- 		view-name="accountmanagement/accountmanagement/payment_method.tiles1" /> -->
 	<mvc:view-controller path="/payout_preference.do"
 		view-name="accountmanagement/accountmanagement/payout_preference.tiles1" />
 	<mvc:view-controller path="/transaction_history.do"

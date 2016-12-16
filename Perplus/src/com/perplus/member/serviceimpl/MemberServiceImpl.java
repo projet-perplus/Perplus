@@ -430,6 +430,17 @@ public class MemberServiceImpl implements MemberService{
 		return showmethemoneyDao.selectShowmethemoneySerialSeq();
 	}
 	
+	public List<ShowMeTheMoneyVo> getShowmethemoneyByShowmethemoneyStatus(String memberEmail,
+			int  showmethemoneyStatus) throws Exception {
+		List<ShowMeTheMoneyVo> list = null;
+		list = showmethemoneyDao.selectShowmethemoneyByShowmethemoneyStatus(memberEmail, showmethemoneyStatus);
+		if (list !=null){
+			return list;
+		}else{
+			throw new Exception("해당 내역이 존재하지 않습니다.");
+		}
+	}
+	
 	/**
 	 * Travel  관련 Service
 	 * @param travel
