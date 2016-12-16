@@ -24,6 +24,7 @@
 				$("#modifyPassword").focus();
 				return false;
 			}
+			return confirm("저장하시겠습니까?");
 		});
 
 		$("#passwordChangeForm").on("submit", function() {
@@ -40,9 +41,14 @@
 				alert("변경할 비밀번호가 다릅니다.");
 				return false;
 			}
+			
+			return confirm("비밀번호를 변경하시겠습니까?");
 
 		});
-
+		
+		$("#deleteMemberPicture").on("click",function(){
+			return confirm("삭제하시겠습니까?");
+		});
 	});
 </script>
 
@@ -54,22 +60,25 @@
 		</div>
 		<div class="panel-body">
 			<div class="row" style="margin-bottom: 15px;">
-				<div class="col-sm-3">
-					<c:choose>
-						<c:when test="${empty sessionScope.login_info.memberPicture }">
-							<img src="/Perplus/memberPicture/no-photo.png" width="200"
-								height="200">
-						</c:when>
-						<c:otherwise>
-							<img
-								src="/Perplus/memberPicture/${sessionScope.login_info.memberPicture}"
-								width="200" height="200">
-						</c:otherwise>
-					</c:choose>
-					<input type="file" name="memberPictureFile" value="사진등록" />
-				</div>
-
-				<div class="col-sm-9">
+					<div class="col-md-3 col-sm-4"
+						style="text-align: right; padding-right: 0px;">
+						<c:choose>
+							<c:when test="${empty sessionScope.login_info.memberPicture }">
+								<img src="/Perplus/memberPicture/no-photo.png" width="200"
+									height="200">
+								<input type="file" name="memberPictureFile" value="사진등록" />
+							</c:when>
+							<c:otherwise>
+								<img
+									src="/Perplus/memberPicture/${sessionScope.login_info.memberPicture}"
+									width="200" height="200">
+								<a href="${initParam.rootPath}/member/memberpictureremove.do">
+									<button id="deleteMemberPicture" type="button" class="btn btn-danger" style="margin-top: 10px;">삭제</button>
+								</a>
+							</c:otherwise>
+						</c:choose>
+					</div>
+				<div class="col-sm-8 col-md-9">
 					<div class="row row-condensed space-4">
 						<label class="text-right col-sm-3"> 이름(예: 홍길동) </label>
 						<div class="col-sm-9">
@@ -82,7 +91,6 @@
 							</div>
 						</div>
 					</div>
-
 					<div class="row row-condensed space-4">
 						<label class="text-right col-md-3" for="user_name"> 성별 </label>
 						<div class="col-sm-9">
@@ -151,7 +159,6 @@
 							</div>
 						</div>
 					</div>
-
 					<div class="row row-condensed space-4">
 						<label class="text-right col-md-3"> 거주지역 </label>
 						<div class="col-sm-9">
@@ -189,7 +196,6 @@
 							</div>
 						</div>
 					</div>
-
 					<div class="row row-condensed space-4">
 						<label class="text-right col-md-3"> 비밀번호 </label>
 						<div class="col-sm-9">
@@ -203,7 +209,6 @@
 							</div>
 						</div>
 					</div>
-
 					<div class="row row-condensed space-4">
 						<div class="col-sm-9"></div>
 						<div class="col-sm-3">
@@ -213,7 +218,6 @@
 							</div>
 						</div>
 					</div>
-
 				</div>
 			</div>
 		</div>

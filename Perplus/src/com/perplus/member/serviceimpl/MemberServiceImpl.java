@@ -248,6 +248,10 @@ public class MemberServiceImpl implements MemberService{
 		return memberDao.selectMemberFindByEmail(memberEmail);
 	}
 	
+	@Override
+	public void deleteMemberPicture(String memberPicture){
+		memberDao.deleteMemberPicture(memberPicture);
+	}
 	
 	/**
 	 * Payment 관련 Service

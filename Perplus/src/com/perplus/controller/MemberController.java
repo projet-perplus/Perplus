@@ -164,6 +164,16 @@ public class MemberController {
 		return "redirect:/modifyandcertified.do";
 	}
 	
+	/******************프로필사진 삭제***************************/
+	@RequestMapping("/memberpictureremove.do")
+	public String memberPictureRemove(HttpSession session){
+		MemberVo member = (MemberVo)session.getAttribute("login_info");
+		String memberPicture = member.getMemberPicture();
+		service.deleteMemberPicture(memberPicture);
+		member.setMemberPicture(null);
+		return "redirect:/modifyandcertified.do";
+	}
+	
 	/****************howgetmoney조회********************/
 	@RequestMapping("/howgetmoneyfind.do")
 	public String howgetmoneyFind(ModelMap map, HttpSession session){

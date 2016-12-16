@@ -78,6 +78,8 @@ public interface MemberService {
 	
 	MemberVo selectMemberFindByEmail(String memberEmail);
 	
+	void deleteMemberPicture(String memberPicture);
+	
 	/**
 	 * Payment 관련 Service
 	 * @param payment
