@@ -242,7 +242,7 @@
 	</div>
 
 	<form action="${initParam.rootPath}/member/passwordChange.do"
-		onsubmit="return false" id="passwordChangeForm">
+		id="passwordChangeForm">
 		<input type="hidden" name="memberEmail"
 			value="${sessionScope.login_info.memberEmail}">
 		<div class="row row-condensed space-4">
@@ -295,7 +295,9 @@
 			</form>
 		</c:when>
 		<c:otherwise>
-			<div class="panel-body" style="text-align:center"><span style="font-size: 20px; color: blue;">인증되었습니다.</span></div>
+			<div class="panel-body" style="text-align: center">
+				<span style="font-size: 20px; color: blue;">인증되었습니다.</span>
+			</div>
 		</c:otherwise>
 	</c:choose>
 </div>
