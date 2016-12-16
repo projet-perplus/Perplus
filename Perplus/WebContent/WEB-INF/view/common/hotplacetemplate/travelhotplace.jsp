@@ -112,7 +112,7 @@ $(function() {
 	<button type="button" class="btn btn-primary">리뷰 작성</button>
 </a>
 
-<a href="${initParam.rootPath}/review/showReview.do?reviewSerial=26">
+<a href="${initParam.rootPath}/review/showReview.do?reviewSerial=1">
 	<!-- reviewSerial은 requestScope의 리뷰시리얼값~~ -->
 	<button type="button" class="btn btn-primary">리뷰 상세페이지</button>
 </a>

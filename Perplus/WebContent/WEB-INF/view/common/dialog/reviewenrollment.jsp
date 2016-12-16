@@ -6,14 +6,15 @@
 <style>
 input{
  	border:none !important; 
+ 	position: relative;
 }
 </style>	
 	
 	
 	<!-- reviewEnrollment-->
 <div class="modal fade" id="reviewEnrollment" role="dialog"
-	aria-labelledby="basicModal" aria-hidden="true">
-	<div class="modal-dialog reviewEnrollment-dialog">
+	aria-labelledby="basicModal" aria-hidden="true" style="padding-left:0 !important;">
+	<div class="modal-dialog reviewEnrollment-dialog" style="transform: translate(0,0) !important;">
 		<!-- Modal content-->
 		<form action="${initParam.rootPath}/review/registerReview.do"
 			method="post" enctype="multipart/form-data" id="myform">
