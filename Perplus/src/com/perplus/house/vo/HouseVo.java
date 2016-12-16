@@ -20,6 +20,7 @@ public class HouseVo implements Serializable{
 	
 	private HouseFilterVo houseFilter;
 	private List<HouseZzimVo> houseZzimList;
+	private List<HousePictureVo> housePicture;
 	
 	public HouseVo() {}
 
@@ -49,6 +50,23 @@ public class HouseVo implements Serializable{
 		this.houseMarkerConstant = houseMarkerConstant;
 		this.houseFilter = houseFilter;
 		this.houseZzimList = houseZzimList;
+	}
+
+	public HouseVo(int houseSerial, String memberEmail, int houseRegisterStatus, String houseTitle, String houseContent,
+			String houseNecessaryCondition, int houseRating, double houseMarkerX, double houseMarkerY,
+			double houseMarkerConstant, List<HousePictureVo> housePicture) {
+		super();
+		this.houseSerial = houseSerial;
+		this.memberEmail = memberEmail;
+		this.houseRegisterStatus = houseRegisterStatus;
+		this.houseTitle = houseTitle;
+		this.houseContent = houseContent;
+		this.houseNecessaryCondition = houseNecessaryCondition;
+		this.houseRating = houseRating;
+		this.houseMarkerX = houseMarkerX;
+		this.houseMarkerY = houseMarkerY;
+		this.houseMarkerConstant = houseMarkerConstant;
+		this.housePicture = housePicture;
 	}
 
 	public int getHouseSerial() {
@@ -147,6 +165,14 @@ public class HouseVo implements Serializable{
 		this.houseZzimList = houseZzimList;
 	}
 
+	public List<HousePictureVo> getHousePicture() {
+		return housePicture;
+	}
+
+	public void setHousePicture(List<HousePictureVo> housePicture) {
+		this.housePicture = housePicture;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -161,6 +187,7 @@ public class HouseVo implements Serializable{
 		temp = Double.doubleToLongBits(houseMarkerY);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		result = prime * result + ((houseNecessaryCondition == null) ? 0 : houseNecessaryCondition.hashCode());
+		result = prime * result + ((housePicture == null) ? 0 : housePicture.hashCode());
 		result = prime * result + houseRating;
 		result = prime * result + houseRegisterStatus;
 		result = prime * result + houseSerial;
@@ -200,6 +227,11 @@ public class HouseVo implements Serializable{
 				return false;
 		} else if (!houseNecessaryCondition.equals(other.houseNecessaryCondition))
 			return false;
+		if (housePicture == null) {
+			if (other.housePicture != null)
+				return false;
+		} else if (!housePicture.equals(other.housePicture))
+			return false;
 		if (houseRating != other.houseRating)
 			return false;
 		if (houseRegisterStatus != other.houseRegisterStatus)
@@ -230,9 +262,10 @@ public class HouseVo implements Serializable{
 				+ houseRegisterStatus + ", houseTitle=" + houseTitle + ", houseContent=" + houseContent
 				+ ", houseNecessaryCondition=" + houseNecessaryCondition + ", houseRating=" + houseRating
 				+ ", houseMarkerX=" + houseMarkerX + ", houseMarkerY=" + houseMarkerY + ", houseMarkerConstant="
-				+ houseMarkerConstant + ", houseFilter=" + houseFilter + ", houseZzimList=" + houseZzimList + "]";
+				+ houseMarkerConstant + ", houseFilter=" + houseFilter + ", houseZzimList=" + houseZzimList
+				+ ", housePicture=" + housePicture + "]";
 	}
-	
 
+	 
 
 }
