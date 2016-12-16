@@ -1,5 +1,4 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
-<!-- 예약까기 다이얼로그 -->
 
 <div class="modal fade" id="rejectdialog" role="dialog"
 	aria-labelledby="basicModal" aria-hidden="true">
