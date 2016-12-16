@@ -214,19 +214,12 @@ function placeMarker(location,constant,money) {
 					type:"post",
 					async : false,
 					data : {		
-						"lat" :  lat.toString(),
-						"lng" :  lng.toString(),
+						"lat" :  marker.getPosition().lat().toString(),
+						"lng" :  marker.getPosition().lng().toString(),
 					},
 					dataType : "JSON",
 					success:function(obj){
-						$.each(obj,function(){
-							var markerLatlng = new google.maps.LatLng(this.REVIEWMARKERX, this.REVIEWMARKERY);
-							placeMarker(markerLatlng,this.REVIEWMARKERCONSTANT);
-						});
-						if(startMarker!=null){
-							startMarker.setAnimation(google.maps.Animation.BOUNCE);
-							markerArray.push(startMarker);
-						}
+						$('#reviewEnrollment').modal('show');
 					},
 					error:function(request,error,status){
 						alert(error+ "   "+status+"status");

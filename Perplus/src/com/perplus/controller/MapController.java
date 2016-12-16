@@ -2,11 +2,13 @@ package com.perplus.controller;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -14,6 +16,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.perplus.house.service.HouseService;
 import com.perplus.member.vo.MemberVo;
 import com.perplus.review.service.ReviewService;
+import com.perplus.review.vo.ReviewCommentVo;
+import com.perplus.review.vo.ReviewPictureVo;
 import com.perplus.review.vo.ReviewVo;
 
 @Controller
@@ -48,8 +52,20 @@ public class MapController {
 		return member;
 	}
 	@RequestMapping("/selectedreview.do")
-	public ReviewVo getReviewByMarker(@RequestParam String lat,	@RequestParam String lng){
+	public String getReviewByMarker(@RequestParam String lat,ModelMap modelMap,	@RequestParam String lng,@RequestParam(defaultValue="1") int page) throws Exception{
+		HashMap<String,Double> map = new HashMap<>();
+		map.put("lat", Double.valueOf(lat));
+		map.put("lng", Double.valueOf(lng));
+		ReviewVo review = reviewService.selectReviewByMarker(map);
+		int serial = review.getReviewSerial();
+		Map<String,Object> retMap = reviewService.getReviewCommentList(serial,page);
+		List<ReviewPictureVo> list = reviewService.getReviewPictureList(serial);
 		
-		return null;
+		review.setReviewComment((List<ReviewCommentVo>)retMap.get("list"));
+		modelMap.put("review", review);
+		modelMap.put("picture", list);
+		modelMap.put("pageBean", retMap.get("pageBean"));
+		
+		return "reviewdetailPage.hotplacetiles";
 	}
 }

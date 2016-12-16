@@ -22,6 +22,8 @@ public interface ReviewDao {
 	List<ReviewVo> selectReviewList();
 	
 	//map을 위한 조회
+	//구역의 리뷰들을 select
 	List<ReviewVo> selectMarkerBySection(HashMap<String,Double> map);
-
+	//마커를 통한 특정 리뷰 select
+	ReviewVo selectReviewByMarker(HashMap<String,Double> map);
 }

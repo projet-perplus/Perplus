@@ -88,6 +88,7 @@ $(function() {
 		<div id="map-div" class="panel-body">
 			<div class="row">
 				<div class="col-md-12">
+					<!-- stage - 해당 페이지, location - 검색한 지역 string이 저장 -->
 					<input type="hidden" id="stage" value="travel"> <input
 						type="hidden" id="location">
 					<div id="map-canvas" style="width: 100%; height: 489px"></div>

@@ -55,6 +55,11 @@ public class ReviewDaoImpl implements ReviewDao{
 		return session.selectList("review.selectMarkerBySection",map);
 	}
 
+	@Override
+	public ReviewVo selectReviewByMarker(HashMap<String, Double> map) {
+		return session.selectOne("review.selectReviewByMarker",map);
+	}
+
 
 /*	@Override
 	public List<ReviewVo> selectReviewWithCommentAndPicture(int reviewSerial) {
