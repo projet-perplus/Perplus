@@ -42,6 +42,9 @@ public class HouseCommentDaoImpl implements HouseCommentDao{
 	}
 	
 	
+	public List<HouseCommentVo> selectHouseCommentJoinHouse(String memberEmail){
+		return session.selectList("houseComment.houseCommentJoinHouse" ,memberEmail);
+	}
 	
 	
 }

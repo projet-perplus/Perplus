@@ -4,7 +4,7 @@
 <mapper namespace="houseZzim">
 
 	<insert id="insertHouseZzim" parameterType="HouseZzimVo">
-		insert into HOUSEZZIM values(#{houseZzimSerial}, #{houseSerial},#{memberEmail})
+		insert into HOUSEZZIM values(houseComment_seq, #{houseSerial}, #{memberEmail}, #{commentContent}, #{commentRating}, #{commentTime})
 	</insert>
 	
 	<delete id="deleteHouseZzimByEmail" parameterType="_int">
@@ -17,5 +17,54 @@
 		from	HOUSEZZIM
 		where	member_email = #{value}
 	</select>
+	
+	
+<!-- 	<sql id="select-houseZzim-join-sql">
+		select	z.housezzim_serial,
+				z.house_serial z_houseSerial,
+				z.member_email z_memberEmail,
+				h.house_serial h_houseSerial,
+				h.member_email h_memberEmail,
+				h.house_register_status,
+				h.house_title,
+				h.house_content,
+				h.house_necessary_condition,
+				h.house_rating,
+				h.house_marker_x,
+				h.house_marker_y,
+				house_marker_constant
+		from	HOUSEZZIM z, HOUSE h
+	</sql>
+	
+	<resultMap type="HouseZzimVo" id="houseZzim-default-resultmap">
+		<id column="housezzim_serial" property="housezzimSerial"/>
+		<result column="z_houseSerial" property="houseSerial"/>
+		<result column="z_memberEmail" property="memberEmail"/>
+	</resultMap>
+
+	<resultMap type="HouseZzimVo" id="houseZzim-house-join-resultmap" extends="houseZzim-default-resultmap">
+		<association property="house" javaType="HouseVo">
+			<result column="h_houseSerial" property="houseSerial"/>
+			<result column="h_memberEmail" property="memberEmail"/>
+			<result column="house_register_status" property="houseRegisterStatus"/>
+			<result column="house_title" property="houseTitle"/>
+			<result column="house_content" property="houseContent"/>
+			<result column="house_necessary_condition" property="houseNecessaryCondition"/>
+			<result column="house_rating" property="houseRating"/>
+			<result column="house_marker_x" property="houseMarkerX"/>
+			<result column="house_marker_y" property="houseMarkerY"/>
+			<result column="house_marker_constant" property="houseMarkerConstant"/>
+			<association property="">
+				<result column/>
+			</association>
+		</association>
+	</resultMap>
+	
+	<select id="houseZzimJoinHouse" parameterType="string" resultType="HouseZzimVo">
+		<include refid="select-houseZzim-join-sql"/>
+		where	z.member_email = #{value}
+		and		z.house_serial = h.house_serial
+	</select> -->
+	
 	
 </mapper>
