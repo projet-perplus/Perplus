@@ -117,10 +117,12 @@
 		<include refid="default-house-select"/>
 		where MEMBER_EMAIL = #{value}
 	</select>
-	
-<!-- 	<select id="selectHouseWithPictureBySerial" parameterType="_int" resultType="HouseVo" resultMap=""> -->
-<!-- 		<include refid="house-housePicture-join"/> -->
-<!-- 	</select> -->
+	<!-- 필터 검출 후 숙소 리스트를 보여주는 곳에서 사용 -->
+	<select id="selectHouseWithPictureBySerial" parameterType="_int" resultType="HouseVo" resultMap="house-housePicture-join-resultmap">
+		<include refid="house-housePicture-join"/>
+		where h.HOUSE_SERIAL = #{value}
+		and p.HOUSE_SERIAL(+) = h.HOUSE_SERIAL
+	</select>
 	<!-- 필터를 통해 등록한 집을 select -> 각 필터 객체들을 hashmap으로 받아 각 where문을 통해 비교-->
 	<!-- 
 		HashMap List

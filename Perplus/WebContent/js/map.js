@@ -16,6 +16,9 @@ const MARKER_CONSTANT_HOUSE = 213;
 //맵이 로딩되는 페이지를 알려주는 state
 var stage = document.getElementById('stage');
 
+//최초 마커 필터의 상태
+var startFilterArray = document.getElementsByName('marker_filter');
+
 //맵 상의 마커를 보관할 array
 var markerArray = [];
 //마커 필터의 상태를 저장
@@ -40,11 +43,18 @@ $(function() {
 		// 구글 맵 생성
 		map = new google.maps.Map(mapCanvas, mapOptions);
 
+		//filter의 초기 값을 filterArray에 저장
+		for(var i in startFilterArray){
+			if(startFilterArray[i].checked){
+				filterArray.push(startFilterArray[i].value);
+			}
+		}
 		//각종 listener 들
+		
 		
 		//공용 이벤트
 		google.maps.event.addListener(map, 'idle',function(){
-			resetMapMarker(map);
+			resetMapMarker();
 		});
 		
 
@@ -61,7 +71,7 @@ $(function() {
 				}
 				startMarker.setDraggable(true);
 			}
-			resetMapMarker(map);
+			resetMapMarker();
 		});
 		
 		//하우스용 이벤트
@@ -104,7 +114,7 @@ function locationSearch(){
 	});
 }
 
-function setMapOnAll(map){
+function setMapOnAll(){
 	for(var i =0 ;i<markerArray.length;i++){
 		markerArray[i].setMap(map);
 	}
@@ -184,24 +194,77 @@ function placeMarker(location,constant,money) {
 		mIcon = defaultIcon;
 		break;
 	}
-	var marker = new google.maps.Marker({
-		position : location,
-		map : map,
-		icon : mIcon
-	});
-	if(mIcon == houseIcon){
-		var str = comma(30000);
-		marker.setLabel(str);
+	//여기서 house 페이지인지 review 인지 분기 필요할 듯
+	var trigger;
+	trigger = possibleMarkerWithFilter(mIcon);
+	if(trigger){
+		var marker = new google.maps.Marker({
+			position : location,
+			map : map,
+			icon : mIcon
+		});
+		if((mIcon.url).includes('default')){
+			google.maps.event.addListener(marker, 'click',function(){
+				$('#reviewEnrollment').modal('show');
+			});
+		}else{
+			google.maps.event.addListener(marker, 'click',function(){
+				$.ajax({
+					url : "/Perplus/map/selectedreview.do",
+					type:"post",
+					async : false,
+					data : {		
+						"lat" :  lat.toString(),
+						"lng" :  lng.toString(),
+					},
+					dataType : "JSON",
+					success:function(obj){
+						$.each(obj,function(){
+							var markerLatlng = new google.maps.LatLng(this.REVIEWMARKERX, this.REVIEWMARKERY);
+							placeMarker(markerLatlng,this.REVIEWMARKERCONSTANT);
+						});
+						if(startMarker!=null){
+							startMarker.setAnimation(google.maps.Animation.BOUNCE);
+							markerArray.push(startMarker);
+						}
+					},
+					error:function(request,error,status){
+						alert(error+ "   "+status+"status");
+					}
+				});
+			});
+			
+		}
+		markerArray.push(marker);
+		if(mIcon == houseIcon){
+			var str = comma(30000);
+			marker.setLabel(str);
+		}
+		return marker;
 	}
-	markerArray.push(marker);
-	if(filterArray==null){
-		marker.setVisible(false);
-	}else{
-		
-	}
-	return marker;
 }
-
+//필터에 따른 출력 가능한 마커만 markerArray에 push
+function possibleMarkerWithFilter(mIcon){
+	if((mIcon.url).includes('default')){
+		return true;
+	}
+	if(filterArray.length==2){
+		return true;
+	}else if(filterArray.length==0){
+		return false;
+	}else{
+		if(filterArray[0] == 'food'){
+			if((mIcon.url).includes('restaurants')){
+				return true;
+			}
+		}else{
+			if((mIcon.url).includes('tours')){
+				return true;
+			}
+		}
+	}
+	return false;
+}
 //원화 정규식 (공용)
 function comma(money) {
     str = String(money);
@@ -209,7 +272,7 @@ function comma(money) {
     return str.concat(' ₩');
 }
 
-function resetMapMarker(map){
+function resetMapMarker(){
 	resetAllMarker();
 	placeMarkerList(
 				map.getBounds().getSouthWest().lat(),map.getBounds().getSouthWest().lng(),map.getBounds().getNorthEast().lat(),
@@ -218,134 +281,4 @@ function resetMapMarker(map){
 	markerCluster = new MarkerClusterer(map,markerArray,{imagePath:'img/clustering/m'});
 }
 
-//////////////////////////////////////////////////
-//	
-//	function initialize() {
-//	     
-//        var mapOptions = {
-//                            zoom: 18, // 지도를 띄웠을 때의 줌 크기
-//                            mapTypeId: google.maps.MapTypeId.ROADMAP
-//                        };
-//         
-//         
-//        var map = new google.maps.Map(document.getElementById("map-canvas"), // div의 id과 값이 같아야 함. "map-canvas"
-//                                    mapOptions);
-//         
-//        var size_x = 40; // 마커로 사용할 이미지의 가로 크기
-//        var size_y = 40; // 마커로 사용할 이미지의 세로 크기
-//     
-//        // 마커로 사용할 이미지 주소
-//        var image = new google.maps.MarkerImage( '주소 여기에 기입!',
-//                                                    new google.maps.Size(size_x, size_y),
-//                                                    '',
-//                                                    '',
-//                                                    new google.maps.Size(size_x, size_y));
-//         
-//        // Geocoding 메인 페이지에서 검색을 눌렀을 때 모든 인자*****************************************************
-//        var parameter;
-//        if(parameter != null){
-//        	var address = parameter[0]; // DB에서 주소 가져와서 검색하거나 왼쪽과 같이 주소를 바로 코딩.
-//        }
-//        
-//        function getUrlVars(){
-//        	var parameter = [] , hash;
-//        	var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
-//        	for(var i =0;i<hashes.length;i++){
-//        		hash = hashes[i].split('=');
-//        		parameter.push(hash[0]);
-//        		parameter[hash[0]] = hash[1];
-//        	}
-//        	return parameter;
-//        }
-//        
-//        var marker = null;
-//        var geocoder = new google.maps.Geocoder();
-//        geocoder.geocode( { 'address': address}, function(results, status) {
-//            if (status == google.maps.GeocoderStatus.OK) {
-//                map.setCenter(results[0].geometry.location);
-//                marker = new google.maps.Marker({
-//                                map: map,
-//                                icon: image, // 마커로 사용할 이미지(변수)
-//                                title: '한밭도서관', // 마커에 마우스 포인트를 갖다댔을 때 뜨는 타이틀
-//                                position: results[0].geometry.location
-//                            });
-// 
-//                var content = "한밭도서관<br/><br/>Tel: 042-580-4114"; // 말풍선 안에 들어갈 내용
-//             
-//                // 마커를 클릭했을 때의 이벤트. 말풍선
-//                var infowindow = new google.maps.InfoWindow({ content: content});
-//                google.maps.event.addListener(marker, "click", function() {infowindow.open(map,marker);});
-//            } else {
-//                alert("Geocode was not successful for the following reason: " + status);
-//            }
-//        });
-//        // Geocoding // *****************************************************
-//         
-//    }
-//    google.maps.event.addDomListener(window, 'load', initialize);
-//});
-//////////////////////////////////////////////////
-//	var lat = 0;
-//	var lng = 0;
-//	
-//	var map;
-//	function initialize() {
-//		var mapCanvas = document.getElementById('map-canvas');
-//		var myLatlng = new google.maps.LatLng(37.402116, 127.107020); // 위경도
-//		// 설정
-//		var mapOptions = { // 구글 맵 옵션
-//			center : myLatlng,
-//			zoom : 16,
-//			mapTypeId : google.maps.MapTypeId.ROADMAP
-//		};
-//
-//		// 구글 맵 생성
-//		map = new google.maps.Map(mapCanvas, mapOptions);
-//
-//		var contentString = '<div style="width:100px;height:50px;">SSM</div>'; // 말풍선
-//		// 내용
-//
-//		var infowindow = new google.maps.InfoWindow({
-//			content : contentString,
-//			size : new google.maps.Size(200, 100)
-//		});
-//
-//		google.maps.event.addListener(map, 'click', function(mouseEvent) {
-//			// alert(mouseEvent.latLng);
-//			placeMarker(mouseEvent.latLng);
-//			// alert(map.getBounds().getSouthWest().lat());
-//			// alert(map.getBounds().getSouthWest().lng());
-//			// alert(map.getBounds().getNorthEast().lat());
-//			// alert(map.getBounds().getNorthEast().lng());
-//
-//		});
-//
-//		// var marker = new google.maps.Marker({
-//		// position: myLatlng,
-//		// map: map,
-//		// draggable:true, // 마커 드래그 가능
-//		// title: 'Hello World!' // 마커 : 도움말 풍선(마우스 오버 시)
-//		// });
-//		// google.maps.event.addListener(marker, 'click', function() {
-//		// infowindow.open(map, marker);
-//		//
-//		// if (marker.getAnimation() != null) {
-//		// marker.setAnimation(null);
-//		// } else {
-//		// marker.setAnimation(google.maps.Animation.BOUNCE);
-//		// }
-//		// });
-//
-//		// marker.setMap(map);
-//	}
-//
-//	function placeMarker(location) {
-//		var marker = new google.maps.Marker({
-//			position : location,
-//			map : map,
-//			draggable : true
-//		});
-//	}
-//	google.maps.event.addDomListener(window, 'load', initialize);
-//////////////////////////////////////////////////
 

@@ -32,26 +32,17 @@ $(function() {
 		});
 
 		$("input:checkbox[name=marker_filter]").change(function() {
+			var markerArray = [];
 			$("input:checkbox[name=marker_filter]:checked").each(function() {
-				var markerArray = [];
-				alert($(this).val());
-				modifyMarkerFilter(markerArray);
+				markerArray.push($(this).val());
 			});
-		})
-		$(function() {
-			$("input:checkbox[name=marker_filter]:checked").each(function() {
-				var markerArray = [];
-				alert($(this).val());
-				modifyMarkerFilter(markerArray);
-			});
+			modifyMarkerFilter(markerArray);
+			resetMapMarker();
 		})
 
 	})
 </script>
 
-<script>
-	
-</script>
 <div class="container">
 	<div id="dashboard-content" class="hotplace">
 		<div class="panel-header">
@@ -82,15 +73,9 @@ $(function() {
 					<li style="padding-left: 23%; margin-top: 10px"><label
 						class="checkbox-inline"><input type="checkbox"
 							name="marker_filter" value="food" checked="checked" onchange="">음식</label>
-						<!-- 						<a href="#" data-toggle="modal" data-target="#reviewEnrollment"> -->
-						<!-- 							<button type="button" class="btn btn-primary">리뷰 작성</button> -->
-						<!-- 						</a> --></li>
 					<li style="padding-left: 23%; margin-bottom: 10px;"><label
 						class="checkbox-inline"><input type="checkbox"
 							name="marker_filter" value="hot" checked="checked" onchange="">명소</label>
-						<%-- 						<a href="${initParam.rootPath}/review/showReview.do?reviewSerial=26">   <!-- reviewSerial은 requestScope의 리뷰시리얼값~~ --> --%>
-						<!-- 							<button type="button" class="btn btn-primary">리뷰 상세페이지</button> -->
-						<!-- 						</a> --></li>
 				</ul>
 			</div>
 
@@ -108,9 +93,9 @@ $(function() {
 	</div>
 </div>
 
-<a href="#" data-toggle="modal" data-target="#reviewEnrollment">
-	<button type="button" class="btn btn-primary">리뷰 작성</button>
-</a>
+<!-- <a href="#" data-toggle="modal" data-target="#reviewEnrollment"> -->
+<!-- 	<input type="hidden" id="reviewForm" /> -->
+<!-- </a> -->
 
 <a href="${initParam.rootPath}/review/showReview.do?reviewSerial=26">
 	<!-- reviewSerial은 requestScope의 리뷰시리얼값~~ -->

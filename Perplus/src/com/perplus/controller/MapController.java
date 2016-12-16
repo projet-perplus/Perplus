@@ -47,4 +47,9 @@ public class MapController {
 		System.out.println(member);
 		return member;
 	}
+	@RequestMapping("/selectedreview.do")
+	public ReviewVo getReviewByMarker(@RequestParam String lat,	@RequestParam String lng){
+		
+		return null;
+	}
 }
