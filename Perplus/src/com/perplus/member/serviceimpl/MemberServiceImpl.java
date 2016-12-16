@@ -152,6 +152,10 @@ public class MemberServiceImpl implements MemberService{
 		houseCommentDao.modifyHouseComment(houseComment);
 	}
 	
+	public List<HouseCommentVo> select(String memberEmail){
+		return houseCommentDao.selectHouseCommentJoinHouse(memberEmail);
+	}
+	
 	@Override//serial로 조회하기(하우스 정보에서 뿌려주기)
 	public List<HouseCommentVo> selectHouseCommentBySerial(int houseSerial){
 		return houseCommentDao.selectHouseCommentBySerial(houseSerial);

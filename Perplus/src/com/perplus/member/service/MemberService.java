@@ -47,6 +47,7 @@ public interface MemberService {
 	
 	List<HouseCommentVo> selectHouseCommentByEmail(String memberEmail);
 	
+	List<HouseCommentVo> select(String memberEmail);
 	
 	//housezzim service
 	void insertHouseZzim(HouseZzimVo houseZzim);

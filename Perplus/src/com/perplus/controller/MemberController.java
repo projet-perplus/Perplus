@@ -149,7 +149,6 @@ public class MemberController {
 		MemberVo loginInfo = (MemberVo)session.getAttribute("login_info");
 		
 		MultipartFile file = memberPictureFile;
-		System.out.println(file);
 		String fileName = "";
 		if(file!=null && !file.isEmpty()){
 			fileName = UUID.randomUUID().toString().replaceAll("-","");
@@ -287,8 +286,20 @@ public class MemberController {
 		String memberEmail = member.getMemberEmail();
 		List<HouseZzimVo> houseZzim = service.selectHouseZzimByEmail(memberEmail);
 		map.addAttribute("houseZzim", houseZzim);
-		System.out.println(houseZzim);
 		return "forward:/wishlist.do";
+	}
+	
+	
+	
+	/**********************내가 작성한 숙소댓글*********************/
+	@RequestMapping("/housecommentfind.do")
+	@ResponseBody
+	public List<HouseCommentVo> houseCommentFind(HttpSession session){
+		MemberVo member = (MemberVo)session.getAttribute("login_info");
+		String memberEmail = member.getMemberEmail();
+		List<HouseCommentVo> houseComment = service.select(memberEmail);
+		System.out.println(houseComment);
+		return houseComment;
 	}
 	
 	

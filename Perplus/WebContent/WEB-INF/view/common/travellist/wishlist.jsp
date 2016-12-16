@@ -16,67 +16,73 @@
 				<div class="slidebar">
 					<div class="carousel slide" id="myCarousel">
 						<div class="carousel-inner">
-						
-						
-							<div class="active item">
-								<div
-									class="maincon con1 col-md-offset-4 col-md-4
+							<c:choose>
+								<c:when test="">
+									<c:forEach items="" var="">
+										<div class="active item">
+											<div
+												class="maincon con1 col-md-offset-4 col-md-4
 								           col-sm-offset-4 col-sm-4 col-xs-offset-3 col-xs-6"
-									style="background-color: #ccc;">
-									<div class="col-md-12">
-										<div class="row con1">
-											<div class="row con1">
-												<div class="col-md-12" style="padding: 0px;">
-													<img src="/Perplus/css/image/photo0.jpg" alt="asd"
-														style="width: 100%; height: 200px" />
-												</div>
-											</div>
+												style="background-color: #ccc;">
+												<div class="col-md-12">
+													<div class="row con1">
+														<div class="row con1">
+															<div class="col-md-12" style="padding: 0px;">
+																<img src="/Perplus/css/image/photo0.jpg" alt="asd"
+																	style="width: 100%; height: 200px" />
+															</div>
+														</div>
 
-											<div class="row subcon1" style="border: 1px solid #ccc;">
-												<div class="row con2">
-													<div class="col-md-12">
-														<span class="col-md-12"
-															style="text-align: center; padding: 5px;">숙소 이름
-															request</span>
-													</div>
-												</div>
+														<div class="row subcon1" style="border: 1px solid #ccc;">
+															<div class="row con2">
+																<div class="col-md-12">
+																	<span class="col-md-12"
+																		style="text-align: center; padding: 5px;">숙소 이름
+																		request</span>
+																</div>
+															</div>
 
-												<div class="row con3">
-													<div class="col-md-12">
-														<div class="section3" style="border-top: 2px solid #ccc;">
-															<span class="col-md-12"
-																style="text-align: center; padding: 5px;"> 숙소 위치
-																: 경기도 용인시 처인구 </span>
+															<div class="row con3">
+																<div class="col-md-12">
+																	<div class="section3"
+																		style="border-top: 2px solid #ccc;">
+																		<span class="col-md-12"
+																			style="text-align: center; padding: 5px;"> 숙소
+																			위치 : 경기도 용인시 처인구 </span>
+																	</div>
+																</div>
+															</div>
+
+															<div class="row con3">
+																<div class="col-md-12">
+																	<div class="section3"
+																		style="border-top: 2px solid #ccc;">
+																		<span class="col-md-12"
+																			style="text-align: center; padding: 5px;"> 평점</span>
+																	</div>
+																</div>
+															</div>
+
+															<div class="row con3">
+																<div class="col-md-12">
+																	<div class="section3"
+																		style="border-top: 2px solid #ccc;">
+																		<span class="col-md-12"
+																			style="text-align: center; padding: 5px;"> 찜날짜
+																		</span>
+																	</div>
+																</div>
+															</div>
+
 														</div>
 													</div>
 												</div>
-
-												<div class="row con3">
-													<div class="col-md-12">
-														<div class="section3" style="border-top: 2px solid #ccc;">
-															<span class="col-md-12"
-																style="text-align: center; padding: 5px;"> 평점</span>
-														</div>
-													</div>
-												</div>
-
-												<div class="row con3">
-													<div class="col-md-12">
-														<div class="section3" style="border-top: 2px solid #ccc;">
-															<span class="col-md-12"
-																style="text-align: center; padding: 5px;"> 찜날짜 </span>
-														</div>
-													</div>
-												</div>
-
 											</div>
 										</div>
-									</div>
-								</div>
-							</div>
-							
-							
-							
+									</c:forEach>
+								</c:when>
+							</c:choose>
+
 						</div>
 						<!--  left right button -->
 						<a class="left carousel-control" href="#myCarousel" role="button"

@@ -17,5 +17,6 @@ public interface HouseCommentDao {
 	
 	List<HouseCommentVo> selectHouseCommentBySerial(int houseSerial);
 	
+	List<HouseCommentVo> selectHouseCommentJoinHouse(String memberEmail);
 	
 }
