@@ -14,7 +14,6 @@ pageContext.setAttribute("BR", "<br>");
 pageContext.setAttribute("AP", "&amp;");
 pageContext.setAttribute("GT", "&gt;");
 pageContext.setAttribute("LT", "&lt;");
-
 %> 
 
 <script type="text/javascript">
@@ -97,7 +96,11 @@ pageContext.setAttribute("LT", "&lt;");
 										});
 					});
 </script>
-
+<style type="text/css">
+	.bg-4{
+		position:relative;
+	}
+</style>
 <!-- 사진 출력 부분 -->
 <div class="container reviewslide">
 	<div class="row">

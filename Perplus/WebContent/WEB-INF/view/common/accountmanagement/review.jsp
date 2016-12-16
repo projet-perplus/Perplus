@@ -7,7 +7,7 @@
 				dataType : "JSON",
 				success : function(obj){
 					for(var i=0; i<obj.length;i++){
-
+					
 						$(".myReviewBody").append(
 								"<div class='review'>"
 									+"<input id='reviewSerial' type='hidden' name='reviewSerial' value="+obj[i].reviewSerial+">"
@@ -16,12 +16,16 @@
 				   	                +"<div class='col-md-3 col-sm-3 col-xs-3 place'  style='margin-top:20px; padding-top: 10px; height: 40px;'>"+obj[i].reviewPlace +"</div>"
 				   				    + "<div class='col-md-3 col-sm-3 col-xs-3 date'  style='margin-top:20px; padding-top: 10px; height: 40px;'>"+obj[i].reviewTime+"</div>"
 				   			+ "</div>"
+				   			
 						);
+						if(i>7){
+			   				$(".bg-4").css("position","relative");
+			   			}
 				}
 			}
 		});
 			$(".myReviewBody").on("mouseover",".review",function(){
-				$(this).css("color","blue");
+				$(this).css({"color":"red","cursor":"pointer"});
 			}).on("mouseout",".review",function(){
 				$(this).css("color","black");
 			}).on("click",".review",function(){
