@@ -31,6 +31,11 @@ public class HouseZzimDaoImpl implements HouseZzimDao{
 	public List<HouseZzimVo> selectHouseZzimByEmail(String memberEmail){
 		return session.selectList("houseZzim.selectHouseZzimByEmail",memberEmail);
 	}
+
+	@Override
+	public List<HouseZzimVo> houseZzimJoinHouseJoinHousePicture(String memberEmail) {
+		return session.selectList("houseZzim.houseZzimJoinHouse",memberEmail);
+	}
 	
 	
 }

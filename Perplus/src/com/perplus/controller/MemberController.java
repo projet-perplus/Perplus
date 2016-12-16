@@ -164,6 +164,16 @@ public class MemberController {
 		return "redirect:/modifyandcertified.do";
 	}
 	
+	/******************프로필사진 삭제***************************/
+	@RequestMapping("/memberpictureremove.do")
+	public String memberPictureRemove(HttpSession session){
+		MemberVo member = (MemberVo)session.getAttribute("login_info");
+		String memberPicture = member.getMemberPicture();
+		service.deleteMemberPicture(memberPicture);
+		member.setMemberPicture(null);
+		return "redirect:/modifyandcertified.do";
+	}
+	
 	/****************howgetmoney조회********************/
 	@RequestMapping("/howgetmoneyfind.do")
 	public String howgetmoneyFind(ModelMap map, HttpSession session){
@@ -284,7 +294,8 @@ public class MemberController {
 	public String houseZzimFindEmail(ModelMap map, HttpSession session){
 		MemberVo member = (MemberVo)session.getAttribute("login_info");
 		String memberEmail = member.getMemberEmail();
-		List<HouseZzimVo> houseZzim = service.selectHouseZzimByEmail(memberEmail);
+		List<HouseZzimVo> houseZzim = service.houseZzimJoinHouseJoinHousePicture(memberEmail);
+		System.out.println(houseZzim);
 		map.addAttribute("houseZzim", houseZzim);
 		return "forward:/wishlist.do";
 	}

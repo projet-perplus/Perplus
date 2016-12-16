@@ -1,5 +1,12 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<script type="text/javascript">
+$(document).ready(function(){	
+	$("#payoutDelete").on("click",function(){
+		return confirm("삭제하시겠습니까?");
+	});
+});
+</script>
 <div id="dashboard-content">
 	<div class="panel-header">
 		<span>대금 수령 방법</span>
@@ -22,7 +29,7 @@
 								<div class="col-md-3">${list.howgetmoneyNumber}</div>
 								<div class="col-md-3">
 									<a
-										href="${initParam.rootPath}/member/howgetmoneyRemove.do?accountSerial=${list.accountSerial}"><button>삭제</button></a>
+										href="${initParam.rootPath}/member/howgetmoneyRemove.do?accountSerial=${list.accountSerial}"><button id="payoutDelete">삭제</button></a>
 								</div>
 							</div>
 						</c:forEach>

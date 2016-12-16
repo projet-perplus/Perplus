@@ -56,6 +56,7 @@ public interface MemberService {
 	
 	List<HouseZzimVo> selectHouseZzimByEmail(String memberEmail);
 	
+	List<HouseZzimVo> houseZzimJoinHouseJoinHousePicture(String memberEmail);
 	
 	//howgetmoney service
 	void insertHowgetmoney(HowgetmoneyVo howgetmoney);
@@ -77,6 +78,8 @@ public interface MemberService {
 	void deleteMember(String memberEmail);
 	
 	MemberVo selectMemberFindByEmail(String memberEmail);
+	
+	void deleteMemberPicture(String memberPicture);
 	
 	/**
 	 * Payment 관련 Service
