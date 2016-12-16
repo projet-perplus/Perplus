@@ -2,7 +2,9 @@ package com.perplus.member.vo;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.perplus.house.vo.HouseVo;
+import com.perplus.util.DateJsonSerializer;
 
 public class HouseCommentVo {
 	private int commentSerial;
@@ -10,6 +12,7 @@ public class HouseCommentVo {
 	private String memberEmail;
 	private String commentContent;
 	private int commentRating;
+	@JsonSerialize(using=DateJsonSerializer.class)
 	private Date commentTime;
 	
 	private HouseVo house;
@@ -48,11 +51,11 @@ public class HouseCommentVo {
 		this.commentSerial = commentSerial;
 	}
 
-	public int getHouse_serial() {
+	public int getHouseSerial() {
 		return houseSerial;
 	}
 
-	public void setHouse_serial(int houseSerial) {
+	public void setHouseSerial(int houseSerial) {
 		this.houseSerial = houseSerial;
 	}
 

@@ -46,13 +46,12 @@
 					var txt = '';
 					for(var i=0; i<obj.length;i++){
 						txt = txt +	"<div class='houseReview'>"
-										+"<input id='reviewSerial' type='hidden' name='houseSerial' value="+obj[i].houseSerial+">"
+										+"<input id='houseSerial' type='hidden' name='houseSerial' value="+obj[i].houseSerial+">"
 				    		   		    +"<div class='col-md-2 col-sm-2 col-xs-2'  style='margin-top:20px; padding-top: 10px; height: 40px;'>"+(i+1) +"</div>"
 					    		     	+"<div class='col-md-3 col-sm-3 col-xs-3'  style='margin-top:20px; padding-top: 10px; height: 40px;'>"+obj[i].house.houseTitle+"</div>"
 					   	                +"<div class='col-md-3 col-sm-3 col-xs-3'  style='margin-top:20px; padding-top: 10px; height: 40px;'>"+obj[i].commentContent+"</div>"
 					   				    +"<div class='col-md-3 col-sm-3 col-xs-3'  style='margin-top:20px; padding-top: 10px; height: 40px;'>"+obj[i].commentTime+"</div>"
 				   					+ "</div>";
-				   			
 						if(i>7){
 			   				$(".bg-4").css("position","relative");
 			   			}
@@ -73,7 +72,6 @@
 		});
 	});
 </script>
-
 <div class="tabsdiv">
 	<div id="tabs" style=" min-height: 350px;">
 		<ul>
