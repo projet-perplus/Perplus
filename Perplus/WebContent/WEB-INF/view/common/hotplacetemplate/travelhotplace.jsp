@@ -49,9 +49,6 @@ $(function() {
 	})
 </script>
 
-<script>
-	
-</script>
 <div class="container">
 	<div id="dashboard-content" class="hotplace">
 		<div class="panel-header">
