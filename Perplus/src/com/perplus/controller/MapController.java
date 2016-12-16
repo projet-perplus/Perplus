@@ -3,6 +3,8 @@ package com.perplus.controller;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.perplus.house.service.HouseService;
+import com.perplus.member.vo.MemberVo;
 import com.perplus.review.service.ReviewService;
 import com.perplus.review.vo.ReviewVo;
 
@@ -27,7 +30,6 @@ public class MapController {
 	@ResponseBody
 	public List<ReviewVo> placeAllReviewMarker(@RequestParam String southWestLat,
 			@RequestParam String southWestLng, @RequestParam String northEastLat, @RequestParam String northEastLng) throws Exception{
-		System.out.println("33");
 		HashMap<String,Double> map = new HashMap<>();
 		System.out.println(southWestLat);
 		map.put("southWestLat", Double.parseDouble(southWestLat));
@@ -37,5 +39,12 @@ public class MapController {
 		List<ReviewVo> reviewList = reviewService.selectMarkerBySection(map);
 		System.out.println(reviewList);
 		return reviewList;
+	}
+	@RequestMapping("/logininfo.do")
+	@ResponseBody
+	public MemberVo getLoginInfo(HttpSession session){
+		MemberVo member = (MemberVo) session.getAttribute("login_info");
+		System.out.println(member);
+		return member;
 	}
 }

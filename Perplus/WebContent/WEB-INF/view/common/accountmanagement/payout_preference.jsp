@@ -4,7 +4,7 @@
 	<div class="panel-header">
 		<span>대금 수령 방법</span>
 	</div>
-	<div class="panel-body">
+	<div class="panel-body" style=" min-height: 350px;">
 		<div class="row">
 			<div class="col-xs-offset-2 col-xs-8" style="text-align: center;">
 				<c:choose>

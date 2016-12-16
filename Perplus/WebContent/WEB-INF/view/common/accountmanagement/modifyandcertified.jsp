@@ -2,6 +2,15 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+<style>
+.bg-4 {
+	position: relative;
+	bottom: 0;
+	left: 0;
+	right: 0;
+}
+</style>
+
 <script type="text/javascript">
 	$(document).ready(function() {
 		$("#memberModifyForm").on("submit", function() {
@@ -131,7 +140,7 @@
 						</div>
 					</div>
 					<div class="row row-condensed space-4">
-						<label class="text-right col-sm-3"> 전화번호 </label>
+						<label class="text-right col-md-3"> 전화번호 </label>
 						<div class="col-sm-9">
 							<div class="form-group">
 								<div class="col-md-12">
@@ -142,8 +151,9 @@
 							</div>
 						</div>
 					</div>
+
 					<div class="row row-condensed space-4">
-						<label class="text-right col-sm-3"> 거주지역 </label>
+						<label class="text-right col-md-3"> 거주지역 </label>
 						<div class="col-sm-9">
 							<div class="col-md-12">
 								<div class="col-sm-4" style="padding-left: 0px;">
@@ -167,43 +177,43 @@
 								</div>
 							</div>
 						</div>
-						<div class="row row-condensed space-4">
-							<label class="text-right col-sm-3"> 자기소개 </label>
-							<div class="col-sm-9">
-								<div class="col-md-12">
-									<div class="form-group">
-										<textarea class="form-control" rows="5" id="comment"
-											name="memberIntroduction">${sessionScope.login_info.memberIntroduction}</textarea>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<div class="row row-condensed space-4">
-							<label class="text-right col-sm-3"> 비밀번호 </label>
-							<div class="col-sm-9">
-								<div class="col-sm-4" style="padding-left: 0px;">
-									<div class="form-group">
-										<div class="col-md-12">
-											<input type="password" class="form-control"
-												id="modifyPassword" name="memberPassword"
-												required="required">
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<div class="row row-condensed space-4">
-							<div class="col-sm-9"></div>
-							<div class="col-sm-3">
-								<div class="col-md-12">
-									<input class="btn btn-primary" type="submit" value="저장"
-										style="float: right;">
+					</div>
+					<div class="row row-condensed space-4">
+						<label class="text-right col-md-3"> 자기소개 </label>
+						<div class="col-sm-9">
+							<div class="col-md-12">
+								<div class="form-group">
+									<textarea class="form-control" rows="5" id="comment"
+										name="memberIntroduction">${sessionScope.login_info.memberIntroduction}</textarea>
 								</div>
 							</div>
 						</div>
 					</div>
+
+					<div class="row row-condensed space-4">
+						<label class="text-right col-md-3"> 비밀번호 </label>
+						<div class="col-sm-9">
+							<div class="col-sm-4" style="padding-left: 0px;">
+								<div class="form-group">
+									<div class="col-md-12">
+										<input type="password" class="form-control"
+											id="modifyPassword" name="memberPassword" required="required">
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="row row-condensed space-4">
+						<div class="col-sm-9"></div>
+						<div class="col-sm-3">
+							<div class="col-md-12">
+								<input class="btn btn-primary" type="submit" value="저장"
+									style="float: right;">
+							</div>
+						</div>
+					</div>
+
 				</div>
 			</div>
 		</div>

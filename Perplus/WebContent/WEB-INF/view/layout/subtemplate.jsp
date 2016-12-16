@@ -25,7 +25,7 @@
 	  		<tiles:insertAttribute name="subheader"/>
 	  	</section>
 	  	
-	  	<div class="menu">
+	  	<div class="menu" style="min-height: 575px;">
 	  		<div class="container">
 	  			<div class="row subrow">
 	  				<div class="col-md-3 space-sm-4">

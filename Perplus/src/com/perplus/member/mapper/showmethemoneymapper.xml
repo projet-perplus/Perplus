@@ -56,4 +56,22 @@
 		from SHOWMETHEMONEY
 		where SHOWMETHEMONEY_SERIAL = #{showmethemoneySerial} 
 	</select>
+	
+	<select id="selectShowmethemoneyByShowmeth222emoneySerial"  parameterType="_int" resultType="ShowMeTheMoneyVo">
+		select	SHOWMETHEMONEY_SERIAL showmethemoneySerial, 
+					MEMBER_EMAIL memberEmail, 
+					SHOWMETHEMONEY_STATUS showmethemoneyStatus, 
+					SHOWMETHEMONEY_DATE showmethemoneyDate, 
+					SHOWMETHEMONEY_KIND showmethemoneyKind, 
+					SHOWMETHEMONEY_CONTENT showmethemoneyContent, 
+					SHOWMETHEMONEY_PAY_MONEY showmethemoneyPayMoney, 
+					SHOWMETHEMONEY_RECIVE_MONEY showmethemoneyReciveMoney,
+					SHOWMETHEMONEY_BANK showmethemoneyBank
+		from SHOWMETHEMONEY
+		where SHOWMETHEMONEY_SERIAL = #{showmethemoneySerial} 
+	</select>
+	
+	<select id="selectShowmethemoneySerialSeq" resultType="_int">
+		select SHOWMETHEMONEY_SERIAL_seq.nextval from dual
+	</select>
 </mapper>

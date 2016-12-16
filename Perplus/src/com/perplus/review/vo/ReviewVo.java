@@ -6,7 +6,9 @@ import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.perplus.member.vo.MemberVo;
+import com.perplus.util.DateJsonSerializer;
 
 public class ReviewVo implements Serializable {
 	private int reviewSerial;	//명소리뷰 시리얼 넘버
@@ -14,6 +16,7 @@ public class ReviewVo implements Serializable {
 	private String reviewTitle; //명소 리뷰 제목
 	private String reviewContent; //명소 리뷰 내용
 	private int reviewRating; //명소 평점 
+	@JsonSerialize(using=DateJsonSerializer.class)
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date reviewTime; //게시글 작성 시간
 	private double reviewMarkerX; //명소 지도상 위치

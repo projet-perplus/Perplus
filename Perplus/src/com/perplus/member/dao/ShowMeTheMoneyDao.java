@@ -39,4 +39,9 @@ public interface ShowMeTheMoneyDao {
 	 */
 	ShowMeTheMoneyVo selectShowmethemoneyByShowmethemoneySerial(int showmethemoneySerial);
 	
+	/**
+	 * ShowmethemoneySerial 시퀀스 조회
+	 * 초기 값 10000
+	 */
+	int selectShowmethemoneySerialSeq();
 }
