@@ -17,4 +17,6 @@ public interface MemberDao {
 	int selectMemberCountFindByEmail(String id);
 	
 	MemberVo selectMemberFindByEmail(String memberEmail);
+	
+	int deleteMemberPicture(String memberPicture);
 }

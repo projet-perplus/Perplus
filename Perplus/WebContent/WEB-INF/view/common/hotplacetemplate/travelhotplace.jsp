@@ -2,10 +2,12 @@
 <script
 	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWDGjKV2YFKGM5q6gtx-J5GcJTa2wLDQU"
 	type="text/javascript"></script>
-<script src="js/map.js"></script>
-<script src="js/markerclusterer.js"></script>
+<script src="/Perplus/js/map.js"></script>
+<script src="/Perplus/js/markerclusterer.js"></script>
+
 <script type="text/javascript">
 $(function() {
+
 	var error='${requestScope.error}'
 	$('#reviewEnrollment').on('hidden.bs.modal', function() {
 			if(error){
@@ -15,6 +17,8 @@ $(function() {
 	if(error){
 		$('#reviewEnrollment').modal('show');
 	}
+	
+	
 })
 </script>
 <!-- 크롬 캐싱 문제 때문에 임의의 쿼리 스트링 추가 (완성본에서는 제거필요) -->

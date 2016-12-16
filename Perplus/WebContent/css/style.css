@@ -43,6 +43,10 @@ p {
 
 /*화면이 768보다 클때*/
 @media ( min-width : 768px) {
+	.modal-dialog.addfilter{
+		width: 520px !important;
+		margin: 30px auto;
+	}
 	.modal-dialog {
 		width: 350px !important;
 		margin: 30px auto;
@@ -264,9 +268,7 @@ p {
 	padding: 20px;
 	border-radius: 4px !important;
 }
-.modal-backdrop {
-    height: 780px;
-}
+
 
 #loginBtn {
 	width: 100% !important;

@@ -149,7 +149,6 @@ public class MemberController {
 		MemberVo loginInfo = (MemberVo)session.getAttribute("login_info");
 		
 		MultipartFile file = memberPictureFile;
-		System.out.println(file);
 		String fileName = "";
 		if(file!=null && !file.isEmpty()){
 			fileName = UUID.randomUUID().toString().replaceAll("-","");
@@ -162,6 +161,16 @@ public class MemberController {
 			loginInfo.setMemberIdentification(fileName);
 		}
 		service.updateMember(loginInfo);
+		return "redirect:/modifyandcertified.do";
+	}
+	
+	/******************프로필사진 삭제***************************/
+	@RequestMapping("/memberpictureremove.do")
+	public String memberPictureRemove(HttpSession session){
+		MemberVo member = (MemberVo)session.getAttribute("login_info");
+		String memberPicture = member.getMemberPicture();
+		service.deleteMemberPicture(memberPicture);
+		member.setMemberPicture(null);
 		return "redirect:/modifyandcertified.do";
 	}
 	
@@ -285,10 +294,23 @@ public class MemberController {
 	public String houseZzimFindEmail(ModelMap map, HttpSession session){
 		MemberVo member = (MemberVo)session.getAttribute("login_info");
 		String memberEmail = member.getMemberEmail();
-		List<HouseZzimVo> houseZzim = service.selectHouseZzimByEmail(memberEmail);
-		map.addAttribute("houseZzim", houseZzim);
+		List<HouseZzimVo> houseZzim = service.houseZzimJoinHouseJoinHousePicture(memberEmail);
 		System.out.println(houseZzim);
+		map.addAttribute("houseZzim", houseZzim);
 		return "forward:/wishlist.do";
+	}
+	
+	
+	
+	/**********************내가 작성한 숙소댓글*********************/
+	@RequestMapping("/housecommentfind.do")
+	@ResponseBody
+	public List<HouseCommentVo> houseCommentFind(HttpSession session){
+		MemberVo member = (MemberVo)session.getAttribute("login_info");
+		String memberEmail = member.getMemberEmail();
+		List<HouseCommentVo> houseComment = service.select(memberEmail);
+		System.out.println(houseComment);
+		return houseComment;
 	}
 	
 	

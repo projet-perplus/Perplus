@@ -5,7 +5,7 @@
 	aria-labelledby="basicModal" aria-hidden="true">
 	<div class="modal-dialog">
 		<!-- Modal content-->
-		<form action="${initParam.rootPath}/member/howgetmoneyRegister.do">
+		<form action="${initParam.rootPath}/member/howgetmoneyRegister.do" onsubmit="return confirm('등록하시겠습니까?')">
 			<input type="hidden" name="memberEmail"
 				value="${sessionScope.login_info.memberEmail}">
 			<div class="modal-content" style="padding: 0px;">

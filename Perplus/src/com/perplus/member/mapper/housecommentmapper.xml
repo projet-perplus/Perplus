@@ -2,41 +2,106 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
 <mapper namespace="houseComment">
-	
+
 	<!-- memberEmail로 HouseComment 조회(내 후기조회) -->
-	<select id="selectHouseCommentByEmail" parameterType="string" resultType="HouseCommentVo">
-		select	house_serial houseSerial, member_email memberEmail, comment_content commentContent, comment_rating commentRating, comment_time commentTime
-		from	HOUSECOMMENT 
-		where	member_email = #{value}
+	<select id="selectHouseCommentByEmail" parameterType="string"
+		resultType="HouseCommentVo">
+		select house_serial houseSerial, member_email memberEmail,
+		comment_content commentContent, comment_rating commentRating,
+		comment_time commentTime
+		from HOUSECOMMENT
+		where member_email = #{value}
 	</select>
-	
-	<!-- houseComment house단위로 select(하우스 상세정보에서 조회하는 select문)  -->
-	<select id="selectHouseCommentBySerial" parameterType="_int" resultType="HouseCommentVo">
-		select	house_serial houseSerial, member_email memberEmail, comment_content commentContent, comment_rating commentRating, comment_time commentTime
-		from	HOUSECOMMENT
-		where	house_serial = #{value}
+
+	<!-- houseComment house단위로 select(하우스 상세정보에서 조회하는 select문) -->
+	<select id="selectHouseCommentBySerial" parameterType="_int"
+		resultType="HouseCommentVo">
+		select house_serial houseSerial, member_email memberEmail,
+		comment_content commentContent, comment_rating commentRating,
+		comment_time commentTime
+		from HOUSECOMMENT
+		where house_serial = #{value}
 	</select>
-	
+
 	<!-- houseComment 등록 -->
 	<insert id="insertHouseComment" parameterType="HouseCommentVo">
-		insert into HOUSECOMMENT values(#{houseSerial},#{memberEmail},#{commentContent},#{commentRating},#{commentTime})
+		insert into
+		HOUSECOMMENT
+		values(houseComment_seq, #{houseSerial}, #{memberEmail}, #{commentContent}, #{commentRating}, #{commentTime})
 	</insert>
-	
+
 
 	<!-- houseComment 삭제 -->
 	<delete id="deleteHouseComment" parameterType="_int">
-		delete from HOUSECOMMENT 
-		where	comment_serial = #{value}
+		delete from
+		HOUSECOMMENT
+		where comment_serial = #{value}
 	</delete>
-	
-	
+
+
 	<!-- houseComment 수정(하우스 시리얼과 하우스 이메일을 받아서 수정함.) -->
 	<update id="updateHouseComment" parameterType="HouseCommentVo">
-		update	HOUSECOMMENT 
-		set  	comment_content = #{commentContent}, comment_rating = #{commentRating}, comment_time = #{commentTime}
-		where	house_serial = #{houseSerial} and member_email = #{memberEmail}
+		update
+		HOUSECOMMENT
+		set comment_content = #{commentContent}, comment_rating =
+		#{commentRating}, comment_time = #{commentTime}
+		where house_serial =
+		#{houseSerial} and member_email = #{memberEmail}
 	</update>
+
+
+
+	<sql id="houseComment-default-sql">
+		select	c.comment_serial,
+				c.house_serial c_serial,
+				c.member_email c_email,
+				c.comment_content,
+				c.comment_rating,
+				c.comment_time,
+				h.house_serial m_serial,
+				h.member_email m_email,
+				h.house_register_status,
+				h.house_title,
+				h.house_content,
+				h.house_necessary_condition,
+				h.house_rating,
+				h.house_marker_x,
+				h.house_marker_y,
+				h.house_marker_constant
+		from	HOUSECOMMENT c, HOUSE h
+	</sql>
 	
+	<resultMap type="houseCommentVo" id="housecomment-default-resultmap">
+		<result column="comment_serial" property="commentSerial" />
+		<result column="c_serial" property="houseSerial" />
+		<result column="c_email" property="memberEmail" />
+		<result column="comment_content" property="commentContent" />
+		<result column="comment_rating" property="commentRating" />
+		<result column="comment_time" property="commentTime" />
+		<association property="house" javaType="houseVo" >
+			<result column="m_serial" property="houseSerial" />
+			<result column="m_email" property="memberEmail" />
+			<result column="house_register_status" property="houseRegisterStatus" />
+			<result column="house_title" property="houseTitle" />
+			<result column="house_content" property="houseContent" />
+			<result column="house_necessary_condition" property="houseNecessaryCondition" />
+			<result column="house_rating" property="houseRating" />
+			<result column="house_marker_x" property="houseMarkerX" />
+			<result column="house_marker_y" property="houseMarkerY" />
+			<result column="house_marker_constant" property="houseMarkerConstant" />
+		</association>
+	</resultMap>
+
+<!-- 	<resultMap type="HouseCommentVo" id="houseComment-house-join-resultmap"
+		extends="housecomment-default-resultmap">
+
+	</resultMap> -->
 	
-	
+	<select id="houseCommentJoinHouse" parameterType="string" resultMap="housecomment-default-resultmap">
+		<include refid="houseComment-default-sql" />
+		where	c.house_serial = h.house_serial
+		and		c.member_email = #{value}
+	</select>
+
+
 </mapper>

@@ -37,8 +37,8 @@ public interface Constants {
 	static final int TRAVEL_CODE_TRAVELING = 104; // 여행중인 상태
 	
 	//ShowMeTheMoney
-	static final int SHOWMETHEMONEY_STATUS_RECEIVE_COMPLETED = 110;
-	static final int SHOWMETHEMONEY_STATUS_RECEIVE_INTENDED = 110;
+	static final int SHOWMETHEMONEY_STATUS_RECEIVE_INTENDED = 110;	// 수령 예정 내역
+	static final int SHOWMETHEMONEY_STATUS_RECEIVE_COMPLETED = 111;	// 수령 완료 내역
 	
 	//Code_Table
 	//CheckList

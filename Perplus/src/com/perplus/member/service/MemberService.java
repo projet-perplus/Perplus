@@ -47,6 +47,7 @@ public interface MemberService {
 	
 	List<HouseCommentVo> selectHouseCommentByEmail(String memberEmail);
 	
+	List<HouseCommentVo> select(String memberEmail);
 	
 	//housezzim service
 	void insertHouseZzim(HouseZzimVo houseZzim);
@@ -55,6 +56,7 @@ public interface MemberService {
 	
 	List<HouseZzimVo> selectHouseZzimByEmail(String memberEmail);
 	
+	List<HouseZzimVo> houseZzimJoinHouseJoinHousePicture(String memberEmail);
 	
 	//howgetmoney service
 	void insertHowgetmoney(HowgetmoneyVo howgetmoney);
@@ -76,6 +78,8 @@ public interface MemberService {
 	void deleteMember(String memberEmail);
 	
 	MemberVo selectMemberFindByEmail(String memberEmail);
+	
+	void deleteMemberPicture(String memberPicture);
 	
 	/**
 	 * Payment 관련 Service
@@ -125,6 +129,11 @@ public interface MemberService {
 	public List<ShowMeTheMoneyVo> getAllShowmethemoney(String memberEmail) throws Exception;
 	
 	public void removeShowmethemoney(int showmethemoneySerial) throws Exception;
+	
+	public int getShowmethemoneySerialSeq();
+
+	public List<ShowMeTheMoneyVo> getShowmethemoneyByShowmethemoneyStatus(String memberEmail, int showmethemoneyStatus) throws Exception;
+	
 	
 	/**
 	 * Travel  관련 Service

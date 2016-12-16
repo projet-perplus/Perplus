@@ -40,6 +40,13 @@ public interface ShowMeTheMoneyDao {
 	ShowMeTheMoneyVo selectShowmethemoneyByShowmethemoneySerial(int showmethemoneySerial);
 	
 	/**
+	 * memberEmail의 각 status 별 ShowMeTheMoney 객체 select
+	 * @parameterType hashmap 타입으로 인스턴스 전달
+	 * @return
+	 */
+	List<ShowMeTheMoneyVo> selectShowmethemoneyByShowmethemoneyStatus(String memberEmail, int showmethemoneyStatus);
+	
+	/**
 	 * ShowmethemoneySerial 시퀀스 조회
 	 * 초기 값 10000
 	 */

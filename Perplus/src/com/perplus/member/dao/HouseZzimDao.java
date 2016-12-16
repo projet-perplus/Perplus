@@ -13,4 +13,6 @@ public interface HouseZzimDao {
 	int deleteHouseZzimByEmail(int houseZzimSerial);
 	
 	List<HouseZzimVo> selectHouseZzimByEmail(String memberEmail);
+	
+	List<HouseZzimVo> houseZzimJoinHouseJoinHousePicture(String memberEmail);
 }

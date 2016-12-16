@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <style>
-.bg-4{
-	position:relative;
+.bg-4 {
+	position: relative;
 }
 </style>
 
@@ -26,76 +26,85 @@
 
 				<div class="col-md-12">
 					<div class="row">
-						<div class=" col-md-10 "
-							style="border: 1px solid #00b386;">
+						<div class=" col-md-10 " style="border: 1px solid #d9d9d9;">
 
 
 							<div class="row schedule" style="margin-top: 15px;">
 								<div class="schedulePrice">
-									<div class="col-md-6">예약 기간</div>
-									<div class="col-md-6">yyyy-mm-dd ~ yyyy-mm-dd</div>
+									<div class="col-md-6 col-sm-6 col-xs-6">예약 기간</div>
+									<div class="col-md-6 col-sm-6 col-xs-6">yyyy-mm-dd ~ yyyy-mm-dd</div>
+									<div class="col-md-12" style="border: 1px solid #d9d9d9; margin-top:15px;"></div>
 								</div>
 							</div>
-							<div class="row schedule" style="margin-top: 15px;">
+							<div class="row schedule">
 								<div class="schedulePrice">
-									<div class="col-md-6">인 원</div>
-									<div class="col-md-6">인원수</div>
+									<div class="col-md-6 col-sm-6 col-xs-6">인 원</div>
+									<div class="col-md-6  col-sm-6 col-xs-6">인원수</div>
+									<div class="col-md-12" style="border: 1px solid #d9d9d9; margin-top:15px;"></div>
 								</div>
 							</div>
 
-							<div class="row schedule" style="margin-top: 15px;">
+							<div class="row schedule">
 								<div class="schedulePrice">
-									<div class="col-md-6">체크인 시간</div>
-									<div class="col-md-6">체크인 시간</div>
+									<div class="col-md-6 col-sm-6 col-xs-6">체크인 시간</div>
+									<div class="col-md-6 col-sm-6 col-xs-6">체크인 시간</div>
+									<div class="col-md-12" style="border: 1px solid #d9d9d9; margin-top:15px;"></div>
 								</div>
 							</div>
 
-							<div class="row schedule" style="margin-top: 15px;">
-
-								<div class="schedulePrice">
-									<div class="col-md-6">$박</div>
-									<div class="col-md-6">가격</div>
-								</div>
-							</div>
-
-							<div class="row schedule" style="margin-top: 15px;">
+							<div class="row schedule">
 
 								<div class="schedulePrice">
-									<div class="col-md-6">서비스 수수료</div>
-									<div class="col-md-6">가격</div>
+									<div class="col-md-6 col-sm-6 col-xs-6">$박</div>
+									<div class="col-md-6 col-sm-6 col-xs-6">가격</div>
+									<div class="col-md-12" style="border: 1px solid #d9d9d9; margin-top:15px;"></div>
 								</div>
 							</div>
 
-							<div class="row schedule" style="margin-top: 15px;">
+							<div class="row schedule">
 
 								<div class="schedulePrice">
-									<div class="col-md-6">여행 크레딧</div>
-									<div class="col-md-6">가격</div>
+									<div class="col-md-6 col-sm-6 col-xs-6">서비스 수수료</div>
+									<div class="col-md-6 col-sm-6 col-xs-6">가격</div>
+									<div class="col-md-12" style="border: 1px solid #d9d9d9; margin-top:15px;"></div>
 								</div>
 							</div>
 
-							<div class="row schedule" style="margin-top: 15px;">
+							<div class="row schedule">
 
 								<div class="schedulePrice">
-									<div class="col-md-6">합계</div>
-									<div class="col-md-6">가격</div>
+									<div class="col-md-6 col-sm-6 col-xs-6">여행 크레딧</div>
+									<div class="col-md-6 col-sm-6 col-xs-6">가격</div>
+									<div class="col-md-12" style="border: 1px solid #d9d9d9; margin-top:15px;"></div>
 								</div>
 							</div>
 
+							<div class="row schedule">
+
+								<div class="schedulePrice">
+									<div class="col-md-6 col-sm-6 col-xs-6">합계</div>
+									<div class="col-md-6 col-sm-6 col-xs-6">가격</div>
+									<div class="col-md-12" style="border: 1px solid #d9d9d9; margin-top:15px;"></div>
+									
+								</div>
+							</div>
+
+
 							<div class="row schedule" style="margin-top: 15px;">
-								<div class="col-md-offset-2 col-md-4 ">
+								<div class="col-md-offset-2 col-sm-offset-2 col-xs-offset-2 col-md-4 col-sm-4 col-xs-4">
 									<button type="button" class="btn btn-danger">예약 허가</button>
 								</div>
-								<div class="col-md-offset-2 col-md-4">
+								<div class="col-md-offset-2 col-sm-offset-2 col-xs-offset-2 col-md-4 col-sm-4 col-xs-4">
 									<button type="button" class="btn btn-default">까기</button>
 								</div>
 							</div>
 						</div>
 					</div>
-				</div><!-- 나올꺼 끝 드럽게 기넹 -->
-				
-				
-				
+				</div>
+				<!-- 나올꺼 끝 드럽게 기넹 -->
+
+
+
 			</div>
 		</div>
 	</div>
