@@ -28,6 +28,7 @@
 		HOUSE_MARKER_Y houseMarkerY,
 		HOUSE_MARKER_CONSTANT houseMarkerConstant
 	</sql>
+
 	<sql id ="house-houseFilter-checkList-shutDown-houseZzim-join">
 		select 
 		h.HOUSE_SERIAL h_hSerial,h.MEMBER_EMAIL h_email,	h.HOUSE_REGISTER_STATUS,h.HOUSE_TITLE,	h.HOUSE_CONTENT,h.HOUSE_NECESSARY_CONDITION,
@@ -39,6 +40,14 @@
 		c.CHECKLIST_SERIAL,c.HOUSE_SERIAL c_hSerial,c.LIST,c.VALUE,
 		z.HOUSEZZIM_SERIAL, z.HOUSE_SERIAL z_hSerial, z.MEMBER_EMAIL z_email
 		from HOUSE h, HOUSEFILTER f, SHUTDOWN s, CHECKLIST c, HOUSEZZIM z
+	</sql>
+	
+	<sql id ="house-housePicture-join">
+		select
+		h.HOUSE_SERIAL h_hSerial,h.MEMBER_EMAIL h_email,	h.HOUSE_REGISTER_STATUS,h.HOUSE_TITLE,	h.HOUSE_CONTENT,h.HOUSE_NECESSARY_CONDITION,
+		h.HOUSE_RATING,	h.HOUSE_MARKER_X,h.HOUSE_MARKER_Y,	h.HOUSE_MARKER_CONSTANT,
+		p.PICTURE_SERIAL, p.HOUSE_SERIAL p_hSerial, p.PICTURE_ORDER , p.PICTURE_NAME 
+		from HOUSE h,HOUSEPICTURE p
 	</sql>
 	<resultMap type="housevo" id="house-basic-resultmap">
 		<result column="h_hSerial" property="houseSerial"/>
@@ -59,6 +68,14 @@
 			<result column="HOUSEZZIM_SERIAL" property="houseZzimSerial"/>
 			<result column="z_hSerial" property="houseSerial"/>
 			<result column="z_email" property="memberEmail"/>
+		</collection>
+	</resultMap>
+	<resultMap type="housevo" id="house-housePicture-join-resultmap" extends="house-basic-resultmap">
+		<collection property="housePicture" ofType="HousePictureVo">
+			<result column="PICTURE_SERIAL" property="pictureSerial"/>
+			<result column="p_hSerial" property="houseSerial"/>
+			<result column="PICTURE_ORDER" property="pictureOrder"/>
+			<result column="PICTURE_NAME" property="pictureName"/>
 		</collection>
 	</resultMap>
 	
@@ -99,6 +116,11 @@
 	<select id="selectHouseListByMemberEmail" parameterType="String" resultType="HouseVo">
 		<include refid="default-house-select"/>
 		where MEMBER_EMAIL = #{value}
+	</select>
+	
+	<select id="selectHouseWithPictureBySerial" parameterType="_int" resultType="HouseVo" resultMap="">
+		<include refid="house-housePicture-join"/>
+		where 
 	</select>
 	<!-- 필터를 통해 등록한 집을 select -> 각 필터 객체들을 hashmap으로 받아 각 where문을 통해 비교-->
 	<!-- 
