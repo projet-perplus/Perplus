@@ -5,17 +5,17 @@ import java.io.Serializable;
 public class CheckListVo implements Serializable{
 	private int checklistSerial;
 	private int houseSerial;
-	private String list;
+	private String codeKind;
 	private String value;
 	
 	public CheckListVo() {
 	}
 
-	public CheckListVo(int checklistSerial, int houseSerial, String list, String value) {
+	public CheckListVo(int checklistSerial, int houseSerial, String codeKind, String value) {
 		super();
 		this.checklistSerial = checklistSerial;
 		this.houseSerial = houseSerial;
-		this.list = list;
+		this.codeKind = codeKind;
 		this.value = value;
 	}
 
@@ -35,12 +35,12 @@ public class CheckListVo implements Serializable{
 		this.houseSerial = houseSerial;
 	}
 
-	public String getList() {
-		return list;
+	public String getCodeKind() {
+		return codeKind;
 	}
 
-	public void setList(String list) {
-		this.list = list;
+	public void setCodeKind(String codeKind) {
+		this.codeKind = codeKind;
 	}
 
 	public String getValue() {
@@ -53,8 +53,8 @@ public class CheckListVo implements Serializable{
 
 	@Override
 	public String toString() {
-		return "CheckList [checklistSerial=" + checklistSerial + ", houseSerial=" + houseSerial + ", list=" + list
-				+ ", value=" + value + "]";
+		return "CheckListVo [checklistSerial=" + checklistSerial + ", houseSerial=" + houseSerial + ", codeKind="
+				+ codeKind + ", value=" + value + "]";
 	}
 
 	@Override
@@ -62,8 +62,8 @@ public class CheckListVo implements Serializable{
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + checklistSerial;
+		result = prime * result + ((codeKind == null) ? 0 : codeKind.hashCode());
 		result = prime * result + houseSerial;
-		result = prime * result + ((list == null) ? 0 : list.hashCode());
 		result = prime * result + ((value == null) ? 0 : value.hashCode());
 		return result;
 	}
@@ -79,12 +79,12 @@ public class CheckListVo implements Serializable{
 		CheckListVo other = (CheckListVo) obj;
 		if (checklistSerial != other.checklistSerial)
 			return false;
-		if (houseSerial != other.houseSerial)
-			return false;
-		if (list == null) {
-			if (other.list != null)
+		if (codeKind == null) {
+			if (other.codeKind != null)
 				return false;
-		} else if (!list.equals(other.list))
+		} else if (!codeKind.equals(other.codeKind))
+			return false;
+		if (houseSerial != other.houseSerial)
 			return false;
 		if (value == null) {
 			if (other.value != null)
@@ -93,5 +93,6 @@ public class CheckListVo implements Serializable{
 			return false;
 		return true;
 	}
+
 	
 }

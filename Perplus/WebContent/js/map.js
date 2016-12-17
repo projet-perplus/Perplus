@@ -1,3 +1,5 @@
+
+
 //아이콘들
 var tourIcon = new google.maps.MarkerImage("/Perplus/img/markerIcon/tours.png");
 var defaultIcon = new google.maps.MarkerImage("/Perplus/img/markerIcon/default.png");
@@ -14,20 +16,23 @@ const MARKER_CONSTANT_TOUR = 211;
 const MARKER_CONSTANT_RESTAURANT = 212;
 const MARKER_CONSTANT_HOUSE = 213;
 //맵이 로딩되는 페이지를 알려주는 state
-var stage = document.getElementById('stage');
-
-//최초 마커 필터의 상태
-var startFilterArray = document.getElementsByName('marker_filter');
+var stage ;
 
 //맵 상의 마커를 보관할 array
 var markerArray = [];
-//마커 필터의 상태를 저장
-var filterArray = [];
+
+
 var geocoder = new google.maps.Geocoder();
+
+$(document).on('pageload',function(){
+	initialize();
+});
 
 $(function() {
 	//맵의 기본적 start
 	function initialize() {
+		
+		stage= document.getElementById('stage').value;
 		
 		var geoLocation = location;
 //		alert(stage.value);
@@ -39,7 +44,9 @@ $(function() {
 			zoom : 14,
 			mapTypeId : google.maps.MapTypeId.ROADMAP
 		};
-
+		$(window).resize(function(){
+			google.maps.event.trigger(map,"resize");
+		})
 		// 구글 맵 생성
 		map = new google.maps.Map(mapCanvas, mapOptions);
 
@@ -57,23 +64,12 @@ $(function() {
 			resetMapMarker();
 		});
 		
-
 		// 리뷰용 이벤트
-		google.maps.event.addListener(map, 'click', function(mouseEvent) {
-			// alert(mouseEvent.latLng);
-			// 추가적으로 로그인 여부 확인 필요
-			if(identifyLoginInfo()!= null){
-				if(startMarker == null){
-					startMarker=placeMarker(mouseEvent.latLng);
-					startMarker.setAnimation(google.maps.Animation.BOUNCE);
-				}else if(startMarker != null){
-					startMarker.setPosition(mouseEvent.latLng);
-				}
-				startMarker.setDraggable(true);
-			}
-			resetMapMarker();
-		});
-		
+		if(stage == 'review'){
+			addMapclickEventForReview();
+		}
+
+
 		//하우스용 이벤트
 		
 	}
@@ -126,10 +122,6 @@ function resetAllMarker(){
 	if(markerCluster!=null){
 		markerCluster.clearMarkers();
 	}
-}
-//마커 필터 배열 수정
-function modifyMarkerFilter(array){
-	filterArray = array;
 }
 
 //로그인 여부를 받는다
@@ -208,24 +200,32 @@ function placeMarker(location,constant,money) {
 				$('#reviewEnrollment').modal('show');
 			});
 		}else{
-			google.maps.event.addListener(marker, 'click',function(){
-				$.ajax({
-					url : "/Perplus/map/selectedreview.do",
-					type:"post",
-					async : false,
-					data : {		
-						"lat" :  marker.getPosition().lat().toString(),
-						"lng" :  marker.getPosition().lng().toString(),
-					},
-					dataType : "JSON",
-					success:function(obj){
-						$('#reviewEnrollment').modal('show');
-					},
-					error:function(request,error,status){
-						alert(error+ "   "+status+"status");
-					}
-				});
-			});
+//			google.maps.event.addListener(marker, 'click',function(){
+//				$.ajax({
+//					url : "/Perplus/map/selectedreview.do",
+//					type:"post",
+//					async : false,
+//					data : {		
+//						"lat" :  marker.getPosition().lat().toString(),
+//						"lng" :  marker.getPosition().lng().toString(),
+//					},
+//					dataType : "JSON",
+//					success:function(obj){
+//						$('#reviewEnrollment').modal('show');
+//					},
+//					error:function(request,error,status){
+//						alert(error+ "   "+status+"status");
+//					}
+//				});
+//			});
+			google.maps.event.addListener(marker, 'click', function(){
+				alert(mIcon.url);
+				var url = "/Perplus/map/selectedreview.do?lat="+marker.getPosition().lat().toString()
+				+"&lng="+marker.getPosition().lng().toString();
+				$(location).attr('href',url);
+			})
+//			window.location.href="<c:url value='/Perplus/map/selectedreview.do'/>?lat="+marker.getPosition().lat().toString()
+//			+"&lng="+marker.getPosition().lng().toString();
 			
 		}
 		markerArray.push(marker);

@@ -5,7 +5,7 @@
 
 
 	<insert id="insertChecklist" parameterType="checklistvo">
-		insert into CHECKLIST values(CHECKLIST_SEQ.nextval,#{houseSerial},#{list},#{value})
+		insert into CHECKLIST values(CHECKLIST_SEQ.nextval,#{houseSerial},#{codeKind},#{value})
 	</insert>
 	
 	
@@ -14,7 +14,7 @@
 		select 
 		CHECKLIST_SERIAL checklistSerial,
 		HOUSE_SERIAL houseSerial,
-		LIST list,
+		CODE_KIND codeKind,
 		VALUE value,
 		from CHECKLIST
 	</select>

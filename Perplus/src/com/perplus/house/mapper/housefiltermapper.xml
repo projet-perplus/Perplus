@@ -99,7 +99,7 @@
 		<collection property="checkList" ofType="CheckListVo">
 			<result column="CHECKLIST_SERIAL" property="checklistSerial"/>
 			<result column="c_hSerial" property="houseSerial"/>
-			<result column="LIST" property="list"/>
+			<result column="CODE_KIND" property="codeKind"/>
 			<result column="VALUE" property="value"/>
 		</collection>
 	</resultMap>
