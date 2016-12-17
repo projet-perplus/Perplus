@@ -1,3 +1,5 @@
+
+
 //아이콘들
 var tourIcon = new google.maps.MarkerImage("/Perplus/img/markerIcon/tours.png");
 var defaultIcon = new google.maps.MarkerImage("/Perplus/img/markerIcon/default.png");
@@ -198,24 +200,32 @@ function placeMarker(location,constant,money) {
 				$('#reviewEnrollment').modal('show');
 			});
 		}else{
-			google.maps.event.addListener(marker, 'click',function(){
-				$.ajax({
-					url : "/Perplus/map/selectedreview.do",
-					type:"post",
-					async : false,
-					data : {		
-						"lat" :  marker.getPosition().lat().toString(),
-						"lng" :  marker.getPosition().lng().toString(),
-					},
-					dataType : "JSON",
-					success:function(obj){
-						$('#reviewEnrollment').modal('show');
-					},
-					error:function(request,error,status){
-						alert(error+ "   "+status+"status");
-					}
-				});
-			});
+//			google.maps.event.addListener(marker, 'click',function(){
+//				$.ajax({
+//					url : "/Perplus/map/selectedreview.do",
+//					type:"post",
+//					async : false,
+//					data : {		
+//						"lat" :  marker.getPosition().lat().toString(),
+//						"lng" :  marker.getPosition().lng().toString(),
+//					},
+//					dataType : "JSON",
+//					success:function(obj){
+//						$('#reviewEnrollment').modal('show');
+//					},
+//					error:function(request,error,status){
+//						alert(error+ "   "+status+"status");
+//					}
+//				});
+//			});
+			google.maps.event.addListener(marker, 'click', function(){
+				alert(mIcon.url);
+				var url = "/Perplus/map/selectedreview.do?lat="+marker.getPosition().lat().toString()
+				+"&lng="+marker.getPosition().lng().toString();
+				$(location).attr('href',url);
+			})
+//			window.location.href="<c:url value='/Perplus/map/selectedreview.do'/>?lat="+marker.getPosition().lat().toString()
+//			+"&lng="+marker.getPosition().lng().toString();
 			
 		}
 		markerArray.push(marker);
