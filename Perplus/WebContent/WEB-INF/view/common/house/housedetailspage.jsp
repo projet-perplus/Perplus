@@ -5,6 +5,8 @@
 	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWDGjKV2YFKGM5q6gtx-J5GcJTa2wLDQU"
 	type="text/javascript"></script>
 <script src="/Perplus/js/map.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 
 <!-- <script type="text/javascript" src="/Perplus/js/date-range-picker.js"></script>
 <link rel="stylesheet" href="/Perplus/css/date-range-picker.css"> -->
@@ -14,12 +16,11 @@
 }
 </style>
 <script type="text/javascript">
- $(document).ready(function(){
-	 $( function() {
-		    $( "#datepicker" ).datepicker();
-		  } );
-	 
- });
+	$(document).ready(function() {
+		$(function() {
+			$("#datepicker").datepicker();
+		});
+	});
 </script>
 <div class="container reviewslide">
 	<div class="row">
@@ -136,8 +137,8 @@
 			<!-- right date -->
 			<div class="row ">
 				<div class="col-md-12">
-1
-					Date: <div id="datepicker"></div>
+					1 Date:
+					<div id="datepicker"></div>
 				</div>
 			</div>
 

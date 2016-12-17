@@ -63,7 +63,7 @@
 							<button class="btn btn-primary" style="margin-top: 13px;">가격
 								범위</button>
 						</div>
-						<div class="col-md-8 col-sm-8 col-xs-8 col-xs-offset-1" style="padding-left:0px;">
+						<div class="col-md-8 col-sm-8 col-xs-8 col-xs-offset-1 col-md-offset-0" style="padding-left:0px;">
 							<p>
 								<label for="amount" style="padding-left:0px;">Price range:</label> <input type="text"
 									id="amount" readonly

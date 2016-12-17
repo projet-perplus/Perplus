@@ -4,8 +4,10 @@
 	type="text/javascript"></script>
 <script src="/Perplus/js/map.js"></script>
 <script src="/Perplus/js/markerclusterer.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 <script type="text/javascript">
+
 $(function() {
 	
 	var error='${requestScope.error}'
@@ -114,7 +116,7 @@ $(function() {
 	<button type="button" class="btn btn-primary">리뷰 작성</button>
 </a>
 
-<a href="${initParam.rootPath}/review/showReview.do?reviewSerial=21">
+<a href="${initParam.rootPath}/review/showReview.do?reviewSerial=1">
 	<!-- reviewSerial은 requestScope의 리뷰시리얼값~~ -->
 	<button type="button" class="btn btn-primary">리뷰 상세페이지</button>
 </a>
