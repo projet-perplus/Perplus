@@ -11,7 +11,7 @@
 							<option value="${initParam.rootPath}/basicinfo.do">1 단계</option>
 							<option value="${initParam.rootPath}/housetypeandlocation.do">2 단계</option>
 							<option value="${initParam.rootPath}/houselocation.do">3 단계</option>
-							<option value="${initParam.rootPath}/housefacility.do">4 단계</option>
+							<option selected="selected" value="${initParam.rootPath}/housefacility.do">4 단계</option>
 							<option value="${initParam.rootPath}/houseimageenrollment.do">5 단계</option>
 							<option value="${initParam.rootPath}/houseschedulemanagement.do">6 단계</option>
 							<option value="${initParam.rootPath}/houseshutdowndate.do">7 단계</option>

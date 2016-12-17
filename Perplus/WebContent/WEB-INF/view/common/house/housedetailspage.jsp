@@ -144,16 +144,16 @@
 
 			<div class="row row-maginTB">
 				<div class="col-md-12">
-					<a href="#" data-toggle="modal" data-target="#reservationdialog"><button
-							class="btn btn-danger" style="width: 100%">예약하기</button></a>
+					<a href="#" data-toggle="modal" data-target="#reservationdialog">
+						<button class="btn btn-danger" style="width: 100%">예약하기</button>
+					</a>
 				</div>
 			</div>
 
 			<div class="row row-maginTB">
 				<div class="col-md-12">
 					<a href="${initParam.rootPath}/message.do#popup">
-						<button class="btn btn-primary" style="width: 100%">호스트와
-							연락</button>
+						<button class="btn btn-primary" style="width: 100%">호스트와연락</button>
 					</a>
 				</div>
 			</div>
@@ -161,8 +161,7 @@
 			<div class="row row-maginTB">
 				<div class="col-md-6">
 					<a href="#">
-						<button class="btn btn-success"
-							style="width: 100%; margin-bottom: 15px;">수정하기</button>
+						<button class="btn btn-success" style="width: 100%; margin-bottom: 15px;">수정하기</button>
 					</a>
 				</div>
 
@@ -172,13 +171,13 @@
 					</a>
 				</div>
 			</div>
+			
 		</div>
 	</div>
 
 	<div class="row row-condensed space-4">
 		<div class="col-md-12 col-sm-12 col-xs-12" style="padding: 0px;">
-			<div id="map-canvas"
-				style="width: 100%; height: 300px; padding: 15px;"></div>
+			<div id="map-canvas" style="width: 100%; height: 300px; padding: 15px;"></div> <!--맵-->
 		</div>
 	</div>
 </div>

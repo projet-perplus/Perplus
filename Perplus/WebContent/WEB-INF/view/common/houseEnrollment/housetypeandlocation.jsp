@@ -58,7 +58,7 @@
 					<div class="form-group ">
 						<select class="form-control house_step">
 							<option value="${initParam.rootPath}/basicinfo.do">1 단계</option>
-							<option value="${initParam.rootPath}/housetypeandlocation.do">2
+							<option selected="selected" value="${initParam.rootPath}/housetypeandlocation.do">2
 								단계</option>
 							<option value="${initParam.rootPath}/houselocation.do">3
 								단계</option>
