@@ -9,6 +9,9 @@ import com.perplus.house.vo.HouseVo;
 
 @Service
 public interface HouseService_nr {
+	//하우스 상세 페이지 조회
 	HouseVo selectHouseForDetailPage(int houseSerial);
-	List<HousePictureVo> selelctHousePictureForDetailPage(int houseSerial);
+	//하우스 상세 페이지 조회시 시리얼로 사진조회
+	List<HousePictureVo> selectHousePictureForDetailPage(int houseSerial);
+	void removeHouse(int houseSerial);
 }

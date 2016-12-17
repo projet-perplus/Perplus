@@ -19,5 +19,11 @@ public class HousePictureDaoImpl_nr implements HousePictureDao_nr{
 	public List<HousePictureVo> selectHousePictureByHouseSerial(int houseSerial) {
 		return session.selectList("housepicture.selectHousepictureByHouseSerial",houseSerial);
 	}
+
+	@Override
+	public int deleteHousePictureByHouseSerial(int houseSerial) {
+		return session.delete("housepicture.deleteHousepictureByHouseSerial",houseSerial);
+	}
+	
 	
 }

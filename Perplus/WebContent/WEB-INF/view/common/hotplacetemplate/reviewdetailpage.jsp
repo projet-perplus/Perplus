@@ -255,9 +255,9 @@
 				</div>
 			</div>
 		</c:if>
-
-		<!-- 댓글 입력 폼 -->
 	</div>
+	
+		<!-- 댓글 입력 폼 -->
 	<c:if test="${sessionScope.login_info!=null }">
 		<form action="${initParam.rootPath}/review/registerReviewComment.do"
 			id="commentForm">
