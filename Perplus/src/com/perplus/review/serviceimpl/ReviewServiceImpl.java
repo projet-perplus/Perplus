@@ -144,6 +144,11 @@ public class ReviewServiceImpl implements ReviewService{
 	public List<ReviewVo> selectMarkerBySection(HashMap<String,Double> map) throws Exception {
 		return reviewDao.selectMarkerBySection(map);
 	}
+
+	@Override
+	public ReviewVo selectReviewByMarker(HashMap<String, Double> map) throws Exception {
+		return reviewDao.selectReviewByMarker(map);
+	}
 	
 	
 }

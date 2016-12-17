@@ -130,6 +130,11 @@ public interface MemberService {
 	
 	public void removeShowmethemoney(int showmethemoneySerial) throws Exception;
 	
+	public int getShowmethemoneySerialSeq();
+
+	public List<ShowMeTheMoneyVo> getShowmethemoneyByShowmethemoneyStatus(String memberEmail, int showmethemoneyStatus) throws Exception;
+	
+	
 	/**
 	 * Travel  관련 Service
 	 * @param travel

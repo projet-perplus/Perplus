@@ -268,9 +268,7 @@ p {
 	padding: 20px;
 	border-radius: 4px !important;
 }
-.modal-backdrop {
-    height: 780px;
-}
+
 
 #loginBtn {
 	width: 100% !important;

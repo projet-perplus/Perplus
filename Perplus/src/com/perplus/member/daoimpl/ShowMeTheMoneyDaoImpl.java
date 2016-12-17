@@ -1,5 +1,6 @@
 package com.perplus.member.daoimpl;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -50,6 +51,15 @@ public class ShowMeTheMoneyDaoImpl implements ShowMeTheMoneyDao{
 		// TODO Auto-generated method stub
 		System.out.println("실행"+makeSql());
 		return session.selectOne(makeSql());
+	}
+
+	@Override
+	public List<ShowMeTheMoneyVo> selectShowmethemoneyByShowmethemoneyStatus(String memberEmail,
+			int showmethemoneyStatus) {
+		HashMap showmethemoneyParam = new HashMap();
+		showmethemoneyParam.put("memberEmail", memberEmail);
+		showmethemoneyParam.put("showmethemoneyStatus", showmethemoneyStatus);	
+		return session.selectList(makeSql(), showmethemoneyParam);
 	}
 	
 	

@@ -22,6 +22,8 @@
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-7 col-sm-12 col-xs12" style="padding-left: 0px">
+			<input type="hidden" id="stage" value="travel"> <input
+						type="hidden" id="location">
 			<div id="map-canvas" style="width: 100%; height: 626px !important"></div>
 		</div>
 		<div class="col-md-5 col-sm-12 col-xs-12">
@@ -63,7 +65,7 @@
 							<button class="btn btn-primary" style="margin-top: 13px;">가격
 								범위</button>
 						</div>
-						<div class="col-md-8 col-sm-8 col-xs-8 col-xs-offset-1" style="padding-left:0px;">
+						<div class="col-md-8 col-sm-8 col-xs-8 col-xs-offset-1 col-md-offset-0" style="padding-left:0px;">
 							<p>
 								<label for="amount" style="padding-left:0px;">Price range:</label> <input type="text"
 									id="amount" readonly
