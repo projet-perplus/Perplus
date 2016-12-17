@@ -53,19 +53,22 @@ public class ReviewController {
 		}
 		ReviewVo reviewVo = new ReviewVo();
 		BeanUtils.copyProperties(form, reviewVo);
-		System.out.println(reviewVo);
-	/*	List<ReviewPictureVo> list = new ArrayList<>();*/
+
 		List<MultipartFile> files = picture.getPictureList();
 		MemberVo member = (MemberVo)session.getAttribute("login_info");
 		int count = 1;
-		System.out.println(member);
+
 		reviewVo.setMemberEmail(member.getMemberEmail());
-		reviewVo.setReviewMarkerConstant(2);//******
-		reviewVo.setReviewMarkerX(23.5);	//*********
-		reviewVo.setReviewMarkerY(63.2); //************
+	
+		//지도 위치 정보 & 마커 정보 
+		reviewVo.setReviewMarkerConstant(2);
+		reviewVo.setReviewMarkerX(23.5);	
+		reviewVo.setReviewMarkerY(63.2);
+		
 		//공백.엔터처리
 		reviewVo.setReviewContent(TextUtil.textToHtml(reviewVo.getReviewContent()));
 		System.out.println(reviewVo);
+		
 		service.registerReview(reviewVo);
 		map.addAttribute("review",reviewVo);
 		
@@ -119,25 +122,20 @@ public class ReviewController {
 	
 	/******************리뷰 글 수정*****************/
 	@RequestMapping(value="/modifyReview", method=RequestMethod.POST)
-	public String modifyReview(@ModelAttribute ReviewVo review, @RequestParam int reviewSerial,@ModelAttribute ReviewPictureVo picture, HttpServletRequest request) throws IllegalStateException, IOException{
-		ReviewVo oldReview = service.getReview(reviewSerial);
-		review.setMemberEmail(oldReview.getMemberEmail());
-		review.setReviewSerial(oldReview.getReviewSerial());
-		review.setReviewMarkerConstant(oldReview.getReviewMarkerConstant());
-		review.setReviewMarkerX(oldReview.getReviewMarkerX());
-		review.setReviewMarkerY(oldReview.getReviewMarkerY());
+	public String modifyReview(@ModelAttribute ReviewVo review,@ModelAttribute ReviewPictureVo picture, HttpServletRequest request) throws IllegalStateException, IOException{
 		//공백.엔터처리
+		System.out.println(review.getReviewSerial());
 		review.setReviewContent(TextUtil.textToHtml(review.getReviewContent()));
 		service.modifyReview(review);
 		
-		List<ReviewPictureVo> oldPicture = service.getReviewPictureList(reviewSerial);
+		List<ReviewPictureVo> oldPicture = service.getReviewPictureList(review.getReviewSerial());
 		List<MultipartFile> files = picture.getPictureList();
 	
 		String newFileName=  null;
 		System.out.println("---------------------");
-		System.out.println(reviewSerial);
+		System.out.println(review.getReviewSerial());
 		if(files != null && !files.isEmpty()){
-			service.removeReviewPicture(reviewSerial);
+			service.removeReviewPicture(review.getReviewSerial());
 			int count =1;
 			for(Object f : files){
 				MultipartFile file = (MultipartFile)f;
@@ -148,7 +146,7 @@ public class ReviewController {
 					picture.setPictureName(newFileName);
 					picture.setPictureOrder(count);
 					picture.setPictureSerial(1);
-					picture.setReviewSerial(reviewSerial);
+					picture.setReviewSerial(review.getReviewSerial());
 					count++;
 					service.registerReviewPicture(picture);
 				}
@@ -159,7 +157,7 @@ public class ReviewController {
 			}
 		}
 		
-		return"redirect:/review/showReview.do?&reviewSerial="+reviewSerial;
+		return"redirect:/review/showReview.do?&reviewSerial="+review.getReviewSerial();
 	}
 	
 	/*****************리뷰 글 삭제*****************/

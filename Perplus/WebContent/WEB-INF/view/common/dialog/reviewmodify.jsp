@@ -33,10 +33,10 @@ pageContext.setAttribute("LT", "&lt;");
 		<form action="${initParam.rootPath}/review/modifyReview.do"
 			method="post" enctype="multipart/form-data" id="modifyform">
 			<input type="hidden" name="reviewSerial" value="${requestScope.review.reviewSerial }">
-<%-- 			<input type="hidden" name="memberEmail" value="${requestScope.review.memberEmail }"> --%>
-<%-- 			<input type="hidden" name="reviewMarkerX" value="${requestScope.review.reviewMarkerX }"> --%>
-<%-- 			<input type="hidden" name="reviewMarkerY" value="${requestScope.review.reviewMarkerY }"> --%>
-<%-- 			<input type="hidden" name="reviewConstant" value="${requestScope.review.reviewConstant}"> --%>
+			<input type="hidden" name="memberEmail" value="${requestScope.review.memberEmail }">
+			<input type="hidden" name="reviewMarkerX" value="${requestScope.review.reviewMarkerX }">
+			<input type="hidden" name="reviewMarkerY" value="${requestScope.review.reviewMarkerY }">
+			<input type="hidden" name="reviewMarkerConstant" value="${requestScope.review.reviewMarkerConstant}">
 			<div class="modal-content" style="padding: 0px;">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
