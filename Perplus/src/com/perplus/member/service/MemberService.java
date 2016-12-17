@@ -7,7 +7,7 @@ import com.perplus.member.vo.ChattingLogVo;
 import com.perplus.member.vo.ChattingVo;
 import com.perplus.member.vo.HouseCommentVo;
 import com.perplus.member.vo.HouseZzimVo;
-import com.perplus.member.vo.HowgetmoneyVo;
+import com.perplus.member.vo.HowmoneyVo;
 import com.perplus.member.vo.MemberVo;
 import com.perplus.member.vo.PaymentVo;
 import com.perplus.member.vo.RejectVo;
@@ -59,11 +59,11 @@ public interface MemberService {
 	List<HouseZzimVo> houseZzimJoinHouseJoinHousePicture(String memberEmail);
 	
 	//howgetmoney service
-	void insertHowgetmoney(HowgetmoneyVo howgetmoney);
+	void insertHowgetmoney(HowmoneyVo howgetmoney);
 	
 	void deleteHowgetmoney(int accountSerial);
 	
-	List<HowgetmoneyVo> selectHowgetmoney(String memberEmail);
+	List<HowmoneyVo> selectHowgetmoney(String memberEmail);
 	
 	
 	//member service

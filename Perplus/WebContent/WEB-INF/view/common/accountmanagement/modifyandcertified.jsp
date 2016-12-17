@@ -14,10 +14,6 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		$("#memberModifyForm").on("submit", function() {
-			if ($("#memberGenderSelect").val() == "성별") {
-				alert("성별을 선택해 주세요.");
-				return false;
-			}
 			var mempassword = "${sessionScope.login_info.memberPassword}";
 			if ($("#modifyPassword").val() != mempassword) {
 				alert("비밀번호를 확인해 주세요.");
@@ -41,15 +37,28 @@
 				alert("변경할 비밀번호가 다릅니다.");
 				return false;
 			}
-			
+
 			return confirm("비밀번호를 변경하시겠습니까?");
 
 		});
-		
-		$("#deleteMemberPicture").on("click",function(){
+
+		$("#deleteMemberPicture").on("click", function() {
 			return confirm("삭제하시겠습니까?");
 		});
+		
+		
+		$(".memberTel").on("change", function() { 
+		    var num = $(this).val() - 1; 
+		    if(typeof num !== "number" || num < 0) { 
+		        alert("양수만 입력 해 주세요"); 
+		        $(this).focus(); 
+		        return false; 
+		    } 
+		}); 
 	});
+	
+	
+	
 </script>
 
 <div id="dashboard-content">
@@ -60,24 +69,25 @@
 		</div>
 		<div class="panel-body">
 			<div class="row" style="margin-bottom: 15px;">
-					<div class="col-md-3 col-sm-4"
-						style="text-align: right; padding-right: 0px;">
-						<c:choose>
-							<c:when test="${empty sessionScope.login_info.memberPicture }">
-								<img src="/Perplus/memberPicture/no-photo.png" width="200"
-									height="200">
-								<input type="file" name="memberPictureFile" value="사진등록" />
-							</c:when>
-							<c:otherwise>
-								<img
-									src="/Perplus/memberPicture/${sessionScope.login_info.memberPicture}"
-									width="200" height="200">
-								<a href="${initParam.rootPath}/member/memberpictureremove.do">
-									<button id="deleteMemberPicture" type="button" class="btn btn-danger" style="margin-top: 10px;">삭제</button>
-								</a>
-							</c:otherwise>
-						</c:choose>
-					</div>
+				<div class="col-md-3 col-sm-4"
+					style="text-align: right; padding-right: 0px;">
+					<c:choose>
+						<c:when test="${empty sessionScope.login_info.memberPicture }">
+							<img src="/Perplus/memberPicture/no-photo.png" width="200"
+								height="200">
+							<input type="file" name="memberPictureFile" value="사진등록" />
+						</c:when>
+						<c:otherwise>
+							<img
+								src="/Perplus/memberPicture/${sessionScope.login_info.memberPicture}"
+								width="200" height="200">
+							<a href="${initParam.rootPath}/member/memberpictureremove.do">
+								<button id="deleteMemberPicture" type="button"
+									class="btn btn-danger" style="margin-top: 10px;">삭제</button>
+							</a>
+						</c:otherwise>
+					</c:choose>
+				</div>
 				<div class="col-sm-8 col-md-9">
 					<div class="row row-condensed space-4">
 						<label class="text-right col-sm-3"> 이름(예: 홍길동) </label>
@@ -98,18 +108,20 @@
 								<div class="form-group">
 									<select class="form-control" id="memberGenderSelect"
 										name="memberGender">
-										<option>성별</option>
 										<c:choose>
 											<c:when test="${sessionScope.login_info.memberGender == '남'}">
+												<option value="">성별</option>
 												<option selected>남</option>
 												<option>여</option>
 											</c:when>
 											<c:when
 												test="${sessionScope.login_info.memberGender == '녀' }">
+												<option value="">성별</option>
 												<option>남</option>
 												<option selected>여</option>
 											</c:when>
 											<c:otherwise>
+												<option value="">성별</option>
 												<option>남</option>
 												<option>녀</option>
 											</c:otherwise>
@@ -152,9 +164,8 @@
 						<div class="col-sm-9">
 							<div class="form-group">
 								<div class="col-md-12">
-									<input type="number" class="form-control" name="memberTel"
-										required="required" placeholder="전화번호"
-										value="${sessionScope.login_info.memberTel}">
+									<input type="number" class="form-control memberTel" name="memberTel"
+										placeholder="전화번호" value="${sessionScope.login_info.memberTel}">
 								</div>
 							</div>
 						</div>

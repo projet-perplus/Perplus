@@ -33,7 +33,7 @@ import com.perplus.member.vo.ChattingLogVo;
 import com.perplus.member.vo.ChattingVo;
 import com.perplus.member.vo.HouseCommentVo;
 import com.perplus.member.vo.HouseZzimVo;
-import com.perplus.member.vo.HowgetmoneyVo;
+import com.perplus.member.vo.HowmoneyVo;
 import com.perplus.member.vo.MemberVo;
 import com.perplus.util.TextUtil;
 import com.perplus.member.vo.PaymentVo;
@@ -179,7 +179,7 @@ public class MemberController {
 	public String howgetmoneyFind(ModelMap map, HttpSession session){
 		MemberVo member = (MemberVo)session.getAttribute("login_info");
 		String memberEmail = member.getMemberEmail();
-		List<HowgetmoneyVo> howgetmoneyList = service.selectHowgetmoney(memberEmail);
+		List<HowmoneyVo> howgetmoneyList = service.selectHowgetmoney(memberEmail);
 		map.addAttribute("howgetmoneyList",howgetmoneyList);
 		return "accountmanagement/accountmanagement/payout_preference.tiles1";
 	}
@@ -193,7 +193,7 @@ public class MemberController {
 	
 	/********************howgetmoney등록*************************/
 	@RequestMapping("/howgetmoneyRegister.do")
-	public String howgetmoneyRegister(@ModelAttribute HowgetmoneyVo howgetmoney){
+	public String howgetmoneyRegister(@ModelAttribute HowmoneyVo howgetmoney){
 		service.insertHowgetmoney(howgetmoney);
 		return "redirect:/member/howgetmoneyfind.do";
 	}

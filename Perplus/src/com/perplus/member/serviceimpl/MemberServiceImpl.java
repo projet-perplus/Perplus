@@ -24,7 +24,7 @@ import com.perplus.member.vo.ChattingLogVo;
 import com.perplus.member.vo.ChattingVo;
 import com.perplus.member.vo.HouseCommentVo;
 import com.perplus.member.vo.HouseZzimVo;
-import com.perplus.member.vo.HowgetmoneyVo;
+import com.perplus.member.vo.HowmoneyVo;
 import com.perplus.member.vo.MemberVo;
 import com.perplus.member.vo.PaymentVo;
 import com.perplus.member.vo.RejectVo;
@@ -195,7 +195,7 @@ public class MemberServiceImpl implements MemberService{
 	 */
 	
 	@Override//결제수단 등록
-	public void insertHowgetmoney(HowgetmoneyVo howgetmoney){
+	public void insertHowgetmoney(HowmoneyVo howgetmoney){
 		howgetmoneyDao.insertHowgetmoney(howgetmoney);
 	}
 	
@@ -205,7 +205,7 @@ public class MemberServiceImpl implements MemberService{
 	}
 	
 	@Override//결제수단 조회
-	public List<HowgetmoneyVo> selectHowgetmoney(String memberEmail){
+	public List<HowmoneyVo> selectHowgetmoney(String memberEmail){
 		return howgetmoneyDao.selectHowgetmoney(memberEmail);
 	}
 	

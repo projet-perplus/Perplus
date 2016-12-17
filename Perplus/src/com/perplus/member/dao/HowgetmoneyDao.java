@@ -4,13 +4,13 @@ package com.perplus.member.dao;
 import java.util.List;
 import java.util.Map;
 
-import com.perplus.member.vo.HowgetmoneyVo;
+import com.perplus.member.vo.HowmoneyVo;
 
 public interface HowgetmoneyDao {
 	
-	int insertHowgetmoney(HowgetmoneyVo howgetmoney);
+	int insertHowgetmoney(HowmoneyVo howgetmoney);
 	
 	int deleteHowgetmoney(int accountSerial);
 	
-	List<HowgetmoneyVo> selectHowgetmoney(String memberEmail);
+	List<HowmoneyVo> selectHowgetmoney(String memberEmail);
 }

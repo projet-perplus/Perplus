@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
-<mapper namespace="howgetmoney">
+<mapper namespace="howmoney">
 
 
-	<insert id="insertHowgetmoney" parameterType="HowGetMoneyVo">
-		insert into HOWGETMONEY values(HOWGETMONEY_SEQ.nextval, #{memberEmail},#{howgetmoneyHolder},#{howgetmoneyBank},#{howgetmoneyNumber})
+	<insert id="insertHowmoney" parameterType="HowmoneyVo">
+		insert into HOWMONEY values(HOWGETMONEY_SEQ.nextval, #{memberEmail},#{howmoneyHolder},#{howmoneyBank},#{howmoneyNumber})
 	</insert>
 	
 	
-	<delete id="deleteHowgetmoney" parameterType="_int">
-		delete from HOWGETMONEY
+	<delete id="deleteHowmoney" parameterType="_int">
+		delete from HOWMONEY
 		where	account_serial = #{value}
 	</delete>
 	
 	
-	<select id="selectMyHowgetmoney" parameterType="string" resultType="HowGetMoneyVo">
-		select	account_serial accountSerial,member_email memberEmail, howgetmoney_holder howgetmoneyHolder, howgetmoney_bank howgetmoneyBank, howgetmoney_number howgetmoneyNumber
-		from	HOWGETMONEY
+	<select id="selectMyHowmoney" parameterType="string" resultType="HowmoneyVo">
+		select	account_serial accountSerial,member_email memberEmail, howmoney_holder howmoneyHolder, howmoney_bank howmoneyBank, howmoney_number howmoneyNumber
+		from	HOWMONEY
 		where	member_email = #{memberEmail}
 	</select>
 	

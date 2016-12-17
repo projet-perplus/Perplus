@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.perplus.member.dao.HowgetmoneyDao;
-import com.perplus.member.vo.HowgetmoneyVo;
+import com.perplus.member.vo.HowmoneyVo;
 
 @Repository
 public class HowgetmoneyDaoImpl implements HowgetmoneyDao{
@@ -18,18 +18,18 @@ public class HowgetmoneyDaoImpl implements HowgetmoneyDao{
 	private SqlSessionTemplate session;
 
 	@Override//결졔수단 등록
-	public int insertHowgetmoney(HowgetmoneyVo howgetmoney) {
-		return session.insert("howgetmoney.insertHowgetmoney",howgetmoney);
+	public int insertHowgetmoney(HowmoneyVo howgetmoney) {
+		return session.insert("howmoney.insertHowgetmoney",howgetmoney);
 	}
 
 	@Override//결제수단 삭제
 	public int deleteHowgetmoney(int accountSerial) {
-		return session.delete("howgetmoney.deleteHowgetmoney",accountSerial);
+		return session.delete("howmoney.deleteHowgetmoney",accountSerial);
 	}
 
 	@Override//결제수단 조회
-	public List<HowgetmoneyVo> selectHowgetmoney(String memberEmail) {
-		return session.selectList("howgetmoney.selectMyHowgetmoney", memberEmail);
+	public List<HowmoneyVo> selectHowgetmoney(String memberEmail) {
+		return session.selectList("howmoney.selectMyHowgetmoney", memberEmail);
 	}
 	
 	
