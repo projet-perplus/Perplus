@@ -7,21 +7,19 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 <script type="text/javascript">
+	$(function() {
 
-$(function() {
-
-	var error='${requestScope.error}'
-	$('#reviewEnrollment').on('hidden.bs.modal', function() {
-			if(error){
-				location.href = location.href.replace(error,"");
+		var error = '${requestScope.error}'
+		$('#reviewEnrollment').on('hidden.bs.modal', function() {
+			if (error) {
+				location.href = location.href.replace(error, "");
 			}
+		})
+		if (error) {
+			$('#reviewEnrollment').modal('show');
+		}
+
 	})
-	if(error){
-		$('#reviewEnrollment').modal('show');
-	}
-	
-	
-})
 </script>
 <!-- 크롬 캐싱 문제 때문에 임의의 쿼리 스트링 추가 (완성본에서는 제거필요) -->
 <script type="text/javascript">
@@ -111,3 +109,5 @@ $(function() {
 	<!-- reviewSerial은 requestScope의 리뷰시리얼값~~ -->
 	<button type="button" class="btn btn-primary">리뷰 상세페이지</button>
 </a>
+<button class="btn btn-primary" data-toggle="modal"
+	data-target="#myModalFullscreen" contenteditable="false">다이얼로그로 뺌 ...</button>
