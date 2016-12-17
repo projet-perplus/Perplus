@@ -19,7 +19,6 @@
 		if (error) {
 			$('#reviewEnrollment').modal('show');
 		}
-
 	})
 </script>
 <!-- 크롬 캐싱 문제 때문에 임의의 쿼리 스트링 추가 (완성본에서는 제거필요) -->
@@ -45,6 +44,27 @@
 			resetMapMarker();
 		})
 
+/* 		$(".reviewDetail").on("click",function(){
+			$.ajax({
+				url:"/Perplus/review/showReview.do",
+				dataType:"json",
+				data:{"reviewSerial":1},
+				success:function(obj){
+					$("#memEmail").text(obj.review.memberEmail);
+					$("#reviewTitle").text(obj.review.reviewTitle);
+					$("#reviewPlace").text(obj.review.reviewPlace);
+					$("#reviewTime").text(obj.review.reviewPlace);
+					$("#reviewRating").text(obj.review.reviewRating);
+					$("#reviewContent").text(obj.review.reviewContent);
+					
+					for(var i=0;i<obj.review.reviewComment.length;i++){
+						$("#reviewCommentRating").text(obj.review.reviewComment[i].commentRating);
+						$("#reviewCommentMemberEmail").text(obj.review.reviewComment[i].memberEmail);
+						$("#reviewCommentContent").text(obj.review.reviewComment[i].commentContent);
+					}
+				}
+			});
+		}); */
 	})
 </script>
 
@@ -103,12 +123,12 @@
 <!-- 	<input type="hidden" id="reviewForm" /> -->
 <!-- </a> -->
 
+<%-- 
 
-
-<a href="${initParam.rootPath}/review/showReview.do?reviewSerial=26">
-
+<a href="${initParam.rootPath}/review/showReview.do?reviewSerial=1">
+</a> --%>
 	<!-- reviewSerial은 requestScope의 리뷰시리얼값~~ -->
-	<button type="button" class="btn btn-primary">리뷰 상세페이지</button>
-</a>
-<button class="btn btn-primary" data-toggle="modal"
+	<button type="button" class="btn btn-primary" onclick="window.open('/Perplus/review/showReview.do?reviewSerial=1','detail','fullscreen');void(0);">리뷰 상세페이지</button>
+
+<button class="btn btn-primary reviewDetail" data-toggle="modal"
 	data-target="#myModalFullscreen" contenteditable="false">다이얼로그로 뺌 ...</button>
