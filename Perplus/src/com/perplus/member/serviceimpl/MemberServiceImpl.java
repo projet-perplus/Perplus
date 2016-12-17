@@ -12,7 +12,7 @@ import com.perplus.member.dao.ChattingDao;
 import com.perplus.member.dao.ChattingLogDao;
 import com.perplus.member.dao.HouseCommentDao;
 import com.perplus.member.dao.HouseZzimDao;
-import com.perplus.member.dao.HowgetmoneyDao;
+import com.perplus.member.dao.HowmoneyDao;
 import com.perplus.member.dao.MemberDao;
 import com.perplus.member.dao.PaymentDao;
 import com.perplus.member.dao.RejectDao;
@@ -55,8 +55,8 @@ public class MemberServiceImpl implements MemberService{
 	private HouseZzimDao houseZzimDao;
 	
 	@Autowired
-	@Qualifier("howgetmoneyDaoImpl")
-	private HowgetmoneyDao howgetmoneyDao;
+	@Qualifier("howmoneyDaoImpl")
+	private HowmoneyDao howgetmoneyDao;
 
 	@Autowired
 	@Qualifier("memberDaoImpl")
@@ -195,17 +195,17 @@ public class MemberServiceImpl implements MemberService{
 	 */
 	
 	@Override//결제수단 등록
-	public void insertHowgetmoney(HowmoneyVo howgetmoney){
+	public void insertHowmoney(HowmoneyVo howgetmoney){
 		howgetmoneyDao.insertHowgetmoney(howgetmoney);
 	}
 	
 	@Override//결제수단 삭제
-	public void deleteHowgetmoney(int accountSerial){
+	public void deleteHowmoney(int accountSerial){
 		howgetmoneyDao.deleteHowgetmoney(accountSerial);
 	}
 	
 	@Override//결제수단 조회
-	public List<HowmoneyVo> selectHowgetmoney(String memberEmail){
+	public List<HowmoneyVo> selectHowmoney(String memberEmail){
 		return howgetmoneyDao.selectHowgetmoney(memberEmail);
 	}
 	

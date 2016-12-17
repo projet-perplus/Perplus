@@ -179,22 +179,22 @@ public class MemberController {
 	public String howgetmoneyFind(ModelMap map, HttpSession session){
 		MemberVo member = (MemberVo)session.getAttribute("login_info");
 		String memberEmail = member.getMemberEmail();
-		List<HowmoneyVo> howgetmoneyList = service.selectHowgetmoney(memberEmail);
-		map.addAttribute("howgetmoneyList",howgetmoneyList);
+		List<HowmoneyVo> howmoneyList = service.selectHowmoney(memberEmail);
+		map.addAttribute("howmoneyList",howmoneyList);
 		return "accountmanagement/accountmanagement/payout_preference.tiles1";
 	}
 	
 	/*********************howgetmoney삭제**********************************/
-	@RequestMapping("/howgetmoneyRemove.do")
-	public String howgetmoneyRemove(@RequestParam int accountSerial, HttpServletRequest request){
-		service.deleteHowgetmoney(accountSerial);
+	@RequestMapping("/howmoneyRemove.do")
+	public String howmoneyRemove(@RequestParam int accountSerial, HttpServletRequest request){
+		service.deleteHowmoney(accountSerial);
 		return "redirect:/member/howgetmoneyfind.do";
 	}
 	
 	/********************howgetmoney등록*************************/
 	@RequestMapping("/howgetmoneyRegister.do")
 	public String howgetmoneyRegister(@ModelAttribute HowmoneyVo howgetmoney){
-		service.insertHowgetmoney(howgetmoney);
+		service.insertHowmoney(howgetmoney);
 		return "redirect:/member/howgetmoneyfind.do";
 	}
 	

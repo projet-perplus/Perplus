@@ -59,11 +59,11 @@ public interface MemberService {
 	List<HouseZzimVo> houseZzimJoinHouseJoinHousePicture(String memberEmail);
 	
 	//howgetmoney service
-	void insertHowgetmoney(HowmoneyVo howgetmoney);
+	void insertHowmoney(HowmoneyVo howgetmoney);
 	
-	void deleteHowgetmoney(int accountSerial);
+	void deleteHowmoney(int accountSerial);
 	
-	List<HowmoneyVo> selectHowgetmoney(String memberEmail);
+	List<HowmoneyVo> selectHowmoney(String memberEmail);
 	
 	
 	//member service
