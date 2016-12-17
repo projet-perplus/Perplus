@@ -26,6 +26,7 @@
 	  		<tiles:insertAttribute name="review"/>
 	  		<tiles:insertAttribute name="reviewenrollment"/>
 	  		<tiles:insertAttribute name="reviewmodify"/>
+	  		<tiles:insertAttribute name="reviewdetailpagedialog"/>
 	  	</section>
 	  	
   	  	<footer class="container-fluid bg-4 text-center">
