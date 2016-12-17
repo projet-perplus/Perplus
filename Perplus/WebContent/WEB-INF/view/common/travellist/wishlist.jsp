@@ -11,12 +11,12 @@
 		<span>위시 리스트</span>
 	</div>
 	<div class="panel-body">
+							<c:choose>
 		<div class="row nowtravel">
 			<div class="col-md-12">
 				<div class="slidebar">
 					<div class="carousel slide" id="myCarousel">
 						<div class="carousel-inner">
-							<c:choose>
 								<c:when test="${requestScope.houseZzim != null}">
 									<c:forEach items="${requestScope.houseZzim}" var="houseZzim">
 										<div class="active item">
@@ -28,8 +28,7 @@
 													<div class="row con1">
 														<div class="row con1">
 															<div class="col-md-12" style="padding: 0px;">
-															${houseZzim.house.housePicture[0].pictureName}
-																<img src="" alt="asd"
+																<img src="${initParam.rootPath}/memberPicture/no-photo.png" alt=""
 																	style="width: 100%; height: 200px" />
 															</div>
 														</div>
@@ -83,8 +82,6 @@
 								<c:otherwise>
 									없음!
 								</c:otherwise>
-							</c:choose>
-
 						</div>
 						<!--  left right button -->
 						<a class="left carousel-control" href="#myCarousel" role="button"
@@ -99,5 +96,6 @@
 				<!--/Slider-->
 			</div>
 		</div>
+							</c:choose>
 	</div>
 </div>
