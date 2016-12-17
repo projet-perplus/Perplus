@@ -2,6 +2,7 @@
 <script
 	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWDGjKV2YFKGM5q6gtx-J5GcJTa2wLDQU"
 	type="text/javascript"></script>
+<script src="/Perplus/js/review-map.js"></script>
 <script src="/Perplus/js/map.js"></script>
 <script src="/Perplus/js/markerclusterer.js"></script>
 
@@ -89,8 +90,8 @@
 			<div class="row">
 				<div class="col-md-12">
 					<!-- stage - 해당 페이지, location - 검색한 지역 string이 저장 -->
-					<input type="hidden" id="stage" value="travel"> <input
-						type="hidden" id="location">
+					<input type="hidden" id="stage" value="review"> 
+					<input type="hidden" id="location">
 					<div id="map-canvas" style="width: 100%; height: 489px"></div>
 				</div>
 			</div>
