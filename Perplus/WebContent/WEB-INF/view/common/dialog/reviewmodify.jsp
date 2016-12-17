@@ -3,8 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<link rel="stylesheet"
-	href="https://jqueryvalidation.org/files/demo/site-demos.css">
 
 <!--reviewContent의 HTML 코드를 JAVA로 바꿔주기 위한 코드 -->
 <%
@@ -28,7 +26,7 @@ pageContext.setAttribute("LT", "&lt;");
 <!-- reviewModify-->
 <div class="modal fade" id="reviewmodify" role="dialog"
 	aria-labelledby="basicModal" aria-hidden="true">
-	<div class="modal-dialog reviewEnrollment-dialog">
+	<div class="modal-dialog reviewEnrollment-dialog" style="transform:translate(0, 0) !important;">
 		<!-- Modal content-->
 		<form action="${initParam.rootPath}/review/modifyReview.do"
 			method="post" enctype="multipart/form-data" id="modifyform">
@@ -79,7 +77,7 @@ pageContext.setAttribute("LT", "&lt;");
 						</div>
 						<div class="row row-condensed space-4">
 							<label class="text-left col-sm-3">사진 등록</label>
-							<div class="col-md-9">
+							<div class="col-md-9 col-sm-9">
 								<ul></ul>
 								<button type="button" class="btn btn-success addImg" id="addImg">
 									이미지 추가</button>

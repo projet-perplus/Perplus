@@ -6,7 +6,15 @@
 	<head>
 		<tiles:insertAttribute name="linkandscripthead"/>
 		<script type="text/javascript" src="/Perplus/js/review.js"></script>
+		<link rel="stylesheet" href="https://jqueryvalidation.org/files/demo/site-demos.css">
+		
 	</head>
+	<style>
+		.pictureList{
+			border:0px !important;
+			margin-top:5px !important;s
+		}
+	</style>
 	<body>
 		<header class="mainheader">
 		  		<tiles:insertAttribute name="header"/>
@@ -18,6 +26,7 @@
 	  		<tiles:insertAttribute name="review"/>
 	  		<tiles:insertAttribute name="reviewenrollment"/>
 	  		<tiles:insertAttribute name="reviewmodify"/>
+	  		<tiles:insertAttribute name="reviewdetailpagedialog"/>
 	  	</section>
 	  	
   	  	<footer class="container-fluid bg-4 text-center">

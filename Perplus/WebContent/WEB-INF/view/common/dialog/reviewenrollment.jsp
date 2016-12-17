@@ -1,20 +1,31 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<script type="text/javascript">
+$(document).ready(function(){
+	var file = document.querySelector('#getfile');
 
-<link rel="stylesheet"
-	href="https://jqueryvalidation.org/files/demo/site-demos.css">
-<style>
-input{
- 	border:none !important; 
- 	position: relative;
-}
-</style>	
+	file.onchange = function() {
+		var fileList = file.files;
+
+		// 읽기
+		var reader = new FileReader();
+		reader.readAsDataURL(fileList[0]);
+
+		//로드 한 후
+		reader.onload = function() {
+			document.querySelector('#preview').src = reader.result;
+		};
+	};
+});
 	
-	
-	<!-- reviewEnrollment-->
+</script>
+
+<!-- reviewEnrollment-->
 <div class="modal fade" id="reviewEnrollment" role="dialog"
-	aria-labelledby="basicModal" aria-hidden="true" style="padding-left:0 !important;">
-	<div class="modal-dialog reviewEnrollment-dialog" style="transform: translate(0,0) !important;">
+	aria-labelledby="basicModal" aria-hidden="true"
+	style="padding-left: 0 !important;">
+	<div class="modal-dialog reviewEnrollment-dialog"
+		style="transform: translate(0, 0) !important;">
 		<!-- Modal content-->
 		<form action="${initParam.rootPath}/review/registerReview.do"
 			method="post" enctype="multipart/form-data" id="myform">
@@ -52,8 +63,8 @@ input{
 							<div class="col-sm-9">
 								<div class="form-group">
 									<div class="visitDate">
-										<input type="text" class="form-control" name="reviewTime" required
-											id="datepicker2"> <span class="errorMessage"><form:errors
+										<input type="text" class="form-control" name="reviewTime"
+											required id="datepicker2"> <span class="errorMessage"><form:errors
 												path="reviewForm.reviewTime" /></span>
 									</div>
 								</div>
@@ -62,6 +73,9 @@ input{
 						<div class="row row-condensed space-4">
 							<label class="text-left col-sm-3 col-md-3 col-xs-3">사진 등록</label>
 							<div class="col-md-9 col-xs-9 col-sm-9">
+								<h3>로컬에 있는 이미지를 바로 브라우저에 표시</h3>
+								<img id="preview" src="" width="200" alt="로컬에 있는 이미지가 보여지는 영역">
+								<input type="file" id="getfile" accept="image/*">
 								<ul></ul>
 								<button type="button" class="btn btn-success addImg" id="addImg">
 									이미지 추가</button>

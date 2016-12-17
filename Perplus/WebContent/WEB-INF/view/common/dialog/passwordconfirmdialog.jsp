@@ -8,15 +8,10 @@ $(document).ready(function(){
 			alert("password가 틀립니다! 확인해 주세요.");
 			return false;
 		}
+		return confirm("탈퇴하시겠습니까?");
 		
 	});
 	
-	function passwordErrorCheck(){
-		if(${!empty requestScope.error_password}){
-			
-		}
-		$("#error_password")
-	}
 });
 </script>
 <!-- 비밀 번호 확인-->

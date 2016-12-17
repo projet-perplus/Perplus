@@ -43,6 +43,11 @@ public class MemberDaoImpl implements MemberDao{
 	public int selectMemberCountFindByEmail(String id) {
 		return session.selectOne("member.selectMemberCountFindByEmail", id);
 	}
+
+	@Override
+	public int deleteMemberPicture(String memberPicture) {
+		return session.update("member.deletePictureMember",memberPicture);
+	}
 	
 	
 	

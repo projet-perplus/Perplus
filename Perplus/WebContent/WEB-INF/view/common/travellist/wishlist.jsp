@@ -11,14 +11,14 @@
 		<span>위시 리스트</span>
 	</div>
 	<div class="panel-body">
+							<c:choose>
 		<div class="row nowtravel">
 			<div class="col-md-12">
 				<div class="slidebar">
 					<div class="carousel slide" id="myCarousel">
 						<div class="carousel-inner">
-							<c:choose>
-								<c:when test="">
-									<c:forEach items="" var="">
+								<c:when test="${requestScope.houseZzim != null}">
+									<c:forEach items="${requestScope.houseZzim}" var="houseZzim">
 										<div class="active item">
 											<div
 												class="maincon con1 col-md-offset-4 col-md-4
@@ -28,7 +28,7 @@
 													<div class="row con1">
 														<div class="row con1">
 															<div class="col-md-12" style="padding: 0px;">
-																<img src="/Perplus/css/image/photo0.jpg" alt="asd"
+																<img src="${initParam.rootPath}/memberPicture/no-photo.png" alt=""
 																	style="width: 100%; height: 200px" />
 															</div>
 														</div>
@@ -37,8 +37,7 @@
 															<div class="row con2">
 																<div class="col-md-12">
 																	<span class="col-md-12"
-																		style="text-align: center; padding: 5px;">숙소 이름
-																		request</span>
+																		style="text-align: center; padding: 5px;"></span>
 																</div>
 															</div>
 
@@ -47,8 +46,7 @@
 																	<div class="section3"
 																		style="border-top: 2px solid #ccc;">
 																		<span class="col-md-12"
-																			style="text-align: center; padding: 5px;"> 숙소
-																			위치 : 경기도 용인시 처인구 </span>
+																			style="text-align: center; padding: 5px;">${houseZzim.house.houseTitle}</span>
 																	</div>
 																</div>
 															</div>
@@ -58,7 +56,7 @@
 																	<div class="section3"
 																		style="border-top: 2px solid #ccc;">
 																		<span class="col-md-12"
-																			style="text-align: center; padding: 5px;"> 평점</span>
+																			style="text-align: center; padding: 5px;">${houseZzim.house.houseFilter.houseFilterLocation}</span>
 																	</div>
 																</div>
 															</div>
@@ -68,7 +66,7 @@
 																	<div class="section3"
 																		style="border-top: 2px solid #ccc;">
 																		<span class="col-md-12"
-																			style="text-align: center; padding: 5px;"> 찜날짜
+																			style="text-align: center; padding: 5px;"> ${houseZzim.house.houseRating}
 																		</span>
 																	</div>
 																</div>
@@ -81,8 +79,9 @@
 										</div>
 									</c:forEach>
 								</c:when>
-							</c:choose>
-
+								<c:otherwise>
+									없음!
+								</c:otherwise>
 						</div>
 						<!--  left right button -->
 						<a class="left carousel-control" href="#myCarousel" role="button"
@@ -97,5 +96,6 @@
 				<!--/Slider-->
 			</div>
 		</div>
+							</c:choose>
 	</div>
 </div>

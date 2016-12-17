@@ -5,7 +5,7 @@
 
 	<!-- Insert -->
 	<insert id="insertShowmethemoney" parameterType="ShowMeTheMoneyVo">
-		insert into SHOWMETHEMONEY values (#{showmethemoneySerial}, #{memberEmail}, #{showmethemoneyStatus}, #{showmethemoneyDate}, #{showmethemoneyKind}, #{showmethemoneyContent}, #{showmethemoneyPayMoney}, #{showmethemoneyReciveMoney}, #{showmethemoneyBank})
+		insert into SHOWMETHEMONEY values (#{showmethemoneySerial}, #{memberEmail}, #{showmethemoneyStatus}, #{showmethemoneyDate}, #{showmethemoneyContent}, #{showmethemoneyPayMoney}, #{showmethemoneyReciveMoney}, #{showmethemoneyBank})
 	</insert>
 	
 	<!-- update-->
@@ -15,7 +15,6 @@
 				MEMBER_EMAIL = #{memberEmail}, 
 				SHOWMETHEMONEY_STATUS = #{showmethemoneyStatus}, 
 				SHOWMETHEMONEY_DATE = #{showmethemoneyDate}, 
-				SHOWMETHEMONEY_KIND = #{showmethemoneyKind}, 
 				SHOWMETHEMONEY_CONTENT = #{showmethemoneyContent}, 
 				SHOWMETHEMONEY_PAY_MONEY = #{showmethemoneyPayMoney}, 
 				SHOWMETHEMONEY_RECIVE_MONEY = #{showmethemoneyReciveMoney},
@@ -33,8 +32,7 @@
 		select	SHOWMETHEMONEY_SERIAL showmethemoneySerial, 
 					MEMBER_EMAIL memberEmail, 
 					SHOWMETHEMONEY_STATUS showmethemoneyStatus, 
-					SHOWMETHEMONEY_DATE showmethemoneyDate, 
-					SHOWMETHEMONEY_KIND showmethemoneyKind, 
+					SHOWMETHEMONEY_DATE showmethemoneyDate,
 					SHOWMETHEMONEY_CONTENT showmethemoneyContent, 
 					SHOWMETHEMONEY_PAY_MONEY showmethemoneyPayMoney, 
 					SHOWMETHEMONEY_RECIVE_MONEY showmethemoneyReciveMoney,
@@ -48,7 +46,6 @@
 					MEMBER_EMAIL memberEmail, 
 					SHOWMETHEMONEY_STATUS showmethemoneyStatus, 
 					SHOWMETHEMONEY_DATE showmethemoneyDate, 
-					SHOWMETHEMONEY_KIND showmethemoneyKind, 
 					SHOWMETHEMONEY_CONTENT showmethemoneyContent, 
 					SHOWMETHEMONEY_PAY_MONEY showmethemoneyPayMoney, 
 					SHOWMETHEMONEY_RECIVE_MONEY showmethemoneyReciveMoney,
@@ -57,18 +54,17 @@
 		where SHOWMETHEMONEY_SERIAL = #{showmethemoneySerial} 
 	</select>
 	
-	<select id="selectShowmethemoneyByShowmeth222emoneySerial"  parameterType="_int" resultType="ShowMeTheMoneyVo">
+	<select id="selectShowmethemoneyByShowmethemoneyStatus"  parameterType="hashmap" resultType="ShowMeTheMoneyVo">
 		select	SHOWMETHEMONEY_SERIAL showmethemoneySerial, 
 					MEMBER_EMAIL memberEmail, 
 					SHOWMETHEMONEY_STATUS showmethemoneyStatus, 
 					SHOWMETHEMONEY_DATE showmethemoneyDate, 
-					SHOWMETHEMONEY_KIND showmethemoneyKind, 
 					SHOWMETHEMONEY_CONTENT showmethemoneyContent, 
 					SHOWMETHEMONEY_PAY_MONEY showmethemoneyPayMoney, 
 					SHOWMETHEMONEY_RECIVE_MONEY showmethemoneyReciveMoney,
 					SHOWMETHEMONEY_BANK showmethemoneyBank
 		from SHOWMETHEMONEY
-		where SHOWMETHEMONEY_SERIAL = #{showmethemoneySerial} 
+		where MEMBER_EMAIL = #{memberEmail}  and SHOWMETHEMONEY_STATUS = #{showmethemoneyStatus} 
 	</select>
 	
 	<select id="selectShowmethemoneySerialSeq" resultType="_int">
