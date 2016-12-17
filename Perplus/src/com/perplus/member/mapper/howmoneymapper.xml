@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="howmoney">
+
+
+	<insert id="insertHowmoney" parameterType="com.perplus.member.vo.HowmoneyVo">
+		insert into HOWMONEY values(HOWMONEY_SEQ.nextval, #{memberEmail},#{howmoneyHolder},#{howmoneyBank},#{howmoneyNumber})
+	</insert>
+	
+	
+	<delete id="deleteHowmoney" parameterType="_int">
+		delete from HOWMONEY
+		where	account_serial = #{value}
+	</delete>
+	
+	
+	<select id="selectMyHowmoney" parameterType="string" resultType="com.perplus.member.vo.HowmoneyVo">
+		select	account_serial accountSerial,member_email memberEmail, howmoney_holder howmoneyHolder, howmoney_bank howmoneyBank, howmoney_number howmoneyNumber
+		from	HOWMONEY
+		where	member_email = #{memberEmail}
+	</select>
+	
+</mapper>
