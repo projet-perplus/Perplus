@@ -9,7 +9,7 @@
 <script type="text/javascript">
 
 $(function() {
-	
+
 	var error='${requestScope.error}'
 	$('#reviewEnrollment').on('hidden.bs.modal', function() {
 			if(error){
@@ -38,23 +38,16 @@ $(function() {
 		});
 
 		$("input:checkbox[name=marker_filter]").change(function() {
+			var markerArray = [];
 			$("input:checkbox[name=marker_filter]:checked").each(function() {
-				var markerArray = [];
-				alert($(this).val());
-				modifyMarkerFilter(markerArray);
+				markerArray.push($(this).val());
 			});
-		})
-		$(function() {
-			$("input:checkbox[name=marker_filter]:checked").each(function() {
-				var markerArray = [];
-				alert($(this).val());
-				modifyMarkerFilter(markerArray);
-			});
+			modifyMarkerFilter(markerArray);
+			resetMapMarker();
 		})
 
 	})
 </script>
-
 
 <div class="container">
 	<div id="dashboard-content" class="hotplace">
@@ -86,15 +79,9 @@ $(function() {
 					<li style="padding-left: 23%; margin-top: 10px"><label
 						class="checkbox-inline"><input type="checkbox"
 							name="marker_filter" value="food" checked="checked" onchange="">음식</label>
-						<!-- 						<a href="#" data-toggle="modal" data-target="#reviewEnrollment"> -->
-						<!-- 							<button type="button" class="btn btn-primary">리뷰 작성</button> -->
-						<!-- 						</a> --></li>
 					<li style="padding-left: 23%; margin-bottom: 10px;"><label
 						class="checkbox-inline"><input type="checkbox"
 							name="marker_filter" value="hot" checked="checked" onchange="">명소</label>
-						<%-- 						<a href="${initParam.rootPath}/review/showReview.do?reviewSerial=26">   <!-- reviewSerial은 requestScope의 리뷰시리얼값~~ --> --%>
-						<!-- 							<button type="button" class="btn btn-primary">리뷰 상세페이지</button> -->
-						<!-- 						</a> --></li>
 				</ul>
 			</div>
 
@@ -103,6 +90,7 @@ $(function() {
 		<div id="map-div" class="panel-body">
 			<div class="row">
 				<div class="col-md-12">
+					<!-- stage - 해당 페이지, location - 검색한 지역 string이 저장 -->
 					<input type="hidden" id="stage" value="travel"> <input
 						type="hidden" id="location">
 					<div id="map-canvas" style="width: 100%; height: 489px"></div>
@@ -112,11 +100,14 @@ $(function() {
 	</div>
 </div>
 
-<a href="#" data-toggle="modal" data-target="#reviewEnrollment">
-	<button type="button" class="btn btn-primary">리뷰 작성</button>
-</a>
+<!-- <a href="#" data-toggle="modal" data-target="#reviewEnrollment"> -->
+<!-- 	<input type="hidden" id="reviewForm" /> -->
+<!-- </a> -->
 
-<a href="${initParam.rootPath}/review/showReview.do?reviewSerial=1">
+
+
+<a href="${initParam.rootPath}/review/showReview.do?reviewSerial=26">
+
 	<!-- reviewSerial은 requestScope의 리뷰시리얼값~~ -->
 	<button type="button" class="btn btn-primary">리뷰 상세페이지</button>
 </a>

@@ -22,6 +22,8 @@
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-7 col-sm-12 col-xs12" style="padding-left: 0px">
+			<input type="hidden" id="stage" value="travel"> <input
+						type="hidden" id="location">
 			<div id="map-canvas" style="width: 100%; height: 626px !important"></div>
 		</div>
 		<div class="col-md-5 col-sm-12 col-xs-12">

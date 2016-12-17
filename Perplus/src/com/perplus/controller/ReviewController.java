@@ -217,7 +217,4 @@ public class ReviewController {
 		return "reviewdetailpage.hotplacetiles";
 	}
 	
-	public String selectMarkerBySection(HashMap map){
-		return "reviewdetailpage.hotplacetiles";
-	}
 }
