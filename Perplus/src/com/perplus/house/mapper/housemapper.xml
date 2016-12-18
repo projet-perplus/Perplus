@@ -90,7 +90,10 @@
 	</select>
 	<!-- 최초 집이 생성될때 4개의 값이 넘어오며(첫 Serial과 Status는 자동 생성된다.)6개의 값이 저장이 된다. necessary condition을 제외한 모든것은 N.N이다 -->
 	<insert id="insertHouseDefault" parameterType="housevo">
-		insert into HOUSE values(HOUSE_SEQ.nextval,#{memberEmail},0,#{houseTitle},#{houseContent},#{houseNecessaryCondition},null,0,0,0,0)	
+	<selectKey resultType="_int" keyProperty="houseSerial" order="BEFORE">
+		select house_seq.nextval from dual
+	</selectKey> 
+		insert into HOUSE values(#{houseSerial},#{memberEmail},0,#{houseTitle},#{houseContent},#{houseNecessaryCondition},0,0,0,0)	
 	</insert>
 	<!-- 전체적인 집의 수정 (기존의 db를 select해와 필요한 부분만 채워서 재 전송)-->
 	<update id="updateHouse" parameterType ="housevo">

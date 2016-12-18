@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.perplus.house.serviceimpl.HouseServiceImpl_choi;
+import com.perplus.house.vo.HouseFilterVo;
 import com.perplus.house.vo.HouseVo;
 
 @Controller
@@ -19,8 +20,9 @@ public class HouseController_choi {
 	private HouseServiceImpl_choi service;
 	
 	@RequestMapping("/oneStep.do")
-	public String oneStepHouseRegister(@ModelAttribute HouseVo houseVo, @RequestParam String[] houseNecessaryConditionList, HttpServletRequest request){
+	public String oneStepHouseRegister(@ModelAttribute HouseVo houseVo, HttpServletRequest request){
 		String houseNecessaryCondition = null;
+		String[] houseNecessaryConditionList = (String[])request.getParameterValues("houseNecessaryConditionList");
 		if(houseNecessaryConditionList!=null){
 			for(int i = 0; i<houseNecessaryConditionList.length;i++){
 				if(i==0){
@@ -29,16 +31,30 @@ public class HouseController_choi {
 					houseNecessaryCondition = houseNecessaryCondition + ", "+houseNecessaryConditionList[i];
 				}
 			}
+		}else{
+			houseNecessaryCondition = "";			
 		}
 		houseVo.setHouseNecessaryCondition(houseNecessaryCondition);
 		service.insertHouse(houseVo);
-		return "redirect:/housetypeandlocation.do";
+		return "redirect:/housetypeandlocation.do?houseSerial="+houseVo.getHouseSerial();
 	}
 	
 	@RequestMapping("/twoStep.do")
-	public String twoStepHouseRegister(){
-		System.out.println("twoStep");
-		return "redirect:/houselocation.do";
+	public String twoStepHouseRegister(@ModelAttribute HouseFilterVo houseFilterVo,HttpServletRequest request){
+		String[] houseFilterLocationList = (String[])request.getParameterValues("houseFilterLocationList");
+		String houseFilterLocation = "";
+		for(int i = 0; i<houseFilterLocationList.length;i++){
+			if(i==0){
+				houseFilterLocation = houseFilterLocationList[i];
+			}else{
+				houseFilterLocation = houseFilterLocation +", "+houseFilterLocationList[i];
+			}
+		}
+		houseFilterVo.setHouseFilterLocation(houseFilterLocation);
+		
+		service.insertHouseFilter(houseFilterVo);
+		
+		return "redirect:/houselocation.do?houseSerial="+houseFilterVo.getHouseSerial();
 	}
 	
 	@RequestMapping("/threeStep.do")
