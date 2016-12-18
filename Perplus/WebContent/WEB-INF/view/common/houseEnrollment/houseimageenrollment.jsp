@@ -1,4 +1,23 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
+<script
+	src="https://rawgit.com/andrewng330/PreviewImage/master/preview.image.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		var count = 0;
+		$("input[name=file1]").previewimage({
+			div : ".preview",
+			imgwidth : 400,
+			imgheight : 250
+		});
+		count++;
+		if (count > 5) {
+			$(".addImage").hide();
+		}
+		if (count < 5) {
+			$(".addImage").show();
+		}
+	});
+</script>
 <!-- header -->
 <div class="basicheader">
 	<div class="container-fluid">
@@ -44,7 +63,8 @@
 <!-- body -->
 <div class="basicbody">
 	<div class="container">
-		<form action="${initParam.rootPath}/house/fiveStep.do">
+		<form action="${initParam.rootPath}/house/fiveStep.do" method="post"
+			enctype="multipart/form-data">
 			<input type="hidden" name="houseSerial"
 				value=<%=request.getParameter("houseSerial")%>>
 			<div class="row row-condensed space-4">
@@ -55,11 +75,14 @@
 			</div>
 			<div class="row row-condensed space-4">
 				<div class="col-md-7 col-md-offset-4">
+					<div class="preview"></div>
 					<span id="fileInputForm"
 						style="position: relative; float: left; width: 406px; height: 156px; overflow: hidden; cursor: pointer; background-image: url('/Perplus/css/image/addimage.PNG'); background-repeat: no-repeat;">
+						
 						<input type="file" id="filename" name="filename" value=""
 						style='margin-left: -10px; width: 400px; height: 150px; filter: alpha(opacity = 0); opacity: 0; -moz-opacity: 0; cursor: pointer;'
 						onChange="fileUpload()">
+						
 					</span>
 				</div>
 				<label class="text-left col-md-7 col-md-offset-2"> </label>

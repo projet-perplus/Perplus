@@ -147,10 +147,17 @@ public class HouseController_choi {
 	
 	
 	@RequestMapping("/fourStep.do")//4step commit하는 컨트롤러
-	public String fourStepHouseRegister(@RequestParam int houseSerial,HttpServletRequest request){
+	public String fourStepHouseRegister(@RequestParam int houseSerial,HttpServletRequest request, @RequestParam int houseFilterBedroomNumber,@RequestParam int houseFilterBedNumber,@RequestParam int houseFilterBathroomNumber){
 		String[] convenientFacilityList = request.getParameterValues("convenientFacility");//편의시설
 		String[] secureFacilityList = request.getParameterValues("secureFacility");//안전시설
 		String[] commonFacilityList = request.getParameterValues("commonFacility");//공용시설
+		
+		HouseFilterVo houseFilter = service.selectHouseFilter(houseSerial);
+		
+		houseFilter.setHouseFilterBedroomNumber(houseFilterBedroomNumber);
+		houseFilter.setHouseFilterBedNumber(houseFilterBedNumber);
+		houseFilter.setHouseFilterBathroomNumber(houseFilterBathroomNumber);
+		
 		
 		if(convenientFacilityList!=null&&convenientFacilityList.length!=0){
 			for(int i = 0; i<convenientFacilityList.length;i++){
@@ -172,6 +179,7 @@ public class HouseController_choi {
 		}
 		
 		
+		service.updateHouseFilter(houseFilter);
 		System.out.println("fourStep");
 		return "redirect:/house/fiveStepBefore.do?houseSerial="+houseSerial;
 	}

@@ -52,23 +52,48 @@
 						<label class="text-left col-md-3"> <span>숙박 시설</span>
 						</label>
 						<div class="col-md-8">
-							<div class="col-md-6">
+							<div class="col-md-4">
 								<div class="form-group">
-									<select class="form-control">
-										<option>침실 개수</option>
-										<option>2</option>
-										<option>3</option>
-										<option>4</option>
+									<select class="form-control" name="houseFilterBedroomNumber">
+										<option value="">침실 개수</option>
+										<option value=1>1</option>
+										<option value=2>2</option>
+										<option value=3>3</option>
+										<option value=4>4</option>
+										<option value=5>5</option>
+										<option value=6>6</option>
+										<option value=7>7</option>
+										<option value=8>8</option>
 									</select>
 								</div>
 							</div>
-							<div class="col-md-6">
+							<div class="col-md-4">
 								<div class="form-group">
-									<select class="form-control">
-										<option>욕실수</option>
-										<option>2</option>
-										<option>3</option>
-										<option>4</option>
+									<select class="form-control" name="houseFilterBedNumber">
+										<option value="">침대 개수</option>
+										<option value=1>1</option>
+										<option value=2>2</option>
+										<option value=3>3</option>
+										<option value=4>4</option>
+										<option value=5>5</option>
+										<option value=6>6</option>
+										<option value=7>7</option>
+										<option value=8>8</option>
+									</select>
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="form-group">
+									<select class="form-control" name="houseFilterBathroomNumber">
+										<option value="">욕실 개수</option>
+										<option value=1>1</option>
+										<option value=2>2</option>
+										<option value=3>3</option>
+										<option value=4>4</option>
+										<option value=5>5</option>
+										<option value=6>6</option>
+										<option value=7>7</option>
+										<option value=8>8</option>
 									</select>
 								</div>
 							</div>
@@ -132,7 +157,7 @@
 					</a>
 				</div>
 				<div class="col-md-4 col-xs-8 col-md-4 nextBtn">
-						<button type="submit" class="btn btn-default">다음</button>
+					<button type="submit" class="btn btn-default">다음</button>
 				</div>
 			</div>
 		</form>
