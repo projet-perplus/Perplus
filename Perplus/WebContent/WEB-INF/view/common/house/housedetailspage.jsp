@@ -42,7 +42,6 @@
 </style>
 
 <div class="container reviewslide">
-
 	<div class="row">
 		<div class="slidebar">
 			<div class="carousel slide" id="myCarousel">
@@ -91,7 +90,7 @@
 		<!--/Slider-->
 	</div>
 	<!--/row-->
-!--hidden-xs-->
+<!--hidden-xs-->
 	<div class="row" id="slider-thumbs" style="margin-top: 10px;">
 		<!--Bottom switcher of slider -->
 		<ul>
@@ -229,7 +228,7 @@
 							</c:if>
 						</div>
 				</c:forEach>
-				
+		
 	<!--댓글 페이징 처리 부분  -->
 	<!-- 첫 페이지로 이동 -->
 	<a
@@ -239,6 +238,7 @@
 		이전 페이지 그룹 처리.
 		만약에 이전페이지 그룹이 있으면 링크처리하고 없으면 화살표만 나오도록 처리.
 	 -->
+	 
 	<c:choose>
 		<c:when test="${requestScope.comment.pageBean.previousPageGroup }">
 			<a
@@ -291,7 +291,7 @@
 	<a
 		href="${initParam.rootPath}/house/houseDetail.do?houseSerial=${requestScope.house.houseSerial}&page=${requestScope.comment.pageBean.totalPage }">마지막
 		페이지</a>
-			</div>
+</div>
 			<!-- /숙소 상세 페이지 메뉴 끝 -->
 
 			<div class="col-md-3 panel-MT" style="margin-bottom: 30px;">찜</div>
