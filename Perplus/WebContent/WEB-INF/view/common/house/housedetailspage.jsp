@@ -42,7 +42,6 @@
 </style>
 
 <div class="container reviewslide">
-
 	<div class="row">
 		<div class="slidebar">
 			<div class="carousel slide" id="myCarousel">
@@ -91,7 +90,7 @@
 		<!--/Slider-->
 	</div>
 	<!--/row-->
-!--hidden-xs-->
+<!--hidden-xs-->
 	<div class="row" id="slider-thumbs" style="margin-top: 10px;">
 		<!--Bottom switcher of slider -->
 		<ul>
@@ -229,7 +228,7 @@
 							</c:if>
 						</div>
 				</c:forEach>
-				
+		
 	<!--댓글 페이징 처리 부분  -->
 	<!-- 첫 페이지로 이동 -->
 	<a
@@ -239,6 +238,7 @@
 		이전 페이지 그룹 처리.
 		만약에 이전페이지 그룹이 있으면 링크처리하고 없으면 화살표만 나오도록 처리.
 	 -->
+	 
 	<c:choose>
 		<c:when test="${requestScope.comment.pageBean.previousPageGroup }">
 			<a
@@ -286,12 +286,11 @@
 			▶
 		</c:otherwise>
 	</c:choose>
-
 	<!-- 마지막 페이지 -->
 	<a
 		href="${initParam.rootPath}/house/houseDetail.do?houseSerial=${requestScope.house.houseSerial}&page=${requestScope.comment.pageBean.totalPage }">마지막
 		페이지</a>
-			</div>
+</div>
 			<!-- /숙소 상세 페이지 메뉴 끝 -->
 
 			<div class="col-md-3 panel-MT" style="margin-bottom: 30px;">찜</div>
@@ -344,24 +343,25 @@
 					</a>
 				</div>
 			</div>
-
-			<div class="row row-maginTB">
-				<div
-					class="col-md-offset-0 col-sm-offset-1 col-xs-offset-2 col-md-6 col-sm-10 col-xs-8">
-					<a href="#">
-						<button class="btn btn-success"
-							style="width: 100%; margin-bottom: 15px;">수정하기</button>
-					</a>
+			
+			<c:if test="${requestScope.house.memberEmail == sessionScope.login_info.memberEmail}">
+				<div class="row row-maginTB">
+					<div
+						class="col-md-offset-0 col-sm-offset-1 col-xs-offset-2 col-md-6 col-sm-10 col-xs-8">
+						<a href="#">
+							<button class="btn btn-success"
+								style="width: 100%; margin-bottom: 15px;">수정하기</button>
+						</a>
+					</div>
+					
+					<div
+						class="col-md-offset-0 col-sm-offset-1 col-xs-offset-2 col-md-6 col-sm-10 col-xs-8">
+						<a href="${initParam.rootPath}/house/removeHouse.do?houseSerial=${requestScope.house.houseSerial}">
+							<button class="btn btn-danger" style="width: 100%">삭제</button>
+						</a>
+					</div>
 				</div>
-
-				<div
-					class="col-md-offset-0 col-sm-offset-1 col-xs-offset-2 col-md-6 col-sm-10 col-xs-8">
-					<a href="${initParam.rootPath}/house/removeHouse.do?houseSerial=${requestScope.house.houseSerial}">
-						<button class="btn btn-danger" style="width: 100%">삭제</button>
-					</a>
-				</div>
-			</div>
-
+			</c:if>
 		</div>
 	</div>
 

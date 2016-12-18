@@ -47,8 +47,9 @@ public class HouseController_nr {
 	/******************하우스 상세 페이지 삭제*****************/
 	@RequestMapping("/removeHouse")
 	public String removeHouse(@RequestParam int houseSerial){
+		System.out.println(houseSerial);
 		service.removeHouse(houseSerial);
-		return "redirect:/housesearch.do";
+		return "redirect:/main.do";
 	}
 	/******************하우스 코멘트 등록*****************/
 	@RequestMapping("/registerHouseComment")

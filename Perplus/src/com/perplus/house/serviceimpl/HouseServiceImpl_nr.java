@@ -24,6 +24,14 @@ public class HouseServiceImpl_nr implements HouseService_nr{
 	private HousePictureDao_nr housePictureDao;
 	@Autowired
 	private HouseCommentDao houseCommentDao;
+	@Autowired
+	private HouseFilterDao houseFilterDao;
+	@Autowired
+	private CheckListDao checkListDao;
+	@Autowired
+	private ShutdownDao shutdownDao;
+	@Autowired
+	private HouseZzimDao houseZzimDao;
 
 	@Override
 	public HouseVo selectHouseForDetailPage(int houseSerial) {
@@ -39,8 +47,11 @@ public class HouseServiceImpl_nr implements HouseService_nr{
 	public void removeHouse(int houseSerial) {
 		housePictureDao.deleteHousePictureByHouseSerial(houseSerial);
 		houseCommentDao.deleteAllCommentBySerial(houseSerial);
+		shutdownDao.deleteShutdownByHouseSerial(houseSerial);
+		checkListDao.deleteChecklistByHouseSerial(houseSerial);
+		houseFilterDao.deleteHouseFilterByHouseSerial(houseSerial);
+		houseZzimDao.deleteHouseZzimByHouseSerial(houseSerial);
 		houseDao.deleteHouseByHouseSerial(houseSerial);
-		
 	}
 }
 	
