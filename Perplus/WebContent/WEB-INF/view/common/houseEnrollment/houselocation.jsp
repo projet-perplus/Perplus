@@ -57,7 +57,7 @@
 				</a>
 			</div>
 			<div class="col-md-4 col-xs-8 col-md-4 nextBtn">
-				<a href="${initParam.rootPath}/housefacility.do">
+				<a href="${initParam.rootPath}/house/threeStep.do">
 					<button class="btn btn-default">다음</button>
 				</a>
 			</div>
