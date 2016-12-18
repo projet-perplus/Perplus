@@ -1,31 +1,47 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script
+	src="https://rawgit.com/andrewng330/PreviewImage/master/preview.image.min.js"></script>
 <script type="text/javascript">
-$(document).ready(function(){
-	var file = document.querySelector('#getfile');
-
-	file.onchange = function() {
-		var fileList = file.files;
-
-		// 읽기
-		var reader = new FileReader();
-		reader.readAsDataURL(fileList[0]);
-
-		//로드 한 후
-		reader.onload = function() {
-			document.querySelector('#preview').src = reader.result;
-		};
-	};
-});
-	
+	$(document).ready(function() {
+		var count =0;
+		$("input[name=file1]").previewimage({
+			div : ".preview",
+			imgwidth : 150,
+			imgheight : 100
+		});
+		count++;
+		if(count>5){
+			$(".addImage").hide();
+		}
+		if(count<5){
+			$(".addImage").show();
+		}
+	});
 </script>
+<style>
+.preview>div {
+	display: inline-block;
+	text-align: center;
+}
 
+.preview>div>img {
+	margin: 5px;
+}
+.modal-backdrop.in {
+
+opacity:0 !important;
+}
+</style>
 <!-- reviewEnrollment-->
 <div class="modal fade" id="reviewEnrollment" role="dialog"
 	aria-labelledby="basicModal" aria-hidden="true"
-	style="padding-left: 0 !important;">
+	style="padding-left: 0 !important; background-color: rgba(0, 0, 0, 0.5);">
 	<div class="modal-dialog reviewEnrollment-dialog"
-		style="transform: translate(0, 0) !important;">
+		style="transform: translate(0, 0) !important; ">
+		<!-- 658 -->
 		<!-- Modal content-->
 		<form action="${initParam.rootPath}/review/registerReview.do"
 			method="post" enctype="multipart/form-data" id="myform">
@@ -37,8 +53,8 @@ $(document).ready(function(){
 				<div class="modal-body">
 					<div class="payoutpreferencedialog">
 						<div class="row row-condensed space-4">
-							<label class="text-left col-sm-3"> 리뷰제목 </label>
-							<div class="col-sm-9">
+							<label class="text-left col-md-offset-1 col-md-2"> 리뷰제목 </label>
+							<div class="col-md-8">
 								<div class="form-group">
 									<input type="text" class="form-control" name="reviewTitle"
 										placeholder="제목을 입력하세요..." required> <span
@@ -48,46 +64,51 @@ $(document).ready(function(){
 							</div>
 						</div>
 						<div class="row row-condensed space-4">
-							<label class="text-left col-sm-3"> 장소명 </label>
-							<div class="col-sm-9">
+							<label class="text-left col-md-offset-1 col-md-2"> 장소명 </label>
+							<div class="col-md-8">
 								<div class="form-group">
 									<input type="text" class="form-control" name="reviewPlace"
-										placeholder="장소명을 입력하세요..." required> <span
-										class="errorMessage"><form:errors
-											path="reviewForm.reviewPlace" /></span>
+										placeholder="장소명을 입력하세요..." required>
+									<span class="errorMessage">
+										<form:errors path="reviewForm.reviewPlace" />
+									</span>
 								</div>
 							</div>
 						</div>
+						
 						<div class="row row-condensed space-4">
-							<label class="text-left col-sm-3">방문일자 </label>
-							<div class="col-sm-9">
+							<label class="text-left col-md-offset-1 col-md-2">방문일자 </label>
+							<div class="col-md-8">
 								<div class="form-group">
 									<div class="visitDate">
 										<input type="text" class="form-control" name="reviewTime"
-											required id="datepicker2"> <span class="errorMessage"><form:errors
-												path="reviewForm.reviewTime" /></span>
+											  placeholder="클릭해주세요.."  required id="datepicker2">
+										<span class="errorMessage">
+										   <form:errors path="reviewForm.reviewTime" />
+									   </span>
 									</div>
 								</div>
 							</div>
 						</div>
+						
 						<div class="row row-condensed space-4">
-							<label class="text-left col-sm-3 col-md-3 col-xs-3">사진 등록</label>
+							<label class="text-left col-md-offset-1 col-md-2">사진 등록</label>
 							<div class="col-md-9 col-xs-9 col-sm-9">
-								<h3>로컬에 있는 이미지를 바로 브라우저에 표시</h3>
-								<img id="preview" src="" width="200" alt="로컬에 있는 이미지가 보여지는 영역">
-								<input type="file" id="getfile" accept="image/*">
-								<ul></ul>
-								<button type="button" class="btn btn-success addImg" id="addImg">
-									이미지 추가</button>
+								<span>이미지를 추가하세요(최대 5장)</span>
+								<div class="preview"></div>
+								<label class="btn btn-success addImage"> 이미지 추가&hellip;
+									<input type="file" name="file1" accept="image/*"
+										   style="border: 0 !important; display: none;">
+								</label>
 							</div>
-
 						</div>
 					</div>
+					
 					<div class="row row-condensed space-4">
-						<label class="text-left col-sm-3"> 평점 </label>
-						<div class="col-sm-9">
+						<label class="text-left col-md-offset-1 col-md-2"> 평점 </label>
+						<div class="col-md-2">
 							<div class="stars stars-example-bootstrap" style="height: 40px;">
-								<select id="example-bootstrap" name="reviewRating"
+								<select id="example-bootstrap" name="reviewRating" class="form-control"
 									autocomplete="off" required>
 									<option value="" selected>평점</option>
 									<option value=1>1</option>
@@ -95,14 +116,16 @@ $(document).ready(function(){
 									<option value=3>3</option>
 									<option value=4>4</option>
 									<option value=5>5</option>
-								</select> <span class="errorMessage"><form:errors
-										path="reviewForm.reviewRating" /></span>
+								</select>
+								<span class="errorMessage">
+									<form:errors path="reviewForm.reviewRating" />
+								</span>
 							</div>
 						</div>
 					</div>
 					<div class="row row-condensed space-4">
-						<label class="text-left col-sm-3"> 리뷰 내용</label>
-						<div class="col-sm-9">
+						<label class="text-left col-md-offset-1 col-md-2"> 리뷰 내용</label>
+						<div class="col-md-8">
 							<div class="form-group">
 								<textarea class="form-control" rows="5" id="comment"
 									name="reviewContent" required></textarea>
@@ -111,14 +134,15 @@ $(document).ready(function(){
 							</div>
 						</div>
 					</div>
+					
 					<div class="modal-footer">
 						<div class="row">
-							<div class="col-md-6 leftform">
+							<div class="col-md-offset-1 col-md-5 leftform">
 								<button type="button" class="btn btn-default"
 									data-dismiss="modal" style="float: left !important;">취소</button>
 							</div>
-							<div class="col-md-6 rightform">
-								<input type="submit" name="enrollment" class="btn btn-default"
+							<div class="col-md-5 rightform">
+								<input type="submit" name="enrollment" class="btn btn-danger"
 									value="등록">
 							</div>
 						</div>
@@ -128,6 +152,7 @@ $(document).ready(function(){
 		</form>
 	</div>
 </div>
+
 <script
 	src="https://cdn.jsdelivr.net/jquery.validation/1.15.0/jquery.validate.min.js"></script>
 <script
