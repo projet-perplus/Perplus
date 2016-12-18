@@ -3,8 +3,13 @@ create sequence CHECKLIST_SEQ increment by 1;
 create sequence HOUSEPICTURE_SEQ increment by 1;
 create sequence SHUTDOWN_SEQ increment by 1;
 create sequence REVIEW_SEQ increment by 1;
+create sequence review_serial_seq;	
+create sequence comment_serial_seq;	
+create sequence picture_serial_seq;	
 
-
+drop sequence review_serial_seq;
+drop sequence comment_serial_seq;
+drop sequence picture_serial_seq;
 drop sequence HOUSE_SEQ;
 drop sequence CHECKLIST_SEQ;
 drop sequence HOUSEPICTURE_SEQ;

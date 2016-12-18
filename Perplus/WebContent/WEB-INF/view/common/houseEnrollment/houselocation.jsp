@@ -44,6 +44,8 @@
 						<div class="locationspan">
 							<span>숙소 의 위치를 알려주세요</span>	
 						</div>
+						<input type="hidden" id="stage" value="register">
+						<input type="hidden" id="location" value="${reqeustScope.address}">
 						<div id="map-canvas" style="width: 100%; height: 400px"></div>
 					</div>
 				</div>

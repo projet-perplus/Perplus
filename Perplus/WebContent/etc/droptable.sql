@@ -6,7 +6,7 @@ drop table HOUSECOMMENT cascade constraint;
 drop table HOUSEFILTER cascade constraint;
 drop table HOUSEPICTURE cascade constraint;
 drop table HOUSEZZIM cascade constraint;
-drop table HOWGETMONEY cascade constraint;
+drop table HOWMONEY cascade constraint;
 drop table MEMBER cascade constraint;
 drop table PAYMENT cascade constraint;
 drop table REJECT cascade constraint;
@@ -16,7 +16,7 @@ drop table REVIEWPICTURE cascade constraint;
 drop table REVIEWZZIM cascade constraint;
 drop table CHECKLIST cascade constraint;
 drop table SHUTDOWN cascade constraint;
-drop table SHOWMETHEMONEY cascade constraint;
+drop table SHOWMONEY cascade constraint;
 drop table TRAVEL cascade constraint;
 
 <<<<<<< HEAD
