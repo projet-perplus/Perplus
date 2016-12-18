@@ -1,6 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
 <!--map key-->
 <script
 	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWDGjKV2YFKGM5q6gtx-J5GcJTa2wLDQU"
@@ -47,7 +49,7 @@
 			<div class="carousel slide" id="myCarousel">
 				<div class="carousel-inner">
 					<c:choose>
-						<c:when test="${empty requestScope.picture }">
+						<c:when test="${empty requestScope.house.housePicture }">
 							<div class="active item">
 								<img
 									src="${initParam.rootPath }/housePicture/no-images.png"
@@ -55,7 +57,7 @@
 							</div>
 						</c:when>
 						<c:otherwise>
-							<c:forEach items="${requestScope.picture }" var="picture">
+							<c:forEach items="${requestScope.house.housePicture}" var="picture">
 								<c:choose>
 									<c:when test="${picture.pictureOrder==1}">
 										<div class="active item">
@@ -95,14 +97,14 @@
 		<!--Bottom switcher of slider -->
 		<ul>
 			<c:choose>
-				<c:when test="${empty requestScope.picture }">
+				<c:when test="${empty requestScope.house.housePicture }">
 					<li><a class="thumbnail" id="carousel-selector-0"> <img
 							src="${initParam.rootPath }/housePicture/no-images.png"
 							style="width: 170px !important; height: 100px !important;">
 					</a></li>
 				</c:when>
 				<c:otherwise>
-					<c:forEach items="${requestScope.picture }" var="picture">
+					<c:forEach items="${requestScope.house.housePicture }" var="picture">
 						<li><a class="thumbnail"
 							id="carousel-selector-${picture.pictureOrder-1 }"> <img
 								src="/Perplus/housePicture/${picture.pictureName }"
@@ -136,9 +138,23 @@
 					<div class="col-md-8 rowFT">상세 설명</div>
 					<div class="clearfix"></div>
 				</div>
-
+				
 				<div class="row">
 					<div class="col-md-offset-1 col-md-8">${requestScope.house.houseContent }</div>
+					<div class="clearfix"></div>
+				</div>
+
+				<div class="row row-condensed space-4">
+					<div class="col-md-8 rowFT">게스트 제약 사항</div>
+					<div class="clearfix"></div>
+					
+					<c:set var="conditions" value="${requestScope.house.houseNecessaryCondition}"/>
+					<c:set var="necessaryCondition" value="${fn:split(conditions,',')}"/>
+					<div class="col-md-8 col-md-offset-1">
+				        <c:forEach var="condition" items="${necessaryCondition }">
+				            <li>${condition }</li>
+				        </c:forEach>
+					</div>
 					<div class="clearfix"></div>
 				</div>
 
@@ -148,19 +164,56 @@
 				</div>
 
 				<div class="row row-condensed space-4">
-					<div class="col-md-8 col-md-offset-1">제공범위 : ${requestScope.house.houseFilter.houseFilterRange }</div>
-					<div class="col-md-8 col-md-offset-1">게스트 수 : ${requestScope.house.houseFilter.houseFilterGuestNumber}</div>
-					<div class="col-md-8 col-md-offset-1">건물 유형 : ${requestScope.house.houseFilter.houseFilterType}</div>
-					<div class="col-md-8 col-md-offset-1">방 개수 :  ${requestScope.house.houseFilter.houseFilterRoomNumber }</div>
-					<div class="col-md-8 col-md-offset-1">침실 수 : ${requestScope.house.houseFilter.houseFilterBedroomNumber }</div>
-					<div class="col-md-8 col-md-offset-1">침대 수 :  ${requestScope.house.houseFilter.houseFilterBedNumber}</div>
-					<div class="col-md-8 col-md-offset-1">욕실 수 :  ${requestScope.house.houseFilter.houseFilterBathroomNumber}</div>
-					<div class="col-md-8 col-md-offset-1">최소 ${requestScope.house.houseFilter.houseFilterBakMin }박</div>
-					<div class="col-md-8 col-md-offset-1">최대 ${requestScope.house.houseFilter.houseFilterBakMax }박</div>
-					<div class="col-md-8 col-md-offset-1">숙소 가격 :  ${requestScope.house.houseFilter.houseFilterPrice}</div>
+					<div class="col-md-8 col-md-offset-1"><li>제공범위 : ${requestScope.house.houseFilter.houseFilterRange }</li></div>
+					<div class="col-md-8 col-md-offset-1"><li>게스트 수 : ${requestScope.house.houseFilter.houseFilterGuestNumber}</li></div>
+					<div class="col-md-8 col-md-offset-1"><li>건물 유형 : ${requestScope.house.houseFilter.houseFilterType}</li></div>
+					<div class="col-md-8 col-md-offset-1"><li>방 개수 :  ${requestScope.house.houseFilter.houseFilterRoomNumber }</li></div>
+					<div class="col-md-8 col-md-offset-1"><li>침실 수 : ${requestScope.house.houseFilter.houseFilterBedroomNumber }</li></div>
+					<div class="col-md-8 col-md-offset-1"><li>침대 수 :  ${requestScope.house.houseFilter.houseFilterBedNumber}</li></div>
+					<div class="col-md-8 col-md-offset-1"><li>욕실 수 :  ${requestScope.house.houseFilter.houseFilterBathroomNumber}</li></div>
+					<div class="col-md-8 col-md-offset-1"><li>최소 ${requestScope.house.houseFilter.houseFilterBakMin }박</li></div>
+					<div class="col-md-8 col-md-offset-1"><li>최대 ${requestScope.house.houseFilter.houseFilterBakMax }박</li></div>
+					<div class="col-md-8 col-md-offset-1"><li>숙소 가격 :  ${requestScope.house.houseFilter.houseFilterPrice}</li></div>
+				</div>
+								
+				<div class="row row-condensed space-4">
+					<div class="col-md-8 rowFT">시설</div>
 					<div class="clearfix"></div>
 				</div>
-
+				<div class="row row-condensed space-4">
+					<div class="col-md-8 col-md-offset-1">
+						안전시설 
+					</div>
+					<c:forEach items="${requestScope.house.houseFilter.checkList }" var="checkList">
+						<c:if test="${checkList.codeKind==1}">
+							<div class="col-md-8 col-md-offset-1">
+								<li>${checkList.value }</li>
+							</div>
+						</c:if>
+					</c:forEach>
+					<div class="col-md-8 col-md-offset-1">
+						편의시설 
+					</div>
+					<c:forEach items="${requestScope.house.houseFilter.checkList }" var="checkList">
+						<c:if test="${checkList.codeKind==2}">
+							<div class="col-md-8 col-md-offset-1">
+								<li>${checkList.value }</li>
+							</div>
+						</c:if>
+					</c:forEach>
+					<div class="col-md-8 col-md-offset-1">
+						공용시설 
+					</div>
+					<c:forEach items="${requestScope.house.houseFilter.checkList }" var="checkList">
+						<c:if test="${checkList.codeKind==3}">
+							<div class="col-md-8 col-md-offset-1">
+								<li>${checkList.value }</li>
+							</div>
+						</c:if>
+					</c:forEach>
+					<div class="clearfix"></div>
+			
+				</div>
 				<div class="row row-condensed space-4">
 					<div class="col-md-8">
 						<div class="col-md-6 rowFT" style="padding-left: 0px;">후기</div>

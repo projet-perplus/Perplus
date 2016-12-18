@@ -27,8 +27,8 @@
 		</div>
 	</div>
 </div>
-<a class="navbar-img" href="${initParam.rootPath}/main.do">
-	<img src="css/image/logos.PNG" alt="logo" />
+<a class="navbar-img" href="${initParam.rootPath}/main.do"> <img
+	src="/Perplus/css/image/logos.PNG" alt="logo" />
 </a>
 
 
@@ -53,7 +53,7 @@
 				</a>
 			</div>
 			<div class=" col-md-4 col-xs-8 nextBtn">
-				<a href="${initParam.rootPath}/basicinfo.do">
+				<a href="${initParam.rootPath}/house/oneStepBefore.do">
 					<button class="btn btn-default">예</button>
 				</a>
 			</div>

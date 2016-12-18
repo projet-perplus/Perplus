@@ -557,7 +557,7 @@ p {
 	float: right;
 }
 
-.nextBtn>a>button {
+.nextBtn>button {
 	width: 80px;
 	background-color: #e74c34;
 	color: #fff;
