@@ -190,7 +190,7 @@ public class HouseController_choi {
 	
 	
 	
-	@RequestMapping("/fiveStep.do")//5step commit하는 컨트롤러
+	@RequestMapping("/fiveStep.do")//5step commit하는 컨트롤러 이미지 등록 극혐!!!!!!!!!!!!!!!!!!!!!!!!
 	public String fiveStepHouseRegister(@RequestParam int houseSerial){
 		System.out.println("fiveStep");
 		return "redirect:/house/sixStepBefore.do?houseSerial="+houseSerial;
