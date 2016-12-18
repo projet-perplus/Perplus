@@ -12,6 +12,11 @@
 		where	housezzim_serial = #{value}
 	</delete>
 	
+	<delete id="deleteHouseZzimByHouseSerial" parameterType="_int">
+		delete	from HOUSEZZIM
+		where	house_serial = #{value}
+	</delete>
+	
 	<select id="selectHouseZzimByEmail" parameterType="string" resultType="HouseZzimVo">
 		select	housezzim_serial houseZzimSerial, house_serial houseSerial, member_email memberEmail
 		from	HOUSEZZIM
