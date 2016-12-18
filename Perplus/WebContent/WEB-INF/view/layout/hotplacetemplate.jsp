@@ -14,6 +14,9 @@
 			border:0px !important;
 			margin-top:5px !important;s
 		}
+		.modal.fade.in{
+			background-color: rgba(0, 0, 0, 0.5);
+		}
 	</style>
 	<body>
 		<header class="mainheader">

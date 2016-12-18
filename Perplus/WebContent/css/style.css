@@ -175,6 +175,18 @@ p {
 	/* color: #000 !important; */
 }
 
+
+.nav {
+    padding-left: 15px !important;
+}
+.nav>li>a:focus, .nav>li>a:hover {
+
+    background-color: inherit !important;
+}
+.navbar-nav {
+    margin:0px !important;
+}
+
 .mainheader .navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus,
 	.navbar-default .navbar-nav>.active>a:hover {
 	opacity: .7;
@@ -423,6 +435,9 @@ p {
 
 .submenus>li>a {
 	color: #fff !important;
+	padding: 10px 0px !important;
+    text-align: center !important;
+
 }
 
 /* right menu */

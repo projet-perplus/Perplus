@@ -1,7 +1,8 @@
 <%@ page import="com.perplus.member.vo.MemberVo"%>
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<script
+	src="https://rawgit.com/andrewng330/PreviewImage/master/preview.image.min.js"></script>
 <style>
 .bg-4 {
 	position: relative;
@@ -248,7 +249,7 @@
 					<div class="row row-maginTB">
 						<label class="text-left col-md-offset-2 col-md-2"> 비밀번호 </label>
 						<div class="col-md-8">
-							<div class="col-md-12">
+
 								<div class="col-md-4">
 									<div class="form-group">
 										<input type="password" class="form-control"
@@ -256,7 +257,7 @@
 											placeholder="비밀번호 확인" required>
 									</div>
 								</div>
-							</div>
+
 						</div>
 					</div>
 
