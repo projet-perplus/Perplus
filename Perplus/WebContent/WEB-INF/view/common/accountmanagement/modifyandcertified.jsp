@@ -45,20 +45,32 @@
 		$("#deleteMemberPicture").on("click", function() {
 			return confirm("삭제하시겠습니까?");
 		});
-		
-		
-		$(".memberTel").on("change", function() { 
-		    var num = $(this).val() - 1; 
-		    if(typeof num !== "number" || num < 0) { 
-		        alert("양수만 입력 해 주세요"); 
-		        $(this).focus(); 
-		        return false; 
-		    } 
-		}); 
+
+		$(".memberTel").on("change", function() {
+			var num = $(this).val() - 1;
+			if (typeof num !== "number" || num < 0) {
+				alert("양수만 입력 해 주세요");
+				$(this).focus();
+				return false;
+			}
+		});
+		/*썸네일 */
+		var file = document.querySelector('#getfile');
+
+		file.onchange = function() {
+			var fileList = file.files;
+
+			// 읽기
+			var reader = new FileReader();
+			reader.readAsDataURL(fileList[0]);
+
+			//로드 한 후
+			reader.onload = function() {
+				document.querySelector('#preview').src = reader.result;
+			};
+		};
+
 	});
-	
-	
-	
 </script>
 
 <div id="dashboard-content">
@@ -68,30 +80,48 @@
 			<span>필수 사항</span>
 		</div>
 		<div class="panel-body">
-			<div class="row" style="margin-bottom: 15px;">
-				<div class="col-md-3 col-sm-4"
-					style="text-align: right; padding-right: 0px;">
-					<c:choose>
-						<c:when test="${empty sessionScope.login_info.memberPicture }">
-							<img src="/Perplus/memberPicture/no-photo.png" width="200"
-								height="200">
-							<input type="file" name="memberPictureFile" value="사진등록" />
-						</c:when>
-						<c:otherwise>
-							<img
-								src="/Perplus/memberPicture/${sessionScope.login_info.memberPicture}"
-								width="200" height="200">
-							<a href="${initParam.rootPath}/member/memberpictureremove.do">
-								<button id="deleteMemberPicture" type="button"
-									class="btn btn-danger" style="margin-top: 10px;">삭제</button>
-							</a>
-						</c:otherwise>
-					</c:choose>
+
+			<div class="row row-maginTB">
+				<div class="col-md-4 col-sm-4">
+					<div class="row">
+						<c:choose>
+							<c:when test="${empty sessionScope.login_info.memberPicture }">
+								<div class="col-md-12">
+									<img id="preview" src="/Perplus/memberPicture/no-photo.png"
+										width="200" height="200" style="border: solid 2px #ddd"
+										alt="로컬에 있는 이미지가 보여지는 영역">
+								</div>
+								<div class="col-md-offset-5 col-md-7 col-lg-5 col-xs-offset-4 col-xs-4">
+									<label class="btn btn-success" style="margin-top: 10px;">사진
+										등록 <input type="file" name="memberPictureFile" id="getfile"
+										accept="image/*" value="사진등록" style="display: none;" />
+									</label>
+								</div>
+							</c:when>
+
+							<c:otherwise>
+								<div class="col-md-12">
+									<img
+										src="/Perplus/memberPicture/${sessionScope.login_info.memberPicture}"
+										width="200" height="200" style="border: solid 2px #ddd">
+								</div>
+								<div class="col-lg-offset-6 col-md-offset-7 col-md-4 col-sm-offset-7 col-sm-4 col-xs-offset-5">
+									<a href="${initParam.rootPath}/member/memberpictureremove.do">
+										<button id="deleteMemberPicture" type="button"
+											class="btn btn-danger" style="margin-top: 10px;">삭제</button>
+									</a>
+								</div>
+							</c:otherwise>
+						</c:choose>
+					</div>
+					<!-- /row -->
 				</div>
-				<div class="col-sm-8 col-md-9">
-					<div class="row row-condensed space-4">
-						<label class="text-right col-sm-3"> 이름(예: 홍길동) </label>
-						<div class="col-sm-9">
+				<!-- /col-md-4 col-sm-4 -->
+
+				<div class="col-md-8 col-sm-8">
+					<div class="row row-maginTB">
+						<label class="text-left col-md-3"> 이름(예: 홍길동) </label>
+						<div class="col-md-9">
 							<div class="col-md-12">
 								<div class="form-group">
 									<input type="text" class="form-control" id="user_name"
@@ -101,9 +131,10 @@
 							</div>
 						</div>
 					</div>
-					<div class="row row-condensed space-4">
-						<label class="text-right col-md-3" for="user_name"> 성별 </label>
-						<div class="col-sm-9">
+
+					<div class="row row-maginTB">
+						<label class="text-left col-md-3" for="user_name"> 성별 </label>
+						<div class="col-md-9">
 							<div class="col-md-12">
 								<div class="form-group">
 									<select class="form-control" id="memberGenderSelect"
@@ -131,9 +162,10 @@
 							</div>
 						</div>
 					</div>
-					<div class="row row-condensed space-4">
-						<label class="text-right col-md-3"> 생년월일 </label>
-						<div class="col-sm-9">
+
+					<div class="row row-maginTB">
+						<label class="text-left col-md-3"> 생년월일 </label>
+						<div class="col-md-9">
 							<div class="form-group">
 								<div class="col-md-12">
 									<input type="text" class="form-control" name="memberBirthday"
@@ -144,12 +176,15 @@
 						</div>
 					</div>
 				</div>
+				<!-- /col-md-8 col-sm-8 -->
 			</div>
+			<!-- /row row-maginTB -->
+
 			<div class="row">
-				<div class="col-sm-12">
-					<div class="row row-condensed space-4">
-						<label class="text-right col-md-3"> 이메일 주소 </label>
-						<div class="col-sm-9">
+				<div class="col-md-12">
+					<div class="row row-maginTB">
+						<label class="text-left col-md-offset-2 col-md-2">이메일 주소 </label>
+						<div class="col-md-8">
 							<div class="col-md-12">
 								<div class="form-group">
 									<input type="email" class="form-control" id="email"
@@ -159,22 +194,23 @@
 							</div>
 						</div>
 					</div>
-					<div class="row row-condensed space-4">
-						<label class="text-right col-md-3"> 전화번호 </label>
-						<div class="col-sm-9">
+					<div class="row row-maginTB">
+						<label class="text-left col-md-offset-2 col-md-2"> 전화번호 </label>
+						<div class="col-md-8">
 							<div class="form-group">
 								<div class="col-md-12">
-									<input type="number" class="form-control memberTel" name="memberTel"
-										placeholder="전화번호" value="${sessionScope.login_info.memberTel}">
+									<input type="number" class="form-control memberTel"
+										name="memberTel" placeholder="전화번호"
+										value="${sessionScope.login_info.memberTel}">
 								</div>
 							</div>
 						</div>
 					</div>
-					<div class="row row-condensed space-4">
-						<label class="text-right col-md-3"> 거주지역 </label>
-						<div class="col-sm-9">
-							<div class="col-md-12">
-								<div class="col-sm-4" style="padding-left: 0px;">
+					<div class="row row-maginTB">
+						<label class="text-left col-md-offset-2 col-md-2"> 거주지역 </label>
+						<div class="col-md-8">
+							
+								<div class="col-md-4">
 									<div class="form-group">
 										<select class="form-control" name="memberLocation">
 											<option>선택</option>
@@ -193,12 +229,13 @@
 										</select>
 									</div>
 								</div>
-							</div>
+						
 						</div>
 					</div>
-					<div class="row row-condensed space-4">
-						<label class="text-right col-md-3"> 자기소개 </label>
-						<div class="col-sm-9">
+
+					<div class="row row-maginTB">
+						<label class="text-left col-md-offset-2 col-md-2"> 자기소개 </label>
+						<div class="col-md-8">
 							<div class="col-md-12">
 								<div class="form-group">
 									<textarea class="form-control" rows="5" id="comment"
@@ -207,122 +244,141 @@
 							</div>
 						</div>
 					</div>
-					<div class="row row-condensed space-4">
-						<label class="text-right col-md-3"> 비밀번호 </label>
-						<div class="col-sm-9">
-							<div class="col-sm-4" style="padding-left: 0px;">
-								<div class="form-group">
-									<div class="col-md-12">
+
+					<div class="row row-maginTB">
+						<label class="text-left col-md-offset-2 col-md-2"> 비밀번호 </label>
+						<div class="col-md-8">
+							<div class="col-md-12">
+								<div class="col-md-4">
+									<div class="form-group">
 										<input type="password" class="form-control"
-											id="modifyPassword" name="memberPassword" required="required">
+											id="modifyPassword" name="memberPassword"
+											placeholder="비밀번호 확인" required>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-					<div class="row row-condensed space-4">
-						<div class="col-sm-9"></div>
-						<div class="col-sm-3">
+
+
+					<div class="row row-maginTB">
+						<div class="col-md-offset-9 col-md-3">
 							<div class="col-md-12">
 								<input class="btn btn-primary" type="submit" value="저장"
 									style="float: right;">
 							</div>
 						</div>
 					</div>
+
 				</div>
+				<!-- /col-md-12 -->
 			</div>
+			<!-- /row -->
 		</div>
+		<!-- /panel-body -->
 	</form>
+	<!--  /form -->
 </div>
+<!--  /dashboard-content -->
+
 
 <div id="dashboard-content">
-	<div class="panel-header">
+	<div class="panel-body">
 		<span>비밀번호 변경</span>
 	</div>
-	<div class="row row-condensed space-4">
-		<label class="text-right col-sm-6">기존 비밀번호 </label>
-		<div class="col-sm-6">
-			<div class="col-sm-6" style="padding-left: 0px;">
+	<div class="panel-body">
+		<div class="row row-maginTB">
+			<label class="text-left col-md-offset-2 col-md-3">기존 비밀번호 </label>
+			<div class="col-md-4" style="padding-left: 0px;">
 				<div class="form-group">
 					<div class="col-md-12">
 						<input type="password" class="form-control" id="beforePassword"
-							name="beforePassword" required="required">
+							name="beforePassword" required>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-	<div class="row row-condensed space-4">
-		<label class="text-right col-sm-6">변경할 비밀번호 </label>
-		<div class="col-sm-6">
-			<div class="col-sm-6" style="padding-left: 0px;">
+
+
+
+		<div class="row row-maginTB">
+			<label class="text-left col-md-offset-2 col-md-3">변경할 비밀번호 </label>
+			<div class="col-md-4" style="padding-left: 0px;">
 				<div class="form-group">
 					<div class="col-md-12">
 						<input type="password" class="form-control" id="afterPassword"
-							name="afterPassword" required="required">
+							name="afterPassword" required>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
 
-	<form action="${initParam.rootPath}/member/passwordChange.do"
-		id="passwordChangeForm">
-		<input type="hidden" name="memberEmail"
-			value="${sessionScope.login_info.memberEmail}">
-		<div class="row row-condensed space-4">
-			<label class="text-right col-sm-6">변경할 비밀번호 확인 </label>
-			<div class="col-sm-6">
-				<div class="col-sm-6" style="padding-left: 0px;">
+		<form action="${initParam.rootPath}/member/passwordChange.do"
+			id="passwordChangeForm">
+			<input type="hidden" name="memberEmail"
+				value="${sessionScope.login_info.memberEmail}">
+			<div class="row row-maginTB">
+				<label class="text-left col-md-offset-2 col-md-3">변경할 비밀번호
+					확인 </label>
+				<div class="col-md-4" style="padding-left: 0px;">
 					<div class="form-group">
 						<div class="col-md-12">
 							<input type="password" class="form-control"
-								id="afterPasswordCheck" name="memberPassword"
-								required="required">
+								id="afterPasswordCheck" name="memberPassword" required>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-		<div class="row row-condensed space-4">
-			<div class="col-sm-9"></div>
-			<div class="col-sm-3">
-				<div class="col-md-12">
-					<input class="btn btn-primary" type="submit" value="저장"
-						style="float: right;">
+
+			<div class="row row-maginTB">
+				<div class="col-md-offset-9 col-md-3">
+					<div class="col-md-12">
+						<input class="btn btn-primary" type="submit" value="저장"
+							style="float: right;">
+					</div>
 				</div>
 			</div>
-		</div>
-	</form>
+		</form>
+	</div>
 </div>
+
+
+
 
 <div id="dashboard-content">
 	<div class="panel-header">
 		<span>본인 인증</span>
 	</div>
-	<c:choose>
-		<c:when test="${sessionScope.login_info.memberIdentification == null}">
-			<form action="${initParam.rootPath}/member/identification.do"
-				method="post" enctype="multipart/form-data">
-				<div class="panel-body">
-					<input name="memberPictureFile" type="file" value="신분증 등록" />
+	<div class="panel-body">
+		<c:choose>
+		
+			<c:when
+				test="${sessionScope.login_info.memberIdentification == null}">
+				<form action="${initParam.rootPath}/member/identification.do"
+					method="post" enctype="multipart/form-data">
+					<div class="panel-body">
+						
 
-				</div>
-				<div class="row row-condensed space-4">
-					<div class="col-sm-9"></div>
-					<div class="col-sm-3">
-						<div class="col-md-12">
-							<input class="btn btn-primary" type="submit" value="저장"
-								style="float: right;">
+						<input name="memberPictureFile" type="file" value="신분증 등록" />
+
+					</div>
+					<div class="row row-condensed space-4">
+						<div class="col-md-offset-9 col-md-3">
+							<div class="col-md-12">
+								<input class="btn btn-primary" type="submit" value="저장"
+									style="float: right;">
+							</div>
 						</div>
 					</div>
+				</form>
+			</c:when>
+			
+			<c:otherwise>
+				<div class="panel-body" style="text-align: center">
+					<span style="font-size: 20px; color: blue;">인증되었습니다.</span>
 				</div>
-			</form>
-		</c:when>
-		<c:otherwise>
-			<div class="panel-body" style="text-align: center">
-				<span style="font-size: 20px; color: blue;">인증되었습니다.</span>
-			</div>
-		</c:otherwise>
-	</c:choose>
+			</c:otherwise>
+			
+		</c:choose>
+	</div>
 </div>
