@@ -37,7 +37,7 @@
 		f.HOUSEFILTER_BATHROOM_NUMBER,f.HOUSEFILTER_BED_NUMBER,f.HOUSEFILTER_CHECKIN_TERM,f.HOUSEFILTER_CHECKIN_START,f.HOUSEFILTER_CHECKIN_END,
 		f.HOUSEFILTER_RESERVATION_TERM,f.HOUSEFILTER_BAK_MIN,f.HOUSEFILTER_BAK_MAX,f.HOUSEFILTER_PRICE,
 		s.SHUTDOWN_SERIAL,s.HOUSE_SERIAL s_hSerial,s.SHUTDOWN_DATE,
-		c.CHECKLIST_SERIAL,c.HOUSE_SERIAL c_hSerial,c.LIST,c.VALUE,
+		c.CHECKLIST_SERIAL,c.HOUSE_SERIAL c_hSerial,c.CODE_KIND,c.VALUE,
 		z.HOUSEZZIM_SERIAL, z.HOUSE_SERIAL z_hSerial, z.MEMBER_EMAIL z_email
 		from HOUSE h, HOUSEFILTER f, SHUTDOWN s, CHECKLIST c, HOUSEZZIM z
 	</sql>
@@ -70,6 +70,7 @@
 			<result column="z_email" property="memberEmail"/>
 		</collection>
 	</resultMap>
+	
 	<resultMap type="housevo" id="house-housePicture-join-resultmap" extends="house-basic-resultmap">
 		<collection property="housePicture" ofType="HousePictureVo">
 			<result column="PICTURE_SERIAL" property="pictureSerial"/>

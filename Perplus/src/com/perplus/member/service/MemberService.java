@@ -41,9 +41,11 @@ public interface MemberService {
 	
 	void deleteHouseComment(int commentSerial);
 	
+	void deleteAllHouseComment(int houseSerial);
+	
 	void modifyHouseComment(HouseCommentVo houseComment);
 	
-	List<HouseCommentVo> selectHouseCommentBySerial(int houseSerial);
+	Map<String,Object> selectHouseCommentBySerial(int houseSerial,int page);
 	
 	List<HouseCommentVo> selectHouseCommentByEmail(String memberEmail);
 	

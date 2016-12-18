@@ -20,7 +20,7 @@ public class PagingBean {
 	/**
 	 * 한 페이지에 보여질 데이터(게시물)개수
 	 */
-	private int itemsPerPage = Constants.ITEMS_PER_PAGE;
+	private int itemsPerPage = Constants.REVIEWCOMMENT_PER_PAGE;
 	/**
 	 * Page Group 내 Page 수.  페이지 그룹에 들어갈 페이지 개수
 	 */

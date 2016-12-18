@@ -32,6 +32,7 @@ import com.perplus.member.vo.ReviewZzimVo;
 import com.perplus.member.vo.ShowMeTheMoneyVo;
 import com.perplus.member.vo.TravelVo;
 import com.perplus.util.Constants;
+import com.perplus.util.PagingBean;
 
 @Service
 public class MemberServiceImpl implements MemberService{
@@ -147,6 +148,12 @@ public class MemberServiceImpl implements MemberService{
 		houseCommentDao.deleteHouseComment(commentSerial);
 	}
 	
+	
+	@Override
+	public void deleteAllHouseComment(int houseSerial) {
+		houseCommentDao.deleteAllCommentBySerial(houseSerial);
+	}
+
 	@Override//houseComment 수정
 	public void modifyHouseComment(HouseCommentVo houseComment){
 		houseCommentDao.modifyHouseComment(houseComment);
@@ -157,8 +164,15 @@ public class MemberServiceImpl implements MemberService{
 	}
 	
 	@Override//serial로 조회하기(하우스 정보에서 뿌려주기)
-	public List<HouseCommentVo> selectHouseCommentBySerial(int houseSerial){
-		return houseCommentDao.selectHouseCommentBySerial(houseSerial);
+	public Map<String,Object> selectHouseCommentBySerial(int houseSerial, int page){
+		Map<String, Object> map = new HashMap<>();
+		List<HouseCommentVo> list = houseCommentDao.selectHouseCommentBySerial(houseSerial,page);
+		map.put("commentList", list);
+		int totalComments = houseCommentDao.selectHouseCommentCount(houseSerial);
+		PagingBean bean = new PagingBean(totalComments, page);
+		map.put("pageBean", bean);
+		map.put("totalComments",totalComments);
+		return map;
 	}
 	
 	@Override//memberEmail로 조회하기(내정보에서 내가 쓴 댓글 보기)
