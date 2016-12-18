@@ -33,12 +33,12 @@ public class HouseController_nr {
 	public String getHouse(@RequestParam int houseSerial, ModelMap map,@RequestParam(defaultValue="1") int page){
 		System.out.println(houseSerial);
 		HouseVo house = service.selectHouseForDetailPage(houseSerial);
-		List<HousePictureVo> picture= service.selectHousePictureForDetailPage(houseSerial);
+		//List<HousePictureVo> picture= service.selectHousePictureForDetailPage(houseSerial);
 		Map<String,Object> comment = memberService.selectHouseCommentBySerial(houseSerial,page);
 		System.out.println(comment.get("commentList"));
 		//house.setHousePicture(picture);
 		map.put("house", house);
-		map.put("picture",picture);
+	//	map.put("picture",picture);
 		map.put("comment", comment);
 		System.out.println(house);
 		return "housedetailspage.housetiles";
