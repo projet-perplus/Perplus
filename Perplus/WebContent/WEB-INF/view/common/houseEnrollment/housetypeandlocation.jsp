@@ -84,13 +84,14 @@
 	</div>
 </div>
 <a class="navbar-img" href="${initParam.rootPath}/main.do"> <img
-	src="css/image/logos.PNG" alt="logo" />
+	src="/Perplus/css/image/logos.PNG" alt="logo" />
 </a>
 
 <!-- body -->
 <div class="basicbody">
 	<form action="${initParam.rootPath}/house/twoStep.do">
-	<input type="hidden" name="houseSerial" value=<%=request.getParameter("houseSerial")%>>
+		<input type="hidden" name="houseSerial"
+			value=<%=request.getParameter("houseSerial")%>>
 		<div class="container">
 			<div class="row row-condensed space-4">
 				<div class="col-md-offset-2 col-md-8 housesection">
@@ -190,7 +191,7 @@
 			<div class="row houseBtns" style="margin-bottom: 30px;">
 				<div class="col-md-offset-2 col-md-4 col-xs-4 previousBtn">
 					<a href="${initParam.rootPath}/basicinfo.do">
-						<button class="btn btn-default">이전</button>
+						<button type="button" class="btn btn-default">이전</button>
 					</a>
 				</div>
 				<div class="col-md-4 col-xs-8 col-md-4 nextBtn">

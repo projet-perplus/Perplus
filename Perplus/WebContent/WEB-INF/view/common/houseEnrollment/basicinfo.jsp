@@ -36,7 +36,7 @@
 </div>
 
 <a class="navbar-img" href="${initParam.rootPath}/main.do"> <img
-	src="css/image/logos.PNG" alt="logo" />
+	src="/Perplus/css/image/logos.PNG" alt="logo" />
 </a>
 <div class="basicbody">
 	<div class="container">
@@ -119,4 +119,4 @@
 	</div>
 </div>
 
-<script src="js/basicinfo.js"></script>
+<script src="/Perplus/js/basicinfo.js"></script>

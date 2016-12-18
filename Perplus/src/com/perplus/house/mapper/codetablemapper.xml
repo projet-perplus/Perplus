@@ -3,30 +3,29 @@
 
 <mapper namespace="codetable">
 	<sql id="select-default-codetable">
-		select CODE_KIND codeKind, KEY key, VALUE value
+		select CODE_KIND codeKind, VALUE value
 		from CODETABLE
 	</sql>
 	<insert id="insertCodetable" parameterType="CodetableVo">
-		insert into CODETABLE values(#{codeKind},#{key},#{value})
+		insert into CODETABLE values(#{codeKind}, #{value})
 	</insert>
 	<update id="updateCodetable" parameterType="CodetableVo">
-		update CODETABLE set
-		CODE_KIND = #{codeKind},
-		KEY = #{key},
-		VALUE = #{value}
-		where CODE_KIND = #{codeKind}
-		and KEY = #{key}
+		update	CODETABLE 
+		set		CODE_KIND	=	#{codeKind},
+				VALUE		=	#{value}
+		where	CODE_KIND	=	#{codeKind}
+		and		
 	</update>
 	
 	<delete id="deleteCodetable" parameterType="hashmap">
-		delete from CODETABLE 
-		where CODE_KIND = #{codeKind}
-		and KEY=#{key}
+		delete
+		from	CODETABLE 
+		where	CODE_KIND	=	#{codeKind}
+		and		KEY			=	#{key}
 	</delete>
 	<!--  -->
-	<select id="selectCodetableByCodeKind" parameterType="hashmap" resultType="CodetableVo">
+	<select id="selectCodetableByCodeKind" parameterType="_int" resultType="CodetableVo">
 		<include refid="select-default-codetable"/>
 		where CODE_KIND	= #{codeKind}
-		and KEY = #{key}
 	</select>
 </mapper>
