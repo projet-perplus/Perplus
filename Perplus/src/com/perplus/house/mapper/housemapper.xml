@@ -133,7 +133,7 @@
 		1. endDay , startDay
 		2. guestNumber
 		3. wholeRoom , privateRoom , sharedRoom
-		4. housePrice
+		4. housePriceMin, housePriceMax
 		5-1. bedRoomNumber , bathRoomNumber, bedNumber
 		5-2. 각 체크리스트 key값 (코드테이블 참조)
 	 -->

@@ -51,21 +51,26 @@ public class MapController {
 		System.out.println(member);
 		return member;
 	}
-	@RequestMapping("/selectedreview.do")
-	public String getReviewByMarker(@RequestParam String lat,ModelMap modelMap,	@RequestParam String lng,@RequestParam(defaultValue="1") int page) throws Exception{
-		HashMap<String,Double> map = new HashMap<>();
-		map.put("lat", Double.valueOf(lat));
-		map.put("lng", Double.valueOf(lng));
-		System.out.println(map);
-		ReviewVo review = reviewService.selectReviewByMarker(map);
-		int serial = review.getReviewSerial();
-		Map<String,Object> retMap = reviewService.getReviewCommentList(serial,page);
-		List<ReviewPictureVo> list = reviewService.getReviewPictureList(serial);
-		review.setReviewComment((List<ReviewCommentVo>)retMap.get("list"));
-		modelMap.put("review", review);
-		modelMap.put("picture", list);
-		modelMap.put("pageBean", retMap.get("pageBean"));
-		
-		return "reviewdetailPage.hotplacetiles";
-	}
+//	
+//	public String getFirstSearchHouse(@RequestParam String location,){
+//		
+//	}
+	
+//	@RequestMapping("/selectedreview.do")
+//	public String getReviewByMarker(@RequestParam String lat,ModelMap modelMap,	@RequestParam String lng,@RequestParam(defaultValue="1") int page) throws Exception{
+//		HashMap<String,Double> map = new HashMap<>();
+//		map.put("lat", Double.valueOf(lat));
+//		map.put("lng", Double.valueOf(lng));
+//		System.out.println(map);
+//		ReviewVo review = reviewService.selectReviewByMarker(map);
+//		int serial = review.getReviewSerial();
+//		Map<String,Object> retMap = reviewService.getReviewCommentList(serial,page);
+//		List<ReviewPictureVo> list = reviewService.getReviewPictureList(serial);
+//		review.setReviewComment((List<ReviewCommentVo>)retMap.get("list"));
+//		modelMap.put("review", review);
+//		modelMap.put("picture", list);
+//		modelMap.put("pageBean", retMap.get("pageBean"));
+//		
+//		return "reviewdetailPage.hotplacetiles";
+//	}
 }
