@@ -1,5 +1,14 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
-
+<script type="text/javascript">
+function searchHouseByStartFilter(){
+	var location=$("#location").val();
+	var checkIn=$("#dpd1").val();
+	var checkOut=$("#dpd2").val();
+	var number=$("#guestNumber").val();
+	var url ="/Perplus/housesearch.do?guestNumber="+number+"&location="+location+"&checkIn="+checkIn+"&checkOut="+checkOut;
+	window.location.href=url;
+}
+</script>
 <!-- First Container 메인 배경 -->
 <div class="container-fluid bg-1 text-center">
 	<div class="mainLogo">
@@ -42,7 +51,7 @@
 						<div class="col-md-7 borderR">
 							<div class="form-group">
 								<label for="secl1">인원</label> <select class="form-control"
-									name="personnel" id="GuestInput">
+									name="personnel" id="guestNumber">
 									<option>1</option>
 									<option>2</option>
 									<option>3</option>
@@ -51,9 +60,8 @@
 							</div>
 						</div>
 						<div class="col-md-5">
-							<a href="${initParam.rootPath}/housesearch.do"><button
-									type="button" class="btn btn-default btn-lg" name="roomssearch"
-									id="Search">숙소 검색</button></a>
+							<button type="button" class="btn btn-default btn-lg" name="roomssearch"
+									id="Search"  onclick="searchHouseByStartFilter()">숙소 검색</button>
 						</div>
 					</div>
 				</form>

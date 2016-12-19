@@ -1,10 +1,9 @@
-
-
 //아이콘들
 var tourIcon = new google.maps.MarkerImage("/Perplus/img/markerIcon/tours.png");
 var defaultIcon = new google.maps.MarkerImage("/Perplus/img/markerIcon/default.png");
 var restaurantIcon = new google.maps.MarkerImage("/Perplus/img/markerIcon/restaurants.png");
 var houseIcon = new google.maps.MarkerImage("/Perplus/img/markerIcon/house.png");
+var registerIcon = new google.maps.MarkerImage("/Perplus/img/markerIcon/register.png");
 //맵
 var map;
 //맵 클러스터
@@ -15,14 +14,15 @@ var startMarker;
 const MARKER_CONSTANT_TOUR = 211;
 const MARKER_CONSTANT_RESTAURANT = 212;
 const MARKER_CONSTANT_HOUSE = 213;
+const MARKER_CONSTANT_REGISTER = 214;
 //맵이 로딩되는 페이지를 알려주는 state
 var stage ;
 
 //맵 상의 마커를 보관할 array
 var markerArray = [];
 
-
 var geocoder = new google.maps.Geocoder();
+
 
 $(document).on('pageload',function(){
 	initialize();
@@ -34,8 +34,7 @@ $(function() {
 		
 		stage= document.getElementById('stage').value;
 		
-		var geoLocation = location;
-//		alert(stage.value);
+		
 		var mapCanvas = document.getElementById('map-canvas');
 		var myLatlng = new google.maps.LatLng(37.402116, 127.107020); // 위경도
 		// 설정
@@ -50,32 +49,40 @@ $(function() {
 		// 구글 맵 생성
 		map = new google.maps.Map(mapCanvas, mapOptions);
 
-		//filter의 초기 값을 filterArray에 저장
-		for(var i in startFilterArray){
-			if(startFilterArray[i].checked){
-				filterArray.push(startFilterArray[i].value);
+		//filter의 초기 값을 filterArray에 저장(review일때)
+		if(stage == 'review'){
+			for(var i in startFilterArray){
+				if(startFilterArray[i].checked){
+					filterArray.push(startFilterArray[i].value);
+				}
 			}
 		}
 		//각종 listener 들
 		
-		
 		//공용 이벤트
-		google.maps.event.addListener(map, 'idle',function(){
-			resetMapMarker();
-		});
 		
 		// 리뷰용 이벤트
 		if(stage == 'review'){
+			alert('3');
 			addMapclickEventForReview();
+			alert('3');
+			google.maps.event.addListener(map, 'idle',function(){
+				resetMapMarker();
+			});
 		}
-
 
 		//하우스용 이벤트
 		
+		
+		//최초 로딩때 location이 넘어오는 register와 search 일때 검사
+		var geoLocation = document.getElementById("location");
+		if(geoLocation.value.length!=0){
+			locationSearch();
+		}
 	}
 	google.maps.event.addDomListener(window, 'load', initialize);
 });	
-
+//리뷰에서는 이벤트가 있을때 부르게 되고 나머지는 최초 남아있는 location 값으로 부르게 된다.
 function locationSearch(){
 	var geoLocation = document.getElementById("location");
 	if(geoLocation==null){
@@ -104,6 +111,10 @@ function locationSearch(){
 				break;
 			}
 			map.setCenter(results[0].geometry.location);
+			//만약 register 에서 넘어온 상태라면 화면 중앙에 마커를 출력해 준다.
+			if(stage == 'register'){
+				placeMarker(0,results[0].geometry.location,214);
+			}
 		} else {
 			alert("제대로 된 지명을 입력해 주세요.");
 		}
@@ -155,7 +166,7 @@ function placeMarkerList(southWestLat,southWestLng,northEastLat,northEastLng){
 		success:function(obj){
 			$.each(obj,function(){
 				var markerLatlng = new google.maps.LatLng(this.REVIEWMARKERX, this.REVIEWMARKERY);
-				placeMarker(markerLatlng,this.REVIEWMARKERCONSTANT);
+				placeMarker(this.REVIEWSERIAL,markerLatlng,this.REVIEWMARKERCONSTANT);
 			});
 			if(startMarker!=null){
 				startMarker.setAnimation(google.maps.Animation.BOUNCE);
@@ -170,7 +181,7 @@ function placeMarkerList(southWestLat,southWestLng,northEastLat,northEastLng){
 //마커를 위치시키는 함수 이며 2가지 경우로 나뉜다
 //1.DB에서 마커들을 긁어와 출력
 //2.로그인된 사용자가 맵을 클릭 했을때 default 마커 설치(로그인이 안되 있는 것은 click 이벤트일때 거른다.)
-function placeMarker(location,constant,money) {
+function placeMarker(serial,location,constant,money) {
 	var mIcon;
 	switch(constant){
 	case MARKER_CONSTANT_TOUR :
@@ -182,51 +193,40 @@ function placeMarker(location,constant,money) {
 	case MARKER_CONSTANT_HOUSE :
 		mIcon = houseIcon;
 		break;
+	case MARKER_CONSTANT_REGISTER :
+		mIcon = registerIcon;
+		break;
 	default :
 		mIcon = defaultIcon;
 		break;
 	}
-	//여기서 house 페이지인지 review 인지 분기 필요할 듯
-	var trigger;
-	trigger = possibleMarkerWithFilter(mIcon);
+	//기본적 trigger는 true 이며 마커 종류 필터가 작동하는 review 에서만 trigger를 변경한다. 
+	var trigger=true;
+	if(stage == 'review'){
+		trigger = possibleMarkerWithFilter(mIcon);
+	}
 	if(trigger){
 		var marker = new google.maps.Marker({
 			position : location,
 			map : map,
-			icon : mIcon
+			icon : mIcon,
+			title : serial.toString()
 		});
 		if((mIcon.url).includes('default')){
 			google.maps.event.addListener(marker, 'click',function(){
 				$('#reviewEnrollment').modal('show');
 			});
-		}else{
-//			google.maps.event.addListener(marker, 'click',function(){
-//				$.ajax({
-//					url : "/Perplus/map/selectedreview.do",
-//					type:"post",
-//					async : false,
-//					data : {		
-//						"lat" :  marker.getPosition().lat().toString(),
-//						"lng" :  marker.getPosition().lng().toString(),
-//					},
-//					dataType : "JSON",
-//					success:function(obj){
-//						$('#reviewEnrollment').modal('show');
-//					},
-//					error:function(request,error,status){
-//						alert(error+ "   "+status+"status");
-//					}
-//				});
-//			});
-			google.maps.event.addListener(marker, 'click', function(){
-				alert(mIcon.url);
-				var url = "/Perplus/map/selectedreview.do?lat="+marker.getPosition().lat().toString()
-				+"&lng="+marker.getPosition().lng().toString();
-				$(location).attr('href',url);
-			})
-//			window.location.href="<c:url value='/Perplus/map/selectedreview.do'/>?lat="+marker.getPosition().lat().toString()
-//			+"&lng="+marker.getPosition().lng().toString();
+		}else if((mIcon.url).includes('register')){
+			marker.setDraggable(true);
+		}else if((mIcon.url).includes('house')){
 			
+		}else{
+			google.maps.event.addListener(marker, 'click', function(){	
+//				alert(serial);
+				var url = "/Perplus/review/showReview.do?reviewSerial="+serial;
+//				alert(url);
+				window.open(url);
+			})
 		}
 		markerArray.push(marker);
 		if(mIcon == houseIcon){
@@ -265,7 +265,7 @@ function comma(money) {
     return str.concat(' ₩');
 }
 
-function resetMapMarker(){
+function resetMapMarker(location){
 	resetAllMarker();
 	placeMarkerList(
 				map.getBounds().getSouthWest().lat(),map.getBounds().getSouthWest().lng(),map.getBounds().getNorthEast().lat(),

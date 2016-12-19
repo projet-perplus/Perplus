@@ -93,7 +93,7 @@
 		
 			<div class="row">
 				<div class="col-md-12">
-				S
+				<!-- 숙소 출력 -->
 				</div>
 			</div>
 		</div>
