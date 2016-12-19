@@ -6,18 +6,27 @@
 		var count = 0;
 		$("input[name=file1]").previewimage({
 			div : ".preview",
-			imgwidth : 400,
-			imgheight : 250
+
+			imgheight : 300
+		})
+
+		$("input[name=file2]").previewimage({
+			div : ".preview1",
+
+			imgheight : 150
 		});
-		count++;
-		if (count > 5) {
-			$(".addImage").hide();
-		}
-		if (count < 5) {
-			$(".addImage").show();
-		}
+
 	});
 </script>
+<style type="text/css">
+.preview>div>img {
+	width: 100% !important;
+}
+
+.preview1>div>img {
+	width: 100% !important;
+}
+</style>
 <!-- header -->
 <div class="basicheader">
 	<div class="container-fluid">
@@ -65,40 +74,79 @@
 	<div class="container">
 		<form action="${initParam.rootPath}/house/fiveStep.do" method="post"
 			enctype="multipart/form-data">
+
+
 			<input type="hidden" name="houseSerial"
 				value=<%=request.getParameter("houseSerial")%>>
+
+
 			<div class="row row-condensed space-4">
 				<label class="text-left col-md-7 col-md-offset-2"> <span>이미지
 						등록</span>
 				</label>
-				<div class="clearfix visible-md-block"></div>
-			</div>
-			<div class="row row-condensed space-4">
-				<div class="col-md-7 col-md-offset-4">
-					<div class="preview"></div>
-					<span id="fileInputForm"
-						style="position: relative; float: left; width: 406px; height: 156px; overflow: hidden; cursor: pointer; background-image: url('/Perplus/css/image/addimage.PNG'); background-repeat: no-repeat;">
-						
-						<input type="file" id="filename" name="filename" value=""
-						style='margin-left: -10px; width: 400px; height: 150px; filter: alpha(opacity = 0); opacity: 0; -moz-opacity: 0; cursor: pointer;'
-						onChange="fileUpload()">
-						
-					</span>
-				</div>
-				<label class="text-left col-md-7 col-md-offset-2"> </label>
-				<div class="clearfix visible-md-block"></div>
 			</div>
 
-			<div class="row houseBtns" style="margin-top: 292px;">
-				<div class="col-md-offset-2 col-md-4 col-xs-4 previousBtn">
+
+			<div class="row row-condensed space-4">
+				<div class="col-md-offset-2 col-md-8">
+					<div class="preview"
+						style="width: 100%; height: 300px; border: 1px solid #ccc;"></div>
+
+					<label class="btn btn-success addImage"> 이미지 추가&hellip; <input
+						type="file" name="file1" accept="image/*"
+						style="border: 0 !important; display: none;">
+
+					</label>
+				</div>
+			</div>
+
+			<div class="row row-condensed space-4">
+				<div class="col-md-offset-2 col-md-8">
+
+					<div class="col-md-3">
+						<div class="preview1"
+							style="width: 100%; height: 150px; border: 1px solid #ccc;"></div>
+
+						<label class="btn btn-success addImage"> 이미지 추가&hellip; <input
+							type="file" name="file2" accept="image/*"
+							style="border: 0 !important; display: none;">
+
+						</label>
+					</div>
+
+				</div>
+			</div>
+
+			<div class="row row-condensed space-4">
+				<label class="text-left col-md-offset-1 col-md-2">사진 등록</label>
+				<div class="col-md-9 col-xs-9 col-sm-9">
+					<span>이미지를 추가하세요(최대 5장)</span>
+					<div class="preview1"></div>
+					<label class="btn btn-success addImage"> 이미지 추가&hellip; <input
+						type="file" name="file2" accept="image/*"
+						style="border: 0 !important; display: none;">
+					</label>
+				</div>
+			</div>
+
+
+
+
+			<div class="row row-condensed">
+
+				<div
+					class="col-md-offset-2 col-sm-offset-2 col-xs-offset-2 col-md-1 col-sm-1 col-xs-1 previousBtn">
 					<a href="${initParam.rootPath}/housefacility.do">
 						<button type="button" class="btn btn-default">이전</button>
 					</a>
 				</div>
-				<div class="col-md-4 col-xs-8 col-md-4 nextBtn">
+				<div
+					class="col-md-offset-6 col-sm-offset-6 col-xs-offset-4 col-md-1 col-sm-1 col-xs-1 nextBtn">
 					<button class="btn btn-default">다음</button>
 				</div>
 			</div>
+
+
 		</form>
 	</div>
 </div>

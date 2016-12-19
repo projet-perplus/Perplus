@@ -284,7 +284,7 @@
 
 
 <div id="dashboard-content">
-	<div class="panel-body">
+	<div class="panel-header">
 		<span>비밀번호 변경</span>
 	</div>
 	<div class="panel-body">
