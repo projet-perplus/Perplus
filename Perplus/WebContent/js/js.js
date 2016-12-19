@@ -38,6 +38,10 @@ $(function() {
 		checkout.hide();
 	}).data('datepicker');
 
+	
+	
+	
+	
 	/* 서브메뉴 active */
 	var main = $(".submenu_ul").data("main")
 
@@ -59,6 +63,8 @@ $(function() {
 				}
 			});
 
+
+	
 	$(".house_step").change(function(ev) {
 		location.href = $(this).val();
 	})
@@ -66,7 +72,7 @@ $(function() {
 
 	
 	
-	
+	/*슬라이더*/
 	$('#myCarousel').carousel({
 		interval : 5000
 	});

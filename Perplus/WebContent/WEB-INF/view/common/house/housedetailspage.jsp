@@ -1,6 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
 <!--map key-->
 <script
 	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWDGjKV2YFKGM5q6gtx-J5GcJTa2wLDQU"
@@ -42,13 +44,12 @@
 </style>
 
 <div class="container reviewslide">
-
 	<div class="row">
 		<div class="slidebar">
 			<div class="carousel slide" id="myCarousel">
 				<div class="carousel-inner">
 					<c:choose>
-						<c:when test="${empty requestScope.picture }">
+						<c:when test="${empty requestScope.house.housePicture }">
 							<div class="active item">
 								<img
 									src="${initParam.rootPath }/housePicture/no-images.png"
@@ -56,7 +57,7 @@
 							</div>
 						</c:when>
 						<c:otherwise>
-							<c:forEach items="${requestScope.picture }" var="picture">
+							<c:forEach items="${requestScope.house.housePicture}" var="picture">
 								<c:choose>
 									<c:when test="${picture.pictureOrder==1}">
 										<div class="active item">
@@ -91,19 +92,19 @@
 		<!--/Slider-->
 	</div>
 	<!--/row-->
-!--hidden-xs-->
+<!--hidden-xs-->
 	<div class="row" id="slider-thumbs" style="margin-top: 10px;">
 		<!--Bottom switcher of slider -->
 		<ul>
 			<c:choose>
-				<c:when test="${empty requestScope.picture }">
+				<c:when test="${empty requestScope.house.housePicture }">
 					<li><a class="thumbnail" id="carousel-selector-0"> <img
 							src="${initParam.rootPath }/housePicture/no-images.png"
 							style="width: 170px !important; height: 100px !important;">
 					</a></li>
 				</c:when>
 				<c:otherwise>
-					<c:forEach items="${requestScope.picture }" var="picture">
+					<c:forEach items="${requestScope.house.housePicture }" var="picture">
 						<li><a class="thumbnail"
 							id="carousel-selector-${picture.pictureOrder-1 }"> <img
 								src="/Perplus/housePicture/${picture.pictureName }"
@@ -137,9 +138,23 @@
 					<div class="col-md-8 rowFT">상세 설명</div>
 					<div class="clearfix"></div>
 				</div>
-
+				
 				<div class="row">
 					<div class="col-md-offset-1 col-md-8">${requestScope.house.houseContent }</div>
+					<div class="clearfix"></div>
+				</div>
+
+				<div class="row row-condensed space-4">
+					<div class="col-md-8 rowFT">게스트 제약 사항</div>
+					<div class="clearfix"></div>
+					
+					<c:set var="conditions" value="${requestScope.house.houseNecessaryCondition}"/>
+					<c:set var="necessaryCondition" value="${fn:split(conditions,',')}"/>
+					<div class="col-md-8 col-md-offset-1">
+				        <c:forEach var="condition" items="${necessaryCondition }">
+				            <li>${condition }</li>
+				        </c:forEach>
+					</div>
 					<div class="clearfix"></div>
 				</div>
 
@@ -149,19 +164,56 @@
 				</div>
 
 				<div class="row row-condensed space-4">
-					<div class="col-md-8 col-md-offset-1">제공범위 : ${requestScope.house.houseFilter.houseFilterRange }</div>
-					<div class="col-md-8 col-md-offset-1">게스트 수 : ${requestScope.house.houseFilter.houseFilterGuestNumber}</div>
-					<div class="col-md-8 col-md-offset-1">건물 유형 : ${requestScope.house.houseFilter.houseFilterType}</div>
-					<div class="col-md-8 col-md-offset-1">방 개수 :  ${requestScope.house.houseFilter.houseFilterRoomNumber }</div>
-					<div class="col-md-8 col-md-offset-1">침실 수 : ${requestScope.house.houseFilter.houseFilterBedroomNumber }</div>
-					<div class="col-md-8 col-md-offset-1">침대 수 :  ${requestScope.house.houseFilter.houseFilterBedNumber}</div>
-					<div class="col-md-8 col-md-offset-1">욕실 수 :  ${requestScope.house.houseFilter.houseFilterBathroomNumber}</div>
-					<div class="col-md-8 col-md-offset-1">최소 ${requestScope.house.houseFilter.houseFilterBakMin }박</div>
-					<div class="col-md-8 col-md-offset-1">최대 ${requestScope.house.houseFilter.houseFilterBakMax }박</div>
-					<div class="col-md-8 col-md-offset-1">숙소 가격 :  ${requestScope.house.houseFilter.houseFilterPrice}</div>
+					<div class="col-md-8 col-md-offset-1"><li>제공범위 : ${requestScope.house.houseFilter.houseFilterRange }</li></div>
+					<div class="col-md-8 col-md-offset-1"><li>게스트 수 : ${requestScope.house.houseFilter.houseFilterGuestNumber}</li></div>
+					<div class="col-md-8 col-md-offset-1"><li>건물 유형 : ${requestScope.house.houseFilter.houseFilterType}</li></div>
+					<div class="col-md-8 col-md-offset-1"><li>방 개수 :  ${requestScope.house.houseFilter.houseFilterRoomNumber }</li></div>
+					<div class="col-md-8 col-md-offset-1"><li>침실 수 : ${requestScope.house.houseFilter.houseFilterBedroomNumber }</li></div>
+					<div class="col-md-8 col-md-offset-1"><li>침대 수 :  ${requestScope.house.houseFilter.houseFilterBedNumber}</li></div>
+					<div class="col-md-8 col-md-offset-1"><li>욕실 수 :  ${requestScope.house.houseFilter.houseFilterBathroomNumber}</li></div>
+					<div class="col-md-8 col-md-offset-1"><li>최소 ${requestScope.house.houseFilter.houseFilterBakMin }박</li></div>
+					<div class="col-md-8 col-md-offset-1"><li>최대 ${requestScope.house.houseFilter.houseFilterBakMax }박</li></div>
+					<div class="col-md-8 col-md-offset-1"><li>숙소 가격 :  ${requestScope.house.houseFilter.houseFilterPrice}</li></div>
+				</div>
+								
+				<div class="row row-condensed space-4">
+					<div class="col-md-8 rowFT">시설</div>
 					<div class="clearfix"></div>
 				</div>
-
+				<div class="row row-condensed space-4">
+					<div class="col-md-8 col-md-offset-1">
+						안전시설 
+					</div>
+					<c:forEach items="${requestScope.house.houseFilter.checkList }" var="checkList">
+						<c:if test="${checkList.codeKind==1}">
+							<div class="col-md-8 col-md-offset-1">
+								<li>${checkList.value }</li>
+							</div>
+						</c:if>
+					</c:forEach>
+					<div class="col-md-8 col-md-offset-1">
+						편의시설 
+					</div>
+					<c:forEach items="${requestScope.house.houseFilter.checkList }" var="checkList">
+						<c:if test="${checkList.codeKind==2}">
+							<div class="col-md-8 col-md-offset-1">
+								<li>${checkList.value }</li>
+							</div>
+						</c:if>
+					</c:forEach>
+					<div class="col-md-8 col-md-offset-1">
+						공용시설 
+					</div>
+					<c:forEach items="${requestScope.house.houseFilter.checkList }" var="checkList">
+						<c:if test="${checkList.codeKind==3}">
+							<div class="col-md-8 col-md-offset-1">
+								<li>${checkList.value }</li>
+							</div>
+						</c:if>
+					</c:forEach>
+					<div class="clearfix"></div>
+			
+				</div>
 				<div class="row row-condensed space-4">
 					<div class="col-md-8">
 						<div class="col-md-6 rowFT" style="padding-left: 0px;">후기</div>
@@ -229,7 +281,7 @@
 							</c:if>
 						</div>
 				</c:forEach>
-				
+		
 	<!--댓글 페이징 처리 부분  -->
 	<!-- 첫 페이지로 이동 -->
 	<a
@@ -239,6 +291,7 @@
 		이전 페이지 그룹 처리.
 		만약에 이전페이지 그룹이 있으면 링크처리하고 없으면 화살표만 나오도록 처리.
 	 -->
+	 
 	<c:choose>
 		<c:when test="${requestScope.comment.pageBean.previousPageGroup }">
 			<a
@@ -286,12 +339,11 @@
 			▶
 		</c:otherwise>
 	</c:choose>
-
 	<!-- 마지막 페이지 -->
 	<a
 		href="${initParam.rootPath}/house/houseDetail.do?houseSerial=${requestScope.house.houseSerial}&page=${requestScope.comment.pageBean.totalPage }">마지막
 		페이지</a>
-			</div>
+</div>
 			<!-- /숙소 상세 페이지 메뉴 끝 -->
 
 			<div class="col-md-3 panel-MT" style="margin-bottom: 30px;">찜</div>
@@ -344,24 +396,25 @@
 					</a>
 				</div>
 			</div>
-
-			<div class="row row-maginTB">
-				<div
-					class="col-md-offset-0 col-sm-offset-1 col-xs-offset-2 col-md-6 col-sm-10 col-xs-8">
-					<a href="#">
-						<button class="btn btn-success"
-							style="width: 100%; margin-bottom: 15px;">수정하기</button>
-					</a>
+			
+			<c:if test="${requestScope.house.memberEmail == sessionScope.login_info.memberEmail}">
+				<div class="row row-maginTB">
+					<div
+						class="col-md-offset-0 col-sm-offset-1 col-xs-offset-2 col-md-6 col-sm-10 col-xs-8">
+						<a href="#">
+							<button class="btn btn-success"
+								style="width: 100%; margin-bottom: 15px;">수정하기</button>
+						</a>
+					</div>
+					
+					<div
+						class="col-md-offset-0 col-sm-offset-1 col-xs-offset-2 col-md-6 col-sm-10 col-xs-8">
+						<a href="${initParam.rootPath}/house/removeHouse.do?houseSerial=${requestScope.house.houseSerial}">
+							<button class="btn btn-danger" style="width: 100%">삭제</button>
+						</a>
+					</div>
 				</div>
-
-				<div
-					class="col-md-offset-0 col-sm-offset-1 col-xs-offset-2 col-md-6 col-sm-10 col-xs-8">
-					<a href="${initParam.rootPath}/house/removeHouse.do?houseSerial=${requestScope.house.houseSerial}">
-						<button class="btn btn-danger" style="width: 100%">삭제</button>
-					</a>
-				</div>
-			</div>
-
+			</c:if>
 		</div>
 	</div>
 

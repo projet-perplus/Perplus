@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
+
 <script type="text/javascript">
 	$(document).ready(function() {
 		$("#login_form").on("submit", function() {
@@ -9,7 +10,7 @@
 					"memberEmail" : $("#loginEmail").val(),
 					"memberPassword" : $("#loginPassword").val()
 				},
-				async:false,//ajax sync가 따로 놀아서 전역변수 사용하고 싶을 때 사용.
+				async : false,//ajax sync가 따로 놀아서 전역변수 사용하고 싶을 때 사용.
 				dataType : "json",
 				success : function(obj) {
 					$("#login_error_email").empty();
@@ -19,12 +20,12 @@
 					if (emailcheck) {
 						$("#login_error_email").text(emailcheck);
 						$("#loginEmail").focus();
-						value=false;
+						value = false;
 					}
 					if (passwordcheck) {
 						$("#login_error_password").text(passwordcheck);
 						$("#loginPassword").focus();
-						value=false;
+						value = false;
 					}
 					/* if(!(emailcheck&&passwordcheck)){
 						$("#myModal").hide();
@@ -59,13 +60,13 @@
 					</div>
 					<div class="form-group">
 						<input type="password" class="form-control" id="loginPassword"
-							name="memberPassword" placeholder="password" required autocomplete="off"><br>
-						<span id="login_error_password"></span>
+							name="memberPassword" placeholder="password" required
+							autocomplete="off"><br> <span
+							id="login_error_password"></span>
 					</div>
 				</div>
 				<div class="modal-footer">
-					<a href="#">비밀번호 찾기</a>
-						<input type="submit" name="login"
+					<a href="#">비밀번호 찾기</a> <input type="submit" name="login"
 						class="btn btn-default" id="loginBtn" value="로그인">
 				</div>
 			</form>

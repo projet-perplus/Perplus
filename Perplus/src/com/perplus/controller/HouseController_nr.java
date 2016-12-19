@@ -33,12 +33,12 @@ public class HouseController_nr {
 	public String getHouse(@RequestParam int houseSerial, ModelMap map,@RequestParam(defaultValue="1") int page){
 		System.out.println(houseSerial);
 		HouseVo house = service.selectHouseForDetailPage(houseSerial);
-		List<HousePictureVo> picture= service.selectHousePictureForDetailPage(houseSerial);
+		//List<HousePictureVo> picture= service.selectHousePictureForDetailPage(houseSerial);
 		Map<String,Object> comment = memberService.selectHouseCommentBySerial(houseSerial,page);
 		System.out.println(comment.get("commentList"));
 		//house.setHousePicture(picture);
 		map.put("house", house);
-		map.put("picture",picture);
+	//	map.put("picture",picture);
 		map.put("comment", comment);
 		System.out.println(house);
 		return "housedetailspage.housetiles";
@@ -47,8 +47,9 @@ public class HouseController_nr {
 	/******************하우스 상세 페이지 삭제*****************/
 	@RequestMapping("/removeHouse")
 	public String removeHouse(@RequestParam int houseSerial){
+		System.out.println(houseSerial);
 		service.removeHouse(houseSerial);
-		return "redirect:/housesearch.do";
+		return "redirect:/main.do";
 	}
 	/******************하우스 코멘트 등록*****************/
 	@RequestMapping("/registerHouseComment")

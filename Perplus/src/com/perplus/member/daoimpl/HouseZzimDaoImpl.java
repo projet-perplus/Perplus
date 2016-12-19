@@ -27,6 +27,11 @@ public class HouseZzimDaoImpl implements HouseZzimDao{
 		return session.delete("houseZzim.deleteHouseZzimByEmail", houseZzimSerial);
 	}
 	
+	@Override
+	public int deleteHouseZzimByHouseSerial(int houseSerial) {
+		return session.delete("houseZzim.deleteHouseZzimByHouseSerial",houseSerial);
+	}
+
 	@Override//내가 찜한 house 찾기
 	public List<HouseZzimVo> selectHouseZzimByEmail(String memberEmail){
 		return session.selectList("houseZzim.selectHouseZzimByEmail",memberEmail);

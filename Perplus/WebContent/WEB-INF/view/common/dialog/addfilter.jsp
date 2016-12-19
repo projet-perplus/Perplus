@@ -15,7 +15,7 @@
 				<div class="modal-body">
 					<div class="row">
 						<div class="col-md-3" style="margin-bottom:15px;">
-							<button class="btn btn-primary" style="width: 100%">규모</button>
+							<span class="btn btn-primary" style="width: 100%">규모</span>
 						</div>
 						<div class="col-md-3">
 							<div class="form-group">

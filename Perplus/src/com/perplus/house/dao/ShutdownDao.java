@@ -1,5 +1,5 @@
 package com.perplus.house.dao;
 
 public interface ShutdownDao {
-
+	int deleteShutdownByHouseSerial(int houseSerial);
 }

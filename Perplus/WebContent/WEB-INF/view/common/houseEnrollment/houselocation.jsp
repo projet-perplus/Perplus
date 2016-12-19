@@ -1,5 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWDGjKV2YFKGM5q6gtx-J5GcJTa2wLDQU" type="text/javascript"></script>
+<script
+	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWDGjKV2YFKGM5q6gtx-J5GcJTa2wLDQU"
+	type="text/javascript"></script>
 <script src="js/map.js"></script>
 <script type="text/javascript">
 function getMarkerLocation(){
@@ -62,7 +64,7 @@ function getMarkerLocation(){
 		<div class="row houseBtns">
 			<div class="col-md-offset-2 col-md-4 col-xs-4 previousBtn">
 				<a href="${initParam.rootPath}/housetypeandlocation.do">
-					<button class="btn btn-default">이전</button>
+					<button type="button" class="btn btn-default">이전</button>
 				</a>
 			</div>
 			<div class="col-md-4 col-xs-8 col-md-4 nextBtn">

@@ -5,69 +5,55 @@ import java.io.Serializable;
 public class CheckListVo implements Serializable{
 	private int checklistSerial;
 	private int houseSerial;
-	private String codeKind;
+	private int codeKind;
 	private String value;
-	
 	public CheckListVo() {
 	}
-
-	public CheckListVo(int checklistSerial, int houseSerial, String codeKind, String value) {
-		super();
+	public CheckListVo(int checklistSerial, int houseSerial, int codeKind, String value) {
 		this.checklistSerial = checklistSerial;
 		this.houseSerial = houseSerial;
 		this.codeKind = codeKind;
 		this.value = value;
 	}
-
 	public int getChecklistSerial() {
 		return checklistSerial;
 	}
-
 	public void setChecklistSerial(int checklistSerial) {
 		this.checklistSerial = checklistSerial;
 	}
-
 	public int getHouseSerial() {
 		return houseSerial;
 	}
-
 	public void setHouseSerial(int houseSerial) {
 		this.houseSerial = houseSerial;
 	}
-
-	public String getCodeKind() {
+	public int getCodeKind() {
 		return codeKind;
 	}
-
-	public void setCodeKind(String codeKind) {
+	public void setCodeKind(int codeKind) {
 		this.codeKind = codeKind;
 	}
-
 	public String getValue() {
 		return value;
 	}
-
 	public void setValue(String value) {
 		this.value = value;
 	}
-
 	@Override
 	public String toString() {
 		return "CheckListVo [checklistSerial=" + checklistSerial + ", houseSerial=" + houseSerial + ", codeKind="
 				+ codeKind + ", value=" + value + "]";
 	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + checklistSerial;
-		result = prime * result + ((codeKind == null) ? 0 : codeKind.hashCode());
+		result = prime * result + codeKind;
 		result = prime * result + houseSerial;
 		result = prime * result + ((value == null) ? 0 : value.hashCode());
 		return result;
 	}
-
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -79,10 +65,7 @@ public class CheckListVo implements Serializable{
 		CheckListVo other = (CheckListVo) obj;
 		if (checklistSerial != other.checklistSerial)
 			return false;
-		if (codeKind == null) {
-			if (other.codeKind != null)
-				return false;
-		} else if (!codeKind.equals(other.codeKind))
+		if (codeKind != other.codeKind)
 			return false;
 		if (houseSerial != other.houseSerial)
 			return false;
@@ -95,4 +78,6 @@ public class CheckListVo implements Serializable{
 	}
 
 	
+	
 }
+
