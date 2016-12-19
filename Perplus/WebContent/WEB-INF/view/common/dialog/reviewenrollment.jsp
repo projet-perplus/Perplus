@@ -5,17 +5,17 @@
 	src="https://rawgit.com/andrewng330/PreviewImage/master/preview.image.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
-		var count =0;
+		var count = 0;
 		$("input[name=file1]").previewimage({
 			div : ".preview",
 			imgwidth : 150,
 			imgheight : 100
 		});
 		count++;
-		if(count>5){
+		if (count > 5) {
 			$(".addImage").hide();
 		}
-		if(count<5){
+		if (count < 5) {
 			$(".addImage").show();
 		}
 	});
@@ -29,9 +29,9 @@
 .preview>div>img {
 	margin: 5px;
 }
-.modal-backdrop.in {
 
-opacity:0 !important;
+.modal-backdrop.in {
+	opacity: 0 !important;
 }
 </style>
 <!-- reviewEnrollment-->
@@ -39,7 +39,7 @@ opacity:0 !important;
 	aria-labelledby="basicModal" aria-hidden="true"
 	style="padding-left: 0 !important; background-color: rgba(0, 0, 0, 0.5);">
 	<div class="modal-dialog reviewEnrollment-dialog"
-		style="transform: translate(0, 0) !important; ">
+		style="transform: translate(0, 0) !important;">
 		<!-- 658 -->
 		<!-- Modal content-->
 		<form action="${initParam.rootPath}/review/registerReview.do"
@@ -47,7 +47,21 @@ opacity:0 !important;
 			<div class="modal-content" style="padding: 0px;">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
-					<h4 class="modal-title">리뷰등록</h4>
+					<div class="title">
+						<div class="row">
+							<div class="col-md-4 col-sm-4 col-xs-4">
+								<h4 class="modal-title">리뷰 등록</h4>
+							</div>
+							<div class="col-md-offset-4 col-md-3 col-sm-offset-4 col-sm-3 col-xs-offset-2 col-xs-5">
+								<select name="marker" class="form-control" autocomplete="off"
+									required>
+									<option value="" selected>마커 종류</option>
+									<option value=1>1</option>
+									<option value=2>2</option>
+								</select>
+							</div>
+						</div>
+					</div>
 				</div>
 				<div class="modal-body">
 					<div class="payoutpreferencedialog">
@@ -67,29 +81,29 @@ opacity:0 !important;
 							<div class="col-md-8">
 								<div class="form-group">
 									<input type="text" class="form-control" name="reviewPlace"
-										placeholder="장소명을 입력하세요..." required>
-									<span class="errorMessage">
-										<form:errors path="reviewForm.reviewPlace" />
+										placeholder="장소명을 입력하세요..." required> <span
+										class="errorMessage"> <form:errors
+											path="reviewForm.reviewPlace" />
 									</span>
 								</div>
 							</div>
 						</div>
-						
+
 						<div class="row row-condensed space-4">
 							<label class="text-left col-md-offset-1 col-md-2">방문일자 </label>
 							<div class="col-md-8">
 								<div class="form-group">
 									<div class="visitDate">
 										<input type="text" class="form-control" name="reviewTime"
-											  placeholder="클릭해주세요.."  required id="datepicker2">
-										<span class="errorMessage">
-										   <form:errors path="reviewForm.reviewTime" />
-									   </span>
+											placeholder="클릭해주세요.." required id="datepicker2"> <span
+											class="errorMessage"> <form:errors
+												path="reviewForm.reviewTime" />
+										</span>
 									</div>
 								</div>
 							</div>
 						</div>
-						
+
 						<div class="row row-condensed space-4">
 							<label class="text-left col-md-offset-1 col-md-2">사진 등록</label>
 							<div class="col-md-9 col-xs-9 col-sm-9">
@@ -97,27 +111,26 @@ opacity:0 !important;
 								<div class="preview"></div>
 								<label class="btn btn-success addImage"> 이미지 추가&hellip;
 									<input type="file" name="file1" accept="image/*"
-										   style="border: 0 !important; display: none;">
+									style="border: 0 !important; display: none;">
 								</label>
 							</div>
 						</div>
 					</div>
-					
+
 					<div class="row row-condensed space-4">
 						<label class="text-left col-md-offset-1 col-md-2"> 평점 </label>
 						<div class="col-md-2">
 							<div class="stars stars-example-bootstrap" style="height: 40px;">
-								<select id="example-bootstrap" name="reviewRating" class="form-control"
-									autocomplete="off" required>
+								<select id="example-bootstrap" name="reviewRating"
+									class="form-control" autocomplete="off" required>
 									<option value="" selected>평점</option>
 									<option value=1>1</option>
 									<option value=2>2</option>
 									<option value=3>3</option>
 									<option value=4>4</option>
 									<option value=5>5</option>
-								</select>
-								<span class="errorMessage">
-									<form:errors path="reviewForm.reviewRating" />
+								</select> <span class="errorMessage"> <form:errors
+										path="reviewForm.reviewRating" />
 								</span>
 							</div>
 						</div>
@@ -133,7 +146,7 @@ opacity:0 !important;
 							</div>
 						</div>
 					</div>
-					
+
 					<div class="modal-footer">
 						<div class="row">
 							<div class="col-md-offset-1 col-md-5 leftform">
