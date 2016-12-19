@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div class="basicheader">
 	<div class="container-fluid">
 		<div class="row">
@@ -56,17 +57,16 @@
 				<div class="col-md-offset-2 col-md-8 housesection">
 					<div class="row row-condensed space-4 row-sectionB">
 						<label class="text-left col-md-8 col-xs-11"> <span
-							class="subspan">체크인까지 최소한 어느 정도의 시간 여유가 있어야 하나요?</span>
+							class="subspan">체크인까지 최소한 어느 정도의 여유가 있어야 하나요?</span>
 						</label>
 						<div class="clearfix visible-md-block"></div>
 						<div class="col-md-offset-1 col-md-10">
 							<div class=" col-md-8">
 								<div class="form-group">
-									<select class="form-control">
-										<option>1일</option>
-										<option>2</option>
-										<option>3</option>
-										<option>4</option>
+									<select class="form-control" name="houseFilterCheckinTerm">
+										<c:forEach begin="1" end="10" var="number">
+											<option value="${number}">${number}</option>
+										</c:forEach>
 									</select>
 								</div>
 							</div>
@@ -84,23 +84,21 @@
 						<div class="col-md-offset-1 col-md-8">
 							<div class=" col-md-5">
 								<div class="form-group">
-									<select class="form-control">
+									<select class="form-control" name="houseFilterCheckinStart">
 										<option>시작 시간</option>
-										<option>1시</option>
-										<option>2</option>
-										<option>3</option>
-										<option>4</option>
+										<c:forEach begin="0" end="23" var="number">
+											<option value="${number}">${number}시</option>
+										</c:forEach>
 									</select>
 								</div>
 							</div>
 							<div class=" col-md-5">
 								<div class="form-group">
-									<select class="form-control">
+									<select class="form-control" name="housefilterCheckinEnd">
 										<option>종료 시간</option>
-										<option>2시</option>
-										<option>2</option>
-										<option>3</option>
-										<option>4</option>
+										<c:forEach begin="0" end="23" var="number">
+											<option value="${number}">${number}시</option>
+										</c:forEach>
 									</select>
 								</div>
 							</div>
@@ -118,11 +116,13 @@
 						<div class="col-md-offset-1 col-md-10">
 							<div class=" col-md-8">
 								<div class="form-group">
-									<select class="form-control">
-										<option>6달</option>
-										<option>2</option>
-										<option>3</option>
-										<option>4</option>
+									<select class="form-control" name="houseFilterReservationTerm">
+										<option value=1>1달</option>
+										<option value=2>2달</option>
+										<option value=3>3달</option>
+										<option value=4>4달</option>
+										<option value=5>5달</option>
+										<option value=6>6달</option>
 									</select>
 								</div>
 							</div>
@@ -140,19 +140,21 @@
 						<div class="col-md-offset-1 col-md-10">
 							<div class=" col-md-8">
 								<div class="form-group">
-									<select class="form-control">
-										<option>1박</option>
-										<option>2</option>
-										<option>3</option>
-										<option>4</option>
+									<select class="form-control" name="houseFilterBakMin">
+										<option>최소 일수</option>
+										<option value=1>1박</option>
+										<option value=2>2박</option>
+										<option value=3>3박</option>
+										<option value=4>4박</option>
 									</select>
 								</div>
 								<div class="form-group">
-									<select class="form-control">
-										<option>2일</option>
-										<option>2</option>
-										<option>3</option>
-										<option>4</option>
+									<select class="form-control" name="houseFilterBakMax">
+										<option>최대 일수</option>
+										<option value=1>1박</option>
+										<option value=2>2</option>
+										<option value=3>3</option>
+										<option value=4>4</option>
 									</select>
 								</div>
 							</div>
@@ -167,9 +169,7 @@
 					</a>
 				</div>
 				<div class="col-md-4 col-xs-8 col-md-4 nextBtn">
-					<a href="${initParam.rootPath}/house/sixStep.do">
 						<button class="btn btn-default">다음</button>
-					</a>
 				</div>
 			</div>
 		</form>

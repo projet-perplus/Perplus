@@ -31,17 +31,6 @@ public class HouseController_choi {
 		return "forward:/basicinfo.do";
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	@RequestMapping("/oneStep.do")//1step commit 하는 컨트롤러
 	public String oneStepHouseRegister(@ModelAttribute HouseVo houseVo, HttpServletRequest request){
 		System.out.println("oneStep.do");
@@ -71,16 +60,6 @@ public class HouseController_choi {
 		return "redirect:/housetypeandlocation.do?houseSerial="+houseSerial;
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	@RequestMapping("/twoStep.do")//2step commit하는 컨트롤러
 	public String twoStepHouseRegister(@ModelAttribute HouseFilterVo houseFilterVo,HttpServletRequest request){
 		System.out.println("twoStep.do");
@@ -107,17 +86,6 @@ public class HouseController_choi {
 		System.out.println();
 		return "forward:/houselocation.do?houseSerial="+houseSerial;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	@RequestMapping("/threeStep.do")//3step commit하는 컨트롤러
@@ -218,7 +186,17 @@ public class HouseController_choi {
 	
 	
 	@RequestMapping("/sixStep.do")//6step commit하는 컨트롤러
-	public String sixStepHouseRegister(@RequestParam int houseSerial){
+	public String sixStepHouseRegister(@RequestParam int houseSerial, HttpServletRequest request,
+			@RequestParam int houseFilterCheckinTerm,@RequestParam int houseFilterCheckinStart,@RequestParam int housefilterCheckinEnd,
+			@RequestParam int houseFilterReservationTerm,@RequestParam int houseFilterBakMin,@RequestParam int houseFilterBakMax
+			){
+		System.out.println(houseFilterCheckinTerm);
+		System.out.println(houseFilterCheckinStart);
+		System.out.println(housefilterCheckinEnd);
+		System.out.println(houseFilterReservationTerm);
+		System.out.println(houseFilterBakMin);
+		System.out.println(houseFilterBakMax);
+		
 		System.out.println("sixStep");
 		return "redirect:/house/sevenStepBefore.do?houseSerial="+houseSerial;
 	}

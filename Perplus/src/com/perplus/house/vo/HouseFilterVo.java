@@ -1,7 +1,6 @@
 package com.perplus.house.vo;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 
 public class HouseFilterVo implements Serializable{
@@ -15,8 +14,8 @@ public class HouseFilterVo implements Serializable{
 	private int houseFilterBathroomNumber;
 	private int houseFilterBedNumber;
 	private int houseFilterCheckinTerm;
-	private Date houseFilterCheckinStart;
-	private Date houseFilterCheckinEnd;
+	private int houseFilterCheckinStart;
+	private int houseFilterCheckinEnd;
 	private int houseFilterReservationTerm;
 	private int houseFilterBakMin;
 	private int houseFilterBakMax;
@@ -41,7 +40,7 @@ public class HouseFilterVo implements Serializable{
 	public HouseFilterVo(int houseSerial, String houseFilterRange, int houseFilterGuestNumber, String houseFilterType,
 			int houseFilterRoomNumber, String houseFilterLocation, int houseFilterBedroomNumber,
 			int houseFilterBathroomNumber, int houseFilterBedNumber, int houseFilterCheckinTerm,
-			Date houseFilterCheckinStart, Date houseFilterCheckinEnd, int houseFilterReservationTerm,
+			int houseFilterCheckinStart, int houseFilterCheckinEnd, int houseFilterReservationTerm,
 			int houseFilterBakMin, int houseFilterBakMax, int houseFilterPrice, List<ShutdownVo> shutdownList,
 			List<CheckListVo> checkList) {
 		super();
@@ -145,19 +144,19 @@ public class HouseFilterVo implements Serializable{
 		this.houseFilterCheckinTerm = houseFilterCheckinTerm;
 	}
 
-	public Date getHouseFilterCheckinStart() {
+	public int getHouseFilterCheckinStart() {
 		return houseFilterCheckinStart;
 	}
 
-	public void setHouseFilterCheckinStart(Date houseFilterCheckinStart) {
+	public void setHouseFilterCheckinStart(int houseFilterCheckinStart) {
 		this.houseFilterCheckinStart = houseFilterCheckinStart;
 	}
 
-	public Date getHouseFilterCheckinEnd() {
+	public int getHouseFilterCheckinEnd() {
 		return houseFilterCheckinEnd;
 	}
 
-	public void setHouseFilterCheckinEnd(Date houseFilterCheckinEnd) {
+	public void setHouseFilterCheckinEnd(int houseFilterCheckinEnd) {
 		this.houseFilterCheckinEnd = houseFilterCheckinEnd;
 	}
 
@@ -219,8 +218,8 @@ public class HouseFilterVo implements Serializable{
 		result = prime * result + houseFilterBathroomNumber;
 		result = prime * result + houseFilterBedNumber;
 		result = prime * result + houseFilterBedroomNumber;
-		result = prime * result + ((houseFilterCheckinEnd == null) ? 0 : houseFilterCheckinEnd.hashCode());
-		result = prime * result + ((houseFilterCheckinStart == null) ? 0 : houseFilterCheckinStart.hashCode());
+		result = prime * result + houseFilterCheckinEnd;
+		result = prime * result + houseFilterCheckinStart;
 		result = prime * result + houseFilterCheckinTerm;
 		result = prime * result + houseFilterGuestNumber;
 		result = prime * result + ((houseFilterLocation == null) ? 0 : houseFilterLocation.hashCode());
@@ -258,15 +257,9 @@ public class HouseFilterVo implements Serializable{
 			return false;
 		if (houseFilterBedroomNumber != other.houseFilterBedroomNumber)
 			return false;
-		if (houseFilterCheckinEnd == null) {
-			if (other.houseFilterCheckinEnd != null)
-				return false;
-		} else if (!houseFilterCheckinEnd.equals(other.houseFilterCheckinEnd))
+		if (houseFilterCheckinEnd != other.houseFilterCheckinEnd)
 			return false;
-		if (houseFilterCheckinStart == null) {
-			if (other.houseFilterCheckinStart != null)
-				return false;
-		} else if (!houseFilterCheckinStart.equals(other.houseFilterCheckinStart))
+		if (houseFilterCheckinStart != other.houseFilterCheckinStart)
 			return false;
 		if (houseFilterCheckinTerm != other.houseFilterCheckinTerm)
 			return false;
@@ -317,6 +310,7 @@ public class HouseFilterVo implements Serializable{
 				+ houseFilterPrice + ", shutdownList=" + shutdownList + ", checkList=" + checkList + "]";
 	}
 
+	
 	
 	
 }
