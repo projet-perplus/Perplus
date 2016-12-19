@@ -31,7 +31,8 @@
 			<div class="row panel-MT">
 				<div class="col-md-12">
 					<div class="col-md-2 col-sm-2 col-xs-12 rightform leftform">
-						<span class="btn btn-primary" style="margin-bottom:15px !important;">날짜</span>
+						<span class="btn btn-primary"
+							style="margin-bottom: 15px !important;">날짜</span>
 					</div>
 
 
@@ -108,12 +109,13 @@
 				</div>
 			</div>
 
-			<div class="row">
+			<div class="row " style="margin-right:20px">
 				<div class="col-md-12"
 					style="overflow: scroll; border: 2px solid #ccc; height: 255px">
 
 					<!-- 목록 하나 -->
-					<div class="col-md-3 col-sm-4 col-xs-4" style="margin: 24px;">
+					<div class="col-md-3 col-sm-4 col-xs-4"
+						style="margin: 12px 24px 12px 24px;">
 						<div class="row con1">
 							<div class="row con1">
 								<div class="col-md-12" style="padding: 0px;">
@@ -126,17 +128,27 @@
 								<div class="row con2">
 									<div class="col-md-12">
 										<span class="col-md-12"
-											style="text-align: center; padding: 5px;">숙소 이름
+											style="text-align: center; padding: 5px; font-size:12px;">숙소 이름
 											request</span>
+									</div>
+								</div>
+							</div>
+
+							<div class="row subcon2" style="border: 1px solid #ccc;">
+								<div class="row con3">
+									<div class="col-md-12">
+										<span class="col-md-12"
+											style="text-align: center; padding: 5px; font-size:12px;">가격 request</span>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 					<!-- 목록 하나 -->
-
+	
 					<!-- 목록 하나 -->
-					<div class="col-md-3 col-sm-4 col-xs-4" style="margin: 24px;">
+					<div class="col-md-3 col-sm-4 col-xs-4"
+						style="margin: 12px 24px 12px 24px;">
 						<div class="row con1">
 							<div class="row con1">
 								<div class="col-md-12" style="padding: 0px;">
@@ -149,17 +161,28 @@
 								<div class="row con2">
 									<div class="col-md-12">
 										<span class="col-md-12"
-											style="text-align: center; padding: 5px;">숙소 이름
+											style="text-align: center; padding: 5px; font-size:12px;">숙소 이름
 											request</span>
+									</div>
+								</div>
+							</div>
+
+							<div class="row subcon2" style="border: 1px solid #ccc;">
+								<div class="row con3">
+									<div class="col-md-12">
+										<span class="col-md-12"
+											style="text-align: center; padding: 5px; font-size:12px;">가격 request</span>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 					<!-- 목록 하나 -->
-
+					
+					
 					<!-- 목록 하나 -->
-					<div class="col-md-3 col-sm-3 col-xs-4" style="margin: 24px;">
+					<div class="col-md-3 col-sm-4 col-xs-4"
+						style="margin: 12px 24px 12px 24px;">
 						<div class="row con1">
 							<div class="row con1">
 								<div class="col-md-12" style="padding: 0px;">
@@ -172,18 +195,27 @@
 								<div class="row con2">
 									<div class="col-md-12">
 										<span class="col-md-12"
-											style="text-align: center; padding: 5px;">숙소 이름
+											style="text-align: center; padding: 5px; font-size:12px;">숙소 이름
 											request</span>
+									</div>
+								</div>
+							</div>
+
+							<div class="row subcon2" style="border: 1px solid #ccc;">
+								<div class="row con3">
+									<div class="col-md-12">
+										<span class="col-md-12"
+											style="text-align: center; padding: 5px; font-size:12px;">가격 request</span>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 					<!-- 목록 하나 -->
-
-
+					
 					<!-- 목록 하나 -->
-					<div class="col-md-3 col-sm-3 col-xs-4" style="margin: 24px;">
+					<div class="col-md-3 col-sm-4 col-xs-4"
+						style="margin: 12px 24px 12px 24px;">
 						<div class="row con1">
 							<div class="row con1">
 								<div class="col-md-12" style="padding: 0px;">
@@ -196,18 +228,27 @@
 								<div class="row con2">
 									<div class="col-md-12">
 										<span class="col-md-12"
-											style="text-align: center; padding: 5px;">숙소 이름
+											style="text-align: center; padding: 5px; font-size:12px;">숙소 이름
 											request</span>
+									</div>
+								</div>
+							</div>
+
+							<div class="row subcon2" style="border: 1px solid #ccc;">
+								<div class="row con3">
+									<div class="col-md-12">
+										<span class="col-md-12"
+											style="text-align: center; padding: 5px; font-size:12px;">가격 request</span>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 					<!-- 목록 하나 -->
-
-
+					
 					<!-- 목록 하나 -->
-					<div class="col-md-3 col-sm-3 col-xs-4" style="margin: 24px;">
+					<div class="col-md-3 col-sm-4 col-xs-4"
+						style="margin: 12px 24px 12px 24px;">
 						<div class="row con1">
 							<div class="row con1">
 								<div class="col-md-12" style="padding: 0px;">
@@ -220,14 +261,57 @@
 								<div class="row con2">
 									<div class="col-md-12">
 										<span class="col-md-12"
-											style="text-align: center; padding: 5px;">숙소 이름
+											style="text-align: center; padding: 5px; font-size:12px;">숙소 이름
 											request</span>
+									</div>
+								</div>
+							</div>
+
+							<div class="row subcon2" style="border: 1px solid #ccc;">
+								<div class="row con3">
+									<div class="col-md-12">
+										<span class="col-md-12"
+											style="text-align: center; padding: 5px; font-size:12px;">가격 request</span>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 					<!-- 목록 하나 -->
+					
+					<!-- 목록 하나 -->
+					<div class="col-md-3 col-sm-4 col-xs-4"
+						style="margin: 12px 24px 12px 24px;">
+						<div class="row con1">
+							<div class="row con1">
+								<div class="col-md-12" style="padding: 0px;">
+									<img src="/Perplus/css/image/photo0.jpg" alt="asd"
+										style="width: 100%; height: 150px" />
+								</div>
+							</div>
+
+							<div class="row subcon1" style="border: 1px solid #ccc;">
+								<div class="row con2">
+									<div class="col-md-12">
+										<span class="col-md-12"
+											style="text-align: center; padding: 5px; font-size:12px;">숙소 이름
+											request</span>
+									</div>
+								</div>
+							</div>
+
+							<div class="row subcon2" style="border: 1px solid #ccc;">
+								<div class="row con3">
+									<div class="col-md-12">
+										<span class="col-md-12"
+											style="text-align: center; padding: 5px; font-size:12px;">가격 request</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- 목록 하나 -->
+
 
 
 
