@@ -16,7 +16,7 @@
 	$(function() {
 		$("#datepicker").multiDatesPicker(
 				{
-					setMonth : '1990-01',
+					defaultDate : '1990-01-01',
 					altField : '#shutdownDate',
 					monthNames : [ '1월', '2월', '3월', '4월', '5월', '6월', '7월',
 							'8월', '9월', '10월', '11월', '12월' ],
