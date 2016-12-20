@@ -6,7 +6,7 @@ insert into HOUSEFILTER values(1,'화장실',20,'다인실',2,'경기도 용인�
 
 
 
-insert into HOUSEZZIM values(1,25,'bbb')
+insert into HOUSEZZIM values(1,2,'bbb')
 
 insert into CHECKLIST values(CHECKLIST_SEQ.nextval,1,16,'안전카드');
 insert into CHECKLIST values(CHECKLIST_SEQ.nextval,1,15,'다리미');
