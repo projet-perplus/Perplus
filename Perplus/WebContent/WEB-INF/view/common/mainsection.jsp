@@ -5,7 +5,16 @@ function searchHouseByStartFilter(){
 	var checkIn=$("#dpd1").val();
 	var checkOut=$("#dpd2").val();
 	var number=$("#guestNumber").val();
-	var url ="/Perplus/housesearch.do?guestNumber="+number+"&location="+location+"&checkIn="+checkIn+"&checkOut="+checkOut;
+	var url ="/Perplus/housesearch.do?guestNumber="+number;
+	if(checkIn.length!=0){
+		url+="&checkIn="+checkIn;
+	}
+	if(checkOut.length!=0){
+		url+="&checkOut="+checkOut;
+	}
+	if(location.length!=0){
+		url+="&location="+location;
+	}
 	window.location.href=url;
 }
 </script>
