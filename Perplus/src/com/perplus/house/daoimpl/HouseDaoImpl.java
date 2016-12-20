@@ -54,4 +54,10 @@ public class HouseDaoImpl implements HouseDao{
 	public List<HouseVo> selectHouseListByFilter(HashMap map) {
 		return session.selectList("house.selectHouseListByFilter",map);
 	}
+
+	@Override
+	public List<HouseVo> selectHouseBySectionAndFilter(HashMap map) {
+		return session.selectList("house.selectHouseBySectionAndFilter",map);
+	}
+	
 }

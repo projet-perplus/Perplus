@@ -7,6 +7,8 @@
 function getMarkerLocation(){
 	var url ="/Perplus/housefacility.do?lat="+markerArray[0].getPosition().lat().toString()+"&lng="
 	+markerArray[0].getPosition().lng().toString();
+	
+	//다음 url로 링크
 	location.href=url;
 }
 </script>
@@ -53,8 +55,9 @@ function getMarkerLocation(){
 							<span>숙소 의 위치를 알려주세요</span>	
 						</div>
 						<input type="hidden" id="stage" value="register">
-<%-- 						<input type="hidden" id="location" value="${reqeustScope.location}"> --%>
-						<input type="hidden" id="location" value="경기도 용인시 수지구">
+						<input type="hidden" id="location" value="${reqeustScope.location}">
+						<!-- 예시... 위로 바꾸세요 -->
+<!-- 						<input type="hidden" id="location" value="경기도 용인시 수지구"> -->
 						<div id="map-canvas" style="width: 100%; height: 400px"></div>
 					</div>
 				</div>

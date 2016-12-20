@@ -44,6 +44,8 @@
 <div class="basicbody">
 	<div class="container">
 		<form action="${initParam.rootPath}/house/eightStep.do">
+			<input type="hidden" name="houseSerial"
+				value=<%=request.getParameter("houseSerial")%>>
 			<div class="row row-condensed space-4">
 				<label class="text-left col-md-7 col-md-offset-2"> <span>요금
 						설정</span>
@@ -62,7 +64,7 @@
 						<div class="col-md-offset-1 col-md-10">
 							<div class=" col-md-8">
 								<div class="form-group">
-									<input type="text" class="form-control" name="basicprice"
+									<input type="number" class="form-control" name="houseFilterPrice"
 										placeholder="KRW/박" required>
 								</div>
 							</div>

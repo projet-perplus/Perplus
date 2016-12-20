@@ -123,7 +123,7 @@ northEastLat
 northEashLng
 범위 지정
  -->
-<select id="selectMarkerBySection" parameterType="hashMap" resultType="hashmap">
+<select id="selectMarkerBySection" parameterType="hashMap" resultType="ReviewVo">
 	select 
 		review_serial reviewSerial, 
 		member_email memberEmail,

@@ -1,38 +1,67 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
+<%@ taglib prefix ="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script
 	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWDGjKV2YFKGM5q6gtx-J5GcJTa2wLDQU"
 	type="text/javascript"></script>
 <script src="/Perplus/js/map.js"></script>
-<script>
-	$(function() {
-		$("#slider-range").slider({
-			range : true,
-			min : 0,
-			max : 500,
-			values : [ 75, 300 ],
-			slide : function(event, ui) {
-				$("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
-			}
-		});
-		$("#amount").val(
-				"$" + $("#slider-range").slider("values", 0) + " - $"
-						+ $("#slider-range").slider("values", 1));
+<script src="/Perplus/js/search-map.js">
+</script>
+<script type="text/javascript">
+$(document).ready(function(){
+	var location;
+	var checkIn;
+	var checkOut;
+	var guestNumber;
+	if(decodeURI(window.location.search).includes('location')){
+		location=getQueryString('location');
+		$("#location").val(location);
+	}
+	if(decodeURI(window.location.search).includes('checkIn')){
+		checkIn=getQueryString('checkIn');
+	}
+	if(decodeURI(window.location.search).includes('checkOut')){
+		checkOut=getQueryString('checkOut');
+	}
+	if(decodeURI(window.location.search).includes('guestNumber')){
+		guestNumber=getQueryString('guestNumber');
+	}
+	$("#amount").on("input",printByFilter());
+});
+
+$(function() {
+
+	$("#slider-range").slider({
+		range : true,
+		min : 0,
+		max : 200000,
+		values : [ 30000, 80000 ],
+		slide : function(event, ui) {
+			$("#amount").val("₩" + ui.values[0] + " - ₩" + ui.values[1]);
+		}
 	});
+	$("#amount").val(
+			"₩" + $("#slider-range").slider("values", 0) + " - ₩"
+					+ $("#slider-range").slider("values", 1));
+	$("#slider-range").on("slidestop",function(){
+		printByFilter();
+	});
+});
+function printByFilter(){
+	
+}
 </script>
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-7 col-sm-12 col-xs12" style="padding-left: 0px">
-			<input type="hidden" id="stage" value="travel"> <input
-				type="hidden" id="location">
+			<input type="hidden" id="stage" value="search"> 
+			<input type="hidden" id="location">
 			<div id="map-canvas" style="width: 100%; height: 600px;"></div>
 		</div>
 		<div class="col-md-5 col-sm-12 col-xs-12">
 
 			<div class="row panel-MT">
 				<div class="col-md-12">
-<<<<<<< HEAD
 				<!-- 숙소 출력 -->
-=======
 					<div class="col-md-2 col-sm-2 col-xs-12 rightform leftform">
 						<span class="btn btn-primary"
 							style="margin-bottom: 15px !important;">날짜</span>
@@ -55,8 +84,11 @@
 					</div>
 
 					<div class="col-md-3 col-sm-3 col-xs-4 ">
-						<select class="form-control ">
-							<option>한명</option>
+						<select class="form-control " onchange="printByFilter()">
+							<option>인원수</option>
+							<c:forEach var="i" begin="2" end="100" step="1">
+								<option>${i}</option>
+							</c:forEach>
 						</select>
 					</div>
 				</div>
@@ -67,13 +99,13 @@
 						<button class="btn btn-primary">숙소 유형</button>
 					</div>
 					<div class="col-md-2 col-xs-offset-1 col-xs-3  rightform leftform">
-						<label><input type="checkbox" value="">집전체</label>
+						<label><input type="radio" name="house-type" onchange="printByFilter()">집전체</label>
 					</div>
 					<div class="col-md-2 col-xs-3 rightform leftform">
-						<label><input type="checkbox" value="">개인실</label>
+						<label><input type="radio" name="house-type" onchange="printByFilter()">개인실</label>
 					</div>
 					<div class="col-md-2 col-xs-3 rightform leftform">
-						<label><input type="checkbox" value="">다인실</label>
+						<label><input type="radio" name="house-type" onchange="printByFilter()">다인실</label>
 					</div>
 				</div>
 			</div>
@@ -89,8 +121,9 @@
 						style="padding-left: 0px;">
 						<p>
 							<label for="amount" style="padding-left: 0px;">Price
-								range:</label> <input type="text" id="amount" readonly
-								style="border: 0; color: #f6931f; font-weight: bold;">
+								range:</label> 
+								<input type="text" id="amount"  readonly style="border: 0; color: #f6931f; font-weight: bold;"
+								>
 						</p>
 
 						<div id="slider-range"></div>
@@ -315,10 +348,6 @@
 					</div>
 					<!-- 목록 하나 -->
 
-
-
-
->>>>>>> branch 'master' of https://github.com/projet-perplus/Perplus.git
 				</div>
 			</div>
 		</div>

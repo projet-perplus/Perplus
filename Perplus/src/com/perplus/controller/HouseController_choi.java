@@ -1,5 +1,8 @@
 package com.perplus.controller;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -9,12 +12,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.perplus.house.serviceimpl.HouseServiceImpl_choi;
 import com.perplus.house.vo.CheckListVo;
 import com.perplus.house.vo.CodetableVo;
 import com.perplus.house.vo.HouseFilterVo;
 import com.perplus.house.vo.HouseVo;
+import com.perplus.house.vo.ShutdownVo;
 
 @Controller
 @RequestMapping("/house")
@@ -30,17 +35,6 @@ public class HouseController_choi {
 		System.out.println();
 		return "forward:/basicinfo.do";
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	@RequestMapping("/oneStep.do")//1step commit 하는 컨트롤러
 	public String oneStepHouseRegister(@ModelAttribute HouseVo houseVo, HttpServletRequest request){
@@ -71,16 +65,6 @@ public class HouseController_choi {
 		return "redirect:/housetypeandlocation.do?houseSerial="+houseSerial;
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	@RequestMapping("/twoStep.do")//2step commit하는 컨트롤러
 	public String twoStepHouseRegister(@ModelAttribute HouseFilterVo houseFilterVo,HttpServletRequest request){
 		System.out.println("twoStep.do");
@@ -107,17 +91,6 @@ public class HouseController_choi {
 		System.out.println();
 		return "forward:/houselocation.do?houseSerial="+houseSerial;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	@RequestMapping("/threeStep.do")//3step commit하는 컨트롤러
@@ -147,7 +120,7 @@ public class HouseController_choi {
 	
 	
 	@RequestMapping("/fourStep.do")//4step commit하는 컨트롤러
-	public String fourStepHouseRegister(@RequestParam int houseSerial,HttpServletRequest request, @RequestParam int houseFilterBedroomNumber,@RequestParam int houseFilterBedNumber,@RequestParam int houseFilterBathroomNumber){
+	public String fourStepHouseRegister(@RequestParam int houseSerial,MultipartHttpServletRequest requestp ,HttpServletRequest request, @RequestParam int houseFilterBedroomNumber,@RequestParam int houseFilterBedNumber,@RequestParam int houseFilterBathroomNumber){
 		String[] convenientFacilityList = request.getParameterValues("convenientFacility");//편의시설
 		String[] secureFacilityList = request.getParameterValues("secureFacility");//안전시설
 		String[] commonFacilityList = request.getParameterValues("commonFacility");//공용시설
@@ -168,13 +141,13 @@ public class HouseController_choi {
 		if(secureFacilityList!=null&&secureFacilityList.length!=0){
 			for(int i = 0; i<secureFacilityList.length;i++){
 				System.out.println(secureFacilityList[i]);
-				service.insertChecklist(new CheckListVo(0, houseSerial, 1, secureFacilityList[i]));
+				service.insertChecklist(new CheckListVo(0, houseSerial, 2, secureFacilityList[i]));
 			}
 		}
 		if(commonFacilityList!=null&&commonFacilityList.length!=0){
 			for(int i = 0; i<commonFacilityList.length;i++){
 				System.out.println(commonFacilityList[i]);
-				service.insertChecklist(new CheckListVo(0, houseSerial, 1, commonFacilityList[i]));
+				service.insertChecklist(new CheckListVo(0, houseSerial, 3, commonFacilityList[i]));
 			}
 		}
 		
@@ -218,7 +191,22 @@ public class HouseController_choi {
 	
 	
 	@RequestMapping("/sixStep.do")//6step commit하는 컨트롤러
-	public String sixStepHouseRegister(@RequestParam int houseSerial){
+	public String sixStepHouseRegister(@RequestParam int houseSerial, HttpServletRequest request,
+			@RequestParam int houseFilterCheckinTerm,@RequestParam int houseFilterCheckinStart,@RequestParam int houseFilterCheckinEnd,
+			@RequestParam int houseFilterReservationTerm,@RequestParam int houseFilterBakMin,@RequestParam int houseFilterBakMax
+			){
+		
+		HouseFilterVo houseFilter = service.selectHouseFilter(houseSerial);
+		
+		houseFilter.setHouseFilterCheckinTerm(houseFilterCheckinTerm);
+		houseFilter.setHouseFilterCheckinStart(houseFilterCheckinStart);
+		houseFilter.setHouseFilterCheckinEnd(houseFilterCheckinEnd);
+		houseFilter.setHouseFilterReservationTerm(houseFilterReservationTerm);
+		houseFilter.setHouseFilterBakMin(houseFilterBakMin);
+		houseFilter.setHouseFilterBakMax(houseFilterBakMax);
+		
+		service.updateHouseFilter(houseFilter);
+		
 		System.out.println("sixStep");
 		return "redirect:/house/sevenStepBefore.do?houseSerial="+houseSerial;
 	}
@@ -240,7 +228,22 @@ public class HouseController_choi {
 	
 	
 	@RequestMapping("/sevenStep.do")//7step commit하는 컨트롤러
-	public String sevenStepHouseRegister(@RequestParam int houseSerial){
+	public String sevenStepHouseRegister(@RequestParam int houseSerial, @RequestParam String shutdownDateList, HttpServletRequest request) throws ParseException{
+		System.out.println(shutdownDateList);
+		String[] shutdownDates = shutdownDateList.split(", ");
+		
+		Date shutdownDate = null;
+		
+		ShutdownVo shutdown = null;
+		if(shutdownDates!=null&&shutdownDates.length!=0){
+			for(int i = 0;i<shutdownDates.length;i++){
+				SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
+				shutdownDate = transFormat.parse(shutdownDates[i]);
+				
+				shutdown = new ShutdownVo(0, houseSerial, shutdownDate);
+				service.insertShutdown(shutdown);
+			}
+		}
 		System.out.println("sevenStep");
 		return "redirect:/house/eightStepBefore.do?houseSerial="+houseSerial;
 	}
@@ -261,7 +264,13 @@ public class HouseController_choi {
 	
 	
 	@RequestMapping("/eightStep.do")//8step commit하는 컨트롤러
-	public String eightStepHouseRegister(){
+	public String eightStepHouseRegister(@RequestParam int houseSerial, @RequestParam int houseFilterPrice){
+		HouseFilterVo houseFilter = service.selectHouseFilter(houseSerial);
+		
+		houseFilter.setHouseFilterPrice(houseFilterPrice);
+		
+		service.updateHouseFilter(houseFilter);
+		
 		System.out.println("eightStep");
 		return "redirect:/hostingcomplate.do";
 	}	

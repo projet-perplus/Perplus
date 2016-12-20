@@ -16,6 +16,7 @@ const MARKER_CONSTANT_RESTAURANT = 212;
 const MARKER_CONSTANT_HOUSE = 213;
 const MARKER_CONSTANT_REGISTER = 214;
 //맵이 로딩되는 페이지를 알려주는 state
+//1.review 2.register 3.search
 var stage ;
 
 //맵 상의 마커를 보관할 array
@@ -63,9 +64,7 @@ $(function() {
 		
 		// 리뷰용 이벤트
 		if(stage == 'review'){
-			alert('3');
 			addMapclickEventForReview();
-			alert('3');
 			google.maps.event.addListener(map, 'idle',function(){
 				resetMapMarker();
 			});
@@ -88,7 +87,6 @@ function locationSearch(){
 	if(geoLocation==null){
 		return;
 	}
-	alert(geoLocation.value);
 	
 	geocoder.geocode({
 		'address' : geoLocation.value
@@ -165,8 +163,8 @@ function placeMarkerList(southWestLat,southWestLng,northEastLat,northEastLng){
 		dataType : "JSON",
 		success:function(obj){
 			$.each(obj,function(){
-				var markerLatlng = new google.maps.LatLng(this.REVIEWMARKERX, this.REVIEWMARKERY);
-				placeMarker(this.REVIEWSERIAL,markerLatlng,this.REVIEWMARKERCONSTANT);
+				var markerLatlng = new google.maps.LatLng(this.reviewMarkerX, this.reviewMarkerY);
+				placeMarker(this.reviewSerial,markerLatlng,this.reviewMarkerConstant);
 			});
 			if(startMarker!=null){
 				startMarker.setAnimation(google.maps.Animation.BOUNCE);
