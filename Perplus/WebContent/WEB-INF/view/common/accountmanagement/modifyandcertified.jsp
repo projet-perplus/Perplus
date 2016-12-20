@@ -55,6 +55,8 @@
 				return false;
 			}
 		});
+		
+		
 		/*썸네일 */
 		var file = document.querySelector('#getfile');
 
@@ -92,7 +94,8 @@
 										width="200" height="200" style="border: solid 2px #ddd"
 										alt="로컬에 있는 이미지가 보여지는 영역">
 								</div>
-								<div class="col-md-offset-5 col-md-7 col-lg-5 col-xs-offset-4 col-xs-4">
+								<div
+									class="col-md-offset-5 col-md-7 col-lg-5 col-xs-offset-4 col-xs-4">
 									<label class="btn btn-success" style="margin-top: 10px;">사진
 										등록 <input type="file" name="memberPictureFile" id="getfile"
 										accept="image/*" value="사진등록" style="display: none;" />
@@ -106,7 +109,8 @@
 										src="/Perplus/memberPicture/${sessionScope.login_info.memberPicture}"
 										width="200" height="200" style="border: solid 2px #ddd">
 								</div>
-								<div class="col-lg-offset-6 col-md-offset-7 col-md-4 col-sm-offset-7 col-sm-4 col-xs-offset-5">
+								<div
+									class="col-lg-offset-6 col-md-offset-7 col-md-4 col-sm-offset-7 col-sm-4 col-xs-offset-5">
 									<a href="${initParam.rootPath}/member/memberpictureremove.do">
 										<button id="deleteMemberPicture" type="button"
 											class="btn btn-danger" style="margin-top: 10px;">삭제</button>
@@ -210,27 +214,27 @@
 					<div class="row row-maginTB">
 						<label class="text-left col-md-offset-2 col-md-2"> 거주지역 </label>
 						<div class="col-md-8">
-							
-								<div class="col-md-4">
-									<div class="form-group">
-										<select class="form-control" name="memberLocation">
-											<option>선택</option>
-											<option>서울</option>
-											<option>광주</option>
-											<option>대구</option>
-											<option>대전</option>
-											<option>부산</option>
-											<option>울산</option>
-											<option>인천</option>
-											<option>제주도</option>
-											<option>울릉도</option>
-											<option>독도</option>
-											<option>기타</option>
-											<option>해외</option>
-										</select>
-									</div>
+
+							<div class="col-md-4">
+								<div class="form-group">
+									<select class="form-control" name="memberLocation">
+										<option>선택</option>
+										<option>서울</option>
+										<option>광주</option>
+										<option>대구</option>
+										<option>대전</option>
+										<option>부산</option>
+										<option>울산</option>
+										<option>인천</option>
+										<option>제주도</option>
+										<option>울릉도</option>
+										<option>독도</option>
+										<option>기타</option>
+										<option>해외</option>
+									</select>
 								</div>
-						
+							</div>
+
 						</div>
 					</div>
 
@@ -250,13 +254,12 @@
 						<label class="text-left col-md-offset-2 col-md-2"> 비밀번호 </label>
 						<div class="col-md-8">
 
-								<div class="col-md-4">
-									<div class="form-group">
-										<input type="password" class="form-control"
-											id="modifyPassword" name="memberPassword"
-											placeholder="비밀번호 확인" required>
-									</div>
+							<div class="col-md-4">
+								<div class="form-group">
+									<input type="password" class="form-control" id="modifyPassword"
+										name="memberPassword" placeholder="비밀번호 확인" required>
 								</div>
+							</div>
 
 						</div>
 					</div>
@@ -352,13 +355,17 @@
 	</div>
 	<div class="panel-body">
 		<c:choose>
-		
+
 			<c:when
 				test="${sessionScope.login_info.memberIdentification == null}">
 				<form action="${initParam.rootPath}/member/identification.do"
 					method="post" enctype="multipart/form-data">
 					<div class="panel-body">
-						
+
+
+						<!-- <img id="blah" alt="your image" width="100" height="100" /> <input
+							type="file"
+							onchange="document.getElementById('blah').src = window.URL.createObjectURL(this.files[0])"> -->
 
 						<input name="memberPictureFile" type="file" value="신분증 등록" />
 
@@ -373,13 +380,13 @@
 					</div>
 				</form>
 			</c:when>
-			
+
 			<c:otherwise>
 				<div class="panel-body" style="text-align: center">
 					<span style="font-size: 20px; color: blue;">인증되었습니다.</span>
 				</div>
 			</c:otherwise>
-			
+
 		</c:choose>
 	</div>
 </div>

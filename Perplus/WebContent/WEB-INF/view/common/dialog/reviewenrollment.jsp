@@ -4,20 +4,31 @@
 <script
 	src="https://rawgit.com/andrewng330/PreviewImage/master/preview.image.min.js"></script>
 <script type="text/javascript">
+
 	$(document).ready(function() {
-		var count = 0;
-		$("input[name=file1]").previewimage({
-			div : ".preview",
-			imgwidth : 150,
-			imgheight : 100
-		});
-		count++;
-		if (count > 5) {
-			$(".addImage").hide();
-		}
-		if (count < 5) {
-			$(".addImage").show();
-		}
+		
+			$(".preview>div").on("click","p",function() {
+				  alert("a");
+			});
+				
+			$(".parentImg").on("change",".addImage",function() {
+				  alert($('.preview img').length);
+
+				  if($('.preview img').length == 4){
+					   $(".addImage").hide();				
+					} 
+			});
+				
+		
+
+
+			$("input[name=memberPictureFile]").previewimage({
+				div : ".preview",
+				imgwidth : 150,
+				imgheight : 100
+			});
+			
+		
 	});
 </script>
 <style>
@@ -46,23 +57,28 @@
 			method="post" enctype="multipart/form-data" id="myform">
 			<div class="modal-content" style="padding: 0px;">
 				<div class="modal-header">
+
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
 					<div class="title">
 						<div class="row">
-							<div class="col-md-4 col-sm-4 col-xs-4">
+							<div class="col-md-4 col-sm-4 col-xs-4" style="margin-top: 5px;">
 								<h4 class="modal-title">리뷰 등록</h4>
 							</div>
-							<div class="col-md-offset-4 col-md-3 col-sm-offset-4 col-sm-3 col-xs-offset-2 col-xs-5">
+							<div
+								class="col-md-offset-4 col-md-3 col-sm-offset-4 col-sm-3 col-xs-offset-2 col-xs-5">
 								<select name="marker" class="form-control" autocomplete="off"
 									required>
 									<option value="" selected>마커 종류</option>
-									<option value=1>1</option>
-									<option value=2>2</option>
+									<option value=1>음식</option>
+									<option value=2>명소</option>
 								</select>
 							</div>
 						</div>
 					</div>
 				</div>
+
+
+
 				<div class="modal-body">
 					<div class="payoutpreferencedialog">
 						<div class="row row-condensed space-4">
@@ -106,13 +122,14 @@
 
 						<div class="row row-condensed space-4">
 							<label class="text-left col-md-offset-1 col-md-2">사진 등록</label>
-							<div class="col-md-9 col-xs-9 col-sm-9">
+							<div class="col-md-9 col-xs-9 col-sm-9 parentImg">
 								<span>이미지를 추가하세요(최대 5장)</span>
 								<div class="preview"></div>
-								<label class="btn btn-success addImage"> 이미지 추가&hellip;
-									<input type="file" name="file1" accept="image/*"
-									style="border: 0 !important; display: none;">
+								<label class="btn btn-success addImage"> 이미지 추가&hellip; 
+									<input type="file" name="memberPictureFile" id="getfile" accept="image/*" multiple="multiple"
+									style="border: 0 !important; display: none;" >
 								</label>
+
 							</div>
 						</div>
 					</div>

@@ -245,19 +245,24 @@
 		<c:if
 			test="${requestScope.review.memberEmail == sessionScope.login_info.memberEmail}">
 			<div class="row row-condensed space-4">
-				<div class="col-md-offset-9">
+				<div class="col-md-offset-10 col-md-1">
 					<a href="#" data-toggle="modal" data-target="#reviewmodify">
-						<button class="btn btn-default">수정</button>
-					</a> <a
-						href="${initParam.rootPath}/review/removeReview.do?reviewSerial=${requestScope.review.reviewSerial}">
-						<button type="submit" class="btn btn-default">삭제</button>
+						<button class="btn btn-success">수정</button>
 					</a>
-				</div>
+				</div>	
+				<div class="col-md-1">
+				
+					 <a
+						href="${initParam.rootPath}/review/removeReview.do?reviewSerial=${requestScope.review.reviewSerial}">
+						<button type="submit" class="btn btn-danger">삭제</button>
+					</a>
+				</div>	
+				
 			</div>
 		</c:if>
 	</div>
-	
-		<!-- 댓글 입력 폼 -->
+
+	<!-- 댓글 입력 폼 -->
 	<c:if test="${sessionScope.login_info!=null }">
 		<form action="${initParam.rootPath}/review/registerReviewComment.do"
 			id="commentForm">
@@ -266,7 +271,7 @@
 				type="hidden" name="memberEmail"
 				value="${sessionScope.login_info.memberEmail }">
 			<div class="row row-condensed space-4">
-				<div class="col-md-1">
+				<div class="col-md-1 col-sm-1">
 					<div class="stars stars-example-bootstrap">
 						<select id="commentRating" name="commentRating">
 							<option value="">평점</option>
@@ -278,12 +283,12 @@
 						</select>
 					</div>
 				</div>
-				<div class="col-md-2">작성자</div>
-				<div class="col-md-7">
+				<div class="col-md-2 col-sm-2">작성자</div>
+				<div class="col-md-7 col-sm-7">
 					<input type="text" class="form-control" name="commentContent"
 						id="commentContent" placeholder="댓글을 입력하세요">
 				</div>
-				<div class="col-md-2">
+				<div class="col-md-2 col-sm-2">
 					<!-- <button type="submit" class="btn btn-default">작성</button> -->
 					<input type="submit" value="작성" class="btn btn-default"
 						id="commentBnt">
@@ -298,7 +303,8 @@
 
 		<form action="${initParam.rootPath }/review/modifyReviewComment.do"
 			id="modifyCommentForm">
-			<div class="row row-condensed space-4" id="commentArea">
+			<div class="row row-condensed space-4" id="commentArea"
+				style="margin-bottom: 50px;">
 				<input type="hidden" name="reviewSerial"
 					value="${comment.reviewSerial}" /> <input type="hidden"
 					name="memberEmail" value="${comment.memberEmail }" /> <input
@@ -319,7 +325,7 @@
 					test="${comment.memberEmail == sessionScope.login_info.memberEmail}">
 					<div class="col-md-1" id="modifyBtn">
 						<input type="button" value="수정"
-							class="btn btn-default commentModifyBnt" id="${index.index }">
+							class="btn btn-success commentModifyBnt" id="${index.index }">
 					</div>
 				</c:if>
 
@@ -328,7 +334,7 @@
 					<div class="col-md-1" id="removeAndReset">
 						<a
 							href="${initParam.rootPath}/review/removeReviewComment.do?reviewSerial=${requestScope.review.reviewSerial}&commentSerial=${comment.commentSerial}">
-							<input type="button" value="삭제" class="btn btn-default"
+							<input type="button" value="삭제" class="btn btn-danger"
 							id="commentBnt">
 						</a>
 					</div>
