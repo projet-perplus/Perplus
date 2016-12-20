@@ -12,6 +12,15 @@
 		from HOUSECOMMENT
 		where member_email = #{value}
 	</select>
+	
+	<select id="selectHouseCommentByCommentSerial" parameterType="_int"
+		resultType="HouseCommentVo">
+		select house_serial houseSerial, member_email memberEmail,
+		comment_content commentContent, comment_rating commentRating,
+		comment_time commentTime
+		from HOUSECOMMENT
+		where comment_serial=#{value}
+	</select>
 
 	<!-- houseComment house단위로 select(하우스 상세정보에서 조회하는 select문) -->
 	<select id="selectHouseCommentBySerial" parameterType="map"

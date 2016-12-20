@@ -123,10 +123,11 @@
 		HOUSE_TITLE = #{houseTitle}, 
 		HOUSE_CONTENT = #{houseContent},
 		HOUSE_NECESSARY_CONDITION = #{houseNecessaryCondition}, 
-		HOUSER_RATING = #{houseRating}, 
+		HOUSE_RATING = #{houseRating}, 
 		HOUSE_MARKER_X = #{houseMarkerX}, 
 		HOUSE_MARKER_Y = #{houseMarkerY}, 
 		HOUSE_MARKER_CONSTANT = #{houseMarkerConstant}
+		where house_serial=#{houseSerial}
 	</update>
 	<!-- 지울때는 HouseSerial을 가지고 지우도록 한다. -->
 	<delete id="deleteHouseByHouseSerial" parameterType="_int">

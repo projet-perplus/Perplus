@@ -4,6 +4,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -27,14 +29,21 @@ public class HouseController_nr {
 	private HouseService_nr service;
 	@Autowired
 	private MemberService memberService;
-	
+
 	/******************하우스 상세 페이지 조회*****************/
 	@RequestMapping("/houseDetail")
-	public String getHouse(@RequestParam int houseSerial, ModelMap map,@RequestParam(defaultValue="1") int page){
+	public String getHouse(@RequestParam int houseSerial, ModelMap map,@RequestParam(defaultValue="1") int page,HttpServletRequest request){
+		String houseRating = request.getParameter("houseRating");
+		System.out.println(houseRating);
 		System.out.println(houseSerial);
 		HouseVo house = service.selectHouseForDetailPage(houseSerial);
 		List<HousePictureVo> picture= service.selectHousePictureForDetailPage(houseSerial);
 		Map<String,Object> comment = memberService.selectHouseCommentBySerial(houseSerial,page);
+		if(houseRating!=null){
+			int rating = Integer.parseInt(houseRating);
+			house.setHouseRating(rating);
+			service.modifyHouse(house);
+		}
 		System.out.println(comment.get("commentList"));
 		house.setHousePicture(picture);
 		map.put("house", house);
@@ -57,16 +66,16 @@ public class HouseController_nr {
 		houseComment.setCommentTime(new Date());
 		houseComment.setCommentSerial(1);
 		houseComment.setCommentContent(TextUtil.textToHtml(houseComment.getCommentContent()));
-		memberService.insertHouseComment(houseComment);
+		int houseRating = memberService.insertHouseComment(houseComment);
 		
-		return "redirect:/house/houseDetail.do?&houseSerial="+houseComment.getHouseSerial();
+		return "redirect:/house/houseDetail.do?houseSerial="+houseComment.getHouseSerial()+"&houseRating="+houseRating;
 	}
 	/******************하우스 코멘트 삭제*****************/
 	@RequestMapping("/removeHouseComment")
 	public String removeHouseComment(@RequestParam int commentSerial,@RequestParam int houseSerial){
 		System.out.println(commentSerial);
-		memberService.deleteHouseComment(commentSerial);	
-		return "redirect:/house/houseDetail.do?&houseSerial="+houseSerial;
+		int houseRating = memberService.deleteHouseComment(commentSerial);	
+		return "redirect:/house/houseDetail.do?houseSerial="+houseSerial+"&houseRating="+houseRating;
 	}
 
 }	

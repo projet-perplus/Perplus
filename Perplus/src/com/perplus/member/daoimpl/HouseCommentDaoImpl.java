@@ -61,5 +61,10 @@ public class HouseCommentDaoImpl implements HouseCommentDao{
 	public int deleteAllCommentBySerial(int houseSerial){
 		return session.delete("houseComment.deleteAllHouseComment",houseSerial);
 	}
+
+	@Override
+	public HouseCommentVo selectHouseCommentByCommentSerial(int CommentSerial) {
+		return session.selectOne("houseComment.selectHouseCommentByCommentSerial",CommentSerial);
+	}
 	
 }

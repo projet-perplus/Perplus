@@ -140,7 +140,7 @@ function printByFilter(){
 			</div>
 			<div class="row row-condensed space-4">
 				<div class="col-md-12">
-					<a href="${initParam.rootPath}/house/houseDetail.do?houseSerial=1"><button
+					<a href="${initParam.rootPath}/house/houseDetail.do?houseSerial=3"><button
 							class="btn btn-primary">숙소 상세 페이지</button></a>
 				</div>
 			</div>
