@@ -44,7 +44,7 @@
 			modifyMarkerFilter(markerArray);
 			resetMapMarker();
 		})
-
+	})
 /* 		$(".reviewDetail").on("click",function(){
 			$.ajax({
 				url:"/Perplus/review/showReview.do",
@@ -66,7 +66,7 @@
 				}
 			});
 		}); */
-	})
+	
 </script>
 
 <div class="container">

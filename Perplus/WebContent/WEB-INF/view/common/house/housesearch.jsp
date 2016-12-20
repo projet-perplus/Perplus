@@ -30,6 +30,9 @@
 
 			<div class="row panel-MT">
 				<div class="col-md-12">
+<<<<<<< HEAD
+				<!-- 숙소 출력 -->
+=======
 					<div class="col-md-2 col-sm-2 col-xs-12 rightform leftform">
 						<span class="btn btn-primary"
 							style="margin-bottom: 15px !important;">날짜</span>
@@ -315,6 +318,7 @@
 
 
 
+>>>>>>> branch 'master' of https://github.com/projet-perplus/Perplus.git
 				</div>
 			</div>
 		</div>

@@ -56,11 +56,11 @@ public class MapController {
 		HashMap<String,Double> map = new HashMap<>();
 		map.put("lat", Double.valueOf(lat));
 		map.put("lng", Double.valueOf(lng));
+		System.out.println(map);
 		ReviewVo review = reviewService.selectReviewByMarker(map);
 		int serial = review.getReviewSerial();
 		Map<String,Object> retMap = reviewService.getReviewCommentList(serial,page);
 		List<ReviewPictureVo> list = reviewService.getReviewPictureList(serial);
-		
 		review.setReviewComment((List<ReviewCommentVo>)retMap.get("list"));
 		modelMap.put("review", review);
 		modelMap.put("picture", list);
