@@ -36,6 +36,9 @@
 	display: inline-block;
 	text-align: center;
 }
+.previewimg>img{
+ width:100%;
+}
 
 .preview>div>img {
 	margin: 5px;
@@ -111,8 +114,8 @@
 						src="/Perplus/css/image/addimage.PNG" width="700" height="300" />
 
 
-					<label class="btn btn-success"> 이미지 추가&hellip; <input
-						type="file" name="pictureList"
+					<label class="btn btn-success mainimage"> 이미지 추가&hellip; <input
+						type="file" name="picture"
 						onchange="document.getElementById('blah').src = window.URL.createObjectURL(this.files[0])"
 						style="display: none;">
 					</label> <label class="btn btn-danger imageDelete">삭제</label>
@@ -123,9 +126,9 @@
 				<div class="col-md-offset-2 col-md-10 parentImg">
 
 
-					<span>서브 이미지를 추가하세요(최대4장)</span>
-					<div class="preview"></div>
-					<label class="btn btn-success addImage"> 이미지 추가&hellip; <input
+					<span style="margin-left: 30px;">서브 이미지를 추가하세요(최대4장)</span>
+					<div class="preview" style="padding-left: 30px;"></div>
+					<label class="btn btn-success addImage" style="margin-left: 35px;"> 이미지 추가&hellip; <input
 						type="file" id="getfile" name="pictureList" accept="image/*"
 						style="border: 0 !important; display: none;">
 					</label>
