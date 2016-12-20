@@ -20,7 +20,7 @@ function getQueryString(paramName){
 	}
 }
 
-function placeMarkerList(southWestLat,southWestLng,northEastLat,northEastLng){
+function getMarkerListByFilter(southWestLat,southWestLng,northEastLat,northEastLng){
 	$.ajax({
 		url : "/Perplus/map/markerall.do",
 		type:"post",

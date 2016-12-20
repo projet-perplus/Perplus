@@ -163,8 +163,8 @@ function placeMarkerList(southWestLat,southWestLng,northEastLat,northEastLng){
 		dataType : "JSON",
 		success:function(obj){
 			$.each(obj,function(){
-				var markerLatlng = new google.maps.LatLng(this.REVIEWMARKERX, this.REVIEWMARKERY);
-				placeMarker(this.REVIEWSERIAL,markerLatlng,this.REVIEWMARKERCONSTANT);
+				var markerLatlng = new google.maps.LatLng(this.reviewMarkerX, this.reviewMarkerY);
+				placeMarker(this.reviewSerial,markerLatlng,this.reviewMarkerConstant);
 			});
 			if(startMarker!=null){
 				startMarker.setAnimation(google.maps.Animation.BOUNCE);
