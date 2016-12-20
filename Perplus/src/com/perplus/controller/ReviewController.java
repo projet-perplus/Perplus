@@ -3,6 +3,7 @@ package com.perplus.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -42,9 +43,10 @@ public class ReviewController {
 	
 	/******************리뷰 글 등록*****************/
 	@RequestMapping(value="/registerReview.do", method=RequestMethod.POST)
-	public String registerReview(@Valid @ModelAttribute /* ReviewVo*/ReviewForm form, BindingResult result, @ModelAttribute ReviewPictureVo picture,ModelMap map, HttpServletRequest request, HttpSession session)
+	public String registerReview(@RequestParam(value="pictureList[]") MultipartFile[] files, @Valid @ModelAttribute /* ReviewVo*/ReviewForm form, BindingResult result ,ModelMap map, HttpServletRequest request, HttpSession session)
 												throws IllegalStateException, IOException{
-
+		
+		System.out.println(files.length);
 		boolean error=false;
 		if(result.hasErrors()){
 			error=true;
@@ -54,7 +56,9 @@ public class ReviewController {
 		ReviewVo reviewVo = new ReviewVo();
 		BeanUtils.copyProperties(form, reviewVo);
 
-		List<MultipartFile> files = picture.getPictureList();
+		//List<MultipartFile> files = picture.getPictureList();
+		ReviewPictureVo picture = new ReviewPictureVo();
+		
 		MemberVo member = (MemberVo)session.getAttribute("login_info");
 		int count = 1;
 

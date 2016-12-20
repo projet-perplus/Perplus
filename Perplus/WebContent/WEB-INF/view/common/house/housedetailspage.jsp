@@ -49,7 +49,7 @@
 			<div class="carousel slide" id="myCarousel">
 				<div class="carousel-inner">
 					<c:choose>
-						<c:when test="${empty requestScope.house.housePicture }">
+						<c:when test="${empty requestScope.picture}">
 							<div class="active item">
 								<img
 									src="${initParam.rootPath }/housePicture/no-images.png"
@@ -57,7 +57,7 @@
 							</div>
 						</c:when>
 						<c:otherwise>
-							<c:forEach items="${requestScope.house.housePicture}" var="picture">
+							<c:forEach items="${requestScope.picture}" var="picture">
 								<c:choose>
 									<c:when test="${picture.pictureOrder==1}">
 										<div class="active item">
@@ -97,14 +97,14 @@
 		<!--Bottom switcher of slider -->
 		<ul>
 			<c:choose>
-				<c:when test="${empty requestScope.house.housePicture }">
+				<c:when test="${empty requestScope.picture}">
 					<li><a class="thumbnail" id="carousel-selector-0"> <img
 							src="${initParam.rootPath }/housePicture/no-images.png"
 							style="width: 170px !important; height: 100px !important;">
 					</a></li>
 				</c:when>
 				<c:otherwise>
-					<c:forEach items="${requestScope.house.housePicture }" var="picture">
+					<c:forEach items="${requestScope.picture}" var="picture">
 						<li><a class="thumbnail"
 							id="carousel-selector-${picture.pictureOrder-1 }"> <img
 								src="/Perplus/housePicture/${picture.pictureName }"
@@ -182,7 +182,7 @@
 				</div>
 				<div class="row row-condensed space-4">
 					<div class="col-md-8 col-md-offset-1">
-						안전시설 
+						<p>안전시설 </p2>
 					</div>
 					<c:forEach items="${requestScope.house.houseFilter.checkList }" var="checkList">
 						<c:if test="${checkList.codeKind==1}">
@@ -391,7 +391,7 @@
 			<div class="row row-maginTB">
 				<div
 					class="col-md-offset-0 col-sm-offset-1 col-xs-offset-2 col-md-12 col-sm-10 col-xs-8">
-					<a href="${initParam.rootPath}/message.do#popup">
+					<a href="${initParam.rootPath}/member/chattingcreate.do?memberEmail="${sessionScope.login_info.memberEmail}>
 						<button class="btn btn-primary" style="width: 100%">호스트와연락</button>
 					</a>
 				</div>
