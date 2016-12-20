@@ -6,26 +6,40 @@
 <link rel="stylesheet"
 	href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
+<link rel="stylesheet" type="text/css" href="/Perplus/css/mdp.css">
+<link rel="stylesheet" type="text/css" href="/Perplus/css/prettify.css">
+
 <script type="text/javascript">
 	var today = new Date();
 	var y = today.getFullYear();
-
+	
 	$(function() {
 		$("#datepicker").multiDatesPicker(
 				{
+					setMonth : '1990-01',
 					altField : '#shutdownDate',
-					numberOfMonths : [ 2, 3 ],
 					monthNames : [ '1월', '2월', '3월', '4월', '5월', '6월', '7월',
 							'8월', '9월', '10월', '11월', '12월' ],
 					dayNamesMin : [ '일', '월', '화', '수', '목', '금', '토' ],
 					yearSuffix : '년',
-					dateFormat : 'yy-mm-dd'
+					dateFormat : 'yy-mm-dd',
 				});
-		$("#testbtn").on("click", function() {
-			alert($("#shutdownDate").val());
-		});
 	});
 </script>
+
+<style>
+.ui-datepicker-prev, .ui-datepicker-next {
+	display: none !important;
+}
+
+.ui-datepicker-inline {
+	font-size: 15px;
+}
+
+.ui-datepicker-week-end {
+	height: 2em !important;
+}
+</style>
 <!-- header -->
 <div class="basicheader">
 	<div class="container-fluid">
@@ -87,7 +101,7 @@
 						</label>
 						<div class="clearfix visible-md-block"></div>
 						<div class="col-md-offset-1 col-md-10">
-							<div class=" col-md-6">
+							<div class=" col-md-12" style="height: 300px;">
 								<div class="datepicker" id="datepicker"></div>
 							</div>
 						</div>
@@ -101,7 +115,7 @@
 					</a>
 				</div>
 				<div class="col-md-4 col-xs-8 col-md-4 nextBtn">
-						<button class="btn btn-default">다음</button>
+					<button class="btn btn-default">다음</button>
 				</div>
 			</div>
 		</form>

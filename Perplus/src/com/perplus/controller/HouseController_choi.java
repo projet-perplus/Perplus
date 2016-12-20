@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.perplus.house.serviceimpl.HouseServiceImpl_choi;
 import com.perplus.house.vo.CheckListVo;
@@ -119,7 +120,7 @@ public class HouseController_choi {
 	
 	
 	@RequestMapping("/fourStep.do")//4step commit하는 컨트롤러
-	public String fourStepHouseRegister(@RequestParam int houseSerial,HttpServletRequest request, @RequestParam int houseFilterBedroomNumber,@RequestParam int houseFilterBedNumber,@RequestParam int houseFilterBathroomNumber){
+	public String fourStepHouseRegister(@RequestParam int houseSerial,MultipartHttpServletRequest requestp ,HttpServletRequest request, @RequestParam int houseFilterBedroomNumber,@RequestParam int houseFilterBedNumber,@RequestParam int houseFilterBathroomNumber){
 		String[] convenientFacilityList = request.getParameterValues("convenientFacility");//편의시설
 		String[] secureFacilityList = request.getParameterValues("secureFacility");//안전시설
 		String[] commonFacilityList = request.getParameterValues("commonFacility");//공용시설
@@ -140,13 +141,13 @@ public class HouseController_choi {
 		if(secureFacilityList!=null&&secureFacilityList.length!=0){
 			for(int i = 0; i<secureFacilityList.length;i++){
 				System.out.println(secureFacilityList[i]);
-				service.insertChecklist(new CheckListVo(0, houseSerial, 1, secureFacilityList[i]));
+				service.insertChecklist(new CheckListVo(0, houseSerial, 2, secureFacilityList[i]));
 			}
 		}
 		if(commonFacilityList!=null&&commonFacilityList.length!=0){
 			for(int i = 0; i<commonFacilityList.length;i++){
 				System.out.println(commonFacilityList[i]);
-				service.insertChecklist(new CheckListVo(0, houseSerial, 1, commonFacilityList[i]));
+				service.insertChecklist(new CheckListVo(0, houseSerial, 3, commonFacilityList[i]));
 			}
 		}
 		
