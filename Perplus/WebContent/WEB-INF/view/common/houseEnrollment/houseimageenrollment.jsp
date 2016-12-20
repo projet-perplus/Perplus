@@ -2,29 +2,47 @@
 <script
 	src="https://rawgit.com/andrewng330/PreviewImage/master/preview.image.min.js"></script>
 <script type="text/javascript">
-	$(document).ready(function() {
-		var count = 0;
-		$("input[name=file1]").previewimage({
-			div : ".preview",
+	$(document).ready(
+			function() {
+				$(".preview").on("click", "p", function() {
+					if ($('.preview img').length < 5) {
+						$(".addImage").show();
+					}
+				});
 
-			imgheight : 300
-		})
+				$(".parentImg").on("change", ".addImage", function() {
 
-		$("input[name=file2]").previewimage({
-			div : ".preview1",
+					if ($('.preview img').length == 3) {
+						$(".addImage").hide();
+					}
+				});
 
-			imgheight : 150
-		});
-
-	});
+				$("input[name=pictureList]").previewimage({
+					div : ".preview",
+					imgwidth : 150,
+					imgheight : 100
+				});
+				$(".previewimg").on(
+						"click",
+						".imageDelete",
+						function() {
+							$(".previewimg img").removeAttr("src").attr('src',
+									"/Perplus/css/image/addimage.PNG");
+						});
+			});
 </script>
 <style type="text/css">
-.preview>div>img {
-	width: 100% !important;
+.preview>div {
+	display: inline-block;
+	text-align: center;
 }
 
-.preview1>div>img {
-	width: 100% !important;
+.preview>div>img {
+	margin: 5px;
+}
+
+.modal-backdrop.in {
+	opacity: 0 !important;
 }
 </style>
 <!-- header -->
@@ -88,46 +106,34 @@
 
 
 			<div class="row row-condensed space-4">
-				<div class="col-md-offset-2 col-md-8">
-					<div class="preview"
-						style="width: 100%; height: 300px; border: 1px solid #ccc;"></div>
+				<div class="col-md-offset-2 col-md-8 previewimg">
+					<img id="blah" alt="your image"
+						src="/Perplus/css/image/addimage.PNG" width="700" height="300" />
 
-					<label class="btn btn-success addImage"> 이미지 추가&hellip; <input
-						type="file" name="file1" accept="image/*"
-						style="border: 0 !important; display: none;">
 
-					</label>
+					<label class="btn btn-success"> 이미지 추가&hellip; <input
+						type="file" name="pictureList"
+						onchange="document.getElementById('blah').src = window.URL.createObjectURL(this.files[0])"
+						style="display: none;">
+					</label> <label class="btn btn-danger imageDelete">삭제</label>
 				</div>
 			</div>
 
 			<div class="row row-condensed space-4">
-				<div class="col-md-offset-2 col-md-8">
+				<div class="col-md-offset-2 col-md-10 parentImg">
 
-					<div class="col-md-3">
-						<div class="preview1"
-							style="width: 100%; height: 150px; border: 1px solid #ccc;"></div>
 
-						<label class="btn btn-success addImage"> 이미지 추가&hellip; <input
-							type="file" name="file2" accept="image/*"
-							style="border: 0 !important; display: none;">
-
-						</label>
-					</div>
-
-				</div>
-			</div>
-
-			<div class="row row-condensed space-4">
-				<label class="text-left col-md-offset-1 col-md-2">사진 등록</label>
-				<div class="col-md-9 col-xs-9 col-sm-9">
-					<span>이미지를 추가하세요(최대 5장)</span>
-					<div class="preview1"></div>
+					<span>서브 이미지를 추가하세요(최대4장)</span>
+					<div class="preview"></div>
 					<label class="btn btn-success addImage"> 이미지 추가&hellip; <input
-						type="file" name="file2" accept="image/*"
+						type="file" id="getfile" name="pictureList" accept="image/*"
 						style="border: 0 !important; display: none;">
 					</label>
+
+
 				</div>
 			</div>
+
 
 
 
