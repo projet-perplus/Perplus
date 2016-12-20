@@ -22,7 +22,7 @@ public class ReviewForm {
 	private double reviewMarkerX;
 
 	private double reviewMarkerY;
-
+	@NotNull
 	private int reviewMarkerConstant;
 	@NotEmpty
 	private String reviewPlace;

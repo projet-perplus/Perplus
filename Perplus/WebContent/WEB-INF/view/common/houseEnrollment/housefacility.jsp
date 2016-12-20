@@ -106,12 +106,17 @@
 					<div class="row row-condensed space-4 row-sectionB">
 						<label class="text-left col-md-3"> <span>편의 시설</span>
 						</label>
-						<div class="col-md-8">
-							<c:forEach items="${requestScope.convenientFacility}"
-								var="convenient">
-								<label><input type="checkbox" name="convenientFacility"
-									value="${convenient.value}"> ${convenient.value}</label>
-							</c:forEach>
+						<div class="col-md-9">
+							<div class="row">
+								<c:forEach items="${requestScope.convenientFacility}"
+									var="convenient">
+									<div class="col-md-3 col-xs-6">
+										<label><input type="checkbox"
+											name="convenientFacility" value="${convenient.value}">
+											${convenient.value}</label>
+									</div>
+								</c:forEach>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -121,13 +126,17 @@
 					<div class="row row-condensed space-4 row-sectionB">
 						<label class="text-left col-md-3"> <span>안전 시설</span>
 						</label>
-						<div class=" col-md-8">
-							<c:forEach items="${requestScope.secureFacility}"
-								var="secureFacility">
-								<label><input type="checkbox" name="secureFacility"
-									value="${secureFacility.value}">
-									${secureFacility.value}</label>
-							</c:forEach>
+						<div class=" col-md-9">
+							<div class="row">
+								<c:forEach items="${requestScope.secureFacility}"
+									var="secureFacility">
+									<div class="col-md-3 col-xs-6">
+										<label><input type="checkbox" name="secureFacility"
+											value="${secureFacility.value}">
+											${secureFacility.value}</label>
+									</div>
+								</c:forEach>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -137,29 +146,38 @@
 					<div class="row row-condensed space-4 row-sectionB">
 						<label class="text-left col-md-3"> <span>공용 시설</span>
 						</label>
-						<div class=" col-md-8">
-							<c:forEach items="${requestScope.commonFacility}"
-								var="commonFacility">
-								<label><input type="checkbox" name="commonFacility"
-									value="${commonFacility.value}">
-									${commonFacility.value}</label>
-							</c:forEach>
+						<div class=" col-md-9">
+							<div class="row">
+
+								<c:forEach items="${requestScope.commonFacility}"
+									var="commonFacility">
+									<div class="col-md-3 col-xs-6">
+										<label><input type="checkbox" name="commonFacility"
+											value="${commonFacility.value}">
+											${commonFacility.value}</label>
+									</div>
+								</c:forEach>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 
 
-			<div class="row houseBtnMB">
-				<div class="col-md-offset-2 col-md-4 col-xs-4 previousBtn">
+			<div class="row row-condensed">
+
+				<div
+					class="col-md-offset-2 col-sm-offset-2 col-xs-offset-2 col-md-1 col-sm-1 col-xs-1 previousBtn">
 					<a href="${initParam.rootPath}/houselocation.do">
 						<button type="button" class="btn btn-default">이전</button>
 					</a>
 				</div>
-				<div class="col-md-4 col-xs-8 col-md-4 nextBtn">
-					<button type="submit" class="btn btn-default">다음</button>
+				<div
+					class="col-md-offset-6 col-sm-offset-6 col-xs-offset-4 col-md-1 col-sm-1 col-xs-1 nextBtn">
+					<button class="btn btn-default">다음</button>
 				</div>
 			</div>
+
 		</form>
 	</div>
 </div>

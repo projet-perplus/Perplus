@@ -7,22 +7,25 @@
 
 	$(document).ready(function() {
 		
-			$(".preview>div").on("click","p",function() {
+			
+			$(".preview").on("click","p",function() {
 				  alert("a");
+				  if($('.preview img').length < 6){
+					   $(".addImage").show();				
+					} 
 			});
 				
 			$(".parentImg").on("change",".addImage",function() {
-				  alert($('.preview img').length);
-
+			
+				
 				  if($('.preview img').length == 4){
 					   $(".addImage").hide();				
 					} 
 			});
 				
-		
+	
 
-
-			$("input[name=memberPictureFile]").previewimage({
+			$("input[name=pictureList]").previewimage({
 				div : ".preview",
 				imgwidth : 150,
 				imgheight : 100
@@ -66,7 +69,7 @@
 							</div>
 							<div
 								class="col-md-offset-4 col-md-3 col-sm-offset-4 col-sm-3 col-xs-offset-2 col-xs-5">
-								<select name="marker" class="form-control" autocomplete="off"
+								<select name="reviewMarkerConstant" class="form-control" autocomplete="off"
 									required>
 									<option value="" selected>마커 종류</option>
 									<option value=1>음식</option>
@@ -126,7 +129,7 @@
 								<span>이미지를 추가하세요(최대 5장)</span>
 								<div class="preview"></div>
 								<label class="btn btn-success addImage"> 이미지 추가&hellip; 
-									<input type="file" name="memberPictureFile" id="getfile" accept="image/*" multiple="multiple"
+									<input type="file" id="getfile" name="pictureList"  accept="image/*" multiple
 									style="border: 0 !important; display: none;" >
 								</label>
 
