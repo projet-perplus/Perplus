@@ -1,6 +1,10 @@
 package com.perplus.house.service;
 
+import java.util.HashMap;
+import java.util.List;
+
 import com.perplus.house.vo.HouseFilterVo;
+import com.perplus.house.vo.HouseVo;
 
 public interface HouseService {
 	//house service
@@ -16,6 +20,9 @@ public interface HouseService {
 	HouseFilterVo selectHouseFilterByHouseSerialWithJoin(int houseSerial);
 	
 	void updateHouseFilter(HouseFilterVo houseFilter);
+	
+	List<HouseVo> selectHouseBySectionAndFilter(HashMap map);
+	
 	
 	//checkList service
 	

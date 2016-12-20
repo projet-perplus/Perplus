@@ -44,7 +44,7 @@
 			modifyMarkerFilter(markerArray);
 			resetMapMarker();
 		})
-
+	})
 /* 		$(".reviewDetail").on("click",function(){
 			$.ajax({
 				url:"/Perplus/review/showReview.do",
@@ -66,15 +66,15 @@
 				}
 			});
 		}); */
-	})
+	
 </script>
 
 <div class="container">
 	<div id="dashboard-content" class="hotplace">
 		<div class="panel-header">
 
-			<div class="col-md-4 col-xs-4 headeCrH panel-PN"
-				style="height: 50px; width: 250px;">
+			<div class="col-md-4 col-xs-6 headeCrH panel-PN"
+				style="height: 50px;">
 				<div class="col-md-12 panel-MT panel-PN">
 					<div class="form-group">
 						<input type="text" class="form-control" id="locationName"
@@ -83,7 +83,7 @@
 				</div>
 				<div class="clearfix"></div>
 			</div>
-			<div class="col-md-4 col-xs-4">
+			<div class="col-md-4 col-xs-2" style="padding-left: 5px;">
 				<button type="button" id="searchLocation"
 					class="btn btn-primary btn-md panel-MT" onclick="">검색</button>
 
@@ -129,7 +129,8 @@
 <a href="${initParam.rootPath}/review/showReview.do?reviewSerial=1">
 </a> --%>
 	<!-- reviewSerial은 requestScope의 리뷰시리얼값~~ -->
-	<button type="button" class="btn btn-primary" onclick="window.open('/Perplus/review/showReview.do?reviewSerial=1','detail','fullscreen');void(0);">리뷰 상세페이지</button>
-
-<button class="btn btn-primary reviewDetail" data-toggle="modal"
-	data-target="#myModalFullscreen" contenteditable="false">다이얼로그로 뺌 ...</button>
+	<button type="button" class="btn btn-primary" onclick="window.open('/Perplus/review/showReview.do?reviewSerial=1')">리뷰 상세페이지</button>
+<!-- 	<button type="button" class="btn btn-primary" onclick="window.open('/Perplus/review/showReview.do?reviewSerial=1','detail','fullscreen');void(0);">리뷰 상세페이지</button>
+ -->
+<!-- <button class="btn btn-primary reviewDetail" data-toggle="modal"
+	data-target="#myModalFullscreen" contenteditable="false">다이얼로그로 뺌 ...</button> -->

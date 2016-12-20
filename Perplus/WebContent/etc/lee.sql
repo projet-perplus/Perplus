@@ -539,3 +539,20 @@ delete from REVIEW;
 	from REVIEW 
 	where (review_marker_x between 37.39 and 37.407)
 	and	  (review_marker_y between 127.09 and 127.119)
+	
+	
+	
+	select 
+		review_serial reviewSerial, 
+		member_email memberEmail,
+		review_title reviewTitle,
+		review_content reviewContent,
+		review_rating reviewRating,
+		review_time reviewTime,
+		review_marker_x reviewMarkerX,
+		review_marker_y reviewMarkerY,
+		review_marker_constant reviewMarkerConstant,
+		review_place reviewPlace
+	from REVIEW 
+	where REVIEW_MARKER_X = #{lat}
+	and   REVIEW_MARKER_Y = #{lng}

@@ -18,9 +18,12 @@ public class HouseVo implements Serializable{
 	private double houseMarkerY;
 	private double houseMarkerConstant;		//마커 종류의 식별자
 	
+	
 	private HouseFilterVo houseFilter;
 	private List<HouseZzimVo> houseZzimList;
 	private List<HousePictureVo> housePicture;
+	
+
 	
 	public HouseVo() {}
 

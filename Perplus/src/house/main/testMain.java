@@ -19,8 +19,8 @@ public class testMain {
 		
 		HouseFilterDaoImpl hf = (HouseFilterDaoImpl)abc.getBean("houseFilterDaoImpl");
 		HouseDaoImpl h = (HouseDaoImpl)abc.getBean("houseDaoImpl");
-		
-		System.out.println(h.selectHouseWithJoinOfDetailPage(1));
+//		
+//		System.out.println(h.selectHouseWithJoinOfDetailPage(1));
 		
 //		String str1="2016-12-16";
 //		String str2="2017-01-11";
