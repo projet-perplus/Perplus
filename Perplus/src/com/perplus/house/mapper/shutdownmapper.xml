@@ -3,7 +3,7 @@
 
 <mapper namespace="shutdown">
 	<insert id="insertShutdown" parameterType="shutdownvo">
-		insert into SHUTDOWN values(SHUTDOWN_SEQ.nextval,#{houseSerial}, #{shutdownDate))
+		insert into SHUTDOWN values(SHUTDOWN_SEQ.nextval,#{houseSerial},#{shutdownDate})
 	</insert>
 	<!-- 숙소 하나에 설정된 shutdown 날짜가 모두 select (List) -->
 	<select id="selectShutdownByHouseSerial" parameterType="_int" resultType="shutdownvo">

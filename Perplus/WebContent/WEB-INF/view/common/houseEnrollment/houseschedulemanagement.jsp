@@ -94,7 +94,7 @@
 							</div>
 							<div class=" col-md-5">
 								<div class="form-group">
-									<select class="form-control" name="housefilterCheckinEnd">
+									<select class="form-control" name="houseFilterCheckinEnd">
 										<option>종료 시간</option>
 										<c:forEach begin="0" end="23" var="number">
 											<option value="${number}">${number}시</option>
@@ -152,9 +152,9 @@
 									<select class="form-control" name="houseFilterBakMax">
 										<option>최대 일수</option>
 										<option value=1>1박</option>
-										<option value=2>2</option>
-										<option value=3>3</option>
-										<option value=4>4</option>
+										<option value=2>2박</option>
+										<option value=3>3박</option>
+										<option value=4>4박</option>
 									</select>
 								</div>
 							</div>

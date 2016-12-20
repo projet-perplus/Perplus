@@ -9,10 +9,12 @@ import com.perplus.house.dao.CheckListDao;
 import com.perplus.house.dao.CodetableDao;
 import com.perplus.house.dao.HouseDao;
 import com.perplus.house.dao.HouseFilterDao;
+import com.perplus.house.dao.ShutdownDao;
 import com.perplus.house.vo.CheckListVo;
 import com.perplus.house.vo.CodetableVo;
 import com.perplus.house.vo.HouseFilterVo;
 import com.perplus.house.vo.HouseVo;
+import com.perplus.house.vo.ShutdownVo;
 
 @Service
 public class HouseServiceImpl_choi {
@@ -28,6 +30,9 @@ public class HouseServiceImpl_choi {
 	
 	@Autowired
 	private CheckListDao checkListDao;
+	
+	@Autowired
+	private ShutdownDao shutdownDao;
 	
 	public void insertHouse(HouseVo houseVo){
 		houseDao.insertHouseFirst(houseVo);
@@ -51,5 +56,9 @@ public class HouseServiceImpl_choi {
 	
 	public HouseFilterVo selectHouseFilter(int houseSerial){
 		return houseFilterDao.selectHouseFilterByHouseSerial(houseSerial);
+	}
+	
+	public void insertShutdown(ShutdownVo shutdown){
+		shutdownDao.insertShutdown(shutdown);
 	}
 }
