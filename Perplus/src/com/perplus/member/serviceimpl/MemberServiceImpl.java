@@ -203,7 +203,7 @@ public class MemberServiceImpl implements MemberService{
 	}
 	
 	@Override//찜삭제
-	public void deleteHouseZzimByEmail(int houseZzimSerial){
+	public void deleteHouseZzimBySerial(int houseZzimSerial){
 		houseZzimDao.deleteHouseZzimByEmail(houseZzimSerial);
 	}
 	
@@ -225,6 +225,7 @@ public class MemberServiceImpl implements MemberService{
 	public HouseZzimVo selectHouseZzimBySerial(int houseZzimSerial) {
 		return houseZzimDao.selectHouseZzimBySerial(houseZzimSerial);
 	}
+	
 	
 	/*
 	 * howgetmoney Service
@@ -428,6 +429,30 @@ public class MemberServiceImpl implements MemberService{
 		}
 	}
 	
+	
+
+	@Override
+	public void insertReviewZzim(ReviewZzimVo reviewZzim) {
+		reviewZzimDao.insertReviewZzim(reviewZzim);
+	}
+
+	@Override
+	public void deleteReviewZzimByReviewZzimSerial(int reviewZzimSerial) {
+		System.out.println("Ddddd");
+		reviewZzimDao.deleteReviewZzim(reviewZzimSerial);
+		
+	}
+
+	@Override
+	public ReviewZzimVo selectReviewZzimByEmailAndReviewSerial(String memberEmail, int reviewSerial) {
+		return reviewZzimDao.selectReviewZzimByMemberEmailAndreviewSerial(memberEmail, reviewSerial);
+	}
+
+	@Override
+	public ReviewZzimVo selectReviewZzimByReviewZzimSerial(int reviewZzimSerial) {
+		return reviewZzimDao.selectReviewZzimByReviewZzimSerial(reviewZzimSerial);
+	}
+
 	/**
 	 * showmethemoney 관련 Service
 	 * @param showmethemoney

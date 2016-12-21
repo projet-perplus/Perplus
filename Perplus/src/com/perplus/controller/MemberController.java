@@ -8,19 +8,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestAttribute;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -35,8 +31,9 @@ import com.perplus.member.vo.HouseCommentVo;
 import com.perplus.member.vo.HouseZzimVo;
 import com.perplus.member.vo.HowmoneyVo;
 import com.perplus.member.vo.MemberVo;
-import com.perplus.util.TextUtil;
 import com.perplus.member.vo.PaymentVo;
+import com.perplus.member.vo.ReviewZzimVo;
+import com.perplus.util.TextUtil;
 
 
 @Controller
@@ -213,9 +210,28 @@ public class MemberController {
 	@RequestMapping("cancleHouseZzim")
 	public String houseZzimRemove(@RequestParam int houseZzimSerial){
 		HouseZzimVo houseZzim = service.selectHouseZzimBySerial(houseZzimSerial);
-		service.deleteHouseZzimByEmail(houseZzimSerial);
+		service.deleteHouseZzimBySerial(houseZzimSerial);
 		return  "redirect:/house/houseDetail.do?houseSerial="+houseZzim.getHouseSerial();
 	}
+	
+	/**********************reviewZzim 등록**********************************/
+	@RequestMapping("/registerReviewZzim")
+	public String reiviewZzimInsert(@RequestParam String memberEmail, @RequestParam int reviewSerial){
+		ReviewZzimVo reviewZzim = new ReviewZzimVo(0, reviewSerial, memberEmail);
+		System.out.println(reviewZzim);
+		service.insertReviewZzim(reviewZzim);
+		return "redirect:/review/showReview.do?reviewSerial="+reviewZzim.getReviewSerial();
+	}
+	
+	/***********************reviewzzim 삭제***************************************/
+	@RequestMapping("cancleReviewZzim")
+	public String reviewZzimRemove(@RequestParam int reviewZzimSerial){
+		ReviewZzimVo reviewZzim = service.selectReviewZzimByReviewZzimSerial(reviewZzimSerial);
+		System.out.println(reviewZzim);
+		service.deleteReviewZzimByReviewZzimSerial(reviewZzimSerial);
+		return  "redirect:/review/showReview.do?reviewSerial="+reviewZzim.getReviewSerial();
+	}
+	
 	
 	/***********************houseComment 등록*****************************************/
 	
@@ -254,6 +270,7 @@ public class MemberController {
 		
 		return "redirect:/member/chattingfind.do?chattingNumber="+chattingNumber;
 	}
+	
 	
 	/******************채팅 조회*****************/
 	@RequestMapping("/chattingfind.do")

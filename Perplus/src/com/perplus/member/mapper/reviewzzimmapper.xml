@@ -4,20 +4,41 @@
 <mapper namespace="reviewZzim">
 	<!-- insert -->
 	<insert id="insertReviewZzim" parameterType="ReviewZzimVo">
-		insert into REVIEWZZIM values (#{reviewSerial}, #{memberEmail})
+		<selectKey resultType="_int" keyProperty="reviewZzimSerial" order="BEFORE">
+			select reviewZzim_seq.nextval from dual
+		</selectKey> 
+		insert into REVIEWZZIM values (#{reviewZzimSerial},#{reviewSerial}, #{memberEmail})
 	</insert>
 	
 	<!-- delete -->
 	<delete id="deleteReviewZzim" parameterType="_int">
-		delete from REVIEWZZIM where REVIEW_SERIAL = #{reviewSerial}
+		delete from REVIEWZZIM where REVIEWZzim_serial = #{reviewZzimSerial}
 	</delete>
 	
 	<!-- select -->
 	<select id="selectReviewZzimByMemberEmail"  resultType="ReviewZzimVo">
 		select	REVIEW_SERIAL reviewSerial, 
-					MEMBER_EMAIL memberEmail
+					MEMBER_EMAIL memberEmail,
+					reviewZzim_serial reviewZzimSerial
 		from REVIEWZZIM
 		where MEMBER_EMAIL = #{memberEmail}
+	</select>
+	
+	<select id="selectReviewZzimByMemberEmailAndreviewSerial" parameterType="map" resultType="ReviewZzimVo">
+		select	REVIEW_SERIAL reviewSerial, 
+					MEMBER_EMAIL memberEmail,
+					reviewzzim_serial reviewZzimSerial
+		from REVIEWZZIM
+		where MEMBER_EMAIL = #{memberEmail}
+		and review_serial=#{reviewSerial}
+	</select>
+	
+	<select id="selectReviewZzimByReviewZzimSerial" parameterType="_int" resultType="ReviewZzimVo">
+		select	REVIEW_SERIAL reviewSerial, 
+					MEMBER_EMAIL memberEmail,
+					reviewzzim_serial reviewZzimSerial
+		from REVIEWZZIM
+		where reviewZzim_serial= #{reviewZzimSerial}
 	</select>
 
 

@@ -28,4 +28,7 @@ public interface ReviewZzimDao {
 	 */
 	List<ReviewZzimVo> selectReviewZzimByMemberEmail(String memberEmail);
 	
+	ReviewZzimVo selectReviewZzimByMemberEmailAndreviewSerial(String memberEmail, int reviewSerial);
+	
+	ReviewZzimVo selectReviewZzimByReviewZzimSerial(int reviewZzimSerial);
 }
