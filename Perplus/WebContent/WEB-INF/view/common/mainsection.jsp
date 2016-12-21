@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
+<%@ taglib prefix ="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script type="text/javascript">
 function searchHouseByStartFilter(){
 	var location=$("#location").val();
@@ -61,10 +62,9 @@ function searchHouseByStartFilter(){
 							<div class="form-group">
 								<label for="secl1">인원</label> <select class="form-control"
 									name="personnel" id="guestNumber">
-									<option>1</option>
-									<option>2</option>
-									<option>3</option>
-									<option>4</option>
+									<c:forEach var="i" begin="1" end="100" step="1">
+										<option value="${i}">${i}</option>
+									</c:forEach>
 								</select>
 							</div>
 						</div>
