@@ -124,9 +124,9 @@
 	<select id="houseZzimJoinHouse" parameterType="string" resultMap="houseZzim-house-join-resultmap">
 		<include refid="select-houseZzim-join-sql"/>
 		where	z.member_email = #{value}
-		and		z.house_serial = h.house_serial
-		and		p.house_serial = h.house_serial
-		and		f.house_serial = h.house_serial
+		and		z.house_serial(+) = h.house_serial
+		and		p.house_serial(+) = h.house_serial
+		and		f.house_serial(+) = h.house_serial
 	</select>
 	
 	
