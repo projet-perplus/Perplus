@@ -211,6 +211,11 @@
 			<label class="text-left col-md-2"> <span>작성자</span>
 			</label>
 			<div class="col-md-6">${requestScope.review.memberEmail }</div>
+			<div class="col-md-3">
+				<button>
+						reviewzzim
+				</button>
+			</div>
 		</div>
 		<div class="row row-condensed space-4">
 			<label class="text-left col-md-2"> <span>리뷰 제목</span>
