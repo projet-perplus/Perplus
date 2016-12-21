@@ -47,6 +47,7 @@ public class ReviewController {
 												throws IllegalStateException, IOException{
 		
 		System.out.println(files.length);
+		
 		boolean error=false;
 		if(result.hasErrors()){
 			error=true;
@@ -55,7 +56,7 @@ public class ReviewController {
 		}
 		ReviewVo reviewVo = new ReviewVo();
 		BeanUtils.copyProperties(form, reviewVo);
-
+	
 		//List<MultipartFile> files = picture.getPictureList();
 		ReviewPictureVo picture = new ReviewPictureVo();
 		
@@ -65,9 +66,9 @@ public class ReviewController {
 		reviewVo.setMemberEmail(member.getMemberEmail());
 	
 		//지도 위치 정보 & 마커 정보 
-		reviewVo.setReviewMarkerConstant(2);
+/*		reviewVo.setReviewMarkerConstant(2);
 		reviewVo.setReviewMarkerX(23.5);	
-		reviewVo.setReviewMarkerY(63.2);
+		reviewVo.setReviewMarkerY(63.2);*/
 		
 		//공백.엔터처리
 		reviewVo.setReviewContent(TextUtil.textToHtml(reviewVo.getReviewContent()));

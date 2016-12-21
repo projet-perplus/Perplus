@@ -33,6 +33,7 @@ function setSendPosition(){
 		if(markerArray[i].getIcon().url.includes('default')){
 			$("#lat").val(markerArray[i].getPosition().lat());
 			$("#lng").val(markerArray[i].getPosition().lng());
+			alert($("#lat").val());
 		}		
 	}
 }
@@ -63,8 +64,8 @@ function setSendPosition(){
 			method="post" enctype="multipart/form-data" id="myform">
 			<div class="modal-content" style="padding: 0px;">
 				<div class="modal-header">
-					<input type="hidden" id="lat">
-					<input type="hidden" id="lng">
+					<input type="hidden" id="lat" name="reviewMarkerX">
+					<input type="hidden" id="lng" name="reviewMarkerY">
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
 					<div class="title">
 						<div class="row">
@@ -76,8 +77,8 @@ function setSendPosition(){
 								<select name="reviewMarkerConstant" class="form-control" autocomplete="off"
 									required>
 									<option value="" selected>마커 종류</option>
-									<option value=1>음식</option>
-									<option value=2>명소</option>
+									<option value=212>음식</option>
+									<option value=211>명소</option>
 								</select>
 							</div>
 						</div>

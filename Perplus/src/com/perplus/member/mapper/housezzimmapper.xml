@@ -26,6 +26,18 @@
 		where	member_email = #{value}
 	</select>
 	
+	<select id="selectHouseZzimBySerial" parameterType="_int" resultType="HouseZzimVo">
+		select	housezzim_serial houseZzimSerial, house_serial houseSerial, member_email memberEmail
+		from	HOUSEZZIM
+		where	housezzim_serial = #{value}
+	</select>
+	
+	<select id="selectHouseZzimByEmailAndHouseSerial" parameterType="map" resultType="HouseZzimVo">
+		select	housezzim_serial houseZzimSerial, house_serial houseSerial, member_email memberEmail
+		from	HOUSEZZIM
+		where	member_email = #{memberEmail}
+		and house_serial=#{houseSerial}
+	</select>
 	
 	<sql id="select-houseZzim-join-sql">
 		select	z.housezzim_serial,

@@ -1,5 +1,6 @@
 
 package com.perplus.member.daoimpl;
+import java.util.HashMap;
 import java.util.List;
 //1
 import java.util.Map;
@@ -41,6 +42,19 @@ public class HouseZzimDaoImpl implements HouseZzimDao{
 	@Override
 	public List<HouseZzimVo> houseZzimJoinHouseJoinHousePicture(String memberEmail) {
 		return session.selectList("houseZzim.houseZzimJoinHouse",memberEmail);
+	}
+
+	@Override
+	public HouseZzimVo selectHouseZzimByEmailAndHouseSerial(String memberEmail, int houseSerial) {
+		HashMap<String,Object> map = new HashMap<>();
+		map.put("memberEmail", memberEmail);
+		map.put("houseSerial", houseSerial);
+		return session.selectOne("houseZzim.selectHouseZzimByEmailAndHouseSerial",map);
+	}
+
+	@Override
+	public HouseZzimVo selectHouseZzimBySerial(int houseZzimSerial) {
+		return session.selectOne("houseZzim.selectHouseZzimBySerial",houseZzimSerial);
 	}
 	
 	

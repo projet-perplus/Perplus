@@ -17,4 +17,8 @@ public interface HouseZzimDao {
 	List<HouseZzimVo> selectHouseZzimByEmail(String memberEmail);
 	
 	List<HouseZzimVo> houseZzimJoinHouseJoinHousePicture(String memberEmail);
+	
+	HouseZzimVo selectHouseZzimByEmailAndHouseSerial(String memberEmail,int houseSerial);
+	
+	HouseZzimVo selectHouseZzimBySerial(int houseZzimSerial);
 }

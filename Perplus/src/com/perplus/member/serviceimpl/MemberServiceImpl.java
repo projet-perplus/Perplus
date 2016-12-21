@@ -212,14 +212,25 @@ public class MemberServiceImpl implements MemberService{
 		return houseZzimDao.selectHouseZzimByEmail(memberEmail);
 	}
 	
+	@Override
+	public HouseZzimVo selectHouseZzimByEmailAndHouseSerial(String memberEmail, int houseSerial) {
+		return houseZzimDao.selectHouseZzimByEmailAndHouseSerial(memberEmail, houseSerial);
+	}
+
 	public List<HouseZzimVo> houseZzimJoinHouseJoinHousePicture(String memberEmail){
 		return houseZzimDao.houseZzimJoinHouseJoinHousePicture(memberEmail);
+	}
+	
+	@Override
+	public HouseZzimVo selectHouseZzimBySerial(int houseZzimSerial) {
+		return houseZzimDao.selectHouseZzimBySerial(houseZzimSerial);
 	}
 	
 	/*
 	 * howgetmoney Service
 	 */
 	
+
 	@Override//결제수단 등록
 	public void insertHowmoney(HowmoneyVo howgetmoney){
 		howgetmoneyDao.insertHowgetmoney(howgetmoney);
