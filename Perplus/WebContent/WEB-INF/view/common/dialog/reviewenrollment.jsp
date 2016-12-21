@@ -4,35 +4,38 @@
 <script
 	src="https://rawgit.com/andrewng330/PreviewImage/master/preview.image.min.js"></script>
 <script type="text/javascript">
-
-	$(document).ready(function() {
+$(document).ready(function() {
 		
-			
-			$(".preview").on("click","p",function() {
-				  alert("a");
-				  if($('.preview img').length < 6){
-					   $(".addImage").show();				
-					} 
-			});
-				
-			$(".parentImg").on("change",".addImage",function() {
-			
-				
-				  if($('.preview img').length == 4){
-					   $(".addImage").hide();				
-					} 
-			});
-				
-	
-
-			$("input[name=pictureList]").previewimage({
-				div : ".preview",
-				imgwidth : 150,
-				imgheight : 100
-			});
-			
-		
+	$(".preview").on("click","p",function() {
+		  alert("a");
+		  if($('.preview img').length < 6){
+			   $(".addImage").show();				
+			} 
 	});
+		
+	$(".parentImg").on("change",".addImage",function() {
+	
+		  if($('.preview img').length == 4){
+			   $(".addImage").hide();				
+			} 
+	});
+
+	$("input[name=pictureList]").previewimage({
+		div : ".preview",
+		imgwidth : 150,
+		imgheight : 100
+	});
+	
+});
+function setSendPosition(){
+	alert(markerArray);
+	for(var i in markerArray){
+		if(markerArray[i].getIcon().url.includes('default')){
+			$("#lat").val(markerArray[i].getPosition().lat());
+			$("#lng").val(markerArray[i].getPosition().lng());
+		}		
+	}
+}
 </script>
 <style>
 .preview>div {
@@ -60,7 +63,8 @@
 			method="post" enctype="multipart/form-data" id="myform">
 			<div class="modal-content" style="padding: 0px;">
 				<div class="modal-header">
-
+					<input type="hidden" id="lat">
+					<input type="hidden" id="lng">
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
 					<div class="title">
 						<div class="row">
