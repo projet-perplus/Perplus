@@ -90,13 +90,13 @@
 					</div>
 				</div>
 				<div class="row row-condensed space-4 gueststepcontents">
-					<div class="col-md-offset-2 col-sm-6 col-md-8">
+					<div class="col-md-offset-2 col-sm-offset-2 col-sm-8 col-md-8 col-xs-12">
 						<span class="gueststep"> 게스트는 예약할 때 다음의 절차도 완료해야 합니다. </span>
 					</div>
 				</div>
 
 				<div class="row row-condensed space-4 gueststepcontents">
-					<div class="col-md-offset-2 col-sm-6 col-md-8">
+					<div class="col-md-offset-2 col-sm-offset-2 col-sm-8 col-md-8 col-xs-12">
 						<div class="gueststepcontent">
 							<p>* 숙소 이용 규칙에 동의합니다</p>
 							<p>* 호스트에게 여행 목적을 설명합니다</p>
@@ -104,19 +104,25 @@
 					</div>
 				</div>
 
-				<div class="row houseBtns">
-					<div class="col-md-offset-2 col-md-4 col-xs-3 previousBtn">
+				<div class="row row-condensed">
+					<div
+						class="col-md-offset-2 col-sm-offset-2 col-xs-offset-2 col-md-1 col-sm-1 col-xs-1 previousBtn">
 						<a href="${initParam.rootPath}/hosting.do">
 							<button type="button" class="btn btn-default">이전</button>
 						</a>
 					</div>
-					<div class="col-md-offset-3 col-md-3 col-xs-3 nextBtn">
+					<div
+						class="col-md-offset-6 col-sm-offset-6 col-xs-offset-4 col-md-1 col-sm-1 col-xs-1 nextBtn leftform">
 						<button class="btn btn-default">다음</button>
 					</div>
 				</div>
+
 			</div>
 		</form>
 	</div>
 </div>
+
+
+
 
 <script src="/Perplus/js/basicinfo.js"></script>

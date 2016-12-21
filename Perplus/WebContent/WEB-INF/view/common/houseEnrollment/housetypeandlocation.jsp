@@ -162,14 +162,14 @@
 						<label class="text-left col-sm-6 col-md-3"> <span>숙소
 								위치</span>
 						</label>
-						<div class="col-sm-8 col-md-8">
+						<div class="col-sm-12 col-md-8">
 							<div class="form-group">
-								<div class="col-md-7" style="padding-left: 0px;">
+								<div class="col-md-7 col-sm-7" style="padding-left: 0px; margin-bottom: 15px;">
 									<input type="text" class="form-control" id="sample6_postcode"
 										name="houseFilterLocationList" placeholder="우편번호">
 								</div>
 
-								<div class="col-md-5">
+								<div class="col-md-5 col-sm-5">
 									<input type="button" class="form-control"
 										onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
 								</div>
@@ -188,19 +188,22 @@
 					</div>
 				</div>
 			</div>
-			<div class="row houseBtns" style="margin-bottom: 30px;">
-				<div class="col-md-offset-2 col-md-4 col-xs-4 previousBtn">
-					<a href="${initParam.rootPath}/basicinfo.do">
-						<button type="button" class="btn btn-default">이전</button>
-					</a>
-				</div>
-				<div class="col-md-4 col-xs-8 col-md-4 nextBtn">
-					<button class="btn btn-default">다음</button>
-				</div>
-			</div>
+			<div class="row row-condensed">
+	<div
+		class="col-md-offset-2 col-sm-offset-2 col-xs-offset-2 col-md-1 col-sm-1 col-xs-1 previousBtn">
+		<a href="${initParam.rootPath}/basicinfo.do">
+			<button type="button" class="btn btn-default">이전</button>
+		</a>
+	</div>
+	<div
+		class="col-md-offset-6 col-sm-offset-6 col-xs-offset-4 col-md-1 col-sm-1 col-xs-1 nextBtn leftform">
+		<button class="btn btn-default">다음</button>
+	</div>
+</div>
 		</div>
 	</form>
 </div>
+
 
 
 

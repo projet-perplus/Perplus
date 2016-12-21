@@ -162,20 +162,21 @@
 					</div>
 				</div>
 			</div>
-			<div class="row houseBtnMB">
-				<div class="col-md-offset-2 col-md-4 col-xs-4 previousBtn">
+			<div class="row row-condensed">
+				<div
+					class="col-md-offset-2 col-sm-offset-2 col-xs-offset-2 col-md-1 col-sm-1 col-xs-1 previousBtn">
 					<a href="${initParam.rootPath}/houseimageenrollment.do">
 						<button type="button" class="btn btn-default">이전</button>
 					</a>
 				</div>
-				<div class="col-md-4 col-xs-8 col-md-4 nextBtn">
-						<button class="btn btn-default">다음</button>
+				<div
+					class="col-md-offset-6 col-sm-offset-6 col-xs-offset-4 col-md-1 col-sm-1 col-xs-1 nextBtn leftform">
+					<button class="btn btn-default">다음</button>
 				</div>
 			</div>
 		</form>
 	</div>
 </div>
-
 
 
 
