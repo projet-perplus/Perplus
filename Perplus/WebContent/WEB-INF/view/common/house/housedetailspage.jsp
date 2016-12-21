@@ -5,6 +5,9 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <!--map key-->
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="/Perplus/js/jquery-ui.multidatespicker.js"></script>
+
 <script
 	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWDGjKV2YFKGM5q6gtx-J5GcJTa2wLDQU"
 	type="text/javascript"></script>
@@ -15,32 +18,31 @@
 <script src="/Perplus/js/map.js"></script>
 <!-- datepicker-->
 <script type="text/javascript">
-	$(document).ready(
-			function() {
-				$(function() {
-					$("#datepicker").datepicker(
-							{
-								showOtherMonths : true,
-								selectOtherMonths : true,
-								yearSuffix : '년',
-								monthNames : [ '1월', '2월', '3월', '4월', '5월',
-										'6월', '7월', '8월', '9월', '10월', '11월',
-										'12월' ],
-								dayNamesMin : [ '일', '월', '화', '수', '목', '금',
-										'토' ],
-								dateFormat : 'yy-mm-dd',
-								showMonthAfterYear : true
-							});
-				});
-				var rating = ${requestScope.house.houseRating};
-				var count = ${	requestScope.comment.totalComments};
-				var ratingAvg = rating / count;
-				if (count == 0) {
-					ratingAvg = 0;
-				}
-				$(".ratingAvg").text("평점:" + ratingAvg.toFixed(2));
-
+$(document).ready(
+		function() {
+			$(function() {
+				$("#datepicker").multiDatesPicker({
+							addDisabledDates : [${requestScope.shutdownDate}],
+							minDate : 0,
+							maxDate : "+${requestScope.house.houseFilter.houseFilterReservationTerm}m",
+							showOtherMonths : true,
+							selectOtherMonths : true,
+							yearSuffix : '년',
+							monthNames : [ '1월', '2월', '3월', '4월', '5월',
+									'6월', '7월', '8월', '9월', '10월', '11월',
+									'12월' ],
+							dayNamesMin : [ '일', '월', '화', '수', '목', '금',
+									'토' ],
+							dateFormat : 'yy-mm-dd',
+							showMonthAfterYear : true
+						});
 			});
+			var rating = ${requestScope.house.houseRating};
+			var count =${requestScope.comment.totalComments};
+			var ratingAvg = rating/count;
+			$(".ratingAvg").text("평점:"+ratingAvg.toFixed(2));
+			
+		});	
 </script>
 <style>
 .bg-4 {
