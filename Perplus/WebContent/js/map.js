@@ -93,7 +93,7 @@ function locationSearch(){
 	}, function(results, status) {
 		if (status == google.maps.GeocoderStatus.OK) {
 			//도,시,구,동,군,읍,면
-			alert(geoLocation.value.trim().charAt(geoLocation.value.trim().length-1));
+//			alert(geoLocation.value.trim().charAt(geoLocation.value.trim().length-1));
 			switch(geoLocation.value.trim().charAt(geoLocation.value.trim().length-1)){
 			case "도" :
 				map.setZoom(9);
@@ -117,6 +117,10 @@ function locationSearch(){
 			alert("제대로 된 지명을 입력해 주세요.");
 		}
 	});
+	//숙소 검색에서 최초 printByFilter를 부르는 곳
+	if(stage == 'search'){
+		printByFilter();
+	}
 }
 
 function setMapOnAll(){
@@ -212,7 +216,8 @@ function placeMarker(serial,location,constant,money) {
 		});
 		if((mIcon.url).includes('default')){
 			google.maps.event.addListener(marker, 'click',function(){
-				$('#reviewEnrollment').modal('show');
+				$('#reviewEnrollment').modal('show'); 
+				setSendPosition();
 			});
 		}else if((mIcon.url).includes('register')){
 			marker.setDraggable(true);
