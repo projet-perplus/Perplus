@@ -95,7 +95,7 @@
 										alt="로컬에 있는 이미지가 보여지는 영역">
 								</div>
 								<div
-									class="col-md-offset-5 col-md-7 col-lg-5 col-xs-offset-4 col-xs-4">
+									class="col-md-offset-5 col-md-7 col-lg-5 col-sm-offset-5 col-sm-6  col-xs-offset-2 col-xs-2">
 									<label class="btn btn-success" style="margin-top: 10px;">사진
 										등록 <input type="file" name="memberPictureFile" id="getfile"
 										accept="image/*" value="사진등록" style="display: none;" />
