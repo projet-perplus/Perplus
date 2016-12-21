@@ -11,13 +11,12 @@
 				});
 
 				$(".parentImg").on("change", ".addImage", function() {
-
 					if ($('.preview img').length == 3) {
 						$(".addImage").hide();
 					}
 				});
 
-				$("input[name=pictureList]").previewimage({
+				$("input[name=houseSubPicture]").previewimage({
 					div : ".preview",
 					imgwidth : 150,
 					imgheight : 100
@@ -109,7 +108,7 @@
 						src="/Perplus/css/image/addimage.PNG" width="700" height="300" />
 					<div class=" row-maginTB">
 						<label class="btn btn-success mainimage"> 이미지 추가&hellip; <input
-							type="file" name="picture"
+							type="file" name="houseMainPicture"
 							onchange="document.getElementById('blah').src = window.URL.createObjectURL(this.files[0])"
 							style="display: none;">
 						</label> <label class="btn btn-danger imageDelete">삭제</label>
@@ -122,7 +121,7 @@
 					<span style="margin-left: 30px;">서브 이미지를 추가하세요(최대4장)</span>
 					<div class="preview" style="padding-left: 30px;"></div>
 					<label class="btn btn-success addImage" style="margin-left: 35px;">
-						이미지 추가&hellip; <input type="file" id="getfile" name="pictureList"
+						이미지 추가&hellip; <input type="file" id="getfile" name="houseSubPicture"
 						accept="image/*" style="border: 0 !important; display: none;">
 					</label>
 				</div>
