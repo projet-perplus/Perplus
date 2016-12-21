@@ -1,3 +1,4 @@
+<%@page import="java.util.Map"%>
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -31,7 +32,21 @@
 								showMonthAfterYear : true
 							});
 				});
-			});
+				var rating = ${requestScope.house.houseRating};
+				var count =${requestScope.comment.totalComments };
+				var ratingAvg = rating/count;
+				$("#ratingAvg").text("평점:"+ratingAvg.toFixed(2));
+				$("#zzim").on("click",function(){
+					$.ajax({
+						url:"/Perplus/member/RegisterHouseZzim.do",
+						data:{"memberEmail":"${sessionScope.login_info.memberEmail}","houseSerial":"${requestScope.house.houseSerial}"},
+						dataType:"text",
+						success:function(obj){
+							$("#zzim").text("찜했당").attr("disabled","disabled");
+						}
+					});
+				});
+			});	
 </script>
 <style>
 .bg-4 {
@@ -130,7 +145,7 @@
 				</div>
 				<div class="row">
 					<div class="col-md-4 col-md-offset-1">지역:${requestScope.house.houseFilter.houseFilterLocation }</div>
-					<div class="col-md-4">펑점 :${requestScope.house.houseRating }</div>
+					<div class="col-md-4" id="ratingAvg"></div>
 					<div class="col-md-3">후기 개수:${requestScope.comment.totalComments }</div>
 				</div>
 
@@ -346,7 +361,10 @@
 </div>
 			<!-- /숙소 상세 페이지 메뉴 끝 -->
 
-			<div class="col-md-3 panel-MT" style="margin-bottom: 30px;">찜</div>
+			<div class="col-md-3 panel-MT" style="margin-bottom: 30px;">
+				<button class="btn btn-success" id="zzim"
+					style="width: 100%; margin-bottom: 15px;">찜하기</button>
+			</div>
 		</div>
 
 

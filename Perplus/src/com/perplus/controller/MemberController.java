@@ -201,11 +201,13 @@ public class MemberController {
 	
 	
 	/**********************houseZzim 등록**********************************/
-	
+	@RequestMapping("/RegisterHouseZzim")
+	@ResponseBody
 	public String houseZzimInsert(@RequestParam String memberEmail, @RequestParam int houseSerial){
 		HouseZzimVo houseZzim = new HouseZzimVo(0, houseSerial, memberEmail);
+		System.out.println(houseZzim);
 		service.insertHouseZzim(houseZzim);
-		return "숙소상세페이지로";
+		return null;
 	}
 	
 	/***********************housezzim 삭제***************************************/

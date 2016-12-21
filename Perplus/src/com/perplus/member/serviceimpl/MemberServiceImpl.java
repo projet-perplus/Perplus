@@ -145,8 +145,7 @@ public class MemberServiceImpl implements MemberService{
 	@Override//houseComment 등록
 	public int insertHouseComment(HouseCommentVo houseComment){
 		HouseVo house = houseDao.selectHouseByHouseSerial(houseComment.getHouseSerial());
-		int commentCount = houseCommentDao.selectHouseCommentCount(houseComment.getHouseSerial());
-		int houseRating = ((house.getHouseRating()*commentCount)+houseComment.getCommentRating())/(commentCount+1);
+		int houseRating = house.getHouseRating()+houseComment.getCommentRating();
 		houseCommentDao.insertHouseComment(houseComment);
 		return houseRating;
 	}
@@ -155,9 +154,8 @@ public class MemberServiceImpl implements MemberService{
 	public int deleteHouseComment(int commentSerial){
 		HouseCommentVo houseComment = houseCommentDao.selectHouseCommentByCommentSerial(commentSerial);
 		HouseVo house = houseDao.selectHouseByHouseSerial(houseComment.getHouseSerial());
-		int commentCount = houseCommentDao.selectHouseCommentCount(houseComment.getHouseSerial());
 		int commentRating = houseComment.getCommentRating();
-		int houseRating = ((house.getHouseRating()*commentCount)-commentRating)/(commentCount-1);
+		int houseRating =house.getHouseRating()-commentRating;
 		houseCommentDao.deleteHouseComment(commentSerial);
 		return houseRating;
 	}

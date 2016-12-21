@@ -19,6 +19,7 @@ public class HouseZzimDaoImpl implements HouseZzimDao{
 
 	@Override//찜등록
 	public int insertHouseZzim(HouseZzimVo houseZzim) {
+		System.out.println("dfgdfgdf");
 		return session.insert("houseZzim.insertHouseZzim", houseZzim);
 	}
 

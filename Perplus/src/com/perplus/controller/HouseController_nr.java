@@ -34,8 +34,6 @@ public class HouseController_nr {
 	@RequestMapping("/houseDetail")
 	public String getHouse(@RequestParam int houseSerial, ModelMap map,@RequestParam(defaultValue="1") int page,HttpServletRequest request){
 		String houseRating = request.getParameter("houseRating");
-		System.out.println(houseRating);
-		System.out.println(houseSerial);
 		HouseVo house = service.selectHouseForDetailPage(houseSerial);
 		List<HousePictureVo> picture= service.selectHousePictureForDetailPage(houseSerial);
 		Map<String,Object> comment = memberService.selectHouseCommentBySerial(houseSerial,page);
@@ -44,12 +42,11 @@ public class HouseController_nr {
 			house.setHouseRating(rating);
 			service.modifyHouse(house);
 		}
-		System.out.println(comment.get("commentList"));
-		house.setHousePicture(picture);
+		
 		map.put("house", house);
 		map.put("picture",picture);
 		map.put("comment", comment);
-		System.out.println(house);
+
 		return "housedetailspage.housetiles";
 	}
 	

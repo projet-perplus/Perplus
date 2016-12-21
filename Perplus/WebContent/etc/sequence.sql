@@ -6,7 +6,7 @@ create sequence REVIEW_SEQ increment by 1;
 create sequence review_serial_seq;	
 create sequence comment_serial_seq;	
 create sequence picture_serial_seq;	
-
+create sequence houseZzim_seq;
 drop sequence review_serial_seq;
 drop sequence comment_serial_seq;
 drop sequence picture_serial_seq;
