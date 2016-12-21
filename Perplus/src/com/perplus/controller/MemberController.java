@@ -239,10 +239,14 @@ public class MemberController {
 	}
 	
 	/**********************숙소상세페이지에서 최초로 받은 메세지만 받고 넘긴다.*******************/
-	@RequestMapping("/chatting.do")
-	public String chattingRoomCreate(/*@RequestParam String chattingPartner,*/ @RequestParam String memberEmail){
+	@RequestMapping("/chattingcreate.do")
+	public String chattingRoomCreate(@RequestParam String chattingPartner, HttpSession session){
+		MemberVo member = (MemberVo)session.getAttribute("login_info");
+		String memberEmail = member.getMemberEmail();
+		System.out.println(chattingPartner);
+		System.out.println(memberEmail);
+		
 		int chattingNumber = 0;
-		String chattingPartner = "ask13021123@naver.com";
 		ChattingVo chatting = service.findByChatting(chattingPartner, memberEmail);
 		if(chatting==null){//채팅방이 없으면 만들고. 번호 주고
 			service.createChatting(new ChattingVo(0, chattingPartner, memberEmail));
@@ -262,13 +266,15 @@ public class MemberController {
 		MemberVo member = (MemberVo)session.getAttribute("login_info");
 		String memberEmail = member.getMemberEmail();
 		List<ChattingVo> chatting = service.selectJoinChattingAndChattingLog(memberEmail);
-		for(int i = 0; i<chatting.size();i++){
-			for(int j= 0; j<chatting.get(i).getChattingLog().size();j++){
-				TextUtil tu = new TextUtil();
-				String a = tu.htmlToText(chatting.get(i).getChattingLog().get(j).getChattingContent());
-				chatting.get(i).getChattingLog().get(j).setChattingContent(a);
-			}
-		}
+
+		//Textutil
+//		for(int i = 0; i<chatting.size();i++){
+//			for(int j= 0; j<chatting.get(i).getChattingLog().size();j++){
+//				TextUtil tu = new TextUtil();
+//				String a = tu.htmlToText(chatting.get(i).getChattingLog().get(j).getChattingContent());
+//				chatting.get(i).getChattingLog().get(j).setChattingContent(a);
+//			}
+//		}
 		
 		map.addAttribute("chatting", chatting);
 		if(request.getParameter("returnChattingNumber")!=null){

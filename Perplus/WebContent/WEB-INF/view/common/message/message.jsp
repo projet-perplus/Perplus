@@ -5,11 +5,13 @@
 	function messageScrollToBottom() {
 		var height = $(this).find(".messageWrapper").height();
 		$('.messageBody').scrollTop(height);
+		$('.chattingContent').focus();
 	}
 
 	$(function() {
 		var chattingNumber = '${requestScope.returnChattingNumber}';
 
+		
 		/* 메시지창 접근 시 스크롤 내려주는 이벤트 */
 		$(".chattingDialog").on('shown.bs.modal', messageScrollToBottom)
 
@@ -21,7 +23,6 @@
 
 		if (chattingNumber) {
 			$('#a' + chattingNumber).modal('show');
-
 		}
 
 	})
@@ -108,8 +109,8 @@
 												<div class="row-maginTB">
 													<div class="col-md-9">
 														<div class="form-group">
-															<textarea class="form-control" rows="1"
-																id="chattingContentArea" name="chattingContent"></textarea>
+															<input type="text" class="form-control chattingContent"
+																id="chattingContentArea" name="chattingContent">
 														</div>
 													</div>
 													<div class="col-md-2">
