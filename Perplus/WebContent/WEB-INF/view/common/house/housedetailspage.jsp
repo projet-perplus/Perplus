@@ -35,6 +35,9 @@
 				var rating = ${requestScope.house.houseRating};
 				var count =${requestScope.comment.totalComments };
 				var ratingAvg = rating/count;
+				if(count==0){
+					ratingAvg=0;
+				}
 				$(".ratingAvg").text("평점:"+ratingAvg.toFixed(2));
 				
 			});	
@@ -49,7 +52,7 @@
 }
 </style>
 
-<div class="container reviewslide">
+<div class="container houseslide">
 	<div class="row">
 		<div class="slidebar">
 			<div class="carousel slide" id="myCarousel">
@@ -68,14 +71,14 @@
 									<c:when test="${picture.pictureOrder==1}">
 										<div class="active item">
 											<img
-												src="/Perplus/housePicture/${picture.pictureName }"
+												src="/Perplus/housePicture/${picture.pictureName }" 
 												style="width: 770px !important; height: 300px !important;">
 										</div>
 									</c:when>
 									<c:otherwise>
 										<div class="item">
 											<img
-												src="/Perplus/housePicture/${picture.pictureName }"
+												src="/Perplus/housePicture/${picture.pictureName }" 
 												style="width: 770px !important; height: 300px !important;">
 										</div>
 									</c:otherwise>
