@@ -5,26 +5,12 @@
 	type="text/javascript"></script>
 <script src="/Perplus/js/map.js"></script>
 <script src="/Perplus/js/search-map.js">
-	
 </script>
 <script type="text/javascript">
-<<<<<<< HEAD
 var location;
 var checkIn;
 var checkOut;
 var guestNumber;
-=======
-<<<<<<< HEAD
-	$(document).ready(function() {
-		var location;
-		var checkIn;
-		var checkOut;
-		var guestNumber;
-		if (decodeURI(window.location.search).includes('location')) {
-			location = getQueryString('location');
-			$("#location").val(location);
-=======
->>>>>>> branch 'master' of https://github.com/projet-perplus/Perplus.git
 $(document).ready(function(){
 
 	if(decodeURI(window.location.search).includes('location')){
@@ -43,14 +29,10 @@ $(document).ready(function(){
 		guestNumber=getQueryString('guestNumber');
 		jQuery("#guestNumber").val(guestNumber).attr("selected", "selected");
 	}
-<<<<<<< HEAD
 	//최초의 printByFilter() 는 map이 initialize 되고 나서 geoLocation 입력 함수에서 부른다.
-});
-=======
 });
 
 $(function() {
-
 	$("#slider-range").slider({
 		range : true,
 		min : 0,
@@ -58,45 +40,15 @@ $(function() {
 		values : [ 30000, 80000 ],
 		slide : function(event, ui) {
 			$("#amount").val("₩" + ui.values[0] + " - ₩" + ui.values[1]);
->>>>>>> branch 'master' of https://github.com/projet-perplus/Perplus.git
 		}
-		if (decodeURI(window.location.search).includes('checkIn')) {
-			checkIn = getQueryString('checkIn');
-		}
-		if (decodeURI(window.location.search).includes('checkOut')) {
-			checkOut = getQueryString('checkOut');
-		}
-		if (decodeURI(window.location.search).includes('guestNumber')) {
-			guestNumber = getQueryString('guestNumber');
-		}
-		$("#amount").on("input", printByFilter());
-
-		$(".addfilterBtn").click(function() {
-			$(".addfilter").toggle();
-
-		});
-
 	});
-
-	$(function() {
-
-		$("#slider-range").slider({
-			range : true,
-			min : 0,
-			max : 200000,
-			values : [ 30000, 80000 ],
-			slide : function(event, ui) {
-				$("#amount").val("₩" + ui.values[0] + " - ₩" + ui.values[1]);
-			}
-		});
-		$("#amount").val(
-				"₩" + $("#slider-range").slider("values", 0) + " - ₩"
-						+ $("#slider-range").slider("values", 1));
-		$("#slider-range").on("slidestop", function() {
-			printByFilter();
-		});
+	$("#amount").val(
+			"₩" + $("#slider-range").slider("values", 0) + " - ₩"
+					+ $("#slider-range").slider("values", 1));
+	$("#slider-range").on("slidestop", function() {
+		printByFilter();
 	});
->>>>>>> branch 'master' of https://github.com/projet-perplus/Perplus.git
+});
 //지도 배율의 변화나 추가 필터를 제외한 기존 필터의 변화가 있을때마다 마커를 긁어오는 과정이 필요하다.
 // 	HashMap List
 // 	1. endDay , startDay
@@ -180,31 +132,7 @@ function printByFilter(){
 //		}
 //	});
 //}
-<<<<<<< HEAD
 // }
-$(function() {
-
-	$("#slider-range").slider({
-		range : true,
-		min : 0,
-		max : 200000,
-		values : [ 30000, 80000 ],
-		slide : function(event, ui) {
-			$("#amount").val("₩" + ui.values[0] + " - ₩" + ui.values[1]);
-		}
-	});
-	$("#amount").val(
-			"₩" + $("#slider-range").slider("values", 0) + " - ₩"
-					+ $("#slider-range").slider("values", 1));
-	$("#slider-range").on("slidestop",function(){
-		printByFilter();
-	});
-});
-
-=======
-}
->>>>>>> branch 'master' of https://github.com/projet-perplus/Perplus.git
->>>>>>> branch 'master' of https://github.com/projet-perplus/Perplus.git
 </script>
 <div class="container-fluid">
 	<div class="row">
@@ -291,90 +219,12 @@ $(function() {
 
 			<div class="row row-condensed space-4">
 				<div class="col-md-12">
-					<!-- data-toggle="modal" data-target="#addfilterdialog" -->
-					<button class="btn btn-primary addfilterBtn">추가 필터</button>
-					<!-- <a href="#"></a> -->
+					
+					<a href="#" data-toggle="modal" data-target="#addfilterdialog"><button class="btn btn-primary ">추가 필터</button></a>
+					
 				</div>
 			</div>
 
-			<div class="row row-condensed space-4 addfilter"
-				style="display: none;">
-				<div class="col-md-12">
-
-					<div class="col-md-2 col-sm-2 col-xs-12"
-						style="margin-bottom: 15px;">
-						<span class="btn btn-primary">규모</span>
-					</div>
-					<div class="col-md-3 col-sm-3 col-xs-4">
-						<div class="form-group">
-							<select class="form-control">
-								<option>침실수</option>
-								<option>2</option>
-								<option>3</option>
-								<option>4</option>
-							</select>
-						</div>
-					</div>
-					<div class="col-md-3 col-sm-3 col-xs-4">
-						<div class="form-group">
-							<select class="form-control">
-								<option>욕실수</option>
-								<option>2</option>
-								<option>3</option>
-								<option>4</option>
-							</select>
-						</div>
-					</div>
-					<div class="col-md-3 col-sm-3 col-xs-4">
-						<div class="form-group">
-							<select class="form-control">
-								<option>침대수</option>
-								<option>2</option>
-								<option>3</option>
-								<option>4</option>
-							</select>
-						</div>
-					</div>
-
-					<div class="row panel-MT">
-						<div class="col-md-12">
-							<div class="col-md-12">a</div>
-						</div>
-
-					</div>
-					<div class="row panel-MT">
-						<div class="col-md-12">
-							<div class="col-md-12">b</div>
-						</div>
-
-					</div>
-					<div class="col-md-12">
-						<div class="modal-footer">
-							<div class="row panel-MT">
-								<div
-									class="col-md-offset-5 col-sm-offset-5 col-xs-offset-5 col-md-3 col-sm-3 col-xs-3">
-
-									<button class="btn btn-primary" style="width: 100%">취소</button>
-								</div>
-								<div class="col-md-3 col-sm-3 col-xs-3">
-									<button type="submit" class="btn btn-primary">필터 적용</button>
-								</div>
-							</div>
-						</div>
-					</div>
-
-
-
-
-
-
-
-
-
-
-
-				</div>
-			</div>
 
 			<div class="row row-condensed space-4">
 				<div class="col-md-12">
