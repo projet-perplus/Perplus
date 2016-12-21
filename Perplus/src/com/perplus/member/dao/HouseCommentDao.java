@@ -22,4 +22,6 @@ public interface HouseCommentDao {
 	int selectHouseCommentCount(int houseSerial);
 	
 	int deleteAllCommentBySerial(int houseSerial);
+	
+	HouseCommentVo selectHouseCommentByCommentSerial(int CommentSerial);
 }

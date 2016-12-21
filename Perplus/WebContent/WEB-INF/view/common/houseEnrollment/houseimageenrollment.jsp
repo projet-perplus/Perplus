@@ -11,13 +11,12 @@
 				});
 
 				$(".parentImg").on("change", ".addImage", function() {
-
 					if ($('.preview img').length == 3) {
 						$(".addImage").hide();
 					}
 				});
 
-				$("input[name=pictureList]").previewimage({
+				$("input[name=houseSubPicture]").previewimage({
 					div : ".preview",
 					imgwidth : 150,
 					imgheight : 100
@@ -96,57 +95,38 @@
 	<div class="container">
 		<form action="${initParam.rootPath}/house/fiveStep.do" method="post"
 			enctype="multipart/form-data">
-
-
 			<input type="hidden" name="houseSerial"
 				value=<%=request.getParameter("houseSerial")%>>
-
-
 			<div class="row row-condensed space-4">
 				<label class="text-left col-md-7 col-md-offset-2"> <span>이미지
 						등록</span>
 				</label>
 			</div>
-
-
 			<div class="row row-condensed space-4">
 				<div class="col-md-offset-2 col-md-8 previewimg">
 					<img id="blah" alt="your image"
 						src="/Perplus/css/image/addimage.PNG" width="700" height="300" />
-
 					<div class=" row-maginTB">
-						
-							<label class="btn btn-success mainimage"> 이미지 추가&hellip;
-								<input type="file" name="picture"
-								onchange="document.getElementById('blah').src = window.URL.createObjectURL(this.files[0])"
-								style="display: none;">
-							</label> <label class="btn btn-danger imageDelete">삭제</label>
-					
+						<label class="btn btn-success mainimage"> 이미지 추가&hellip; <input
+							type="file" name="houseMainPicture"
+							onchange="document.getElementById('blah').src = window.URL.createObjectURL(this.files[0])"
+							style="display: none;">
+						</label> <label class="btn btn-danger imageDelete">삭제</label>
+
 					</div>
 				</div>
 			</div>
-
 			<div class="row row-condensed space-4">
 				<div class="col-md-offset-2 col-md-10 parentImg">
-
-
 					<span style="margin-left: 30px;">서브 이미지를 추가하세요(최대4장)</span>
 					<div class="preview" style="padding-left: 30px;"></div>
 					<label class="btn btn-success addImage" style="margin-left: 35px;">
-						이미지 추가&hellip; <input type="file" id="getfile" name="pictureList"
+						이미지 추가&hellip; <input type="file" id="getfile" name="houseSubPicture"
 						accept="image/*" style="border: 0 !important; display: none;">
 					</label>
-
-
 				</div>
 			</div>
-
-
-
-
-
 			<div class="row row-condensed">
-
 				<div
 					class="col-md-offset-2 col-sm-offset-2 col-xs-offset-2 col-md-1 col-sm-1 col-xs-1 previousBtn">
 					<a href="${initParam.rootPath}/housefacility.do">
@@ -158,8 +138,6 @@
 					<button class="btn btn-default">다음</button>
 				</div>
 			</div>
-
-
 		</form>
 	</div>
 </div>

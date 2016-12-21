@@ -8,6 +8,7 @@
 	
 </script>
 <script type="text/javascript">
+<<<<<<< HEAD
 	$(document).ready(function() {
 		var location;
 		var checkIn;
@@ -16,6 +17,39 @@
 		if (decodeURI(window.location.search).includes('location')) {
 			location = getQueryString('location');
 			$("#location").val(location);
+=======
+$(document).ready(function(){
+	var location;
+	var checkIn;
+	var checkOut;
+	var guestNumber;
+	if(decodeURI(window.location.search).includes('location')){
+		location=getQueryString('location');
+		$("#location").val(location);
+	}
+	if(decodeURI(window.location.search).includes('checkIn')){
+		checkIn=getQueryString('checkIn');
+		$("#dpd1").val(checkIn);
+	}
+	if(decodeURI(window.location.search).includes('checkOut')){
+		checkOut=getQueryString('checkOut');
+		$("#dpd2").val(checkOut);
+	}
+	if(decodeURI(window.location.search).includes('guestNumber')){
+		guestNumber=getQueryString('guestNumber');
+	}
+});
+
+$(function() {
+
+	$("#slider-range").slider({
+		range : true,
+		min : 0,
+		max : 200000,
+		values : [ 30000, 80000 ],
+		slide : function(event, ui) {
+			$("#amount").val("₩" + ui.values[0] + " - ₩" + ui.values[1]);
+>>>>>>> branch 'master' of https://github.com/projet-perplus/Perplus.git
 		}
 		if (decodeURI(window.location.search).includes('checkIn')) {
 			checkIn = getQueryString('checkIn');
@@ -53,9 +87,33 @@
 			printByFilter();
 		});
 	});
-	function printByFilter() {
-
-	}
+//지도 배율의 변화나 추가 필터를 제외한 기존 필터의 변화가 있을때마다 마커를 긁어오는 과정이 필요하다.
+function printByFilter(){
+	//function placeMarkerList(southWestLat,southWestLng,northEastLat,northEastLng){
+//	$.ajax({
+//		url : "/Perplus/map/markerall.do",
+//		type:"post",
+//		async : false,
+//		data : JSON.stringify({key:value,}),
+//		contentType : "text/JSON"
+//		dataType : "JSON",
+//		success:function(obj){
+//			$.each(obj,function(){
+//				var markerLatlng = new google.maps.LatLng(this.reviewMarkerX, this.reviewMarkerY);
+//				placeMarker(this.reviewSerial,markerLatlng,this.reviewMarkerConstant);
+//			});
+//			if(startMarker!=null){
+//				startMarker.setAnimation(google.maps.Animation.BOUNCE);
+//				markerArray.push(startMarker);
+//			}
+//		},
+//		error:function(request,error,status){
+//			alert(error+ "   "+status+"status");
+//		}
+//	});
+//}
+}
+>>>>>>> branch 'master' of https://github.com/projet-perplus/Perplus.git
 </script>
 <div class="container-fluid">
 	<div class="row">
@@ -229,7 +287,7 @@
 
 			<div class="row row-condensed space-4">
 				<div class="col-md-12">
-					<a href="${initParam.rootPath}/house/houseDetail.do?houseSerial=1"><button
+					<a href="${initParam.rootPath}/house/houseDetail.do?houseSerial=3"><button
 							class="btn btn-primary">숙소 상세 페이지</button></a>
 				</div>
 			</div>

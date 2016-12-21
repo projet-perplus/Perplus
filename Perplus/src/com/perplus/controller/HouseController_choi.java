@@ -1,9 +1,12 @@
 package com.perplus.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -12,12 +15,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.perplus.house.service.HouseService_nr;
 import com.perplus.house.serviceimpl.HouseServiceImpl_choi;
 import com.perplus.house.vo.CheckListVo;
 import com.perplus.house.vo.CodetableVo;
 import com.perplus.house.vo.HouseFilterVo;
+import com.perplus.house.vo.HousePictureVo;
 import com.perplus.house.vo.HouseVo;
 import com.perplus.house.vo.ShutdownVo;
 
@@ -27,6 +32,11 @@ public class HouseController_choi {
 	
 	@Autowired
 	private HouseServiceImpl_choi service;
+	
+	@Autowired
+	private HouseService_nr service_nr;
+	
+	
 	
 	
 	@RequestMapping("/oneStepBefore.do")//1step 들어가기전에 필요한 정보들 조회 컨트롤러.
@@ -74,27 +84,42 @@ public class HouseController_choi {
 			if(i==0){
 				houseFilterLocation = houseFilterLocationList[i];
 			}else{
-				houseFilterLocation = houseFilterLocation +", "+houseFilterLocationList[i];
+				houseFilterLocation = houseFilterLocation +",  "+houseFilterLocationList[i];
 			}
 		}
 		houseFilterVo.setHouseFilterLocation(houseFilterLocation);
 		service.insertHouseFilter(houseFilterVo);
-		
-		request.setAttribute("location", houseFilterLocationList[1]);
-		return "forward:/house/threeStepBefore.do?houseSerial="+houseFilterVo.getHouseSerial();
+		return "redirect:/house/threeStepBefore.do?houseSerial="+houseFilterVo.getHouseSerial();
 	}
 	
 	
 	@RequestMapping("/threeStepBefore.do")//3step 들어가기전에 조회하는 것들...
-	public String threeStepBefore(@RequestParam int houseSerial){
+	public String threeStepBefore(@RequestParam int houseSerial, HttpServletRequest request){
+		HouseFilterVo houseFilter = service.selectHouseFilter(houseSerial);
+		String location = houseFilter.getHouseFilterLocation().split(",  ")[1];
+		System.out.println(location);
+		request.setAttribute("location", location);
+		request.setAttribute("houseSerial", houseSerial);
 		System.out.println("threeStepBefore.do");
 		System.out.println();
-		return "forward:/houselocation.do?houseSerial="+houseSerial;
+		return "forward:/houselocation.do";
 	}
 	
 	
 	@RequestMapping("/threeStep.do")//3step commit하는 컨트롤러
-	public String threeStepHouseRegister(@RequestParam int houseSerial){
+	public String threeStepHouseRegister(@RequestParam int houseSerial, @RequestParam String lat, @RequestParam String lng){
+		HouseVo house = service.selectHouseByHouseSerial(houseSerial);
+		System.out.println(house);
+		
+		double houseMarkerX = Double.parseDouble(lat);
+		double houseMarkerY = Double.parseDouble(lng);
+		house.setHouseMarkerX(houseMarkerX);
+		house.setHouseMarkerY(houseMarkerY);
+		System.out.println(houseMarkerX);
+		System.out.println(houseMarkerY);
+		System.out.println(house);
+		service_nr.modifyHouse(house);
+		
 		System.out.println("threeStep");
 		System.out.println(houseSerial);
 		return "redirect:/house/fourStepBefore.do?houseSerial="+houseSerial;
@@ -120,7 +145,7 @@ public class HouseController_choi {
 	
 	
 	@RequestMapping("/fourStep.do")//4step commit하는 컨트롤러
-	public String fourStepHouseRegister(@RequestParam int houseSerial,MultipartHttpServletRequest requestp ,HttpServletRequest request, @RequestParam int houseFilterBedroomNumber,@RequestParam int houseFilterBedNumber,@RequestParam int houseFilterBathroomNumber){
+	public String fourStepHouseRegister(@RequestParam int houseSerial, HttpServletRequest request, @RequestParam int houseFilterBedroomNumber,@RequestParam int houseFilterBedNumber,@RequestParam int houseFilterBathroomNumber){
 		String[] convenientFacilityList = request.getParameterValues("convenientFacility");//편의시설
 		String[] secureFacilityList = request.getParameterValues("secureFacility");//안전시설
 		String[] commonFacilityList = request.getParameterValues("commonFacility");//공용시설
@@ -172,7 +197,39 @@ public class HouseController_choi {
 	
 	
 	@RequestMapping("/fiveStep.do")//5step commit하는 컨트롤러 이미지 등록 극혐!!!!!!!!!!!!!!!!!!!!!!!!
-	public String fiveStepHouseRegister(@RequestParam int houseSerial){
+	public String fiveStepHouseRegister(@RequestParam int houseSerial, @RequestParam(value="houseMainPicture") MultipartFile houseMainPicture ,@RequestParam(value="houseSubPicture[]") MultipartFile[] houseSubPictures, HttpServletRequest request) throws IllegalStateException, IOException{
+		//houseMainPicture 메인픽쳐
+		//houseSubPictures 서브픽쳐
+		
+		if(houseMainPicture!=null && !houseMainPicture.isEmpty()){
+			//파일 uploadPhoto로 옮기기
+			String fileName = UUID.randomUUID().toString().replaceAll("-","");
+			File picture = new File(request.getServletContext().getRealPath("/housePicture"), fileName);
+			houseMainPicture.transferTo(picture);
+			HousePictureVo housePicture = new HousePictureVo(0, houseSerial, 1, fileName);
+			service.insertHousePicture(housePicture);
+		}
+		
+		
+		
+		int orderNumber = 2;
+		if(houseSubPictures != null){
+			String saveDir = request.getServletContext().getRealPath("/housePicture");
+			for(int i = 0; i<houseSubPictures.length;i++){
+				MultipartFile file = (MultipartFile)houseSubPictures[i];
+				if(!file.isEmpty()){
+					
+					String fileName = UUID.randomUUID().toString().replace("-", "");//UUID를 이용해 파일명 생성(- 제거)
+					File dest = new File(saveDir,fileName);
+					file.transferTo(dest);
+					
+					service.insertHousePicture(new HousePictureVo(0, houseSerial, orderNumber, fileName));
+					orderNumber++;
+				}
+			}
+		}
+		
+		
 		System.out.println("fiveStep");
 		return "redirect:/house/sixStepBefore.do?houseSerial="+houseSerial;
 	}

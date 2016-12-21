@@ -2,10 +2,10 @@
 <script
 	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWDGjKV2YFKGM5q6gtx-J5GcJTa2wLDQU"
 	type="text/javascript"></script>
-<script src="js/map.js"></script>
+<script src="/Perplus/js/map.js"></script>
 <script type="text/javascript">
 function getMarkerLocation(){
-	var url ="/Perplus/housefacility.do?lat="+markerArray[0].getPosition().lat().toString()+"&lng="
+	var url ="/Perplus/house/threeStep.do?houseSerial=${requestScope.houseSerial}&lat="+markerArray[0].getPosition().lat().toString()+"&lng="
 	+markerArray[0].getPosition().lng().toString();
 	
 	//다음 url로 링크
@@ -52,10 +52,10 @@ function getMarkerLocation(){
 				<div class="row row-condensed space-4" style="margin-bottom: 40px;">
 					<div class="col-md-offset-2 col-md-8" >
 						<div class="locationspan">
-							<span>숙소 의 위치를 알려주세요</span>	
+							<span>숙소 의 위치를 알려주세요  ${requestScope.location}</span>	
 						</div>
 						<input type="hidden" id="stage" value="register">
-						<input type="hidden" id="location" value="${reqeustScope.location}">
+						<input type="hidden" id="location" value="${requestScope.location}">
 						<!-- 예시... 위로 바꾸세요 -->
 <!-- 						<input type="hidden" id="location" value="경기도 용인시 수지구"> -->
 						<div id="map-canvas" style="width: 100%; height: 400px"></div>
