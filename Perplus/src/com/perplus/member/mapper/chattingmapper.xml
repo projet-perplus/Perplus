@@ -3,7 +3,7 @@
 
 <mapper namespace="chatting">
 
-	<insert id="createChatting">
+	<insert id="createChatting" parameterType="ChattingVo">
 		insert into CHATTING values(chatting_seq.nextval,#{chattingPartner},#{memberEmail})
 	</insert>
 
@@ -78,8 +78,8 @@
 	
 	<select id="selectJoinChattingLog" parameterType="string" resultMap="chatting-chattinglog-join-resultmap">
 		<include refid="select-chatting-join-sql"/>
-		where	c.chatting_number = l.chatting_number (+)
-		and		l.member_email = m.member_email
+		where	c.chatting_number = l.chatting_number(+)
+		and		l.member_email = m.member_email(+)
 		and		(c.member_email = #{memberEmail}
 		or		c.chatting_partner = #{memberEmail})
 		

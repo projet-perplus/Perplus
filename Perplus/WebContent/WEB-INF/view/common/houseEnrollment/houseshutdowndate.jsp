@@ -13,7 +13,6 @@
 	var y = today.getFullYear();
 
 	$(function() {
-
 		$("#datepicker").multiDatesPicker(
 				{
 					minDate : 0,
@@ -68,7 +67,7 @@
 	width: 100%;
 }
 
-.ui-state-default ui-state-highlight ui-state-active{
+.ui-state-default ui-state-highlight ui-state-active {
 	border: 1px solid #c5c5c5;
 	background: #f6f6f6;
 }
@@ -143,16 +142,19 @@
 					</div>
 				</div>
 			</div>
-			<div class="row houseBtnMB">
-				<div class="col-md-offset-2 col-md-4 col-xs-4 previousBtn">
+			<div class="row row-condensed">
+				<div
+					class="col-md-offset-2 col-sm-offset-2 col-xs-offset-2 col-md-1 col-sm-1 col-xs-1 previousBtn">
 					<a href="${initParam.rootPath}/houseschedulemanagement.do">
 						<button type="button" class="btn btn-default">이전</button>
 					</a>
 				</div>
-				<div class="col-md-4 col-xs-8 col-md-4 nextBtn">
+				<div
+					class="col-md-offset-6 col-sm-offset-6 col-xs-offset-4 col-md-1 col-sm-1 col-xs-1 nextBtn leftform">
 					<button class="btn btn-default">다음</button>
 				</div>
 			</div>
 		</form>
 	</div>
 </div>
+

@@ -1,4 +1,4 @@
-<%@page import="com.perplus.review.vo.ReviewPictureVo"%>
+<%-- <%@page import="com.perplus.review.vo.ReviewPictureVo"%>
 <%@page import="java.util.List"%>
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -434,7 +434,7 @@
 						<c:when test="${requestScope.pageBean.previousPageGroup }">
 							<a
 								href="${initParam.rootPath}/review/showReview.do?reviewSerial=${requestScope.review.reviewSerial }&page=${requestScope.pageBean.beginPage -1 }">
-								<%-- 현재 페이지 그룹의 시작 페이지-1을 요청.(이전 페이지 그룹의 마지막 페이지 요청)  --%>
+								현재 페이지 그룹의 시작 페이지-1을 요청.(이전 페이지 그룹의 마지막 페이지 요청) 
 								◀&nbsp;&nbsp;
 							</a>
 						</c:when>
@@ -468,7 +468,7 @@
 	 -->
 					<c:choose>
 						<c:when test="${requestScope.pageBean.nextPageGroup }">
-							<%--현재 페이지 그룹의 마지막 page+1(다음 페이지 그룹의 시작페이지로 이동) --%>
+							현재 페이지 그룹의 마지막 page+1(다음 페이지 그룹의 시작페이지로 이동)
 							<a
 								href="${initParam.rootPath}/review/showReview.do?reviewSerial=${requestScope.review.reviewSerial }&page=${requestScope.pageBean.beginPage +1 }">
 								▶ </a>
@@ -495,3 +495,4 @@
 </div>
 <!-- /.modal -->
 
+ --%>

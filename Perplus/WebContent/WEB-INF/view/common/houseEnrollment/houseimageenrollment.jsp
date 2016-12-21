@@ -134,7 +134,7 @@
 					</a>
 				</div>
 				<div
-					class="col-md-offset-6 col-sm-offset-6 col-xs-offset-4 col-md-1 col-sm-1 col-xs-1 nextBtn">
+					class="col-md-offset-6 col-sm-offset-6 col-xs-offset-4 col-md-1 col-sm-1 col-xs-1 nextBtn leftform">
 					<button class="btn btn-default">다음</button>
 				</div>
 			</div>

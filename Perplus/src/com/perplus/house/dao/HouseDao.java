@@ -27,5 +27,5 @@ public interface HouseDao {
 	
 	int reservationAbleTerm(HashMap map);
 	
-	
+	HouseVo selectHouseWithPictureAndFilterBySerial(int houseSerial);
 }

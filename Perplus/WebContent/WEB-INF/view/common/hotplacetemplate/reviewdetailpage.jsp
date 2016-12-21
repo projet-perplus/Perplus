@@ -211,6 +211,29 @@
 			<label class="text-left col-md-2"> <span>작성자</span>
 			</label>
 			<div class="col-md-6">${requestScope.review.memberEmail }</div>
+			<div class="col-md-3">
+				<c:choose>
+					<c:when test="${empty requestScope.zzim}">
+						<a
+							href="${initParam.rootPath}/member/registerReviewZzim.do?memberEmail=${sessionScope.login_info.memberEmail}&reviewSerial=${requestScope.review.reviewSerial}">
+							<button class="btn zzim"
+								style="padding: 0px; background-color: #fff;">
+								<img src="/Perplus/css/image/heartBlank.png"
+									style="height: 55px;">
+							</button>
+						</a>
+					</c:when>
+					<c:otherwise>
+						<a
+							href="${initParam.rootPath}/member/cancleReviewZzim.do?reviewZzimSerial=${requestScope.zzim.reviewZzimSerial}">
+							<button class="btn" id="zzimCancle"
+								style="padding: 0px; background-color: #fff;">
+								<img src="/Perplus/css/image/heart.png" style="height: 55px;">
+							</button>
+						</a>
+					</c:otherwise>
+				</c:choose>
+			</div>
 		</div>
 		<div class="row row-condensed space-4">
 			<label class="text-left col-md-2"> <span>리뷰 제목</span>

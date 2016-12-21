@@ -1,4 +1,58 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
+
+<script type="text/javascript">
+$(document).ready(
+		function() {
+			$(function() {
+				$("#housedatepicker1").on("click",function(){
+					$("#housedatepicker1").val("");
+				});
+			
+				$("#housedatepicker1").datesPicker({
+						addDisabledDates : [${requestScope.shutdownDate}],
+						altField : "#housedatepicker1",
+						minDate : 0,
+						maxDate : "+${requestScope.house.houseFilter.houseFilterReservationTerm}m",
+						showOtherMonths : true,
+						selectOtherMonths : true,
+						yearSuffix : '년',
+						monthNames : [ '1월', '2월', '3월', '4월', '5월',
+								'6월', '7월', '8월', '9월', '10월', '11월',
+								'12월' ],
+						dayNamesMin : [ '일', '월', '화', '수', '목', '금',
+								'토' ],
+						dateFormat : 'yy-mm-dd',
+						showMonthAfterYear : true
+				}).on('changeDate', function(ev) {
+					if (ev.date.valueOf() > checkout.date.valueOf()) {
+						var newDate = new Date(ev.date)
+						newDate.setDate(newDate.getDate() + 1);
+						checkout.setValue(newDate);
+					}
+					$('#housedatepicker2')[0].focus();
+				});
+				
+				
+				$("#housedatepicker2").datesPicker({
+					addDisabledDates : [${requestScope.shutdownDate}],
+					altField : "#housedatepicker2",
+					minDate : 0,
+					maxDate : "+${requestScope.house.houseFilter.houseFilterReservationTerm}m",
+					showOtherMonths : true,
+					selectOtherMonths : true,
+					yearSuffix : '년',
+					monthNames : [ '1월', '2월', '3월', '4월', '5월',
+							'6월', '7월', '8월', '9월', '10월', '11월',
+							'12월' ],
+					dayNamesMin : [ '일', '월', '화', '수', '목', '금',
+							'토' ],
+					dateFormat : 'yy-mm-dd',
+					showMonthAfterYear : true
+				});
+			});
+		});
+</script>
+
 <div class="modal fade" id="reservationdialog" role="dialog"
 	aria-labelledby="basicModal" aria-hidden="true">
 
@@ -18,13 +72,13 @@
 						</div>
 						<div class="col-md-4">
 							<div class="form-group">
-								<input type="text" class="form-control" name="check" id="dpd1"
+								<input type="text" class="form-control" name="check" id="housedatepicker1"
 									placeholder="yy-mm-dd">
 							</div>
 						</div>
 						<div class="col-md-4">
 							<div class="form-group">
-								<input type="text" class="form-control" name="check" id="dpd2"
+								<input type="text" class="form-control" name="check" id="housedatepicker2"
 									placeholder="yy-mm-dd">
 							</div>
 						</div>

@@ -194,7 +194,7 @@ p {
 .mainheader .navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus,
 	.navbar-default .navbar-nav>.active>a:hover {
 	opacity: .7;
-	background-color: #fff !important;
+	background-color: inherit !important;
 }
 
 .navbar-default .navbar-nav>li>a:focus, .navbar-default .navbar-nav>li>a:hover
@@ -561,7 +561,7 @@ p {
 	float: right;
 }
 
-.nextBtn>button {
+.nextBtn button {
 	width: 80px;
 	background-color: #e74c34;
 	color: #fff;

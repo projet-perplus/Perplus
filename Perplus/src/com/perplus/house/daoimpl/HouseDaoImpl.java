@@ -70,4 +70,9 @@ public class HouseDaoImpl implements HouseDao{
 		return session.selectOne("house.reservationAbleTerm",map);
 	}
 	
+		@Override
+	public HouseVo selectHouseWithPictureAndFilterBySerial(int houseSerial) {
+		return session.selectOne("house.selectHouseWithPictureAndFilterBySerial",houseSerial);
+	}
+	
 }

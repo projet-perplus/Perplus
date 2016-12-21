@@ -8,19 +8,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestAttribute;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -35,8 +31,9 @@ import com.perplus.member.vo.HouseCommentVo;
 import com.perplus.member.vo.HouseZzimVo;
 import com.perplus.member.vo.HowmoneyVo;
 import com.perplus.member.vo.MemberVo;
-import com.perplus.util.TextUtil;
 import com.perplus.member.vo.PaymentVo;
+import com.perplus.member.vo.ReviewZzimVo;
+import com.perplus.util.TextUtil;
 
 
 @Controller
@@ -201,19 +198,40 @@ public class MemberController {
 	
 	
 	/**********************houseZzim 등록**********************************/
-	
+	@RequestMapping("/registerHouseZzim")
 	public String houseZzimInsert(@RequestParam String memberEmail, @RequestParam int houseSerial){
 		HouseZzimVo houseZzim = new HouseZzimVo(0, houseSerial, memberEmail);
+		System.out.println(houseZzim);
 		service.insertHouseZzim(houseZzim);
-		return "숙소상세페이지로";
+		return "redirect:/house/houseDetail.do?houseSerial="+houseSerial;
 	}
 	
 	/***********************housezzim 삭제***************************************/
-	
+	@RequestMapping("cancleHouseZzim")
 	public String houseZzimRemove(@RequestParam int houseZzimSerial){
-		service.deleteHouseZzimByEmail(houseZzimSerial);
-		return null;
+		HouseZzimVo houseZzim = service.selectHouseZzimBySerial(houseZzimSerial);
+		service.deleteHouseZzimBySerial(houseZzimSerial);
+		return  "redirect:/house/houseDetail.do?houseSerial="+houseZzim.getHouseSerial();
 	}
+	
+	/**********************reviewZzim 등록**********************************/
+	@RequestMapping("/registerReviewZzim")
+	public String reiviewZzimInsert(@RequestParam String memberEmail, @RequestParam int reviewSerial){
+		ReviewZzimVo reviewZzim = new ReviewZzimVo(0, reviewSerial, memberEmail);
+		System.out.println(reviewZzim);
+		service.insertReviewZzim(reviewZzim);
+		return "redirect:/review/showReview.do?reviewSerial="+reviewZzim.getReviewSerial();
+	}
+	
+	/***********************reviewzzim 삭제***************************************/
+	@RequestMapping("cancleReviewZzim")
+	public String reviewZzimRemove(@RequestParam int reviewZzimSerial){
+		ReviewZzimVo reviewZzim = service.selectReviewZzimByReviewZzimSerial(reviewZzimSerial);
+		System.out.println(reviewZzim);
+		service.deleteReviewZzimByReviewZzimSerial(reviewZzimSerial);
+		return  "redirect:/review/showReview.do?reviewSerial="+reviewZzim.getReviewSerial();
+	}
+	
 	
 	/***********************houseComment 등록*****************************************/
 	
@@ -237,10 +255,14 @@ public class MemberController {
 	}
 	
 	/**********************숙소상세페이지에서 최초로 받은 메세지만 받고 넘긴다.*******************/
-	@RequestMapping("/chatting.do")
-	public String chattingRoomCreate(/*@RequestParam String chattingPartner,*/ @RequestParam String memberEmail){
+	@RequestMapping("/chattingcreate.do")
+	public String chattingRoomCreate(@RequestParam String chattingPartner, HttpSession session){
+		MemberVo member = (MemberVo)session.getAttribute("login_info");
+		String memberEmail = member.getMemberEmail();
+		System.out.println(chattingPartner);
+		System.out.println(memberEmail);
+		
 		int chattingNumber = 0;
-		String chattingPartner = "ask13021123@naver.com";
 		ChattingVo chatting = service.findByChatting(chattingPartner, memberEmail);
 		if(chatting==null){//채팅방이 없으면 만들고. 번호 주고
 			service.createChatting(new ChattingVo(0, chattingPartner, memberEmail));
@@ -253,6 +275,7 @@ public class MemberController {
 		return "redirect:/member/chattingfind.do?chattingNumber="+chattingNumber;
 	}
 	
+	
 	/******************채팅 조회*****************/
 	@RequestMapping("/chattingfind.do")
 	public String chattingFind(HttpSession session, ModelMap map,HttpServletRequest request){
@@ -260,13 +283,15 @@ public class MemberController {
 		MemberVo member = (MemberVo)session.getAttribute("login_info");
 		String memberEmail = member.getMemberEmail();
 		List<ChattingVo> chatting = service.selectJoinChattingAndChattingLog(memberEmail);
-		for(int i = 0; i<chatting.size();i++){
-			for(int j= 0; j<chatting.get(i).getChattingLog().size();j++){
-				TextUtil tu = new TextUtil();
-				String a = tu.htmlToText(chatting.get(i).getChattingLog().get(j).getChattingContent());
-				chatting.get(i).getChattingLog().get(j).setChattingContent(a);
-			}
-		}
+
+		//Textutil
+//		for(int i = 0; i<chatting.size();i++){
+//			for(int j= 0; j<chatting.get(i).getChattingLog().size();j++){
+//				TextUtil tu = new TextUtil();
+//				String a = tu.htmlToText(chatting.get(i).getChattingLog().get(j).getChattingContent());
+//				chatting.get(i).getChattingLog().get(j).setChattingContent(a);
+//			}
+//		}
 		
 		map.addAttribute("chatting", chatting);
 		if(request.getParameter("returnChattingNumber")!=null){

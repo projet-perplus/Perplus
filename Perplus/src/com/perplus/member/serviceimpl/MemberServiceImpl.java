@@ -145,8 +145,7 @@ public class MemberServiceImpl implements MemberService{
 	@Override//houseComment 등록
 	public int insertHouseComment(HouseCommentVo houseComment){
 		HouseVo house = houseDao.selectHouseByHouseSerial(houseComment.getHouseSerial());
-		int commentCount = houseCommentDao.selectHouseCommentCount(houseComment.getHouseSerial());
-		int houseRating = ((house.getHouseRating()*commentCount)+houseComment.getCommentRating())/(commentCount+1);
+		int houseRating = house.getHouseRating()+houseComment.getCommentRating();
 		houseCommentDao.insertHouseComment(houseComment);
 		return houseRating;
 	}
@@ -155,9 +154,8 @@ public class MemberServiceImpl implements MemberService{
 	public int deleteHouseComment(int commentSerial){
 		HouseCommentVo houseComment = houseCommentDao.selectHouseCommentByCommentSerial(commentSerial);
 		HouseVo house = houseDao.selectHouseByHouseSerial(houseComment.getHouseSerial());
-		int commentCount = houseCommentDao.selectHouseCommentCount(houseComment.getHouseSerial());
 		int commentRating = houseComment.getCommentRating();
-		int houseRating = ((house.getHouseRating()*commentCount)-commentRating)/(commentCount-1);
+		int houseRating =house.getHouseRating()-commentRating;
 		houseCommentDao.deleteHouseComment(commentSerial);
 		return houseRating;
 	}
@@ -205,7 +203,7 @@ public class MemberServiceImpl implements MemberService{
 	}
 	
 	@Override//찜삭제
-	public void deleteHouseZzimByEmail(int houseZzimSerial){
+	public void deleteHouseZzimBySerial(int houseZzimSerial){
 		houseZzimDao.deleteHouseZzimByEmail(houseZzimSerial);
 	}
 	
@@ -214,14 +212,26 @@ public class MemberServiceImpl implements MemberService{
 		return houseZzimDao.selectHouseZzimByEmail(memberEmail);
 	}
 	
+	@Override
+	public HouseZzimVo selectHouseZzimByEmailAndHouseSerial(String memberEmail, int houseSerial) {
+		return houseZzimDao.selectHouseZzimByEmailAndHouseSerial(memberEmail, houseSerial);
+	}
+
 	public List<HouseZzimVo> houseZzimJoinHouseJoinHousePicture(String memberEmail){
 		return houseZzimDao.houseZzimJoinHouseJoinHousePicture(memberEmail);
 	}
+	
+	@Override
+	public HouseZzimVo selectHouseZzimBySerial(int houseZzimSerial) {
+		return houseZzimDao.selectHouseZzimBySerial(houseZzimSerial);
+	}
+	
 	
 	/*
 	 * howgetmoney Service
 	 */
 	
+
 	@Override//결제수단 등록
 	public void insertHowmoney(HowmoneyVo howgetmoney){
 		howgetmoneyDao.insertHowgetmoney(howgetmoney);
@@ -419,6 +429,30 @@ public class MemberServiceImpl implements MemberService{
 		}
 	}
 	
+	
+
+	@Override
+	public void insertReviewZzim(ReviewZzimVo reviewZzim) {
+		reviewZzimDao.insertReviewZzim(reviewZzim);
+	}
+
+	@Override
+	public void deleteReviewZzimByReviewZzimSerial(int reviewZzimSerial) {
+		System.out.println("Ddddd");
+		reviewZzimDao.deleteReviewZzim(reviewZzimSerial);
+		
+	}
+
+	@Override
+	public ReviewZzimVo selectReviewZzimByEmailAndReviewSerial(String memberEmail, int reviewSerial) {
+		return reviewZzimDao.selectReviewZzimByMemberEmailAndreviewSerial(memberEmail, reviewSerial);
+	}
+
+	@Override
+	public ReviewZzimVo selectReviewZzimByReviewZzimSerial(int reviewZzimSerial) {
+		return reviewZzimDao.selectReviewZzimByReviewZzimSerial(reviewZzimSerial);
+	}
+
 	/**
 	 * showmethemoney 관련 Service
 	 * @param showmethemoney
