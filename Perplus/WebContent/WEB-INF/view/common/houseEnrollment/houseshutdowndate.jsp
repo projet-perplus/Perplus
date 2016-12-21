@@ -13,7 +13,6 @@
 	var y = today.getFullYear();
 
 	$(function() {
-
 		$("#datepicker").multiDatesPicker(
 				{
 					minDate : 0,
