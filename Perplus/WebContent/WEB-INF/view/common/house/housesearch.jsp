@@ -7,11 +7,12 @@
 <script src="/Perplus/js/search-map.js">
 </script>
 <script type="text/javascript">
+var location;
+var checkIn;
+var checkOut;
+var guestNumber;
 $(document).ready(function(){
-	var location;
-	var checkIn;
-	var checkOut;
-	var guestNumber;
+
 	if(decodeURI(window.location.search).includes('location')){
 		location=getQueryString('location');
 		$("#location").val(location);
@@ -26,29 +27,70 @@ $(document).ready(function(){
 	}
 	if(decodeURI(window.location.search).includes('guestNumber')){
 		guestNumber=getQueryString('guestNumber');
+		jQuery("#guestNumber").val(guestNumber).attr("selected", "selected");
 	}
-});
-
-$(function() {
-
-	$("#slider-range").slider({
-		range : true,
-		min : 0,
-		max : 200000,
-		values : [ 30000, 80000 ],
-		slide : function(event, ui) {
-			$("#amount").val("₩" + ui.values[0] + " - ₩" + ui.values[1]);
-		}
-	});
-	$("#amount").val(
-			"₩" + $("#slider-range").slider("values", 0) + " - ₩"
-					+ $("#slider-range").slider("values", 1));
-	$("#slider-range").on("slidestop",function(){
-		printByFilter();
-	});
+	//최초의 printByFilter() 는 map이 initialize 되고 나서 geoLocation 입력 함수에서 부른다.
 });
 //지도 배율의 변화나 추가 필터를 제외한 기존 필터의 변화가 있을때마다 마커를 긁어오는 과정이 필요하다.
+// 	HashMap List
+// 	1. endDay , startDay
+// 	2. guestNumber
+// 	3. wholeRoom , privateRoom , sharedRoom
+// 	4. housePriceMin, housePriceMax
+// 	5-1. bedRoomNumber , bathRoomNumber, bedNumber
+// 	5-2. 각 체크리스트 key값 (코드테이블 참조)
+
 function printByFilter(){
+	
+// 	var room =	
+// 	switch($(":input:radio[name=sample]:checked").val()){
+// 	case '집전체' :"'wholeRoom':"
+// 		break;
+// 	case '개인실' :"'privateRoom':"
+// 		break;
+// 	case '다인실' :"'sharedRoom':"
+// 		break;
+// 	}+$(":input:radio[name=sample]:checked").val();
+
+// 	var str = JSON.stringify({"endDay":$("#dpd2").val(),"startDay":$("#dpd1").val(),"guestNumber":guestNumber,
+// // 		"housePriceMin":,"housePriceMax":,
+
+// 		$(":input:radio[name=sample]:checked").val(),
+// 		"southWestLat":map.getBounds().getSouthWest().lat(),
+// 		"southWestLng":map.getBounds().getSouthWest().lng(),
+// 		"northEastLat":map.getBounds().getnorthEast().lat(),
+// 		"northEastLng":map.getBounds().getSouthEast().lng(),
+// 		})
+// 	alert(room);
+// 	$.ajax({
+// 		url : "/Perplus/map/showhousebymapandfilter.do",
+// 		type : "post",
+// 		async : false,
+// 		data : JSON.stringify({"endDay":$("#dpd2").val(),"startDay":$("#dpd1").val(),"guestNumber":guestNumber,
+// 			"housePriceMin":,"housePriceMax":,
+// 			switch($(":input:radio[name=sample]:checked").val()){
+// 			case '집전체' :"wholeRoom":
+// 				break;
+// 			case '개인실' :"privateRoom":
+// 				break;
+// 			case '다인실' :"sharedRoom":
+// 				break;
+// 			}
+// 			$(":input:radio[name=sample]:checked").val(),
+// 			"southWestLat":map.getBounds().getSouthWest().lat(),
+// 			"southWestLng":map.getBounds().getSouthWest().lng(),
+// 			"northEastLat":map.getBounds().getnorthEast().lat(),
+// 			"northEastLng":map.getBounds().getSouthEast().lng(),
+// 			}),
+// 		contentType : "text/JSON",
+// 		dataType : "JSON",
+// 		success:function(obj){
+// 		},
+// 		error:function(request,error,status){
+// 			alert(error+ "   "+status+"status");
+// 		}
+// 	});
+}
 	//function placeMarkerList(southWestLat,southWestLng,northEastLat,northEastLng){
 //	$.ajax({
 //		url : "/Perplus/map/markerall.do",
@@ -72,7 +114,26 @@ function printByFilter(){
 //		}
 //	});
 //}
-}
+// }
+$(function() {
+
+	$("#slider-range").slider({
+		range : true,
+		min : 0,
+		max : 200000,
+		values : [ 30000, 80000 ],
+		slide : function(event, ui) {
+			$("#amount").val("₩" + ui.values[0] + " - ₩" + ui.values[1]);
+		}
+	});
+	$("#amount").val(
+			"₩" + $("#slider-range").slider("values", 0) + " - ₩"
+					+ $("#slider-range").slider("values", 1));
+	$("#slider-range").on("slidestop",function(){
+		printByFilter();
+	});
+});
+
 </script>
 <div class="container-fluid">
 	<div class="row">
@@ -108,10 +169,10 @@ function printByFilter(){
 					</div>
 
 					<div class="col-md-3 col-sm-3 col-xs-4 ">
-						<select class="form-control " onchange="printByFilter()">
-							<option>인원수</option>
-							<c:forEach var="i" begin="2" end="100" step="1">
-								<option>${i}</option>
+						<select class="form-control" id="guestNumber" onchange="printByFilter()">
+							<option value="default" selected="selected">인원수</option>
+							<c:forEach var="i" begin="1" end="100" step="1">
+								<option value="${i}">${i}</option>
 							</c:forEach>
 						</select>
 					</div>
