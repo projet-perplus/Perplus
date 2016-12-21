@@ -4,13 +4,13 @@
 <mapper namespace="checklist">
 
 
-	<insert id="insertChecklist" parameterType="checklistvo">
+	<insert id="insertChecklist" parameterType="CheckListVo">
 		insert into CHECKLIST values(CHECKLIST_SEQ.nextval,#{houseSerial},#{codeKind},#{value})
 	</insert>
 	
 	
 	<!-- 한 숙소의 모든 체크리스트 select -->					  
-	<select id="selectChecklistByHouseSerial" resultType="checklistvo">
+	<select id="selectChecklistByHouseSerial" resultType="CheckListVo">
 		select 
 		CHECKLIST_SERIAL checklistSerial,
 		HOUSE_SERIAL houseSerial,

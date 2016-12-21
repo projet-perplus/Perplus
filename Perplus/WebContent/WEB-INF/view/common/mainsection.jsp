@@ -16,6 +16,7 @@ function searchHouseByStartFilter(){
 	if(location.length!=0){
 		url+="&location="+location;
 	}
+	alert(url);
 	window.location.href=url;
 }
 </script>

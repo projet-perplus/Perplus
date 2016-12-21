@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,6 +19,8 @@ import com.perplus.house.vo.HousePictureVo;
 import com.perplus.house.vo.HouseVo;
 import com.perplus.member.service.MemberService;
 import com.perplus.member.vo.HouseCommentVo;
+import com.perplus.member.vo.HouseZzimVo;
+import com.perplus.member.vo.MemberVo;
 import com.perplus.util.TextUtil;
 
 
@@ -32,10 +35,8 @@ public class HouseController_nr {
 
 	/******************하우스 상세 페이지 조회*****************/
 	@RequestMapping("/houseDetail")
-	public String getHouse(@RequestParam int houseSerial, ModelMap map,@RequestParam(defaultValue="1") int page,HttpServletRequest request){
+	public String getHouse(@RequestParam int houseSerial, ModelMap map,@RequestParam(defaultValue="1") int page,HttpServletRequest request,HttpSession session){
 		String houseRating = request.getParameter("houseRating");
-		System.out.println(houseRating);
-		System.out.println(houseSerial);
 		HouseVo house = service.selectHouseForDetailPage(houseSerial);
 		List<HousePictureVo> picture= service.selectHousePictureForDetailPage(houseSerial);
 		Map<String,Object> comment = memberService.selectHouseCommentBySerial(houseSerial,page);
@@ -44,12 +45,17 @@ public class HouseController_nr {
 			house.setHouseRating(rating);
 			service.modifyHouse(house);
 		}
-		System.out.println(comment.get("commentList"));
-		house.setHousePicture(picture);
+		MemberVo member = (MemberVo)session.getAttribute("login_info");
+		if(member!=null){
+			HouseZzimVo zzim = memberService.selectHouseZzimByEmailAndHouseSerial(member.getMemberEmail(),house.getHouseSerial());
+			if(zzim != null){
+				map.put("zzim", zzim);
+			}
+		}
 		map.put("house", house);
 		map.put("picture",picture);
 		map.put("comment", comment);
-		System.out.println(house);
+
 		return "housedetailspage.housetiles";
 	}
 	

@@ -1,3 +1,4 @@
+<%@page import="java.util.Map"%>
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -31,7 +32,12 @@
 								showMonthAfterYear : true
 							});
 				});
-			});
+				var rating = ${requestScope.house.houseRating};
+				var count =${requestScope.comment.totalComments };
+				var ratingAvg = rating/count;
+				$(".ratingAvg").text("평점:"+ratingAvg.toFixed(2));
+				
+			});	
 </script>
 <style>
 .bg-4 {
@@ -130,7 +136,7 @@
 				</div>
 				<div class="row">
 					<div class="col-md-4 col-md-offset-1">지역:${requestScope.house.houseFilter.houseFilterLocation }</div>
-					<div class="col-md-4">펑점 :${requestScope.house.houseRating }</div>
+					<div class="col-md-4 ratingAvg"></div>
 					<div class="col-md-3">후기 개수:${requestScope.comment.totalComments }</div>
 				</div>
 
@@ -217,7 +223,7 @@
 				<div class="row row-condensed space-4">
 					<div class="col-md-8">
 						<div class="col-md-6 rowFT" style="padding-left: 0px;">후기</div>
-						<div class="col-md-6" style="margin-top: 14px;">별점</div>
+						<div class="col-md-6 ratingAvg" style="margin-top: 14px;">별점</div>
 					</div>
 					<div class="clearfix"></div>
 				</div>
@@ -345,8 +351,23 @@
 		페이지</a>
 </div>
 			<!-- /숙소 상세 페이지 메뉴 끝 -->
-
-			<div class="col-md-3 panel-MT" style="margin-bottom: 30px;">찜</div>
+			
+			<div class="col-md-3 panel-MT zzimSection" style="margin-bottom: 30px;">
+				<c:choose>
+					<c:when test="${empty requestScope.zzim}">
+						<a href="${initParam.rootPath}/member/registerHouseZzim.do?memberEmail=${sessionScope.login_info.memberEmail}&houseSerial=${requestScope.house.houseSerial}">
+							<button class="btn btn-success zzim"
+								style="width: 100%; margin-bottom: 15px;">찜하기</button>
+						</a>
+					</c:when>
+					<c:otherwise>
+						<a href="${initParam.rootPath}/member/cancleHouseZzim.do?houseZzimSerial=${requestScope.zzim.houseZzimSerial}">			
+							<button class="btn btn-success" id="zzimCancle"
+								 style="width: 100%; margin-bottom: 15px;">찜취소</button>		
+						</a>		
+					</c:otherwise>
+				</c:choose>
+			</div>
 		</div>
 
 
@@ -399,16 +420,16 @@
 			
 			<c:if test="${requestScope.house.memberEmail == sessionScope.login_info.memberEmail}">
 				<div class="row row-maginTB">
-					<div
+<!-- 					<div
 						class="col-md-offset-0 col-sm-offset-1 col-xs-offset-2 col-md-6 col-sm-10 col-xs-8">
 						<a href="#">
 							<button class="btn btn-success"
 								style="width: 100%; margin-bottom: 15px;">수정하기</button>
 						</a>
-					</div>
+					</div> -->
 					
 					<div
-						class="col-md-offset-0 col-sm-offset-1 col-xs-offset-2 col-md-6 col-sm-10 col-xs-8">
+						class="col-md-offset-0 col-sm-offset-1 col-xs-offset-2 col-md-12 col-sm-10 col-xs-8">
 						<a href="${initParam.rootPath}/house/removeHouse.do?houseSerial=${requestScope.house.houseSerial}">
 							<button class="btn btn-danger" style="width: 100%">삭제</button>
 						</a>

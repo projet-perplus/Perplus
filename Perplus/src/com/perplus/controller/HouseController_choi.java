@@ -25,6 +25,7 @@ import com.perplus.house.vo.HouseFilterVo;
 import com.perplus.house.vo.HousePictureVo;
 import com.perplus.house.vo.HouseVo;
 import com.perplus.house.vo.ShutdownVo;
+import com.perplus.util.Constants;
 
 @Controller
 @RequestMapping("/house")
@@ -160,19 +161,19 @@ public class HouseController_choi {
 		if(convenientFacilityList!=null&&convenientFacilityList.length!=0){
 			for(int i = 0; i<convenientFacilityList.length;i++){
 				System.out.println(convenientFacilityList[i]);
-				service.insertChecklist(new CheckListVo(0, houseSerial, 1, convenientFacilityList[i]));
+				service.insertChecklist(new CheckListVo(0, houseSerial, Constants.CODE_KIND_CHECKLIST_COMFORT_FACILITY, convenientFacilityList[i]));
 			}
 		}
 		if(secureFacilityList!=null&&secureFacilityList.length!=0){
 			for(int i = 0; i<secureFacilityList.length;i++){
 				System.out.println(secureFacilityList[i]);
-				service.insertChecklist(new CheckListVo(0, houseSerial, 2, secureFacilityList[i]));
+				service.insertChecklist(new CheckListVo(0, houseSerial, Constants.CODE_KIND_CHECKLIST_SAFE_FACILITY, secureFacilityList[i]));
 			}
 		}
 		if(commonFacilityList!=null&&commonFacilityList.length!=0){
 			for(int i = 0; i<commonFacilityList.length;i++){
 				System.out.println(commonFacilityList[i]);
-				service.insertChecklist(new CheckListVo(0, houseSerial, 3, commonFacilityList[i]));
+				service.insertChecklist(new CheckListVo(0, houseSerial, Constants.CODE_KIND_CHECKLIST_COMMON_FACILITY, commonFacilityList[i]));
 			}
 		}
 		

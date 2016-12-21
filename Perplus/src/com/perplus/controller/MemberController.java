@@ -201,18 +201,20 @@ public class MemberController {
 	
 	
 	/**********************houseZzim 등록**********************************/
-	
+	@RequestMapping("/registerHouseZzim")
 	public String houseZzimInsert(@RequestParam String memberEmail, @RequestParam int houseSerial){
 		HouseZzimVo houseZzim = new HouseZzimVo(0, houseSerial, memberEmail);
+		System.out.println(houseZzim);
 		service.insertHouseZzim(houseZzim);
-		return "숙소상세페이지로";
+		return "redirect:/house/houseDetail.do?houseSerial="+houseSerial;
 	}
 	
 	/***********************housezzim 삭제***************************************/
-	
+	@RequestMapping("cancleHouseZzim")
 	public String houseZzimRemove(@RequestParam int houseZzimSerial){
+		HouseZzimVo houseZzim = service.selectHouseZzimBySerial(houseZzimSerial);
 		service.deleteHouseZzimByEmail(houseZzimSerial);
-		return null;
+		return  "redirect:/house/houseDetail.do?houseSerial="+houseZzim.getHouseSerial();
 	}
 	
 	/***********************houseComment 등록*****************************************/

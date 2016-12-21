@@ -1,7 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script
-	src="http://multidatespickr.sourceforge.net/jquery-ui.multidatespicker.js"></script>
+<script src="/Perplus/js/jquery-ui.multidatespicker.js"></script>
 
 <link rel="stylesheet"
 	href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -12,11 +11,12 @@
 <script type="text/javascript">
 	var today = new Date();
 	var y = today.getFullYear();
-	
+
 	$(function() {
+
 		$("#datepicker").multiDatesPicker(
 				{
-					defaultDate : '1990-01-01',
+					minDate : 0,
 					altField : '#shutdownDate',
 					monthNames : [ '1월', '2월', '3월', '4월', '5월', '6월', '7월',
 							'8월', '9월', '10월', '11월', '12월' ],
@@ -28,16 +28,55 @@
 </script>
 
 <style>
-.ui-datepicker-prev, .ui-datepicker-next {
+/* .ui-datepicker-prev, .ui-datepicker-next {
 	display: none !important;
+} */
+
+/* .ui-datepicker-inline {
+	font-size: 25px;
+}
+
+.ui-datepicker-inline .ui-datepicker .ui-widget .ui-widget-content .ui-helper-clearfix .ui-corner-all{
+	height: 100%;
+}
+ 
+.ui-state-default{
+	height: 100%;
+}
+ */
+/*
+.ui-datepicker-week-end {
+	height: 2em !important;
+} */
+.ui-datepicker td span, .ui-datepicker td a {
+	display: block;
+	padding: .2em;
+	text-align: right;
+	text-decoration: none;
+	width: 47px;
+	height: 53px;
+	line-height: 54px;
+	float: left;
+	margin: 2px;
+	cursor: pointer;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
 }
 
 .ui-datepicker-inline {
-	font-size: 15px;
+	width: 100%;
 }
 
-.ui-datepicker-week-end {
-	height: 2em !important;
+.ui-state-default ui-state-highlight ui-state-active{
+	border: 1px solid #c5c5c5;
+	background: #f6f6f6;
+}
+
+.ui-state-highlight, .ui-widget-content .ui-state-highlight,
+	.ui-widget-header .ui-state-highlight {
+	border: 0 !important;
+	background: inherit !important;
 }
 </style>
 <!-- header -->
@@ -92,16 +131,12 @@
 				</label>
 				<div class="clearfix visible-md-block"></div>
 			</div>
-
 			<div class="row row-condensed space-4">
 				<div class="col-md-offset-2 col-md-8 housesection ">
 					<div class="row row-condensed space-4 row-sectionB">
-						<label class="text-left col-sm-6 col-md-12"> <span
-							class="subspan">호스팅을 원하지 않는 날짜를 차단하려면 클릭하세요</span>
-						</label>
 						<div class="clearfix visible-md-block"></div>
 						<div class="col-md-offset-1 col-md-10">
-							<div class=" col-md-12" style="height: 300px;">
+							<div class=" col-md-12">
 								<div class="datepicker" id="datepicker"></div>
 							</div>
 						</div>
