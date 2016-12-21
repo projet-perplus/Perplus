@@ -9,10 +9,12 @@ import com.perplus.house.dao.CheckListDao;
 import com.perplus.house.dao.CodetableDao;
 import com.perplus.house.dao.HouseDao;
 import com.perplus.house.dao.HouseFilterDao;
+import com.perplus.house.dao.HousePictureDao;
 import com.perplus.house.dao.ShutdownDao;
 import com.perplus.house.vo.CheckListVo;
 import com.perplus.house.vo.CodetableVo;
 import com.perplus.house.vo.HouseFilterVo;
+import com.perplus.house.vo.HousePictureVo;
 import com.perplus.house.vo.HouseVo;
 import com.perplus.house.vo.ShutdownVo;
 
@@ -33,6 +35,9 @@ public class HouseServiceImpl_choi {
 	
 	@Autowired
 	private ShutdownDao shutdownDao;
+	
+	@Autowired
+	private HousePictureDao housePictureDao;
 	
 	public void insertHouse(HouseVo houseVo){
 		houseDao.insertHouseFirst(houseVo);
@@ -60,5 +65,13 @@ public class HouseServiceImpl_choi {
 	
 	public void insertShutdown(ShutdownVo shutdown){
 		shutdownDao.insertShutdown(shutdown);
+	}
+	
+	public void insertHousePicture(HousePictureVo housePicture){
+		housePictureDao.insertHousePicture(housePicture);
+	}
+	
+	public HouseVo selectHouseByHouseSerial(int houseSerial){
+		return houseDao.selectHouseByHouseSerial(houseSerial);
 	}
 }

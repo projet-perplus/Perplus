@@ -122,7 +122,9 @@
 		HOUSE_REGISTER_STATUS = #{houseRegisterStatus}, 
 		HOUSE_TITLE = #{houseTitle}, 
 		HOUSE_CONTENT = #{houseContent},
-		HOUSE_NECESSARY_CONDITION = #{houseNecessaryCondition}, 
+		<if test="houseNecessaryCondition!=null">
+			HOUSE_NECESSARY_CONDITION = #{houseNecessaryCondition},
+		</if> 
 		HOUSE_RATING = #{houseRating}, 
 		HOUSE_MARKER_X = #{houseMarkerX}, 
 		HOUSE_MARKER_Y = #{houseMarkerY}, 

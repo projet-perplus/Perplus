@@ -88,26 +88,3 @@ public class MapController {
 }
 
 
-//function placeMarkerList(southWestLat,southWestLng,northEastLat,northEastLng){
-//	$.ajax({
-//		url : "/Perplus/map/markerall.do",
-//		type:"post",
-//		async : false,
-//		data : JSON.stringify({key:value,}),
-//		contentType : "text/JSON"
-//		dataType : "JSON",
-//		success:function(obj){
-//			$.each(obj,function(){
-//				var markerLatlng = new google.maps.LatLng(this.reviewMarkerX, this.reviewMarkerY);
-//				placeMarker(this.reviewSerial,markerLatlng,this.reviewMarkerConstant);
-//			});
-//			if(startMarker!=null){
-//				startMarker.setAnimation(google.maps.Animation.BOUNCE);
-//				markerArray.push(startMarker);
-//			}
-//		},
-//		error:function(request,error,status){
-//			alert(error+ "   "+status+"status");
-//		}
-//	});
-//}
