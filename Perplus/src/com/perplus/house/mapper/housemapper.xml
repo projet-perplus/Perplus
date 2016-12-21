@@ -151,6 +151,12 @@
 		where h.HOUSE_SERIAL = #{value}
 		and p.HOUSE_SERIAL(+) = h.HOUSE_SERIAL
 	</select>
+	<select id="selectHouseWithPictureAndFilterBySerial" parameterType="_int" resultType="HouseVo" resultMap="house-housefilter-housepicture-join-resultmap">
+		<include refid="house-houseFilter-housePicture"/>
+		where h.HOUSE_SERIAL = #{value}
+		and p.HOUSE_SERIAL(+) = h.HOUSE_SERIAL
+		and f.house_serial(+) = h.house_serial
+	</select>
 	<!-- 필터를 통해 등록한 집을 select -> 각 필터 객체들을 hashmap으로 받아 각 where문을 통해 비교-->
 	<!-- 
 		HashMap List

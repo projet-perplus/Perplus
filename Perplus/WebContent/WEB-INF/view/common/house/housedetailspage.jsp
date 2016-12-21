@@ -39,6 +39,9 @@ $(document).ready(
 			var rating = ${requestScope.house.houseRating};
 			var count =${requestScope.comment.totalComments};
 			var ratingAvg = rating/count;
+			if(count==0){
+				ratingAvg=0
+			}
 			$(".ratingAvg").text("평점:"+ratingAvg.toFixed(2));
 			
 		});	

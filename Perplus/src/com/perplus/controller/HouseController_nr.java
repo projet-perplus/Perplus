@@ -50,7 +50,7 @@ public class HouseController_nr {
 		}
 		MemberVo member = (MemberVo)session.getAttribute("login_info");
 		if(member!=null){
-			HouseZzimVo zzim = memberService.selectHouseZzimByEmailAndHouseSerial(member.getMemberEmail(),house.getHouseSerial());
+			HouseZzimVo zzim = memberService.selectHouseZzimByEmailAndHouseSerial(member.getMemberEmail(),houseSerial);
 			if(zzim != null){
 				map.put("zzim", zzim);
 			}
@@ -104,6 +104,14 @@ public class HouseController_nr {
 		return "redirect:/house/houseDetail.do?houseSerial="+houseSerial+"&houseRating="+houseRating;
 	}
 
+	/************하우스 목록 조회**********************/
+	@RequestMapping("/myHouse")
+	public String getMyHouse(@RequestParam String memberEmail,ModelMap map){
+		List<HouseVo> houseList = service.selectMyHouse(memberEmail);
+		System.out.println(houseList.get(3));
+		map.put("houseList", houseList);
+		return "rooms/rooms/roomlist.tiles1";
+	}
 }	
 
 

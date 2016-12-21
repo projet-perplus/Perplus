@@ -54,7 +54,7 @@ public interface MemberService {
 	//housezzim service
 	void insertHouseZzim(HouseZzimVo houseZzim);
 	
-	void deleteHouseZzimByEmail(int houseZzimSerial);
+	void deleteHouseZzimBySerial(int houseZzimSerial);
 	
 	List<HouseZzimVo> selectHouseZzimByEmail(String memberEmail);
 	
@@ -63,6 +63,8 @@ public interface MemberService {
 	HouseZzimVo selectHouseZzimByEmailAndHouseSerial(String memberEmail, int houseSerial);
 	
 	HouseZzimVo selectHouseZzimBySerial(int houseZzimSerial);
+	
+	
 	//howgetmoney service
 	void insertHowmoney(HowmoneyVo howgetmoney);
 	
@@ -122,6 +124,15 @@ public interface MemberService {
 	public List<ReviewZzimVo> searchReviewZzim(String memberEmail) throws Exception;
 	
 	public void removeReviewZzim(ReviewZzimVo reviewZzim) throws Exception;
+	
+	
+	/**********reviewzzim**********/
+	void insertReviewZzim(ReviewZzimVo houseZzim);
+	
+	void deleteReviewZzimByReviewZzimSerial(int reviewZzimSerial);
+	ReviewZzimVo selectReviewZzimByEmailAndReviewSerial(String memberEmail, int reviewSerial);
+	ReviewZzimVo selectReviewZzimByReviewZzimSerial(int reviewZzimSerial);
+
 	
 	/**
 	 * showmethemoney 관련 Service

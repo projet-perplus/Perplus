@@ -3,7 +3,6 @@ package com.perplus.controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -26,7 +25,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.perplus.member.service.MemberService;
 import com.perplus.member.vo.MemberVo;
+import com.perplus.member.vo.ReviewZzimVo;
 import com.perplus.review.service.ReviewService;
 import com.perplus.review.vo.ReviewCommentVo;
 import com.perplus.review.vo.ReviewPictureVo;
@@ -39,6 +40,8 @@ import com.perplus.validator.ReviewForm;
 public class ReviewController {
 	@Autowired
 	private ReviewService service;
+	@Autowired
+	private MemberService memberService;
 	/*****************************로그인 체크 필요***********************************/
 	
 	/******************리뷰 글 등록*****************/
@@ -206,11 +209,18 @@ public class ReviewController {
 	
 	/******************리뷰 상세 보기*****************/
 	@RequestMapping("/showReview")
-	public String selectReview(@RequestParam int reviewSerial,ModelMap modelMap,@RequestParam(defaultValue="1") int page){
+	public String selectReview(@RequestParam int reviewSerial,ModelMap modelMap,@RequestParam(defaultValue="1") int page,HttpSession session){
 		ReviewVo review = service.getReview(reviewSerial);
 		Map<String,Object> map= service.getReviewCommentList(reviewSerial, page);
 		List<ReviewPictureVo> list = service.getReviewPictureList(reviewSerial);
-		
+		MemberVo member = (MemberVo)session.getAttribute("login_info");
+		if(member!=null){
+			ReviewZzimVo zzim = memberService.selectReviewZzimByEmailAndReviewSerial(member.getMemberEmail(), reviewSerial);
+			System.out.println(zzim);
+			if(zzim != null){
+				modelMap.put("zzim", zzim);
+			}
+		}
 		review.setReviewComment((List<ReviewCommentVo>)map.get("list"));
 		System.out.println(review);
 		modelMap.put("review", review);
