@@ -66,7 +66,7 @@
 				$(this).css("color","black");
 			}).on("click",".houseReview",function(){
 				var serial = $(this).find("#houseSerial").val();
-				var url="/Perplus/housedetailspage.do?houseSerial="+serial;
+				var url="/Perplus/house/houseDetail.do?houseSerial="+serial;
 				$(location).attr("href",url);
 			});
 		});
