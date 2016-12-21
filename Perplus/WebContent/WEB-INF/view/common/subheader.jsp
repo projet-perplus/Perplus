@@ -10,9 +10,7 @@
 					href="${initParam.rootPath}/accountmanagement.do">계정관리</a></li>
 
 				<li data-page="rooms" class="col-md-2 col-xs-3 col-sm-3"
-					style="padding: 0px !important;"><a
-					href="${initParam.rootPath}/rooms.do">숙소 목록</a></li>
-
+					style="padding: 0px !important;"><a href="${initParam.rootPath}/house/myHouse.do?memberEmail=${sessionScope.login_info.memberEmail}">숙소 목록</a></li>
 
 				<li data-page="travellist" class="col-md-2 col-xs-3 col-sm-3"
 					style="padding: 0px !important;"><a
