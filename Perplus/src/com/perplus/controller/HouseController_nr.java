@@ -47,7 +47,7 @@ public class HouseController_nr {
 		}
 		MemberVo member = (MemberVo)session.getAttribute("login_info");
 		if(member!=null){
-			HouseZzimVo zzim = memberService.selectHouseZzimByEmailAndHouseSerial(member.getMemberEmail(),house.getHouseSerial());
+			HouseZzimVo zzim = memberService.selectHouseZzimByEmailAndHouseSerial(member.getMemberEmail(),houseSerial);
 			if(zzim != null){
 				map.put("zzim", zzim);
 			}

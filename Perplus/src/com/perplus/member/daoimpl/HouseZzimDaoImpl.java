@@ -53,8 +53,8 @@ public class HouseZzimDaoImpl implements HouseZzimDao{
 	}
 
 	@Override
-	public HouseZzimVo selectHouseZzimBySerial(int houseZzimSerial) {
-		return session.selectOne("houseZzim.selectHouseZzimBySerial",houseZzimSerial);
+	public HouseZzimVo selectHouseZzimBySerial(int housezzimSerial) {
+		return session.selectOne("houseZzim.selectHouseZzimBySerial",housezzimSerial);
 	}
 	
 	
