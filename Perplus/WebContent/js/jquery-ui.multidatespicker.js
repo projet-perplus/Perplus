@@ -364,7 +364,7 @@
 							methods.removeDates.call(this, date, type);
 						break;
 				}
-			}, 
+			},
 			setMode : function( options ) {
 				var $this = $(this);
 				if(options.mode) this.multiDatesPicker.mode = options.mode;
