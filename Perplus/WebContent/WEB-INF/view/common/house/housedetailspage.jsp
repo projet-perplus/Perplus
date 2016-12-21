@@ -33,11 +33,14 @@
 							});
 				});
 				var rating = ${requestScope.house.houseRating};
-				var count =${requestScope.comment.totalComments };
-				var ratingAvg = rating/count;
-				$(".ratingAvg").text("평점:"+ratingAvg.toFixed(2));
-				
-			});	
+				var count = ${	requestScope.comment.totalComments};
+				var ratingAvg = rating / count;
+				if (count == 0) {
+					ratingAvg = 0;
+				}
+				$(".ratingAvg").text("평점:" + ratingAvg.toFixed(2));
+
+			});
 </script>
 <style>
 .bg-4 {
@@ -49,7 +52,7 @@
 }
 </style>
 
-<div class="container reviewslide">
+<div class="container houseslide">
 	<div class="row">
 		<div class="slidebar">
 			<div class="carousel slide" id="myCarousel">
@@ -57,8 +60,7 @@
 					<c:choose>
 						<c:when test="${empty requestScope.picture}">
 							<div class="active item">
-								<img
-									src="${initParam.rootPath }/housePicture/no-images.png"
+								<img src="${initParam.rootPath }/housePicture/no-images.png"
 									style="width: 770px !important; height: 300px !important;">
 							</div>
 						</c:when>
@@ -67,15 +69,13 @@
 								<c:choose>
 									<c:when test="${picture.pictureOrder==1}">
 										<div class="active item">
-											<img
-												src="/Perplus/housePicture/${picture.pictureName }"
+											<img src="/Perplus/housePicture/${picture.pictureName }"
 												style="width: 770px !important; height: 300px !important;">
 										</div>
 									</c:when>
 									<c:otherwise>
 										<div class="item">
-											<img
-												src="/Perplus/housePicture/${picture.pictureName }"
+											<img src="/Perplus/housePicture/${picture.pictureName }"
 												style="width: 770px !important; height: 300px !important;">
 										</div>
 									</c:otherwise>
@@ -84,7 +84,7 @@
 						</c:otherwise>
 					</c:choose>
 				</div>
-		
+
 				<!--  left right button -->
 				<a class="left carousel-control" href="#myCarousel" role="button"
 					data-slide="prev"> <span
@@ -98,7 +98,7 @@
 		<!--/Slider-->
 	</div>
 	<!--/row-->
-<!--hidden-xs-->
+	<!--hidden-xs-->
 	<div class="row" id="slider-thumbs" style="margin-top: 10px;">
 		<!--Bottom switcher of slider -->
 		<ul>
@@ -137,14 +137,15 @@
 				<div class="row">
 					<div class="col-md-4 col-md-offset-1">지역:${requestScope.house.houseFilter.houseFilterLocation }</div>
 					<div class="col-md-4 ratingAvg"></div>
-					<div class="col-md-3">후기 개수:${requestScope.comment.totalComments }</div>
+					<div class="col-md-3">후기
+						개수:${requestScope.comment.totalComments }</div>
 				</div>
 
 				<div class="row row-maginTB space-4">
 					<div class="col-md-8 rowFT">상세 설명</div>
 					<div class="clearfix"></div>
 				</div>
-				
+
 				<div class="row">
 					<div class="col-md-offset-1 col-md-8">${requestScope.house.houseContent }</div>
 					<div class="clearfix"></div>
@@ -153,13 +154,14 @@
 				<div class="row row-condensed space-4">
 					<div class="col-md-8 rowFT">게스트 제약 사항</div>
 					<div class="clearfix"></div>
-					
-					<c:set var="conditions" value="${requestScope.house.houseNecessaryCondition}"/>
-					<c:set var="necessaryCondition" value="${fn:split(conditions,',')}"/>
+
+					<c:set var="conditions"
+						value="${requestScope.house.houseNecessaryCondition}" />
+					<c:set var="necessaryCondition" value="${fn:split(conditions,',')}" />
 					<div class="col-md-8 col-md-offset-1">
-				        <c:forEach var="condition" items="${necessaryCondition }">
-				            <li>${condition }</li>
-				        </c:forEach>
+						<c:forEach var="condition" items="${necessaryCondition }">
+							<li>${condition }</li>
+						</c:forEach>
 					</div>
 					<div class="clearfix"></div>
 				</div>
@@ -170,47 +172,74 @@
 				</div>
 
 				<div class="row row-condensed space-4">
-					<div class="col-md-8 col-md-offset-1"><li>제공범위 : ${requestScope.house.houseFilter.houseFilterRange }</li></div>
-					<div class="col-md-8 col-md-offset-1"><li>게스트 수 : ${requestScope.house.houseFilter.houseFilterGuestNumber}</li></div>
-					<div class="col-md-8 col-md-offset-1"><li>건물 유형 : ${requestScope.house.houseFilter.houseFilterType}</li></div>
-					<div class="col-md-8 col-md-offset-1"><li>방 개수 :  ${requestScope.house.houseFilter.houseFilterRoomNumber }</li></div>
-					<div class="col-md-8 col-md-offset-1"><li>침실 수 : ${requestScope.house.houseFilter.houseFilterBedroomNumber }</li></div>
-					<div class="col-md-8 col-md-offset-1"><li>침대 수 :  ${requestScope.house.houseFilter.houseFilterBedNumber}</li></div>
-					<div class="col-md-8 col-md-offset-1"><li>욕실 수 :  ${requestScope.house.houseFilter.houseFilterBathroomNumber}</li></div>
-					<div class="col-md-8 col-md-offset-1"><li>최소 ${requestScope.house.houseFilter.houseFilterBakMin }박</li></div>
-					<div class="col-md-8 col-md-offset-1"><li>최대 ${requestScope.house.houseFilter.houseFilterBakMax }박</li></div>
-					<div class="col-md-8 col-md-offset-1"><li>숙소 가격 :  ${requestScope.house.houseFilter.houseFilterPrice}</li></div>
+					<div class="col-md-8 col-md-offset-1">
+						<li>제공범위 : ${requestScope.house.houseFilter.houseFilterRange }</li>
+					</div>
+					<div class="col-md-8 col-md-offset-1">
+						<li>게스트 수 :
+							${requestScope.house.houseFilter.houseFilterGuestNumber}</li>
+					</div>
+					<div class="col-md-8 col-md-offset-1">
+						<li>건물 유형 : ${requestScope.house.houseFilter.houseFilterType}</li>
+					</div>
+					<div class="col-md-8 col-md-offset-1">
+						<li>방 개수 :
+							${requestScope.house.houseFilter.houseFilterRoomNumber }</li>
+					</div>
+					<div class="col-md-8 col-md-offset-1">
+						<li>침실 수 :
+							${requestScope.house.houseFilter.houseFilterBedroomNumber }</li>
+					</div>
+					<div class="col-md-8 col-md-offset-1">
+						<li>침대 수 :
+							${requestScope.house.houseFilter.houseFilterBedNumber}</li>
+					</div>
+					<div class="col-md-8 col-md-offset-1">
+						<li>욕실 수 :
+							${requestScope.house.houseFilter.houseFilterBathroomNumber}</li>
+					</div>
+					<div class="col-md-8 col-md-offset-1">
+						<li>최소 ${requestScope.house.houseFilter.houseFilterBakMin }박</li>
+					</div>
+					<div class="col-md-8 col-md-offset-1">
+						<li>최대 ${requestScope.house.houseFilter.houseFilterBakMax }박</li>
+					</div>
+					<div class="col-md-8 col-md-offset-1">
+						<li>숙소 가격 :
+							${requestScope.house.houseFilter.houseFilterPrice}</li>
+					</div>
 				</div>
-								
+
 				<div class="row row-condensed space-4">
 					<div class="col-md-8 rowFT">시설</div>
 					<div class="clearfix"></div>
 				</div>
 				<div class="row row-condensed space-4">
 					<div class="col-md-8 col-md-offset-1">
-						<p>안전시설 </p2>
+						<p>
+							안전시설
+							</p2>
 					</div>
-					<c:forEach items="${requestScope.house.houseFilter.checkList }" var="checkList">
+					<c:forEach items="${requestScope.house.houseFilter.checkList }"
+						var="checkList">
 						<c:if test="${checkList.codeKind==1}">
 							<div class="col-md-8 col-md-offset-1">
 								<li>${checkList.value }</li>
 							</div>
 						</c:if>
 					</c:forEach>
-					<div class="col-md-8 col-md-offset-1">
-						편의시설 
-					</div>
-					<c:forEach items="${requestScope.house.houseFilter.checkList }" var="checkList">
+					<div class="col-md-8 col-md-offset-1">편의시설</div>
+					<c:forEach items="${requestScope.house.houseFilter.checkList }"
+						var="checkList">
 						<c:if test="${checkList.codeKind==2}">
 							<div class="col-md-8 col-md-offset-1">
 								<li>${checkList.value }</li>
 							</div>
 						</c:if>
 					</c:forEach>
-					<div class="col-md-8 col-md-offset-1">
-						공용시설 
-					</div>
-					<c:forEach items="${requestScope.house.houseFilter.checkList }" var="checkList">
+					<div class="col-md-8 col-md-offset-1">공용시설</div>
+					<c:forEach items="${requestScope.house.houseFilter.checkList }"
+						var="checkList">
 						<c:if test="${checkList.codeKind==3}">
 							<div class="col-md-8 col-md-offset-1">
 								<li>${checkList.value }</li>
@@ -218,7 +247,7 @@
 						</c:if>
 					</c:forEach>
 					<div class="clearfix"></div>
-			
+
 				</div>
 				<div class="row row-condensed space-4">
 					<div class="col-md-8">
@@ -260,111 +289,119 @@
 						</div>
 					</form>
 				</c:if>
-				
+
 				<c:forEach items="${requestScope.comment.commentList}" var="comment"
 					varStatus="index">
-						<div class="row row-condensed space-4" id="commentArea">
-							<div class="col-md-1 starlayer">
-								<div class="stars stars-example-bootstrap">${comment.commentRating }</div>
-							</div>
-							<div class="col-md-3">${comment.memberEmail }</div>
-							<div class="col-md-5 commentContent">${comment.commentContent }</div>
-							<div class="col-md-2">
-								<fmt:formatDate value="${comment.commentTime }"
-									pattern="yyyy-MM-dd HH:mm:ss" />
-							</div>
-			
-							<!-- 댓글 삭제 버튼 -->
-							<c:if
-								test="${comment.memberEmail == sessionScope.login_info.memberEmail}">
-								<div class="col-md-1" id="removeAndReset">
-									<a
-										href="${initParam.rootPath}/house/removeHouseComment.do?houseSerial=${requestScope.house.houseSerial}&commentSerial=${comment.commentSerial}">
-										<input type="button" value="삭제" class="btn btn-default"
-										id="commentBnt">
-									</a>
-								</div>
-							</c:if>
+					<div class="row row-condensed space-4" id="commentArea">
+						<div class="col-md-1 starlayer">
+							<div class="stars stars-example-bootstrap">${comment.commentRating }</div>
 						</div>
+						<div class="col-md-3">${comment.memberEmail }</div>
+						<div class="col-md-5 commentContent">${comment.commentContent }</div>
+						<div class="col-md-2">
+							<fmt:formatDate value="${comment.commentTime }"
+								pattern="yyyy-MM-dd HH:mm:ss" />
+						</div>
+
+						<!-- 댓글 삭제 버튼 -->
+						<c:if
+							test="${comment.memberEmail == sessionScope.login_info.memberEmail}">
+							<div class="col-md-1" id="removeAndReset">
+								<a
+									href="${initParam.rootPath}/house/removeHouseComment.do?houseSerial=${requestScope.house.houseSerial}&commentSerial=${comment.commentSerial}">
+									<input type="button" value="삭제" class="btn btn-default"
+									id="commentBnt">
+								</a>
+							</div>
+						</c:if>
+					</div>
 				</c:forEach>
-		
-	<!--댓글 페이징 처리 부분  -->
-	<!-- 첫 페이지로 이동 -->
-	<a
-		href="${initParam.rootPath}/house/houseDetail.do?houseSerial=${requestScope.house.houseSerial}&page=1">첫페이지로
-		이동&nbsp;</a>
-	<!--
+
+				<!--댓글 페이징 처리 부분  -->
+				<!-- 첫 페이지로 이동 -->
+				<a
+					href="${initParam.rootPath}/house/houseDetail.do?houseSerial=${requestScope.house.houseSerial}&page=1">첫페이지로
+					이동&nbsp;</a>
+				<!--
 		이전 페이지 그룹 처리.
 		만약에 이전페이지 그룹이 있으면 링크처리하고 없으면 화살표만 나오도록 처리.
 	 -->
-	 
-	<c:choose>
-		<c:when test="${requestScope.comment.pageBean.previousPageGroup }">
-			<a
-				href="${initParam.rootPath}/house/houseDetail.do?houseSerial=${requestScope.house.houseSerial}&page=${requestScope.comment.pageBean.beginPage -1 }">
-				<%-- 현재 페이지 그룹의 시작 페이지-1을 요청.(이전 페이지 그룹의 마지막 페이지 요청)  --%>
-				◀&nbsp;&nbsp;
-			</a>
-		</c:when>
-		<c:otherwise>
-	 		◀&nbsp;&nbsp;
-	 	</c:otherwise>
-	</c:choose>
 
-	<!-- 
-		현재 page가 속한 page 그룹내의 페이지들 링크.
-		현재 pageGroup의 시작page ~ 끝 page
-	 -->
-	<!-- 만약에 p가 현재페이지면 링크처리를 하지 않고 p가 현재페이지가 아니라면 링크처리. -->
-
-	<c:forEach begin="${requestScope.comment.pageBean.beginPage }"
-		end="${requestScope.comment.pageBean.endPage }" step="1" var="page">
-		<c:choose>
-			<c:when test="${page == requestScope.comment.pageBean.page }">
-					[${page }]&nbsp;&nbsp;
-				</c:when>
-			<c:otherwise> 
-				<a
-					href="${initParam.rootPath}/house/houseDetail.do?houseSerial=${requestScope.house.houseSerial}&page=${page }">
-					${page }&nbsp;&nbsp; </a>
-			</c:otherwise>
-		</c:choose>
-	</c:forEach>
-	<!-- 
-		다음페이지 그룹으로 이동
-		만약에 다음페이지 그룹이 있으면 링크 처리 없으면 화살표만 나오도록 처리
-	 -->
-	<c:choose>
-		<c:when test="${requestScope.comment.pageBean.nextPageGroup }">
-			<%--현재 페이지 그룹의 마지막 page+1(다음 페이지 그룹의 시작페이지로 이동) --%>
-			<a
-				href="${initParam.rootPath}/house/houseDetail.do?houseSerial=${requestScope.house.houseSerial}&page=${requestScope.comment.pageBean.beginPage +1 }">
-				▶ </a>
-		</c:when>
-		<c:otherwise>
-			▶
-		</c:otherwise>
-	</c:choose>
-	<!-- 마지막 페이지 -->
-	<a
-		href="${initParam.rootPath}/house/houseDetail.do?houseSerial=${requestScope.house.houseSerial}&page=${requestScope.comment.pageBean.totalPage }">마지막
-		페이지</a>
-</div>
-			<!-- /숙소 상세 페이지 메뉴 끝 -->
-			
-			<div class="col-md-3 panel-MT zzimSection" style="margin-bottom: 30px;">
 				<c:choose>
-					<c:when test="${empty requestScope.zzim}">
-						<a href="${initParam.rootPath}/member/registerHouseZzim.do?memberEmail=${sessionScope.login_info.memberEmail}&houseSerial=${requestScope.house.houseSerial}">
-							<button class="btn btn-success zzim"
-								style="width: 100%; margin-bottom: 15px;">찜하기</button>
+					<c:when test="${requestScope.comment.pageBean.previousPageGroup }">
+						<a
+							href="${initParam.rootPath}/house/houseDetail.do?houseSerial=${requestScope.house.houseSerial}&page=${requestScope.comment.pageBean.beginPage -1 }">
+							<%-- 현재 페이지 그룹의 시작 페이지-1을 요청.(이전 페이지 그룹의 마지막 페이지 요청)  --%>
+							◀&nbsp;&nbsp;
 						</a>
 					</c:when>
 					<c:otherwise>
-						<a href="${initParam.rootPath}/member/cancleHouseZzim.do?houseZzimSerial=${requestScope.zzim.houseZzimSerial}">			
-							<button class="btn btn-success" id="zzimCancle"
-								 style="width: 100%; margin-bottom: 15px;">찜취소</button>		
-						</a>		
+	 		◀&nbsp;&nbsp;
+	 	</c:otherwise>
+				</c:choose>
+
+				<!-- 
+		현재 page가 속한 page 그룹내의 페이지들 링크.
+		현재 pageGroup의 시작page ~ 끝 page
+	 -->
+				<!-- 만약에 p가 현재페이지면 링크처리를 하지 않고 p가 현재페이지가 아니라면 링크처리. -->
+
+				<c:forEach begin="${requestScope.comment.pageBean.beginPage }"
+					end="${requestScope.comment.pageBean.endPage }" step="1" var="page">
+					<c:choose>
+						<c:when test="${page == requestScope.comment.pageBean.page }">
+					[${page }]&nbsp;&nbsp;
+				</c:when>
+						<c:otherwise>
+							<a
+								href="${initParam.rootPath}/house/houseDetail.do?houseSerial=${requestScope.house.houseSerial}&page=${page }">
+								${page }&nbsp;&nbsp; </a>
+						</c:otherwise>
+					</c:choose>
+				</c:forEach>
+				<!-- 
+		다음페이지 그룹으로 이동
+		만약에 다음페이지 그룹이 있으면 링크 처리 없으면 화살표만 나오도록 처리
+	 -->
+				<c:choose>
+					<c:when test="${requestScope.comment.pageBean.nextPageGroup }">
+						<%--현재 페이지 그룹의 마지막 page+1(다음 페이지 그룹의 시작페이지로 이동) --%>
+						<a
+							href="${initParam.rootPath}/house/houseDetail.do?houseSerial=${requestScope.house.houseSerial}&page=${requestScope.comment.pageBean.beginPage +1 }">
+							▶ </a>
+					</c:when>
+					<c:otherwise>
+			▶
+		</c:otherwise>
+				</c:choose>
+				<!-- 마지막 페이지 -->
+				<a
+					href="${initParam.rootPath}/house/houseDetail.do?houseSerial=${requestScope.house.houseSerial}&page=${requestScope.comment.pageBean.totalPage }">마지막
+					페이지</a>
+			</div>
+			<!-- /숙소 상세 페이지 메뉴 끝 -->
+
+			<div class="col-md-3 panel-MT zzimSection"
+				style="margin-bottom: 30px;">
+				<c:choose>
+					<c:when test="${empty requestScope.zzim}">
+						<a
+							href="${initParam.rootPath}/member/registerHouseZzim.do?memberEmail=${sessionScope.login_info.memberEmail}&houseSerial=${requestScope.house.houseSerial}">
+							<button class="btn zzim"
+								style="padding: 0px; background-color: #fff;">
+								<img src="/Perplus/css/image/heartBlank.png"
+									style="height: 55px;">
+							</button>
+						</a>
+					</c:when>
+					<c:otherwise>
+						<a
+							href="${initParam.rootPath}/member/cancleHouseZzim.do?houseZzimSerial=${requestScope.zzim.houseZzimSerial}">
+							<button class="btn" id="zzimCancle"
+								style="padding: 0px; background-color: #fff;">
+								<img src="/Perplus/css/image/heart.png" style="height: 55px;">
+							</button>
+						</a>
 					</c:otherwise>
 				</c:choose>
 			</div>
@@ -412,25 +449,29 @@
 			<div class="row row-maginTB">
 				<div
 					class="col-md-offset-0 col-sm-offset-1 col-xs-offset-2 col-md-12 col-sm-10 col-xs-8">
-					<a href="${initParam.rootPath}/member/chattingcreate.do?memberEmail="${sessionScope.login_info.memberEmail}>
+					<a
+						href="${initParam.rootPath}/member/chattingcreate.do?memberEmail="
+						${sessionScope.login_info.memberEmail}>
 						<button class="btn btn-primary" style="width: 100%">호스트와연락</button>
 					</a>
 				</div>
 			</div>
-			
-			<c:if test="${requestScope.house.memberEmail == sessionScope.login_info.memberEmail}">
+
+			<c:if
+				test="${requestScope.house.memberEmail == sessionScope.login_info.memberEmail}">
 				<div class="row row-maginTB">
-<!-- 					<div
+					<!-- 					<div
 						class="col-md-offset-0 col-sm-offset-1 col-xs-offset-2 col-md-6 col-sm-10 col-xs-8">
 						<a href="#">
 							<button class="btn btn-success"
 								style="width: 100%; margin-bottom: 15px;">수정하기</button>
 						</a>
 					</div> -->
-					
+
 					<div
 						class="col-md-offset-0 col-sm-offset-1 col-xs-offset-2 col-md-12 col-sm-10 col-xs-8">
-						<a href="${initParam.rootPath}/house/removeHouse.do?houseSerial=${requestScope.house.houseSerial}">
+						<a
+							href="${initParam.rootPath}/house/removeHouse.do?houseSerial=${requestScope.house.houseSerial}">
 							<button class="btn btn-danger" style="width: 100%">삭제</button>
 						</a>
 					</div>
