@@ -4,7 +4,7 @@
 	<div class="container-fluid">
 		<div class="row" id="myNavbar1">
 			<ul
-				class="nav navbar-nav navbar-left navs submenus col-md-8 col-sm-8 col-xs-12">
+				class="nav navbar-nav navbar-left navs submenus col-md-8 col-sm-8 col-xs-12" style="padding: 0px;">
 				<li data-page="accountmanagement" class="col-md-2 col-xs-3 col-sm-3"
 					style="padding: 0px !important;"><a
 					href="${initParam.rootPath}/accountmanagement.do">계정관리</a></li>
