@@ -37,9 +37,9 @@ public interface MemberService {
 	
 	
 	//housecomment service
-	void insertHouseComment(HouseCommentVo houseComment);
+	int insertHouseComment(HouseCommentVo houseComment);
 	
-	void deleteHouseComment(int commentSerial);
+	int deleteHouseComment(int commentSerial);
 	
 	void deleteAllHouseComment(int houseSerial);
 	

@@ -15,6 +15,7 @@ import com.perplus.house.vo.HousePictureVo;
 import com.perplus.house.vo.HouseVo;
 import com.perplus.member.dao.HouseCommentDao;
 import com.perplus.member.dao.HouseZzimDao;
+import com.perplus.member.vo.HouseCommentVo;
 @Service
 public class HouseServiceImpl_nr implements HouseService_nr{
 
@@ -53,6 +54,21 @@ public class HouseServiceImpl_nr implements HouseService_nr{
 		houseZzimDao.deleteHouseZzimByHouseSerial(houseSerial);
 		houseDao.deleteHouseByHouseSerial(houseSerial);
 	}
+
+	@Override
+	public void modifyHouse(HouseVo house) {
+		houseDao.updateHouse(house);
+	}
+
+	@Override
+	public HouseCommentVo selectHouseCommentOne(int commentSerial) {
+		// TODO Auto-generated method stub
+		return houseCommentDao.selectHouseCommentByCommentSerial(commentSerial);
+	}
+	
+	
+	
+	
 }
 	
 

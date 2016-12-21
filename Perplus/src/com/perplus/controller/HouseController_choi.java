@@ -121,7 +121,7 @@ public class HouseController_choi {
 	
 	
 	@RequestMapping("/fourStep.do")//4step commit하는 컨트롤러
-	public String fourStepHouseRegister(@RequestParam int houseSerial,MultipartHttpServletRequest requestp ,HttpServletRequest request, @RequestParam int houseFilterBedroomNumber,@RequestParam int houseFilterBedNumber,@RequestParam int houseFilterBathroomNumber){
+	public String fourStepHouseRegister(@RequestParam int houseSerial, HttpServletRequest request, @RequestParam int houseFilterBedroomNumber,@RequestParam int houseFilterBedNumber,@RequestParam int houseFilterBathroomNumber){
 		String[] convenientFacilityList = request.getParameterValues("convenientFacility");//편의시설
 		String[] secureFacilityList = request.getParameterValues("secureFacility");//안전시설
 		String[] commonFacilityList = request.getParameterValues("commonFacility");//공용시설

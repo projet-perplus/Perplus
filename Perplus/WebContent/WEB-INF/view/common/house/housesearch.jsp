@@ -18,14 +18,15 @@ $(document).ready(function(){
 	}
 	if(decodeURI(window.location.search).includes('checkIn')){
 		checkIn=getQueryString('checkIn');
+		$("#dpd1").val(checkIn);
 	}
 	if(decodeURI(window.location.search).includes('checkOut')){
 		checkOut=getQueryString('checkOut');
+		$("#dpd2").val(checkOut);
 	}
 	if(decodeURI(window.location.search).includes('guestNumber')){
 		guestNumber=getQueryString('guestNumber');
 	}
-	$("#amount").on("input",printByFilter());
 });
 
 $(function() {
@@ -46,8 +47,31 @@ $(function() {
 		printByFilter();
 	});
 });
+//지도 배율의 변화나 추가 필터를 제외한 기존 필터의 변화가 있을때마다 마커를 긁어오는 과정이 필요하다.
 function printByFilter(){
-	
+	//function placeMarkerList(southWestLat,southWestLng,northEastLat,northEastLng){
+//	$.ajax({
+//		url : "/Perplus/map/markerall.do",
+//		type:"post",
+//		async : false,
+//		data : JSON.stringify({key:value,}),
+//		contentType : "text/JSON"
+//		dataType : "JSON",
+//		success:function(obj){
+//			$.each(obj,function(){
+//				var markerLatlng = new google.maps.LatLng(this.reviewMarkerX, this.reviewMarkerY);
+//				placeMarker(this.reviewSerial,markerLatlng,this.reviewMarkerConstant);
+//			});
+//			if(startMarker!=null){
+//				startMarker.setAnimation(google.maps.Animation.BOUNCE);
+//				markerArray.push(startMarker);
+//			}
+//		},
+//		error:function(request,error,status){
+//			alert(error+ "   "+status+"status");
+//		}
+//	});
+//}
 }
 </script>
 <div class="container-fluid">
@@ -140,7 +164,7 @@ function printByFilter(){
 			</div>
 			<div class="row row-condensed space-4">
 				<div class="col-md-12">
-					<a href="${initParam.rootPath}/house/houseDetail.do?houseSerial=1"><button
+					<a href="${initParam.rootPath}/house/houseDetail.do?houseSerial=3"><button
 							class="btn btn-primary">숙소 상세 페이지</button></a>
 				</div>
 			</div>
