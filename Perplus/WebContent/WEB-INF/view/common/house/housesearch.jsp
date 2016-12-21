@@ -28,9 +28,15 @@ $(document).ready(function(){
       guestNumber=getQueryString('guestNumber');
       jQuery("#guestNumber").val(guestNumber).attr("selected", "selected");
    }
+ 
+   $("#dpd1").datepicker().on("changeDate",function(){
+	   printByFilter();
+   })
+   $("#dpd2").datepicker().on("changeDate",function(){
+	   printByFilter();
+   })
    
    $(".addfilterBtn").click(function(){
-       
        $(".addfilter").toggle("slow");
     });
 });
@@ -60,25 +66,53 @@ $(function() {
 //	4. housePriceMin, housePriceMax
 //	5-1. bedRoomNumber , bathRoomNumber, bedNumber
 //	5-2. 각 체크리스트 key값 (코드테이블 참조)
-
+function printByFilterWithAddFilter(){
+	
+}
 function printByFilter(){
-	var room;
+	var obj = {"guestNumber":$("#guestNumber").val().trim()};
+	//날짜
+	if($("#dpd1").val().trim()=='시작일'&& $("#dpd2").val().trim()=='종료일'){
+	}else{
+		obj.startDay=$("#dpd1").val().trim();
+		obj.endDay=$("#dpd2").val().trim();
+	}
 	//숙소 유형
 	switch($("[name=house-type]:checked").val()){
-	case '집전체' : room = "wholeRoom";
+	case '집전체' : obj.wholeRoom=$("[name=house-type]:checked").val();
 		break;
-	case '개인실' : room = "privateRoom";
+	case '개인실' : obj.privateRoom=$("[name=house-type]:checked").val();
 		break;
-	case '다인실' : room = "sharedRoom";
+	case '다인실' : obj.sharedRoom=$("[name=house-type]:checked").val();
 		break;
 	}
-
-	alert(room);
+	obj.housePriceMin=$("#slider-range").slider("values",0);
+	obj.housePriceMax=$("#slider-range").slider("values",1);
 	
-// 	var body = JSON.stringify({'endDay':$("#dpd2").val(),"startDay":$("#dpd1").val(),"guestNumber":guestNumber,
-// 		$(room):$("[name=house-type]:checked").val()});
+	//지도 bound
 	
-// 	alert(body);
+	obj.southWestLat=map.getBounds().getSouthWest().lat();
+	obj.southWestLng=map.getBounds().getSouthWest().lng();
+	obj.northEastLat=map.getBounds().getNorthEast().lat();
+	obj.northEastLng=map.getBounds().getNorthEast().lng();
+	
+	var body = JSON.stringify(obj);
+	
+	//alert(body);
+	$.ajax({
+		url : "/Perplus/map/showhousebymapandfilter.do",
+		type : "post",
+		async : false,
+		data : body,
+		contentType : "text/JSON",
+		dataType : "JSON",
+		success:function(obj){
+		},
+		error:function(request,error,status){
+			alert(error+ "   "+status+"status");
+		}
+	});
+	
 }
 //		$(":input:radio[name=sample]:checked").val(),
 //		"southWestLat":map.getBounds().getSouthWest().lat(),
@@ -87,34 +121,7 @@ function printByFilter(){
 //		"northEastLng":map.getBounds().getSouthEast().lng(),
 //		})
 //	alert(room);
-//	$.ajax({
-//		url : "/Perplus/map/showhousebymapandfilter.do",
-//		type : "post",
-//		async : false,
-//		data : JSON.stringify({"endDay":$("#dpd2").val(),"startDay":$("#dpd1").val(),"guestNumber":guestNumber,
-//			"housePriceMin":,"housePriceMax":,
-//			switch($(":input:radio[name=sample]:checked").val()){
-//			case '집전체' :"wholeRoom":
-//				break;
-//			case '개인실' :"privateRoom":
-//				break;
-//			case '다인실' :"sharedRoom":
-//				break;
-//			}
-//			$(":input:radio[name=sample]:checked").val(),
-//			"southWestLat":map.getBounds().getSouthWest().lat(),
-//			"southWestLng":map.getBounds().getSouthWest().lng(),
-//			"northEastLat":map.getBounds().getnorthEast().lat(),
-//			"northEastLng":map.getBounds().getSouthEast().lng(),
-//			}),
-//		contentType : "text/JSON",
-//		dataType : "JSON",
-//		success:function(obj){
-//		},
-//		error:function(request,error,status){
-//			alert(error+ "   "+status+"status");
-//		}
-//	});
+	
 //function placeMarkerList(southWestLat,southWestLng,northEastLat,northEastLng){
 //$.ajax({
 //	url : "/Perplus/map/markerall.do",

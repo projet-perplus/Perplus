@@ -405,6 +405,38 @@
 		and f.HOUSE_SERIAL = h.HOUSE_SERIAL
 		and p.HOUSE_SERIAL(+) = h.HOUSE_SERIAL
 	</select>
+	<select id="selectHousePriceRangeBySection" parameterType="hashmap" resultType="hashmap" >
+		select 	max(HOUSEFILTER_PRICE) max, min(HOUSEFILTER_PRICE) min
+		from 
+		(
+			select HOUSEFILTER_PRICE
+			from HOUSEFILTER
+			where HOUSE_SERIAL
+			in 
+			(
+				select h.HOUSE_SERIAL
+				from HOUSE h
+				where (h.HOUSE_MARKER_X between #{southWestLat} and #{northEastLat})
+				and   (h.HOUSE_MARKER_Y between #{southWestLng} and #{northEastLng})
+			) 		
+		)
+	</select>
+	<!-- 
+		parameter로 
+		1. 해당 house의 Serial   (serial)
+		2. 클릭한 날짜 필요		   (date)
+	 -->
+	<select id="reservationAbleTerm" parameterType="hashmap" resultType="_int">
+		select min(SHUTDOWN_DATE - CAST(#{date} as date) )
+		from SHUTDOWN
+		where SHUTDOWN_SERIAL in
+		(
+			select SHUTDOWN_SERIAL
+			from SHUTDOWN
+			where ( SHUTDOWN_DATE - CAST(#{date} as date) >=0)
+			and HOUSE_SERIAL= #{serial}
+		)
+	</select>
 </mapper>
 
 

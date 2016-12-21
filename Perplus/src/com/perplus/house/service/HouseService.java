@@ -23,7 +23,9 @@ public interface HouseService {
 	
 	List<HouseVo> selectHouseBySectionAndFilter(HashMap map);
 	
+	HashMap selectHousePriceRangeBySection(HashMap map);
 	
+	int reservationAbleTerm(HashMap map);
 	//checkList service
 	
 	//shutdown service

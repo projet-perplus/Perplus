@@ -59,5 +59,15 @@ public class HouseDaoImpl implements HouseDao{
 	public List<HouseVo> selectHouseBySectionAndFilter(HashMap map) {
 		return session.selectList("house.selectHouseBySectionAndFilter",map);
 	}
+
+	@Override
+	public HashMap selectHousePriceRangeBySection(HashMap map) {
+		return session.selectOne("house.selectHousePriceRangeBySection", map);
+	}
+
+	@Override
+	public int reservationAbleTerm(HashMap map) {
+		return session.selectOne("house.reservationAbleTerm",map);
+	}
 	
 }
