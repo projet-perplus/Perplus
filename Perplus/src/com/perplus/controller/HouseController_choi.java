@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.perplus.house.serviceimpl.HouseServiceImpl_choi;
@@ -172,7 +173,9 @@ public class HouseController_choi {
 	
 	
 	@RequestMapping("/fiveStep.do")//5step commit하는 컨트롤러 이미지 등록 극혐!!!!!!!!!!!!!!!!!!!!!!!!
-	public String fiveStepHouseRegister(@RequestParam int houseSerial){
+	public String fiveStepHouseRegister(@RequestParam int houseSerial,@RequestParam MultipartFile houseMainImage, @RequestParam List<MultipartFile> houseSubImage){
+		service.selectHouseFilter(houseSerial);
+		
 		System.out.println("fiveStep");
 		return "redirect:/house/sixStepBefore.do?houseSerial="+houseSerial;
 	}
