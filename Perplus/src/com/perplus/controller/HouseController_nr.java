@@ -1,5 +1,6 @@
 package com.perplus.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -15,8 +16,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.perplus.house.service.HouseService_nr;
+import com.perplus.house.vo.CheckListVo;
 import com.perplus.house.vo.HousePictureVo;
 import com.perplus.house.vo.HouseVo;
+import com.perplus.house.vo.ShutdownVo;
 import com.perplus.member.service.MemberService;
 import com.perplus.member.vo.HouseCommentVo;
 import com.perplus.member.vo.HouseZzimVo;
@@ -52,6 +55,23 @@ public class HouseController_nr {
 				map.put("zzim", zzim);
 			}
 		}
+		String shutdownDate = null;
+		if(house.getHouseFilter().getCheckList()!=null){
+			List<ShutdownVo> checkList = house.getHouseFilter().getShutdownList();
+			for(int i = 0 ; i<checkList.size();i++){
+				Date date = checkList.get(i).getShutdownDate();
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+				if(i==0){
+					shutdownDate = "'"+sdf.format(date)+"'";
+				}else{
+					shutdownDate = shutdownDate +", "+ "'"+sdf.format(date)+"'";
+				}
+			}
+			map.put("shutdownDate", shutdownDate);
+		}
+		
+		
+		System.out.println(shutdownDate);
 		map.put("house", house);
 		map.put("picture",picture);
 		map.put("comment", comment);
