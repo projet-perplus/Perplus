@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,7 +33,8 @@ import com.perplus.member.vo.HouseZzimVo;
 import com.perplus.member.vo.MemberVo;
 import com.perplus.util.Constants;
 import com.perplus.util.TextUtil;
-
+@Controller
+@RequestMapping("/house")
 public class HouseController {
 	
 	@Autowired
