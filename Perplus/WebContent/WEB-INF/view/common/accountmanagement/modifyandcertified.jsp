@@ -3,14 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script
 	src="https://rawgit.com/andrewng330/PreviewImage/master/preview.image.min.js"></script>
-<style>
-.bg-4 {
-	position: relative;
-	bottom: 0;
-	left: 0;
-	right: 0;
-}
-</style>
+
 
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -349,7 +342,7 @@
 
 
 
-<div id="dashboard-content">
+<div id="dashboard-content" >
 	<div class="panel-header">
 		<span>본인 인증</span>
 	</div>

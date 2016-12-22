@@ -86,8 +86,8 @@
 
 											var content = "<input type='text' class='form-control' name='commentContent' id='modifyContent'  value="+comment+">";
 
-											var btn = "<input type='submit' value='수정완료' class='btn btn-default modifyComplate' ></a>";
-											var resetBtn = "<input type='reset' class='btn btn-default' value='초기화'>";
+											var btn = "<input type='submit' value='수정완료' class='btn btn-success modifyComplate' ></a>";
+											var resetBtn = "<input type='reset' class='btn btn-danger' value='초기화'>";
 											$(this).parent().parent().find(
 													"div.stars").html(
 													rankingSelect);
@@ -182,7 +182,7 @@
 	<!-- /row -->
 
 	<!--hidden-xs-->
-	<div class="row" id="slider-thumbs" style="margin-top: 10px;">
+	<div class="row hidden-xs" id="slider-thumbs" style="margin-top: 10px;">
 		<!--Bottom switcher of slider -->
 		<ul>
 			<c:choose>
@@ -206,11 +206,11 @@
 	</div>
 
 	<!-- REVIEW 내용 출력 부분 -->
-	<div class="housesection">
+	<div class="housesection" style="line-height: 3;">
 		<div class="row row-condensed space-4">
 			<label class="text-left col-md-2"> <span>작성자</span>
 			</label>
-			<div class="col-md-6">${requestScope.review.memberEmail }</div>
+			<div class="col-md-6 col-xs-6">${requestScope.review.memberEmail }</div>
 			<div class="col-md-3">
 				<c:choose>
 					<c:when test="${empty requestScope.zzim}">
@@ -268,7 +268,7 @@
 		<c:if
 			test="${requestScope.review.memberEmail == sessionScope.login_info.memberEmail}">
 			<div class="row row-condensed space-4">
-				<div class="col-md-offset-10 col-md-1">
+				<div class="col-md-offset-10 col-md-1 col-xs-offset-6 col-xs-3">
 					<a href="#" data-toggle="modal" data-target="#reviewmodify">
 						<button class="btn btn-success">수정</button>
 					</a>
@@ -294,7 +294,7 @@
 				type="hidden" name="memberEmail"
 				value="${sessionScope.login_info.memberEmail }">
 			<div class="row row-condensed space-4">
-				<div class="col-md-1 col-sm-1">
+				<div class="col-md-1 col-sm-1 col-xs-2">
 					<div class="stars stars-example-bootstrap">
 						<select id="commentRating" name="commentRating">
 							<option value="">평점</option>
@@ -306,12 +306,12 @@
 						</select>
 					</div>
 				</div>
-				<div class="col-md-2 col-sm-2">작성자</div>
-				<div class="col-md-7 col-sm-7">
+				<div class="col-md-2 col-sm-2 col-xs-3">작성자</div>
+				<div class="col-md-7 col-sm-12">
 					<input type="text" class="form-control" name="commentContent"
 						id="commentContent" placeholder="댓글을 입력하세요">
 				</div>
-				<div class="col-md-2 col-sm-2">
+				<div class="col-md-2 col-sm-2 col-md-offset-0 col-sm-offset-10 col-xs-offset-9 col-xs-3">
 					<!-- <button type="submit" class="btn btn-default">작성</button> -->
 					<input type="submit" value="작성" class="btn btn-default"
 						id="commentBnt">

@@ -43,7 +43,7 @@
 <div class="basicbody">
 	<div class="container">
 		<div class="row row-condensed space-4">
-			<label class="text-left col-md-7 col-md-offset-2 col-xs-10">
+			<label class="text-left col-md-7 col-md-offset-2 col-xs-10" style="min-height: 470px;">
 				<span>호스트가 될준비가 되셨나요?</span>
 			</label>
 		</div>
