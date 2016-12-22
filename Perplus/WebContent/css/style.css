@@ -58,7 +58,7 @@ a {
 a:focus, a:hover {
 	text-decoration: none !important;
 	color: #000 !important;
-	border-color:rgba(255,255,255,0);
+	border-color: rgba(255, 255, 255, 0);
 }
 
 p {
@@ -132,6 +132,11 @@ p {
 }
 /*화면이 768보다 작을때*/
 @media screen and (max-width: 768px) {
+	#footer>p {
+
+		padding: 8px !important;
+
+	}
 	.mainLogo>img {
 		padding: 25px !important;
 	}
@@ -257,7 +262,7 @@ p {
 /* 로고 */
 .navbar-img>img {
 	position: absolute;
-	padding: 8px;
+	padding: 10px;
 	z-index: 1;
 	top: 0;
 	left: 0;
@@ -542,18 +547,25 @@ p {
 	margin-bottom: 30px;
 }
 
-.previousBtn>a>button {
+.previousBtn button {
 	width: 80px;
 	background-color: #ccc;
 	color: #fff;
 	font-weight: bold;
 }
 
-.nextBtn>a {
+.nextBtn a {
 	float: right;
 }
 
-.nextBtn button {
+.nextBtn  button {
+	width: 80px;
+	background-color: #e74c34;
+	color: #fff;
+	font-weight: bold;
+}
+
+.nextBtn a button {
 	width: 80px;
 	background-color: #e74c34;
 	color: #fff;
