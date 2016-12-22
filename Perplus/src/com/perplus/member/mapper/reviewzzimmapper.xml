@@ -5,7 +5,7 @@
 	<!-- insert -->
 	<insert id="insertReviewZzim" parameterType="ReviewZzimVo">
 		<selectKey resultType="_int" keyProperty="reviewZzimSerial" order="BEFORE">
-			select reviewZzim_seq.nextval from dual
+			select REVIEWZZIM_SEQ.nextval from dual
 		</selectKey> 
 		insert into REVIEWZZIM values (#{reviewZzimSerial},#{reviewSerial}, #{memberEmail})
 	</insert>

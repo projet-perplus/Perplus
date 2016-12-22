@@ -45,7 +45,7 @@
 	<!-- houseComment 등록 -->
 	<insert id="insertHouseComment" parameterType="HouseCommentVo">
 	<selectKey resultType="_int" keyProperty="commentSerial" order="BEFORE">
-		select houseComment_seq.nextval from dual
+		select HOUSECOMMENT_SEQ.nextval from dual
 	</selectKey> 
 		insert into housecomment values(#{commentSerial},#{houseSerial},#{memberEmail},#{commentContent},#{commentRating},#{commentTime})
 	</insert>
