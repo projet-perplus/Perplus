@@ -123,6 +123,13 @@
 								return false;
 							}
 						});
+						
+						$(".zzim_success").on("click",function(){
+							alert("찜이 완료되었습니다.")
+						});
+						$(".zzim_fail").on("click",function(){
+							alert("찜이 해제되었습니다.")
+						});
 					});
 </script>
 <style type="text/css">
@@ -216,7 +223,7 @@
 					<c:when test="${empty requestScope.zzim}">
 						<a
 							href="${initParam.rootPath}/member/registerReviewZzim.do?memberEmail=${sessionScope.login_info.memberEmail}&reviewSerial=${requestScope.review.reviewSerial}">
-							<button class="btn zzim"
+							<button class="btn zzim zzim_success"
 								style="padding: 0px; background-color: #fff;">
 								<img src="/Perplus/css/image/heartBlank.png"
 									style="height: 55px;">
@@ -226,7 +233,7 @@
 					<c:otherwise>
 						<a
 							href="${initParam.rootPath}/member/cancleReviewZzim.do?reviewZzimSerial=${requestScope.zzim.reviewZzimSerial}">
-							<button class="btn" id="zzimCancle"
+							<button class="btn zzim_fail" id="zzimCancle"
 								style="padding: 0px; background-color: #fff;">
 								<img src="/Perplus/css/image/heart.png" style="height: 55px;">
 							</button>
@@ -268,7 +275,7 @@
 		<c:if
 			test="${requestScope.review.memberEmail == sessionScope.login_info.memberEmail}">
 			<div class="row row-condensed space-4">
-				<div class="col-md-offset-10 col-md-1 col-xs-offset-6 col-xs-3">
+				<div class="col-md-offset-10 col-md-1 col-xs-offset-6 col-xs-3" align="right">
 					<a href="#" data-toggle="modal" data-target="#reviewmodify">
 						<button class="btn btn-success">수정</button>
 					</a>
@@ -311,9 +318,9 @@
 					<input type="text" class="form-control" name="commentContent"
 						id="commentContent" placeholder="댓글을 입력하세요">
 				</div>
-				<div class="col-md-2 col-sm-2 col-md-offset-0 col-sm-offset-10 col-xs-offset-9 col-xs-3">
+				<div class="col-md-1 col-sm-2 col-md-offset-0 col-sm-offset-10 col-xs-offset-9 col-xs-3" align="right">
 					<!-- <button type="submit" class="btn btn-default">작성</button> -->
-					<input type="submit" value="작성" class="btn btn-default"
+					<input type="submit" value="작성" class="btn btn-success"
 						id="commentBnt">
 				</div>
 			</div>
@@ -333,10 +340,10 @@
 					name="memberEmail" value="${comment.memberEmail }" /> <input
 					type="hidden" name="commentSerial"
 					value="${comment.commentSerial }" />
-				<div class="col-md-1 starlayer">
+				<div class="col-md-1 col-xs-2 starlayer" align="center">
 					<div class="stars stars-example-bootstrap">${comment.commentRating }</div>
 				</div>
-				<div class="col-md-2">${comment.memberEmail }</div>
+				<div class="col-md-2 col-xs-10">${comment.memberEmail }</div>
 				<div class="col-md-5 commentContent">${comment.commentContent }</div>
 				<div class="col-md-2">
 					<fmt:formatDate value="${comment.commentTime }"
@@ -346,7 +353,7 @@
 				<!-- 댓글 수정 삭제 버튼 -->
 				<c:if
 					test="${comment.memberEmail == sessionScope.login_info.memberEmail}">
-					<div class="col-md-1" id="modifyBtn">
+					<div class="col-md-1 col-md-offset-0  col-xs-offset-6 col-xs-3" id="modifyBtn" align="right">
 						<input type="button" value="수정"
 							class="btn btn-success commentModifyBnt" id="${index.index }">
 					</div>
@@ -354,10 +361,10 @@
 
 				<c:if
 					test="${comment.memberEmail == sessionScope.login_info.memberEmail}">
-					<div class="col-md-1" id="removeAndReset">
+					<div class="col-md-1  col-xs-2" id="removeAndReset" align="right">
 						<a
 							href="${initParam.rootPath}/review/removeReviewComment.do?reviewSerial=${requestScope.review.reviewSerial}&commentSerial=${comment.commentSerial}">
-							<input type="button" value="삭제" class="btn btn-danger"
+							<input type="button" value="삭제" class="btn btn-danger" 
 							id="commentBnt">
 						</a>
 					</div>

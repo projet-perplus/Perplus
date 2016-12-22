@@ -31,3 +31,19 @@ insert into CODETABLE values(203, '엘리베이터');
 insert into CODETABLE values(203, '수영장');
 insert into CODETABLE values(203, '자쿠지 욕조');
 insert into CODETABLE values(203, '헬스장');
+
+
+
+/* 회원정보 거주지역 */
+insert into CODETABLE values(500, '서울');
+insert into CODETABLE values(500, '광주');
+insert into CODETABLE values(500, '대구');
+insert into CODETABLE values(500, '대전');
+insert into CODETABLE values(500, '부산');
+insert into CODETABLE values(500, '울산');
+insert into CODETABLE values(500, '인천');
+insert into CODETABLE values(500, '제주도');
+insert into CODETABLE values(500, '울릉도');
+insert into CODETABLE values(500, '독도');
+insert into CODETABLE values(500, '기타');
+insert into CODETABLE values(500, '해외');

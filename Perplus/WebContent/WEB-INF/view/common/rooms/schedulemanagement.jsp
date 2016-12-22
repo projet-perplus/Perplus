@@ -111,12 +111,12 @@
 						<div class="col-md-12 col-sm-12 col-xs-12 row-maginTB">
 							<div
 								class="col-md-offset-1 col-sm-offset-2 col-xs-offset-0 col-md-4 col-sm-3 col-xs-6">
-								<button type="button" class="btn btn-danger">예약 허가</button>
+								<button type="button" class="btn btn-success">예약 허가</button>
 							</div>
 							
 							<div
 								class="col-md-offset-3 col-md-offset-3 col-sm-offset-2 col-xs-offset-1 col-md-2 col-sm-4 col-xs-4">
-								<button type="button" class="btn btn-default">까기</button>
+								<button type="button" class="btn btn-danger">까기</button>
 							</div>
 							
 						</div>
