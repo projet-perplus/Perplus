@@ -4,12 +4,20 @@
 <mapper namespace="houseZzim">
 
 	<insert id="insertHouseZzim" parameterType="HouseZzimVo">
-		insert into HOUSEZZIM values(houseComment_seq, #{houseSerial}, #{memberEmail}, #{commentContent}, #{commentRating}, #{commentTime})
+	<selectKey resultType="_int" keyProperty="housezzimSerial" order="BEFORE">
+		select houseZzim_seq.nextval from dual
+	</selectKey> 
+		insert into HOUSEZZIM values(#{housezzimSerial}, #{houseSerial}, #{memberEmail})
 	</insert>
 	
 	<delete id="deleteHouseZzimByEmail" parameterType="_int">
 		delete	from HOUSEZZIM
 		where	housezzim_serial = #{value}
+	</delete>
+	
+	<delete id="deleteHouseZzimByHouseSerial" parameterType="_int">
+		delete	from HOUSEZZIM
+		where	house_serial = #{value}
 	</delete>
 	
 	<select id="selectHouseZzimByEmail" parameterType="string" resultType="HouseZzimVo">
@@ -18,6 +26,18 @@
 		where	member_email = #{value}
 	</select>
 	
+	<select id="selectHouseZzimBySerial" parameterType="_int" resultType="HouseZzimVo">
+		select	housezzim_serial houseZzimSerial, house_serial houseSerial, member_email memberEmail
+		from	HOUSEZZIM
+		where	housezzim_serial = #{value}
+	</select>
+	
+	<select id="selectHouseZzimByEmailAndHouseSerial" parameterType="map" resultType="HouseZzimVo">
+		select	housezzim_serial houseZzimSerial, house_serial houseSerial, member_email memberEmail
+		from	HOUSEZZIM
+		where	member_email = #{memberEmail}
+		and house_serial=#{houseSerial}
+	</select>
 	
 	<sql id="select-houseZzim-join-sql">
 		select	z.housezzim_serial,
@@ -104,9 +124,9 @@
 	<select id="houseZzimJoinHouse" parameterType="string" resultMap="houseZzim-house-join-resultmap">
 		<include refid="select-houseZzim-join-sql"/>
 		where	z.member_email = #{value}
-		and		z.house_serial = h.house_serial
-		and		p.house_serial = h.house_serial
-		and		f.house_serial = h.house_serial
+		and		z.house_serial(+) = h.house_serial
+		and		p.house_serial(+) = h.house_serial
+		and		f.house_serial(+) = h.house_serial
 	</select>
 	
 	

@@ -123,7 +123,7 @@ northEastLat
 northEashLng
 범위 지정
  -->
-<select id="selectMarkerBySection" parameterType="hashMap" resultType="hashmap">
+<select id="selectMarkerBySection" parameterType="hashMap" resultType="ReviewVo">
 	select 
 		review_serial reviewSerial, 
 		member_email memberEmail,
@@ -140,6 +140,24 @@ northEashLng
 	and	  (review_marker_y between #{southWestLng} and #{northEastLng})
 </select>
 
+<!-- 마커 위치를 통한 리뷰 select -->
+
+<select id="selectReviewByMarker" parameterType="hashMap" resultType="ReviewVo">
+	select 
+		review_serial reviewSerial, 
+		member_email memberEmail,
+		review_title reviewTitle,
+		review_content reviewContent,
+		review_rating reviewRating,
+		review_time reviewTime,
+		review_marker_x reviewMarkerX,
+		review_marker_y reviewMarkerY,
+		review_marker_constant reviewMarkerConstant,
+		review_place reviewPlace
+	from REVIEW 
+	where REVIEW_MARKER_X = #{lat}
+	and   REVIEW_MARKER_Y = #{lng}
+</select>
 </mapper>
 
 

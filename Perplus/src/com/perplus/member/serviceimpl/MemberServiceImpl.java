@@ -8,11 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import com.perplus.house.dao.HouseDao;
+import com.perplus.house.vo.HouseVo;
 import com.perplus.member.dao.ChattingDao;
 import com.perplus.member.dao.ChattingLogDao;
 import com.perplus.member.dao.HouseCommentDao;
 import com.perplus.member.dao.HouseZzimDao;
-import com.perplus.member.dao.HowgetmoneyDao;
+import com.perplus.member.dao.HowmoneyDao;
 import com.perplus.member.dao.MemberDao;
 import com.perplus.member.dao.PaymentDao;
 import com.perplus.member.dao.RejectDao;
@@ -24,7 +26,7 @@ import com.perplus.member.vo.ChattingLogVo;
 import com.perplus.member.vo.ChattingVo;
 import com.perplus.member.vo.HouseCommentVo;
 import com.perplus.member.vo.HouseZzimVo;
-import com.perplus.member.vo.HowgetmoneyVo;
+import com.perplus.member.vo.HowmoneyVo;
 import com.perplus.member.vo.MemberVo;
 import com.perplus.member.vo.PaymentVo;
 import com.perplus.member.vo.RejectVo;
@@ -32,6 +34,7 @@ import com.perplus.member.vo.ReviewZzimVo;
 import com.perplus.member.vo.ShowmoneyVo;
 import com.perplus.member.vo.TravelVo;
 import com.perplus.util.Constants;
+import com.perplus.util.PagingBean;
 
 @Service
 public class MemberServiceImpl implements MemberService{
@@ -53,8 +56,8 @@ public class MemberServiceImpl implements MemberService{
 	private HouseZzimDao houseZzimDao;
 	
 	@Autowired
-	@Qualifier("howgetmoneyDaoImpl")
-	private HowgetmoneyDao howgetmoneyDao;
+	@Qualifier("howmoneyDaoImpl")
+	private HowmoneyDao howgetmoneyDao;
 
 	@Autowired
 	@Qualifier("memberDaoImpl")
@@ -79,6 +82,8 @@ public class MemberServiceImpl implements MemberService{
 	@Qualifier("travelDaoImpl")
 	private TravelDao travelDao;
 	
+	@Autowired
+	private HouseDao houseDao;
 	
 	
 	/*
@@ -136,15 +141,29 @@ public class MemberServiceImpl implements MemberService{
 	 */
 	
 	@Override//houseComment 등록
-	public void insertHouseComment(HouseCommentVo houseComment){
+	public int insertHouseComment(HouseCommentVo houseComment){
+		HouseVo house = houseDao.selectHouseByHouseSerial(houseComment.getHouseSerial());
+		int houseRating = house.getHouseRating()+houseComment.getCommentRating();
 		houseCommentDao.insertHouseComment(houseComment);
+		return houseRating;
 	}
 	
 	@Override//houseComment 삭제
-	public void deleteHouseComment(int commentSerial){
+	public int deleteHouseComment(int commentSerial){
+		HouseCommentVo houseComment = houseCommentDao.selectHouseCommentByCommentSerial(commentSerial);
+		HouseVo house = houseDao.selectHouseByHouseSerial(houseComment.getHouseSerial());
+		int commentRating = houseComment.getCommentRating();
+		int houseRating =house.getHouseRating()-commentRating;
 		houseCommentDao.deleteHouseComment(commentSerial);
+		return houseRating;
 	}
 	
+	
+	@Override
+	public void deleteAllHouseComment(int houseSerial) {
+		houseCommentDao.deleteAllCommentBySerial(houseSerial);
+	}
+
 	@Override//houseComment 수정
 	public void modifyHouseComment(HouseCommentVo houseComment){
 		houseCommentDao.modifyHouseComment(houseComment);
@@ -155,8 +174,15 @@ public class MemberServiceImpl implements MemberService{
 	}
 	
 	@Override//serial로 조회하기(하우스 정보에서 뿌려주기)
-	public List<HouseCommentVo> selectHouseCommentBySerial(int houseSerial){
-		return houseCommentDao.selectHouseCommentBySerial(houseSerial);
+	public Map<String,Object> selectHouseCommentBySerial(int houseSerial, int page){
+		Map<String, Object> map = new HashMap<>();
+		List<HouseCommentVo> list = houseCommentDao.selectHouseCommentBySerial(houseSerial,page);
+		map.put("commentList", list);
+		int totalComments = houseCommentDao.selectHouseCommentCount(houseSerial);
+		PagingBean bean = new PagingBean(totalComments, page);
+		map.put("pageBean", bean);
+		map.put("totalComments",totalComments);
+		return map;
 	}
 	
 	@Override//memberEmail로 조회하기(내정보에서 내가 쓴 댓글 보기)
@@ -175,7 +201,7 @@ public class MemberServiceImpl implements MemberService{
 	}
 	
 	@Override//찜삭제
-	public void deleteHouseZzimByEmail(int houseZzimSerial){
+	public void deleteHouseZzimBySerial(int houseZzimSerial){
 		houseZzimDao.deleteHouseZzimByEmail(houseZzimSerial);
 	}
 	
@@ -184,26 +210,38 @@ public class MemberServiceImpl implements MemberService{
 		return houseZzimDao.selectHouseZzimByEmail(memberEmail);
 	}
 	
+	@Override
+	public HouseZzimVo selectHouseZzimByEmailAndHouseSerial(String memberEmail, int houseSerial) {
+		return houseZzimDao.selectHouseZzimByEmailAndHouseSerial(memberEmail, houseSerial);
+	}
+
 	public List<HouseZzimVo> houseZzimJoinHouseJoinHousePicture(String memberEmail){
 		return houseZzimDao.houseZzimJoinHouseJoinHousePicture(memberEmail);
 	}
+	
+	@Override
+	public HouseZzimVo selectHouseZzimBySerial(int houseZzimSerial) {
+		return houseZzimDao.selectHouseZzimBySerial(houseZzimSerial);
+	}
+	
 	
 	/*
 	 * howgetmoney Service
 	 */
 	
+
 	@Override//결제수단 등록
-	public void insertHowgetmoney(HowgetmoneyVo howgetmoney){
+	public void insertHowmoney(HowmoneyVo howgetmoney){
 		howgetmoneyDao.insertHowgetmoney(howgetmoney);
 	}
 	
 	@Override//결제수단 삭제
-	public void deleteHowgetmoney(int accountSerial){
+	public void deleteHowmoney(int accountSerial){
 		howgetmoneyDao.deleteHowgetmoney(accountSerial);
 	}
 	
 	@Override//결제수단 조회
-	public List<HowgetmoneyVo> selectHowgetmoney(String memberEmail){
+	public List<HowmoneyVo> selectHowmoney(String memberEmail){
 		return howgetmoneyDao.selectHowgetmoney(memberEmail);
 	}
 	
@@ -389,6 +427,30 @@ public class MemberServiceImpl implements MemberService{
 		}
 	}
 	
+	
+
+	@Override
+	public void insertReviewZzim(ReviewZzimVo reviewZzim) {
+		reviewZzimDao.insertReviewZzim(reviewZzim);
+	}
+
+	@Override
+	public void deleteReviewZzimByReviewZzimSerial(int reviewZzimSerial) {
+		System.out.println("Ddddd");
+		reviewZzimDao.deleteReviewZzim(reviewZzimSerial);
+		
+	}
+
+	@Override
+	public ReviewZzimVo selectReviewZzimByEmailAndReviewSerial(String memberEmail, int reviewSerial) {
+		return reviewZzimDao.selectReviewZzimByMemberEmailAndreviewSerial(memberEmail, reviewSerial);
+	}
+
+	@Override
+	public ReviewZzimVo selectReviewZzimByReviewZzimSerial(int reviewZzimSerial) {
+		return reviewZzimDao.selectReviewZzimByReviewZzimSerial(reviewZzimSerial);
+	}
+
 	/**
 	 * showmoney 관련 Service
 	 * @param showmoney

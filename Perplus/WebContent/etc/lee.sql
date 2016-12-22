@@ -6,7 +6,7 @@ insert into HOUSEFILTER values(1,'화장실',20,'다인실',2,'경기도 용인�
 
 
 
-insert into HOUSEZZIM values(1,25,'bbb')
+insert into HOUSEZZIM values(1,2,'bbb')
 
 insert into CHECKLIST values(CHECKLIST_SEQ.nextval,1,16,'안전카드');
 insert into CHECKLIST values(CHECKLIST_SEQ.nextval,1,15,'다리미');
@@ -33,7 +33,37 @@ insert into CHECKLIST values(CHECKLIST_SEQ.nextval,7,15,'헤어 드라이기');
 insert into CHECKLIST values(CHECKLIST_SEQ.nextval,8,17,'수영장');
 insert into CHECKLIST values(CHECKLIST_SEQ.nextval,8,16,'안전카드');
 
+insert into SHUTDOWN values(21,1,'2017-2-3');
+insert into SHUTDOWN values(22,1,'2017-2-6');
+insert into SHUTDOWN values(23,1,'2017-3-7');
+insert into SHUTDOWN values(24,1,'2017-3-6');
+insert into SHUTDOWN values(25,1,'2017-3-4');
+insert into SHUTDOWN values(26,1,'2017-4-2');
+insert into SHUTDOWN values(27,1,'2017-4-15');
+insert into SHUTDOWN values(28,1,'2017-4-18');
+insert into SHUTDOWN values(29,1,'2017-4-28');
+insert into SHUTDOWN values(30,1,'2017-4-14');
+insert into SHUTDOWN values(31,1,'2017-5-11');
+insert into SHUTDOWN values(32,1,'2017-5-4');
+insert into SHUTDOWN values(33,1,'2017-5-13');
+insert into SHUTDOWN values(34,1,'2017-5-17');
+insert into SHUTDOWN values(35,1,'2017-6-21');
+insert into SHUTDOWN values(36,1,'2017-6-24');
+insert into SHUTDOWN values(37,1,'2017-6-26');
 
+select SHUTDOWN_DATE
+from
+SHUTDOWN
+
+		select min(SHUTDOWN_DATE - CAST('2017-6-1' as date) )
+		from SHUTDOWN
+		where SHUTDOWN_SERIAL in
+		(
+			select SHUTDOWN_SERIAL
+			from SHUTDOWN
+			where ( SHUTDOWN_DATE - CAST('2017-6-1' as date) >=0)
+			and HOUSE_SERIAL= 1
+		)
 
 
 insert into SHUTDOWN values(1,1,'2015-10-11');
@@ -81,14 +111,15 @@ where HOUSE_SERIAL=1
 
 insert into HOUSE values(1,'화장실',20,'다인실',2,'경기도 용인시 모현면');
 
-insert into HOUSE values(HOUSE_SEQ.nextval,'bbb',0,'따뜻한 집','조흔 집입니다1',null,0,0,0,0);
-insert into HOUSE values(HOUSE_SEQ.nextval,'bbb',0,'추운 즵','조흔 집입니다2',null,0,0,0,0);
-insert into HOUSE values(HOUSE_SEQ.nextval,'bbb',0,'초가집','조흔 집입니다3',null,0,0,0,0);
-insert into HOUSE values(HOUSE_SEQ.nextval,'bbb',0,'이글루','조흔 집입니다4',null,0,0,0,0);
-insert into HOUSE values(HOUSE_SEQ.nextval,'aaa',0,'아늑한집','조흔 집입니다5',null,0,0,0,0);
-insert into HOUSE values(HOUSE_SEQ.nextval,'aaa',0,'정글집','조흔 집입니다6',null,0,0,0,0);
-insert into HOUSE values(HOUSE_SEQ.nextval,'aaa',0,'개미집','조흔 집입니7',null,0,0,0,0);
-insert into HOUSE values(HOUSE_SEQ.nextval,'aaa',0,'사람집','조흔 집입니다8',null,0,0,0,0);
+insert into HOUSE values(HOUSE_SEQ.nextval,'bbb',0,'따뜻한 집','조흔 집입니다1',null,0,37.400,127.100,213);
+insert into HOUSE values(HOUSE_SEQ.nextval,'bbb',0,'추운 즵','조흔 집입니다2',null,0,37.404,127.110,213);
+insert into HOUSE values(HOUSE_SEQ.nextval,'bbb',0,'초가집','조흔 집입니다3',null,0,37.500,127.099,213);
+insert into HOUSE values(HOUSE_SEQ.nextval,'bbb',0,'이글루','조흔 집입니다4',null,0,37.398,127.142,213);
+insert into HOUSE values(HOUSE_SEQ.nextval,'aaa',0,'아늑한집','조흔 집입니다5',null,0,37.400,127.140,213);
+insert into HOUSE values(HOUSE_SEQ.nextval,'aaa',0,'정글집','조흔 집입니다6',null,0,37.400,127.102,213);
+insert into HOUSE values(HOUSE_SEQ.nextval,'aaa',0,'개미집','조흔 집입니7',null,0,37.404,127.095,213);
+insert into HOUSE values(HOUSE_SEQ.nextval,'aaa',0,'사람집','조흔 집입니다8',null,0,37.407,127.097,213);
+
 
 delete from HOUSE where HOUSE_SERIAL = 1
 
@@ -539,3 +570,20 @@ delete from REVIEW;
 	from REVIEW 
 	where (review_marker_x between 37.39 and 37.407)
 	and	  (review_marker_y between 127.09 and 127.119)
+	
+	
+	
+	select 
+		review_serial reviewSerial, 
+		member_email memberEmail,
+		review_title reviewTitle,
+		review_content reviewContent,
+		review_rating reviewRating,
+		review_time reviewTime,
+		review_marker_x reviewMarkerX,
+		review_marker_y reviewMarkerY,
+		review_marker_constant reviewMarkerConstant,
+		review_place reviewPlace
+	from REVIEW 
+	where REVIEW_MARKER_X = #{lat}
+	and   REVIEW_MARKER_Y = #{lng}

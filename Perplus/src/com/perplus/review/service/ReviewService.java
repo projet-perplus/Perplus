@@ -46,4 +46,6 @@ public interface ReviewService {
 	
 	//map 관련
 	public List<ReviewVo> selectMarkerBySection(HashMap<String,Double> map) throws Exception;
+	
+	public ReviewVo	selectReviewByMarker(HashMap<String,Double>map) throws Exception;
 }

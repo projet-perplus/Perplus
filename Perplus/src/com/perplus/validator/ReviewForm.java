@@ -18,11 +18,11 @@ public class ReviewForm {
 	@NotNull
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date reviewTime;
-
+	@NotNull
 	private double reviewMarkerX;
-
+	@NotNull
 	private double reviewMarkerY;
-
+	@NotNull
 	private int reviewMarkerConstant;
 	@NotEmpty
 	private String reviewPlace;

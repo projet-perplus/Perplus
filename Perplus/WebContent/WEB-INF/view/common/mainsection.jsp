@@ -1,5 +1,25 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
-
+<%@ taglib prefix ="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<script type="text/javascript">
+function searchHouseByStartFilter(){
+	var location=$("#location").val();
+	var checkIn=$("#dpd1").val();
+	var checkOut=$("#dpd2").val();
+	var number=$("#guestNumber").val();
+	var url ="/Perplus/housesearch.do?guestNumber="+number;
+	if(checkIn.length!=0){
+		url+="&checkIn="+checkIn;
+	}
+	if(checkOut.length!=0){
+		url+="&checkOut="+checkOut;
+	}
+	if(location.length!=0){
+		url+="&location="+location;
+	}
+// 	alert(url);
+	window.location.href=url;
+}
+</script>
 <!-- First Container 메인 배경 -->
 <div class="container-fluid bg-1 text-center">
 	<div class="mainLogo">
@@ -42,18 +62,16 @@
 						<div class="col-md-7 borderR">
 							<div class="form-group">
 								<label for="secl1">인원</label> <select class="form-control"
-									name="personnel" id="GuestInput">
-									<option>1</option>
-									<option>2</option>
-									<option>3</option>
-									<option>4</option>
+									name="personnel" id="guestNumber">
+									<c:forEach var="i" begin="1" end="100" step="1">
+										<option value="${i}">${i}</option>
+									</c:forEach>
 								</select>
 							</div>
 						</div>
 						<div class="col-md-5">
-							<a href="${initParam.rootPath}/housesearch.do"><button
-									type="button" class="btn btn-default btn-lg" name="roomssearch"
-									id="Search">숙소 검색</button></a>
+							<button type="button" class="btn btn-default btn-lg" name="roomssearch"
+									id="Search"  onclick="searchHouseByStartFilter()">숙소 검색</button>
 						</div>
 					</div>
 				</form>

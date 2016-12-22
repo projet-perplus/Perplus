@@ -5,19 +5,24 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
+
+
+
 <%
-pageContext.setAttribute("CR", "\r");
-pageContext.setAttribute("LF", "\n");
-pageContext.setAttribute("CRLF", "\r\n");
-pageContext.setAttribute("SP", "&nbsp;");
-pageContext.setAttribute("BR", "<br>");
-pageContext.setAttribute("AP", "&amp;");
-pageContext.setAttribute("GT", "&gt;");
-pageContext.setAttribute("LT", "&lt;");
-%> 
+	pageContext.setAttribute("CR", "\r");
+	pageContext.setAttribute("LF", "\n");
+	pageContext.setAttribute("CRLF", "\r\n");
+	pageContext.setAttribute("SP", "&nbsp;");
+	pageContext.setAttribute("BR", "<br>");
+	pageContext.setAttribute("AP", "&amp;");
+	pageContext.setAttribute("GT", "&gt;");
+	pageContext.setAttribute("LT", "&lt;");
+%>
 
 <script type="text/javascript">
-	$(document).ready( function() {
+	$(document)
+			.ready(
+					function() {
 						$(".commentModifyBnt")
 								.on(
 										"click",
@@ -25,7 +30,7 @@ pageContext.setAttribute("LT", "&lt;");
 											var comment = $(this).parent()
 													.prevAll(".commentContent")
 													.text();
-	
+
 											var star = $(this).parent()
 													.prevAll(".starlayer")
 													.children("div:first")
@@ -34,7 +39,7 @@ pageContext.setAttribute("LT", "&lt;");
 											var rankingSelect = "<select name='commentRating' id='modifyRating'>";
 											if (star == 1) {
 												rankingSelect = rankingSelect
-														+"<option value='null'>평점</option>"
+														+ "<option value='null'>평점</option>"
 														+ "<option value=1 selected=true>1</option>"
 														+ "<option value=2>2</option>"
 														+ "<option value=3>3</option>"
@@ -43,7 +48,7 @@ pageContext.setAttribute("LT", "&lt;");
 														+ "</select>";
 											} else if (star == 2) {
 												rankingSelect = rankingSelect
-														+"<option value='null'>평점</option>"
+														+ "<option value='null'>평점</option>"
 														+ "<option value=1>1</option>"
 														+ "<option value=2 selected=true>2</option>"
 														+ "<option value=3>3</option>"
@@ -52,7 +57,7 @@ pageContext.setAttribute("LT", "&lt;");
 														+ "</select>";
 											} else if (star == 3) {
 												rankingSelect = rankingSelect
-														+"<option value='null'>평점</option>"
+														+ "<option value='null'>평점</option>"
 														+ "<option value=1>1</option>"
 														+ "<option value=2>2</option>"
 														+ "<option value=3 selected=true>3</option>"
@@ -61,7 +66,7 @@ pageContext.setAttribute("LT", "&lt;");
 														+ "</select>";
 											} else if (star == 4) {
 												rankingSelect = rankingSelect
-														+"<option value='null'>평점</option>"
+														+ "<option value='null'>평점</option>"
 														+ "<option value=1>1</option>"
 														+ "<option value=2>2</option>"
 														+ "<option value=3>3</option>"
@@ -70,7 +75,7 @@ pageContext.setAttribute("LT", "&lt;");
 														+ "</select>";
 											} else if (star == 5) {
 												rankingSelect = rankingSelect
-														+"<option value='null'>평점</option>"
+														+ "<option value='null'>평점</option>"
 														+ "<option value=1>1</option>"
 														+ "<option value=2>2</option>"
 														+ "<option value=3>3</option>"
@@ -78,11 +83,11 @@ pageContext.setAttribute("LT", "&lt;");
 														+ "<option value=5 selected=true>5</option>"
 														+ "</select>";
 											}
-											
+
 											var content = "<input type='text' class='form-control' name='commentContent' id='modifyContent'  value="+comment+">";
 
 											var btn = "<input type='submit' value='수정완료' class='btn btn-default modifyComplate' ></a>";
-											var resetBtn ="<input type='reset' class='btn btn-default' value='초기화'>";
+											var resetBtn = "<input type='reset' class='btn btn-default' value='초기화'>";
 											$(this).parent().parent().find(
 													"div.stars").html(
 													rankingSelect);
@@ -93,26 +98,26 @@ pageContext.setAttribute("LT", "&lt;");
 											$(this).parent().html(btn);
 											$("#removeAndReset").html(resetBtn);
 										});
-						$("#commentForm").on("submit",function(){
-							if(!$("#commentRating").val()){
+						$("#commentForm").on("submit", function() {
+							if (!$("#commentRating").val()) {
 								alert("평점을 선택하세요");
 								$("#commentRating").focus();
 								return false;
 							}
-							if(!$("#commentContent").val()){
+							if (!$("#commentContent").val()) {
 								alert("댓글을 입력하세요");
 								$("#commentContent").focus();
 								return false;
 							}
 						});
-						$("#modifyCommentForm").on("submit",function(){
+						$("#modifyCommentForm").on("submit", function() {
 							var a = $("#modifyRating").val();
-							if(a=='null'){
+							if (a == 'null') {
 								alert("평점을 선택하세요");
 								$("#modifyRating").focus();
 								return false;
 							}
-							if(!$("#modifyContent").val()){
+							if (!$("#modifyContent").val()) {
 								alert("댓글을 입력하세요");
 								$("#modifyContent").focus();
 								return false;
@@ -121,9 +126,9 @@ pageContext.setAttribute("LT", "&lt;");
 					});
 </script>
 <style type="text/css">
-	.bg-4{
-		position:relative;
-	}
+.bg-4 {
+	position: relative;
+}
 </style>
 <!-- 사진 출력 부분 -->
 <div class="container reviewslide">
@@ -131,32 +136,35 @@ pageContext.setAttribute("LT", "&lt;");
 		<div class="slidebar">
 			<div class="carousel slide" id="myCarousel">
 				<div class="carousel-inner">
-				<c:choose>
-					<c:when test="${empty requestScope.picture }">
-						<div class="active item">
-						<img src="${initParam.rootPath }/uploadReviewPicture/no-images.png"
-										style="width: 770px !important; height: 300px !important;">
-						</div>
-					</c:when>
-					<c:otherwise>
-					<c:forEach items="${requestScope.picture }" var="picture">
-						<c:choose>
-							<c:when test="${picture.pictureOrder==1}">
-								<div class="active item">
-									<img src="/Perplus/uploadReviewPicture/${picture.pictureName }"
-										style="width: 770px !important; height: 300px !important;">
-								</div>
-							</c:when>
-							<c:otherwise>
-								<div class="item">
-									<img src="/Perplus/uploadReviewPicture/${picture.pictureName }"
-										style="width: 770px !important; height: 300px !important;">
-								</div>
-							</c:otherwise>
-						</c:choose>
-					</c:forEach>
-					</c:otherwise>
-				</c:choose>
+					<c:choose>
+						<c:when test="${empty requestScope.picture }">
+							<div class="active item">
+								<img
+									src="${initParam.rootPath }/uploadReviewPicture/no-images.png"
+									style="width: 770px !important; height: 300px !important;">
+							</div>
+						</c:when>
+						<c:otherwise>
+							<c:forEach items="${requestScope.picture }" var="picture">
+								<c:choose>
+									<c:when test="${picture.pictureOrder==1}">
+										<div class="active item">
+											<img
+												src="/Perplus/uploadReviewPicture/${picture.pictureName }"
+												style="width: 770px !important; height: 300px !important;">
+										</div>
+									</c:when>
+									<c:otherwise>
+										<div class="item">
+											<img
+												src="/Perplus/uploadReviewPicture/${picture.pictureName }"
+												style="width: 770px !important; height: 300px !important;">
+										</div>
+									</c:otherwise>
+								</c:choose>
+							</c:forEach>
+						</c:otherwise>
+					</c:choose>
 				</div>
 
 				<!--  left right button -->
@@ -179,11 +187,10 @@ pageContext.setAttribute("LT", "&lt;");
 		<ul>
 			<c:choose>
 				<c:when test="${empty requestScope.picture }">
-					<li><a class="thumbnail"
-						id="carousel-selector-0"> 
-						<img src="${initParam.rootPath }/uploadReviewPicture/no-images.png"
-										style="width: 170px !important; height: 100px !important;">
-						</a></li>
+					<li><a class="thumbnail" id="carousel-selector-0"> <img
+							src="${initParam.rootPath }/uploadReviewPicture/no-images.png"
+							style="width: 170px !important; height: 100px !important;">
+					</a></li>
 				</c:when>
 				<c:otherwise>
 					<c:forEach items="${requestScope.picture }" var="picture">
@@ -204,6 +211,29 @@ pageContext.setAttribute("LT", "&lt;");
 			<label class="text-left col-md-2"> <span>작성자</span>
 			</label>
 			<div class="col-md-6">${requestScope.review.memberEmail }</div>
+			<div class="col-md-3">
+				<c:choose>
+					<c:when test="${empty requestScope.zzim}">
+						<a
+							href="${initParam.rootPath}/member/registerReviewZzim.do?memberEmail=${sessionScope.login_info.memberEmail}&reviewSerial=${requestScope.review.reviewSerial}">
+							<button class="btn zzim"
+								style="padding: 0px; background-color: #fff;">
+								<img src="/Perplus/css/image/heartBlank.png"
+									style="height: 55px;">
+							</button>
+						</a>
+					</c:when>
+					<c:otherwise>
+						<a
+							href="${initParam.rootPath}/member/cancleReviewZzim.do?reviewZzimSerial=${requestScope.zzim.reviewZzimSerial}">
+							<button class="btn" id="zzimCancle"
+								style="padding: 0px; background-color: #fff;">
+								<img src="/Perplus/css/image/heart.png" style="height: 55px;">
+							</button>
+						</a>
+					</c:otherwise>
+				</c:choose>
+			</div>
 		</div>
 		<div class="row row-condensed space-4">
 			<label class="text-left col-md-2"> <span>리뷰 제목</span>
@@ -219,7 +249,8 @@ pageContext.setAttribute("LT", "&lt;");
 			<label class="text-left col-md-2"> <span>방문일자</span>
 			</label>
 			<div class="col-md-6">
-				<fmt:formatDate value="${requestScope.review.reviewTime }" pattern="yyyy-MM-dd"/>
+				<fmt:formatDate value="${requestScope.review.reviewTime }"
+					pattern="yyyy-MM-dd" />
 			</div>
 		</div>
 		<div class="row row-condensed space-4">
@@ -232,92 +263,107 @@ pageContext.setAttribute("LT", "&lt;");
 			</label>
 			<div class="col-md-6">${requestScope.review.reviewContent }</div>
 		</div>
-		
+
 		<!-- REVIEW 수정/삭제 버튼 -->
-		<c:if test="${requestScope.review.memberEmail == sessionScope.login_info.memberEmail}">
+		<c:if
+			test="${requestScope.review.memberEmail == sessionScope.login_info.memberEmail}">
 			<div class="row row-condensed space-4">
-				<div class="col-md-offset-9">
-					<a href="#"
-						data-toggle="modal" data-target="#reviewmodify">
-						<button class="btn btn-default">수정</button>
-					</a> <a href="${initParam.rootPath}/review/removeReview.do?reviewSerial=${requestScope.review.reviewSerial}">
-						<button type="submit" class="btn btn-default">삭제</button>
+				<div class="col-md-offset-10 col-md-1">
+					<a href="#" data-toggle="modal" data-target="#reviewmodify">
+						<button class="btn btn-success">수정</button>
 					</a>
-				</div>			
+				</div>	
+				<div class="col-md-1">
+				
+					 <a
+						href="${initParam.rootPath}/review/removeReview.do?reviewSerial=${requestScope.review.reviewSerial}">
+						<button type="submit" class="btn btn-danger">삭제</button>
+					</a>
+				</div>	
+				
 			</div>
 		</c:if>
-	
-	<!-- 댓글 입력 폼 -->
 	</div>
+
+	<!-- 댓글 입력 폼 -->
 	<c:if test="${sessionScope.login_info!=null }">
-	<form action="${initParam.rootPath}/review/registerReviewComment.do" id="commentForm">
-		<input type="hidden" name="reviewSerial"
-			value="${requestScope.review.reviewSerial}">
-		<input type="hidden" name="memberEmail" value="${sessionScope.login_info.memberEmail }">
-		<div class="row row-condensed space-4">
-			<div class="col-md-1">
-				<div class="stars stars-example-bootstrap">
-					<select id="commentRating" name="commentRating">
-						<option value="">평점</option>
-						<option value=1>1</option>
-						<option value=2>2</option>
-						<option value=3>3</option>
-						<option value=4>4</option>
-						<option value=5>5</option>
-					</select>
+		<form action="${initParam.rootPath}/review/registerReviewComment.do"
+			id="commentForm">
+			<input type="hidden" name="reviewSerial"
+				value="${requestScope.review.reviewSerial}"> <input
+				type="hidden" name="memberEmail"
+				value="${sessionScope.login_info.memberEmail }">
+			<div class="row row-condensed space-4">
+				<div class="col-md-1 col-sm-1">
+					<div class="stars stars-example-bootstrap">
+						<select id="commentRating" name="commentRating">
+							<option value="">평점</option>
+							<option value=1>1</option>
+							<option value=2>2</option>
+							<option value=3>3</option>
+							<option value=4>4</option>
+							<option value=5>5</option>
+						</select>
+					</div>
+				</div>
+				<div class="col-md-2 col-sm-2">작성자</div>
+				<div class="col-md-7 col-sm-7">
+					<input type="text" class="form-control" name="commentContent"
+						id="commentContent" placeholder="댓글을 입력하세요">
+				</div>
+				<div class="col-md-2 col-sm-2">
+					<!-- <button type="submit" class="btn btn-default">작성</button> -->
+					<input type="submit" value="작성" class="btn btn-default"
+						id="commentBnt">
 				</div>
 			</div>
-			<div class="col-md-2">작성자</div>
-			<div class="col-md-7">
-				<input type="text" class="form-control" name="commentContent"
-					id="commentContent" placeholder="댓글을 입력하세요">
-			</div>
-			<div class="col-md-2">
-				<!-- <button type="submit" class="btn btn-default">작성</button> -->
-				<input type="submit" value="작성" class="btn btn-default"
-					id="commentBnt">
-			</div>
-		</div>
-	</form>
-</c:if>
+		</form>
+	</c:if>
 
-    <!--달려진 댓글 출력 --> 
+	<!--달려진 댓글 출력 -->
 	<c:forEach items="${requestScope.review.reviewComment }" var="comment"
 		varStatus="index">
-		
-			<form action="${initParam.rootPath }/review/modifyReviewComment.do" id="modifyCommentForm">
-		<div class="row row-condensed space-4" id="commentArea">		
-				<input type="hidden" name="reviewSerial" value="${comment.reviewSerial}"/>
-				<input type="hidden" name="memberEmail" value="${comment.memberEmail }"/>
-				<input type="hidden" name="commentSerial" value="${comment.commentSerial }"/>
+
+		<form action="${initParam.rootPath }/review/modifyReviewComment.do"
+			id="modifyCommentForm">
+			<div class="row row-condensed space-4" id="commentArea"
+				style="margin-bottom: 50px;">
+				<input type="hidden" name="reviewSerial"
+					value="${comment.reviewSerial}" /> <input type="hidden"
+					name="memberEmail" value="${comment.memberEmail }" /> <input
+					type="hidden" name="commentSerial"
+					value="${comment.commentSerial }" />
 				<div class="col-md-1 starlayer">
 					<div class="stars stars-example-bootstrap">${comment.commentRating }</div>
 				</div>
 				<div class="col-md-2">${comment.memberEmail }</div>
 				<div class="col-md-5 commentContent">${comment.commentContent }</div>
-				<div class="col-md-2"><fmt:formatDate value="${comment.commentTime }" pattern="yyyy-MM-dd HH:mm:ss"/> </div>
-				
+				<div class="col-md-2">
+					<fmt:formatDate value="${comment.commentTime }"
+						pattern="yyyy-MM-dd HH:mm:ss" />
+				</div>
+
 				<!-- 댓글 수정 삭제 버튼 -->
 				<c:if
 					test="${comment.memberEmail == sessionScope.login_info.memberEmail}">
 					<div class="col-md-1" id="modifyBtn">
-							<input type="button" value="수정"
-								class="btn btn-default commentModifyBnt" id="${index.index }">
+						<input type="button" value="수정"
+							class="btn btn-success commentModifyBnt" id="${index.index }">
 					</div>
 				</c:if>
-	
-			<c:if
-				test="${comment.memberEmail == sessionScope.login_info.memberEmail}">
-				<div class="col-md-1" id="removeAndReset">
-					<a
-						href="${initParam.rootPath}/review/removeReviewComment.do?reviewSerial=${requestScope.review.reviewSerial}&commentSerial=${comment.commentSerial}">
-						<input type="button" value="삭제" class="btn btn-default"
-						id="commentBnt">
-					</a>
-				</div>
-			</c:if>
-		</div>
-			</form>
+
+				<c:if
+					test="${comment.memberEmail == sessionScope.login_info.memberEmail}">
+					<div class="col-md-1" id="removeAndReset">
+						<a
+							href="${initParam.rootPath}/review/removeReviewComment.do?reviewSerial=${requestScope.review.reviewSerial}&commentSerial=${comment.commentSerial}">
+							<input type="button" value="삭제" class="btn btn-danger"
+							id="commentBnt">
+						</a>
+					</div>
+				</c:if>
+			</div>
+		</form>
 	</c:forEach>
 
 	<!--댓글 페이징 처리 부분  -->

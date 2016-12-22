@@ -50,6 +50,7 @@ public interface Constants {
 	int MARKER_CONSTANT_TOUR = 211;
 	int MARKER_CONSTANT_RESTAURANT = 212;
 	int MAKRER_CONSTANT_HOUSE = 213;
+	int MARKER_CONSTANT_REGISTER = 214;
 	
 	//
 	

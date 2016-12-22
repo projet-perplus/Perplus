@@ -1,5 +1,9 @@
 package com.perplus.house.dao;
 
-public interface ShutdownDao {
+import com.perplus.house.vo.ShutdownVo;
 
+public interface ShutdownDao {
+	int deleteShutdownByHouseSerial(int houseSerial);
+	
+	int insertShutdown(ShutdownVo shutdown);
 }

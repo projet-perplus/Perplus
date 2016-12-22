@@ -60,6 +60,7 @@
 		<put-attribute name="reviewenrollment" value="/WEB-INF/view/common/dialog/reviewenrollment.jsp"/>
 		<put-attribute name="reviewmodify" value="/WEB-INF/view/common/dialog/reviewmodify.jsp"/>
 		<put-attribute name="footer" value="/WEB-INF/view/common/footer.jsp" />
+		<put-attribute name="reviewdetailpagedialog" value="/WEB-INF/view/common/dialog/reviewdetailpagedialog.jsp"/>
 	</definition>
 	
 	<definition name="*.hotplacetiles" extends="hotplacetemplate">
@@ -78,6 +79,8 @@
 		<put-attribute name="footer" value="/WEB-INF/view/common/footer.jsp" />
 		<put-attribute name="addfilter" value="/WEB-INF/view/common/dialog/addfilter.jsp"/>
 		<put-attribute name="reservationdialog" value="/WEB-INF/view/common/dialog/reservationdialog.jsp" />
+		<put-attribute name="reviewdetailpagedialog" value="/WEB-INF/view/common/dialog/reviewdetailpagedialog.jsp"/>
+		<put-attribute name="paymentcardselectdialog" value="/WEB-INF/view/common/dialog/paymentcardselectdialog.jsp"/>
 	</definition>
 	
 	<definition name="*.housetiles" extends="housetemplate">

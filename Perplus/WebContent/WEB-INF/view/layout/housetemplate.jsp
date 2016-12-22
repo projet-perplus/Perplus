@@ -19,6 +19,9 @@
 			<tiles:insertAttribute name="body"/>
 			<tiles:insertAttribute name="addfilter"/>
 			<tiles:insertAttribute name="reservationdialog"/>
+			<tiles:insertAttribute name= "reviewdetailpagedialog"/>
+			<tiles:insertAttribute name="paymentcardselectdialog"/>
+			
 		</section>
 
 	  	<footer class="container-fluid bg-4 text-center">

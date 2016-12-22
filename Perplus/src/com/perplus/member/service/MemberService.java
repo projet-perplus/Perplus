@@ -7,7 +7,7 @@ import com.perplus.member.vo.ChattingLogVo;
 import com.perplus.member.vo.ChattingVo;
 import com.perplus.member.vo.HouseCommentVo;
 import com.perplus.member.vo.HouseZzimVo;
-import com.perplus.member.vo.HowgetmoneyVo;
+import com.perplus.member.vo.HowmoneyVo;
 import com.perplus.member.vo.MemberVo;
 import com.perplus.member.vo.PaymentVo;
 import com.perplus.member.vo.RejectVo;
@@ -37,13 +37,15 @@ public interface MemberService {
 	
 	
 	//housecomment service
-	void insertHouseComment(HouseCommentVo houseComment);
+	int insertHouseComment(HouseCommentVo houseComment);
 	
-	void deleteHouseComment(int commentSerial);
+	int deleteHouseComment(int commentSerial);
+	
+	void deleteAllHouseComment(int houseSerial);
 	
 	void modifyHouseComment(HouseCommentVo houseComment);
 	
-	List<HouseCommentVo> selectHouseCommentBySerial(int houseSerial);
+	Map<String,Object> selectHouseCommentBySerial(int houseSerial,int page);
 	
 	List<HouseCommentVo> selectHouseCommentByEmail(String memberEmail);
 	
@@ -52,18 +54,23 @@ public interface MemberService {
 	//housezzim service
 	void insertHouseZzim(HouseZzimVo houseZzim);
 	
-	void deleteHouseZzimByEmail(int houseZzimSerial);
+	void deleteHouseZzimBySerial(int houseZzimSerial);
 	
 	List<HouseZzimVo> selectHouseZzimByEmail(String memberEmail);
 	
 	List<HouseZzimVo> houseZzimJoinHouseJoinHousePicture(String memberEmail);
 	
+	HouseZzimVo selectHouseZzimByEmailAndHouseSerial(String memberEmail, int houseSerial);
+	
+	HouseZzimVo selectHouseZzimBySerial(int houseZzimSerial);
+	
+	
 	//howgetmoney service
-	void insertHowgetmoney(HowgetmoneyVo howgetmoney);
+	void insertHowmoney(HowmoneyVo howgetmoney);
 	
-	void deleteHowgetmoney(int accountSerial);
+	void deleteHowmoney(int accountSerial);
 	
-	List<HowgetmoneyVo> selectHowgetmoney(String memberEmail);
+	List<HowmoneyVo> selectHowmoney(String memberEmail);
 	
 	
 	//member service
@@ -117,6 +124,15 @@ public interface MemberService {
 	public List<ReviewZzimVo> searchReviewZzim(String memberEmail) throws Exception;
 	
 	public void removeReviewZzim(ReviewZzimVo reviewZzim) throws Exception;
+	
+	
+	/**********reviewzzim**********/
+	void insertReviewZzim(ReviewZzimVo houseZzim);
+	
+	void deleteReviewZzimByReviewZzimSerial(int reviewZzimSerial);
+	ReviewZzimVo selectReviewZzimByEmailAndReviewSerial(String memberEmail, int reviewSerial);
+	ReviewZzimVo selectReviewZzimByReviewZzimSerial(int reviewZzimSerial);
+
 	
 	/**
 	 * showmethemoney 관련 Service

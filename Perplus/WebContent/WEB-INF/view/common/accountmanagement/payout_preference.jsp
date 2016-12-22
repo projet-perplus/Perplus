@@ -15,21 +15,21 @@ $(document).ready(function(){
 		<div class="row">
 			<div class="col-xs-offset-2 col-xs-8" style="text-align: center;">
 				<c:choose>
-					<c:when test="${!empty requestScope.howgetmoneyList}">
+					<c:when test="${!empty requestScope.howmoneyList}">
 						<div class="row">
 							<div class="col-md-3">예금주</div>
 							<div class="col-md-3">은행명</div>
 							<div class="col-md-3">계좌번호</div>
 						</div>
 
-						<c:forEach items="${requestScope.howgetmoneyList}" var="list">
+						<c:forEach items="${requestScope.howmoneyList}" var="list">
 							<div class="row">
-								<div class="col-md-3">${list.howgetmoneyHolder}</div>
-								<div class="col-md-3">${list.howgetmoneyBank}</div>
-								<div class="col-md-3">${list.howgetmoneyNumber}</div>
+								<div class="col-md-3">${list.howmoneyHolder}</div>
+								<div class="col-md-3">${list.howmoneyBank}</div>
+								<div class="col-md-3">${list.howmoneyNumber}</div>
 								<div class="col-md-3">
 									<a
-										href="${initParam.rootPath}/member/howgetmoneyRemove.do?accountSerial=${list.accountSerial}"><button id="payoutDelete">삭제</button></a>
+										href="${initParam.rootPath}/member/howmoneyRemove.do?accountSerial=${list.accountSerial}"><button id="payoutDelete">삭제</button></a>
 								</div>
 							</div>
 						</c:forEach>

@@ -1,17 +1,26 @@
 package com.perplus.house.serviceimpl;
 
+import java.util.HashMap;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.perplus.house.dao.HouseDao;
+import com.perplus.house.daoimpl.HouseDaoImpl;
 import com.perplus.house.daoimpl.HouseFilterDaoImpl;
 import com.perplus.house.service.HouseService;
 import com.perplus.house.vo.HouseFilterVo;
+import com.perplus.house.vo.HouseVo;
 
 @Service
 public class HouseServiceImpl implements HouseService{
 
 	@Autowired
 	private HouseFilterDaoImpl houseFilterDao;
+	
+	@Autowired
+	private HouseDaoImpl houseDao;
 
 	//house service
 	//housefilter service
@@ -42,6 +51,21 @@ public class HouseServiceImpl implements HouseService{
 	@Override
 	public void updateHouseFilter(HouseFilterVo houseFilter) {
 		houseFilterDao.updateHouseFilter(houseFilter);
+	}
+
+	@Override
+	public List<HouseVo> selectHouseBySectionAndFilter(HashMap map) {
+		return houseDao.selectHouseBySectionAndFilter(map);
+	}
+
+	@Override
+	public HashMap selectHousePriceRangeBySection(HashMap map) {
+		return houseDao.selectHousePriceRangeBySection(map);
+	}
+
+	@Override
+	public int reservationAbleTerm(HashMap map) {
+		return houseDao.reservationAbleTerm(map);
 	}
 	
 	//checklist service

@@ -12,24 +12,43 @@
 		from HOUSECOMMENT
 		where member_email = #{value}
 	</select>
-
-	<!-- houseComment house단위로 select(하우스 상세정보에서 조회하는 select문) -->
-	<select id="selectHouseCommentBySerial" parameterType="_int"
+	
+	<select id="selectHouseCommentByCommentSerial" parameterType="_int"
 		resultType="HouseCommentVo">
 		select house_serial houseSerial, member_email memberEmail,
 		comment_content commentContent, comment_rating commentRating,
 		comment_time commentTime
 		from HOUSECOMMENT
-		where house_serial = #{value}
+		where comment_serial=#{value}
+	</select>
+
+	<!-- houseComment house단위로 select(하우스 상세정보에서 조회하는 select문) -->
+	<select id="selectHouseCommentBySerial" parameterType="map"
+		resultType="HouseCommentVo">
+		select page, comment_serial commentSerial,house_serial houseSerial,member_email memberEmail,comment_content commentContent, comment_rating commentRating,comment_time commentTime
+		from(select ceil(rownum/#{commentPerPage}) page,comment_serial,house_serial, member_email, comment_content, comment_rating, comment_time
+		from(
+				select  comment_serial,house_serial, member_email, comment_content, comment_rating, comment_time  from HOUSECOMMENT order by comment_serial desc
+			)
+		)
+		where house_serial=#{houseSerial}
+		and page=#{page}
+	</select>
+	
+	<!-- 페이징 처리를 위한 코멘트 수 조회-->
+	<select id="selectHouseCommentCount" parameterType="_int" resultType="_int">
+		select count(comment_serial)
+		from housecomment
+		where house_serial=#{houseSerial}
 	</select>
 
 	<!-- houseComment 등록 -->
 	<insert id="insertHouseComment" parameterType="HouseCommentVo">
-		insert into
-		HOUSECOMMENT
-		values(houseComment_seq, #{houseSerial}, #{memberEmail}, #{commentContent}, #{commentRating}, #{commentTime})
+	<selectKey resultType="_int" keyProperty="commentSerial" order="BEFORE">
+		select houseComment_seq.nextval from dual
+	</selectKey> 
+		insert into housecomment values(#{commentSerial},#{houseSerial},#{memberEmail},#{commentContent},#{commentRating},#{commentTime})
 	</insert>
-
 
 	<!-- houseComment 삭제 -->
 	<delete id="deleteHouseComment" parameterType="_int">
@@ -39,6 +58,13 @@
 	</delete>
 
 
+	<!-- house 삭제시, 시리얼을 통해 해당 코멘트 모두 삭제 -->
+	<delete id="deleteAllHouseComment" parameterType="_int">
+		delete from
+		HOUSECOMMENT
+		where house_serial = #{value}
+	</delete>
+	
 	<!-- houseComment 수정(하우스 시리얼과 하우스 이메일을 받아서 수정함.) -->
 	<update id="updateHouseComment" parameterType="HouseCommentVo">
 		update

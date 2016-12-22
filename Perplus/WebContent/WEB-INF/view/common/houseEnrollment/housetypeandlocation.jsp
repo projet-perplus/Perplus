@@ -58,7 +58,8 @@
 					<div class="form-group ">
 						<select class="form-control house_step">
 							<option value="${initParam.rootPath}/basicinfo.do">1 단계</option>
-							<option value="${initParam.rootPath}/housetypeandlocation.do">2
+							<option selected="selected"
+								value="${initParam.rootPath}/housetypeandlocation.do">2
 								단계</option>
 							<option value="${initParam.rootPath}/houselocation.do">3
 								단계</option>
@@ -83,118 +84,126 @@
 	</div>
 </div>
 <a class="navbar-img" href="${initParam.rootPath}/main.do"> <img
-	src="css/image/logos.PNG" alt="logo" />
+	src="/Perplus/css/image/logos.PNG" alt="logo" />
 </a>
 
 <!-- body -->
 <div class="basicbody">
-	<div class="container">
-		<div class="row row-condensed space-4">
-			<div class="col-md-offset-2 col-md-8 housesection">
-				<div class="row row-condensed space-4 row-sectionB">
-					<label class="text-left col-sm-6 col-md-3"> <span>숙소
-							유형</span>
-					</label>
-					<div class="col-sm-6 col-md-6">
-						<div class="col-xs-6 col-md-6 leftform">
-							<div class="form-group">
-								<select class="form-control">
-									<option>집전체</option>
-									<option>2</option>
-									<option>3</option>
-									<option>4</option>
-								</select>
+	<form action="${initParam.rootPath}/house/twoStep.do">
+		<input type="hidden" name="houseSerial"
+			value=<%=request.getParameter("houseSerial")%>>
+		<div class="container">
+			<div class="row row-condensed space-4">
+				<div class="col-md-offset-2 col-md-8 housesection">
+					<div class="row row-condensed space-4 row-sectionB">
+						<label class="text-left col-sm-6 col-md-3"> <span>숙소
+								유형</span>
+						</label>
+						<div class="col-sm-6 col-md-6">
+							<div class="col-xs-6 col-md-6 leftform">
+								<div class="form-group">
+									<select name="houseFilterRange" class="form-control">
+										<option>제공범위</option>
+										<option>개인실</option>
+										<option>다인실</option>
+									</select>
+								</div>
 							</div>
-						</div>
-						<div class="col-xs-6 col-md-6 rightform">
-							<div class="form-group">
-								<select class="form-control ">
-									<option>게스트 1명</option>
-									<option>2</option>
-									<option>3</option>
-									<option>4</option>
-								</select>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="row row-condensed space-4">
-			<div class="col-md-offset-2 col-md-8 housesection">
-				<div class="row row-condensed space-4 row-sectionB">
-					<label class="text-left col-sm-6 col-md-3"> <span>건물
-							유형</span>
-					</label>
-					<div class="col-sm-6 col-md-6">
-						<div class="col-xs-6 col-md-6 leftform">
-							<div class="form-group">
-								<select class="form-control ">
-									<option>집전체</option>
-									<option>2</option>
-									<option>3</option>
-									<option>4</option>
-								</select>
-							</div>
-						</div>
-						<div class="col-xs-6 col-md-6 rightform">
-							<div class="form-group">
-								<select class="form-control ">
-									<option>게스트 1명</option>
-									<option>2</option>
-									<option>3</option>
-									<option>4</option>
-								</select>
+							<div class="col-xs-6 col-md-6 rightform">
+								<div class="form-group">
+									<select name="houseFilterGuestNumber" class="form-control ">
+										<option>게스트 수</option>
+										<option value=1>1명</option>
+										<option value=2>2명</option>
+										<option value=3>3명</option>
+										<option value=4>4명</option>
+									</select>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-		<div class="row row-condensed space-4">
-			<div class="col-md-offset-2 col-md-8 housesection">
-				<div class="row row-condensed space-4 row-sectionB">
-					<label class="text-left col-sm-6 col-md-3"> <span>숙소
-							위치</span>
-					</label>
-					<div class="col-sm-8 col-md-8">
-						<div class="form-group">
-							<div class="col-md-7" style="padding-left: 0px;">
-								<input type="text" class="form-control" id="sample6_postcode"
-									placeholder="우편번호">
+			<div class="row row-condensed space-4">
+				<div class="col-md-offset-2 col-md-8 housesection">
+					<div class="row row-condensed space-4 row-sectionB">
+						<label class="text-left col-sm-6 col-md-3"> <span>건물
+								유형</span>
+						</label>
+						<div class="col-sm-6 col-md-6">
+							<div class="col-xs-6 col-md-6 leftform">
+								<div class="form-group">
+									<select name="houseFilterType" class="form-control ">
+										<option>건물타입</option>
+										<option>이글루</option>
+										<option>아파트</option>
+										<option>빌라</option>
+										<option>별장</option>
+									</select>
+								</div>
 							</div>
-
-							<div class="col-md-5">
-								<input type="button" class="form-control"
-									onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
-							</div>
-
-							<div class="col-md-12" style="padding-left: 0px; margin-bottom:15px;">
-								<input type="text" class="form-control" id="sample6_address" placeholder="주소">
-							</div>
-
-							<div class="col-md-12" style="padding-left: 0px;">
-								<input type="text" class="form-control" id="sample6_address2" placeholder="상세주소">
+							<div class="col-xs-6 col-md-6 rightform">
+								<div class="form-group">
+									<select name="houseFilterRoomNumber" class="form-control ">
+										<option>방개수</option>
+										<option value=1>1개</option>
+										<option value=2>2개</option>
+										<option value=3>3개</option>
+									</select>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-		<div class="row houseBtns" style="margin-bottom: 30px;">
-			<div class="col-md-offset-2 col-md-4 col-xs-4 previousBtn">
-				<a href="${initParam.rootPath}/basicinfo.do">
-					<button class="btn btn-default">이전</button>
-				</a>
+			<div class="row row-condensed space-4">
+				<div class="col-md-offset-2 col-md-8 housesection">
+					<div class="row row-condensed space-4 row-sectionB">
+						<label class="text-left col-sm-6 col-md-3"> <span>숙소
+								위치</span>
+						</label>
+						<div class="col-sm-12 col-md-8">
+							<div class="form-group">
+								<div class="col-md-7 col-sm-7" style="padding-left: 0px; margin-bottom: 15px;">
+									<input type="text" class="form-control" id="sample6_postcode"
+										name="houseFilterLocationList" placeholder="우편번호">
+								</div>
+
+								<div class="col-md-5 col-sm-5">
+									<input type="button" class="form-control"
+										onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
+								</div>
+								<div class="col-md-12"
+									style="padding-left: 0px; margin-bottom: 15px;">
+									<input type="text" class="form-control" id="sample6_address"
+										name="houseFilterLocationList" placeholder="주소">
+								</div>
+
+								<div class="col-md-12" style="padding-left: 0px;">
+									<input type="text" class="form-control" id="sample6_address2"
+										name="houseFilterLocationList" placeholder="상세주소">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
-			<div class="col-md-4 col-xs-8 col-md-4 nextBtn">
-				<a href="${initParam.rootPath}/houselocation.do">
-					<button class="btn btn-default">다음</button>
-				</a>
-			</div>
-		</div>
+			<div class="row row-condensed">
+	<div
+		class="col-md-offset-2 col-sm-offset-2 col-xs-offset-2 col-md-1 col-sm-1 col-xs-1 previousBtn">
+		<a href="${initParam.rootPath}/basicinfo.do">
+			<button type="button" class="btn btn-default">이전</button>
+		</a>
+	</div>
+	<div
+		class="col-md-offset-6 col-sm-offset-6 col-xs-offset-4 col-md-1 col-sm-1 col-xs-1 nextBtn leftform">
+		<button class="btn btn-default">다음</button>
 	</div>
 </div>
+		</div>
+	</form>
+</div>
+
 
 
 

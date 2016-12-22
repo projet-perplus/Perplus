@@ -14,6 +14,12 @@
 			border:0px !important;
 			margin-top:5px !important;s
 		}
+		.modal.fade.in{
+			background-color: rgba(0, 0, 0, 0.5);
+		}
+		.hotplacefooter{
+			position: absolute !important;
+		}
 	</style>
 	<body>
 		<header class="mainheader">
@@ -26,9 +32,10 @@
 	  		<tiles:insertAttribute name="review"/>
 	  		<tiles:insertAttribute name="reviewenrollment"/>
 	  		<tiles:insertAttribute name="reviewmodify"/>
+	  		<tiles:insertAttribute name="reviewdetailpagedialog"/>
 	  	</section>
 	  	
-  	  	<footer class="container-fluid bg-4 text-center">
+  	  	<footer class="container-fluid bg-4 text-center hotplacefooter">
 	  		<tiles:insertAttribute name="footer"/>
 	  	</footer>
 	</body>

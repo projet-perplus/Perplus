@@ -20,7 +20,7 @@
 						<label class="text-left col-sm-3"> 예금주 </label>
 						<div class="col-sm-9">
 							<div class="form-group">
-								<input type="text" class="form-control" name="howgetmoneyHolder"
+								<input type="text" class="form-control" name="howmoneyHolder"
 									placeholder="이름을 입력하세요..." required="required">
 							</div>
 						</div>
@@ -29,7 +29,7 @@
 						<label class="text-left col-sm-3"> 은행명 </label>
 						<div class="col-sm-9">
 							<div class="form-group">
-								<input type="text" class="form-control" name="howgetmoneyBank"
+								<input type="text" class="form-control" name="howmoneyBank"
 									placeholder="은행이름을 입력하세요..." required="required">
 							</div>
 						</div>
@@ -39,7 +39,7 @@
 						<div class="col-sm-9">
 							<div class="form-group">
 								<input type="number" class="form-control"
-									name="howgetmoneyNumber" placeholder="숫자만 입력하세요..."
+									name="howmoneyNumber" placeholder="숫자만 입력하세요..."
 									required="required">
 							</div>
 						</div>

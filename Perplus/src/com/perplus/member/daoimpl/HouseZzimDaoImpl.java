@@ -1,5 +1,6 @@
 
 package com.perplus.member.daoimpl;
+import java.util.HashMap;
 import java.util.List;
 //1
 import java.util.Map;
@@ -19,6 +20,7 @@ public class HouseZzimDaoImpl implements HouseZzimDao{
 
 	@Override//찜등록
 	public int insertHouseZzim(HouseZzimVo houseZzim) {
+		System.out.println("dfgdfgdf");
 		return session.insert("houseZzim.insertHouseZzim", houseZzim);
 	}
 
@@ -27,6 +29,11 @@ public class HouseZzimDaoImpl implements HouseZzimDao{
 		return session.delete("houseZzim.deleteHouseZzimByEmail", houseZzimSerial);
 	}
 	
+	@Override
+	public int deleteHouseZzimByHouseSerial(int houseSerial) {
+		return session.delete("houseZzim.deleteHouseZzimByHouseSerial",houseSerial);
+	}
+
 	@Override//내가 찜한 house 찾기
 	public List<HouseZzimVo> selectHouseZzimByEmail(String memberEmail){
 		return session.selectList("houseZzim.selectHouseZzimByEmail",memberEmail);
@@ -35,6 +42,19 @@ public class HouseZzimDaoImpl implements HouseZzimDao{
 	@Override
 	public List<HouseZzimVo> houseZzimJoinHouseJoinHousePicture(String memberEmail) {
 		return session.selectList("houseZzim.houseZzimJoinHouse",memberEmail);
+	}
+
+	@Override
+	public HouseZzimVo selectHouseZzimByEmailAndHouseSerial(String memberEmail, int houseSerial) {
+		HashMap<String,Object> map = new HashMap<>();
+		map.put("memberEmail", memberEmail);
+		map.put("houseSerial", houseSerial);
+		return session.selectOne("houseZzim.selectHouseZzimByEmailAndHouseSerial",map);
+	}
+
+	@Override
+	public HouseZzimVo selectHouseZzimBySerial(int housezzimSerial) {
+		return session.selectOne("houseZzim.selectHouseZzimBySerial",housezzimSerial);
 	}
 	
 	

@@ -25,7 +25,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.perplus.member.service.MemberService;
 import com.perplus.member.vo.MemberVo;
+import com.perplus.member.vo.ReviewZzimVo;
 import com.perplus.review.service.ReviewService;
 import com.perplus.review.vo.ReviewCommentVo;
 import com.perplus.review.vo.ReviewPictureVo;
@@ -38,13 +40,17 @@ import com.perplus.validator.ReviewForm;
 public class ReviewController {
 	@Autowired
 	private ReviewService service;
+	@Autowired
+	private MemberService memberService;
 	/*****************************로그인 체크 필요***********************************/
 	
 	/******************리뷰 글 등록*****************/
 	@RequestMapping(value="/registerReview.do", method=RequestMethod.POST)
-	public String registerReview(@Valid @ModelAttribute /* ReviewVo*/ReviewForm form, BindingResult result, @ModelAttribute ReviewPictureVo picture,ModelMap map, HttpServletRequest request, HttpSession session)
+	public String registerReview(@RequestParam(value="pictureList[]") MultipartFile[] files, @Valid @ModelAttribute /* ReviewVo*/ReviewForm form, BindingResult result ,ModelMap map, HttpServletRequest request, HttpSession session)
 												throws IllegalStateException, IOException{
-
+		
+		System.out.println(files.length);
+		
 		boolean error=false;
 		if(result.hasErrors()){
 			error=true;
@@ -53,19 +59,24 @@ public class ReviewController {
 		}
 		ReviewVo reviewVo = new ReviewVo();
 		BeanUtils.copyProperties(form, reviewVo);
-		System.out.println(reviewVo);
-	/*	List<ReviewPictureVo> list = new ArrayList<>();*/
-		List<MultipartFile> files = picture.getPictureList();
+	
+		//List<MultipartFile> files = picture.getPictureList();
+		ReviewPictureVo picture = new ReviewPictureVo();
+		
 		MemberVo member = (MemberVo)session.getAttribute("login_info");
 		int count = 1;
-		System.out.println(member);
+
 		reviewVo.setMemberEmail(member.getMemberEmail());
-		reviewVo.setReviewMarkerConstant(2);//******
-		reviewVo.setReviewMarkerX(23.5);	//*********
-		reviewVo.setReviewMarkerY(63.2); //************
+	
+		//지도 위치 정보 & 마커 정보 
+/*		reviewVo.setReviewMarkerConstant(2);
+		reviewVo.setReviewMarkerX(23.5);	
+		reviewVo.setReviewMarkerY(63.2);*/
+		
 		//공백.엔터처리
 		reviewVo.setReviewContent(TextUtil.textToHtml(reviewVo.getReviewContent()));
 		System.out.println(reviewVo);
+		
 		service.registerReview(reviewVo);
 		map.addAttribute("review",reviewVo);
 		
@@ -119,25 +130,20 @@ public class ReviewController {
 	
 	/******************리뷰 글 수정*****************/
 	@RequestMapping(value="/modifyReview", method=RequestMethod.POST)
-	public String modifyReview(@ModelAttribute ReviewVo review, @RequestParam int reviewSerial,@ModelAttribute ReviewPictureVo picture, HttpServletRequest request) throws IllegalStateException, IOException{
-		ReviewVo oldReview = service.getReview(reviewSerial);
-		review.setMemberEmail(oldReview.getMemberEmail());
-		review.setReviewSerial(oldReview.getReviewSerial());
-		review.setReviewMarkerConstant(oldReview.getReviewMarkerConstant());
-		review.setReviewMarkerX(oldReview.getReviewMarkerX());
-		review.setReviewMarkerY(oldReview.getReviewMarkerY());
+	public String modifyReview(@ModelAttribute ReviewVo review,@ModelAttribute ReviewPictureVo picture, HttpServletRequest request) throws IllegalStateException, IOException{
 		//공백.엔터처리
+		System.out.println(review.getReviewSerial());
 		review.setReviewContent(TextUtil.textToHtml(review.getReviewContent()));
 		service.modifyReview(review);
 		
-		List<ReviewPictureVo> oldPicture = service.getReviewPictureList(reviewSerial);
+		List<ReviewPictureVo> oldPicture = service.getReviewPictureList(review.getReviewSerial());
 		List<MultipartFile> files = picture.getPictureList();
 	
 		String newFileName=  null;
 		System.out.println("---------------------");
-		System.out.println(reviewSerial);
+		System.out.println(review.getReviewSerial());
 		if(files != null && !files.isEmpty()){
-			service.removeReviewPicture(reviewSerial);
+			service.removeReviewPicture(review.getReviewSerial());
 			int count =1;
 			for(Object f : files){
 				MultipartFile file = (MultipartFile)f;
@@ -148,7 +154,7 @@ public class ReviewController {
 					picture.setPictureName(newFileName);
 					picture.setPictureOrder(count);
 					picture.setPictureSerial(1);
-					picture.setReviewSerial(reviewSerial);
+					picture.setReviewSerial(review.getReviewSerial());
 					count++;
 					service.registerReviewPicture(picture);
 				}
@@ -159,7 +165,7 @@ public class ReviewController {
 			}
 		}
 		
-		return"redirect:/review/showReview.do?&reviewSerial="+reviewSerial;
+		return"redirect:/review/showReview.do?&reviewSerial="+review.getReviewSerial();
 	}
 	
 	/*****************리뷰 글 삭제*****************/
@@ -203,11 +209,18 @@ public class ReviewController {
 	
 	/******************리뷰 상세 보기*****************/
 	@RequestMapping("/showReview")
-	public String selectReview(@RequestParam int reviewSerial,ModelMap modelMap,@RequestParam(defaultValue="1") int page){
+	public String selectReview(@RequestParam int reviewSerial,ModelMap modelMap,@RequestParam(defaultValue="1") int page,HttpSession session){
 		ReviewVo review = service.getReview(reviewSerial);
 		Map<String,Object> map= service.getReviewCommentList(reviewSerial, page);
 		List<ReviewPictureVo> list = service.getReviewPictureList(reviewSerial);
-		
+		MemberVo member = (MemberVo)session.getAttribute("login_info");
+		if(member!=null){
+			ReviewZzimVo zzim = memberService.selectReviewZzimByEmailAndReviewSerial(member.getMemberEmail(), reviewSerial);
+			System.out.println(zzim);
+			if(zzim != null){
+				modelMap.put("zzim", zzim);
+			}
+		}
 		review.setReviewComment((List<ReviewCommentVo>)map.get("list"));
 		System.out.println(review);
 		modelMap.put("review", review);
@@ -217,7 +230,4 @@ public class ReviewController {
 		return "reviewdetailpage.hotplacetiles";
 	}
 	
-	public String selectMarkerBySection(HashMap map){
-		return "reviewdetailpage.hotplacetiles";
-	}
 }
