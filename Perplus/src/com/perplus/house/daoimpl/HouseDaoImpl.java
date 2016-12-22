@@ -61,8 +61,8 @@ public class HouseDaoImpl implements HouseDao{
 	}
 
 	@Override
-	public HashMap selectHousePriceRangeBySection(HashMap map) {
-		return session.selectOne("house.selectHousePriceRangeBySection", map);
+	public HashMap selectHousePriceRange() {
+		return session.selectOne("house.selectHousePriceRange");
 	}
 
 	@Override

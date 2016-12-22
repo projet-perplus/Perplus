@@ -77,8 +77,9 @@ $(function() {
 			//최초 로딩때 location이 넘어오는 search 일때 검사
 			var geoLocation = document.getElementById("location");
 			if(geoLocation.value.length!=0){
-				locationSearch();
+				locationSearch(); 
 			}else if(stage=='search'){
+				map.setZoom(8);
 				printByFilter();
 			}
 		});
@@ -87,8 +88,10 @@ $(function() {
 });	
 //리뷰에서는 이벤트가 있을때 부르게 되고 나머지는 최초 남아있는 location 값으로 부르게 된다.
 function locationSearch(){
+	
+	alert('3');
 	var geoLocation = document.getElementById("location");
-	if(geoLocation==null){
+	if(geoLocation==null || geoLocation.length==0){
 		return;
 	}
 	

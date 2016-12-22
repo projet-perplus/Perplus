@@ -59,8 +59,8 @@ public class HouseServiceImpl implements HouseService{
 	}
 
 	@Override
-	public HashMap selectHousePriceRangeBySection(HashMap map) {
-		return houseDao.selectHousePriceRangeBySection(map);
+	public HashMap selectHousePriceRange() {
+		return houseDao.selectHousePriceRange();
 	}
 
 	@Override

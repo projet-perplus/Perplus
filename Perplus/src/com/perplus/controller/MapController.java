@@ -88,24 +88,34 @@ public class MapController {
 	@ResponseBody
 	public HashMap showHouseByMapAndFilter(@RequestBody String body) throws JsonParseException, JsonMappingException, IOException{
 		
-		ObjectMapper mapper = new ObjectMapper();
+		ObjectMapper mapper = new ObjectMapper(); 
 		HashMap map = mapper.readValue(body,HashMap.class);
 		HashMap result = new HashMap(); 
 		//1.먼저 돈이 0원인지 확인 한다.
-		int priceMin= ((int)map.get("housePriceMin"));
-		int priceMax=((int)map.get("housePriceMax"));
-		if(priceMin==0&&priceMax==0){
-			HashMap<String,Double> map1 = new HashMap<>();
-			map1.put("southWestLat", (Double)map.get("southWestLat"));
-			map1.put("southWestLng", (Double)map.get("southWestLng"));
-			map1.put("northEastLat", (Double)map.get("northEastLat"));
-			map1.put("northEastLng", (Double)map.get("northEastLng"));
-			System.out.println(map1);
-			
-			result.put("priceRange", houseService.selectHousePriceRangeBySection(map1));
-		}
+		int priceRangeMin= ((int)map.get("housePriceRangeMin"));
+		int priceRangeMax=((int)map.get("housePriceRangeMax"));
+		//최초 전체 숙소의 최대 최소 가격 범위 받기 
 		
-		System.out.println(result);
+		if(priceRangeMin==0&&priceRangeMax==0){
+			result.put("priceRange", houseService.selectHousePriceRange());
+		}
+		map.put("southWestLat", (Double)map.get("southWestLat"));
+		map.put("southWestLng", (Double)map.get("southWestLng"));
+		map.put("northEastLat", (Double)map.get("northEastLat"));
+		map.put("northEastLng", (Double)map.get("northEastLng"));
+		
+		System.out.println(result); 
+		/*
+		 * 여기부터 두가지로 나뉘게 되는데
+		 * 1. 기본적인 필터 변경에 의한 변경,
+		 * 2. 추가필터 버튼에 의한 변경
+		 * 위의 차이는 List로 넘어온 값이 있나 없나에 다르게 된다.
+		 * 1 -> 기본 필터 , 좌표 , 
+		 * 2 -> 기본 필터 , 좌표 ,
+		 * 
+		 * return value 는 돈의 범위 와 
+		 */
+		
 		
 		System.out.println(map);
 		

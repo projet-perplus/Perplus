@@ -411,20 +411,20 @@
 		and f.HOUSE_SERIAL = h.HOUSE_SERIAL
 		and p.HOUSE_SERIAL(+) = h.HOUSE_SERIAL
 	</select>
-	<select id="selectHousePriceRangeBySection" parameterType="hashmap" resultType="hashmap" >
+	<select id="selectHousePriceRange"  resultType="hashmap" >
 		select 	max(HOUSEFILTER_PRICE) max, min(HOUSEFILTER_PRICE) min
 		from 
 		(
 			select HOUSEFILTER_PRICE
 			from HOUSEFILTER
-			where HOUSE_SERIAL
-			in 
-			(
-				select h.HOUSE_SERIAL
-				from HOUSE h
-				where (h.HOUSE_MARKER_X between #{southWestLat} and #{northEastLat})
-				and   (h.HOUSE_MARKER_Y between #{southWestLng} and #{northEastLng})
-			) 		
+<!-- 			where HOUSE_SERIAL -->
+<!-- 			in  -->
+<!-- 			( -->
+<!-- 				select h.HOUSE_SERIAL -->
+<!-- 				from HOUSE h -->
+<!-- 				where (h.HOUSE_MARKER_X between #{southWestLat} and #{northEastLat}) -->
+<!-- 				and   (h.HOUSE_MARKER_Y between #{southWestLng} and #{northEastLng}) -->
+<!-- 			) 		 -->
 		)
 	</select>
 	<!-- 
