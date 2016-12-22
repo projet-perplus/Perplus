@@ -41,7 +41,7 @@
 		where MEMBER_EMAIL = #{memberEmail}
 	</select>
 	
-		<select id="selectTravelBytravelSerial" parameterType="_int" resultType="TravelVo">
+	<select id="selectTravelByTravelSerial" parameterType="_int" resultType="TravelVo">
 		select	TRAVEL_SERIAL travelSerial,
 					TRAVEL_CODE travelCode, 
 					HOUSE_SERIAL houseSerial, 

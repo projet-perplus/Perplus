@@ -6,11 +6,13 @@
 <script src="/Perplus/js/map.js"></script>
 <script src="/Perplus/js/search-map.js">
 </script>
+<script src="/Perplus/js/markerclusterer.js"></script>
 <script type="text/javascript">
 var place;
 var checkIn;
 var checkOut;
 var guestNumber;
+
 $(document).ready(function(){
    if(decodeURI(window.location.search).includes('location')){
       place=getQueryString('location');
@@ -28,17 +30,37 @@ $(document).ready(function(){
       guestNumber=getQueryString('guestNumber');
       jQuery("#guestNumber").val(guestNumber).attr("selected", "selected");
    }
- 
-   $("#dpd1").datepicker().on("changeDate",function(){
-	   printByFilter();
-   })
-   $("#dpd2").datepicker().on("changeDate",function(){
-	   printByFilter();
-   })
    
    $(".addfilterBtn").click(function(){
        $(".addfilter").toggle("slow");
     });
+   var convenientFacility="";
+   var secureFacility="";
+   var commonFacility="";
+   $.ajax({
+		url : "/Perplus/map/getaddfilterlist.do",
+		type : "post",
+		async : false,
+		dataType : "JSON",
+		success:function(obj){
+			for(var i in obj.convenientFacility){
+				convenientFacility+="<div class='col-md-3 col-xs-6'><label><input type='checkbox' name='commonFacility' value='"+obj.convenentFacility[i]+"'>"+obj.convenentFacility[i]+"</label></div>"
+			}
+			for(var i in obj.secureFacility){
+				secureFacility+="<div class='col-md-3 col-xs-6'><label><input type='checkbox' name='commonFacility' value='"+obj.secureFacility[i]+"'>"+obj.secureFacility[i]+"</label></div>"
+			}
+			for(var i in obj.commonFacility){
+				commonFacility+="<div class='col-md-3 col-xs-6'><label><input type='checkbox' name='commonFacility' value='"+obj.commonFacility[i]+"'>"+obj.commonFacility[i]+"</label></div>"
+			}
+			$("#").html(convenientFacility);
+			$("#").html(secureFacility);
+			$("#").html(commonFacility);
+			
+		},
+		error:function(request,error,status){
+			alert(error+ "   "+status+"status");
+		}
+	});
 });
 
 $(function() {
@@ -54,9 +76,7 @@ $(function() {
 	$("#amount").val(
 			"₩" + $("#slider-range").slider("values", 0) + " - ₩"
 					+ $("#slider-range").slider("values", 1));
-	$("#slider-range").on("slidechange", function() {
-		printByFilter();
-	});
+
 });
 //지도 배율의 변화나 추가 필터를 제외한 기존 필터의 변화가 있을때마다 마커를 긁어오는 과정이 필요하다.
 //	HashMap List
@@ -66,26 +86,27 @@ $(function() {
 //	4. housePriceMin, housePriceMax
 //	5-1. bedRoomNumber , bathRoomNumber, bedNumber
 //	5-2. 각 체크리스트 key값 (코드테이블 참조)
-function printByFilterWithAddFilter(){
-	
-}
+
+//매 이벤트가 생길때마다 호출
 function printByFilter(){
 	var obj = {"guestNumber":$("#guestNumber").val().trim()};
 	//날짜
-	if($("#dpd1").val().trim()=='시작일'&& $("#dpd2").val().trim()=='종료일'){
-	}else{
-		obj.startDay=$("#dpd1").val().trim();
-		obj.endDay=$("#dpd2").val().trim();
-	}
+
+	if($("#dpd1").val().length!=0)
+		obj.startDay=$("#dpd1").val();
+	if($("#dpd2").val().length!=0)
+		obj.endDay=$("#dpd2").val();
+	
 	//숙소 유형
-	switch($("[name=house-type]:checked").val()){
-	case '집전체' : obj.wholeRoom=$("[name=house-type]:checked").val();
-		break;
-	case '개인실' : obj.privateRoom=$("[name=house-type]:checked").val();
-		break;
-	case '다인실' : obj.sharedRoom=$("[name=house-type]:checked").val();
-		break;
-	}
+// 	switch($("[name=house-type]:checked").val()){
+// 	case '집전체' : obj.wholeRoom=$("[name=house-type]:checked").val();
+// 		break;
+// 	case '개인실' : obj.privateRoom=$("[name=house-type]:checked").val();
+// 		break;
+// 	case '다인실' : obj.sharedRoom=$("[name=house-type]:checked").val();
+// 		break;
+// 	}
+	obj.range=$("[name=house-type]:checked").val();
 	//사용자가 선택한 금액의 범위
 	obj.housePriceMin=$("#slider-range").slider("values",0);
 	obj.housePriceMax=$("#slider-range").slider("values",1);
@@ -102,6 +123,29 @@ function printByFilter(){
 	obj.southWestLng=map.getBounds().getSouthWest().lng();
 	obj.northEastLat=map.getBounds().getNorthEast().lat();
 	obj.northEastLng=map.getBounds().getNorthEast().lng();
+//	5-1. bedRoomNumber , bathRoomNumber, bedNumber
+	if($("#addfiltertrigger").val()==true){
+		//세가지 요소의 상태를 더한다.
+		if($("#bedroomnumber").val()!='default'){
+			obj.bedRoomNumber = $("#bedroomnumber").val();
+		}
+		if($("#bathroomnumber").val()!='default'){
+			obj.bathRoomNumber = $("#bathroomnumber").val();
+		}
+		if($("#bednumber").val()!='default'){
+			obj.bedNumber = $("#bednumber").val();
+		}
+// 		alert($("#bedroomnumber"));
+		
+		//체크리스트를 저장할 리스트
+		var list = [];
+		
+				
+		
+		if(list.length!=0){
+			obj.list = list;
+		}
+	}
 	
 	var body = JSON.stringify(obj);
 	
@@ -114,45 +158,53 @@ function printByFilter(){
 		contentType : "text/JSON",
 		dataType : "JSON",
 		success:function(obj){
+			$.each(obj.houseList,function(){
+				var markerLatlng = new google.maps.LatLng(this.houseMarkerX, this.houseMarkerY);
+				placeMarker(this.houseSerial,markerLatlng,this.houseMarkerConstant);
+			});
+
+			
+			if(obj.priceRange!=null){
+				$("#slider-range").slider("option","min",obj.priceRange.MIN);
+				$("#slider-range").slider("option","max",obj.priceRange.MAX);
+				$("#slider-range").slider("option","values",[obj.priceRange.MIN,obj.priceRange.MAX]);
+				$("#amount").val(
+						"₩" + $("#slider-range").slider("values", 0) + " - ₩"
+								+ $("#slider-range").slider("values", 1));
+				
+				//각 필요한 listener를 붙인다.(한번만)
+				attatchEvent();
+			}
 		},
 		error:function(request,error,status){
 			alert(error+ "   "+status+"status");
 		}
 	});
-	
 }
-//		$(":input:radio[name=sample]:checked").val(),
-//		"southWestLat":map.getBounds().getSouthWest().lat(),
-//		"southWestLng":map.getBounds().getSouthWest().lng(),
-//		"northEastLat":map.getBounds().getnorthEast().lat(),
-//		"northEastLng":map.getBounds().getSouthEast().lng(),
-//		})
-//	alert(room);
-	
-//function placeMarkerList(southWestLat,southWestLng,northEastLat,northEastLng){
-//$.ajax({
-//	url : "/Perplus/map/markerall.do",
-//	type:"post",
-//	async : false,
-//	data : JSON.stringify({key:value,}),
-//	contentType : "text/JSON"
-//	dataType : "JSON",
-//	success:function(obj){
-//		$.each(obj,function(){
-//			var markerLatlng = new google.maps.LatLng(this.reviewMarkerX, this.reviewMarkerY);
-//			placeMarker(this.reviewSerial,markerLatlng,this.reviewMarkerConstant);
-//		});
-//		if(startMarker!=null){
-//			startMarker.setAnimation(google.maps.Animation.BOUNCE);
-//			markerArray.push(startMarker);
-//		}
-//	},
-//	error:function(request,error,status){
-//		alert(error+ "   "+status+"status");
-//	}
-//});
-//}
-//}
+var trigger = false;
+function attatchEvent(){
+	if(!trigger){
+		$("#slider-range").on("slidechange", function() {
+	 		resetMapMarker();
+		});
+		$("#dpd1").datepicker().on("changeDate",function(){
+			resetMapMarker();
+		})
+		$("#dpd2").datepicker().on("changeDate",function(){
+			resetMapMarker();
+		})
+		trigger = true;
+	}
+}
+function changeFilterTrigger(){
+	if($("#addfiltertrigger").val()=='true'){
+		$("#addfiltertrigger").val(false);
+		resetMapMarker();
+	}else{
+		$("#addfiltertrigger").val(true);
+		resetMapMarker();
+	}
+}
 </script>
 <div class="container-fluid">
    <div class="row">
@@ -355,7 +407,7 @@ function printByFilter(){
                <div class="col-md-3 col-sm-3 col-xs-4 ">
 
                   <input type="text" class="form-control" name="check" id="dpd1"
-                     placeholder="yy-mm-dd" value="시작일 ">
+                     placeholder="시작일">
 
                </div>
 
@@ -363,13 +415,13 @@ function printByFilter(){
                <div class="col-md-3 col-sm-3 col-xs-4 ">
 
                   <input type="text" class="form-control" name="check" id="dpd2"
-                     placeholder="yy-mm-dd" value="종료일">
+                     placeholder="종료일">
 
                </div>
 
                <div class="col-md-3 col-sm-3 col-xs-4 ">
                   <select class="form-control" id="guestNumber"
-                     onchange="printByFilter()">
+                     onchange="resetMapMarker()">
                      <option value="default" selected="selected">인원수</option>
                      <c:forEach var="i" begin="1" end="100" step="1">
                         <option value="${i}">${i}</option>
@@ -385,15 +437,15 @@ function printByFilter(){
                </div>
                <div class="col-md-2 col-xs-offset-1 col-xs-3  rightform leftform">
                   <label><input type="radio" name="house-type"
-                     onchange="printByFilter()" value="집전체" checked="checked">집전체</label>
+                     onchange="resetMapMarker()" value="집전체" checked="checked">집전체</label>
                </div>
                <div class="col-md-2 col-xs-3 rightform leftform">
                   <label><input type="radio" name="house-type"
-                     onchange="printByFilter()" value="개인실">개인실</label>
+                     onchange="resetMapMarker()" value="개인실">개인실</label>
                </div>
                <div class="col-md-2 col-xs-3 rightform leftform">
                   <label><input type="radio" name="house-type"
-                     onchange="printByFilter()" value="다인실">다인실</label>
+                     onchange="resetMapMarker()" value="다인실">다인실</label>
                </div>
             </div>
          </div>
@@ -422,7 +474,8 @@ function printByFilter(){
             <div class="col-md-12">
 
                <!-- <a href="#" data-toggle="modal" data-target="#addfilterdialog"> -->
-               <button class="btn btn-primary addfilterBtn ">추가 필터</button>
+               <button class="btn btn-primary addfilterBtn " onclick="changeFilterTrigger()">추가 필터</button>
+               <input type="hidden" id ="addfiltertrigger" value="false">
                <!-- </a> -->
 
             </div>
@@ -438,46 +491,99 @@ function printByFilter(){
                   </div>
                   <div class="col-md-3 col-sm-3 col-xs-3 ">
                      <div class="form-group">
-                        <select class="form-control">
-                           <option>침실수</option>
-                           <option>2</option>
-                           <option>3</option>
-                           <option>4</option>
+                        <select class="form-control" id="bedroomnumber">
+                           <option value="default" selected="selected">침실수</option>
+		                     <c:forEach var="i" begin="1" end="100" step="1">
+		                        <option value="${i}">${i}</option>
+		                     </c:forEach>
                         </select>
                      </div>
                   </div>
                   <div class="col-md-3 col-sm-3 col-xs-3 ">
                      <div class="form-group">
-                        <select class="form-control">
-                           <option>욕실수</option>
-                           <option>2</option>
-                           <option>3</option>
-                           <option>4</option>
+                        <select class="form-control" id="bathroomnumber">
+                           <option value="default" selected="selected">욕실수</option>
+		                     <c:forEach var="i" begin="1" end="100" step="1">
+		                        <option value="${i}">${i}</option>
+		                     </c:forEach>
                         </select>
                      </div>
                   </div>
                   <div class="col-md-3 col-sm-3 col-xs-3 ">
                      <div class="form-group">
-                        <select class="form-control">
-                           <option>침대수</option>
-                           <option>2</option>
-                           <option>3</option>
-                           <option>4</option>
+                        <select class="form-control" id="bednumber">
+                           <option value="default" selected="selected">침대수</option>
+		                     <c:forEach var="i" begin="1" end="100" step="1">
+		                        <option value="${i}">${i}</option>
+		                     </c:forEach>
                         </select>
                      </div>
                   </div>
-                  <div class="clearfix"></div>
-                  <div class="row panel-MT">
-                     <div class="col-md-12">a</div>
-                  </div>
-                  <div class="row panel-MT">
-                     <div class="col-md-12">b</div>
-                  </div>
-                  <div class="row panel-MT">
-                     <div class="col-md-12">c ...</div>
-                  </div>
+<!-- 		           <div class="row row-condensed space-4"> -->
+						<div class=" col-md-12 housesection">
+							<div class="row row-condensed">
+								<label class="text-left col-md-2"> <span>편의 시설</span>
+								</label>
+								<div class="col-md-9">
+									<div class="row">
+										<c:forEach items="&{convenientFacility};"
+											var="convenient">
+											<div class="col-md-3 col-xs-6">
+												<label><input type="checkbox"
+													name="convenientFacility" value="${convenient.value}">
+													${convenient.value}</label>
+											</div>
+										</c:forEach>
+									</div>
+								</div>
+							</div>
+						</div>
+<!-- 					</div> -->
+<!-- 					<div class="row row-condensed space-4"> -->
+						<div class="col-md-12 housesection">
+							<div class="row row-condensed">
+								<label class="text-left col-md-2"> <span>안전 시설</span>
+								</label>
+								<div class=" col-md-9">
+									<div class="row">
+									<input type="hidden" value="">
+										<c:forEach items="${requestScope.secureFacility}"
+											var="secureFacility">
+											<div class="col-md-3 col-xs-6">
+												<label><input type="checkbox" name="secureFacility"
+													value="${secureFacility.value}">
+													${secureFacility.value}</label>
+											</div>
+										</c:forEach>
+									</div>
+								</div>
+							</div>
+						</div>
+<!-- 					</div> -->
+<!-- 					<div class="row row-condensed space-4"> -->
+						<div class="col-md-12 housesection" style="margin-bottom:30px">
+							<div class="row row-condensed">
+								<label class="text-left col-md-2"> <span>공용 시설</span>
+								</label>
+								<div class=" col-md-9">
+									<div class="row">
+		
+										<c:forEach items="${requestScope.commonFacility}"
+											var="commonFacility">
+											<div class="col-md-3 col-xs-6">
+												<label><input type="checkbox" name="commonFacility"
+													value="${commonFacility.value}">
+													${commonFacility.value}</label>
+											</div>
+										</c:forEach>
+									</div>
+								</div>
+							</div>
+						</div>
+<!-- 					</div> -->
 
-                  <div class="modal-footer">
+
+                  <div class="modal-footer" style ="margin-bottom:80px">
                      <div class="row panel-MT">
                         <div
                            class="col-md-offset-6 col-sm-offset-5 col-xs-offset-5 col-md-2 col-sm-3 col-xs-3">
@@ -485,7 +591,7 @@ function printByFilter(){
                            <button class="btn btn-primary">취소</button>
                         </div>
                         <div class="col-md-2 col-sm-3 col-xs-3">
-                           <button type="submit" class="btn btn-primary">필터 적용</button>
+                           <button class="btn btn-primary">필터 적용</button>
                         </div>
                      </div>
                   </div>

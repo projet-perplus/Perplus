@@ -1,5 +1,6 @@
 package com.perplus.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.perplus.member.service.MemberService;
 import com.perplus.member.vo.MemberVo;
 import com.perplus.member.vo.ShowmoneyVo;
+import com.perplus.member.vo.TravelVo;
 import com.perplus.util.Constants;
 
 @Controller
@@ -27,10 +29,11 @@ public class MemberController_je {
 	@RequestMapping("transaction_history.do")
 	public ModelAndView completedReceive(@ModelAttribute String status, HttpSession session, HttpServletRequest request){
 		String memberEmail = null;
-		List<ShowmoneyVo> smtmList = null;
-		JSONArray smtmJsonArr = null;
+		List<ShowmoneyVo> smList = null;
+		JSONArray smJsonArr = null;
+		JSONArray travelListJson = null;
 		
-		int showmethemoneyStatus = Constants.SHOWMETHEMONEY_STATUS_RECEIVE_INTENDED;	// default값 : 예정 금액
+		int showmoneyStatus = Constants.SHOWMONEY_STATUS_RECEIVE_INTENDED;	// default값 : 예정 금액
 		try {
 			memberEmail = ((MemberVo)session.getAttribute("login_info")).getMemberEmail(); // 이메일
 		} catch (Exception e) {
@@ -39,16 +42,31 @@ public class MemberController_je {
 		}
 		
 		if (status.equals("completed")){	// completed 가 아닌 경우 모두 intended 상태를 보여줌
-			showmethemoneyStatus = Constants.SHOWMETHEMONEY_STATUS_RECEIVE_COMPLETED;
+			showmoneyStatus = Constants.SHOWMONEY_STATUS_RECEIVE_COMPLETED;
 		}
 		try {	// 조회된 값이 없으면 Exception 발생
-//			smtmList = service.getShowmethemoneyByShowmethemoneyStatus(memberEmail, showmethemoneyStatus);
-			smtmJsonArr = new JSONArray(smtmList);
+			smList = service.getShowmoneyByShowmoneyStatus(memberEmail, showmoneyStatus);
+			smJsonArr = new JSONArray(smList);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		return new ModelAndView("accountmanagement/accountmanagement/transaction_history.tiles1", "showmethemoneyList", smtmJsonArr);
+		List<TravelVo> travelList = new ArrayList<TravelVo>();
+		for(ShowmoneyVo showmoney : smList){	// 조회된 showmoney의 travelSerial로 Travel 객체 조회
+			int travelSerial = showmoney.getTravelSerial();
+			System.out.println("con"+travelSerial);
+			try {
+				TravelVo tmp = service.getTravelbyTravelSerial(travelSerial);
+				System.out.println(tmp);
+				travelList.add(tmp);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		travelListJson = new JSONArray(travelList);
+		request.setAttribute("travelList", travelListJson);
+		
+		return new ModelAndView("accountmanagement/accountmanagement/transaction_history.tiles1", "showmoneyList", smJsonArr);
 	}
 	
 	

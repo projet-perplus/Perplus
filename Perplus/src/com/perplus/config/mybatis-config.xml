@@ -27,7 +27,7 @@
 		<mapper resource="com/perplus/member/mapper/paymentmapper.xml" />
 		<mapper resource="com/perplus/member/mapper/rejectmapper.xml" />
 		<mapper resource="com/perplus/member/mapper/reviewzzimmapper.xml" />
-		<mapper resource="com/perplus/member/mapper/showmethemoneymapper.xml" />
+		<mapper resource="com/perplus/member/mapper/showmoneymapper.xml" />
 		<mapper resource="com/perplus/member/mapper/travelmapper.xml" />
 		<!-- 트레블 매퍼 컨트롤러에 집어 넣지 마시오!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!캬아아아악 -->
 		
