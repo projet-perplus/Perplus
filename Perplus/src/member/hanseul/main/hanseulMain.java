@@ -8,12 +8,10 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import com.perplus.member.dao.PaymentDao;
 import com.perplus.member.dao.RejectDao;
 import com.perplus.member.dao.ReviewZzimDao;
-import com.perplus.member.dao.ShowMeTheMoneyDao;
 import com.perplus.member.dao.TravelDao;
 import com.perplus.member.vo.PaymentVo;
 import com.perplus.member.vo.RejectVo;
 import com.perplus.member.vo.ReviewZzimVo;
-import com.perplus.member.vo.ShowMeTheMoneyVo;
 import com.perplus.member.vo.TravelVo;
 
 public class hanseulMain {
@@ -84,24 +82,24 @@ public class hanseulMain {
 	
 	
 	public void showmethemoneyTest(ClassPathXmlApplicationContext context){
-		ShowMeTheMoneyDao dao = (ShowMeTheMoneyDao)context.getBean("showMeTheMoneyDaoImpl");
+//		ShowMeTheMoneyDao dao = (ShowMeTheMoneyDao)context.getBean("showMeTheMoneyDaoImpl");
 		
 		/**
 		 * ShowMeTheMoneyDao 검증
 		 */
-		ShowMeTheMoneyVo smtm = null;
-		//insert
-		smtm = new ShowMeTheMoneyVo(215, "asd@asd.com", false, new Date(2012-10-10), "asdasd", "asdasdasdaqweqwe", 23000, 23222222, "qweqwbank");
-		dao.insertShowmethemoney(smtm);
-		System.out.println("=====ShowMeTheMoneySerial=====");
-		System.out.println(dao.selectShowmethemoneyByShowmethemoneySerial(22));
-		System.out.println("*****just ShowMeTheMoney*****");
-		System.out.println(dao.selectShowmethemoney("asd@asd.com"));
-		//update
-		smtm = new ShowMeTheMoneyVo(215, "asd@asd.com", false, new Date(2012-10-10), "asdasd", "asdasdasdaqweqwe", 9999, 99999, "qweqwbank");
-		dao.updateShowmethemoney(smtm);
-		System.out.println(dao.selectShowmethemoneyByShowmethemoneySerial(215));
-		dao.deleteShowmethemoney(215);
+//		ShowMeTheMoneyVo smtm = null;
+//		//insert
+//		smtm = new ShowMeTheMoneyVo(215, "asd@asd.com", false, new Date(2012-10-10), "asdasd", "asdasdasdaqweqwe", 23000, 23222222, "qweqwbank");
+//		dao.insertShowmethemoney(smtm);
+//		System.out.println("=====ShowMeTheMoneySerial=====");
+//		System.out.println(dao.selectShowmethemoneyByShowmethemoneySerial(22));
+//		System.out.println("*****just ShowMeTheMoney*****");
+//		System.out.println(dao.selectShowmethemoney("asd@asd.com"));
+//		//update
+//		smtm = new ShowMeTheMoneyVo(215, "asd@asd.com", false, new Date(2012-10-10), "asdasd", "asdasdasdaqweqwe", 9999, 99999, "qweqwbank");
+//		dao.updateShowmethemoney(smtm);
+//		System.out.println(dao.selectShowmethemoneyByShowmethemoneySerial(215));
+//		dao.deleteShowmethemoney(215);
 	}
 	
 	public void travelTest(ClassPathXmlApplicationContext context){
