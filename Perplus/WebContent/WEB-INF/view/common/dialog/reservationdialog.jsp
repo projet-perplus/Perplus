@@ -1,56 +1,59 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script type="text/javascript">
-// $(document).ready(
-// 		function() {
-// 			$(function() {
-// 				$("#housedatepicker1").on("click",function(){
-// 					$("#housedatepicker1").val("");
-// 				});
-			
-// 				$("#housedatepicker1").datesPicker({
-// 						addDisabledDates : [${requestScope.shutdownDate}],
-// 						altField : "#housedatepicker1",
-// 						minDate : 0,
-// 						maxDate : "+${requestScope.house.houseFilter.houseFilterReservationTerm}m",
-// 						showOtherMonths : true,
-// 						selectOtherMonths : true,
-// 						yearSuffix : '년',
-// 						monthNames : [ '1월', '2월', '3월', '4월', '5월',
-// 								'6월', '7월', '8월', '9월', '10월', '11월',
-// 								'12월' ],
-// 						dayNamesMin : [ '일', '월', '화', '수', '목', '금',
-// 								'토' ],
-// 						dateFormat : 'yy-mm-dd',
-// 						showMonthAfterYear : true
-// 				}).on('changeDate', function(ev) {
-// 					if (ev.date.valueOf() > checkout.date.valueOf()) {
-// 						var newDate = new Date(ev.date)
-// 						newDate.setDate(newDate.getDate() + 1);
-// 						checkout.setValue(newDate);
-// 					}
-// 					$('#housedatepicker2')[0].focus();
-// 				});
+ 			$(function() {
+ 				
+ 				
+ 				$("#housedatepicker1").multiDatesPicker({
+ 						maxPicks : 1,
+ 						addDisabledDates : [${requestScope.shutdownDate}],
+ 						altField : "#housedatepicker1",
+ 						minDate : 0,
+ 						maxDate : "+${requestScope.house.houseFilter.houseFilterReservationTerm}m",
+ 						showOtherMonths : true,
+ 						selectOtherMonths : true,
+ 						yearSuffix : '년',
+ 						monthNames : [ '1월', '2월', '3월', '4월', '5월',
+ 								'6월', '7월', '8월', '9월', '10월', '11월',
+ 								'12월' ],
+ 						dayNamesMin : [ '일', '월', '화', '수', '목', '금',
+ 								'토' ],
+ 						dateFormat : 'yy-mm-dd',
+ 						showMonthAfterYear : true
+ 				}).on('changeDate', function() {
+ 					alert("asdf");
+ 					/* if (ev.date.valueOf() > checkout.date.valueOf()) {
+ 						var newDate = new Date(ev.date)
+ 						newDate.setDate(newDate.getDate() + 1);
+ 						checkout.setValue(newDate);
+ 					}
+ 					$('#housedatepicker2').focus(); */
+ 				}).on('click', function(){
+ 					$("#housedatepicker1").multiDatesPicker('resetDates','picked');
+ 				});
 				
-				
-// 				$("#housedatepicker2").datesPicker({
-// 					addDisabledDates : [${requestScope.shutdownDate}],
-// 					altField : "#housedatepicker2",
-// 					minDate : 0,
-// 					maxDate : "+${requestScope.house.houseFilter.houseFilterReservationTerm}m",
-// 					showOtherMonths : true,
-// 					selectOtherMonths : true,
-// 					yearSuffix : '년',
-// 					monthNames : [ '1월', '2월', '3월', '4월', '5월',
-// 							'6월', '7월', '8월', '9월', '10월', '11월',
-// 							'12월' ],
-// 					dayNamesMin : [ '일', '월', '화', '수', '목', '금',
-// 							'토' ],
-// 					dateFormat : 'yy-mm-dd',
-// 					showMonthAfterYear : true
-// 				});
-// 			});
-// 		});
+ 				$("#housedatepicker2").multiDatesPicker({
+					maxPicks : 1,
+ 					defaultDate: '2017-01-05',
+ 					addDisabledDates : [${requestScope.shutdownDate}],
+ 					altField : "#housedatepicker2",
+ 					minDate : 0,
+ 					maxDate : "+${requestScope.house.houseFilter.houseFilterReservationTerm}m",
+ 					showOtherMonths : true,
+ 					selectOtherMonths : true,
+ 					yearSuffix : '년',
+ 					monthNames : [ '1월', '2월', '3월', '4월', '5월',
+ 							'6월', '7월', '8월', '9월', '10월', '11월',
+ 							'12월' ],
+ 					dayNamesMin : [ '일', '월', '화', '수', '목', '금',
+ 							'토' ],
+ 					dateFormat : 'yy-mm-dd',
+ 					showMonthAfterYear : true
+ 				}).on('click', function(){
+ 					$("#housedatepicker2").multiDatesPicker('resetDates','picked');
+ 				});
+ 			});
+ 			
 </script>
 
 <div class="modal fade" id="reservationdialog" role="dialog"
@@ -71,15 +74,15 @@
 							<button class="btn btn-primary" style="width: 100%">날짜</button>
 						</div>
 						<div class="col-md-4">
-							<div class="form-group">
-								<input type="text" class="form-control" name="check" id="housedatepicker1"
-									placeholder="yy-mm-dd">
+							<div class="form-group housedatepickerparent1">
+								<input type="text" class="form-control" name="check"
+									id="housedatepicker1" placeholder="yy-mm-dd">
 							</div>
 						</div>
 						<div class="col-md-4">
 							<div class="form-group">
-								<input type="text" class="form-control" name="check" id="housedatepicker2"
-									placeholder="yy-mm-dd">
+								<input type="text" class="form-control" name="check"
+									id="housedatepicker2" placeholder="yy-mm-dd">
 							</div>
 						</div>
 					</div>
@@ -89,7 +92,15 @@
 								<div class="col-md-4" style="margin-bottom: 15px;">
 									<button class="btn btn-primary" style="width: 100%">인원</button>
 								</div>
-								<div class="col-md-8">인원 알아서 ..</div>
+								<div class="col-md-8">
+									<select>
+										<c:forEach begin="1"
+											end="${requestScope.house.houseFilter.houseFilterGuestNumber}"
+											var="guestNumber">
+											<option>${guestNumber}</option>
+										</c:forEach>
+									</select>
+								</div>
 							</div>
 
 
@@ -104,10 +115,12 @@
 
 							<div class="form-group">
 								<select class="form-control">
-									<option>1시</option>
-									<option>2</option>
-									<option>3</option>
-									<option>4</option>
+									<c:forEach
+										begin="${requestScope.house.houseFilter.houseFilterCheckinStart}"
+										end="${requestScope.house.houseFilter.houseFilterCheckinEnd}"
+										var="checkin">
+										<option>${checkin}</option>
+									</c:forEach>
 								</select>
 							</div>
 						</div>
@@ -115,37 +128,32 @@
 
 					<div class="row panel-MT">
 						<div class="col-md-12">
-							<div class="col-md-6 col-sm-6 col-xs-6">a</div>
-							<div class="col-md-6 col-sm-6 col-xs-6">a</div>
+							<div class="col-md-6 col-sm-6 col-xs-6">가격</div>
+							<div class="col-md-6 col-sm-6 col-xs-6">${requestScope.house.houseFilter.houseFilterPrice}</div>
 							<hr style="border: 1px solid #ddd;">
 
 						</div>
 
 					</div>
 
-					<div class="row panel-MT">
-						<div class="col-md-12">
-							<div class="col-md-6 col-sm-6 col-xs-6">a</div>
-							<div class="col-md-6 col-sm-6 col-xs-6">a</div>
-							<hr style="border: 1px solid #ddd;">
-						</div>
-					</div>
 
-					<div class="row panel-MT">
-						<div class="col-md-12">
-							<div class="col-md-6 col-sm-6 col-xs-6">a</div>
-							<div class="col-md-6 col-sm-6 col-xs-6">a</div>
-							<hr style="border: 1px solid #ddd;">
-						</div>
-					</div>
-
-					<div class="row panel-MT">
+	<%-- 				<div class="row panel-MT">
 						<div class="col-md-12">
 							<div class="col-md-12">
-								숙소 이용 규칙 1<br> 2<br>
+								
+								<c:choose>
+									<c:when test="${requestScope.house.houseNecessaryCondition !=null}">
+										<c:forEach items="${requestScope.house.houseNecessaryCondition}" var="condition">
+											${condition}
+										</c:forEach>
+									</c:when>
+									<c:otherwise>
+										ㄸ.. 딱히 그런거 없으니깐..
+									</c:otherwise>
+								</c:choose>
 							</div>
 						</div>
-					</div>
+					</div> --%>
 
 				</div>
 				<div class="modal-footer">
