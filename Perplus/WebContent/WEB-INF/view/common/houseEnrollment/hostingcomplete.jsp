@@ -11,20 +11,29 @@
 						<select class="form-control house_step">
 							<option selected="selected"
 								value="${initParam.rootPath}/basicinfo.do">완료</option>
-							<option value="${initParam.rootPath}/basicinfo.do">1 단계</option>
-							<option value="${initParam.rootPath}/housetypeandlocation.do">2
+							<option value="${initParam.rootPath}/house/oneStepBefore.do">1
 								단계</option>
-							<option value="${initParam.rootPath}/houselocation.do">3
+							<option
+								value="${initParam.rootPath}/house/twoStepBefore.do?${param.houseSerial}">2
 								단계</option>
-							<option value="${initParam.rootPath}/housefacility.do">4
+							<option
+								value="${initParam.rootPath}/house/threeStepBefore.do?${param.houseSerial}">3
 								단계</option>
-							<option value="${initParam.rootPath}/houseimageenrollment.do">5
+							<option
+								value="${initParam.rootPath}/house/fourStepBefore.do?${param.houseSerial}">4
 								단계</option>
-							<option value="${initParam.rootPath}/houseschedulemanagement.do">6
+							<option
+								value="${initParam.rootPath}/house/fiveStepBefore.do?${param.houseSerial}">5
 								단계</option>
-							<option value="${initParam.rootPath}/houseshutdowndate.do">7
+							<option
+								value="${initParam.rootPath}/house/sixStepBefore.do?${param.houseSerial}">6
 								단계</option>
-							<option value="${initParam.rootPath}/houseprice.do">8 단계</option>
+							<option
+								value="${initParam.rootPath}/house/sevenStepBefore.do?${param.houseSerial}">7
+								단계</option>
+							<option
+								value="${initParam.rootPath}/house/eightStepBefore.do?${param.houseSerial}">8
+								단계</option>
 						</select>
 					</div>
 				</div>
@@ -60,7 +69,8 @@
 			</div>
 			<div
 				class="col-md-offset-6 col-sm-offset-6 col-xs-offset-4 col-md-1 col-sm-1 col-xs-1 nextBtn leftform">
-				<a href="${initParam.rootPath}/main.do">
+				<a
+					href="${initParam.rootPath}/house/houseDetail.do?houseSerial=${param.houseSerial}">
 					<button class="btn btn-default">다음</button>
 				</a>
 			</div>

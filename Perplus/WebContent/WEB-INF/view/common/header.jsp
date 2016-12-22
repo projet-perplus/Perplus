@@ -4,14 +4,14 @@
 
 </script>
 
-<nav class="navbar navbar-default" id="navbar1">
+<nav class="navbar navbar-default" id="navbar1" style="z-index:5 !important;">
 	<div class="container-fluid navbarheader">
 		<div class="navbar-header">
 			<a class="navbar-img" href="${initParam.rootPath}/main.do">
 			<img src="/Perplus/css/image/logos.PNG" alt="logo" />
 			</a>
 			<button type="button" class="navbar-toggle" data-toggle="collapse"
-				data-target="#myNavbar">
+				data-target="#myNavbar" >
 				<span class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>

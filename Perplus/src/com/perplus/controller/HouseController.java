@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,7 +33,8 @@ import com.perplus.member.vo.HouseZzimVo;
 import com.perplus.member.vo.MemberVo;
 import com.perplus.util.Constants;
 import com.perplus.util.TextUtil;
-
+@Controller
+@RequestMapping("/house")
 public class HouseController {
 	
 	@Autowired
@@ -115,7 +117,6 @@ public class HouseController {
 	@RequestMapping("/myHouse")
 	public String getMyHouse(@RequestParam String memberEmail, ModelMap map) {
 		List<HouseVo> houseList = service.selectMyHouse(memberEmail);
-		System.out.println(houseList.get(3));
 		map.put("houseList", houseList);
 		return "rooms/rooms/roomlist.tiles1";
 	}
@@ -218,9 +219,9 @@ public class HouseController {
 	public String fourStepBefore(@RequestParam int houseSerial, HttpServletRequest request){
 		System.out.println("fourStepBefore.do");
 		System.out.println();
-		List<CodetableVo> convenientFacility = service.codetableFindByKind(1);//편의시설
-		List<CodetableVo> secureFacility = service.codetableFindByKind(2);//안전시설
-		List<CodetableVo> commonFacility = service.codetableFindByKind(3);//공용시설
+		List<CodetableVo> convenientFacility = service.codetableFindByKind(201);//편의시설
+		List<CodetableVo> secureFacility = service.codetableFindByKind(202);//안전시설
+		List<CodetableVo> commonFacility = service.codetableFindByKind(203);//공용시설
 		request.setAttribute("convenientFacility", convenientFacility);
 		request.setAttribute("secureFacility", secureFacility);
 		request.setAttribute("commonFacility", commonFacility);
@@ -412,7 +413,7 @@ public class HouseController {
 		service.updateHouseFilter(houseFilter);
 		
 		System.out.println("eightStep");
-		return "redirect:/hostingcomplate.do";
+		return "redirect:/hostingcomplate.do?houseSerial="+houseSerial;
 	}	
 	
 	/*

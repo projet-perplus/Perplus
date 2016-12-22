@@ -26,7 +26,7 @@
 	<!-- INSERT REVIEWCOMMENT -->
 	<insert id="insertComment" parameterType="reviewCommentVo">	
 	<selectKey resultType="_int" keyProperty="commentSerial" order="BEFORE">
-		select comment_serial_seq.nextval from dual
+		select REVIEWCOMMENT_SEQ.nextval from dual
 	</selectKey> 
 		insert into reviewcomment values(#{commentSerial},#{reviewSerial},#{memberEmail},#{commentContent},#{commentRating},#{commentTime})
 	</insert>

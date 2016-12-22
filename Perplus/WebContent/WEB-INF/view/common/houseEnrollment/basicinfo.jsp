@@ -74,13 +74,13 @@
 					</label>
 					<div class="col-sm-6 col-md-5">
 						<div class="necessary">
-							<p>인증된 이메일 전화번호</p>
+							<p style="padding: 7px !important;">인증된 이메일 전화번호</p>
 						</div>
 						<div class="necessary">
-							<p>프로필 사진</p>
+							<p style="padding: 7px !important;">프로필 사진</p>
 						</div>
 						<div class="necessary">
-							<p>결제 정보</p>
+							<p style="padding: 7px !important;">결제 정보</p>
 						</div>
 						<div class="necessary" style="border: none;">
 							<ul></ul>

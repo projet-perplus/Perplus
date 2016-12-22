@@ -42,34 +42,26 @@
 <!-- body -->
 <div class="basicbody">
 	<div class="container">
-		<div class="row row-condensed space-4">
+		<div class="row row-condensed space-4" style="min-height:400px;">
 			<label class="text-left col-md-7 col-md-offset-2 col-xs-10">
 				<span>호스트가 될준비가 되셨나요?</span>
 			</label>
 		</div>
-		<!-- <div class="row row-condensed space-4" >
-			<div class="col-md-offset-3 col-sm-offset-3 col-xs-offset-3" style="MIN-HEIGHT: 486px;">
-				<img src="/Perplus/css/image/host.PNG" alt="AC" style="margin-top: 20%;"/>
-			</div>
-		</div>	 -->
-
-		<div class="row row-condensed">
-			<div
-				class="col-md-offset-2 col-sm-offset-2 col-xs-offset-2 col-md-1 col-sm-1 col-xs-1 previousBtn">
-				<a href="${initParam.rootPath}/main.do">
-					<button class="btn btn-default">아니요</button>
-				</a>
-			</div>
-			<div
-				class="col-md-offset-6 col-sm-offset-6 col-xs-offset-4 col-md-1 col-sm-1 col-xs-1 nextBtn leftform">
-				<a href="${initParam.rootPath}/house/oneStepBefore.do">
-					<button class="btn btn-default">예</button>
-				</a>
+		<div class="housebody">
+			<div class="row row-condensed">
+				<div
+					class="col-md-offset-2 col-sm-offset-2 col-xs-offset-1 col-md-1 col-sm-1 col-xs-3 previousBtn">
+					<a href="${initParam.rootPath}/main.do">
+						<button class="btn btn-default">아니요</button>
+					</a>
+				</div>
+				<div
+					class="col-md-offset-6 col-sm-offset-6 col-xs-offset-4 col-md-1 col-sm-1 col-xs-3 nextBtn leftform">
+					<a href="${initParam.rootPath}/house/oneStepBefore.do">
+						<button class="btn btn-default">예</button>
+					</a>
+				</div>
 			</div>
 		</div>
 	</div>
 </div>
-
-
-
-
