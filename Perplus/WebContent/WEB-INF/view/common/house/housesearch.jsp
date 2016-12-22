@@ -150,7 +150,7 @@ function printByFilter(){
 		}
 	}
 	var body = JSON.stringify(obj);
-	alert(body);
+// 	alert(body);
 	//alert(body);
 	$.ajax({
 		url : "/Perplus/map/showhousebymapandfilter.do",
