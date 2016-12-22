@@ -14,8 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.perplus.member.service.MemberService;
 import com.perplus.member.vo.MemberVo;
-import com.perplus.member.vo.PaymentVo;
-import com.perplus.member.vo.ShowMeTheMoneyVo;
+import com.perplus.member.vo.ShowmoneyVo;
 import com.perplus.util.Constants;
 
 @Controller
@@ -28,7 +27,7 @@ public class MemberController_je {
 	@RequestMapping("transaction_history.do")
 	public ModelAndView completedReceive(@ModelAttribute String status, HttpSession session, HttpServletRequest request){
 		String memberEmail = null;
-		List<ShowMeTheMoneyVo> smtmList = null;
+		List<ShowmoneyVo> smtmList = null;
 		JSONArray smtmJsonArr = null;
 		
 		int showmethemoneyStatus = Constants.SHOWMETHEMONEY_STATUS_RECEIVE_INTENDED;	// default값 : 예정 금액
@@ -43,7 +42,7 @@ public class MemberController_je {
 			showmethemoneyStatus = Constants.SHOWMETHEMONEY_STATUS_RECEIVE_COMPLETED;
 		}
 		try {	// 조회된 값이 없으면 Exception 발생
-			smtmList = service.getShowmethemoneyByShowmethemoneyStatus(memberEmail, showmethemoneyStatus);
+//			smtmList = service.getShowmethemoneyByShowmethemoneyStatus(memberEmail, showmethemoneyStatus);
 			smtmJsonArr = new JSONArray(smtmList);
 		} catch (Exception e) {
 			e.printStackTrace();
