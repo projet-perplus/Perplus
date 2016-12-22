@@ -77,6 +77,10 @@
 	border: 0 !important;
 	background: inherit !important;
 }
+
+table, td, tr{
+	width: 100%;
+}
 </style>
 <!-- header -->
 <div class="basicheader">

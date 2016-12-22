@@ -19,7 +19,7 @@ public interface HouseDao {
 	
 	List<HouseVo> selectHouseListByMemberEmail(String memberEmail);
 	
-	List<HouseVo> selectHouseListByFilter(HashMap map);
+	List selectHouseListByFilter(HashMap map);
 	
 	List<HouseVo> selectHouseBySectionAndFilter(HashMap map);
 	

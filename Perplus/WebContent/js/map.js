@@ -1,3 +1,4 @@
+
 //아이콘들
 var tourIcon = new google.maps.MarkerImage("/Perplus/img/markerIcon/tours.png");
 var defaultIcon = new google.maps.MarkerImage("/Perplus/img/markerIcon/default.png");
@@ -72,15 +73,18 @@ $(function() {
 		}
 		
 		//하우스용 이벤트
-	
+		if(stage == 'search'){
+			google.maps.event.addListener(map, 'idle',function(){
+				resetMapMarker();
+			});
+		}
 		google.maps.event.addListenerOnce(map,'bounds_changed', function() {
 			//최초 로딩때 location이 넘어오는 search 일때 검사
 			var geoLocation = document.getElementById("location");
 			if(geoLocation.value.length!=0){
 				locationSearch(); 
 			}else if(stage=='search'){
-				map.setZoom(8);
-				printByFilter();
+				map.setZoom(7);
 			}
 		});
 	}
@@ -89,7 +93,6 @@ $(function() {
 //리뷰에서는 이벤트가 있을때 부르게 되고 나머지는 최초 남아있는 location 값으로 부르게 된다.
 function locationSearch(){
 	
-	alert('3');
 	var geoLocation = document.getElementById("location");
 	if(geoLocation==null || geoLocation.length==0){
 		return;
@@ -159,7 +162,7 @@ function identifyLoginInfo(){
 	return member;
 }
 
-//범위 안에 있는 마커들을 생성
+//범위 안에 있는 마커들을 생성 (review)
 function placeMarkerList(southWestLat,southWestLng,northEastLat,northEastLng){
 	$.ajax({
 		url : "/Perplus/map/markerall.do",
@@ -240,7 +243,7 @@ function placeMarker(serial,location,constant,money) {
 		}
 		markerArray.push(marker);
 		if(mIcon == houseIcon){
-			var str = comma(30000);
+			var str = comma(money);
 			marker.setLabel(str);
 		}
 		return marker;
@@ -275,12 +278,28 @@ function comma(money) {
     return str.concat(' ₩');
 }
 
-function resetMapMarker(location){
+function resetMapMarker(addFilterStatus){
+	var addFilterTriggerStatus = document.getElementById('addfiltertrigger');
+	if(addFilterStatus == null){
+		if(addFilterTriggerStatus!= null&&stage =='search'){
+			if(addFilterTriggerStatus.value=='true'){
+				map.setOptions({draggable: false,zoomControl: false,scrollwheel: false});
+				return;
+			}else{
+				map.setOptions({draggable: true,zoomControl: true,scrollwheel: true});
+			}
+		}
+	}
 	resetAllMarker();
-	placeMarkerList(
-				map.getBounds().getSouthWest().lat(),map.getBounds().getSouthWest().lng(),map.getBounds().getNorthEast().lat(),
-				map.getBounds().getNorthEast().lng());
-	//맵 클러스터링
+	if(stage == 'review'){
+		placeMarkerList(
+					map.getBounds().getSouthWest().lat(),map.getBounds().getSouthWest().lng(),map.getBounds().getNorthEast().lat(),
+					map.getBounds().getNorthEast().lng());
+	}else if(stage == 'search'){
+		
+		printByFilter();
+	}
+	//맵 클러스터링(각 적용되는 템플릿에 <script src="/Perplus/js/markerclusterer.js"></script> 라이브러리 추가 필요)
 	markerCluster = new MarkerClusterer(map,markerArray,{imagePath:'img/clustering/m'});
 }
 

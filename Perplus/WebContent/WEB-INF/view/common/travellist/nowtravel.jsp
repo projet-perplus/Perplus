@@ -45,7 +45,7 @@
 						</div>
 						<div class="row con4">
 
-							<button type="button" class="btn btn-default" style="width: 100%">결제하기</button>
+							<button type="button" class="btn btn-success" style="width: 100%; border-radius: 0;">결제하기</button>
 						</div>
 					</div>
 					<!-- /목록 하나 -->

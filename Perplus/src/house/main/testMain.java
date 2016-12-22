@@ -12,6 +12,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.perplus.house.daoimpl.HouseDaoImpl;
 import com.perplus.house.daoimpl.HouseFilterDaoImpl;
+import com.perplus.house.vo.HouseFilterVo;
 
 public class testMain {
 	public static void main(String[] args) throws ParseException {
@@ -19,9 +20,12 @@ public class testMain {
 		
 		HouseFilterDaoImpl hf = (HouseFilterDaoImpl)abc.getBean("houseFilterDaoImpl");
 		HouseDaoImpl h = (HouseDaoImpl)abc.getBean("houseDaoImpl");
-//		
-//		System.out.println(h.selectHouseWithJoinOfDetailPage(1));
 		
+//		System.out.println(h.selectHouseWithJoinOfDetailPage(1));
+		HashMap map = new HashMap();
+		map.put("date", "2017-02-05");
+		map.put("serial", 1);
+		System.out.println(h.reservationAbleTerm(map));
 //		String str1="2016-12-16";
 //		String str2="2017-01-11";
 //		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");

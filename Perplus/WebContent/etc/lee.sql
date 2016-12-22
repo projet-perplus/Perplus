@@ -4,9 +4,11 @@ drop sequence house_seq
 
 insert into HOUSEFILTER values(1,'화장실',20,'다인실',2,'경기도 용인시 모현면');
 
-
+select sysdate from dual;
 
 insert into HOUSEZZIM values(1,2,'bbb')
+
+delete from checklist
 
 insert into CHECKLIST values(CHECKLIST_SEQ.nextval,1,16,'안전카드');
 insert into CHECKLIST values(CHECKLIST_SEQ.nextval,1,15,'다리미');
@@ -528,6 +530,30 @@ where HOUSE_SERIAL IN
 	and (? + HOUSEFILTER_CHECKIN_TERM >= ?)    
 )
 
+		select COALESCE(min(SHUTDOWN_DATE - CAST('2017-01-02' as date) ),  (CAST('2018-01-03' as date) - CAST('2017-01-02' as date)))
+		from SHUTDOWN
+		where SHUTDOWN_SERIAL in
+		(
+			select SHUTDOWN_SERIAL
+			from SHUTDOWN
+			where ( SHUTDOWN_DATE - CAST('2017-01-02' as date) >=1000)
+			and HOUSE_SERIAL=1
+		)
+
+'2017-01-02'
+select min()
+count(
+		select min(SHUTDOWN_DATE - CAST('2017-01-02' as date) )
+		from SHUTDOWN
+		where SHUTDOWN_SERIAL in
+		(
+			select SHUTDOWN_SERIAL
+			from SHUTDOWN
+			where ( SHUTDOWN_DATE - CAST('2017-01-02' as date) >=0)
+			and HOUSE_SERIAL= 1
+		)
+	) is null
+
 ------------------------map 실험
 37.397002083376634
 127.09481058456424
@@ -551,10 +577,34 @@ delete from REVIEW;
 														between 37.39 and 37.407)
 															and	  (review_marker_y between 127.09 and 127.119)
 
-
 															
+select   h.HOUSE_SERIAL h_hSerial,h.MEMBER_EMAIL h_email, h.HOUSE_REGISTER_STATUS,h.HOUSE_TITLE, h.HOUSE_CONTENT,h.HOUSE_NECESSARY_CONDITION,   h.HOUSE_RATING, h.HOUSE_MARKER_X,h.HOUSE_MARKER_Y, h.HOUSE_MARKER_CONSTANT,   f.HOUSE_SERIAL f_hSerial,f.HOUSEFILTER_RANGE,f.HOUSEFILTER_GUEST_NUMBER,f.HOUSEFILTER_TYPE,f.HOUSEFILTER_ROOM_NUMBER,f.HOUSEFILTER_LOCATION,f.HOUSEFILTER_BEDROOM_NUMBER,   f.HOUSEFILTER_BATHROOM_NUMBER,f.HOUSEFILTER_BED_NUMBER,f.HOUSEFILTER_CHECKIN_TERM,f.HOUSEFILTER_CHECKIN_START,f.HOUSEFILTER_CHECKIN_END,   f.HOUSEFILTER_RESERVATION_TERM,f.HOUSEFILTER_BAK_MIN,f.HOUSEFILTER_BAK_MAX,f.HOUSEFILTER_PRICE,   p.PICTURE_SERIAL, p.HOUSE_SERIAL p_hSerial, p.PICTURE_ORDER , p.PICTURE_NAME  
+from HOUSE h, HOUSEFILTER f , HOUSEPICTURE p       
+where   h.HOUSE_SERIAL    
+in  
+(             
+	select HOUSE_SERIAL houseSerial    
+	from HOUSE    
+	where HOUSE_SERIAL 
+	IN   
+	(         
+		select HOUSE_SERIAL          
+		from 
+		(          
+			select HOUSE_SERIAL,   HOUSEFILTER_RANGE,   HOUSEFILTER_GUEST_NUMBER,   HOUSEFILTER_TYPE,   HOUSEFILTER_ROOM_NUMBER,   HOUSEFILTER_LOCATION,   HOUSEFILTER_BEDROOM_NUMBER,   HOUSEFILTER_BATHROOM_NUMBER,   HOUSEFILTER_BED_NUMBER,   HOUSEFILTER_CHECKIN_TERM,   HOUSEFILTER_CHECKIN_START,   HOUSEFILTER_CHECKIN_END,   HOUSEFILTER_RESERVATION_TERM,   HOUSEFILTER_BAK_MIN,   HOUSEFILTER_BAK_MAX,   HOUSEFILTER_PRICE  
+			from HOUSEFILTER                                             
+		)          
+		WHERE  HOUSEFILTER_GUEST_NUMBER >= ?                               
+		and (HOUSEFILTER_PRICE between ? and ?)     
+	)  
+)  
+and f.HOUSE_SERIAL = h.HOUSE_SERIAL  
+and p.HOUSE_SERIAL(+) = h.HOUSE_SERIAL  
+and (HOUSE_MARKER_X between ? and ?)   
+and (HOUSE_MARKER_Y between ? and ?)
 
-															
+
+	SELECT ADD_MONTHS((select sysdate from dual),2) from dual;														
 															
 	select 
 		review_serial reviewSerial, 

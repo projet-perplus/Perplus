@@ -55,7 +55,7 @@ function maxLengthCheck(object){
 }
 </script>
 <div class="modal fade" id="basicModal" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
-	<div class="modal-dialog">
+	<div class="modal-dialog" style="transform: translate(0, 10%) !important;">
 		<!-- Modal content-->
 		<form action="/Perplus/member/registerPayment.do" id="regist_payment_form">
 			<div class="modal-content" style="padding: 0px;">
