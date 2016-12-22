@@ -98,19 +98,21 @@ public class MapController {
 		HashMap map = mapper.readValue(body,HashMap.class);
 		HashMap result = new HashMap();  
 		//1.먼저 돈이 0원인지 확인 한다.
+		  
 		 
-		
 		int priceRangeMin= (int) (map.get("housePriceRangeMin"));
 		int priceRangeMax=(int) (map.get("housePriceRangeMax"));
 		//최초 전체 숙소의 최대 최소 가격 범위 받기 (숙소가 최소 하나는 있다는 가정)
 		if(priceRangeMin==0&&priceRangeMax==0){
 
-			
+			 
 			result.put("priceRange", houseService.selectHousePriceRange());
 			HashMap tmp = (HashMap) result.get("priceRange");
 			map.put("housePriceMin",tmp.get("MIN"));
-			map.put("housePriceMax",tmp.get("MAX"));
+			map.put("housePriceMax",tmp.get("MAX"));   
 		}    
+		map.put("housePriceMin", map.get("housePriceMin"));
+		map.put("housePriceMax", map.get("housePriceMax")); 
 //		Calendar cal = Calendar.getInstan ce();
 //		cal.setTime(new Date());
 //		SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd");
@@ -155,9 +157,9 @@ public class MapController {
 		//만약에 list가 생성이 되었다면 (list 내부가 비어도 상관 없음) 추가필터 버튼으로 넘어온 상태라는 것을 의미한다.
 //		System.out.println(map);
 //		result.put("houseList", houseService.selectHouseBySectionAndFilter(map));
+		 
 		
-		
-		
+		 
 //		System.out.println(result);
 		
 		return result;
@@ -165,14 +167,14 @@ public class MapController {
 	
 	@RequestMapping("/getaddfilterlist.do")
 	@ResponseBody
-	public HashMap getAddFilterList() {
+	public HashMap getAddFilterList() { 
 		HashMap result = new HashMap();
-		List<CodetableVo> convenientFacility = houseService.codetableFindByKind(1);//편의시설
-		List<CodetableVo> secureFacility = houseService.codetableFindByKind(2);//안전시설
-		List<CodetableVo> commonFacility = houseService.codetableFindByKind(3);//공용시설
+		List<CodetableVo> convenientFacility = houseService.codetableFindByKind(201);//편의시설
+		List<CodetableVo> secureFacility = houseService.codetableFindByKind(202);//안전시설
+		List<CodetableVo> commonFacility = houseService.codetableFindByKind(203);//공용시설
 		result.put("convenientFacility", convenientFacility);
 		result.put("secureFacility", secureFacility);
-		result.put("commonFacility", commonFacility);
+		result.put("commonFacility", commonFacility);   
 		
 		return result;
 	}

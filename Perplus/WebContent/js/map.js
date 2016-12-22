@@ -243,7 +243,7 @@ function placeMarker(serial,location,constant,money) {
 		}
 		markerArray.push(marker);
 		if(mIcon == houseIcon){
-			var str = comma(30000);
+			var str = comma(money);
 			marker.setLabel(str);
 		}
 		return marker;
@@ -278,13 +278,17 @@ function comma(money) {
     return str.concat(' ₩');
 }
 
-function resetMapMarker(location){
-	var addFilterTriggerStatus = document.getElementById('addfiltertrigger').value;
-	if(addFilterTriggerStatus== 'true'&&stage =='search'){
-		map.setOptions({draggable: false,zoomControl: false,scrollwheel: false});
-		return;
-	}else{
-		map.setOptions({draggable: true,zoomControl: true,scrollwheel: true});
+function resetMapMarker(addFilterStatus){
+	var addFilterTriggerStatus = document.getElementById('addfiltertrigger');
+	if(addFilterStatus == null){
+		if(addFilterTriggerStatus!= null&&stage =='search'){
+			if(addFilterTriggerStatus.value=='true'){
+				map.setOptions({draggable: false,zoomControl: false,scrollwheel: false});
+				return;
+			}else{
+				map.setOptions({draggable: true,zoomControl: true,scrollwheel: true});
+			}
+		}
 	}
 	resetAllMarker();
 	if(stage == 'review'){
