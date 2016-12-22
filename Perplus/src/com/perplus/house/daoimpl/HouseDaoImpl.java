@@ -67,6 +67,7 @@ public class HouseDaoImpl implements HouseDao{
 
 	@Override
 	public int reservationAbleTerm(HashMap map) {
+		System.out.println(map);
 		return session.selectOne("house.reservationAbleTerm",map);
 	}
 	
