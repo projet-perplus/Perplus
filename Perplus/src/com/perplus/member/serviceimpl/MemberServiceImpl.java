@@ -79,6 +79,7 @@ public class MemberServiceImpl implements MemberService{
 	@Qualifier("showmoneyDaoImpl")
 	private ShowmoneyDao showmoneyDao;
 	
+	@Autowired
 	@Qualifier("travelDaoImpl")
 	private TravelDao travelDao;
 	
@@ -561,6 +562,7 @@ public class MemberServiceImpl implements MemberService{
 	
 	public TravelVo getTravelbyTravelSerial(int travelSerial) throws Exception{ // 시리얼로 조회
 		TravelVo travel = null;
+		System.out.println("ser"+travelSerial);
 		travel = travelDao.selectTravelByTravelSerial(travelSerial);
 		if(travel != null){ // 조회된 값이 있다면 객체 리턴
 			return travel;
