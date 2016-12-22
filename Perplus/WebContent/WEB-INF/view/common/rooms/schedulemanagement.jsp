@@ -11,10 +11,6 @@
 
 
 <style>
-.bg-4 {
-	position: relative;
-}
-
 #panel, #flip {
 	text-align: center;
 }

@@ -3,14 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script
 	src="https://rawgit.com/andrewng330/PreviewImage/master/preview.image.min.js"></script>
-<style>
-.bg-4 {
-	position: relative;
-	bottom: 0;
-	left: 0;
-	right: 0;
-}
-</style>
+
 
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -95,7 +88,7 @@
 										alt="로컬에 있는 이미지가 보여지는 영역">
 								</div>
 								<div
-									class="col-md-offset-5 col-md-7 col-lg-5 col-sm-offset-5 col-sm-6  col-xs-offset-2 col-xs-2">
+									class="col-md-offset-5 col-md-7 col-lg-5 col-sm-offset-5 col-sm-6  col-xs-offset-4 col-xs-4">
 									<label class="btn btn-success" style="margin-top: 10px;">사진
 										등록 <input type="file" name="memberPictureFile" id="getfile"
 										accept="image/*" value="사진등록" style="display: none;" />
@@ -349,7 +342,7 @@
 
 
 
-<div id="dashboard-content">
+<div id="dashboard-content" >
 	<div class="panel-header">
 		<span>본인 인증</span>
 	</div>

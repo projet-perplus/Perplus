@@ -10,7 +10,7 @@
 	<div class="panel-header">
 		<span>위시 리스트</span>
 	</div>
-	<div class="panel-body">
+	<div class="panel-body" style="min-height:300px;">
 		<div class="row nowtravel">
 			<div class="col-md-12">
 				<div class="slidebar">
