@@ -86,8 +86,15 @@ function printByFilter(){
 	case '다인실' : obj.sharedRoom=$("[name=house-type]:checked").val();
 		break;
 	}
+	//사용자가 선택한 금액의 범위
 	obj.housePriceMin=$("#slider-range").slider("values",0);
 	obj.housePriceMax=$("#slider-range").slider("values",1);
+	//최초 로딩때 보여줄 slider 값의 제한 범위
+	if($("#slider-range").slider("option","min")){
+		
+	}
+	obj.housePriceRangeMin=$("#slider-range").slider("option","min");
+	obj.housePriceRangeMax=$("#slider-range").slider("option","max");
 	
 	//지도 bound
 	
@@ -487,12 +494,12 @@ function printByFilter(){
          </div>
 
 
-         <div class="row row-condensed space-4">
-            <div class="col-md-12">
-               <a href="${initParam.rootPath}/house/houseDetail.do?houseSerial=3"><button
-                     class="btn btn-primary">숙소 상세 페이지</button></a>
-            </div>
-         </div>
+<!--          <div class="row row-condensed space-4"> -->
+<!--             <div class="col-md-12"> -->
+<%--                <a href="${initParam.rootPath}/house/houseDetail.do?houseSerial=3"><button --%>
+<!--                      class="btn btn-primary">숙소 상세 페이지</button></a> -->
+<!--             </div> -->
+<!--          </div> -->
 
       </div>
    </div>

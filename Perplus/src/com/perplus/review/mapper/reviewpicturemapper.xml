@@ -72,7 +72,7 @@ and page=#{page}
 <!-- INSERT PICTURE -->
 <insert id="insertPicture" parameterType="reviewPictureVo" >
 	<selectKey resultType="_int" keyProperty="pictureSerial" order="BEFORE">
-		select picture_serial_seq.nextval from dual
+		select REVIEWPICTURE_SEQ.nextval from dual
 	</selectKey> 
 	insert into reviewpicture
 	values(#{pictureSerial},#{reviewSerial},#{pictureOrder},#{pictureName})

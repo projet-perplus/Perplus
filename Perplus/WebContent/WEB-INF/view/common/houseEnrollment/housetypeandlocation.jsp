@@ -57,21 +57,29 @@
 				<div class="col-md-8 col-xs-8 page_moveBtn">
 					<div class="form-group ">
 						<select class="form-control house_step">
-							<option value="${initParam.rootPath}/basicinfo.do">1 단계</option>
-							<option selected="selected"
-								value="${initParam.rootPath}/housetypeandlocation.do">2
+							<option value="${initParam.rootPath}/house/oneStepBefore.do">1
 								단계</option>
-							<option value="${initParam.rootPath}/houselocation.do">3
+							<option selected
+								value="${initParam.rootPath}/house/twoStepBefore.do?houseSerial=${param.houseSerial}">2
 								단계</option>
-							<option value="${initParam.rootPath}/housefacility.do">4
+							<option
+								value="${initParam.rootPath}/house/threeStepBefore.do?houseSerial=${param.houseSerial}">3
 								단계</option>
-							<option value="${initParam.rootPath}/houseimageenrollment.do">5
+							<option
+								value="${initParam.rootPath}/house/fourStepBefore.do?houseSerial=${param.houseSerial}">4
 								단계</option>
-							<option value="${initParam.rootPath}/houseschedulemanagement.do">6
+							<option
+								value="${initParam.rootPath}/house/fiveStepBefore.do?houseSerial=${param.houseSerial}">5
 								단계</option>
-							<option value="${initParam.rootPath}/houseshutdowndate.do">7
+							<option
+								value="${initParam.rootPath}/house/sixStepBefore.do?houseSerial=${param.houseSerial}">6
 								단계</option>
-							<option value="${initParam.rootPath}/houseprice.do">8 단계</option>
+							<option
+								value="${initParam.rootPath}/house/sevenStepBefore.do?houseSerial=${param.houseSerial}">7
+								단계</option>
+							<option
+								value="${initParam.rootPath}/house/eightStepBefore.do?houseSerial=${param.houseSerial}">8
+								단계</option>
 						</select>
 					</div>
 				</div>
@@ -164,7 +172,8 @@
 						</label>
 						<div class="col-sm-12 col-md-8">
 							<div class="form-group">
-								<div class="col-md-7 col-sm-7" style="padding-left: 0px; margin-bottom: 15px;">
+								<div class="col-md-7 col-sm-7"
+									style="padding-left: 0px; margin-bottom: 15px;">
 									<input type="text" class="form-control" id="sample6_postcode"
 										name="houseFilterLocationList" placeholder="우편번호">
 								</div>
@@ -189,17 +198,17 @@
 				</div>
 			</div>
 			<div class="row row-condensed">
-	<div
-		class="col-md-offset-2 col-sm-offset-2 col-xs-offset-2 col-md-1 col-sm-1 col-xs-1 previousBtn">
-		<a href="${initParam.rootPath}/basicinfo.do">
-			<button type="button" class="btn btn-default">이전</button>
-		</a>
-	</div>
-	<div
-		class="col-md-offset-6 col-sm-offset-6 col-xs-offset-4 col-md-1 col-sm-1 col-xs-1 nextBtn leftform">
-		<button class="btn btn-default">다음</button>
-	</div>
-</div>
+				<div
+					class="col-md-offset-2 col-sm-offset-2 col-xs-offset-2 col-md-1 col-sm-1 col-xs-1 previousBtn">
+					<a href="${initParam.rootPath}/basicinfo.do">
+						<button type="button" class="btn btn-default">이전</button>
+					</a>
+				</div>
+				<div
+					class="col-md-offset-6 col-sm-offset-6 col-xs-offset-4 col-md-1 col-sm-1 col-xs-1 nextBtn leftform">
+					<button class="btn btn-default">다음</button>
+				</div>
+			</div>
 		</div>
 	</form>
 </div>

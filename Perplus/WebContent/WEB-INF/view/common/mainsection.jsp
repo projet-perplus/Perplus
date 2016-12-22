@@ -70,7 +70,7 @@ function searchHouseByStartFilter(){
 							</div>
 						</div>
 						<div class="col-md-5">
-							<button type="button" class="btn btn-default btn-lg" name="roomssearch"
+							<button type="button" class="btn btn-default btn-lg searchBtn" name="roomssearch"
 									id="Search"  onclick="searchHouseByStartFilter()">숙소 검색</button>
 						</div>
 					</div>

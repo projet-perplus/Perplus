@@ -10,7 +10,7 @@
 	<div class="panel-header">
 		<span>위시 리스트</span>
 	</div>
-	<div class="panel-body">
+	<div class="panel-body" style="min-height:300px;">
 		<div class="row nowtravel">
 			<div class="col-md-12">
 				<div class="slidebar">
@@ -33,9 +33,10 @@
 																		<c:choose>
 																			<c:when
 																				test="${houseZzim.house.housePicture[0].pictureName != null}">
-																				<img
-																					src="${initParam.rootPath}/????/${houseZzim.house.housePicture[0].pictureName}"
-																					alt="없엉!!" style="width: 100%; height: 200px" />
+																				<a href="${initParam.rootPath}/house/houseDetail.do?houseSerial=${houseZzim.house.houseSerial}"><img
+																					src="${initParam.rootPath}/housePicture/${houseZzim.house.housePicture[0].pictureName}"
+																					alt="" style="width: 100%; height: 200px" />
+																				</a>
 																			</c:when>
 																			<c:otherwise>
 																				<img

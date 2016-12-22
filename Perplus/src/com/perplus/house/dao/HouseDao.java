@@ -23,7 +23,7 @@ public interface HouseDao {
 	
 	List<HouseVo> selectHouseBySectionAndFilter(HashMap map);
 	
-	HashMap selectHousePriceRangeBySection(HashMap map);
+	HashMap selectHousePriceRange();
 	
 	int reservationAbleTerm(HashMap map);
 	

@@ -39,7 +39,7 @@
 	<div class="panel-header">
 		<span>메시지</span>
 	</div>
-	<div class="panel-body" style="min-height:400px;">
+	<div class="panel-body" style="min-height:300px;">
 		<div class="row pasttravel">
 			<div class="col-md-12">
 				<c:choose>

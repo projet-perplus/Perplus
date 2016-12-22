@@ -199,12 +199,12 @@ public class ReviewController {
 	}
 	
 	/******************리뷰 코멘트 삭제*****************/
-	@RequestMapping("/removeReviewComment")
+	@RequestMapping("/removeReviewComment") 
 	public String removeReviewComment(@RequestParam int	commentSerial,@RequestParam int reviewSerial){		
 		service.removeReviewComment(commentSerial);
 		return"redirect:/review/showReview.do?&reviewSerial="+reviewSerial;
 	}
-	
+	 
 	/**************로그인 체크 필요 없음******************/
 	
 	/******************리뷰 상세 보기*****************/
