@@ -27,6 +27,7 @@ $(document).ready(function(){
     	selectedCardSerial = $(this).find(".cardSerial").val();
     	$("#dialog-confirm").dialog( "open" );
     });//paymentDeleteBtn
+    
 });	//(document).ready
 
 
@@ -117,7 +118,7 @@ function deleteCard(cardSerial){
 	<div class="panel-body" style="text-align:center; min-height: 350px;">
 		<a href="#" class="paymentBtn" data-toggle="modal" data-target="#basicModal" id="addCard">
 				<span class="paymentBtnImage"><img src="/Perplus/css/image/plusIcon.png" /></span>
-				<span class="pamentBtnName">신규 카드 추가</span>
+				<span class="paymentBtnName">신규 카드 추가</span>
 		</a>
 	</div>
 </div>

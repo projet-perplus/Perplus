@@ -595,7 +595,7 @@ p {
 	height: 45px;
 }
 
-.paymentBtn>.pamentBtnName {
+.paymentBtn>.paymentBtnName {
 	
 }
 
@@ -646,6 +646,36 @@ p {
 .tabsdiv {
 	margin-bottom: 10px;
 }
+
+.receiveBtn {
+	background: none;
+	border: 1px solid #ccc;
+	/* 	float:left; */
+	margin: 10px;
+	border-radius: 4px;
+	display: inline-block;
+	width: 98%;
+ 	height: auto;
+	vertical-align: middle;
+	box-sizing: border-box;
+	padding-top: 17px;
+}
+
+.receiveBtn>.receiveBtnContant {
+	padding-left: 2%;
+    font-weight: normal;
+	height: 45px;
+}
+
+.receiveBtn>.separator {
+	padding-left: 7%;
+	padding-right: 5%;
+/* 	display: block; */
+    font-weight: normal;
+	height: 45px;
+
+}
+
 
 .tabsdiv>.ui-tabs {
 	position: relative;

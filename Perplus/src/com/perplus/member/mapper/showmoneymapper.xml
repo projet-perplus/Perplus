@@ -27,34 +27,34 @@
 	
 	<!-- select -->
 	<select id="selectShowmoney" parameterType="string" resultType="ShowmoneyVo">
-		select	TRAVEL_SERIAL = #{travelSerial}, 
-					MEMBER_EMAIL = #{memberEmail}, 
-					ACCOUNT_SERIAL = #{accountSerial}, 
-					SHOWMONEY_STATUS = #{showmoneyStatus}, 
-					SHOWMONEY_TOTAL_MONEY = #{showmoneyTotalMoney}, 
-					SHOWMONEY_RECIVE_MONEY = #{showmoneyReciveMoney}
+		select	TRAVEL_SERIAL travelSerial, 
+					MEMBER_EMAIL memberEmail, 
+					ACCOUNT_SERIAL accountSerial, 
+					SHOWMONEY_STATUS showmoneyStatus, 
+					SHOWMONEY_TOTAL_MONEY showmoneyTotalMoney, 
+					SHOWMONEY_RECIVE_MONEY showmoneyReciveMoney
 		from SHOWMONEY
 		where MEMBER_EMAIL = #{memberEmail}
 	</select>
 	
 	<select id="selectShowmoneyByTravelSerial"  parameterType="_int" resultType="ShowmoneyVo">
-		select	TRAVEL_SERIAL = #{travelSerial}, 
-					MEMBER_EMAIL = #{memberEmail}, 
-					ACCOUNT_SERIAL = #{accountSerial}, 
-					SHOWMONEY_STATUS = #{showmoneyStatus}, 
-					SHOWMONEY_TOTAL_MONEY = #{showmoneyTotalMoney}, 
-					SHOWMONEY_RECIVE_MONEY = #{showmoneyReciveMoney}
+		select	TRAVEL_SERIAL travelSerial, 
+					MEMBER_EMAIL memberEmail, 
+					ACCOUNT_SERIAL accountSerial, 
+					SHOWMONEY_STATUS showmoneyStatus, 
+					SHOWMONEY_TOTAL_MONEY showmoneyTotalMoney, 
+					SHOWMONEY_RECIVE_MONEY showmoneyReciveMoney
 		from SHOWMONEY
 		where TRAVEL_SERIAL = #{travelSerial} 
 	</select>
 	
 	<select id="selectShowmoneyByShowmoneyStatus"  parameterType="hashmap" resultType="ShowmoneyVo">
-		select	TRAVEL_SERIAL = #{travelSerial}, 
-					MEMBER_EMAIL = #{memberEmail}, 
-					ACCOUNT_SERIAL = #{accountSerial}, 
-					SHOWMONEY_STATUS = #{showmoneyStatus}, 
-					SHOWMONEY_TOTAL_MONEY = #{showmoneyTotalMoney}, 
-					SHOWMONEY_RECIVE_MONEY = #{showmoneyReciveMoney}
+		select	TRAVEL_SERIAL travelSerial, 
+					MEMBER_EMAIL memberEmail, 
+					ACCOUNT_SERIAL accountSerial, 
+					SHOWMONEY_STATUS showmoneyStatus, 
+					SHOWMONEY_TOTAL_MONEY showmoneyTotalMoney, 
+					SHOWMONEY_RECIVE_MONEY showmoneyReciveMoney
 		from SHOWMONEY
 		where MEMBER_EMAIL = #{memberEmail}  and SHOWMONEY_STATUS = #{showmoneyStatus}
 	</select>
