@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="payinfo">
+
+	<!-- Insert -->
+	<insert id="insertPayInfo" parameterType="PayInfoVo">
+		insert into PAYINFO values (#{travelSerial}, #{memberEmail}, #{payInfoDate}, #{payInfoPerMoney}, #{payInfoTotalMoney})
+	</insert>
+	
+	<!-- update-->
+	<update id="updatePayInfo" parameterType="PayInfoVo">
+		update PAYINFO
+		set	TRAVEL_SERIAL = #{travelSerial}, 
+				MEMBER_EMAIL = #{memberEmail}, 
+				PAYINFO_DATE = #{payInfoDate}, 
+				PAYINFO_PER_MONEY = #{payInfoPerMoney}, 
+				PAYINFO_TOTAL_MONEY = #{payInfoTotalMoney}
+		where TRAVEL_SERIAL = #{travelSerial}
+	</update>
+	
+	<!-- delete -->
+	<delete id="deletePayInfo" parameterType="_int">
+		delete from PAYINFO where TRAVEL_SERIAL = #{travelSerial}
+	</delete>
+	
+	<!-- select -->
+	<select id="selectPayInfo" parameterType="string" resultType="PayInfoVo">
+		select	TRAVEL_SERIAL = #{travelSerial}, 
+					MEMBER_EMAIL = #{memberEmail}, 
+					PAYINFO_DATE = #{payInfoDate}, 
+					PAYINFO_PER_MONEY = #{payInfoPerMoney}, 
+					PAYINFO_TOTAL_MONEY = #{payInfoTotalMoney}
+		from PAYINFO
+		where MEMBER_EMAIL = #{memberEmail}
+	</select>
+	
+	<select id="selectPayInfoByTravelSerial"  parameterType="_int" resultType="PayInfoVo">
+		select	TRAVEL_SERIAL = #{travelSerial}, 
+					MEMBER_EMAIL = #{memberEmail}, 
+					PAYINFO_DATE = #{payInfoDate}, 
+					PAYINFO_PER_MONEY = #{payInfoPerMoney}, 
+					PAYINFO_TOTAL_MONEY = #{payInfoTotalMoney}
+		from PAYINFO
+		where TRAVEL_SERIAL = #{travelSerial} 
+	</select>
+
+</mapper>

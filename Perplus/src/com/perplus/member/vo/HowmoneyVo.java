@@ -10,10 +10,10 @@ public class HowmoneyVo {
 	private String howmoneyBank;
 	private String howmoneyNumber;
 	
-	private List<ShowMeTheMoneyVo> showmoneyList;
+	private List<ShowmoneyVo> showmoneyList;
 
 	public HowmoneyVo(int accountSerial, String memberEmail, String howmoneyHolder, String howmoneyBank,
-			String howmoneyNumber, List<ShowMeTheMoneyVo> showmoneyList) {
+			String howmoneyNumber, List<ShowmoneyVo> showmoneyList) {
 		this.accountSerial = accountSerial;
 		this.memberEmail = memberEmail;
 		this.howmoneyHolder = howmoneyHolder;
@@ -74,11 +74,11 @@ public class HowmoneyVo {
 		this.howmoneyNumber = howmoneyNumber;
 	}
 
-	public List<ShowMeTheMoneyVo> getShowmoneyList() {
+	public List<ShowmoneyVo> getShowmoneyList() {
 		return showmoneyList;
 	}
 
-	public void setShowmoneyList(List<ShowMeTheMoneyVo> showmoneyList) {
+	public void setShowmoneyList(List<ShowmoneyVo> showmoneyList) {
 		this.showmoneyList = showmoneyList;
 	}
 

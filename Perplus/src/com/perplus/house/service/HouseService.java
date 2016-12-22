@@ -55,11 +55,15 @@ public interface HouseService {
 	
 	List<HouseVo> selectHouseBySectionAndFilter(HashMap map);
 	
+
 	//하우스필터 하우스시리얼로 단일 조회
 	HouseFilterVo selectHouseFilter(int houseSerial);
+
 	
+	HashMap selectHousePriceRange();
+
 	
-	
+	int reservationAbleTerm(HashMap map);
 	//checkList service
 	
 	//체크리스트 등록

@@ -4,6 +4,7 @@ var defaultIcon = new google.maps.MarkerImage("/Perplus/img/markerIcon/default.p
 var restaurantIcon = new google.maps.MarkerImage("/Perplus/img/markerIcon/restaurants.png");
 var houseIcon = new google.maps.MarkerImage("/Perplus/img/markerIcon/house.png");
 var registerIcon = new google.maps.MarkerImage("/Perplus/img/markerIcon/register.png");
+
 //맵
 var map;
 //맵 클러스터
@@ -69,22 +70,28 @@ $(function() {
 				resetMapMarker();
 			});
 		}
-
+		
 		//하우스용 이벤트
-		
-		
-		//최초 로딩때 location이 넘어오는 register와 search 일때 검사
-		var geoLocation = document.getElementById("location");
-		if(geoLocation.value.length!=0){
-			locationSearch();
-		}
+	
+		google.maps.event.addListenerOnce(map,'bounds_changed', function() {
+			//최초 로딩때 location이 넘어오는 search 일때 검사
+			var geoLocation = document.getElementById("location");
+			if(geoLocation.value.length!=0){
+				locationSearch(); 
+			}else if(stage=='search'){
+				map.setZoom(8);
+				printByFilter();
+			}
+		});
 	}
-	google.maps.event.addDomListener(window, 'load', initialize);
+	google.maps.event.addDomListener(window, 'load', initialize) ;
 });	
 //리뷰에서는 이벤트가 있을때 부르게 되고 나머지는 최초 남아있는 location 값으로 부르게 된다.
 function locationSearch(){
+	
+	alert('3');
 	var geoLocation = document.getElementById("location");
-	if(geoLocation==null){
+	if(geoLocation==null || geoLocation.length==0){
 		return;
 	}
 	

@@ -140,6 +140,16 @@ public class HouseServiceImpl implements HouseService{
 	public List<HouseVo> selectHouseBySectionAndFilter(HashMap map) {
 		return houseDao.selectHouseBySectionAndFilter(map);
 	}
+
+	@Override
+	public HashMap selectHousePriceRange() {
+		return houseDao.selectHousePriceRange();
+	}
+
+	@Override
+	public int reservationAbleTerm(HashMap map) {
+		return houseDao.reservationAbleTerm(map);
+	}
 	
 	@Override
 	public HouseFilterVo selectHouseFilter(int houseSerial){

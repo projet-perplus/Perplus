@@ -19,7 +19,7 @@ import com.perplus.member.dao.MemberDao;
 import com.perplus.member.dao.PaymentDao;
 import com.perplus.member.dao.RejectDao;
 import com.perplus.member.dao.ReviewZzimDao;
-import com.perplus.member.dao.ShowMeTheMoneyDao;
+import com.perplus.member.dao.ShowmoneyDao;
 import com.perplus.member.dao.TravelDao;
 import com.perplus.member.service.MemberService;
 import com.perplus.member.vo.ChattingLogVo;
@@ -31,7 +31,7 @@ import com.perplus.member.vo.MemberVo;
 import com.perplus.member.vo.PaymentVo;
 import com.perplus.member.vo.RejectVo;
 import com.perplus.member.vo.ReviewZzimVo;
-import com.perplus.member.vo.ShowMeTheMoneyVo;
+import com.perplus.member.vo.ShowmoneyVo;
 import com.perplus.member.vo.TravelVo;
 import com.perplus.util.Constants;
 import com.perplus.util.PagingBean;
@@ -39,8 +39,6 @@ import com.perplus.util.PagingBean;
 @Service
 public class MemberServiceImpl implements MemberService{
 
-
-	
 	@Autowired
 	@Qualifier("chattingDaoImpl")
 	private ChattingDao chattingDao;
@@ -78,8 +76,8 @@ public class MemberServiceImpl implements MemberService{
 	private ReviewZzimDao reviewZzimDao;
 	
 	@Autowired
-	@Qualifier("showMeTheMoneyDaoImpl")
-	private ShowMeTheMoneyDao showmethemoneyDao;
+	@Qualifier("showmoneyDaoImpl")
+	private ShowmoneyDao showmoneyDao;
 	
 	@Qualifier("travelDaoImpl")
 	private TravelDao travelDao;
@@ -454,34 +452,34 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	/**
-	 * showmethemoney 관련 Service
-	 * @param showmethemoney
+	 * showmoney 관련 Service
+	 * @param showmoney
 	 */
-	public void registerShowmethemoney(ShowMeTheMoneyVo showmethemoney){
+	public void registerShowmoney(ShowmoneyVo showmoney){
 		try {
-			getShowmethemoneyBySerial(showmethemoney.getShowmethemoneySerial());
+			getShowmoneyBySerial(showmoney.getTravelSerial());
 		} catch (Exception e) {
-			showmethemoneyDao.insertShowmethemoney(showmethemoney);
+			showmoneyDao.insertShowmoney(showmoney);
 		}
 		
 	}
 	
-	public ShowMeTheMoneyVo getShowmethemoneyBySerial(int showmethemoneySerial) throws Exception{
-		ShowMeTheMoneyVo showmethemoney = null;
+	public ShowmoneyVo getShowmoneyBySerial(int travelSerial) throws Exception{
+		ShowmoneyVo showmoney = null;
 		//Serial로 DB 조회
-		showmethemoney = showmethemoneyDao.selectShowmethemoneyByShowmethemoneySerial(showmethemoneySerial);
-		if (showmethemoney != null){ // 조회된 객체 return
-			return showmethemoneyDao.selectShowmethemoneyByShowmethemoneySerial(showmethemoneySerial);
+		showmoney = showmoneyDao.selectShowmoneyByTravelSerial(travelSerial);
+		if (showmoney != null){ // 조회된 객체 return
+			return showmoney;
 		}else{ // 조회된 객체가 없으면 exception 발생
 			throw new Exception("Serial로 검색한 대금 내역이 존재하지 않습니다.");
 		}
 		
 	}
 	
-	public List<ShowMeTheMoneyVo> getAllShowmethemoney(String memberEmail) throws Exception{
-		List<ShowMeTheMoneyVo> smtmList = null;
+	public List<ShowmoneyVo> getAllShowmoney(String memberEmail) throws Exception{
+		List<ShowmoneyVo> smtmList = null;
 		// Email로 객체 리스트 조회
-		smtmList = showmethemoneyDao.selectShowmethemoney(memberEmail);
+		smtmList = showmoneyDao.selectShowmoney(memberEmail);
 		if(smtmList !=null){ // 조회된 리스트가 있으면 리턴
 			return smtmList;
 		}else{ // 없으면 Exception 발생
@@ -489,24 +487,24 @@ public class MemberServiceImpl implements MemberService{
 		}
 	}
 	
-	public void removeShowmethemoney(int showmethemoneySerial) throws Exception{
-		ShowMeTheMoneyVo showmethemoney = null;
+	public void removeShowmoney(int travelSerial) throws Exception{
 		try {
-			showmethemoney = getShowmethemoneyBySerial(showmethemoneySerial);
-			showmethemoneyDao.deleteShowmethemoney(showmethemoney.getShowmethemoneySerial());
+			getShowmoneyBySerial(travelSerial);
 		} catch (Exception e) {
 			throw new Exception("삭제할 내역이 없습니다.");
 		}
+		showmoneyDao.deleteShowmoney(travelSerial);
 	}
-	
-	public int getShowmethemoneySerialSeq() {
-		return showmethemoneyDao.selectShowmethemoneySerialSeq();
+/*	Travel Serial 사용으로 주석
+	public int getShowmoneySerialSeq() {
+		return showmoneyDao.selectShowmoneySerialSeq();
 	}
+	*/
 	
-	public List<ShowMeTheMoneyVo> getShowmethemoneyByShowmethemoneyStatus(String memberEmail,
-			int  showmethemoneyStatus) throws Exception {
-		List<ShowMeTheMoneyVo> list = null;
-		list = showmethemoneyDao.selectShowmethemoneyByShowmethemoneyStatus(memberEmail, showmethemoneyStatus);
+	public List<ShowmoneyVo> getShowmoneyByShowmoneyStatus(String memberEmail,
+			int  showmoneyStatus) throws Exception {
+		List<ShowmoneyVo> list = null;
+		list = showmoneyDao.selectShowmoneyByShowmoneyStatus(memberEmail, showmoneyStatus);
 		if (list !=null){
 			return list;
 		}else{
