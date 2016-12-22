@@ -51,7 +51,7 @@ public class HouseDaoImpl implements HouseDao{
 	}
 
 	@Override
-	public List<HouseVo> selectHouseListByFilter(HashMap map) {
+	public List selectHouseListByFilter(HashMap map) {
 		return session.selectList("house.selectHouseListByFilter",map);
 	}
 
@@ -67,6 +67,7 @@ public class HouseDaoImpl implements HouseDao{
 
 	@Override
 	public int reservationAbleTerm(HashMap map) {
+		System.out.println(map);
 		return session.selectOne("house.reservationAbleTerm",map);
 	}
 	

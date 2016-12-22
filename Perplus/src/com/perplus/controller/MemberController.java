@@ -2,6 +2,8 @@ package com.perplus.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -24,6 +26,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.perplus.house.service.HouseService;
 import com.perplus.member.service.MemberService;
 import com.perplus.member.vo.ChattingLogVo;
 import com.perplus.member.vo.ChattingVo;
@@ -33,6 +36,7 @@ import com.perplus.member.vo.HowmoneyVo;
 import com.perplus.member.vo.MemberVo;
 import com.perplus.member.vo.PaymentVo;
 import com.perplus.member.vo.ReviewZzimVo;
+import com.perplus.member.vo.TravelVo;
 import com.perplus.util.TextUtil;
 
 
@@ -43,6 +47,45 @@ public class MemberController {
 	@Autowired
 	private MemberService service;
 	
+	@Autowired
+	private HouseService houseService;
+	
+	@RequestMapping("/reservationDate.do")
+	@ResponseBody
+	public int travelReservationDate(@RequestParam String dateText,@RequestParam int houseSerial,@RequestParam int reservationTerm) throws ParseException{//날짜랑 시리얼
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		HashMap<String, Object> map = new HashMap<>();
+
+		//미래예약가능개월수
+		Date newDate = new Date();
+		newDate.setMonth(newDate.getMonth()+reservationTerm);
+		
+		//dateText Date 타입으로 바꾸기.
+		Date date = sdf.parse(dateText);
+		
+		map.put("date", date);
+		map.put("serial", houseSerial);
+		map.put("lastDate", newDate);
+		
+		System.out.println(houseSerial);
+		int a = houseService.reservationAbleTerm(map);
+		System.out.println(a);
+		return a;
+	}
+	
+	
+	/****************예.약.****************/
+	@RequestMapping("/reservation.do")
+	public String housereservation(HttpServletRequest request){
+		System.out.println(request.getParameter("travelStart"));
+		System.out.println(request.getParameter("travelEnd"));
+		System.out.println(request.getParameter("houseSerial"));
+		System.out.println(request.getParameter("travelNumber"));
+		System.out.println(request.getParameter("travelCheckin"));
+		System.out.println(request.getParameter("travelCost"));
+//		service.registerTravel(travel);
+		return null;
+	}
 	/*****************회원가입***************/
 	@RequestMapping("/join.do")
 	public String joinMember(@ModelAttribute MemberVo member, BindingResult result, HttpServletRequest request)throws Exception{

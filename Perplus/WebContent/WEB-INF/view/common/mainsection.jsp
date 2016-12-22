@@ -47,14 +47,14 @@ function searchHouseByStartFilter(){
 							<div class="form-group">
 								<label for="location">체크인</label><br> <input type="text"
 									class="form-control" name="check" id="dpd1"
-									placeholder="yy-mm-dd">
+									placeholder="시작일">
 							</div>
 						</div>
 						<div class="col-md-6">
 							<div class="form-group">
 								<label for="location">체크아웃</label><br> <input type="text"
 									class="form-control" name="check" id="dpd2"
-									placeholder="yy-mm-dd">
+									placeholder="종료일">
 							</div>
 						</div>
 					</div>

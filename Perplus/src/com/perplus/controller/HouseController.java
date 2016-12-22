@@ -63,7 +63,7 @@ public class HouseController {
 			}
 		}
 		String shutdownDate = null;
-		if (house.getHouseFilter().getCheckList() != null) {
+		if (house.getHouseFilter()!=null&&house.getHouseFilter().getCheckList() != null) {
 			List<ShutdownVo> checkList = house.getHouseFilter().getShutdownList();
 			for (int i = 0; i < checkList.size(); i++) {
 				Date date = checkList.get(i).getShutdownDate();
