@@ -4,22 +4,23 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
-<!--map key-->
-<script src="/Perplus/js/jquery-ui.multidatespicker.js"></script>
 
+<script src="/Perplus/js/jquery-ui.multidatespicker.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<link rel="stylesheet" type="text/css" href="/Perplus/css/prettify.css">
+
+<!--map key-->
 <script
 	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWDGjKV2YFKGM5q6gtx-J5GcJTa2wLDQU"
 	type="text/javascript"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<link rel="stylesheet"
-	href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <!-- ui icon ... 등 -->
 <script src="/Perplus/js/map.js"></script>
 <!-- datepicker-->
 <script type="text/javascript">
 $(document).ready(
 		function() {
-			$(function() {
+			 $(function() {
 				$("#datepicker").multiDatesPicker({
 							addDisabledDates : [${requestScope.shutdownDate}],
 							minDate : 0,
@@ -34,8 +35,8 @@ $(document).ready(
 									'토' ],
 							dateFormat : 'yy-mm-dd',
 							showMonthAfterYear : true
-						});
-			});
+					});
+			}); 
 			var rating = ${requestScope.house.houseRating};
 			var count =${requestScope.comment.totalComments};
 			var ratingAvg = rating/count;
@@ -419,7 +420,7 @@ $(document).ready(
 					<span>예약 가능 날짜</span>
 					<div id="datepicker"></div>
 				</div>
-			</div>
+			</div> 
 
 			<div class="row row-maginTB">
 				<div
