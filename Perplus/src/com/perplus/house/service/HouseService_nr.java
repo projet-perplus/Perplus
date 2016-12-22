@@ -17,4 +17,5 @@ public interface HouseService_nr {
 	void removeHouse(int houseSerial);
 	void modifyHouse(HouseVo house);
 	HouseCommentVo selectHouseCommentOne(int commentSerial);
+	List<HouseVo> selectMyHouse(String memberEmail);
 }

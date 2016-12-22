@@ -22,4 +22,10 @@ public interface HouseDao {
 	List<HouseVo> selectHouseListByFilter(HashMap map);
 	
 	List<HouseVo> selectHouseBySectionAndFilter(HashMap map);
+	
+	HashMap selectHousePriceRangeBySection(HashMap map);
+	
+	int reservationAbleTerm(HashMap map);
+	
+	HouseVo selectHouseWithPictureAndFilterBySerial(int houseSerial);
 }

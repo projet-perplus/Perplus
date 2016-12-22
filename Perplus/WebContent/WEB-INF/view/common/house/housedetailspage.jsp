@@ -5,7 +5,6 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <!--map key-->
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="/Perplus/js/jquery-ui.multidatespicker.js"></script>
 
 <script
@@ -417,7 +416,7 @@ $(document).ready(
 			<!-- right date -->
 			<div class="row ">
 				<div class="col-md-12">
-					<span>예약 불가 날짜</span>
+					<span>예약 가능 날짜</span>
 					<div id="datepicker"></div>
 				</div>
 			</div>
@@ -455,8 +454,7 @@ $(document).ready(
 				<div
 					class="col-md-offset-0 col-sm-offset-1 col-xs-offset-2 col-md-12 col-sm-10 col-xs-8">
 					<a
-						href="${initParam.rootPath}/member/chattingcreate.do?memberEmail="
-						${sessionScope.login_info.memberEmail}>
+						href="${initParam.rootPath}/member/chattingcreate.do?chattingPartner=${requestScope.house.memberEmail}">
 						<button class="btn btn-primary" style="width: 100%">호스트와연락</button>
 					</a>
 				</div>

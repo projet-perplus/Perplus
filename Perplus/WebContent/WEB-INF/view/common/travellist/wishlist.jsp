@@ -16,11 +16,9 @@
 				<div class="slidebar">
 					<div class="carousel slide" id="myCarousel">
 						<div class="carousel-inner">
-
 							<c:choose>
 								<c:when test="${!empty requestScope.houseZzim}">
 									<c:forEach items="${requestScope.houseZzim}" var="houseZzim">
-
 										<c:choose>
 											<c:when test="${requestScope.houseZzim[0] == houseZzim}">
 												<div class="active item">

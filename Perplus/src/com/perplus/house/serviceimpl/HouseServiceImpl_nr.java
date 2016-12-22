@@ -1,5 +1,6 @@
 package com.perplus.house.serviceimpl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,6 +65,17 @@ public class HouseServiceImpl_nr implements HouseService_nr{
 	public HouseCommentVo selectHouseCommentOne(int commentSerial) {
 		// TODO Auto-generated method stub
 		return houseCommentDao.selectHouseCommentByCommentSerial(commentSerial);
+	}
+
+	@Override
+	public List<HouseVo> selectMyHouse(String memberEmail) {
+		List<HouseVo> list= houseDao.selectHouseListByMemberEmail(memberEmail);
+		List<HouseVo> houseList = new ArrayList<>();
+		for(int i=0;i<list.size();i++){
+			HouseVo house =houseDao.selectHouseWithPictureAndFilterBySerial(list.get(i).getHouseSerial());
+			houseList.add(house);
+		}
+		return houseList;
 	}
 	
 	

@@ -18,6 +18,7 @@ drop table CHECKLIST cascade constraint;
 drop table SHUTDOWN cascade constraint;
 drop table SHOWMONEY cascade constraint;
 drop table TRAVEL cascade constraint;
+drop table PAYINFO cascade constraint;
 
 <<<<<<< HEAD
 =======

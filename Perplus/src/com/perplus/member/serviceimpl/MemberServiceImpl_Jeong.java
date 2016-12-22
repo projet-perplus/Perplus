@@ -1,22 +1,6 @@
 package com.perplus.member.serviceimpl;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
-
-import com.perplus.member.dao.PaymentDao;
-import com.perplus.member.dao.RejectDao;
-import com.perplus.member.dao.ReviewZzimDao;
-import com.perplus.member.dao.ShowMeTheMoneyDao;
-import com.perplus.member.dao.TravelDao;
-import com.perplus.member.vo.PaymentVo;
-import com.perplus.member.vo.RejectVo;
-import com.perplus.member.vo.ReviewZzimVo;
-import com.perplus.member.vo.ShowMeTheMoneyVo;
-import com.perplus.member.vo.TravelVo;
-import com.perplus.util.Constants;
 
 @Service
 public class MemberServiceImpl_Jeong {
@@ -34,8 +18,8 @@ public class MemberServiceImpl_Jeong {
 //	private ReviewZzimDao reviewZzimDao;
 //	
 //	@Autowired
-//	@Qualifier("showMeTheMoneyDaoImpl")
-//	private ShowMeTheMoneyDao showmethemoneyDao;
+//	@Qualifier("showmoneyDaoImpl")
+//	private ShowmoneyDao showmoneyDao;
 //	
 //	@Qualifier("travelDaoImpl")
 //	private TravelDao travelDao;
@@ -167,34 +151,34 @@ public class MemberServiceImpl_Jeong {
 //	}
 //	
 //	/**
-//	 * showmethemoney 관련 Service
-//	 * @param showmethemoney
+//	 * showmoney 관련 Service
+//	 * @param showmoney
 //	 */
-//	public void registerShowmethemoney(ShowMeTheMoneyVo showmethemoney){
+//	public void registerShowmethemoney(ShowmoneyVo showmoney){
 //		try {
-//			getShowmethemoneyBySerial(showmethemoney.getShowmethemoneySerial());
+//			getShowmethemoneyBySerial(showmoney.getShowmethemoneySerial());
 //		} catch (Exception e) {
-//			showmethemoneyDao.insertShowmethemoney(showmethemoney);
+//			showmoneyDao.insertShowmethemoney(showmoney);
 //		}
 //		
 //	}
 //	
-//	public ShowMeTheMoneyVo getShowmethemoneyBySerial(int showmethemoneySerial) throws Exception{
-//		ShowMeTheMoneyVo showmethemoney = null;
+//	public ShowmoneyVo getShowmethemoneyBySerial(int showmoneySerial) throws Exception{
+//		ShowmoneyVo showmoney = null;
 //		//Serial로 DB 조회
-//		showmethemoney = showmethemoneyDao.selectShowmethemoneyByShowmethemoneySerial(showmethemoneySerial);
-//		if (showmethemoney != null){ // 조회된 객체 return
-//			return showmethemoneyDao.selectShowmethemoneyByShowmethemoneySerial(showmethemoneySerial);
+//		showmoney = showmoneyDao.selectShowmethemoneyByShowmethemoneySerial(showmoneySerial);
+//		if (showmoney != null){ // 조회된 객체 return
+//			return showmoneyDao.selectShowmethemoneyByShowmethemoneySerial(showmoneySerial);
 //		}else{ // 조회된 객체가 없으면 exception 발생
 //			throw new Exception("Serial로 검색한 대금 내역이 존재하지 않습니다.");
 //		}
 //		
 //	}
 //	
-//	public List<ShowMeTheMoneyVo> getAllShowmethemoney(String memberEmail) throws Exception{
-//		List<ShowMeTheMoneyVo> smtmList = null;
+//	public List<ShowmoneyVo> getAllShowmethemoney(String memberEmail) throws Exception{
+//		List<ShowmoneyVo> smtmList = null;
 //		// Email로 객체 리스트 조회
-//		smtmList = showmethemoneyDao.selectShowmethemoney(memberEmail);
+//		smtmList = showmoneyDao.selectShowmethemoney(memberEmail);
 //		if(smtmList !=null){ // 조회된 리스트가 있으면 리턴
 //			return smtmList;
 //		}else{ // 없으면 Exception 발생
@@ -202,11 +186,11 @@ public class MemberServiceImpl_Jeong {
 //		}
 //	}
 //	
-//	public void removeShowmethemoney(int showmethemoneySerial) throws Exception{
-//		ShowMeTheMoneyVo showmethemoney = null;
+//	public void removeShowmethemoney(int showmoneySerial) throws Exception{
+//		ShowmoneyVo showmoney = null;
 //		try {
-//			showmethemoney = getShowmethemoneyBySerial(showmethemoneySerial);
-//			showmethemoneyDao.deleteShowmethemoney(showmethemoney.getShowmethemoneySerial());
+//			showmoney = getShowmethemoneyBySerial(showmoneySerial);
+//			showmoneyDao.deleteShowmethemoney(showmoney.getShowmethemoneySerial());
 //		} catch (Exception e) {
 //			throw new Exception("삭제할 내역이 없습니다.");
 //		}

@@ -12,7 +12,7 @@ import com.perplus.member.vo.MemberVo;
 import com.perplus.member.vo.PaymentVo;
 import com.perplus.member.vo.RejectVo;
 import com.perplus.member.vo.ReviewZzimVo;
-import com.perplus.member.vo.ShowMeTheMoneyVo;
+import com.perplus.member.vo.ShowmoneyVo;
 import com.perplus.member.vo.TravelVo;
 import com.perplus.util.Constants;
 
@@ -138,17 +138,33 @@ public interface MemberService {
 	 * showmethemoney 관련 Service
 	 * @param showmethemoney
 	 */
-	public void registerShowmethemoney(ShowMeTheMoneyVo showmethemoney);
+	public void registerShowmoney(ShowmoneyVo showmoney);
 	
-	public ShowMeTheMoneyVo getShowmethemoneyBySerial(int showmethemoneySerial) throws Exception;
+	public ShowmoneyVo getShowmoneyBySerial(int travelSerial) throws Exception;
 	
-	public List<ShowMeTheMoneyVo> getAllShowmethemoney(String memberEmail) throws Exception;
+	public List<ShowmoneyVo> getAllShowmoney(String memberEmail) throws Exception;
 	
-	public void removeShowmethemoney(int showmethemoneySerial) throws Exception;
+	public void removeShowmoney(int travelSerial) throws Exception;
 	
-	public int getShowmethemoneySerialSeq();
-
-	public List<ShowMeTheMoneyVo> getShowmethemoneyByShowmethemoneyStatus(String memberEmail, int showmethemoneyStatus) throws Exception;
+/*	Travel Serial 사용으로 주석
+	public int getShowmoneySerialSeq();
+*/
+	public List<ShowmoneyVo> getShowmoneyByShowmoneyStatus(String memberEmail, int  showmoneyStatus) throws Exception;
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	/**
