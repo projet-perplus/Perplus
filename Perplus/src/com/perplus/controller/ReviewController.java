@@ -204,7 +204,7 @@ public class ReviewController {
 		service.removeReviewComment(commentSerial);
 		return"redirect:/review/showReview.do?&reviewSerial="+reviewSerial;
 	}
-	 
+	  
 	/**************로그인 체크 필요 없음******************/
 	
 	/******************리뷰 상세 보기*****************/
@@ -218,12 +218,12 @@ public class ReviewController {
 			ReviewZzimVo zzim = memberService.selectReviewZzimByEmailAndReviewSerial(member.getMemberEmail(), reviewSerial);
 			System.out.println(zzim);
 			if(zzim != null){
-				modelMap.put("zzim", zzim);
+				modelMap.put("zzim", zzim); 
 			}
 		}
 		review.setReviewComment((List<ReviewCommentVo>)map.get("list"));
-		System.out.println(review);
-		modelMap.put("review", review);
+		System.out.println(review); 
+		modelMap.put("review", review); 
 		modelMap.put("picture", list);
 		modelMap.put("pageBean", map.get("pageBean"));
 		

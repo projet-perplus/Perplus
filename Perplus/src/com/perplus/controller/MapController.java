@@ -1,10 +1,12 @@
 package com.perplus.controller;
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +20,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.perplus.house.daoimpl.HouseDaoImpl;
 import com.perplus.house.service.HouseService;
-import com.perplus.house.vo.HouseVo;
+import com.perplus.house.vo.CodetableVo;
 import com.perplus.member.vo.MemberVo;
 import com.perplus.review.service.ReviewService;
 import com.perplus.review.vo.ReviewCommentVo;
@@ -29,6 +32,9 @@ import com.perplus.review.vo.ReviewVo;
 @Controller
 @RequestMapping("/map")
 public class MapController {
+	
+	@Autowired
+	private HouseDaoImpl houseDao; 
 	
 	@Autowired
 	private HouseService houseService;
@@ -86,25 +92,54 @@ public class MapController {
 	//	5-2. 각 체크리스트 key값 (코드테이블 참조)
 	@RequestMapping("/showhousebymapandfilter.do")
 	@ResponseBody
-	public HashMap showHouseByMapAndFilter(@RequestBody String body) throws JsonParseException, JsonMappingException, IOException{
+	public HashMap showHouseByMapAndFilter(@RequestBody String body, HttpServletRequest request) throws JsonParseException, JsonMappingException, IOException, ParseException{
 		
 		ObjectMapper mapper = new ObjectMapper(); 
 		HashMap map = mapper.readValue(body,HashMap.class);
-		HashMap result = new HashMap(); 
+		HashMap result = new HashMap();  
 		//1.먼저 돈이 0원인지 확인 한다.
-		int priceRangeMin= ((int)map.get("housePriceRangeMin"));
-		int priceRangeMax=((int)map.get("housePriceRangeMax"));
-		//최초 전체 숙소의 최대 최소 가격 범위 받기 
+		 
 		
+		int priceRangeMin= (int) (map.get("housePriceRangeMin"));
+		int priceRangeMax=(int) (map.get("housePriceRangeMax"));
+		//최초 전체 숙소의 최대 최소 가격 범위 받기 (숙소가 최소 하나는 있다는 가정)
 		if(priceRangeMin==0&&priceRangeMax==0){
+
+			
 			result.put("priceRange", houseService.selectHousePriceRange());
-		}
-		map.put("southWestLat", (Double)map.get("southWestLat"));
-		map.put("southWestLng", (Double)map.get("southWestLng"));
-		map.put("northEastLat", (Double)map.get("northEastLat"));
-		map.put("northEastLng", (Double)map.get("northEastLng"));
+			HashMap tmp = (HashMap) result.get("priceRange");
+			map.put("housePriceMin",tmp.get("MIN"));
+			map.put("housePriceMax",tmp.get("MAX"));
+		}    
+//		Calendar cal = Calendar.getInstan ce();
+//		cal.setTime(new Date());
+//		SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd");
+//		Object startDay = map.get("startDay");
+//		Object endDay = map.get("endDay");
+//		System.out.println(startDay);
+//		System.out.println(endDay);
+//		
+//		if(startDay!=null && endDay==null){
+//		//최초 시작일만 선택되었을때
+////			Date edDay = fm.parse((String) map.get("endDay"));
+//			String currentTime = fm.format(cal.getTime());
+//			cal.add(Calendar.MONTH, 6);
+//			String str = fm.format(cal.getTime());
+//			System.out.println(str);
+//			map.put("endDay", cal.getTime());
+//			map.put("currentTime", currentTime);
+//			 
+//		}else if(startDay==null && endDay!=null){
+//		//마지막 날만 선택되었을때
+////			Date stDay = fm.parse((String) map.get("startDay"));
+//			String currentTime = fm.format(cal.getTime());
+//			String str = fm.format(cal.getTime());
+//			map.put("startDay", str);
+//			map.put("currentTime", cal.getTime());
+//		}
+//		//이외의 상황들은 선택이 아예 안되어 있는 경우이므로 배제하면 된다.
 		
-		System.out.println(result); 
+//		System.out.println(result); 
 		/*
 		 * 여기부터 두가지로 나뉘게 되는데
 		 * 1. 기본적인 필터 변경에 의한 변경,
@@ -115,12 +150,33 @@ public class MapController {
 		 * 
 		 * return value 는 돈의 범위 와 
 		 */
+//		System.out.println(houseService.selectHouseBySectionAndFilter(map));
+		result.put("houseList", houseService.selectHouseBySectionAndFilter(map));
+		//만약에 list가 생성이 되었다면 (list 내부가 비어도 상관 없음) 추가필터 버튼으로 넘어온 상태라는 것을 의미한다.
+//		System.out.println(map);
+//		result.put("houseList", houseService.selectHouseBySectionAndFilter(map));
 		
 		
-		System.out.println(map);
+		
+//		System.out.println(result);
 		
 		return result;
 	}
+	
+	@RequestMapping("/getaddfilterlist.do")
+	@ResponseBody
+	public HashMap getAddFilterList() {
+		HashMap result = new HashMap();
+		List<CodetableVo> convenientFacility = houseService.codetableFindByKind(1);//편의시설
+		List<CodetableVo> secureFacility = houseService.codetableFindByKind(2);//안전시설
+		List<CodetableVo> commonFacility = houseService.codetableFindByKind(3);//공용시설
+		result.put("convenientFacility", convenientFacility);
+		result.put("secureFacility", secureFacility);
+		result.put("commonFacility", commonFacility);
+		
+		return result;
+	}
+
 }
 
 

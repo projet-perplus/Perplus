@@ -4,7 +4,7 @@ drop sequence house_seq
 
 insert into HOUSEFILTER values(1,'화장실',20,'다인실',2,'경기도 용인시 모현면');
 
-
+select sysdate from dual;
 
 insert into HOUSEZZIM values(1,2,'bbb')
 
@@ -528,6 +528,30 @@ where HOUSE_SERIAL IN
 	and (? + HOUSEFILTER_CHECKIN_TERM >= ?)    
 )
 
+		select COALESCE(min(SHUTDOWN_DATE - CAST('2017-01-02' as date) ),  (CAST('2018-01-03' as date) - CAST('2017-01-02' as date)))
+		from SHUTDOWN
+		where SHUTDOWN_SERIAL in
+		(
+			select SHUTDOWN_SERIAL
+			from SHUTDOWN
+			where ( SHUTDOWN_DATE - CAST('2017-01-02' as date) >=1000)
+			and HOUSE_SERIAL=1
+		)
+
+'2017-01-02'
+select min()
+count(
+		select min(SHUTDOWN_DATE - CAST('2017-01-02' as date) )
+		from SHUTDOWN
+		where SHUTDOWN_SERIAL in
+		(
+			select SHUTDOWN_SERIAL
+			from SHUTDOWN
+			where ( SHUTDOWN_DATE - CAST('2017-01-02' as date) >=0)
+			and HOUSE_SERIAL= 1
+		)
+	) is null
+
 ------------------------map 실험
 37.397002083376634
 127.09481058456424
@@ -552,9 +576,8 @@ delete from REVIEW;
 															and	  (review_marker_y between 127.09 and 127.119)
 
 
-															
 
-															
+	SELECT ADD_MONTHS((select sysdate from dual),2) from dual;														
 															
 	select 
 		review_serial reviewSerial, 
