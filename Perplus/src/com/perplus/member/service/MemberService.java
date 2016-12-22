@@ -9,12 +9,12 @@ import com.perplus.member.vo.HouseCommentVo;
 import com.perplus.member.vo.HouseZzimVo;
 import com.perplus.member.vo.HowmoneyVo;
 import com.perplus.member.vo.MemberVo;
+import com.perplus.member.vo.PayInfoVo;
 import com.perplus.member.vo.PaymentVo;
 import com.perplus.member.vo.RejectVo;
 import com.perplus.member.vo.ReviewZzimVo;
 import com.perplus.member.vo.ShowmoneyVo;
 import com.perplus.member.vo.TravelVo;
-import com.perplus.util.Constants;
 
 public interface MemberService {
 	
@@ -87,6 +87,19 @@ public interface MemberService {
 	MemberVo selectMemberFindByEmail(String memberEmail);
 	
 	void deleteMemberPicture(String memberPicture);
+	
+	/**
+	 * PayInfo 관련 Service
+	 * @param payInfo
+	 * @throws Exception
+	 */	
+	public void registerPayInfo(PayInfoVo payInfo) throws Exception;
+	
+	public void removePayInfo(int travelSerial) throws Exception;
+	
+	public PayInfoVo getPayInfoByTravelSerial(int travelSerial) throws Exception;
+	
+	public List<PayInfoVo> getPayInfoByMemberEmail(String memberEmail) throws Exception;
 	
 	/**
 	 * Payment 관련 Service

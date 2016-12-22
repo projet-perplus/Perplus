@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 <ul class="submenu_ul" data-main="accountmanagement">
 	<c:choose>
 		<c:when test="${sessionScope.login_info == null}">

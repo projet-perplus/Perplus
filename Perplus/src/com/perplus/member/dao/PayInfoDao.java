@@ -31,7 +31,7 @@ public interface PayInfoDao {
 	 * memberEmail의 모든 PayInfo 객체 select
 	 * @return
 	 */
-	List<PayInfoVo> selectPayInfo(String memberEmail);
+	List<PayInfoVo> selectPayInfoByMemberEmail(String memberEmail);
 	
 	/**
 	 * 여행 시리얼로 PayInfo 객체 select

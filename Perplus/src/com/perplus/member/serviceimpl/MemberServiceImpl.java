@@ -16,6 +16,7 @@ import com.perplus.member.dao.HouseCommentDao;
 import com.perplus.member.dao.HouseZzimDao;
 import com.perplus.member.dao.HowmoneyDao;
 import com.perplus.member.dao.MemberDao;
+import com.perplus.member.dao.PayInfoDao;
 import com.perplus.member.dao.PaymentDao;
 import com.perplus.member.dao.RejectDao;
 import com.perplus.member.dao.ReviewZzimDao;
@@ -28,6 +29,7 @@ import com.perplus.member.vo.HouseCommentVo;
 import com.perplus.member.vo.HouseZzimVo;
 import com.perplus.member.vo.HowmoneyVo;
 import com.perplus.member.vo.MemberVo;
+import com.perplus.member.vo.PayInfoVo;
 import com.perplus.member.vo.PaymentVo;
 import com.perplus.member.vo.RejectVo;
 import com.perplus.member.vo.ReviewZzimVo;
@@ -63,6 +65,10 @@ public class MemberServiceImpl implements MemberService{
 	@Qualifier("memberDaoImpl")
 	private MemberDao memberDao;
 
+	@Autowired
+	@Qualifier("payInfoDaoImpl")
+	private PayInfoDao payInfoDao;
+	
 	@Autowired
 	@Qualifier("paymentDaoImpl")
 	private PaymentDao paymentDao;
@@ -291,6 +297,50 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public void deleteMemberPicture(String memberPicture){
 		memberDao.deleteMemberPicture(memberPicture);
+	}
+	
+	/**
+	 * PayInfo 관련 Service
+	 * @param payInfo
+	 * @throws Exception
+	 */
+	@Override
+	public void registerPayInfo(PayInfoVo payInfo) throws Exception {
+		int travelSerial = payInfo.getTravelSerial();	//travel serial 조회
+		
+		getTravelbyTravelSerial(travelSerial);	// Travel Serial 로 실제 Travel 객체 있는지 조회 후 없으면 이셉션 전달
+		getPayInfoByTravelSerial(travelSerial);	// travel Serial 로 실제 payInfo 객체 조회 후 있으면 이셉션 전달
+		
+		/*Travel 객체 있고 PayInfo 객체 없으면*/
+		payInfoDao.insertPayInfo(payInfo);		
+	}
+
+	@Override
+	public void removePayInfo(int travelSerial) throws Exception {
+		getPayInfoByTravelSerial(travelSerial);	// travel Serial 로 실제 payInfo 객체 조회 후 있으면 이셉션 전달
+		payInfoDao.deletePayInfo(travelSerial);
+	}
+
+	@Override
+	public PayInfoVo getPayInfoByTravelSerial(int travelSerial) throws Exception {
+		PayInfoVo payInfo = null;
+		payInfo = payInfoDao.selectPayInfoByTravelSerial(travelSerial);
+		if(payInfo != null){
+			return payInfo;
+		}else{
+			throw new Exception("해당 결제정보가 없습니다.");
+		}
+	}
+
+	@Override
+	public List<PayInfoVo> getPayInfoByMemberEmail(String memberEmail) throws Exception {
+		List<PayInfoVo> payInfoList = null;
+		payInfoList = payInfoDao.selectPayInfoByMemberEmail(memberEmail);
+		if(payInfoList != null){
+			return payInfoList;
+		}else{
+			throw new Exception("해당 결제 정보가 없습니다.");
+		}
 	}
 	
 	/**
@@ -562,7 +612,7 @@ public class MemberServiceImpl implements MemberService{
 	
 	public TravelVo getTravelbyTravelSerial(int travelSerial) throws Exception{ // 시리얼로 조회
 		TravelVo travel = null;
-		System.out.println("ser"+travelSerial);
+		
 		travel = travelDao.selectTravelByTravelSerial(travelSerial);
 		if(travel != null){ // 조회된 값이 있다면 객체 리턴
 			return travel;
@@ -580,7 +630,6 @@ public class MemberServiceImpl implements MemberService{
 			throw new Exception("해당 여행이 존재하지 않습니다.");
 		}
 		travelDao.deleteTravel(travel.getTravelSerial());
-		
 	}
-	
+
 }

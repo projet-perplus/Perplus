@@ -664,6 +664,10 @@ p {
 	box-sizing: border-box;
 	padding-top: 17px;
 }
+.receiveBtn:hover {
+	border-color: blue !important;
+}
+
 
 .receiveBtn>.receiveBtnContant {
 	padding-left: 2%;
@@ -672,8 +676,8 @@ p {
 }
 
 .receiveBtn>.separator {
-	padding-left: 7%;
-	padding-right: 5%;
+	padding-left: 5%;
+	padding-right: 3%;
 /* 	display: block; */
     font-weight: normal;
 	height: 45px;
