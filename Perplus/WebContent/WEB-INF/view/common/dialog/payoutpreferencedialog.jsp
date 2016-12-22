@@ -3,7 +3,7 @@
 <!-- payoutpreference  dialog -->
 <div class="modal fade" id="payoutpreference" role="dialog"
 	aria-labelledby="basicModal" aria-hidden="true">
-	<div class="modal-dialog">
+	<div class="modal-dialog" style="transform: translate(0, 8%) !important;">
 		<!-- Modal content-->
 		<form action="${initParam.rootPath}/member/howgetmoneyRegister.do" onsubmit="return confirm('등록하시겠습니까?')">
 			<input type="hidden" name="memberEmail"

@@ -83,7 +83,7 @@
 						<c:choose>
 							<c:when test="${empty sessionScope.login_info.memberPicture }">
 								<div class="col-md-12">
-									<img id="preview" src="/Perplus/memberPicture/no-photo.png"
+									<img id="preview" src="/Perplus/housePicture/no-images.png"
 										width="200" height="200" style="border: solid 2px #ddd"
 										alt="로컬에 있는 이미지가 보여지는 영역">
 								</div>

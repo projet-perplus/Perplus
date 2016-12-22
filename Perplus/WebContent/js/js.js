@@ -5,10 +5,11 @@ $(function() {
 			.getDate(), 0, 0, 0, 0);
 
 	var checkin = $('#dpd1').datepicker({
-		orientation: 'top',
+
 		showOtherMonths : true,
 		selectOtherMonths : true,
 		format : 'yyyy-mm-dd',
+		
 		onRender : function(date) {
 			return date.valueOf() < now.valueOf() ? 'disabled' : '';
 		}

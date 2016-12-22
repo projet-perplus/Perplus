@@ -132,10 +132,13 @@ p {
 }
 /*화면이 768보다 작을때*/
 @media screen and (max-width: 768px) {
+	.review-tab span, houseReview span{
+		font-size:12px;
+	}
+	
+	
 	#footer>p {
-
 		padding: 8px !important;
-
 	}
 	.mainLogo>img {
 		padding: 25px !important;
@@ -659,7 +662,7 @@ p {
 	border-radius: 4px;
 	display: inline-block;
 	width: 98%;
- 	height: auto;
+	height: auto;
 	vertical-align: middle;
 	box-sizing: border-box;
 	padding-top: 17px;
@@ -667,19 +670,17 @@ p {
 
 .receiveBtn>.receiveBtnContant {
 	padding-left: 2%;
-    font-weight: normal;
+	font-weight: normal;
 	height: 45px;
 }
 
 .receiveBtn>.separator {
 	padding-left: 7%;
 	padding-right: 5%;
-/* 	display: block; */
-    font-weight: normal;
+	/* 	display: block; */
+	font-weight: normal;
 	height: 45px;
-
 }
-
 
 .tabsdiv>.ui-tabs {
 	position: relative;
