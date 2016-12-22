@@ -5,7 +5,7 @@
 	
 	<!-- insert -->
 	<insert id="insertPayment">
-		insert into PAYMENT values (#{cardSerial}, #{memberEmail}, #{paymentType}, #{cardNumber}, #{cardExpiration}, #{cardName}, #{cardCvc})
+		insert into PAYMENT values (PAYMENT_SEQ.nextval, #{memberEmail}, #{paymentType}, #{cardNumber}, #{cardExpiration}, #{cardName}, #{cardCvc})
 	</insert>
 	
 	<!-- update -->
@@ -38,6 +38,6 @@
 		where CARD_SERIAL = #{cardSerial}
 	</select>
 	<select id="selectCardSerialSeq" resultType="_int">
-		select CARD_SERIAL_seq.nextval from dual
+		select PAYMENT_SEQ.nextval from dual
 	</select>
 </mapper>

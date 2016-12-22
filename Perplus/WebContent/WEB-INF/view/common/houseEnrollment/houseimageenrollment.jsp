@@ -58,21 +58,29 @@
 				<div class="col-md-8 col-xs-8 page_moveBtn">
 					<div class="form-group ">
 						<select class="form-control house_step">
-							<option value="${initParam.rootPath}/basicinfo.do">1 단계</option>
-							<option value="${initParam.rootPath}/housetypeandlocation.do">2
+							<option value="${initParam.rootPath}/house/oneStepBefore.do">1
 								단계</option>
-							<option value="${initParam.rootPath}/houselocation.do">3
+							<option
+								value="${initParam.rootPath}/house/twoStepBefore.do?houseSerial=${param.houseSerial}">2
 								단계</option>
-							<option value="${initParam.rootPath}/housefacility.do">4
+							<option
+								value="${initParam.rootPath}/house/threeStepBefore.do?houseSerial=${param.houseSerial}">3
 								단계</option>
-							<option selected="selected"
-								value="${initParam.rootPath}/houseimageenrollment.do">5
+							<option
+								value="${initParam.rootPath}/house/fourStepBefore.do?houseSerial=${param.houseSerial}">4
 								단계</option>
-							<option value="${initParam.rootPath}/houseschedulemanagement.do">6
+							<option selected
+								value="${initParam.rootPath}/house/fiveStepBefore.do?houseSerial=${param.houseSerial}">5
 								단계</option>
-							<option value="${initParam.rootPath}/houseshutdowndate.do">7
+							<option
+								value="${initParam.rootPath}/house/sixStepBefore.do?houseSerial=${param.houseSerial}">6
 								단계</option>
-							<option value="${initParam.rootPath}/houseprice.do">8 단계</option>
+							<option
+								value="${initParam.rootPath}/house/sevenStepBefore.do?houseSerial=${param.houseSerial}">7
+								단계</option>
+							<option
+								value="${initParam.rootPath}/house/eightStepBefore.do?houseSerial=${param.houseSerial}">8
+								단계</option>
 						</select>
 					</div>
 				</div>
@@ -121,8 +129,9 @@
 					<span style="margin-left: 30px;">서브 이미지를 추가하세요(최대4장)</span>
 					<div class="preview" style="padding-left: 30px;"></div>
 					<label class="btn btn-success addImage" style="margin-left: 35px;">
-						이미지 추가&hellip; <input type="file" id="getfile" name="houseSubPicture"
-						accept="image/*" style="border: 0 !important; display: none;">
+						이미지 추가&hellip; <input type="file" id="getfile"
+						name="houseSubPicture" accept="image/*"
+						style="border: 0 !important; display: none;">
 					</label>
 				</div>
 			</div>

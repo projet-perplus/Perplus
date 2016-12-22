@@ -4,7 +4,7 @@
 <mapper namespace="chatting">
 
 	<insert id="createChatting" parameterType="ChattingVo">
-		insert into CHATTING values(chatting_seq.nextval,#{chattingPartner},#{memberEmail})
+		insert into CHATTING values(CHATTING_SEQ.nextval,#{chattingPartner},#{memberEmail})
 	</insert>
 
 	<delete id="deleteChatting" parameterType="_int">
