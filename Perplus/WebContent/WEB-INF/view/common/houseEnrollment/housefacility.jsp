@@ -64,15 +64,10 @@
 							<div class="col-md-4">
 								<div class="form-group">
 									<select class="form-control" name="houseFilterBedroomNumber">
-										<option value="">침실 개수</option>
-										<option value=1>1</option>
-										<option value=2>2</option>
-										<option value=3>3</option>
-										<option value=4>4</option>
-										<option value=5>5</option>
-										<option value=6>6</option>
-										<option value=7>7</option>
-										<option value=8>8</option>
+										<option value="1">침실 개수</option>
+										<c:forEach begin="1" end="30" var="cnt">
+											<option>${cnt }</option>
+										</c:forEach>
 									</select>
 								</div>
 							</div>
@@ -80,14 +75,9 @@
 								<div class="form-group">
 									<select class="form-control" name="houseFilterBedNumber">
 										<option value="">침대 개수</option>
-										<option value=1>1</option>
-										<option value=2>2</option>
-										<option value=3>3</option>
-										<option value=4>4</option>
-										<option value=5>5</option>
-										<option value=6>6</option>
-										<option value=7>7</option>
-										<option value=8>8</option>
+										<c:forEach begin="1" end="30" var="cnt">
+											<option>${cnt }</option>
+										</c:forEach>
 									</select>
 								</div>
 							</div>
@@ -95,14 +85,9 @@
 								<div class="form-group">
 									<select class="form-control" name="houseFilterBathroomNumber">
 										<option value="">욕실 개수</option>
-										<option value=1>1</option>
-										<option value=2>2</option>
-										<option value=3>3</option>
-										<option value=4>4</option>
-										<option value=5>5</option>
-										<option value=6>6</option>
-										<option value=7>7</option>
-										<option value=8>8</option>
+										<c:forEach begin="1" end="30" var="cnt">
+											<option>${cnt }</option>
+										</c:forEach>
 									</select>
 								</div>
 							</div>

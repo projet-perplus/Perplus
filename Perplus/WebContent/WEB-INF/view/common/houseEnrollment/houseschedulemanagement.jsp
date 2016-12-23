@@ -72,8 +72,8 @@
 							<div class=" col-md-8">
 								<div class="form-group">
 									<select class="form-control" name="houseFilterCheckinTerm">
-										<c:forEach begin="1" end="10" var="number">
-											<option value="${number}">${number}</option>
+										<c:forEach begin="1" end="20" var="number">
+											<option value="${number}">${number}일</option>
 										</c:forEach>
 									</select>
 								</div>
@@ -149,27 +149,18 @@
 							<div class=" col-md-8">
 								<div class="form-group">
 									<select class="form-control" name="houseFilterBakMin">
-										<option>최소 일수</option>
-										<option value=1>1박</option>
-										<option value=2>2박</option>
-										<option value=3>3박</option>
-										<option value=4>4박</option>
-										<option value=4>5박</option>
-										<option value=4>6박</option>
-										<option value=4>7박</option>
+										<option value=1>최소 일수</option>
+										<c:forEach begin="1" end="10" var="cnt">
+											<option>${cnt}박</option>
+										</c:forEach>
 									</select>
 								</div>
 								<div class="form-group">
 									<select class="form-control" name="houseFilterBakMax">
-										<option>최대 일수</option>
-										<option value=1>1일</option>
-										<option value=2>2일</option>
-										<option value=3>3일</option>
-										<option value=4>4일</option>
-										<option value=4>5일</option>
-										<option value=4>6일</option>
-										<option value=4>7일</option>
-										
+										<option value=1>최대 일수</option>
+										<c:forEach begin="10" end="40" var="cnt">
+											<option>${cnt}</option>
+										</c:forEach>
 									</select>
 								</div>
 							</div>

@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script>
@@ -120,11 +121,10 @@
 							<div class="col-xs-6 col-md-6 rightform">
 								<div class="form-group">
 									<select name="houseFilterGuestNumber" class="form-control ">
-										<option>게스트 수</option>
-										<option value=1>1명</option>
-										<option value=2>2명</option>
-										<option value=3>3명</option>
-										<option value=4>4명</option>
+										<option value=1>게스트 수</option>
+										<c:forEach begin="1" end="30" var="cnt">
+											<option>${cnt} 명</option>
+										</c:forEach>
 									</select>
 								</div>
 							</div>
@@ -153,10 +153,10 @@
 							<div class="col-xs-6 col-md-6 rightform">
 								<div class="form-group">
 									<select name="houseFilterRoomNumber" class="form-control ">
-										<option>방개수</option>
-										<option value=1>1개</option>
-										<option value=2>2개</option>
-										<option value=3>3개</option>
+										<option value=1>방개수</option>
+										<c:forEach begin="1" end="20" var="cnt">
+											<option>${cnt}개</option>
+										</c:forEach>
 									</select>
 								</div>
 							</div>
