@@ -55,5 +55,10 @@ public class TravelDaoImpl implements TravelDao{
 		System.out.println("dao"+travelSerial);
 		return session.selectOne(makeSql(), travelSerial);
 	}
+	
+	@Override
+	public List<TravelVo> selectTravelByMemberEmail(String memberEmail){
+		return session.selectList("travel.travelJoinHouseJoinHouseFilter",memberEmail);
+	}
 
 }

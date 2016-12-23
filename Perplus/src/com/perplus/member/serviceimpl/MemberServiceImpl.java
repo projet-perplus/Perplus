@@ -502,6 +502,10 @@ public class MemberServiceImpl implements MemberService{
 	}
 	*/
 	
+	public List<TravelVo> travelJoinHouseJoinHouseFilter(String memberEmail){
+		return travelDao.selectTravelByMemberEmail(memberEmail);
+	}
+	
 	public List<ShowmoneyVo> getShowmoneyByShowmoneyStatus(String memberEmail,
 			int  showmoneyStatus) throws Exception {
 		List<ShowmoneyVo> list = null;

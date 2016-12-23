@@ -46,4 +46,10 @@ public interface TravelDao {
 	 * @return
 	 */
 	TravelVo selectTravelByTravelSerial(int travelSerial);
+	
+	
+	
+	
+	
+	List<TravelVo> selectTravelByMemberEmail(String memberEmail);
 }

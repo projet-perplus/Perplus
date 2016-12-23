@@ -2,8 +2,10 @@ package com.perplus.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -37,6 +39,7 @@ import com.perplus.member.vo.MemberVo;
 import com.perplus.member.vo.PaymentVo;
 import com.perplus.member.vo.ReviewZzimVo;
 import com.perplus.member.vo.TravelVo;
+import com.perplus.util.Constants;
 import com.perplus.util.TextUtil;
 
 
@@ -57,34 +60,63 @@ public class MemberController {
 		HashMap<String, Object> map = new HashMap<>();
 
 		//미래예약가능개월수
-		Date newDate = new Date();
-		newDate.setMonth(newDate.getMonth()+reservationTerm);
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		cal.add(Calendar.MONTH, reservationTerm);
+		
 		
 		//dateText Date 타입으로 바꾸기.
 		Date date = sdf.parse(dateText);
 		
 		map.put("date", date);
 		map.put("serial", houseSerial);
-		map.put("lastDate", newDate);
+		map.put("lastDate", cal.getTime());
 		
-		System.out.println(houseSerial);
 		int a = houseService.reservationAbleTerm(map);
-		System.out.println(a);
 		return a;
 	}
 	
 	
-	/****************예.약.****************/
+	@RequestMapping("/reservationFind.do")
+	public String houseReservation(HttpSession session, HttpServletRequest request) throws Exception{
+		MemberVo member = (MemberVo)session.getAttribute("login_info");
+		String memberEmail = member.getMemberEmail();	
+		List<TravelVo> travelList = service.travelJoinHouseJoinHouseFilter(memberEmail);
+		request.setAttribute("travelList", travelList);
+		return "rooms/rooms/schedulemanagement.tiles1";
+	}
+	
+	
+	
+	/****************예.약.
+	 * @throws Exception ****************/
 	@RequestMapping("/reservation.do")
-	public String housereservation(HttpServletRequest request){
-		System.out.println(request.getParameter("travelStart"));
-		System.out.println(request.getParameter("travelEnd"));
-		System.out.println(request.getParameter("houseSerial"));
-		System.out.println(request.getParameter("travelNumber"));
-		System.out.println(request.getParameter("travelCheckin"));
-		System.out.println(request.getParameter("travelCost"));
-//		service.registerTravel(travel);
-		return null;
+	public String housereservation(HttpServletRequest request) throws Exception{
+		String memberEmail = request.getParameter("memberEmail");
+		int houseSerial = Integer.parseInt(request.getParameter("houseSerial"));
+		int travelCheckinBefore = Integer.parseInt(request.getParameter("travelCheckin"));
+		int travelCostBefore = Integer.parseInt(request.getParameter("travelCost"));
+		int travelNumber = Integer.parseInt(request.getParameter("travelNumber"));
+		String reservationDate = request.getParameter("reservationDate");
+		String [] date = reservationDate.split(", ");
+		String travelStartbefore = date[0];
+		String travelEndbefore = date[1];
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		
+		Date travelStart = sdf.parse(travelStartbefore);
+		Date travelEnd = sdf.parse(travelEndbefore);
+		Long totalDate = (travelEnd.getTime()-travelStart.getTime())/(24 * 60 * 60 * 1000);
+		int travelCost = (int)(totalDate*travelCostBefore);
+		Timestamp travelCheckin = new Timestamp(20160101);
+		travelCheckin.setHours(travelCheckinBefore);
+		TravelVo travel = new TravelVo(0, Constants.TRAVEL_CODE_RESER_STANDBY, houseSerial, memberEmail, travelStart, travelEnd, travelNumber, travelCheckin, travelCost);
+		try {
+			service.registerTravel(travel);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "redirect:/member/reservationFind.do";
 	}
 	/*****************회원가입***************/
 	@RequestMapping("/join.do")
@@ -244,7 +276,6 @@ public class MemberController {
 	@RequestMapping("/registerHouseZzim")
 	public String houseZzimInsert(@RequestParam String memberEmail, @RequestParam int houseSerial){
 		HouseZzimVo houseZzim = new HouseZzimVo(0, houseSerial, memberEmail);
-		System.out.println(houseZzim);
 		service.insertHouseZzim(houseZzim);
 		return "redirect:/house/houseDetail.do?houseSerial="+houseSerial;
 	}
@@ -261,7 +292,6 @@ public class MemberController {
 	@RequestMapping("/registerReviewZzim")
 	public String reiviewZzimInsert(@RequestParam String memberEmail, @RequestParam int reviewSerial){
 		ReviewZzimVo reviewZzim = new ReviewZzimVo(0, reviewSerial, memberEmail);
-		System.out.println(reviewZzim);
 		service.insertReviewZzim(reviewZzim);
 		return "redirect:/review/showReview.do?reviewSerial="+reviewZzim.getReviewSerial();
 	}
@@ -270,7 +300,6 @@ public class MemberController {
 	@RequestMapping("cancleReviewZzim")
 	public String reviewZzimRemove(@RequestParam int reviewZzimSerial){
 		ReviewZzimVo reviewZzim = service.selectReviewZzimByReviewZzimSerial(reviewZzimSerial);
-		System.out.println(reviewZzim);
 		service.deleteReviewZzimByReviewZzimSerial(reviewZzimSerial);
 		return  "redirect:/review/showReview.do?reviewSerial="+reviewZzim.getReviewSerial();
 	}
@@ -302,8 +331,6 @@ public class MemberController {
 	public String chattingRoomCreate(@RequestParam String chattingPartner, HttpSession session){
 		MemberVo member = (MemberVo)session.getAttribute("login_info");
 		String memberEmail = member.getMemberEmail();
-		System.out.println(chattingPartner);
-		System.out.println(memberEmail);
 		
 		int chattingNumber = 0;
 		ChattingVo chatting = service.findByChatting(chattingPartner, memberEmail);
@@ -363,7 +390,6 @@ public class MemberController {
 		MemberVo member = (MemberVo)session.getAttribute("login_info");
 		String memberEmail = member.getMemberEmail();
 		List<HouseZzimVo> houseZzim = service.houseZzimJoinHouseJoinHousePicture(memberEmail);
-		System.out.println(houseZzim);
 		map.addAttribute("houseZzim", houseZzim);
 		return "forward:/wishlist.do";
 	}
@@ -377,7 +403,6 @@ public class MemberController {
 		MemberVo member = (MemberVo)session.getAttribute("login_info");
 		String memberEmail = member.getMemberEmail();
 		List<HouseCommentVo> houseComment = service.select(memberEmail);
-		System.out.println(houseComment);
 		return houseComment;
 	}
 	

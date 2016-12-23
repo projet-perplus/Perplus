@@ -172,6 +172,9 @@ public interface MemberService {
 	 * @param travel
 	 * @throws Exception
 	 */
+	
+	public List<TravelVo> travelJoinHouseJoinHouseFilter(String memberEmail);
+	
 	public void registerTravel(TravelVo travel) throws Exception;
 	
 	public TravelVo getTravelByTravelCode(int travelCode) throws Exception;
