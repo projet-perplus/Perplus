@@ -16,8 +16,7 @@
 					<!-- 목록 하나 -->
 					<c:forEach items="${requestScope.houseList }" var="houseList">
 						<c:if test="${!empty houseList.houseFilter}">
-							<a
-								href="${initParam.rootPath }/house/houseDetail.do?houseSerial=${houseList.houseSerial}">
+							<a href="${initParam.rootPath }/house/houseDetail.do?houseSerial=${houseList.houseSerial}">
 
 								<div class="col-md-4 col-sm-8 col-xs-11"
 									style="margin-right: 15px; margin-bottom: 15px;">
@@ -33,7 +32,7 @@
 														</c:when>
 														<c:otherwise>
 															<img
-																src="/Perplus/housePicture/${houseList.housePicture[0].pictureName }"
+																src="/Perplus/housePicture/${houseList.housePicture[0].pictureName}"
 																alt="asd" style="width: 100%; height: 150px" />
 														</c:otherwise>
 													</c:choose>
