@@ -1,5 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<script src="/Perplus/js/jquery-ui.multidatespicker.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script
    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWDGjKV2YFKGM5q6gtx-J5GcJTa2wLDQU"
    type="text/javascript"></script>
@@ -44,17 +46,17 @@ $(document).ready(function(){
 		dataType : "JSON",
 		success:function(obj){
 			for(var i in obj.convenientFacility){
-				convenientFacility+="<div class='col-md-3 col-xs-6'><label><input type='checkbox' name='commonFacility' value='"+obj.convenentFacility[i]+"'>"+obj.convenentFacility[i]+"</label></div>"
+				convenientFacility+="<div class='col-md-5 col-xs-6'><label><input type='checkbox' name='facility' value='"+obj.convenientFacility[i].value+"'>"+obj.convenientFacility[i].value+"</label></div>"
 			}
 			for(var i in obj.secureFacility){
-				secureFacility+="<div class='col-md-3 col-xs-6'><label><input type='checkbox' name='commonFacility' value='"+obj.secureFacility[i]+"'>"+obj.secureFacility[i]+"</label></div>"
+				secureFacility+="<div class='col-md-5 col-xs-6'><label><input type='checkbox' name='facility' value='"+obj.secureFacility[i].value+"'>"+obj.secureFacility[i].value+"</label></div>"
 			}
 			for(var i in obj.commonFacility){
-				commonFacility+="<div class='col-md-3 col-xs-6'><label><input type='checkbox' name='commonFacility' value='"+obj.commonFacility[i]+"'>"+obj.commonFacility[i]+"</label></div>"
+				commonFacility+="<div class='col-md-5 col-xs-6'><label><input type='checkbox' name='facility' value='"+obj.commonFacility[i].value+"'>"+obj.commonFacility[i].value+"</label></div>"
 			}
-			$("#").html(convenientFacility);
-			$("#").html(secureFacility);
-			$("#").html(commonFacility);
+			$(".convenientfacility").html(convenientFacility);
+			$(".securefacility").html(secureFacility);
+			$(".commonfacility").html(commonFacility);
 			
 		},
 		error:function(request,error,status){
@@ -76,7 +78,6 @@ $(function() {
 	$("#amount").val(
 			"₩" + $("#slider-range").slider("values", 0) + " - ₩"
 					+ $("#slider-range").slider("values", 1));
-
 });
 //지도 배율의 변화나 추가 필터를 제외한 기존 필터의 변화가 있을때마다 마커를 긁어오는 과정이 필요하다.
 //	HashMap List
@@ -116,15 +117,14 @@ function printByFilter(){
 	}
 	obj.housePriceRangeMin=$("#slider-range").slider("option","min");
 	obj.housePriceRangeMax=$("#slider-range").slider("option","max");
-	
+
 	//지도 bound
-	
 	obj.southWestLat=map.getBounds().getSouthWest().lat();
 	obj.southWestLng=map.getBounds().getSouthWest().lng();
 	obj.northEastLat=map.getBounds().getNorthEast().lat();
 	obj.northEastLng=map.getBounds().getNorthEast().lng();
 //	5-1. bedRoomNumber , bathRoomNumber, bedNumber
-	if($("#addfiltertrigger").val()==true){
+	if($("#addfiltertrigger").val()=='true'){
 		//세가지 요소의 상태를 더한다.
 		if($("#bedroomnumber").val()!='default'){
 			obj.bedRoomNumber = $("#bedroomnumber").val();
@@ -137,18 +137,20 @@ function printByFilter(){
 		}
 // 		alert($("#bedroomnumber"));
 		
+// 		$.each($("#facility:checked"))
 		//체크리스트를 저장할 리스트
 		var list = [];
-		
-				
+		$('input:checkbox[name="facility"]:checked').each(function(){
+			list.push(this.value);
+		});
 		
 		if(list.length!=0){
 			obj.list = list;
+			obj.listSize = list.length;
 		}
 	}
-	
 	var body = JSON.stringify(obj);
-	
+// 	alert(body);
 	//alert(body);
 	$.ajax({
 		url : "/Perplus/map/showhousebymapandfilter.do",
@@ -158,11 +160,17 @@ function printByFilter(){
 		contentType : "text/JSON",
 		dataType : "JSON",
 		success:function(obj){
+			var houseList = "";
 			$.each(obj.houseList,function(){
 				var markerLatlng = new google.maps.LatLng(this.houseMarkerX, this.houseMarkerY);
-				placeMarker(this.houseSerial,markerLatlng,this.houseMarkerConstant);
+				placeMarker(this.houseSerial,markerLatlng,this.houseMarkerConstant,this.houseFilter.houseFilterPrice);
+				
+				houseList+='<div class="col-md-3 col-sm-4 col-xs-4" style="margin: 12px 24px 12px 24px;"><div class="row con1"><div class="row con1"><div class="col-md-12" style="padding: 0px;"><img src='+this.housePicture[0].pictureName+' alt="asd" style="width: 100%; height: 150px" />'
+	            +'</div></div><div class="row subcon1" style="border: 1px solid #ccc;"><div class="row con2"><div class="col-md-12"><span class="col-md-12" style="text-align: center; padding: 5px; font-size: 12px;">'+this.houseTitle+'</span></div></div></div>'
+	            +'<div class="row subcon2" style="border: 1px solid #ccc;"><div class="row con3"><div class="col-md-12"><span class="col-md-12" style="text-align: center; padding: 5px; font-size: 12px;">'+this.houseFilter.houseFilterPrice+'</span></div></div></div></div></div>';
 			});
-
+			
+			$("#houselistplace").html(houseList);		
 			
 			if(obj.priceRange!=null){
 				$("#slider-range").slider("option","min",obj.priceRange.MIN);
@@ -197,6 +205,9 @@ function attatchEvent(){
 	}
 }
 function changeFilterTrigger(){
+	$('input:checkbox[name="facility"]:checked').each(function(){
+		this.checked=false;
+	});
 	if($("#addfiltertrigger").val()=='true'){
 		$("#addfiltertrigger").val(false);
 		resetMapMarker();
@@ -215,177 +226,10 @@ function changeFilterTrigger(){
          <!--  숙소 리스트 -->
          <div class="row " style="margin-right: 0px; margin-left: 0px;">
             <div class="col-md-12"
-               style="overflow: auto; border: 2px solid #ccc; height: 218px;">
+               style="overflow: auto; border: 2px solid #ccc; height: 218px;" id="houselistplace">
 
                <!-- 목록 하나 -->
-               <div class="col-md-3 col-sm-4 col-xs-4"
-                  style="margin: 12px 24px 12px 24px;">
-                  <div class="row con1">
-                     <div class="row con1">
-                        <div class="col-md-12" style="padding: 0px;">
-                           <img src="/Perplus/css/image/photo0.jpg" alt="asd"
-                              style="width: 100%; height: 150px" />
-                        </div>
-                     </div>
-
-                     <div class="row subcon1" style="border: 1px solid #ccc;">
-                        <div class="row con2">
-                           <div class="col-md-12">
-                              <span class="col-md-12"
-                                 style="text-align: center; padding: 5px; font-size: 12px;">숙소
-                                 이름 request</span>
-                           </div>
-                        </div>
-                     </div>
-
-                     <div class="row subcon2" style="border: 1px solid #ccc;">
-                        <div class="row con3">
-                           <div class="col-md-12">
-                              <span class="col-md-12"
-                                 style="text-align: center; padding: 5px; font-size: 12px;">가격
-                                 request</span>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-               <!-- 목록 하나 -->
-               <!-- 목록 하나 -->
-               <div class="col-md-3 col-sm-4 col-xs-4"
-                  style="margin: 12px 24px 12px 24px;">
-                  <div class="row con1">
-                     <div class="row con1">
-                        <div class="col-md-12" style="padding: 0px;">
-                           <img src="/Perplus/css/image/photo0.jpg" alt="asd"
-                              style="width: 100%; height: 150px" />
-                        </div>
-                     </div>
-
-                     <div class="row subcon1" style="border: 1px solid #ccc;">
-                        <div class="row con2">
-                           <div class="col-md-12">
-                              <span class="col-md-12"
-                                 style="text-align: center; padding: 5px; font-size: 12px;">숙소
-                                 이름 request</span>
-                           </div>
-                        </div>
-                     </div>
-
-                     <div class="row subcon2" style="border: 1px solid #ccc;">
-                        <div class="row con3">
-                           <div class="col-md-12">
-                              <span class="col-md-12"
-                                 style="text-align: center; padding: 5px; font-size: 12px;">가격
-                                 request</span>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-               <!-- 목록 하나 -->
-
-
-
-               <!-- 목록 하나 -->
-               <div class="col-md-3 col-sm-4 col-xs-4"
-                  style="margin: 12px 24px 12px 24px;">
-                  <div class="row con1">
-                     <div class="row con1">
-                        <div class="col-md-12" style="padding: 0px;">
-                           <img src="/Perplus/css/image/photo0.jpg" alt="asd"
-                              style="width: 100%; height: 150px" />
-                        </div>
-                     </div>
-
-                     <div class="row subcon1" style="border: 1px solid #ccc;">
-                        <div class="row con2">
-                           <div class="col-md-12">
-                              <span class="col-md-12"
-                                 style="text-align: center; padding: 5px; font-size: 12px;">숙소
-                                 이름 request</span>
-                           </div>
-                        </div>
-                     </div>
-
-                     <div class="row subcon2" style="border: 1px solid #ccc;">
-                        <div class="row con3">
-                           <div class="col-md-12">
-                              <span class="col-md-12"
-                                 style="text-align: center; padding: 5px; font-size: 12px;">가격
-                                 request</span>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-               <!-- 목록 하나 -->
-
-               <!-- 목록 하나 -->
-               <div class="col-md-3 col-sm-4 col-xs-4"
-                  style="margin: 12px 24px 12px 24px;">
-                  <div class="row con1">
-                     <div class="row con1">
-                        <div class="col-md-12" style="padding: 0px;">
-                           <img src="/Perplus/css/image/photo0.jpg" alt="asd"
-                              style="width: 100%; height: 150px" />
-                        </div>
-                     </div>
-
-                     <div class="row subcon1" style="border: 1px solid #ccc;">
-                        <div class="row con2">
-                           <div class="col-md-12">
-                              <span class="col-md-12"
-                                 style="text-align: center; padding: 5px; font-size: 12px;">숙소
-                                 이름 request</span>
-                           </div>
-                        </div>
-                     </div>
-
-                     <div class="row subcon2" style="border: 1px solid #ccc;">
-                        <div class="row con3">
-                           <div class="col-md-12">
-                              <span class="col-md-12"
-                                 style="text-align: center; padding: 5px; font-size: 12px;">가격
-                                 request</span>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-               <!-- 목록 하나 -->
-
-               <!-- 목록 하나 -->
-               <div class="col-md-3 col-sm-4 col-xs-4"
-                  style="margin: 12px 24px 12px 24px;">
-                  <div class="row con1">
-                     <div class="row con1">
-                        <div class="col-md-12" style="padding: 0px;">
-                           <img src="/Perplus/css/image/photo0.jpg" alt="asd"
-                              style="width: 100%; height: 150px" />
-                        </div>
-                     </div>
-
-                     <div class="row subcon1" style="border: 1px solid #ccc;">
-                        <div class="row con2">
-                           <div class="col-md-12">
-                              <span class="col-md-12"
-                                 style="text-align: center; padding: 5px; font-size: 12px;">숙소
-                                 이름 request</span>
-                           </div>
-                        </div>
-                     </div>
-
-                     <div class="row subcon2" style="border: 1px solid #ccc;">
-                        <div class="row con3">
-                           <div class="col-md-12">
-                              <span class="col-md-12"
-                                 style="text-align: center; padding: 5px; font-size: 12px;">가격
-                                 request</span>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
+             
                <!-- 목록 하나 -->
 
             </div>
@@ -484,7 +328,6 @@ function changeFilterTrigger(){
          <div class="row row-condensed space-4">
             <div class="col-md-12 addfilter" style="display: none;">
 
-               <form action="">
                   <div class="col-md-2 col-sm-2 col-xs-12  rightform leftform"
                      style="margin-bottom: 15px;">
                      <span class="btn btn-primary">규모</span>
@@ -519,83 +362,60 @@ function changeFilterTrigger(){
                         </select>
                      </div>
                   </div>
+
 <!-- 		           <div class="row row-condensed space-4"> -->
-						<div class=" col-md-12 housesection">
-							<div class="row row-condensed">
-								<label class="text-left col-md-2"> <span>편의 시설</span>
-								</label>
-								<div class="col-md-9">
-									<div class="row">
-										<c:forEach items="&{convenientFacility};"
-											var="convenient">
-											<div class="col-md-3 col-xs-6">
-												<label><input type="checkbox"
-													name="convenientFacility" value="${convenient.value}">
-													${convenient.value}</label>
-											</div>
-										</c:forEach>
-									</div>
+					<div class=" col-md-12 housesection">
+						<div class="row row-condensed">
+							<label class="text-left col-md-2"> <span>편의 시설</span>
+							</label>
+							<div class="col-md-9">
+								<div class="convenientfacility">
+
 								</div>
 							</div>
 						</div>
+					</div>
 <!-- 					</div> -->
 <!-- 					<div class="row row-condensed space-4"> -->
-						<div class="col-md-12 housesection">
-							<div class="row row-condensed">
-								<label class="text-left col-md-2"> <span>안전 시설</span>
-								</label>
-								<div class=" col-md-9">
-									<div class="row">
-									<input type="hidden" value="">
-										<c:forEach items="${requestScope.secureFacility}"
-											var="secureFacility">
-											<div class="col-md-3 col-xs-6">
-												<label><input type="checkbox" name="secureFacility"
-													value="${secureFacility.value}">
-													${secureFacility.value}</label>
-											</div>
-										</c:forEach>
-									</div>
+					<div class="col-md-12 housesection">
+						<div class="row row-condensed">
+							<label class="text-left col-md-2"> <span>안전 시설</span>
+							</label>
+							<div class=" col-md-9">
+								<div class="securefacility">
+
 								</div>
 							</div>
 						</div>
+					</div>
 <!-- 					</div> -->
 <!-- 					<div class="row row-condensed space-4"> -->
-						<div class="col-md-12 housesection" style="margin-bottom:30px">
-							<div class="row row-condensed">
-								<label class="text-left col-md-2"> <span>공용 시설</span>
-								</label>
-								<div class=" col-md-9">
-									<div class="row">
-		
-										<c:forEach items="${requestScope.commonFacility}"
-											var="commonFacility">
-											<div class="col-md-3 col-xs-6">
-												<label><input type="checkbox" name="commonFacility"
-													value="${commonFacility.value}">
-													${commonFacility.value}</label>
-											</div>
-										</c:forEach>
-									</div>
+					<div class="col-md-12 housesection" style="margin-bottom:30px">
+						<div class="row row-condensed">
+							<label class="text-left col-md-2"> <span>공용 시설</span>
+							</label>
+							<div class=" col-md-9">
+								<div class="commonfacility">
+	
 								</div>
 							</div>
 						</div>
+					</div>
 <!-- 					</div> -->
 
 
-                  <div class="modal-footer" style ="margin-bottom:80px">
-                     <div class="row panel-MT">
-                        <div
-                           class="col-md-offset-6 col-sm-offset-5 col-xs-offset-5 col-md-2 col-sm-3 col-xs-3">
+                 <div class="modal-footer" style ="margin-bottom:80px">
+                    <div class="row panel-MT">
+                       <div
+                          class="col-md-offset-6 col-sm-offset-5 col-xs-offset-5 col-md-2 col-sm-3 col-xs-3">
 
-                           <button class="btn btn-primary">취소</button>
-                        </div>
-                        <div class="col-md-2 col-sm-3 col-xs-3">
-                           <button class="btn btn-primary">필터 적용</button>
-                        </div>
-                     </div>
-                  </div>
-               </form>
+                          <button type="button" class="btn btn-primary addfilterBtn" onclick="changeFilterTrigger()">취소</button>
+                       </div>
+                       <div class="col-md-2 col-sm-3 col-xs-3">
+                          <button class="btn btn-primary" onclick="resetMapMarker(true)">필터 적용</button>
+                       </div>
+                    </div>
+                 </div>
             </div>
          </div>
 

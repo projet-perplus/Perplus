@@ -25,24 +25,33 @@
 	</delete>
 	
 	<!-- select -->
-	<select id="selectPayInfo" parameterType="string" resultType="PayInfoVo">
-		select	TRAVEL_SERIAL = #{travelSerial}, 
-					MEMBER_EMAIL = #{memberEmail}, 
-					PAYINFO_DATE = #{payInfoDate}, 
-					PAYINFO_PER_MONEY = #{payInfoPerMoney}, 
-					PAYINFO_TOTAL_MONEY = #{payInfoTotalMoney}
-		from PAYINFO
+	<select id="selectPayInfoByMemberEmail" parameterType="string" resultType="PayInfoVo">
+		select	TRAVEL_SERIAL travelSerial,
+					MEMBER_EMAIL memberEmail,
+					PAYINFO_DATE payinfoDate,
+					PAYINFO_PER_MONEY payinfoPerMoney,
+					PAYINFO_TOTAL_MONEY payinfoTotalMoney
+		from		PAYINFO
 		where MEMBER_EMAIL = #{memberEmail}
+		order by TRAVEL_SERIAL DESC
 	</select>
 	
 	<select id="selectPayInfoByTravelSerial"  parameterType="_int" resultType="PayInfoVo">
-		select	TRAVEL_SERIAL = #{travelSerial}, 
-					MEMBER_EMAIL = #{memberEmail}, 
-					PAYINFO_DATE = #{payInfoDate}, 
-					PAYINFO_PER_MONEY = #{payInfoPerMoney}, 
-					PAYINFO_TOTAL_MONEY = #{payInfoTotalMoney}
+		select	TRAVEL_SERIAL travelSerial,
+					MEMBER_EMAIL memberEmail,
+					PAYINFO_DATE payinfoDate,
+					PAYINFO_PER_MONEY payinfoPerMoney,
+					PAYINFO_TOTAL_MONEY payinfoTotalMoney
+		from		PAYINFO
+		where	TRAVEL_SERIAL = #{travelSerial}
+
+<!-- 		select	TRAVEL_SERIAL travelSerial, 
+					MEMBER_EMAIL memberEmail, 
+					PAYINFO_DATE payInfoDate, 
+					PAYINFO_PER_MONEY payInfoPerMoney, 
+					PAYINFO_TOTAL_MONEY payInfoTotalMoney
 		from PAYINFO
-		where TRAVEL_SERIAL = #{travelSerial} 
+		where TRAVEL_SERIAL = #{travelSerial}  -->
 	</select>
 
 </mapper>

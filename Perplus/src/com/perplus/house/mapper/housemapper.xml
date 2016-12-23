@@ -432,7 +432,7 @@
 						and HOUSEFILTER_RANGE = #{range}
 					</if>
 					<if test="housePriceMin != null and housePriceMax != null">
-						and (HOUSEFILTER_PRICE between #{housePriceMin} and #{housePriceMax})
+						and (HOUSEFILTER_PRICE between to_number(#{housePriceMin}) and to_number(#{housePriceMax}))
 					</if>
 					<if test="bedRoomNumber != null ">
 						and HOUSEFILTER_BEDROOM_NUMBER = #{bedRoomNumber}

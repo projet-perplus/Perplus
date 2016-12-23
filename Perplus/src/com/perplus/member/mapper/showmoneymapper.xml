@@ -33,8 +33,8 @@
 					SHOWMONEY_STATUS showmoneyStatus, 
 					SHOWMONEY_TOTAL_MONEY showmoneyTotalMoney, 
 					SHOWMONEY_RECIVE_MONEY showmoneyReciveMoney
-		from SHOWMONEY
-		where MEMBER_EMAIL = #{memberEmail}
+		from		SHOWMONEY
+		where	MEMBER_EMAIL = #{memberEmail}
 	</select>
 	
 	<select id="selectShowmoneyByTravelSerial"  parameterType="_int" resultType="ShowmoneyVo">
@@ -44,8 +44,8 @@
 					SHOWMONEY_STATUS showmoneyStatus, 
 					SHOWMONEY_TOTAL_MONEY showmoneyTotalMoney, 
 					SHOWMONEY_RECIVE_MONEY showmoneyReciveMoney
-		from SHOWMONEY
-		where TRAVEL_SERIAL = #{travelSerial} 
+		from		SHOWMONEY
+		where	TRAVEL_SERIAL = #{travelSerial} 
 	</select>
 	
 	<select id="selectShowmoneyByShowmoneyStatus"  parameterType="hashmap" resultType="ShowmoneyVo">
@@ -55,8 +55,8 @@
 					SHOWMONEY_STATUS showmoneyStatus, 
 					SHOWMONEY_TOTAL_MONEY showmoneyTotalMoney, 
 					SHOWMONEY_RECIVE_MONEY showmoneyReciveMoney
-		from SHOWMONEY
-		where MEMBER_EMAIL = #{memberEmail}  and SHOWMONEY_STATUS = #{showmoneyStatus}
+		from		SHOWMONEY
+		where	MEMBER_EMAIL = #{memberEmail} and SHOWMONEY_STATUS = #{showmoneyStatus}
 	</select>
 
 </mapper>

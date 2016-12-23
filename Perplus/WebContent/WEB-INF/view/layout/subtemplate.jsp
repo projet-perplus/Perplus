@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <!DOCTYPE html>
 <html>
@@ -39,6 +39,7 @@
 							<tiles:insertAttribute name="paymentmethoddialog" />
 							<tiles:insertAttribute name="payoutpreference" />
 							<tiles:insertAttribute name="passwordconfirmdialog" />
+							<tiles:insertAttribute name="paymentacountselectdialog" />
 
 						</div>
 						<div class="col-md-9" >
