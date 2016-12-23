@@ -151,7 +151,7 @@
 									<select class="form-control" name="houseFilterBakMin">
 										<option value=1>최소 일수</option>
 										<c:forEach begin="1" end="10" var="cnt">
-											<option>${cnt}박</option>
+											<option value="${cnt}">${cnt}박</option>
 										</c:forEach>
 									</select>
 								</div>
@@ -159,7 +159,7 @@
 									<select class="form-control" name="houseFilterBakMax">
 										<option value=1>최대 일수</option>
 										<c:forEach begin="10" end="40" var="cnt">
-											<option>${cnt}</option>
+											<option value="${cnt}">${cnt}</option>
 										</c:forEach>
 									</select>
 								</div>

@@ -66,7 +66,7 @@
 									<select class="form-control" name="houseFilterBedroomNumber">
 										<option value="1">침실 개수</option>
 										<c:forEach begin="1" end="30" var="cnt">
-											<option>${cnt }</option>
+											<option value="${cnt}">${cnt }</option>
 										</c:forEach>
 									</select>
 								</div>
@@ -76,7 +76,7 @@
 									<select class="form-control" name="houseFilterBedNumber">
 										<option value="">침대 개수</option>
 										<c:forEach begin="1" end="30" var="cnt">
-											<option>${cnt }</option>
+											<option value="${cnt}">${cnt }</option>
 										</c:forEach>
 									</select>
 								</div>

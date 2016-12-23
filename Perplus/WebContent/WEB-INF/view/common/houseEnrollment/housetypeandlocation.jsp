@@ -123,7 +123,7 @@
 									<select name="houseFilterGuestNumber" class="form-control ">
 										<option value=1>게스트 수</option>
 										<c:forEach begin="1" end="30" var="cnt">
-											<option>${cnt} 명</option>
+											<option value="${cnt}">${cnt} 명</option>
 										</c:forEach>
 									</select>
 								</div>
@@ -155,7 +155,7 @@
 									<select name="houseFilterRoomNumber" class="form-control ">
 										<option value=1>방개수</option>
 										<c:forEach begin="1" end="20" var="cnt">
-											<option>${cnt}개</option>
+											<option value="${cnt}">${cnt}개</option>
 										</c:forEach>
 									</select>
 								</div>
