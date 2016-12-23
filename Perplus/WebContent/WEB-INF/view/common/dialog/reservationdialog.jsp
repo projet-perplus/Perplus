@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script type="text/javascript">
 var array=[${requestScope.shutdownDate}];
+var pickableRangeResult = null;
  			$(function() {
  				
  				
@@ -31,21 +32,23 @@ var array=[${requestScope.shutdownDate}];
 								"houseSerial" : ${param.houseSerial},
 								"reservationTerm" : ${requestScope.house.houseFilter.houseFilterReservationTerm}
 							},
-							dataType : "text",
+							dataType : "json",
 							beforeSend : function(){
-								alert("beforeSend"+dateText);
 							},
 							success : function(obj){
-								alert("성공했거든요");
+/* 								alert(obj);
+								$("#housedatepicker1").multiDatesPicker("option",{pickableRange: obj});
+								}
+								alert(pickableRangeResult); */
 							},
 							error : function(error, request, status){
 								alert("에러났거든요");
 							}
-						})
-						
+						});
 					}
+					
 				});
- 				
+ 			});
  				
 				
 //  				$("#housedatepicker1").on("change", function(){
@@ -74,7 +77,7 @@ var array=[${requestScope.shutdownDate}];
  		        /* $( "#housedatepicker1" ).multiDatesPicker({
  		            onSelect: function(dateText,inst){alert(dateText);}
 				}); */
- 			});
+ 			
 </script>
 
 <div class="modal fade" id="reservationdialog" role="dialog"
@@ -82,14 +85,16 @@ var array=[${requestScope.shutdownDate}];
 
 	<!-- Modal content-->
 	<form action="${initParam.rootPath}/member/reservation.do">
-	
+		<input type="hidden" name="memberEmail" value="${sessionScope.login_info.memberEmail}">
 		<input type="hidden" name="houseSerial" value="${param.houseSerial}">
-		<input type="hidden" name="travelCost" value="">
+		<input type="hidden" name="travelCost" value="${requestScope.house.houseFilter.houseFilterPrice}">
 		<div class="modal-dialog addfilter">
 			<div class="modal-content" style="padding: 0px;">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
-					<h4 class="modal-title">예약하기<input type="text" id="reservationDate" name="reservationDate"></h4>
+					<h4 class="modal-title">
+						예약하기<input type="text" id="reservationDate" name="reservationDate" style="display: none;">
+					</h4>
 				</div>
 
 				<div class="modal-body">
@@ -101,7 +106,7 @@ var array=[${requestScope.shutdownDate}];
 							<div class="form-group housedatepickerparent1">
 								<!-- <input type="text" class="form-control housedatepicker1" name="travelStart"
 									id="housedatepicker1" placeholder="yy-mm-dd" onchange="dd()"> -->
-									<div class="housedatepicker1" id="housedatepicker1"></div>
+								<div class="housedatepicker1" id="housedatepicker1"></div>
 							</div>
 						</div>
 						<!-- <div class="col-md-4">
@@ -160,7 +165,7 @@ var array=[${requestScope.shutdownDate}];
 					</div>
 
 
-	<%-- 				<div class="row panel-MT">
+					<%-- 				<div class="row panel-MT">
 						<div class="col-md-12">
 							<div class="col-md-12">
 								

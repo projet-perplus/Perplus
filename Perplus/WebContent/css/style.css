@@ -662,24 +662,29 @@ p {
 	border-radius: 4px;
 	display: inline-block;
 	width: 98%;
-	height: auto;
+ 	height: auto;
 	vertical-align: middle;
 	box-sizing: border-box;
 	padding-top: 17px;
 }
+.receiveBtn:hover {
+	border-color: blue !important;
+}
+
 
 .receiveBtn>.receiveBtnContant {
 	padding-left: 2%;
-	font-weight: normal;
+    font-weight: normal;
 	height: 45px;
 }
 
 .receiveBtn>.separator {
-	padding-left: 7%;
-	padding-right: 5%;
-	/* 	display: block; */
-	font-weight: normal;
+	padding-left: 5%;
+	padding-right: 3%;
+/* 	display: block; */
+    font-weight: normal;
 	height: 45px;
+
 }
 
 .tabsdiv>.ui-tabs {

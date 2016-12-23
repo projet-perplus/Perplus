@@ -7,7 +7,6 @@
 
 <script src="/Perplus/js/jquery-ui.multidatespicker.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
 <link rel="stylesheet" type="text/css" href="/Perplus/css/prettify.css">
 
 <!--map key-->
@@ -227,7 +226,7 @@ $(document).ready(
 					</div>
 					<c:forEach items="${requestScope.house.houseFilter.checkList }"
 						var="checkList">
-						<c:if test="${checkList.codeKind==1}">
+						<c:if test="${checkList.codeKind==201}">
 							<div class="col-md-8 col-md-offset-1">
 								<li>${checkList.value }</li>
 							</div>
@@ -236,7 +235,7 @@ $(document).ready(
 					<div class="col-md-8 col-md-offset-1">편의시설</div>
 					<c:forEach items="${requestScope.house.houseFilter.checkList }"
 						var="checkList">
-						<c:if test="${checkList.codeKind==2}">
+						<c:if test="${checkList.codeKind==202}">
 							<div class="col-md-8 col-md-offset-1">
 								<li>${checkList.value }</li>
 							</div>
@@ -245,7 +244,7 @@ $(document).ready(
 					<div class="col-md-8 col-md-offset-1">공용시설</div>
 					<c:forEach items="${requestScope.house.houseFilter.checkList }"
 						var="checkList">
-						<c:if test="${checkList.codeKind==3}">
+						<c:if test="${checkList.codeKind==203}">
 							<div class="col-md-8 col-md-offset-1">
 								<li>${checkList.value }</li>
 							</div>

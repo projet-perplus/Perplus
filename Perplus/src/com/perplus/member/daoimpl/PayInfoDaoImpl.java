@@ -19,7 +19,7 @@ public class PayInfoDaoImpl implements PayInfoDao{
 	private SqlSessionTemplate session;
 	private String makeSql(){
 		String sql = new Throwable().getStackTrace()[1].getMethodName();   //이전메소드(caller) 이름 가져오기
-		return "showmoney." + sql;
+		return "payinfo." + sql;
 	}
 	@Override
 	public int insertPayInfo(PayInfoVo payInfo) {
@@ -37,8 +37,8 @@ public class PayInfoDaoImpl implements PayInfoDao{
 		return session.delete(makeSql(), travelSerial);
 	}
 	@Override
-	public List<PayInfoVo> selectPayInfo(String memberEmail) {
 		// TODO Auto-generated method stub
+	public List<PayInfoVo> selectPayInfoByMemberEmail(String memberEmail) {
 		return session.selectList(makeSql(), memberEmail);
 	}
 	@Override

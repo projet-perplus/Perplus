@@ -52,8 +52,12 @@ public class TravelDaoImpl implements TravelDao{
 	@Override
 	public TravelVo selectTravelByTravelSerial(int travelSerial) {
 		// TODO Auto-generated method stub
-		System.out.println("dao"+travelSerial);
 		return session.selectOne(makeSql(), travelSerial);
+	}
+	
+	@Override
+	public List<TravelVo> selectTravelByMemberEmail(String memberEmail){
+		return session.selectList("travel.travelJoinHouseJoinHouseFilter",memberEmail);
 	}
 
 }

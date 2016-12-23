@@ -4,7 +4,7 @@
 <mapper namespace="travel">
 	<!-- Insert -->
 	<insert id="insertTravel" parameterType="TravelVo">
-		insert into travel values (#{travelSerial}, #{travelCode}, #{houseSerial}, #{memberEmail}, #{travelStart}, #{travelEnd}, #{travelNumber}, #{travelCheckin}, #{travelCost})
+		insert into travel values (travel_seq.nextval, #{travelCode}, #{houseSerial}, #{memberEmail}, #{travelStart}, #{travelEnd}, #{travelNumber}, #{travelCheckin}, #{travelCost})
 	</insert>
 	
 	<!-- update-->
@@ -67,4 +67,85 @@
 		from travel
 		where TRAVEL_CODE = #{travelCode} 
 	</select>
+	
+	
+	<sql id="travel-house-housefilter-join">
+		select	t.travel_serial , t.travel_code, t.house_serial t_houseSerial, 
+				t.member_email t_memberEmail, t.travel_start, t.travel_end,
+				t.travel_number, t.travel_checkin, t.travel_cost,
+				
+				h.house_serial h_houseSerial, h.member_email h_memberEmail, h.house_register_status,
+				h.house_title, h.house_content, h.house_necessary_condition,
+				h.house_rating, h.house_marker_x, h.house_marker_y,
+				h.house_marker_constant,
+				
+				f.house_serial f_houseSerial, f.houseFilter_range, f.houseFilter_guest_number,
+				f.houseFilter_type, f.houseFilter_room_number, f.houseFilter_location,
+				f.houseFilter_bedroom_number, f.houseFilter_bathroom_number, f.houseFilter_bed_number,
+				f.houseFilter_checkin_term, f.houseFilter_checkin_start, f.houseFilter_checkin_end,
+				f.houseFilter_reservation_term, f.houseFilter_bak_min, f.houseFilter_bak_max,
+				f.houseFilter_price
+				
+		from	TRAVEL t, HOUSE h, HOUSEFILTER f
+		where	t.house_serial	=	h.house_serial
+		and		h.house_serial	=	f.house_serial
+	</sql>
+	
+	
+	<resultMap type="TravelVo" id="travel-join">
+		<id column="travel_serial" property="travelSerial"/>
+		<result column="travel_code" property="travelCode"/>
+		<result column="t_houseSerial" property="houseSerial"/>
+		<result column="t_memberEmail" property="memberEmail"/>
+		<result column="travel_start" property="travelStart"/>
+		<result column="travel_end" property="travelEnd"/>
+		<result column="travel_number" property="travelNumber"/>
+		<result column="travel_checkin" property="travelCheckin"/>
+		<result column="travel_cost" property="travelCost"/>
+		<association property="house" javaType="HouseVo">
+			<result column="h_houseSerial" property="houseSerial"/>
+			<result column="h_memberEmail" property="memberEmail"/>
+			<result column="house_register_status" property="houseRegisterStatus"/>
+			<result column="house_title" property="houseTitle"/>
+			<result column="house_content" property="houseContent"/>
+			<result column="house_necessary_condition" property="houseNecessaryCondition"/>
+			<result column="house_rating" property="houseRating"/>
+			<result column="house_marker_x" property="houseMarkerX"/>
+			<result column="house_marker_y" property="houseMarkerY"/>
+			<result column="house_marker_constant" property="houseMarkerConstant"/>
+			<association property="houseFilter" javaType="HouseFilterVo">
+				<result column="f_houseSerial" property="houseSerial"/>
+				<result column="housefilter_range" property="houseFilterRange"/>
+				<result column="housefilter_guest_number" property="houseFilterGuestNumber"/>
+				<result column="housefilter_type" property="houseFilterType"/>
+				<result column="housefilter_room_number" property="houseFilterRoomNumber"/>
+				<result column="housefilter_location" property="houseFilterLocation"/>
+				<result column="housefilter_bedroom_number" property="houseFilterBedroomNumber"/>
+				<result column="housefilter_bathroom_number" property="houseFilterBathroomNumber"/>
+				<result column="housefilter_bed_number" property="houseFilterBedNumber"/>
+				<result column="housefilter_checkin_term" property="houseFilterCheckinTerm"/>
+				<result column="housefilter_checkin_start" property="houseFilterCheckinStart"/>
+				<result column="housefilter_checkin_end" property="houseFilterCheckinEnd"/>
+				<result column="housefilter_reservation_term" property="houseFilterReservationTerm"/>
+				<result column="housefilter_bak_min" property="houseFilterBakMin"/>
+				<result column="housefilter_bak_max" property="houseFilterBakMax"/>
+				<result column="housefilter_price" property="houseFilterPrice"/>			
+			</association>
+		</association>
+	</resultMap>
+	
+	
+	<select id="travelJoinHouseJoinHouseFilter" parameterType="string" resultMap="travel-join">
+		<include refid="travel-house-housefilter-join"/>
+		and		t.member_email	=	#{value}
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	
 </mapper>

@@ -77,7 +77,6 @@ public class HouseController {
 			map.put("shutdownDate", shutdownDate);
 		}
 
-		System.out.println(shutdownDate);
 		map.put("house", house);
 		map.put("picture", picture);
 		map.put("comment", comment);
@@ -88,7 +87,6 @@ public class HouseController {
 	/****************** 하우스 상세 페이지 삭제 *****************/
 	@RequestMapping("/removeHouse")
 	public String removeHouse(@RequestParam int houseSerial) {
-		System.out.println(houseSerial);
 		service.removeHouse(houseSerial);
 		return "redirect:/main.do";
 	}
@@ -108,7 +106,6 @@ public class HouseController {
 	/****************** 하우스 코멘트 삭제 *****************/
 	@RequestMapping("/removeHouseComment")
 	public String removeHouseComment(@RequestParam int commentSerial, @RequestParam int houseSerial) {
-		System.out.println(commentSerial);
 		int houseRating = memberService.deleteHouseComment(commentSerial);
 		return "redirect:/house/houseDetail.do?houseSerial=" + houseSerial + "&houseRating=" + houseRating;
 	}
@@ -131,14 +128,11 @@ public class HouseController {
 	*/
 	@RequestMapping("/oneStepBefore.do")//1step 들어가기전에 필요한 정보들 조회 컨트롤러.
 	public String oneStepBefore(){
-		System.out.println("oneStepBefore.do");
-		System.out.println();
 		return "forward:/basicinfo.do";
 	}
 	
 	@RequestMapping("/oneStep.do")//1step commit 하는 컨트롤러
 	public String oneStepHouseRegister(@ModelAttribute HouseVo houseVo, HttpServletRequest request){
-		System.out.println("oneStep.do");
 		String houseNecessaryCondition = null;
 		String[] houseNecessaryConditionList = (String[])request.getParameterValues("houseNecessaryConditionList");
 		if(houseNecessaryConditionList!=null){
@@ -160,14 +154,11 @@ public class HouseController {
 	
 	@RequestMapping("/twoStepBefore.do")//2step 들어가기전 조회하는 컨트롤러.
 	public String twoStepBefore(@RequestParam int houseSerial){
-		System.out.println("twoStepBefore.do");
-		System.out.println();
 		return "redirect:/housetypeandlocation.do?houseSerial="+houseSerial;
 	}
 	
 	@RequestMapping("/twoStep.do")//2step commit하는 컨트롤러
 	public String twoStepHouseRegister(@ModelAttribute HouseFilterVo houseFilterVo,HttpServletRequest request){
-		System.out.println("twoStep.do");
 		String[] houseFilterLocationList = (String[])request.getParameterValues("houseFilterLocationList");
 		String houseFilterLocation = "";
 		for(int i = 0; i<houseFilterLocationList.length;i++){
@@ -187,11 +178,8 @@ public class HouseController {
 	public String threeStepBefore(@RequestParam int houseSerial, HttpServletRequest request){
 		HouseFilterVo houseFilter = service.selectHouseFilter(houseSerial);
 		String location = houseFilter.getHouseFilterLocation().split(",  ")[1];
-		System.out.println(location);
 		request.setAttribute("location", location);
 		request.setAttribute("houseSerial", houseSerial);
-		System.out.println("threeStepBefore.do");
-		System.out.println();
 		return "forward:/houselocation.do";
 	}
 	
@@ -199,26 +187,19 @@ public class HouseController {
 	@RequestMapping("/threeStep.do")//3step commit하는 컨트롤러
 	public String threeStepHouseRegister(@RequestParam int houseSerial, @RequestParam String lat, @RequestParam String lng){
 		HouseVo house = service.selectHouseByHouseSerial(houseSerial);
-		System.out.println(house);
 		
 		double houseMarkerX = Double.parseDouble(lat);
 		double houseMarkerY = Double.parseDouble(lng);
 		house.setHouseMarkerX(houseMarkerX);
 		house.setHouseMarkerY(houseMarkerY);
-		System.out.println(houseMarkerX);
-		System.out.println(houseMarkerY);
-		System.out.println(house);
+		house.setHouseMarkerConstant(Constants.MAKRER_CONSTANT_HOUSE);
 		service.modifyHouse(house);
 		
-		System.out.println("threeStep");
-		System.out.println(houseSerial);
 		return "redirect:/house/fourStepBefore.do?houseSerial="+houseSerial;
 	}
 	
 	@RequestMapping("/fourStepBefore.do")//4step 들어가기전에 조회하는 것들...
 	public String fourStepBefore(@RequestParam int houseSerial, HttpServletRequest request){
-		System.out.println("fourStepBefore.do");
-		System.out.println();
 		List<CodetableVo> convenientFacility = service.codetableFindByKind(201);//편의시설
 		List<CodetableVo> secureFacility = service.codetableFindByKind(202);//안전시설
 		List<CodetableVo> commonFacility = service.codetableFindByKind(203);//공용시설
@@ -249,34 +230,28 @@ public class HouseController {
 		
 		if(convenientFacilityList!=null&&convenientFacilityList.length!=0){
 			for(int i = 0; i<convenientFacilityList.length;i++){
-				System.out.println(convenientFacilityList[i]);
 				service.insertChecklist(new CheckListVo(0, houseSerial, Constants.CODE_KIND_CHECKLIST_COMFORT_FACILITY, convenientFacilityList[i]));
 			}
 		}
 		if(secureFacilityList!=null&&secureFacilityList.length!=0){
 			for(int i = 0; i<secureFacilityList.length;i++){
-				System.out.println(secureFacilityList[i]);
 				service.insertChecklist(new CheckListVo(0, houseSerial, Constants.CODE_KIND_CHECKLIST_SAFE_FACILITY, secureFacilityList[i]));
 			}
 		}
 		if(commonFacilityList!=null&&commonFacilityList.length!=0){
 			for(int i = 0; i<commonFacilityList.length;i++){
-				System.out.println(commonFacilityList[i]);
 				service.insertChecklist(new CheckListVo(0, houseSerial, Constants.CODE_KIND_CHECKLIST_COMMON_FACILITY, commonFacilityList[i]));
 			}
 		}
 		
 		
 		service.updateHouseFilter(houseFilter);
-		System.out.println("fourStep");
 		return "redirect:/house/fiveStepBefore.do?houseSerial="+houseSerial;
 	}
 	
 	
 	@RequestMapping("/fiveStepBefore.do")//5step 들어가기전에 조회하는 것들...
 	public String fiveStepBefore(@RequestParam int houseSerial){
-		System.out.println("fiveStepBefore.do");
-		System.out.println();
 		return "redirect:/houseimageenrollment.do?houseSerial="+houseSerial;
 	}
 	
@@ -320,15 +295,12 @@ public class HouseController {
 		}
 		
 		
-		System.out.println("fiveStep");
 		return "redirect:/house/sixStepBefore.do?houseSerial="+houseSerial;
 	}
 	
 	
 	@RequestMapping("/sixStepBefore.do")//6step 들어가기전에 조회하는 것들...
 	public String sixStepBefore(@RequestParam int houseSerial){
-		System.out.println("sixStepBefore.do");
-		System.out.println();
 		return "redirect:/houseschedulemanagement.do?houseSerial="+houseSerial;
 	}
 	
@@ -354,15 +326,12 @@ public class HouseController {
 		
 		service.updateHouseFilter(houseFilter);
 		
-		System.out.println("sixStep");
 		return "redirect:/house/sevenStepBefore.do?houseSerial="+houseSerial;
 	}
 	
 	
 	@RequestMapping("/sevenStepBefore.do")//7step 들어가기전에 조회하는 것들...
 	public String sevenStepBefore(@RequestParam int houseSerial){
-		System.out.println("sevenStepBefore.do");
-		System.out.println();
 		return "redirect:/houseshutdowndate.do?houseSerial="+houseSerial;
 	}
 	
@@ -376,7 +345,6 @@ public class HouseController {
 	
 	@RequestMapping("/sevenStep.do")//7step commit하는 컨트롤러
 	public String sevenStepHouseRegister(@RequestParam int houseSerial, @RequestParam String shutdownDateList, HttpServletRequest request) throws ParseException{
-		System.out.println(shutdownDateList);
 		String[] shutdownDates = shutdownDateList.split(", ");
 		
 		Date shutdownDate = null;
@@ -391,15 +359,12 @@ public class HouseController {
 				service.insertShutdown(shutdown);
 			}
 		}
-		System.out.println("sevenStep");
 		return "redirect:/house/eightStepBefore.do?houseSerial="+houseSerial;
 	}
 	
 	
 	@RequestMapping("/eightStepBefore.do")//8step 들어가기전에 조회하는 것들...
 	public String eightStepBefore(@RequestParam int houseSerial){
-		System.out.println("eightStepBefore.do");
-		System.out.println();
 		return "redirect:/houseprice.do?houseSerial="+houseSerial;
 	}
 
@@ -412,7 +377,6 @@ public class HouseController {
 		
 		service.updateHouseFilter(houseFilter);
 		
-		System.out.println("eightStep");
 		return "redirect:/hostingcomplate.do?houseSerial="+houseSerial;
 	}	
 	
