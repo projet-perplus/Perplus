@@ -129,7 +129,7 @@
 <a href="${initParam.rootPath}/review/showReview.do?reviewSerial=1">
 </a> --%>
 	<!-- reviewSerial은 requestScope의 리뷰시리얼값~~ -->
-	<button type="button" class="btn btn-primary" onclick="window.open('/Perplus/review/showReview.do?reviewSerial=1')">리뷰 상세페이지</button>
+	<!-- <button type="button" class="btn btn-primary" onclick="window.open('/Perplus/review/showReview.do?reviewSerial=1')">리뷰 상세페이지</button> -->
 <!-- 	<button type="button" class="btn btn-primary" onclick="window.open('/Perplus/review/showReview.do?reviewSerial=1','detail','fullscreen');void(0);">리뷰 상세페이지</button>
  -->
 <!-- <button class="btn btn-primary reviewDetail" data-toggle="modal"

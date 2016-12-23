@@ -7,7 +7,6 @@
 $(document).ready(function() {
 		
 	$(".preview").on("click","p",function() {
-		  alert("a");
 		  if($('.preview img').length < 6){
 			   $(".addImage").show();				
 			} 
@@ -28,12 +27,10 @@ $(document).ready(function() {
 	
 });
 function setSendPosition(){
-	alert(markerArray);
 	for(var i in markerArray){
 		if(markerArray[i].getIcon().url.includes('default')){
 			$("#lat").val(markerArray[i].getPosition().lat());
 			$("#lng").val(markerArray[i].getPosition().lng());
-			alert($("#lat").val());
 		}		
 	}
 }

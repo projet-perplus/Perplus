@@ -9,7 +9,7 @@ function addMapclickEventForReview(){
 		// 추가적으로 로그인 여부 확인 필요
 		if(identifyLoginInfo()!= null){
 			if(startMarker == null){
-				alert(mouseEvent.latLng);
+//				alert(mouseEvent.latLng);
 				startMarker=placeMarker(0,mouseEvent.latLng);
 				startMarker.setAnimation(google.maps.Animation.BOUNCE);
 			}else if(startMarker != null){
