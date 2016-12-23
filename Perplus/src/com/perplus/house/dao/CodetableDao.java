@@ -6,6 +6,6 @@ import com.perplus.house.vo.CodetableVo;
 
 public interface CodetableDao {
 	
-	List<CodetableVo> codetableFindByKind(int codeKind);
-	
-}
+	List<CodetableVo> codetableFindByKind(int codeKind);      
+	      
+}   

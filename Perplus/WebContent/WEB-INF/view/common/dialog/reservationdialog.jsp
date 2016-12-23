@@ -1,13 +1,12 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script type="text/javascript">
-var array=[${requestScope.shutdownDate}];
 var pickableRangeResult = null;
- 			$(function() {
+ 			/* $(function() {
  				
  				
  				$("#housedatepicker1").multiDatesPicker({
- 					addDisabledDates : array,
+//  					addDisabledDates : [${requestScope.shutdownDate}],
  					maxPicks : 2,
 					altField : "#reservationDate",
 					minDate : 0,
@@ -29,8 +28,8 @@ var pickableRangeResult = null;
 							async : false,
 							data : {
 								"dateText" : dateText,
-								"houseSerial" : ${param.houseSerial},
-								"reservationTerm" : ${requestScope.house.houseFilter.houseFilterReservationTerm}
+// 								"houseSerial" : ${param.houseSerial},
+// 								"reservationTerm" : ${requestScope.house.houseFilter.houseFilterReservationTerm}
 							},
 							dataType : "json",
 							beforeSend : function(){
@@ -39,7 +38,7 @@ var pickableRangeResult = null;
 /* 								alert(obj);
 								$("#housedatepicker1").multiDatesPicker("option",{pickableRange: obj});
 								}
-								alert(pickableRangeResult); */
+								alert(pickableRangeResult); 
 							},
 							error : function(error, request, status){
 								alert("에러났거든요");
@@ -49,7 +48,7 @@ var pickableRangeResult = null;
 					
 				});
  			});
- 				
+ 				 */
 				
 //  				$("#housedatepicker1").on("change", function(){
 //  					alert("asdf");

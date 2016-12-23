@@ -127,10 +127,6 @@ function locationSearch(){
 			alert("제대로 된 지명을 입력해 주세요.");
 		}
 	});
-	//숙소 검색에서 최초 printByFilter를 부르는 곳
-	if(stage == 'search'){
-		printByFilter();
-	}
 }
 
 function setMapOnAll(){
@@ -232,7 +228,11 @@ function placeMarker(serial,location,constant,money) {
 		}else if((mIcon.url).includes('register')){
 			marker.setDraggable(true);
 		}else if((mIcon.url).includes('house')){
-			
+			google.maps.event.addListener(marker,'click',function(){
+				var url ="/Perplus/house/houseDetail.do?houseSerial="+serial;
+				
+				window.location = url;
+			});
 		}else{
 			google.maps.event.addListener(marker, 'click', function(){	
 //				alert(serial);
@@ -243,6 +243,7 @@ function placeMarker(serial,location,constant,money) {
 		}
 		markerArray.push(marker);
 		if(mIcon == houseIcon){
+			
 			var str = comma(money);
 			marker.setLabel(str);
 		}
@@ -296,7 +297,6 @@ function resetMapMarker(addFilterStatus){
 					map.getBounds().getSouthWest().lat(),map.getBounds().getSouthWest().lng(),map.getBounds().getNorthEast().lat(),
 					map.getBounds().getNorthEast().lng());
 	}else if(stage == 'search'){
-		
 		printByFilter();
 	}
 	//맵 클러스터링(각 적용되는 템플릿에 <script src="/Perplus/js/markerclusterer.js"></script> 라이브러리 추가 필요)

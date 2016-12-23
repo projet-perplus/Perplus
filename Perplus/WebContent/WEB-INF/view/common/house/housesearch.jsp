@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<script src="/Perplus/js/jquery-ui.multidatespicker.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<!-- <script src="/Perplus/js/jquery-ui.multidatespicker.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> -->
 <script
    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWDGjKV2YFKGM5q6gtx-J5GcJTa2wLDQU"
    type="text/javascript"></script>
@@ -14,7 +14,6 @@ var place;
 var checkIn;
 var checkOut;
 var guestNumber;
-
 $(document).ready(function(){
    if(decodeURI(window.location.search).includes('location')){
       place=getQueryString('location');
@@ -163,14 +162,15 @@ function printByFilter(){
 			var houseList = "";
 			$.each(obj.houseList,function(){
 				var markerLatlng = new google.maps.LatLng(this.houseMarkerX, this.houseMarkerY);
-				placeMarker(this.houseSerial,markerLatlng,this.houseMarkerConstant,this.houseFilter.houseFilterPrice);
+ 				placeMarker(this.houseSerial,markerLatlng,this.houseMarkerConstant,this.houseFilter.houseFilterPrice);
 				
-				houseList+='<div class="col-md-3 col-sm-4 col-xs-4" style="margin: 12px 24px 12px 24px;"><div class="row con1"><div class="row con1"><div class="col-md-12" style="padding: 0px;"><img src='+this.housePicture[0].pictureName+' alt="asd" style="width: 100%; height: 150px" />'
+				houseList+='<a href="${initParam.rootPath }/house/houseDetail.do?houseSerial='+this.houseSerial+'" onmouseover="markerHoveringEvent('+this.houseSerial+')" onmouseleave="deleteMarkerHoveringEvent('+this.houseSerial+')"><div class="col-md-3 col-sm-4 col-xs-4" style="margin: 12px 24px 12px 24px;"><div class="row con1"><div class="row con1"><div class="col-md-12" style="padding: 0px;"><img src=/Perplus/housePicture/'+searchFirstOrderPicture(this.housePicture)+' alt="asd" style="width: 100%; height: 150px" />'
 	            +'</div></div><div class="row subcon1" style="border: 1px solid #ccc;"><div class="row con2"><div class="col-md-12"><span class="col-md-12" style="text-align: center; padding: 5px; font-size: 12px;">'+this.houseTitle+'</span></div></div></div>'
-	            +'<div class="row subcon2" style="border: 1px solid #ccc;"><div class="row con3"><div class="col-md-12"><span class="col-md-12" style="text-align: center; padding: 5px; font-size: 12px;">'+this.houseFilter.houseFilterPrice+'</span></div></div></div></div></div>';
+	            +'<div class="row subcon2" style="border: 1px solid #ccc;"><div class="row con3"><div class="col-md-12"><span class="col-md-12" style="text-align: center; padding: 5px; font-size: 12px;">'+this.houseFilter.houseFilterPrice+'</span></div></div></div></div></div></a>';
 			});
 			
 			$("#houselistplace").html(houseList);		
+			
 			
 			if(obj.priceRange!=null){
 				$("#slider-range").slider("option","min",obj.priceRange.MIN);
@@ -188,6 +188,37 @@ function printByFilter(){
 			alert(error+ "   "+status+"status");
 		}
 	});
+	
+}
+function markerHoveringEvent(houseSerial){
+/* 	if(markerArray.length!=0){
+		$.each(markerArray,function(){
+			alert(this.getTitle());
+			alert(houseSerial.toString());
+			if(this.getTitle()==houseSerial.toString().trim()){
+				this.setAnimation(google.maps.Animation.BOUNCE);
+			}
+		});
+	} */
+}
+function deleteMarkerHoveringEvent(houseSerial){
+/* 	if(markerArray.length!=0){
+		$.each(markerArray,function(){
+			if(this.getTitle()==houseSerial.toString().trim()){
+				this.setAnimation(null);
+			}
+		});
+	} */
+}
+function searchFirstOrderPicture(pictureList){
+	var str;
+	$.each(pictureList,function(){
+		if(this.pictureOrder==1){
+			str= this.pictureName;
+		}		
+	});
+	
+	return str;
 }
 var trigger = false;
 function attatchEvent(){
