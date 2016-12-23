@@ -2,6 +2,8 @@ create sequence house_seq increment by 1;
 
 drop sequence house_seq
 
+select DISTINCT HOUSE_SERIAL from HOUSEPICTURE
+
 insert into HOUSEFILTER values(1,'화장실',20,'다인실',2,'경기도 용인시 모현면');
 
 select sysdate from dual;
@@ -287,6 +289,56 @@ from (
 		)
 	)
 )
+
+
+select   h.HOUSE_SERIAL h_hSerial,h.MEMBER_EMAIL h_email, h.HOUSE_REGISTER_STATUS,h.HOUSE_TITLE, h.HOUSE_CONTENT,h.HOUSE_NECESSARY_CONDITION,   h.HOUSE_RATING, h.HOUSE_MARKER_X,h.HOUSE_MARKER_Y, h.HOUSE_MARKER_CONSTANT,   f.HOUSE_SERIAL f_hSerial,f.HOUSEFILTER_RANGE,f.HOUSEFILTER_GUEST_NUMBER,f.HOUSEFILTER_TYPE,f.HOUSEFILTER_ROOM_NUMBER,f.HOUSEFILTER_LOCATION,f.HOUSEFILTER_BEDROOM_NUMBER,   f.HOUSEFILTER_BATHROOM_NUMBER,f.HOUSEFILTER_BED_NUMBER,f.HOUSEFILTER_CHECKIN_TERM,f.HOUSEFILTER_CHECKIN_START,f.HOUSEFILTER_CHECKIN_END,   f.HOUSEFILTER_RESERVATION_TERM,f.HOUSEFILTER_BAK_MIN,f.HOUSEFILTER_BAK_MAX,f.HOUSEFILTER_PRICE,   p.PICTURE_SERIAL, p.HOUSE_SERIAL p_hSerial, p.PICTURE_ORDER , p.PICTURE_NAME   
+from HOUSE h, HOUSEFILTER f , HOUSEPICTURE p       
+where   h.HOUSE_SERIAL    
+in   
+(              
+	select HOUSE_SERIAL houseSerial    
+	from HOUSE     
+	where HOUSE_SERIAL 
+	IN   
+	(          
+		select HOUSE_SERIAL     
+		from 
+		(       
+			select HOUSE_SERIAL,   HOUSEFILTER_RANGE,   HOUSEFILTER_GUEST_NUMBER,   HOUSEFILTER_TYPE,   HOUSEFILTER_ROOM_NUMBER,   HOUSEFILTER_LOCATION,   HOUSEFILTER_BEDROOM_NUMBER,   HOUSEFILTER_BATHROOM_NUMBER,   HOUSEFILTER_BED_NUMBER,   HOUSEFILTER_CHECKIN_TERM,   HOUSEFILTER_CHECKIN_START,   HOUSEFILTER_CHECKIN_END,   HOUSEFILTER_RESERVATION_TERM,   HOUSEFILTER_BAK_MIN,   HOUSEFILTER_BAK_MAX,   HOUSEFILTER_PRICE   
+			from HOUSEFILTER                                      
+			WHERE HOUSE_SERIAL 
+			in 
+			(       
+				select DISTINCT HOUSE_SERIAL         
+				from 
+				(                                   
+					select DISTINCT HOUSE_SERIAL           
+					from SHUTDOWN        
+					where HOUSE_SERIAL 
+					NOT IN 
+					(        
+						select DISTINCT HOUSE_SERIAL          
+						from SHUTDOWN          
+						where SHUTDOWN_DATE       
+						between (CAST(? as date)) and (CAST(? as date))        
+					)                                                           
+				)                      
+			)      
+		)          
+		WHERE  (CAST(? as date)-CAST(? as date)) >=  HOUSEFILTER_BAK_MIN      
+		and (CAST(? as date)-CAST(? as date)) <=  HOUSEFILTER_BAK_MAX           
+		and ADD_MONTHS((select sysdate from dual),HOUSEFILTER_RESERVATION_TERM) >= CAST(? as date)         
+		and (select sysdate from dual) + (HOUSEFILTER_CHECKIN_TERM) <= CAST(? as date)                     
+		and HOUSEFILTER_GUEST_NUMBER >= ?                        
+		and HOUSEFILTER_RANGE = ?                  
+		and (HOUSEFILTER_PRICE between to_number(?) and to_number(?))     
+	)   
+)  
+and f.HOUSE_SERIAL = h.HOUSE_SERIAL  
+and p.HOUSE_SERIAL(+) = h.HOUSE_SERIAL   
+and (HOUSE_MARKER_X between ? and ?)   
+and (HOUSE_MARKER_Y between ? and ?)
+
 
 
 select HOUSE_SERIAL houseSerial   
