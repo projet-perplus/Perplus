@@ -188,7 +188,6 @@ function printByFilter(){
 			alert(error+ "   "+status+"status");
 		}
 	});
-	
 }
 function markerHoveringEvent(houseSerial){
 /* 	if(markerArray.length!=0){
